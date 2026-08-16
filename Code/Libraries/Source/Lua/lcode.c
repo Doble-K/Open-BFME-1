@@ -340,7 +340,7 @@ void luaK_tostack (LexState *ls, expdesc *v, int onlyone) {
           luaK_adjuststack(fs, 1);
         }
         p_nil = code_label(fs, OP_PUSHNILJMP, 0);
-        p_1 = code_label(fs, OP_PUSHINT, 1);
+        p_1 = code_label(fs, OP_PUSHBOOL, 1);  /* EA: real boolean `true', not stock's PUSHINT 1 */
         luaK_patchlist(fs, j, luaK_getlabel(fs));
       }
       final = luaK_getlabel(fs);
@@ -660,6 +660,7 @@ const struct OpProperties luaK_opproperties[NUM_OPCODES] = {
   {iAB, 0, 0},	/* OP_TAILCALL */
   {iU, VD, 0},	/* OP_PUSHNIL */
   {iU, VD, 0},	/* OP_POP */
+  {iS, 1, 0},	/* OP_PUSHBOOL */
   {iS, 1, 0},	/* OP_PUSHINT */
   {iU, 1, 0},	/* OP_PUSHSTRING */
   {iU, 1, 0},	/* OP_PUSHNUM */

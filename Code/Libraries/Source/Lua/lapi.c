@@ -306,7 +306,7 @@ LUA_API int lua_getref (lua_State *L, int ref) {
 
 
 LUA_API void lua_newtable (lua_State *L) {
-  hvalue(L->top) = luaH_new(L, 0);
+  hvalue(L->top) = luaH_new(L, 0, 0);
   ttype(L->top) = LUA_TTABLE;
   api_incr_top(L);
 }

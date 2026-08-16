@@ -91,12 +91,12 @@ OP_TAILCALL,/*	A B	v_n-v_1 f(at a)	(return)	f(v1,...,v_n)	*/
 OP_PUSHNIL,/*	U	-		nil_1-nil_u			*/
 OP_POP,/*	U	a_u-a_1		-				*/
 
+OP_PUSHBOOL,/* S	-		(nil/boolean)s		*/
+
 OP_PUSHINT,/*	S	-		(Number)s			*/
 OP_PUSHSTRING,/* K	-		KSTR[k]				*/
 OP_PUSHNUM,/*	N	-		KNUM[n]				*/
 OP_PUSHNEGNUM,/* N	-		-KNUM[n]			*/
-
-OP_PUSHBOOL,/* U	-		(nil/boolean)u		*/
 
 OP_PUSHUPVALUE,/* U	-		Closure[u]			*/
 

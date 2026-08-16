@@ -58,6 +58,14 @@ int luaV_tonumber (TObject *obj) {
 
 
 int luaV_tostring (lua_State *L, TObject *obj) {  /* LUA_NUMBER */
+  if (ttype(obj) == 6) {  /* EA's added LUA_TBOOLEAN tag */
+    if (bvalue(obj))
+      tsvalue(obj) = luaS_new(L, "true");
+    else
+      tsvalue(obj) = luaS_new(L, "false");
+    ttype(obj) = LUA_TSTRING;
+    return 0;
+  }
   if (ttype(obj) != LUA_TNUMBER)
     return 1;
   else {
@@ -280,6 +288,8 @@ int luaV_lessthan (lua_State *L, const TObject *l, const TObject *r, StkId top) 
     return (nvalue(l) < nvalue(r));
   else if (ttype(l) == LUA_TSTRING && ttype(r) == LUA_TSTRING)
     return (luaV_strcomp(tsvalue(l), tsvalue(r)) < 0);
+  else if (ttype(l) == 6 && ttype(r) == 6)  /* EA's added LUA_TBOOLEAN tag */
+    return (bvalue(l) < bvalue(r));
   else {  /* call TM */
     luaD_checkstack(L, 2);
     *top++ = *l;
@@ -327,7 +337,7 @@ void luaV_strconc (lua_State *L, int total, StkId top) {
 
 static void luaV_pack (lua_State *L, StkId firstelem) {
   int i;
-  Hash *htab = luaH_new(L, 0);
+  Hash *htab = luaH_new(L, 0, 0);
   for (i=0; firstelem+i<L->top; i++)
     *luaH_setint(L, htab, i+1) = *(firstelem+i);
   /* store counter in field `n' */
@@ -354,6 +364,7 @@ static void adjust_varargs (lua_State *L, StkId base, int nfixargs) {
 ** Executes the given Lua function. Parameters are between [base,top).
 ** Returns n such that the the results are between [n,top).
 */
+// luaV_execute present-unmatched
 StkId luaV_execute (lua_State *L, const Closure *cl, StkId base) {
   const Proto *const tf = cl->f.l;
   StkId top;  /* keep top local, for performance */
@@ -409,6 +420,12 @@ StkId luaV_execute (lua_State *L, const Closure *cl, StkId base) {
       case OP_PUSHINT: {
         ttype(top) = LUA_TNUMBER;
         nvalue(top) = (Number)GETARG_S(i);
+        top++;
+        break;
+      }
+      case OP_PUSHBOOL: {  /* EA's added boolean opcode */
+        ttype(top) = 6;  /* LUA_TBOOLEAN, no macro named for the tag itself */
+        bvalue(top) = GETARG_S(i);
         top++;
         break;
       }
@@ -476,7 +493,7 @@ StkId luaV_execute (lua_State *L, const Closure *cl, StkId base) {
       case OP_CREATETABLE: {
         L->top = top;
         luaC_checkGC(L);
-        hvalue(top) = luaH_new(L, GETARG_U(i));
+        hvalue(top) = luaH_new(L, GETARG_U(i), 0);
         ttype(top) = LUA_TTABLE;
         top++;
         break;
@@ -584,9 +601,13 @@ StkId luaV_execute (lua_State *L, const Closure *cl, StkId base) {
         break;
       }
       case OP_NOT: {
-        ttype(top-1) =
-           (ttype(top-1) == LUA_TNIL) ? LUA_TNUMBER : LUA_TNIL;
-        nvalue(top-1) = 1;
+        int truthy, t;
+        ttype(top-1) = 6;  /* EA: `not' now always yields a real boolean */
+        t = ((volatile TObject *)(top-1))->ttype;
+        if (t == LUA_TNIL) truthy = 0;
+        else if (t == 6) truthy = bvalue(top-1);
+        else truthy = 1;
+        nvalue(top-1) = !truthy;  /* EA reused the old NUMBER store here verbatim */
         break;
       }
       case OP_JMPNE: {
@@ -620,21 +641,36 @@ StkId luaV_execute (lua_State *L, const Closure *cl, StkId base) {
         break;
       }
       case OP_JMPT: {
-        if (ttype(--top) != LUA_TNIL) dojump(pc, i);
+        int t = ttype(--top);
+        if (t != LUA_TNIL) {
+          if (t != 6 || bvalue(top))
+            dojump(pc, i);
+        }
         break;
       }
       case OP_JMPF: {
-        if (ttype(--top) == LUA_TNIL) dojump(pc, i);
+        int t = ttype(--top);
+        if (t == LUA_TNIL || (t == 6 && !bvalue(top)))
+          dojump(pc, i);
         break;
       }
       case OP_JMPONT: {
-        if (ttype(top-1) == LUA_TNIL) top--;
-        else dojump(pc, i);
+        int t = ttype(top-1);
+        if (t != LUA_TNIL && (t != 6 || bvalue(top-1))) {
+          dojump(pc, i);
+        }
+        else {
+          top--;
+        }
         break;
       }
       case OP_JMPONF: {
-        if (ttype(top-1) != LUA_TNIL) top--;
-        else dojump(pc, i);
+        int t = ttype(top-1);
+        if (t == LUA_TNIL) { dojump(pc, i); break; }
+        if (t == 6) {
+          if (!bvalue(top-1)) { dojump(pc, i); break; }
+        }
+        top--;
         break;
       }
       case OP_JMP: {

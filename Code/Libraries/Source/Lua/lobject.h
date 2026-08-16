@@ -53,6 +53,8 @@ typedef union {
   struct Hash *a;	/* LUA_TTABLE */
   struct CallInfo *i;	/* LUA_TLMARK */
   Number n;		/* LUA_TNUMBER */
+  int b;		/* EA's added tag 6, LUA_TBOOLEAN -- no macro named for the
+			   tag itself in retail, just switched on as literal 6 */
 } Value;
 
 
@@ -63,6 +65,7 @@ typedef union {
 #define clvalue(o)      ((o)->value.cl)
 #define hvalue(o)       ((o)->value.a)
 #define infovalue(o)	((o)->value.i)
+#define bvalue(o)	((o)->value.b)
 #define svalue(o)       (tsvalue(o)->str)
 
 
@@ -164,6 +167,10 @@ typedef struct Hash {
   Node *node;
   int htag;
   int size;
+  /* BFME's luaH_new takes an extra caller-requested size argument (the
+     pre-power-of-2 value) and stores it raw here, one slot before where a
+     stock node/htag/size/firstfree layout would put firstfree. */
+  int reqsize;
   Node *firstfree;  /* this position is free; all positions after it are full */
   struct Hash *next;
   struct Hash *mark;  /* marked tables (point to itself when not marked) */

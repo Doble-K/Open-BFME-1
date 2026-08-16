@@ -179,11 +179,12 @@ static void setnodevector (lua_State *L, Hash *t, lint32 size) {
 }
 
 
-Hash *luaH_new (lua_State *L, int size) {
+Hash *luaH_new (lua_State *L, int size, int reqsize) {
   Hash *t = luaM_new(L, Hash);
   t->htag = TagDefault;
   t->next = L->roottable;
   L->roottable = t;
+  t->reqsize = reqsize;
   t->mark = t;
   t->size = 0;
   L->nblocks += gcsize(L, 0);

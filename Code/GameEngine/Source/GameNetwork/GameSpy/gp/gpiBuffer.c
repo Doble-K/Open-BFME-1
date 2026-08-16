@@ -183,9 +183,9 @@ gpiSendData(
 #endif
 	if(rcode == SOCKET_ERROR)
 	{
-#if 0
+#if 1
 		rcode = GOAGetLastError(sock);
-		if(rcode != WSAEWOULDBLOCK)
+		if((rcode != WSAEWOULDBLOCK) && (rcode != WSAEINPROGRESS) && (rcode != WSAETIMEDOUT))
 		{
 			// handle peer connections specially
 			if((id[0] == 'P') && (id[1] == 'R'))
@@ -393,9 +393,12 @@ gpiRecvToBuffer(
 		if(rcode == SOCKET_ERROR)
 		{
 //*INEV*BW: Will we need some error detection here?
-#if 0
-			if(GOAGetLastError(sock) != WSAEWOULDBLOCK)
-				Error(connection, GP_NETWORK_ERROR, "There was an error reading from a socket.");
+#if 1
+			{
+				int error = GOAGetLastError(sock);
+				if((error != WSAEWOULDBLOCK) && (error != WSAEINPROGRESS) && (error != WSAETIMEDOUT))
+					Error(connection, GP_NETWORK_ERROR, "There was an error reading from a socket.");
+			}
 #endif
 		}
 		else if(rcode == 0)

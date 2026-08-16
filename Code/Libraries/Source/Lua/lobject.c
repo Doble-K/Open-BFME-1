@@ -50,10 +50,12 @@ int luaO_equalObj (const TObject *t1, const TObject *t2) {
       return nvalue(t1) == nvalue(t2);
     case LUA_TSTRING: case LUA_TUSERDATA:
       return tsvalue(t1) == tsvalue(t2);
-    case LUA_TTABLE: 
+    case LUA_TTABLE:
       return hvalue(t1) == hvalue(t2);
     case LUA_TFUNCTION:
       return clvalue(t1) == clvalue(t2);
+    case 6:  /* EA's added LUA_TBOOLEAN tag; no macro in stock lobject.h */
+      return hvalue(t1) == hvalue(t2);
     default:
       LUA_ASSERT(ttype(t1) == LUA_TNIL, "invalid type");
       return 1; /* LUA_TNIL */

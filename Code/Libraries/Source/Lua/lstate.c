@@ -53,7 +53,7 @@ static void f_luaopen (lua_State *L, void *ud) {
     stacksize = DEFAULT_STACK_SIZE;
   else
     stacksize += LUA_MINSTACK;
-  L->gt = luaH_new(L, 10);  /* table of globals */
+  L->gt = luaH_new(L, 10, 10);  /* table of globals */
   luaD_init(L, stacksize);
   luaS_init(L);
   luaX_init(L);

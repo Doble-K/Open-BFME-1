@@ -14,7 +14,7 @@
 #define key(n)		(&(n)->key)
 #define val(n)		(&(n)->val)
 
-Hash *luaH_new (lua_State *L, int nhash);
+Hash *luaH_new (lua_State *L, int nhash, int reqsize);
 void luaH_free (lua_State *L, Hash *t);
 const TObject *luaH_get (lua_State *L, const Hash *t, const TObject *key);
 const TObject *luaH_getnum (const Hash *t, Number key);
