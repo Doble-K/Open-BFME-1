@@ -390,53 +390,47 @@ shows `nop` runs inside a body, suspect the binary before rewriting the source. 
 amount of C++ reproduces a patch.
 
 
-## Triaging a red DIR32 gate: count the rows on each side
+## Triaging a red DIR32 gate: the count points, the structure proves
 
 `DIR32 consistency: FAIL n NEW inconsistent symbol(s)` names the symbol and its
-two bases and stops there. `tools/dir32.py <symbol>` finishes the sentence -- it
-lists the ledger rows that resolve the symbol to each base -- and the shape of
-that list usually decides the case on its own.
+two bases and stops. `tools/dir32.py <symbol>` lists the rows resolving it to
+each base, and one row against twenty says which row to doubt -- but that is a
+pointer, not a proof: a majority can be an ICF artifact, and a 1-vs-1 split
+says nothing at all. Structure proves it. The six symbols red on 2026-08-16
+were **all six wrong rows**, none a second legitimate base, and each fell to
+one of these reads.
 
-As of 2026-08-16 the gate is red on six symbols, and **four of them are one row
-each disagreeing with a large consensus**:
+**Offsets fix the class.** `??0BehaviorModule` at 0x005F84E0 stored its extra
+vptrs at +0x14/+0x18 over a 0x14-byte base; BehaviorModule's are at
++0x00/+0x0C/+0x10, where twenty derived destructors restore
+0x0109CB5C/0x0109CA98/0x0109CBAC on their way out. A base sub-object is not
+0x0C bytes in one body and 0x14 in another, so the body is another class's.
+That TU had already written the gap down as two pad dwords to make the offsets
+fit -- padding invented to seat a body IS the finding. Which vtable is whose
+comes free: MEMORY_POOL_GLUE puts the pool name straight after the table, and
+"BehaviorModule" sits at 0x0109CB8C.
 
-    ?TheScriptEngine@@3PAVScriptEngine@@A
-        0x012F076C   38 rows
-        0x012F0888    1 row   ScriptActions_doTeamSpinForFramecount_Thunk.cpp @ 0x002F11E0
+**GameEngine::init names a global.** It pushes the subsystem's string literal
+and then the global's address, so 0x012F0888 is TheExperienceLevelSystem
+(literal at 0x00479C3A, push at 0x00479C48) and 0x012F076C is TheScriptEngine.
+Same walk as the whitelist's ThePlayerAITypeSet note; it settles "which
+singleton is this" in a minute.
 
-    ??_7Snapshot@@6B@
-        0x01073744   35 rows
-        0x01110C78    1 row   BehaviorModuleConstructorThunk.cpp @ 0x005F84E0
-    ??_7BehaviorModule@@6BBehaviorModuleInterface@@@
-        0x0109CA98   20 rows
-        0x01112EC8    1 row   the same row
-    ??_7BehaviorModule@@6BObjectModule@@@
-        0x0109CB5C   20 rows
-        0x01112ECC    1 row   the same row
+**`??_M` names a container's element.** The call carries element size and
+destructor together: 0x74 with dtor ILT 0x0041AAD2 is ProxyClass, 0x10 with
+0x00436AB1 is MixFileCreator::FileInfoStruct. Two ILT thunks are the same
+function only if they jump to the same place -- these go to 0x003F6EA0 and
+0x0005DBE0 -- so "both bases are odd, therefore both are thunks for one
+destructor" was the wrong read of that pair. Check the target, not the parity.
 
-One row against twenty is not a second legitimate base; it is a row whose body
-references a *different* global or installs a *different* vtable than its source
-says. That is invisible to the byte gate, because relocation sites are masked --
-which is the whole reason this check exists. The BehaviorModule constructor row
-is the clearer of the two: retail at 0x005F84E0 installs three vtables that are
-each four bytes apart from each other in a block nothing else in the ledger
-touches, so it is the constructor of some other class that derives from the same
-three bases, not BehaviorModule's.
+**COMDAT adjacency breaks a 1-vs-1.** Constructor, deleting destructor, vtable
+and the member that uses the buffer travel together. 0x006DB100 installs the
+vtable three other TUs call `ShareBufferClass<I>`'s, its deleting destructor
+(0x006DB1D0, slot 1 of that vtable) is 0xD0 bytes on and Get_Color_Array
+0x270 further; a body in the wrong run is not the one you named.
 
-The remaining two are one row against one row and need different evidence:
-
-    ??1FileInfoStruct@MixFileCreator@@QAE@XZ     0x0041AAD2 / 0x00436AB1
-    ??_7?$ShareBufferClass@K@@6B@                0x0111E154 / 0x0113C108
-
-Both `FileInfoStruct` bases are odd addresses, so both are incremental-link
-thunks for the same destructor, and different call sites legitimately encode
-different thunks -- the same reasoning `build.py` already applies to
-`__ehhandler$`. That one is a whitelist candidate, not a bug.
-
-**Why it matters beyond the symbols:** `.githooks/pre-commit` forces the full
-gate on any staged `*.h` or `reference/shims/*`, so while DIR32 is red **no
-header or shim change can commit at all**. That blocks unrelated work: the
-zh_sweep shim numbers four qr2 reserved keys wrong (`PID__KEY` as 24, which is
-`PING__KEY`), and correcting it -- a four-line edit -- has to be done TU-locally
-with `#undef` instead. Anything that fixes these four rows unblocks a category,
-not a file.
+Byte verification sees none of this: build.py copies DIR32 slots from retail,
+so a body under the wrong name matches at every reference site. And because
+`.githooks/pre-commit` forces the full gate on any staged `*.h` or
+`reference/shims/*`, a red DIR32 blocks **every** header and shim change in the
+tree, not just the guilty file -- fixing one of these rows unblocks a category.
