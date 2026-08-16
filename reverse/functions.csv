@@ -8229,7 +8229,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Add_Render_Object@SceneClass@@UAEXPAVRenderObjClass@@@Z,,0x00942C10,15,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?Add_Render_Task@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@PAVMeshClass@@@Z,,0x009465F0,87,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,reloc-needle Open-BFME4+Grok
 ?Add_Rigid_Mesh_To_Container@@YAXPAV?$MultiListClass@VDX8FVFCategoryContainer@@@@IPAVMeshModelClass@@@Z,,0x009476F0,277,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer_Add_Rigid_Mesh_To_Container_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_AddRigidMeshToContainer_9476F0
-?Add_Shader@MaterialCollectorClass@@QAEXVShaderClass@@@Z,,0x009300D0,89,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
 ?Add_Shader@MeshLoadContextClass@@AAEHVShaderClass@@@Z,,0x0096E930,85,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Add_Size@ChunkHeader@@QAEXK@Z,,0x009E1780,36,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Add_Size@MicroChunkHeader@@QAEXE@Z,,0x009E17B0,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
@@ -9223,7 +9222,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Generate_APT@ParticleBufferClass@@IAEXPAPAV?$ShareBufferClass@I@@AAI@Z,,0x00984BD0,215,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Generate_Culling_Tree@MeshClass@@QAEXXZ,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ?Generate_Culling_Tree@MeshGeometryClass@@IAEXXZ,,0x00924C30,14,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryMeshModelLeafThunks.cpp,matched,Open-BFME5 exact C++ ICF leaf thunk replacing MASM dump;object-symbol=?Generate_Culling_Tree@MeshGeometryClass@@IAEXXZ
-?Get@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@QBE?AUSideIndexInfo@@ABUTriangleSide@@@Z,,0x0094E700,209,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
 ?Get@Base64Straw@@UAEHPAXH@Z,,0x009E7B80,253,Code/Libraries/Source/WWVegas/WWLib/b64straw.cpp,matched,
 ?Get@BufferStraw@@UAEHPAXH@Z,,0x009E1B90,82,Code/Libraries/Source/WWVegas/WWLib/xstraw.cpp,matched,
 ?Get@CacheStraw@@UAEHPAXH@Z,,0x009E7CA0,148,Code/Libraries/Source/WWVegas/WWLib/cstraw.cpp,matched,
@@ -15294,7 +15292,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?initReverseAnimateWindow@ProcessAnimateWindowSpiral@@UAEXPAVAnimateWindow@@I@Z,,0x00496A70,86,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?initSkirmish@@YAXXZ,,0x004E8830,135,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,matched,
 ?initSpecialPowershortcutBar@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F1C0,766,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarInitSpecialPowershortcutBarThunk.cpp,matched,Exact 766B MASM conversion Open-BFME5
-?initSubsystem@SubsystemInterfaceList@@QAEXPAVSubsystemInterface@@PAXPBD22PAVXfer@@VAsciiString@@@Z,,0x009A20B0,271,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,registers a subsystem; legend takes precedence over the hard-coded paths
 ?initTimes@BoneFXUpdate@@IAEXXZ,,0x0002F775,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for BoneFXUpdate::initTimes
 ?initW3DAssets@W3DMouse@@AAEXXZ,,0x007015F0,44,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,
 ?init_volume@GridCullSystemClass@@IAEXABVAABoxClass@@PAUVolumeStruct@1@@Z,,0x008DD170,463,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
@@ -94023,7 +94020,6 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??0RenderObjClass@@QAE@ABV0@@Z,,0x0091FFE0,402,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,clean C++ BFME copy constructor
 ?Fast_Slerp@@YAXAAVQuaternion@@ABV1@1M@Z,,0x008DC4C0,942,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ??4HLodClass@@QAEAAV0@ABV0@@Z,,0x0097D3B0,935,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,symbol-pin Open-BFME4+Grok
-?getMostValuableLocation@PartitionManager@@QAEXHIW4ValueOrThreat@@PAUCoord3D@@@Z,,0x0087C140,1002,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,vendored=gamespy-2004;object-symbol=_ghiDoReceivingHeaders;Open-BFME5 clean C++ body repoint
 ?subdivision_util@StreakRendererClass@@AAEXIPBVVector3@@PBMPAIPAV2@PAM@Z,,0x0095CA00,1148,Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp,matched,reloc-needle Open-BFME4+Grok
 ?BattleHonorTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x004D9100,1434,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp,matched,Exact 1434B BattleHonorTooltip retarget Open-BFME4+Grok
 ?render_box@BoxRenderObjClass@@IAEXAAVRenderInfoClass@@ABVVector3@@1@Z,,0x00956F40,1681,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,Open-BFME5 exact clean C++ with TU-local retail ABI shims
@@ -94122,7 +94118,6 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_0077ea70@@YAXXZ,,0x0077EA70,133,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00b7ea70
 ?d_000aff40@@YAXXZ,,0x000AFF40,128,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004aff40
 ?d_000cfe80@@YAXXZ,,0x000CFE80,126,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004cfe80
-?initDelayFilter@MilesAudioManager@@AAEXXZ,,0x00696150,123,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,matched,Open-BFME5 Miles delay filter C++ lift
 ?d_00485ab0@@YAXXZ,,0x00485AB0,121,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00885ab0
 ?d_0033da70@@YAXXZ,,0x0033DA70,110,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0073da70
 ?d_00336fb0@@YAXXZ,,0x00336FB0,109,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00736fb0
@@ -94434,7 +94429,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?getReadyFrame@SpecialPowerModule@@UBEIXZ,,0x0026ABC0,126,Code/GameEngine/Source/Common/SpecialPowerModule_getReadyFrame_Thunk.cpp,matched,Open-BFME5 clean C++ ready-frame calculation with exact BFME subobject offsets and shared-player synchronization
 ??0DefaultAlphaModuleInfo@FXParticleSystem@@QAE@XZ,,0x005EE4C0,102,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultAlphaModuleInfoCtorThunk.cpp,matched,Open-BFME5 clean C++ default-alpha constructor with exact snapshot-base SEH and eight keyframe initializations
 ??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 clean C++ GameTextManager constructor with exact retail layout and failed-message initialization
-?Do_Mappers_Need_Normals@MeshMatDescClass@@QAE_NXZ,,0x00929AD0,267,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescClass_Do_Mappers_Need_Normals_Thunk.cpp,matched,Open-BFME5 clean C++ mapper-normal scan with exact BFME retail mapper-array ABI
 ?findWeaponTemplate@WeaponStore@@QBEPBVWeaponTemplate@@VAsciiString@@@Z,,0x001E4F50,183,Code/GameEngine/Source/Common/WeaponStore_findWeaponTemplate_Thunk.cpp,matched,Open-BFME5 clean C++ weapon-template lookup with exact BFME AsciiString payload ABI
 ?findDamageFX@DamageFXStore@@QBEPBVDamageFX@@VAsciiString@@@Z,,0x00067440,192,Code/GameEngine/Source/Common/DamageFXStore_findDamageFX_Thunk.cpp,matched,Open-BFME5 clean C++ DamageFX STLport lookup with exact BFME AsciiString payload ABI
 ?setGUICommand@InGameUI@@UAEXPBVCommandButton@@@Z,,0x0043ADE0,212,Code/GameEngine/Source/GameClient/InGameUI_setGUICommand_Thunk.cpp,matched,Open-BFME5 exact C++ retail ABI conversion
@@ -96611,7 +96605,6 @@ _d3dx_inflate_codes_free@8,,0x00AD4AFA,17,vendor/d3dx9/d3dx9.lib,matched,vendore
 _huft_build@40,,0x00AD4B0B,895,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\inftrees.obj
 _d3dx_inflate_trees_bits@20,,0x00AD4E8A,121,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\inftrees.obj
 _d3dx_inflate_trees_dynamic@36,,0x00AD4F03,250,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\inftrees.obj
-?Register_Missing@HAnimManagerClass@@QAEXPBD@Z,,0x007BB850,101,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ?vis_render_ring@RingRenderObjClass@@IAEXAAVSpecialRenderInfoClass@@ABVVector3@@1@Z,,0x006CF660,3,Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
 uw_00bf25e0,,0x00BF25E0,11,Code/gen_small/uw_gen_006.cpp,matched,gen-funclet;object-symbol=$L517
 uw_00bf2600,,0x00BF2600,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;object-symbol=$L8608
@@ -105119,7 +105112,6 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ?closeMouse@DirectInputMouse@@IAEXXZ,,0x006BB6A0,69,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ??0DirectInputMouse@@QAE@XZ,,0x006BB7F0,32,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ??1DirectInputMouse@@UAE@XZ,,0x006BB820,138,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
-?setCursor@DirectInputMouse@@UAEXW4MouseCursor@Mouse@@@Z,,0x006BB9E0,98,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?getMouseEvent@DirectInputMouse@@MAEEPAUMouseIO@@_N@Z,,0x006BBC00,180,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?setRedrawMode@Mouse@@UAEXW4RedrawMode@1@@Z,,0x005A5630,13,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?setMouseLimits@DirectInputMouse@@UAEXXZ,,0x006BB930,58,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
@@ -105172,7 +105164,6 @@ _str_checkname,,0x0099AC90,107,Code/Libraries/Source/Lua/lparser.c,matched,reloc
 ??E?$_Deque_iterator@VBuddyResponse@@U?$_Nonconst_traits@VBuddyResponse@@@_STL@@@_STL@@QAEAAU01@XZ,,0x0063B630,48,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,byte-scan placement; unique
 ??$__destroy_aux@U?$_Deque_iterator@VBuddyRequest@@U?$_Nonconst_traits@VBuddyRequest@@@_STL@@@_STL@@@_STL@@YAXU?$_Deque_iterator@VBuddyRequest@@U?$_Nonconst_traits@VBuddyRequest@@@_STL@@@0@0ABU__false_type@0@@Z,,0x0063BBF0,48,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,byte-scan placement; unique
 ??$__destroy_aux@U?$_Deque_iterator@VBuddyResponse@@U?$_Nonconst_traits@VBuddyResponse@@@_STL@@@_STL@@@_STL@@YAXU?$_Deque_iterator@VBuddyResponse@@U?$_Nonconst_traits@VBuddyResponse@@@_STL@@@0@0ABU__false_type@0@@Z,,0x0063BC30,48,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,byte-scan placement; unique
-?append@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEAAV12@PBD@Z,,0x00647990,41,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,byte-scan placement; unique
 ??$__find_if@PADU?$_Eq_char_bound@V?$char_traits@D@_STL@@@_STL@@@_STL@@YAPADPAD0U?$_Eq_char_bound@V?$char_traits@D@_STL@@@0@ABUrandom_access_iterator_tag@0@@Z,,0x006528B0,98,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,byte-scan placement; unique
 ??R?$_Not_within_traits@V?$char_traits@D@_STL@@@_STL@@QBE_NABD@Z,,0x006531C0,47,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,byte-scan placement; unique
 ??0?$_Rb_tree@HU?$pair@$$CBHVPSPlayerStats@@@_STL@@U?$_Select1st@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@@_STL@@QAE@ABU?$less@H@1@ABV?$allocator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@1@@Z,,0x006537B0,59,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,byte-scan placement; unique
@@ -105195,7 +105186,6 @@ _str_checkname,,0x0099AC90,107,Code/Libraries/Source/Lua/lparser.c,matched,reloc
 ?didPlayerPreorder@GameSpyInfo@@UBE_NH@Z,,0x00632770,43,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?isSavedIgnored@GameSpyInfo@@UAE_NH@Z,,0x00632D20,43,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?markPlayerAsPreorder@GameSpyInfo@@UAEXH@Z,,0x00633360,30,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-?erase@?$_Rb_tree@HU?$pair@$$CBHVAsciiString@@@_STL@@U?$_Select1st@U?$pair@$$CBHVAsciiString@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@_STL@@QAEXU?$_Rb_tree_iterator@U?$pair@$$CBHVAsciiString@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@2@0@Z,,0x00633830,153,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?addToIgnoreList@GameSpyInfo@@UAEXVAsciiString@@@Z,,0x00635590,87,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?isIgnored@GameSpyInfo@@UAE_NVAsciiString@@@Z,,0x00635600,45,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?returnIgnoreList@GameSpyInfo@@UAE?AV?$set@VAsciiString@@U?$less@VAsciiString@@@_STL@@V?$allocator@VAsciiString@@@3@@_STL@@XZ,,0x00635640,35,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
@@ -148483,7 +148473,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ??0QueueProductionExitUpdateModuleData@@QAE@XZ,,0x00124150,47,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdateFriendNewModuleDataThunk.cpp,matched,byte-scan placement; unique
 ?GeneralsExpPointsInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C48C0,67,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/GeneralsExpPoints.cpp,matched,clean C++ replaces the naked dump; mouselayout InGameUI slots
 ??0Parameter@@QAE@W4ParameterType@0@H@Z,,0x00352510,44,Code/GameEngine/Source/GameLogic/ScriptEngine/Condition_setConditionType_Thunk.cpp,matched,byte-scan placement; unique
-_ghiParseURL,,0x0087B6B0,222,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,byte-scan placement; unique
 _ghiParseChunkSize,,0x0087BEA0,41,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,byte-scan placement; unique
 _gpEnable,,0x008E93E0,28,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; unique
 _gpDisable,,0x008E9400,28,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; unique
@@ -148493,10 +148482,8 @@ _gpiAppendUIntToBuffer,,0x008F2AF0,68,Code/GameEngine/Source/GameNetwork/GameSpy
 _gpiWriteVersion,,0x008EFDC0,25,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiProfile.c,matched,byte-scan placement; unique
 _ServerBrowserSendNatNegotiateCookieToServerA,,0x0085B9A0,44,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverbrowsing.c,matched,byte-scan placement; unique
 _ServerBrowserGetServerByIPA,,0x0085BB70,65,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverbrowsing.c,matched,byte-scan placement; unique
-_read_string,,0x009A06B0,481,Code/Libraries/Source/Lua/llex.c,matched,byte-scan placement; unique
 _block_follow,,0x0099B620,71,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; unique
 _str_lower,,0x00991A40,154,Code/Libraries/Source/Lua/lstrlib.c,matched,byte-scan placement; unique
-_localstat,,0x0099BA20,264,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; explist1 pinned from the call displacement
 _gpSetInfod,,0x008EA100,65,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; gpiSetInfod pinned from the tail jmp
 _SBServerGetTeamStringValueA,,0x00859D60,98,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_server.c,matched,byte-scan placed the Player variant here; the format literal is %s_t%d so it is the Team one
 ?_Unchecked_test@?$bitset@$0N@@_STL@@QBE_NI@Z,,0x000C4710,27,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior.cpp,matched,byte-scan placement; unique
@@ -148510,7 +148497,6 @@ _SBServerGetTeamStringValueA,,0x00859D60,98,Code/GameEngine/Source/GameNetwork/G
 ?clear@TeamFactory@@QAEXXZ,,0x000F6CA0,168,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++ replaces the 5-byte ILT thunk claim; call sites reach it via 0x000284A7
 _pushupvalue,,0x0099B000,121,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
 _pushclosure,,0x0099B1B0,142,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
-_chunk,,0x0099D2D0,128,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
 _luaK_adjuststack,,0x0099F010,441,Code/Libraries/Source/Lua/lcode.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
 ?initTeam@TeamFactory@@QAEXABVAsciiString@@0_NPAVDict@@@Z,,0x000F8170,220,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++; findTeamPrototype and createInactiveTeam both take owner then name
 ?GetRegistryVersion@@YAIXZ,,0x00109F60,110,Code/GameEngine/Source/Common/System/RegistryVersion.cpp,matched,Open-BFME5 clean C++ conversion from original SAGE registry source
@@ -148636,7 +148622,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?PointerIdentity00191F00@@YAPAXPAX@Z,,0x00191F00,5,Code/GameEngine/Source/Common/PointerIdentity00191F00.cpp,matched,Open-BFME5 clean C++ pointer identity
 ?PointerIdentity00191F50@@YAPAXPAX@Z,,0x00191F50,5,Code/GameEngine/Source/Common/PointerIdentity00191F50.cpp,matched,Open-BFME5 clean C++ adjacent pointer identity
 ?PointerIdentity00191F60@@YAPAXPAX@Z,,0x00191F60,5,Code/GameEngine/Source/Common/PointerIdentity00191F60.cpp,matched,Open-BFME5 clean C++ third pointer identity
-??0AABTreeLinkClass@@QAE@PAVAABTreeCullSystemClass@@@Z,,0x0010A7A0,26,Code/Libraries/Source/WWVegas/WWMath/AABTreeLinkClass_Constructor_Thunk.cpp,matched,
 ??0OBBoxAPTContextStruct@AABTreeClass@@QAE@ABVOBBoxClass@@AAV?$SimpleDynVecClass@K@@@Z,,0x00434660,26,Code/Libraries/Source/WWVegas/WW3D2/AABTreeClass_OBBoxAPTContextStruct_Ctor_Thunk.cpp,matched,
 ?returnThis@AddressObject00191F80@@QAEPAV1@PAX@Z,,0x00191F80,5,Code/GameEngine/Source/Common/ReturnThis00191F80.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00191F80
 ?returnThis@AddressObject00191FD0@@QAEPAV1@PAX@Z,,0x00191FD0,5,Code/GameEngine/Source/Common/ReturnThis00191FD0.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00191FD0
@@ -148820,12 +148805,10 @@ _gpiAppendStringToBufferLen,,0x008F29C0,167,Code/GameEngine/Source/GameNetwork/G
 _ArrayNth,,0x00869E50,16,Code/GameEngine/Source/GameNetwork/GameSpy/darray.c,matched,
 _gpiDestroyOperation,,0x008F7130,112,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiOperation.c,matched,
 _ArrayAppend,,0x0086A3E0,26,Code/GameEngine/Source/GameNetwork/GameSpy/darray.c,matched,
-_gpiFailedOpCallback,,0x008F6EF0,377,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiOperation.c,matched,
 _ArrayFree,,0x0086A0B0,68,Code/GameEngine/Source/GameNetwork/GameSpy/darray.c,matched,
 _ArrayReplaceAt,,0x0086A290,72,Code/GameEngine/Source/GameNetwork/GameSpy/darray.c,matched,
 _ArrayNew,,0x00869DD0,89,Code/GameEngine/Source/GameNetwork/GameSpy/darray.c,matched,
 _ArrayDeleteAt,,0x0086A230,88,Code/GameEngine/Source/GameNetwork/GameSpy/darray.c,matched,
-_gpiProcessOperation,,0x008F7280,129,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiOperation.c,matched,
 _ArrayClear,,0x0086A370,103,Code/GameEngine/Source/GameNetwork/GameSpy/darray.c,matched,
 _gpiCallErrorCallback,,0x008F5F90,107,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiCallback.c,matched,
 _gpiProcess,,0x008EC430,289,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpi.c,matched,
@@ -148863,7 +148846,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?removeObject@Squad@@QAEXPAVObject@@@Z,,0x0018B620,62,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,Open-BFME5 m_objectIDs at Squad+0x4
 ?removeDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712090,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,Open-BFME5 m_dynamicLightList at RTS3DScene+0x110
 ?reset@GlobalData@@UAEXXZ,,0x00083110,46,Code/GameEngine/Source/Common/GlobalData_reset_Thunk.cpp,matched,probe
-?findConditionIndex@GarrisonContain@@IAEHXZ,,0x0021E0D0,54,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,Open-BFME5 m_object at module+0x8 and Object m_body at +0x200 and getDamageState slot 8
 ?getWaterHeight@TerrainLogic@@UAEMPBVWaterHandle@@@Z,,0x001A3B90,51,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,Open-BFME5 PolygonTrigger m_points at +0x10 and m_numPoints at +0x14
 ?friend_notifyStateMachineChanged@AIUpdateInterface@@UAEXXZ,,0x0026ED10,38,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,Open-BFME5 wakeUpNow guarded by a flag at +0x330
 ?startBuildingSound@DozerAIUpdate@@UAEXPBVAudioEventRTS@@W4ObjectID@@@Z,,0x002B6A10,52,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,Open-BFME5 addAudioEvent at AudioManager vtable slot 17
@@ -148899,7 +148881,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?Set_Texture_Tile_Factor@SegLineTileFactorAltClass@@QAEXM@Z,,0x0095C4C0,64,Code/Libraries/Source/WWVegas/WW3D2/SegLineTileFactorAltClass.cpp,matched,second Set_Texture_Tile_Factor: 8.0f cap and +0x28 store; a different class from SegLineRendererClass; identity unrecovered
 ?update@SupplyTruckAIUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002C5740,42,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5740
 ?privateDock@SupplyTruckAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x002C5820,43,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5820
-?isCurrentlyFerryingSupplies@SupplyTruckAIUpdate@@UBE_NXZ,,0x002C5780,56,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5780
 ?updateChallengeMedals@@YAXAAH@Z,,0x004E27E0,320,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreenChallengeMedals_Thunk.cpp,matched,zh_sweep packet 004e27e0
 ?removeTerrainBibDrawable@BaseHeightMapRenderObjClass@@QAEXW4DrawableID@@@Z,,0x006C8D90,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,zh_sweep packet 00730c90 callee; tail-calls W3DBibBuffer::removeBibDrawable
 ?removeFactionBibDrawable@W3DTerrainVisual@@UAEXPAVDrawable@@@Z,,0x00730C90,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,zh_sweep packet 00730c90
@@ -148937,7 +148918,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?open@RAMFile@@UAE_NPBDH@Z,,0x009D1A00,64,Code/GameEngine/Source/Common/System/RAMFileOpenByNameThunk.cpp,matched,
 ?Shutdown@ShdRendererClass@@SAXXZ,,0x003220C0,27,Code/Libraries/Source/WWVegas/wwshade/shdrenderer.cpp,matched,
 ?doUnitStopSequentialScript@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFAF0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,zh_sweep packet 002efaf0; three ZH candidates fold under masked relocs and the tail target separates them
-?rawMouseToWindowMessage@@YA?AW4GameWindowMessage@@PBVGameMessage@@@Z,,0x005B9B90,106,Code/GameEngine/Source/GameClient/MessageStream/WindowXlat.cpp,matched,zh_sweep packet 005b9b94; real start is 4 bytes earlier than the packet reported
 ?isCurrentlyFerryingSupplies@WorkerAIUpdate@@UBE_NXZ,,0x002C7E30,60,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate_isCurrentlyFerryingSupplies_Thunk.cpp,matched,
 ?removeIdleWorker@InGameUI@@UAEXPAVObject@@H@Z,,0x0043F8E0,82,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,zh_sweep packet 0043f8e0
 ?Render@WW3D@@SA_NABVLayerClass@@@Z,,0x008FE7D0,49,Code/Libraries/Source/WWVegas/WW3D2/WW3DRenderLayerThunk.cpp,matched,zh_sweep packet 008fe7d0; BFME narrows WW3DErrorType to a byte whose success value is 1
@@ -157968,3 +157948,23 @@ _ghiFreeLock,,0x0087C6A0,41,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ght
 ?dup_009db560@@YAXXZ,,0x009DB560,12,Code/GameEngine/Source/GameNetwork/GameSpy/nonport.c,matched,gen-alias;object-symbol=_msleep;C++ alias
 ?allocateTerrainBuffers@W3DTerrainBackground@@QAEXPAVWorldHeightMap@@HHH@Z,,0x00728770,83,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainBackgroundAllocateThunk.cpp,matched,
 ?SinglePlayerMenuShutdown@@YAXPAVWindowLayout@@PAX@Z,,0x004E94F0,64,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,matched,
+_read_string,,0x009A06B0,1185,Code/Libraries/Source/Lua/llex.c,matched,byte-scan placement; unique
+?initSubsystem@SubsystemInterfaceList@@QAEXPAVSubsystemInterface@@PAXPBD22PAVXfer@@VAsciiString@@@Z,,0x009A20B0,393,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,registers a subsystem; legend takes precedence over the hard-coded paths
+?rawMouseToWindowMessage@@YA?AW4GameWindowMessage@@PBVGameMessage@@@Z,,0x005B9B90,176,Code/GameEngine/Source/GameClient/MessageStream/WindowXlat.cpp,matched,zh_sweep packet 005b9b94; real start is 4 bytes earlier than the packet reported
+_chunk,,0x0099D2D0,167,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
+_gpiFailedOpCallback,,0x008F6EF0,400,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiOperation.c,matched,
+_gpiProcessOperation,,0x008F7280,152,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiOperation.c,matched,
+?setCursor@DirectInputMouse@@UAEXW4MouseCursor@Mouse@@@Z,,0x006BB9E0,120,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
+?findConditionIndex@GarrisonContain@@IAEHXZ,,0x0021E0D0,72,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,Open-BFME5 m_object at module+0x8 and Object m_body at +0x200 and getDamageState slot 8
+_localstat,,0x0099BA20,273,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; explist1 pinned from the call displacement
+?initDelayFilter@MilesAudioManager@@AAEXXZ,,0x00696150,131,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,matched,Open-BFME5 Miles delay filter C++ lift
+?Get@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@QBE?AUSideIndexInfo@@ABUTriangleSide@@@Z,,0x0094E700,217,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?isCurrentlyFerryingSupplies@SupplyTruckAIUpdate@@UBE_NXZ,,0x002C5780,60,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5780
+?erase@?$_Rb_tree@HU?$pair@$$CBHVAsciiString@@@_STL@@U?$_Select1st@U?$pair@$$CBHVAsciiString@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@_STL@@QAEXU?$_Rb_tree_iterator@U?$pair@$$CBHVAsciiString@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@2@0@Z,,0x00633830,156,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?append@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEAAV12@PBD@Z,,0x00647990,44,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,byte-scan placement; unique
+?getMostValuableLocation@PartitionManager@@QAEXHIW4ValueOrThreat@@PAUCoord3D@@@Z,,0x0087C140,1005,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,vendored=gamespy-2004;object-symbol=_ghiDoReceivingHeaders;Open-BFME5 clean C++ body repoint
+_ghiParseURL,,0x0087B6B0,225,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,byte-scan placement; unique
+?Do_Mappers_Need_Normals@MeshMatDescClass@@QAE_NXZ,,0x00929AD0,270,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescClass_Do_Mappers_Need_Normals_Thunk.cpp,matched,Open-BFME5 clean C++ mapper-normal scan with exact BFME retail mapper-array ABI
+?Add_Shader@MaterialCollectorClass@@QAEXVShaderClass@@@Z,,0x009300D0,92,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
+??0AABTreeLinkClass@@QAE@PAVAABTreeCullSystemClass@@@Z,,0x0010A7A0,29,Code/Libraries/Source/WWVegas/WWMath/AABTreeLinkClass_Constructor_Thunk.cpp,matched,
+?Register_Missing@HAnimManagerClass@@QAEXPBD@Z,,0x007BB850,102,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,

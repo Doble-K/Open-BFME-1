@@ -663,6 +663,8 @@ def cmd_extend(args):
     """
     uni, image, objects, _load_stats = load()
     stats = collections.Counter()
+    with (ROOT / "reverse" / "ghidra_functions.csv").open(newline="", encoding="utf-8") as handle:
+        ghidra_starts = {int(row["rva"], 16) for row in csv.DictReader(handle)}
     rows_by_source = collections.defaultdict(list)
     for key, rows in uni.rows.items():
         for row in rows:
@@ -700,6 +702,13 @@ def cmd_extend(args):
             tail, tail_rva = body[row["size"]:], row["rva"] + row["size"]
             if tail_rva + len(tail) > uni.text_end or uni.overlaps_matched(tail_rva, len(tail)):
                 stats["tail_already_claimed"] += 1
+                continue
+            if any(tail_rva <= start < tail_rva + len(tail) for start in ghidra_starts):
+                # A boundary inside the tail says those bytes are another
+                # function's, however well they compare — the row was not
+                # trimmed short, the object simply laid two bodies out in the
+                # order retail happens to hold them.
+                stats["tail_holds_a_ghidra_start"] += 1
                 continue
             holes = [o - row["size"] for o, t, _ in relocs
                      if row["size"] <= o < len(body) and t in (DIR32, REL32)]
