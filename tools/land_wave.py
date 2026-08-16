@@ -454,6 +454,10 @@ def land(rows, pins, wave_path, max_attempts):
                          "to before the run. Raise --max-attempts only if the drops above show "
                          "real progress each round.")
     finally:
+        # In the finally, not on the way out: a wave that exhausts --max-attempts
+        # leaves through SystemExit, and rows already dropped by then are exactly
+        # the ones somebody has to go read.
+        record_drops(dropped, wave_path)
         unlock(handle)
         handle.close()
 
@@ -480,7 +484,6 @@ def main(argv=None):
         # bury the defect; the whole wave stops.
         raise SystemExit(f"land_wave: this wave conflicts with the ledger — {exc}. "
                          "Nothing was changed.")
-    record_drops(dropped, args.wave)
 
     print(f"\nland_wave: landed {len(landed)} row(s), {sum(r.size for r in landed):,d} byte(s) "
           f"over {len({r.source for r in landed})} source(s)")

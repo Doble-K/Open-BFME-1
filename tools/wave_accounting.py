@@ -495,24 +495,22 @@ def cmd_report(args):
         print(f"{mech:6s} {len(keys):8d} {merged_bytes(keys):12,d} "
               f"{union - merged_bytes(others):12,d}   {detail}")
     print(f"{'UNION':6s} {'':8s} {union:12,d}")
-    denominator = sum(byte_count.values()) + progress_held_bytes()
-    print(f"\nunion is +{union / denominator * 100:.2f} pp of the {denominator:,d} B "
-          "of real code progress.py measures")
+    denominator = real_code_bytes()
+    print(f"\nunion is +{union / denominator * 100:.2f} pp of the {denominator:,d} B of real "
+          "code, the denominator progress.py reports against")
 
 
-def progress_held_bytes():
-    """The held half of progress.py's denominator, so the report speaks in pp."""
-    matched = progress.matched_at(None)
-    notes = progress.notes_at(None)
-    naked = progress.naked_cpp_rows_at(matched, None)
+def real_code_bytes():
+    """.text minus its 0xCC padding — progress.py's own denominator.
+
+    Taken from progress.py rather than summed out of this tool's universe: the
+    two sets do not add up (padding, and ranges no lane covers), so a locally
+    derived denominator would print pp that quietly mean something else than the
+    headline metric's pp.
+    """
     text_start, text_size = progress.retail_text()
-    held = []
-    for key, (size, source) in matched.items():
-        if progress.source_lane(source, notes[key], key in naked) not in HELD_LANES:
-            continue
-        rva = int(key[1], 16)
-        held.append((max(rva, text_start), min(rva + size, text_start + text_size)))
-    return progress.interval_bytes(held)
+    _padding, denominator = progress.real_code_denominator(text_start, text_size)
+    return denominator
 
 
 # --------------------------------------------------------------------------
