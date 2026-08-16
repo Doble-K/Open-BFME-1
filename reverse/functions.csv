@@ -120896,7 +120896,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0087ce20@@YAXXZ,,0x0087CE20,383,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7ce20
 ?d_0087cfd0@@YAXXZ,,0x0087CFD0,117,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cfd0
 ?d_0087d080@@YAXXZ,,0x0087D080,378,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d080
-?d_0087d200@@YAXXZ,,0x0087D200,164,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d200
 ?d_0087d2b0@@YAXXZ,,0x0087D2B0,264,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d2b0
 ?d_0087d3c0@@YAXXZ,,0x0087D3C0,142,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d3c0
 ?d_0087d450@@YAXXZ,,0x0087D450,96,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d450
@@ -122391,7 +122390,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00945f20@@YAXXZ,,0x00945F20,97,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d45f20
 ?d_00946460@@YAXXZ,,0x00946460,223,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46460
 ?d_00946540@@YAXXZ,,0x00946540,171,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46540
-?d_00946650@@YAXXZ,,0x00946650,120,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46650
 ?d_009467f0@@YAXXZ,,0x009467F0,163,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d467f0
 ?d_00946c00@@YAXXZ,,0x00946C00,431,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46c00
 ?d_00946db0@@YAXXZ,,0x00946DB0,384,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46db0
@@ -122695,10 +122693,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00996790@@YAXXZ,,0x00996790,342,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d96790
 ?d_00996950@@YAXXZ,,0x00996950,222,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d96950
 ?d_00997c80@@YAXXZ,,0x00997C80,2924,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d97c80
-?d_00999b30@@YAXXZ,,0x00999B30,132,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d99b30
-?d_00999c40@@YAXXZ,,0x00999C40,106,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d99c40
 ?d_0099a170@@YAXXZ,,0x0099A170,276,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9a170
-?d_0099b370@@YAXXZ,,0x0099B370,177,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9b370
 ?d_0099b480@@YAXXZ,,0x0099B480,111,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9b480
 ?d_0099b750@@YAXXZ,,0x0099B750,241,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9b750
 ?d_0099b850@@YAXXZ,,0x0099B850,238,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9b850
@@ -122714,7 +122709,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0099c410@@YAXXZ,,0x0099C410,152,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c410
 ?d_0099c4b0@@YAXXZ,,0x0099C4B0,446,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c4b0
 ?d_0099c810@@YAXXZ,,0x0099C810,292,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c810
-?d_0099cb80@@YAXXZ,,0x0099CB80,192,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9cb80
 ?d_0099cc60@@YAXXZ,,0x0099CC60,301,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9cc60
 ?d_0099cd90@@YAXXZ,,0x0099CD90,265,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9cd90
 ?d_0099d0c0@@YAXXZ,,0x0099D0C0,226,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9d0c0
@@ -158157,3 +158151,9 @@ _AMDSSE_D3DXVec4TransformArray@24,,0x00AA1140,149,vendor/d3dx9/d3dx9.lib,matched
 ?h2v2_downsample@D3DX@@YGXPAUjpeg_compress_struct@1@PAUjpeg_component_info@1@PAPAE2@Z,,0x00ACC860,93,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\jcsample.obj
 ?jpeg_idct_islow_x86@D3DX@@YGXPAUjpeg_decompress_struct@1@PAUjpeg_component_info@1@PAFPAPAEI@Z,,0x00AD2C00,80,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\piint.obj
 ?jpeg_idct_islow_mmx@D3DX@@YGXPAUjpeg_decompress_struct@1@PAUjpeg_component_info@1@PAFPAPAEI@Z,,0x00AD3310,80,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\miint.obj
+?Remove_Texture_Category@DX8FVFCategoryContainer@@QAEXPAVDX8TextureCategoryClass@@@Z,,0x00946650,120,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
+_markobject,,0x00999B30,132,Code/Libraries/Source/Lua/lgc.c,matched,vendored=lua-4.0.1
+_invalidaterefs,,0x00999C40,106,Code/Libraries/Source/Lua/lgc.c,matched,vendored=lua-4.0.1
+_explist1,,0x0099B370,177,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1
+_assignment,,0x0099CB80,192,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1
+_ghiPostCleanupState,,0x0087D200,164,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpPost.c,matched,vendored=gamespy-2004

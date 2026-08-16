@@ -70889,3 +70889,4 @@ _ghiCreateLock,0x0087C670,additive pin for _ghttpStartup call resolution
 _ghiPostCleanupState,0x0087D200,decode_calls pin for _ghiFreeConnection callee (ghttpPost.c cleanup helper)
 _ghiFreePost,0x0087CAC0,decode_calls pin for _ghiFreeConnection callee (ghttpPost.c post free)
 _gpiCheckSocketConnect,0x008ECB40,additive pin for _gpiCheckConnect call resolution
+_luaK_storevar,0x0099F410,vendored=lua-4.0.1

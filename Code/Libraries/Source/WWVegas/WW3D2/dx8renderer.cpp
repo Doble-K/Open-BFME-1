@@ -265,7 +265,6 @@ void DX8TextureCategoryClass::Remove_Polygon_Renderer(DX8PolygonRendererClass* p
 }
 
 
-// ?Remove_Texture_Category@DX8FVFCategoryContainer@@QAEXPAVDX8TextureCategoryClass@@@Z present-unmatched
 void DX8FVFCategoryContainer::Remove_Texture_Category(DX8TextureCategoryClass* tex_category)
 {
 	for (unsigned pass=0;pass<passes;++pass) {
@@ -275,7 +274,9 @@ void DX8FVFCategoryContainer::Remove_Texture_Category(DX8TextureCategoryClass* t
 		// If any of the texture category lists has anything in it, no need to delete this container
 		if (texture_category_list[pass].Peek_Head() != NULL) return;
 	}
-	TheDX8MeshRenderer.fvf_category_container_delete_list.Add_Tail(this);
+	DX8MeshRendererClass *renderer = *(DX8MeshRendererClass **)0x0134b0e8;
+	if (renderer)
+		renderer->fvf_category_container_delete_list.Add_Tail(this);
 }
 
 void DX8FVFCategoryContainer::Add_Visible_Material_Pass(MaterialPassClass * pass,MeshClass * mesh)
