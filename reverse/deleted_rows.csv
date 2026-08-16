@@ -11843,3 +11843,6 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_0014ee40@@YAXXZ,0x0014EE40,gen-dump placeholder superseded by AIDockProcessDockState::setNextDockActionFrame converted to C++
 ?d_0014eae0@@YAXXZ,0x0014EAE0,gen-dump placeholder superseded by AIDockMoveToEntryState::onEnter converted to C++
 ?d_0014f060@@YAXXZ,0x0014F060,gen-dump placeholder superseded by AIDockMoveToRallyState::onEnter converted to C++
+?d_0014ebf0@@YAXXZ,0x0014EBF0,gen-dump placeholder superseded by AIDockMoveToEntryState::onExit converted to C++
+?d_0014e7d0@@YAXXZ,0x0014E7D0,gen-dump placeholder superseded by AIDockApproachState::onExit converted to C++
+?d_0014ea50@@YAXXZ,0x0014EA50,gen-dump placeholder superseded by AIDockAdvancePositionState::onExit converted to C++

@@ -107197,7 +107197,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0014e640@@YAXXZ,,0x0014E640,11,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054e640
 ?d_0014ea20@@YAXXZ,,0x0014EA20,30,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ea20
 ?d_0014eba0@@YAXXZ,,0x0014EBA0,59,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054eba0
-?d_0014ebf0@@YAXXZ,,0x0014EBF0,106,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ebf0
 ?d_0014ec80@@YAXXZ,,0x0014EC80,175,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ec80
 ?d_0014ed60@@YAXXZ,,0x0014ED60,75,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ed60
 ?d_0014ef00@@YAXXZ,,0x0014EF00,145,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ef00
@@ -136188,9 +136187,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014e620@@YAXXZ,,0x0014E620,8,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e650@@YAXXZ,,0x0014E650,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e6b0@@YAXXZ,,0x0014E6B0,63,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014e7d0@@YAXXZ,,0x0014E7D0,106,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e880@@YAXXZ,,0x0014E880,120,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014ea50@@YAXXZ,,0x0014EA50,106,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014eef0@@YAXXZ,,0x0014EEF0,10,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014f150@@YAXXZ,,0x0014F150,52,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014f1e0@@YAXXZ,,0x0014F1E0,48,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157966,3 +157963,6 @@ _ghiSendBuffer,,0x0087DA50,135,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/
 ?setNextDockActionFrame@AIDockProcessDockState@@QAEXXZ,,0x0014EE40,81,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
 ?onEnter@AIDockMoveToEntryState@@UAE?AW4StateReturnType@@XZ,,0x0014EAE0,144,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
 ?onEnter@AIDockMoveToRallyState@@UAE?AW4StateReturnType@@XZ,,0x0014F060,125,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
+?onExit@AIDockMoveToEntryState@@UAEXW4StateExitType@@@Z,,0x0014EBF0,106,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
+?onExit@AIDockApproachState@@UAEXW4StateExitType@@@Z,,0x0014E7D0,106,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,adjacent to AIDockApproachState::onEnter at 0x0014E700; its sibling body is byte-identical under masked relocations
+?onExit@AIDockAdvancePositionState@@UAEXW4StateExitType@@@Z,,0x0014EA50,106,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,adjacent to AIDockAdvancePositionState::onEnter at 0x0014E980

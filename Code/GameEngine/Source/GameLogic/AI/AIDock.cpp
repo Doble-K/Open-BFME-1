@@ -41,147 +41,6 @@
 #include "GameLogic/Module/SupplyTruckAIUpdate.h"
 #include "GameLogic/Module/UpdateModule.h"
 
-//----------------------------------------------------------------------------------------------------------
-/**
- * Create an AI state machine. Define all of the states the machine 
- * can possibly be in, and set the initial (default) state.
- */
-// ??0AIDockMachine@@ present-unmatched
-AIDockMachine::AIDockMachine( Object *obj ) : StateMachine( obj, "AIDockMachine" )
-{
-	static const StateConditionInfo waitForClearanceConditions[] = 
-	{
-		StateConditionInfo(ableToAdvance, AI_DOCK_ADVANCE_POSITION, NULL),
-		StateConditionInfo(NULL, NULL, NULL)	// keep last
-	};
-
-	// order matters: first state is the default state.
-	defineState( AI_DOCK_APPROACH,						newInstance(AIDockApproachState)( this ), AI_DOCK_WAIT_FOR_CLEARANCE, EXIT_MACHINE_WITH_FAILURE );
-	defineState( AI_DOCK_WAIT_FOR_CLEARANCE,	newInstance(AIDockWaitForClearanceState)( this ), AI_DOCK_MOVE_TO_ENTRY, EXIT_MACHINE_WITH_FAILURE, waitForClearanceConditions );
-	defineState( AI_DOCK_ADVANCE_POSITION,		newInstance(AIDockAdvancePositionState)( this ), AI_DOCK_WAIT_FOR_CLEARANCE, EXIT_MACHINE_WITH_FAILURE );
-	defineState( AI_DOCK_MOVE_TO_ENTRY,				newInstance(AIDockMoveToEntryState)( this ), AI_DOCK_MOVE_TO_DOCK, AI_DOCK_MOVE_TO_EXIT );
-	defineState( AI_DOCK_MOVE_TO_DOCK,				newInstance(AIDockMoveToDockState)( this ), AI_DOCK_PROCESS_DOCK, AI_DOCK_MOVE_TO_EXIT );
-	defineState( AI_DOCK_PROCESS_DOCK,				newInstance(AIDockProcessDockState)( this ), AI_DOCK_MOVE_TO_EXIT, AI_DOCK_MOVE_TO_EXIT );
-	defineState( AI_DOCK_MOVE_TO_EXIT,				newInstance(AIDockMoveToExitState)( this ), AI_DOCK_MOVE_TO_RALLY, EXIT_MACHINE_WITH_FAILURE );
-	defineState( AI_DOCK_MOVE_TO_RALLY,				newInstance(AIDockMoveToRallyState)( this ), EXIT_MACHINE_WITH_SUCCESS, EXIT_MACHINE_WITH_FAILURE );
-
-	m_approachPosition = -1;
-}
-
-// ??1AIDockMachine@@ present-unmatched
-AIDockMachine::~AIDockMachine()
-{
-}
-
-//-----------------------------------------------------------------------------
-void AIDockMachine::halt() 
-{ 
-	Object *goalObject = getGoalObject();
-		
-	// sanity
-	if( goalObject != NULL )
-	{
-		// get dock update interface
-		DockUpdateInterface *dock = goalObject->getDockUpdateInterface();
-
-		// We need to say goodbye, or we will leave our spot taken forever.
-		if( dock != NULL )
-			// StateMachine::m_owner is at +0x10 in BFME; this tree lands it at
-			// +0x14. Same offset ownerDocking pins.
-			dock->cancelDock( *(Object **)((char *)this + 0x10) );
-	}
-
-	StateMachine::halt();
-}
-
-
-// ------------------------------------------------------------------------------------------------
-/** CRC */
-// ------------------------------------------------------------------------------------------------
-// ?crc@AIDockMachine@@ present-unmatched
-void AIDockMachine::crc( Xfer *xfer )
-{
-	StateMachine::crc(xfer);
-}  // end crc
-
-// ------------------------------------------------------------------------------------------------
-/** Xfer Method */
-// ------------------------------------------------------------------------------------------------
-// ?xfer@AIDockMachine@@ present-unmatched
-void AIDockMachine::xfer( Xfer *xfer )
-{
-	XferVersion cv = 1;	
-	XferVersion v = cv; 
-	xfer->xferVersion( &v, cv );
-
-	StateMachine::xfer(xfer);
-	xfer->xferInt(&m_approachPosition);
-}  // end xfer
-
-// ------------------------------------------------------------------------------------------------
-/** Load post process */
-// ------------------------------------------------------------------------------------------------
-// ?loadPostProcess@AIDockMachine@@ present-unmatched
-void AIDockMachine::loadPostProcess( void )
-{
-	StateMachine::loadPostProcess();
-}  // end loadPostProcess
-
-// State transition conditions ----------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-/* static */ Bool AIDockMachine::ableToAdvance( State *thisState, void* userData )
-{
-	Object *goalObject = thisState->getMachineGoalObject();
-	AIDockMachine *myMachine = (AIDockMachine *)thisState->getMachine();
-
-	if( goalObject == NULL )
-		return FALSE;
-
-	DockUpdateInterface *dock = goalObject->getDockUpdateInterface();
-
-	// if we have nothing to dock with, fail
-	if( dock == NULL )
-		return FALSE;
-
-	// if the dock says we can advance, then sidetrack to the scoot forward state
-	if( dock->isClearToAdvance( thisState->getMachineOwner(), myMachine->m_approachPosition ) )
-		return TRUE;
-
-	// continue to wait
-	return FALSE;
-}
-
-
-//----------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------
-
-// ------------------------------------------------------------------------------------------------
-/** Xfer Method */
-// ------------------------------------------------------------------------------------------------
-// ?xfer@AIDockApproachState@@ present-unmatched
-void AIDockApproachState::xfer( Xfer *xfer )
-{
-  // version
-  XferVersion currentVersion = 2;
-  XferVersion version = currentVersion;
-  xfer->xferVersion( &version, currentVersion );
-
-	if (version>=2) {
-		AIInternalMoveToState::xfer(xfer);
-	}
-
-}  // end xfer
-
-// Retail keeps State::m_machine at +0x1C where this tree puts it at +0x20, the
-// same four bytes TurretAIIdleState::resetIdleScan already found. State.h is
-// shared, so the offset is corrected here through a cast rather than in the
-// class -- the other twenty-two rows this file lands keep their shape.
-// BFME reaches reserveApproachPosition and reserveAdvancePosition at vtable
-// slots 1 and 2 where this tree puts them at +0x9C. Its neighbours already
-// agree -- action is +0x30, cancelDock +0x34, isDockOpen +0x38, all three
-// byte-verified by AIDockProcessDockState::update -- so only these two need
-// the cast.
 // BFME reaches AIUpdateInterface::getSupplyTruckAIInterface at vtable +0x144
 // where this tree puts it at +0x104. Only that one slot is named; the
 // eighty-one before it exist to place it.
@@ -323,7 +182,7 @@ public:
 	virtual void slot010() = 0;
 	virtual void getEnterPosition( Object *owner, Coord3D *pos ) = 0;	///< +0x14
 	virtual void slot018() = 0;
-	virtual void slot01c() = 0;
+	virtual void getDockPosition( Object *owner, Coord3D *pos ) = 0;	///< +0x1C
 	virtual void slot020() = 0;
 	virtual void slot024() = 0;
 	virtual void slot028() = 0;
@@ -360,6 +219,149 @@ static AIUpdateInterface *bfmeRetailAIUpdate( const Object *obj )
 {
 	return *(AIUpdateInterface **)((char *)obj + 0x204);
 }
+
+
+//----------------------------------------------------------------------------------------------------------
+/**
+ * Create an AI state machine. Define all of the states the machine 
+ * can possibly be in, and set the initial (default) state.
+ */
+// ??0AIDockMachine@@ present-unmatched
+AIDockMachine::AIDockMachine( Object *obj ) : StateMachine( obj, "AIDockMachine" )
+{
+	static const StateConditionInfo waitForClearanceConditions[] = 
+	{
+		StateConditionInfo(ableToAdvance, AI_DOCK_ADVANCE_POSITION, NULL),
+		StateConditionInfo(NULL, NULL, NULL)	// keep last
+	};
+
+	// order matters: first state is the default state.
+	defineState( AI_DOCK_APPROACH,						newInstance(AIDockApproachState)( this ), AI_DOCK_WAIT_FOR_CLEARANCE, EXIT_MACHINE_WITH_FAILURE );
+	defineState( AI_DOCK_WAIT_FOR_CLEARANCE,	newInstance(AIDockWaitForClearanceState)( this ), AI_DOCK_MOVE_TO_ENTRY, EXIT_MACHINE_WITH_FAILURE, waitForClearanceConditions );
+	defineState( AI_DOCK_ADVANCE_POSITION,		newInstance(AIDockAdvancePositionState)( this ), AI_DOCK_WAIT_FOR_CLEARANCE, EXIT_MACHINE_WITH_FAILURE );
+	defineState( AI_DOCK_MOVE_TO_ENTRY,				newInstance(AIDockMoveToEntryState)( this ), AI_DOCK_MOVE_TO_DOCK, AI_DOCK_MOVE_TO_EXIT );
+	defineState( AI_DOCK_MOVE_TO_DOCK,				newInstance(AIDockMoveToDockState)( this ), AI_DOCK_PROCESS_DOCK, AI_DOCK_MOVE_TO_EXIT );
+	defineState( AI_DOCK_PROCESS_DOCK,				newInstance(AIDockProcessDockState)( this ), AI_DOCK_MOVE_TO_EXIT, AI_DOCK_MOVE_TO_EXIT );
+	defineState( AI_DOCK_MOVE_TO_EXIT,				newInstance(AIDockMoveToExitState)( this ), AI_DOCK_MOVE_TO_RALLY, EXIT_MACHINE_WITH_FAILURE );
+	defineState( AI_DOCK_MOVE_TO_RALLY,				newInstance(AIDockMoveToRallyState)( this ), EXIT_MACHINE_WITH_SUCCESS, EXIT_MACHINE_WITH_FAILURE );
+
+	m_approachPosition = -1;
+}
+
+// ??1AIDockMachine@@ present-unmatched
+AIDockMachine::~AIDockMachine()
+{
+}
+
+//-----------------------------------------------------------------------------
+void AIDockMachine::halt() 
+{ 
+	Object *goalObject = getGoalObject();
+		
+	// sanity
+	if( goalObject != NULL )
+	{
+		// get dock update interface
+		DockUpdateInterface *dock = goalObject->getDockUpdateInterface();
+
+		// We need to say goodbye, or we will leave our spot taken forever.
+		if( dock != NULL )
+			// StateMachine::m_owner is at +0x10 in BFME; this tree lands it at
+			// +0x14. Same offset ownerDocking pins.
+			dock->cancelDock( *(Object **)((char *)this + 0x10) );
+	}
+
+	StateMachine::halt();
+}
+
+
+// ------------------------------------------------------------------------------------------------
+/** CRC */
+// ------------------------------------------------------------------------------------------------
+// ?crc@AIDockMachine@@ present-unmatched
+void AIDockMachine::crc( Xfer *xfer )
+{
+	StateMachine::crc(xfer);
+}  // end crc
+
+// ------------------------------------------------------------------------------------------------
+/** Xfer Method */
+// ------------------------------------------------------------------------------------------------
+// ?xfer@AIDockMachine@@ present-unmatched
+void AIDockMachine::xfer( Xfer *xfer )
+{
+	XferVersion cv = 1;	
+	XferVersion v = cv; 
+	xfer->xferVersion( &v, cv );
+
+	StateMachine::xfer(xfer);
+	xfer->xferInt(&m_approachPosition);
+}  // end xfer
+
+// ------------------------------------------------------------------------------------------------
+/** Load post process */
+// ------------------------------------------------------------------------------------------------
+// ?loadPostProcess@AIDockMachine@@ present-unmatched
+void AIDockMachine::loadPostProcess( void )
+{
+	StateMachine::loadPostProcess();
+}  // end loadPostProcess
+
+// State transition conditions ----------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+/* static */ Bool AIDockMachine::ableToAdvance( State *thisState, void* userData )
+{
+	Object *goalObject = bfmeRetailMachine( thisState )->getGoalObject();
+	AIDockMachine *myMachine = (AIDockMachine *)thisState->getMachine();
+
+	if( goalObject == NULL )
+		return FALSE;
+
+	DockUpdateInterface *dock = goalObject->getDockUpdateInterface();
+
+	// if we have nothing to dock with, fail
+	if( dock == NULL )
+		return FALSE;
+
+	// if the dock says we can advance, then sidetrack to the scoot forward state
+	if( dock->isClearToAdvance( bfmeRetailMachineOwner( thisState ), myMachine->m_approachPosition ) )
+		return TRUE;
+
+	// continue to wait
+	return FALSE;
+}
+
+
+//----------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------------
+/** Xfer Method */
+// ------------------------------------------------------------------------------------------------
+// ?xfer@AIDockApproachState@@ present-unmatched
+void AIDockApproachState::xfer( Xfer *xfer )
+{
+  // version
+  XferVersion currentVersion = 2;
+  XferVersion version = currentVersion;
+  xfer->xferVersion( &version, currentVersion );
+
+	if (version>=2) {
+		AIInternalMoveToState::xfer(xfer);
+	}
+
+}  // end xfer
+
+// Retail keeps State::m_machine at +0x1C where this tree puts it at +0x20, the
+// same four bytes TurretAIIdleState::resetIdleScan already found. State.h is
+// shared, so the offset is corrected here through a cast rather than in the
+// class -- the other twenty-two rows this file lands keep their shape.
+// BFME reaches reserveApproachPosition and reserveAdvancePosition at vtable
+// slots 1 and 2 where this tree puts them at +0x9C. Its neighbours already
+// agree -- action is +0x30, cancelDock +0x34, isDockOpen +0x38, all three
+// byte-verified by AIDockProcessDockState::update -- so only these two need
+// the cast.
 
 //----------------------------------------------------------------------------------------------
 /**
@@ -407,7 +409,7 @@ StateReturnType AIDockApproachState::onEnter( void )
 // ?update@AIDockApproachState@@ present-unmatched
 StateReturnType AIDockApproachState::update( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	// if we have nothing to dock with, fail
 	if (goalObject == NULL)
@@ -418,10 +420,9 @@ StateReturnType AIDockApproachState::update( void )
 }
 
 //----------------------------------------------------------------------------------------------
-// ?onExit@AIDockApproachState@@ present-unmatched
 void AIDockApproachState::onExit( StateExitType status )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -432,9 +433,9 @@ void AIDockApproachState::onExit( StateExitType status )
 	{
 		// if we were interrupted, let the dock know we're not coming
 		if (status == EXIT_RESET || dock->isDockOpen() == FALSE)
-			dock->cancelDock( getMachineOwner() );
+			dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		else
-			dock->onApproachReached( getMachineOwner() );
+			dock->onApproachReached( bfmeRetailMachineOwner( this ) );
 	}
 
 	// this behavior is an extention of basic MoveTo
@@ -461,7 +462,7 @@ StateReturnType AIDockWaitForClearanceState::onEnter( void )
 // ?update@AIDockWaitForClearanceState@@ present-unmatched
 StateReturnType AIDockWaitForClearanceState::update( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	if( goalObject == NULL )
 		return STATE_FAILURE;
@@ -475,12 +476,12 @@ StateReturnType AIDockWaitForClearanceState::update( void )
 	// fail if the dock is closed
 	if( dock->isDockOpen() == FALSE )
 	{
-		dock->cancelDock( getMachineOwner() );
+		dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		return STATE_FAILURE;
 	}
 
 	// if the dock says we can enter, our wait is over
-	if (dock->isClearToEnter( getMachineOwner() ))
+	if (dock->isClearToEnter( bfmeRetailMachineOwner( this ) ))
 		return STATE_SUCCESS;
 
 	if (m_enterFrame + 30*LOGICFRAMES_PER_SECOND < TheGameLogic->getFrame()) {
@@ -581,10 +582,9 @@ StateReturnType AIDockAdvancePositionState::update( void )
 }
 
 //----------------------------------------------------------------------------------------------
-// ?onExit@AIDockAdvancePositionState@@ present-unmatched
 void AIDockAdvancePositionState::onExit( StateExitType status )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -595,9 +595,9 @@ void AIDockAdvancePositionState::onExit( StateExitType status )
 	{
 		// if we were interrupted, let the dock know we're not coming
 		if (status == EXIT_RESET || dock->isDockOpen() == FALSE)
-			dock->cancelDock( getMachineOwner() );
+			dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		else
-			dock->onApproachReached( getMachineOwner() );
+			dock->onApproachReached( bfmeRetailMachineOwner( this ) );
 	}
 
 	// this behavior is an extention of basic MoveTo
@@ -651,7 +651,7 @@ StateReturnType AIDockMoveToEntryState::onEnter( void )
 StateReturnType AIDockMoveToEntryState::update( void )
 {
 	// if we have nothing to dock with, fail
-	if (getMachineGoalObject() == NULL)
+	if (bfmeRetailMachine( this )->getGoalObject() == NULL)
 		return STATE_FAILURE;
 
 	// this behavior is an extention of basic MoveTo
@@ -659,10 +659,9 @@ StateReturnType AIDockMoveToEntryState::update( void )
 }
 
 //----------------------------------------------------------------------------------------------
-// ?onExit@AIDockMoveToEntryState@@ present-unmatched
 void AIDockMoveToEntryState::onExit( StateExitType status )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -673,12 +672,12 @@ void AIDockMoveToEntryState::onExit( StateExitType status )
 		if (dock->isDockOpen() == FALSE || status == EXIT_RESET)
 		{
 			// if we were interrupted, let the dock know we're not coming
-			dock->cancelDock( getMachineOwner() );
+			dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		}
 		else
 		{
 			// tell the dock we are at the entrance
-			dock->onEnterReached( getMachineOwner() );
+			dock->onEnterReached( bfmeRetailMachineOwner( this ) );
 		}
 	}
 
@@ -697,7 +696,7 @@ void AIDockMoveToEntryState::onExit( StateExitType status )
 // ?onEnter@AIDockMoveToDockState@@ present-unmatched
 StateReturnType AIDockMoveToDockState::onEnter( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -710,17 +709,17 @@ StateReturnType AIDockMoveToDockState::onEnter( void )
 	// fail if the dock is closed
 	if( dock->isDockOpen() == FALSE )
 	{
-		dock->cancelDock( getMachineOwner() );
+		dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		return STATE_FAILURE;
 	}
 
 	// get the docking position
-	dock->getDockPosition( getMachineOwner(), &m_goalPosition );
+	((BFMERetailDockVTable *)dock)->getDockPosition( bfmeRetailMachineOwner( this ), &m_goalPosition );
 
-	AIUpdateInterface *ai = getMachineOwner()->getAIUpdateInterface();
-	if( ai  &&  dock->isAllowPassthroughType() ) 
+	AIUpdateInterface *ai = bfmeRetailAIUpdate( bfmeRetailMachineOwner( this ) );
+	if( ai  &&  ((BFMERetailDockVTable *)dock)->isAllowPassthroughType() ) 
 	{
-		ai->ignoreObstacle( getMachineGoalObject() );
+		ai->ignoreObstacle( bfmeRetailMachine( this )->getGoalObject() );
 		setAdjustsDestination(false);
 	}
 
@@ -735,7 +734,7 @@ StateReturnType AIDockMoveToDockState::onEnter( void )
 // ?update@AIDockMoveToDockState@@ present-unmatched
 StateReturnType AIDockMoveToDockState::update( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	// if we have nothing to dock with, fail
 	if (goalObject == NULL)
@@ -920,7 +919,7 @@ Object* AIDockProcessDockState::findMyDrone()
 	}
 
 	//Nope... look for a drone (perhaps we just finished building one after docking?)
-	Object *self = getMachineOwner();
+	Object *self = bfmeRetailMachineOwner( this );
 	Player *player = self->getControllingPlayer();
 	DroneInfo dInfo;
 	dInfo.found = FALSE;
@@ -960,7 +959,7 @@ void AIDockProcessDockState::onExit( StateExitType status )
 // ?onEnter@AIDockMoveToExitState@@ present-unmatched
 StateReturnType AIDockMoveToExitState::onEnter( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -971,12 +970,12 @@ StateReturnType AIDockMoveToExitState::onEnter( void )
 		return STATE_FAILURE;
 
 	// get the exit position
-	dock->getExitPosition( getMachineOwner(), &m_goalPosition );
+	dock->getExitPosition( bfmeRetailMachineOwner( this ), &m_goalPosition );
 
-	AIUpdateInterface *ai = getMachineOwner()->getAIUpdateInterface();
-	if( ai  &&  dock->isAllowPassthroughType() ) 
+	AIUpdateInterface *ai = bfmeRetailAIUpdate( bfmeRetailMachineOwner( this ) );
+	if( ai  &&  ((BFMERetailDockVTable *)dock)->isAllowPassthroughType() ) 
 	{
-		ai->ignoreObstacle( getMachineGoalObject() );
+		ai->ignoreObstacle( bfmeRetailMachine( this )->getGoalObject() );
 		setAdjustsDestination(false);
 	}
 
@@ -989,7 +988,7 @@ StateReturnType AIDockMoveToExitState::onEnter( void )
 StateReturnType AIDockMoveToExitState::update( void )
 {
 	// if we have nothing to dock with, fail
-	if (getMachineGoalObject() == NULL)
+	if (bfmeRetailMachine( this )->getGoalObject() == NULL)
 		return STATE_FAILURE;
 
 	// this behavior is an extention of basic MoveTo
