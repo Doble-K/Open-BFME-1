@@ -3521,7 +3521,6 @@ void InGameUI::disregardDrawable( Drawable *draw )
 //-------------------------------------------------------------------------------------------------
 /** This is called after the UI has been drawn. */
 //-------------------------------------------------------------------------------------------------
-// ?postDraw@InGameUI@@ present-unmatched
 __declspec(naked) void InGameUI::postDraw( void )
 {
 	__asm {
@@ -9562,25 +9561,31 @@ void InGameUI::addIdleWorker( Object *obj )
 	m_idleWorkers[index].push_back(obj);
 }
 
-// ?removeIdleWorker@InGameUI@@UAEXPAVObject@@H@Z present-unmatched
 void InGameUI::removeIdleWorker( Object *obj, Int playerNumber )
 {
 	if(!obj)
 		return;
-	if(playerNumber < 0 || playerNumber >= MAX_PLAYER_COUNT)  // we're leaving the game, so this is all screwed
-		return;
-	
-	if(m_idleWorkers[playerNumber].empty())
+	// Retail bounds the index against 32, not the 16 MAX_PLAYER_COUNT this tree
+	// carries, and reaches the array at this+0x131C where the reconstructed
+	// class puts it at +0x1D30. Both are read off this body's own bytes; the
+	// offset goes through a cast rather than a member so the rest of the class
+	// -- and the sixty rows this file already lands -- keeps its shape.
+	if(playerNumber < 0 || playerNumber >= 32)  // we're leaving the game, so this is all screwed
 		return;
 
-	
-	ObjectListIt it = m_idleWorkers[playerNumber].begin();
-	while(it != m_idleWorkers[playerNumber].end())
+	ObjectList *idleWorkers = (ObjectList *)((char *)this + 0x131c);
+
+	if(idleWorkers[playerNumber].empty())
+		return;
+
+
+	ObjectListIt it = idleWorkers[playerNumber].begin();
+	while(it != idleWorkers[playerNumber].end())
 	{
 		Object *itObj = *it;
 		if(itObj == obj)
 		{
-			m_idleWorkers[playerNumber].erase(it);
+			idleWorkers[playerNumber].erase(it);
 			return;
 		}
 		++it;

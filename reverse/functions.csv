@@ -157952,3 +157952,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?Shutdown@ShdRendererClass@@SAXXZ,,0x003220C0,27,Code/Libraries/Source/WWVegas/wwshade/shdrenderer.cpp,matched,
 ?doUnitStopSequentialScript@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFAF0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,zh_sweep packet 002efaf0; three ZH candidates fold under masked relocs and the tail target separates them
 ?rawMouseToWindowMessage@@YA?AW4GameWindowMessage@@PBVGameMessage@@@Z,,0x005B9B90,106,Code/GameEngine/Source/GameClient/MessageStream/WindowXlat.cpp,matched,zh_sweep packet 005b9b94; real start is 4 bytes earlier than the packet reported
+?isCurrentlyFerryingSupplies@WorkerAIUpdate@@UBE_NXZ,,0x002C7E30,60,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate_isCurrentlyFerryingSupplies_Thunk.cpp,matched,
+?removeIdleWorker@InGameUI@@UAEXPAVObject@@H@Z,,0x0043F8E0,82,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,zh_sweep packet 0043f8e0
