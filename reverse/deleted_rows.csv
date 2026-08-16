@@ -9139,3 +9139,5 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_00728770@@YAXXZ,0x00728770,gen-dump placeholder superseded by W3DTerrainBackground::allocateTerrainBuffers converted to C++
 ?d_004e94f0@@YAXXZ,0x004E94F0,gen-dump placeholder superseded by SinglePlayerMenuShutdown converted to C++
 ?d_0014fce0@@YAXXZ,0x0014FCE0,gen-dump placeholder superseded by AIDockProcessDockState::update converted to C++
+?d_0014e700@@YAXXZ,0x0014E700,gen-dump placeholder superseded by AIDockApproachState::onEnter converted to C++
+?d_0014e980@@YAXXZ,0x0014E980,gen-dump placeholder superseded by AIDockAdvancePositionState::onEnter converted to C++

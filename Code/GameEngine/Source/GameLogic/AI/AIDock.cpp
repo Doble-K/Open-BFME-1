@@ -173,14 +173,53 @@ void AIDockApproachState::xfer( Xfer *xfer )
 
 }  // end xfer
 
+// Retail keeps State::m_machine at +0x1C where this tree puts it at +0x20, the
+// same four bytes TurretAIIdleState::resetIdleScan already found. State.h is
+// shared, so the offset is corrected here through a cast rather than in the
+// class -- the other twenty-two rows this file lands keep their shape.
+// BFME reaches reserveApproachPosition and reserveAdvancePosition at vtable
+// slots 1 and 2 where this tree puts them at +0x9C. Its neighbours already
+// agree -- action is +0x30, cancelDock +0x34, isDockOpen +0x38, all three
+// byte-verified by AIDockProcessDockState::update -- so only these two need
+// the cast.
+class BFMERetailDockVTable
+{
+public:
+	virtual void slot00() = 0;
+	virtual Bool reserveApproachPosition( Object *owner, Coord3D *goalPos, Int *approach ) = 0;	///< +0x04
+	virtual Bool reserveAdvancePosition( Object *owner, Coord3D *goalPos, Int *approach ) = 0;	///< +0x08
+};
+
+static StateMachine *bfmeRetailMachine( const State *state )
+{
+	return *(StateMachine **)((char *)state + 0x1C);
+}
+
+// And the machine keeps its owner at +0x10, not +0x14, and the dock machine
+// its approach position at +0x44, not +0x38.
+static Object *bfmeRetailMachineOwner( const State *state )
+{
+	return *(Object **)((char *)bfmeRetailMachine( state ) + 0x10);
+}
+
+static Int *bfmeRetailApproachPosition( const State *state )
+{
+	return (Int *)((char *)bfmeRetailMachine( state ) + 0x44);
+}
+
+// The object keeps its AI update interface at +0x204, not +0x19C.
+static AIUpdateInterface *bfmeRetailAIUpdate( const Object *obj )
+{
+	return *(AIUpdateInterface **)((char *)obj + 0x204);
+}
+
 //----------------------------------------------------------------------------------------------
 /**
  * Approach our waiting spot next to the dock.
  */
-// ?onEnter@AIDockApproachState@@ present-unmatched
 StateReturnType AIDockApproachState::onEnter( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 		
 	// sanity
 	if( goalObject == NULL )
@@ -196,19 +235,19 @@ StateReturnType AIDockApproachState::onEnter( void )
 	// fail if the dock is closed
 	if( dock->isDockOpen() == FALSE )
 	{
-		dock->cancelDock( getMachineOwner() );
+		dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		return STATE_FAILURE;
 	}
 
 	// get a good place to wait from the dock
-	Bool reserved = dock->reserveApproachPosition( getMachineOwner(), &m_goalPosition, &(( (AIDockMachine*)getMachine() )->m_approachPosition) );
+	Bool reserved = ((BFMERetailDockVTable *)dock)->reserveApproachPosition( bfmeRetailMachineOwner( this ), &m_goalPosition, bfmeRetailApproachPosition( this ) );
 	if( reserved == FALSE )
 	{
 		// dock is full
 		return STATE_FAILURE;
 	}
 
-	AIUpdateInterface *ai = getMachineOwner()->getAIUpdateInterface();
+	AIUpdateInterface *ai = bfmeRetailAIUpdate( bfmeRetailMachineOwner( this ) );
 	if (ai) {
 		ai->ignoreObstacle( NULL );
 	}
@@ -340,10 +379,9 @@ void AIDockWaitForClearanceState::xfer(Xfer *xfer )
 /**
  * Advance to our next waiting spot next to the dock.
  */
-// ?onEnter@AIDockAdvancePositionState@@ present-unmatched
 StateReturnType AIDockAdvancePositionState::onEnter( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 		
 	// sanity
 	if( goalObject == NULL )
@@ -359,19 +397,19 @@ StateReturnType AIDockAdvancePositionState::onEnter( void )
 	// fail if the dock is closed
 	if( dock->isDockOpen() == FALSE )
 	{
-		dock->cancelDock( getMachineOwner() );
+		dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		return STATE_FAILURE;
 	}
 
 	// get a good place to wait from the dock
-	Bool reserved = dock->advanceApproachPosition( getMachineOwner(), &m_goalPosition, &(( (AIDockMachine*)getMachine() )->m_approachPosition) );
+	Bool reserved = ((BFMERetailDockVTable *)dock)->reserveAdvancePosition( bfmeRetailMachineOwner( this ), &m_goalPosition, bfmeRetailApproachPosition( this ) );
 	if( reserved == FALSE )
 	{
 		// dock is full
 		return STATE_FAILURE;
 	}
 
-	AIUpdateInterface *ai = getMachineOwner()->getAIUpdateInterface();
+	AIUpdateInterface *ai = bfmeRetailAIUpdate( bfmeRetailMachineOwner( this ) );
 	if (ai) {
 		ai->ignoreObstacle( NULL );
 	}
@@ -676,21 +714,6 @@ StateReturnType AIDockProcessDockState::onEnter( void )
 /**
  * We are now docked. Invoke the dock's action() method until it returns false.
  */
-// Retail keeps State::m_machine at +0x1C where this tree puts it at +0x20, the
-// same four bytes TurretAIIdleState::resetIdleScan already found. State.h is
-// shared, so the offset is corrected here through a cast rather than in the
-// class -- the other twenty-two rows this file lands keep their shape.
-static StateMachine *bfmeRetailMachine( const State *state )
-{
-	return *(StateMachine **)((char *)state + 0x1C);
-}
-
-// And the machine keeps its owner at +0x10, not +0x14.
-static Object *bfmeRetailMachineOwner( const State *state )
-{
-	return *(Object **)((char *)bfmeRetailMachine( state ) + 0x10);
-}
-
 StateReturnType AIDockProcessDockState::update( void )
 {
 	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();

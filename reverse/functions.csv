@@ -107202,7 +107202,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0014e030@@YAXXZ,,0x0014E030,165,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054e030
 ?d_0014e130@@YAXXZ,,0x0014E130,304,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054e130
 ?d_0014e640@@YAXXZ,,0x0014E640,11,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054e640
-?d_0014e700@@YAXXZ,,0x0014E700,119,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054e700
 ?d_0014ea20@@YAXXZ,,0x0014EA20,30,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ea20
 ?d_0014eae0@@YAXXZ,,0x0014EAE0,144,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054eae0
 ?d_0014eba0@@YAXXZ,,0x0014EBA0,59,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054eba0
@@ -136696,7 +136695,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014e6b0@@YAXXZ,,0x0014E6B0,63,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e7d0@@YAXXZ,,0x0014E7D0,106,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e880@@YAXXZ,,0x0014E880,120,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014e980@@YAXXZ,,0x0014E980,119,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014ea50@@YAXXZ,,0x0014EA50,106,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014eef0@@YAXXZ,,0x0014EEF0,10,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014f150@@YAXXZ,,0x0014F150,52,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157968,3 +157966,5 @@ _ghiParseURL,,0x0087B6B0,225,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/gh
 ??0AABTreeLinkClass@@QAE@PAVAABTreeCullSystemClass@@@Z,,0x0010A7A0,29,Code/Libraries/Source/WWVegas/WWMath/AABTreeLinkClass_Constructor_Thunk.cpp,matched,
 ?Register_Missing@HAnimManagerClass@@QAEXPBD@Z,,0x007BB850,102,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ?update@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014FCE0,115,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
+?onEnter@AIDockApproachState@@UAE?AW4StateReturnType@@XZ,,0x0014E700,119,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
+?onEnter@AIDockAdvancePositionState@@UAE?AW4StateReturnType@@XZ,,0x0014E980,119,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
