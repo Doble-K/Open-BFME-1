@@ -106920,7 +106920,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001187c0@@YAXXZ,,0x001187C0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005187c0
 ?d_00118e80@@YAXXZ,,0x00118E80,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00518e80
 ?d_00119380@@YAXXZ,,0x00119380,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00519380
-?d_00119540@@YAXXZ,,0x00119540,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00519540
 ?d_0011a2b0@@YAXXZ,,0x0011A2B0,18,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051a2b0
 ?d_0011a680@@YAXXZ,,0x0011A680,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051a680
 ?d_0011a700@@YAXXZ,,0x0011A700,18,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051a700
@@ -106929,49 +106928,21 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0011be00@@YAXXZ,,0x0011BE00,33,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051be00
 ?d_0011be30@@YAXXZ,,0x0011BE30,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051be30
 ?d_0011c030@@YAXXZ,,0x0011C030,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051c030
-?d_0011caf0@@YAXXZ,,0x0011CAF0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051caf0
-?d_0011cc00@@YAXXZ,,0x0011CC00,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051cc00
 ?d_0011cd10@@YAXXZ,,0x0011CD10,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051cd10
-?d_0011e0b0@@YAXXZ,,0x0011E0B0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e0b0
-?d_0011e3e0@@YAXXZ,,0x0011E3E0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e3e0
-?d_0011e460@@YAXXZ,,0x0011E460,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e460
-?d_0011e4e0@@YAXXZ,,0x0011E4E0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e4e0
 ?d_0011e560@@YAXXZ,,0x0011E560,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e560
-?d_0011e700@@YAXXZ,,0x0011E700,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e700
-?d_0011e780@@YAXXZ,,0x0011E780,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e780
 ?d_0011e800@@YAXXZ,,0x0011E800,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e800
-?d_0011e900@@YAXXZ,,0x0011E900,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e900
 ?d_0011e980@@YAXXZ,,0x0011E980,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e980
-?d_0011ea10@@YAXXZ,,0x0011EA10,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051ea10
 ?d_0011ea90@@YAXXZ,,0x0011EA90,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051ea90
 ?d_0011eba0@@YAXXZ,,0x0011EBA0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eba0
-?d_0011ec20@@YAXXZ,,0x0011EC20,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051ec20
 ?d_0011eca0@@YAXXZ,,0x0011ECA0,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eca0
-?d_0011ed40@@YAXXZ,,0x0011ED40,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051ed40
 ?d_0011eed0@@YAXXZ,,0x0011EED0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eed0
 ?d_0011f0b0@@YAXXZ,,0x0011F0B0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f0b0
-?d_0011f3a0@@YAXXZ,,0x0011F3A0,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f3a0
-?d_0011f4b0@@YAXXZ,,0x0011F4B0,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f4b0
-?d_0011f530@@YAXXZ,,0x0011F530,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f530
-?d_0011f5e0@@YAXXZ,,0x0011F5E0,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f5e0
-?d_0011f830@@YAXXZ,,0x0011F830,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f830
-?d_0011f940@@YAXXZ,,0x0011F940,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f940
-?d_0011fa50@@YAXXZ,,0x0011FA50,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051fa50
-?d_0011fb60@@YAXXZ,,0x0011FB60,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051fb60
-?d_0011fe80@@YAXXZ,,0x0011FE80,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051fe80
-?d_001201b0@@YAXXZ,,0x001201B0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005201b0
-?d_001204e0@@YAXXZ,,0x001204E0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005204e0
 ?d_00120560@@YAXXZ,,0x00120560,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00520560
-?d_001205f0@@YAXXZ,,0x001205F0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005205f0
 ?d_00120670@@YAXXZ,,0x00120670,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00520670
-?d_00120700@@YAXXZ,,0x00120700,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00520700
 ?d_00120780@@YAXXZ,,0x00120780,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00520780
 ?d_001210a0@@YAXXZ,,0x001210A0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005210a0
-?d_00121a70@@YAXXZ,,0x00121A70,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00521a70
 ?d_00121b70@@YAXXZ,,0x00121B70,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00521b70
 ?d_00121d10@@YAXXZ,,0x00121D10,11,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00521d10
-?d_00122040@@YAXXZ,,0x00122040,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00522040
-?d_00122140@@YAXXZ,,0x00122140,99,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00522140
 ?d_001221c0@@YAXXZ,,0x001221C0,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005221c0
 ?d_00122f40@@YAXXZ,,0x00122F40,50,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00522f40
 ?d_00123810@@YAXXZ,,0x00123810,17,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00523810
@@ -157957,3 +157928,32 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?QRKeyListCallback@@YAXPAXW4qr2_key_type@@00@Z,,0x00642CF0,214,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,zh_sweep packet 00642cf0
 ?setLocalPlayer@PlayerList@@QAEXPAVPlayer@@@Z,,0x000DF3C0,97,Code/GameEngine/Source/Common/RTS/PlayerListSetLocalPlayer.cpp,matched,zh_sweep packet 000df3c0; ZH body plus 52 BFME-only bytes notifying two subsystems
 ?d_001072a0@@YAXHHH@Z,,0x001072A0,58,Code/GameEngine/Source/GameClient/SubsystemRefreshCallbacks.cpp,matched,
+?friend_newModuleInstance@DelayedDeathBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F830,99,Code/GameEngine/Source/GameLogic/Object/Body/DelayedDeathBodyFriendNewModuleInstanceThunk.cpp,matched,
+?friend_newModuleInstance@AODCrushCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011EC20,96,Code/GameEngine/Source/Common/Thing/AODCrushCollideFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@ActiveBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F3A0,99,Code/GameEngine/Source/Common/Thing/ActiveBodyFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@AnimatedParticleSysBoneClientUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00121A70,96,Code/GameEngine/Source/Common/Thing/AnimatedParticleSysBoneClientUpdateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@AudioLoopUpgrade@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E0B0,96,Code/GameEngine/Source/Common/Thing/AudioLoopUpgradeFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@CloudBreakSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001205F0,96,Code/GameEngine/Source/Common/Thing/CloudBreakSpecialPowerFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@DefectorSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011FE80,96,Code/GameEngine/Source/Common/Thing/DefectorSpecialPowerFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@DetachableRiderBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011FA50,99,Code/GameEngine/Source/Common/Thing/DetachableRiderBodyFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@DetachableRiderUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011CAF0,96,Code/GameEngine/Source/Common/Thing/DetachableRiderUpdateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@DominateEnemySpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00122140,99,Code/GameEngine/Source/Common/Thing/DominateEnemySpecialPowerFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@EvacuateDamage@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011EA10,96,Code/GameEngine/Source/Common/Thing/EvacuateDamageFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@FreeLifeBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F940,99,Code/GameEngine/Source/Common/Thing/FreeLifeBodyFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@GrantUpgradeCreate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E4E0,96,Code/GameEngine/Source/Common/Thing/GrantUpgradeCreateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@HighlanderBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F4B0,99,Code/GameEngine/Source/Common/Thing/HighlanderBodyFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@HordeMemberCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011ED40,96,Code/GameEngine/Source/Common/Thing/HordeMemberCollideFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@ImmortalBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F530,99,Code/GameEngine/Source/Common/Thing/ImmortalBodyFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@OCLSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001201B0,96,Code/GameEngine/Source/Common/Thing/OCLSpecialPowerFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@OathbreakerBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011FB60,99,Code/GameEngine/Source/Common/Thing/OathbreakerBodyFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@PreorderCreate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E700,96,Code/GameEngine/Source/Common/Thing/PreorderCreateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@RandomSoundSelectorClientBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00122040,96,Code/GameEngine/Source/Common/Thing/RandomSoundSelectorClientBehaviorFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@ReflectDamage@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E900,96,Code/GameEngine/Source/Common/Thing/ReflectDamageFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@RespawnUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011CC00,96,Code/GameEngine/Source/Common/Thing/RespawnUpdateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@ScavengerSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001204E0,96,Code/GameEngine/Source/Common/Thing/ScavengerSpecialPowerFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@SpecialPowerCreate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E780,96,Code/GameEngine/Source/Common/Thing/SpecialPowerCreateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@SpecialPowerModule@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00119540,96,Code/GameEngine/Source/Common/Thing/SpecialPowerModuleFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@StructureBody@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F5E0,99,Code/GameEngine/Source/Common/Thing/StructureBodyFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@SupplyCenterCreate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E3E0,96,Code/GameEngine/Source/Common/Thing/SupplyCenterCreateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@SupplyWarehouseCreate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E460,96,Code/GameEngine/Source/Common/Thing/SupplyWarehouseCreateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@TaintSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00120700,96,Code/GameEngine/Source/Common/Thing/TaintSpecialPowerFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
