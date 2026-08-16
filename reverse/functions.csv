@@ -113660,8 +113660,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00920a20@@YAXXZ,,0x00920A20,41,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d20a20
 ?d_00920bc0@@YAXXZ,,0x00920BC0,331,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d20bc0
 ?d_009212e0@@YAXXZ,,0x009212E0,98,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d212e0
-?d_00921820@@YAXXZ,,0x00921820,279,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21820
-?d_00921940@@YAXXZ,,0x00921940,129,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21940
 ?d_00921a50@@YAXXZ,,0x00921A50,558,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21a50
 ?d_00921c80@@YAXXZ,,0x00921C80,421,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21c80
 ?d_00923690@@YAXXZ,,0x00923690,107,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d23690
@@ -160099,3 +160097,5 @@ _luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,
 ?construct@ProductionPrerequisiteConstructShim@_STL@@SAXPAVProductionPrerequisite@@ABV3@@Z,,0x00784DB0,19,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteConstructShimImpl.cpp,matched,STL _Construct ProductionPrerequisite; null-checked placement-new copy ctor; copy ctor callee pinned in symbols.csv
 ?d_002016e0@@YAXXZ,,0x002016E0,106,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehaviorParseFXThunk.cpp,matched,object-symbol=?parseFX@@YAXPAVINI@@PAX1PBX@Z;Open-BFME5 clean C++ InstantDeathBehavior FX parser; the mangled name is already spent on the SlowDeathBehavior/StructureCollapseUpdate file-statics of the same name
 ??0VertexMaterialClass@@QAE@ABV0@@Z,,0x00922760,286,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
+??0VertexMaterialClass@@QAE@XZ,,0x00921820,279,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
+??1VertexMaterialClass@@UAE@XZ,,0x00921940,129,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
