@@ -468,3 +468,45 @@ Three mutually inconsistent answers for one constructor, and the factory cannot
 land until one of them is proven. **Before spending a name on the strength of a
 callee, resolve the thunk and check it against the ledger's own body** — and if
 they disagree, say so rather than picking the convenient one.
+
+
+## Retail's string payload is at m_data+8, and this tree inlines m_data+4
+
+`AsciiString::str()` and `UnicodeString::str()` inline to a fixed idiom -- test
+the data pointer, add the header size, or fall back to the shared empty string:
+
+    85 c0        test eax, eax
+    74 05        je   +5
+    83 c0 08     add  eax, 8
+    eb 05        jmp  +5
+    b8 8b 38 07 01   mov eax, 0x0107388B
+
+Counting that idiom across retail `.text` gives **808 sites, every one of them
+`add eax,8`**, split by which empty string they fall back to: 734 use
+`0x0107388B` (a `char`) and 74 use `0x0107388C` (a `WideChar`). So both string
+classes agree, and **retail never emits `add eax,4`**.
+
+Counting the same idiom across this repo's built objects gives 87 sites at `+4`.
+
+The reason is visible in the vendored header. `AsciiStringData` is
+
+```c
+#if defined(_DEBUG) || defined(_INTERNAL)
+        const char* m_debugptr;
+#endif
+        unsigned short  m_refCount;
+        unsigned short  m_numCharsAllocated;
+```
+
+Four bytes with the pointer compiled out, eight with it in — and eight is what
+retail uses. Either the shipped build defined `_INTERNAL`, or BFME widened the
+two counters; the bytes cannot tell those apart, but they are emphatic that the
+header is eight bytes wide.
+
+**This is safe to fix.** A matched row cannot contain `add eax,4`, because retail
+has no such site, so all 87 are in bodies nobody has landed yet. Correcting it
+should unlock rather than break — the tree already carries BFME overrides in
+`Code/GameEngine/Include/Common/` (CRC.h, Snapshot.h, Recorder.h, Module.h) and
+an `AsciiString.h` / `UnicodeString.h` override is the same shape of change.
+Budget a full gate per attempt, and expect the fallout to be in *unmatched*
+bodies that suddenly compile differently rather than in matched ones.
