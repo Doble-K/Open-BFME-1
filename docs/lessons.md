@@ -365,3 +365,26 @@ a family, and the way in is a TU whose flags differ, not a source rewrite - a
 matched body containing the *same* construct would prove which flag flips the
 order. Until then, treat "right size, four diffs, `89 64 24` against `8b cc`" as a
 known-unfixed classification and move to the next candidate.
+
+
+## The baseline exe is not entirely compiler output
+
+`CopyProtect::notifyLauncher` at `0x001020D0` will not match, and the reason is not
+in our source. The target's branch shape is impossible for a compiler to emit:
+
+    0x0010211F   eb ..      jmp    (where the port emits 75 .. jne)
+    0x00102173   eb 00      jmp    to the very next instruction
+    0x001021B2   eb 04      jmp    followed by 90 90 90 90
+
+A `jmp` whose displacement is zero, and four `nop` bytes padding the middle of a
+body, are what a **hand patch** looks like: someone disarmed the copy-protection
+checks in place, keeping every instruction boundary so the file length did not
+move. `baselines/bfme1/workshop-vanilla-1.03` is a redistributable, not a pressed
+retail image, and this is where that shows.
+
+The damage is narrow. The other three `CopyProtection.cpp` bodies --
+`isLauncherRunning`, `checkForMessage` and `shutdown` -- byte-match from clean C++,
+so only the checks that actually gate the launcher were touched. But the rule
+generalises: when a diff is *only* conditional branches turning unconditional, or
+shows `nop` runs inside a body, suspect the binary before rewriting the source. No
+amount of C++ reproduces a patch.
