@@ -20823,3 +20823,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_00c61138@@YAXXZ,0x00C61138,"gen-dump placeholder superseded by the real identity of these bytes: uw_00c61138, byte-verified from Code/gen_small/uw_gen_017.cpp over the same 17-byte range. The Code/gen_asm/d_00c5dc18.asm dump reproduces those bytes but carries no identity."
 ?d_00c61feb@@YAXXZ,0x00C61FEB,"gen-dump placeholder superseded by the real identity of these bytes: uw_00c61feb, byte-verified from Code/gen_small/uw_gen_016.cpp over the same 17-byte range. The Code/gen_asm/d_00c5dc18.asm dump reproduces those bytes but carries no identity."
 ?d_004854f0@@YAXXZ,0x004854F0,replaced by ?parseScreenRect@@YA_NPAH000@Z
+?d_00922760@@YAXXZ,0x00922760,replaced by ??0VertexMaterialClass@@QAE@ABV0@@Z

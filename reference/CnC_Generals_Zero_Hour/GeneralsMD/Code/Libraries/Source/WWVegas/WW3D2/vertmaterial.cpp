@@ -57,7 +57,12 @@ VertexMaterialClass* VertexMaterialClass::Presets[VertexMaterialClass::PRESET_CO
 #ifdef DYN_MAT8
 class DynD3DMATERIAL8 : public W3DMPO
 {
-	W3DMPO_GLUE(DynD3DMATERIAL8)
+	// BFME does not pool this one. VertexMaterialClass's copy constructor at
+	// retail 0x00922760 allocates it with `push 0x44 / call ??2@YAPAXI@Z` --
+	// the global operator new, one argument -- where the glue's pooled operator
+	// new would first call getClassMemoryPool and push its result, six bytes
+	// more. The size is 0x44 either way, so W3DMPO still contributes no vptr
+	// and only the allocator differs.
 public:
 	D3DMATERIAL8 Mat;
 };
