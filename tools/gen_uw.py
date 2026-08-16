@@ -71,6 +71,12 @@ PIN_NOTE_BYTES = PIN_NOTE.encode("utf-8")
 
 DELETE_NAME = "??3@YAXPAX@Z"
 ROWS_PER_FILE = 1200
+# The funclet kinds this revision emits. A kind goes in here only once a probe
+# compile has reproduced its retail bytes at the extremes of the frame
+# displacements and member offsets the pool actually asks for, and the commit
+# that adds one lands nothing else -- so a full gate that goes red names the
+# shape that did it.
+LANDING = ("A", "B", "C")
 
 
 def source_name(index):
@@ -174,8 +180,61 @@ class Ledger:
         return (name, address) in self.named
 
 
-Funclet = collections.namedtuple("Funclet", "kind rva size disp target")
+Funclet = collections.namedtuple("Funclet", "kind rva size disp target imm")
 Unit = collections.namedtuple("Unit", "kind target rows shape")
+
+
+def disp32(body, offset):
+    return struct.unpack_from("<i", body, offset)[0]
+
+
+def classify(rva, body):
+    """(kind, disp, target, member-offset) for the shapes this generator emits.
+
+    Each row is one MSVC unwind template and both encodings of its frame
+    reference: an int8 displacement while the slot is within 128 bytes of EBP,
+    an int32 one past that.  The disp32 twin is the SAME C++ -- a bigger frame is
+    all that separates them -- which is why one emitter covers both.
+
+      A/B  8d 4d D / 8d 8d D32   lea ecx,[ebp+D]; jmp dtor
+                                 a local object (D<0) or a by-value parameter (D>0)
+      C    8b 45 D / 8b 85 D32   mov eax,[ebp+D]; push eax; call op-delete; pop ecx; ret
+                                 the block a throwing new-expression allocated
+      M    8b 4d D / 8b 8d D32   mov ecx,[ebp+D]; [add ecx,K;] jmp dtor
+                                 a member subobject at offset K of the object
+                                 whose `this` the parent spilled at D; K==0 folds
+                                 the add away, K<128 takes 83 C1, else 81 C1.
+    """
+    size = len(body)
+    if size == 8 and body[0] == 0x8D and body[1] == 0x4D and body[3] == 0xE9:
+        disp = disp8(body[2])
+        return ("A" if disp < 0 else "B"), disp, rel32(body, 3, rva), 0
+    if size == 11 and body[0] == 0x8D and body[1] == 0x8D and body[6] == 0xE9:
+        disp = disp32(body, 2)
+        return ("A" if disp < 0 else "B"), disp, rel32(body, 6, rva), 0
+    if (size == 11 and body[0] == 0x8B and body[1] == 0x45 and body[3] == 0x50
+            and body[4] == 0xE8 and body[9] == 0x59 and body[10] == 0xC3):
+        return "C", disp8(body[2]), rel32(body, 4, rva), 0
+    if (size == 14 and body[0] == 0x8B and body[1] == 0x85 and body[6] == 0x50
+            and body[7] == 0xE8 and body[12] == 0x59 and body[13] == 0xC3):
+        return "C", disp32(body, 2), rel32(body, 7, rva), 0
+    if size == 8 and body[0] == 0x8B and body[1] == 0x4D and body[3] == 0xE9:
+        return "M", disp8(body[2]), rel32(body, 3, rva), 0
+    if size == 11 and body[0] == 0x8B and body[1] == 0x8D and body[6] == 0xE9:
+        return "M", disp32(body, 2), rel32(body, 6, rva), 0
+    if (size == 11 and body[0] == 0x8B and body[1] == 0x4D and body[3] == 0x83
+            and body[4] == 0xC1 and body[6] == 0xE9):
+        return "M", disp8(body[2]), rel32(body, 6, rva), disp8(body[5])
+    if (size == 14 and body[0] == 0x8B and body[1] == 0x4D and body[3] == 0x81
+            and body[4] == 0xC1 and body[9] == 0xE9):
+        return "M", disp8(body[2]), rel32(body, 9, rva), disp32(body, 5)
+    if (size == 14 and body[0] == 0x8B and body[1] == 0x8D and body[6] == 0x83
+            and body[7] == 0xC1 and body[9] == 0xE9):
+        return "M", disp32(body, 2), rel32(body, 9, rva), disp8(body[8])
+    if (size == 17 and body[0] == 0x8B and body[1] == 0x8D and body[6] == 0x81
+            and body[7] == 0xC1 and body[12] == 0xE9):
+        return "M", disp32(body, 2), rel32(body, 12, rva), disp32(body, 8)
+    return None, None, None, None
 
 
 def read_funclets(ledger):
@@ -210,16 +269,7 @@ def read_funclets(ledger):
                     "funclet %d -- the boundary itself is in dispute" % (rva, dump, size))
                 continue
             body = data[rva:rva + size]
-            kind = target = disp = None
-            if size == 8 and body[0] == 0x8D and body[1] == 0x4D and body[3] == 0xE9:
-                disp = disp8(body[2])
-                target = rel32(body, 3, rva)
-                kind = "A" if disp < 0 else "B"
-            elif (size == 11 and body[0] == 0x8B and body[1] == 0x45 and body[3] == 0x50
-                    and body[4] == 0xE8 and body[9] == 0x59 and body[10] == 0xC3):
-                disp = disp8(body[2])
-                target = rel32(body, 4, rva)
-                kind = "C"
+            kind, disp, target, imm = classify(rva, body)
             if kind is None:
                 tally["D other"] += 1
                 tally_bytes["D other"] += size
@@ -235,57 +285,104 @@ def read_funclets(ledger):
                     "the destructor target 0x%08X this funclet jumps to is not a proven "
                     "boundary, so no pin can name it" % target)
                 continue
-            funclet = Funclet(kind, rva, size, disp, target)
+            funclet = Funclet(kind, rva, size, disp, target, imm)
             if on_the_ladder(funclet):
                 on_ladder.append(funclet)
             else:
                 off_ladder.append(funclet)
-                ledger.declined[rva] = (
-                    "frame displacement %d is not a slot this generator can place"
-                    % disp)
+                ledger.declined[rva] = unreachable(funclet)
     return on_ladder, off_ladder, tally, tally_bytes
 
 
 def on_the_ladder(funclet):
-    if funclet.kind == "B":
-        return funclet.disp % 4 == 0 and funclet.disp >= 4
-    return (-funclet.disp - 0x10) % 4 == 0 and funclet.disp <= -0x10
+    return unreachable(funclet) is None
 
 
-def slot_of(funclet):
+def unreachable(funclet):
+    """Why this generator cannot place the funclet's frame slot, or None.
+
+    Everything reachable is reachable the same way: the frame that holds the
+    object starts at EBP-0x10 and a leading `char pad[N]` walks it down four
+    bytes at a time, so a slot is placeable exactly when it is 0x10 or more
+    below EBP and 4-byte aligned.  A by-value parameter counts up from EBP+4
+    instead.  A member offset is a struct field, so it too must be non-negative
+    and 4-byte aligned -- `char q[K]` before it is what puts it there.
+    """
+    if funclet.kind not in LANDING:
+        return ("the %s template is recognised but not yet emitted: no probe compile "
+                "has reproduced it" % funclet.kind)
     if funclet.kind == "B":
-        return funclet.disp // 4 - 1
-    return (-funclet.disp - 0x10) // 4
+        if funclet.disp < 4 or funclet.disp % 4:
+            return ("frame displacement %d is not a by-value parameter slot: they "
+                    "start at EBP+4 and step by 4" % funclet.disp)
+        return None
+    if funclet.disp > -0x10 or (-funclet.disp - 0x10) % 4:
+        return ("frame displacement %d is not a local slot: they start at EBP-0x10 "
+                "and step down by 4" % funclet.disp)
+    if funclet.imm < 0 or funclet.imm % 4:
+        return ("member offset %d is not a 4-byte-aligned field offset a struct "
+                "layout can produce" % funclet.imm)
+    return None
+
+
+def pad_of(funclet):
+    """Bytes of leading `char pad[]` that walk EBP-0x10 down to this slot."""
+    return -funclet.disp - 0x10
 
 
 def plan(on_ladder):
     """Group the funclets into the units a translation unit is built from.
 
-    A unit is one destructor target's locals and parameters, or the whole
-    template-C population, which shares one set of new-expression frames.
-    `shape` is what the emitter needs: (locals, parameters) for a type, the
-    slots to reach for the new-expression unit.
+    A unit is one emitted C++ entity and the keys it covers:
+
+      local  (target, pad)          one function whose frame puts a Gen_uw_<t>
+                                    local exactly `pad` bytes below EBP-0x10
+      param  (target, count)        one function taking `count` by-value
+                                    Gen_uw_<t> parameters, covering EBP+4..+4n
+      new    (pad)                  one throwing new-expression at that slot
+      member (target, pad, offsets) one host struct whose out-of-line constructor
+                                    spills `this` at that slot and holds a
+                                    Gen_uwm_<t> at each offset
+
+    Earlier revisions gave each destructor target ONE function and walked its
+    locals down a ladder, which is the same layout arithmetic seen from the other
+    end.  It does not survive the disp32 twins: reaching EBP-6276 that way costs
+    1,565 live locals in a single frame, and one target in this pool wants
+    EBP-65556.  A per-slot pad reaches any of them with one object in the frame.
     """
-    locals_of = collections.defaultdict(set)
-    params_of = collections.defaultdict(set)
-    new_slots = set()
+    locals_of = collections.defaultdict(set)     # target -> {pad}
+    params_of = collections.defaultdict(set)     # target -> {slot index}
+    new_pads = set()
+    members_of = collections.defaultdict(set)    # (target, pad) -> {member offset}
+    rows = collections.Counter()
     for funclet in on_ladder:
-        slot = slot_of(funclet)
         if funclet.kind == "A":
-            locals_of[funclet.target].add(slot)
+            unit = ("local", funclet.target, pad_of(funclet))
+            locals_of[funclet.target].add(pad_of(funclet))
         elif funclet.kind == "B":
-            params_of[funclet.target].add(slot)
+            unit = ("param", funclet.target, None)
+            params_of[funclet.target].add(funclet.disp // 4 - 1)
+        elif funclet.kind == "C":
+            unit = ("new", None, pad_of(funclet))
+            new_pads.add(pad_of(funclet))
         else:
-            new_slots.add(slot)
+            unit = ("member", funclet.target, pad_of(funclet))
+            members_of[(funclet.target, pad_of(funclet))].add(funclet.imm)
+        rows[unit] += 1
+
     units = []
-    for target in sorted(set(locals_of) | set(params_of)):
-        rows = sum(1 for f in on_ladder if f.kind in "AB" and f.target == target)
-        units.append(Unit("type", target, rows,
-                          (max(locals_of[target]) + 1 if target in locals_of else 0,
-                           max(params_of[target]) + 1 if target in params_of else 0)))
-    if new_slots:
-        rows = sum(1 for f in on_ladder if f.kind == "C")
-        units.append(Unit("new", None, rows, tuple(sorted(new_slots))))
+    for target in sorted(locals_of):
+        for pad in sorted(locals_of[target]):
+            units.append(Unit("local", target, rows[("local", target, pad)], (pad,)))
+    for target in sorted(params_of):
+        units.append(Unit("param", target, rows[("param", target, None)],
+                          (max(params_of[target]) + 1,)))
+    for pad in sorted(new_pads):
+        units.append(Unit("new", None, rows[("new", None, pad)], (pad,)))
+    for target, pad in sorted(members_of):
+        units.append(Unit("member", target, rows[("member", target, pad)],
+                          (pad, tuple(sorted(members_of[(target, pad)])))))
+
     files = [[]]
     count = 0
     for unit in units:
@@ -314,41 +411,111 @@ void gen_uw_sink(void *);
 """
 
 
+def unit_keys(unit):
+    """Every funclet key one emitted unit is responsible for covering.
+
+    This is the contract the `missing` check enforces: a key claimed here that
+    the compiler did not produce stops the run, so no row is ever anchored to a
+    label that reproduces something else.
+    """
+    if unit.kind == "local":
+        return [("AB", -(0x10 + unit.shape[0]), unit.target, 0)]
+    if unit.kind == "param":
+        return [("AB", 4 * (slot + 1), unit.target, 0) for slot in range(unit.shape[0])]
+    if unit.kind == "new":
+        return [("C", -(0x10 + unit.shape[0]), None, 0)]
+    pad, offsets = unit.shape
+    return [("M", -(0x10 + pad), unit.target, offset) for offset in offsets]
+
+
+NEW_EXPR_TYPES = (
+    "// A throwing new-expression leaves its block to be freed from a frame slot,\n"
+    "// and padding ahead of it walks that slot down. A 4-byte pad is the\n"
+    "// exception: it lands in the spare slot the frame already has and does not\n"
+    "// move the temporary, so only a second new-expression that is live at the\n"
+    "// same time reaches EBP-0x14.\n"
+    "struct Gen_uw_new { int m; Gen_uw_new(int); ~Gen_uw_new(); };\n"
+    "struct Gen_uw_new2 { int m; Gen_uw_new2(Gen_uw_new *); ~Gen_uw_new2(); };\n")
+
+
+def emit_local(target, pad):
+    """One frame holding one Gen_uw_<target> at EBP-0x10-pad."""
+    if pad == 0:
+        body = "\tGen_uw_%08x v; gen_uw_ext();" % target
+    elif pad == 4:
+        # The same spare slot the new-expressions run into: `char pad[4]` fills a
+        # gap the frame already had and leaves the object where it was. A second
+        # live object is what actually pushes one down to EBP-0x14.
+        body = ("\tGen_uw_%08x v0; gen_uw_ext();\n"
+                "\tGen_uw_%08x v1; gen_uw_ext();" % (target, target))
+    else:
+        body = ("\tchar pad[%d]; gen_uw_sink(pad);\n"
+                "\tGen_uw_%08x v; gen_uw_ext();" % (pad, target))
+    return "void gen_uw_l%d_%08x()\n{\n%s\n}\n" % (pad, target, body)
+
+
+def emit_member(target, pad, offsets):
+    """One host whose constructor spills `this` at EBP-0x10-pad and holds a
+    Gen_uwm_<target> at every offset asked for.
+
+    A member funclet exists only for a member some LATER member's constructor can
+    throw past, so the host carries one more Gen_uwm_ after the last offset --
+    without it the last offset emits nothing.  `char q[]` fillers put each member
+    exactly where retail's `add ecx,K` says it is.
+    """
+    fields, position = [], 0
+    for index, offset in enumerate(offsets):
+        if offset > position:
+            fields.append("char q%d[%d];" % (index, offset - position))
+        fields.append("Gen_uwm_%08x a%d;" % (target, index))
+        position = offset + 4
+    fields.append("Gen_uwm_%08x z;" % target)
+    initialisers = ", ".join("a%d(%d)" % (index, index) for index in range(len(offsets)))
+    body = "char pad[%d]; gen_uw_sink(pad);" % pad if pad else ""
+    name = "Gen_uwh%d_%08x" % (pad, target)
+    return ("struct %s { %s %s(); };\n%s::%s() : %s, z(0) { %s }\n"
+            % (name, " ".join(fields), name, name, name, initialisers, body))
+
+
+def emit_new(pad):
+    if pad == 0:
+        return "Gen_uw_new *gen_uw_c0() { return new Gen_uw_new(0); }\n"
+    if pad == 4:
+        return ("Gen_uw_new2 *gen_uw_c4()"
+                " { return new Gen_uw_new2(new Gen_uw_new(0)); }\n")
+    return ("Gen_uw_new *gen_uw_c%d()"
+            " { char p[%d]; gen_uw_sink(p); return new Gen_uw_new(0); }\n" % (pad, pad))
+
+
 def emit_source(units):
     out = [HEADER]
-    types = [unit for unit in units if unit.kind == "type"]
-    if types:
-        out.append("\n".join("struct Gen_uw_%08x { int m; ~Gen_uw_%08x(); };" % (u.target, u.target)
-                             for u in types) + "\n")
-    for target, (locals_needed, params_needed) in ((u.target, u.shape) for u in types):
-        if locals_needed:
-            body = "\n".join("\tGen_uw_%08x v%d; gen_uw_ext();" % (target, i)
-                             for i in range(locals_needed))
-            out.append("void gen_uw_f_%08x()\n{\n%s\n}\n" % (target, body))
-        if params_needed:
-            args = ", ".join("Gen_uw_%08x a%d" % (target, i) for i in range(params_needed))
-            out.append("void gen_uw_p%d_%08x(%s) { gen_uw_ext(); }\n"
-                       % (params_needed, target, args))
+    ab_targets = sorted({u.target for u in units if u.kind in ("local", "param")})
+    m_targets = sorted({u.target for u in units if u.kind == "member"})
+    if ab_targets:
+        out.append("\n".join("struct Gen_uw_%08x { int m; ~Gen_uw_%08x(); };" % (t, t)
+                             for t in ab_targets) + "\n")
+    if m_targets:
+        # The member type needs a constructor that can throw: a member is only
+        # unwound because a later member's constructor threw past it, and a
+        # trivially constructed member never produces a funclet at all. That is
+        # the whole reason it cannot be the same type the locals use.
+        out.append("\n".join(
+            "struct Gen_uwm_%08x { int m; Gen_uwm_%08x(int); ~Gen_uwm_%08x(); };"
+            % (t, t, t) for t in m_targets) + "\n")
+    if any(u.kind == "new" for u in units):
+        out.append(NEW_EXPR_TYPES)
     for unit in units:
-        if unit.kind != "new":
-            continue
-        out.append("// A throwing new-expression leaves its block to be freed from a frame\n"
-                   "// slot, and padding ahead of it walks that slot down the ladder. Slot 1\n"
-                   "// is the exception: a 4-byte pad lands in the spare slot the frame\n"
-                   "// already has and does not move the temporary, so only a second\n"
-                   "// new-expression that is live at the same time reaches it.\n"
-                   "struct Gen_uw_new { int m; Gen_uw_new(int); ~Gen_uw_new(); };\n"
-                   "struct Gen_uw_new2 { int m; Gen_uw_new2(Gen_uw_new *); ~Gen_uw_new2(); };\n")
-        for slot in unit.shape:
-            if slot == 0:
-                out.append("Gen_uw_new *gen_uw_c0() { return new Gen_uw_new(0); }\n")
-            elif slot == 1:
-                out.append("Gen_uw_new2 *gen_uw_c1()"
-                           " { return new Gen_uw_new2(new Gen_uw_new(0)); }\n")
-            else:
-                out.append("Gen_uw_new *gen_uw_c%d()"
-                           " { char p[%d]; gen_uw_sink(p); return new Gen_uw_new(0); }\n"
-                           % (slot, 4 * slot))
+        if unit.kind == "local":
+            out.append(emit_local(unit.target, unit.shape[0]))
+        elif unit.kind == "param":
+            count = unit.shape[0]
+            args = ", ".join("Gen_uw_%08x a%d" % (unit.target, i) for i in range(count))
+            out.append("void gen_uw_p%d_%08x(%s) { gen_uw_ext(); }\n"
+                       % (count, unit.target, args))
+        elif unit.kind == "new":
+            out.append(emit_new(unit.shape[0]))
+        else:
+            out.append(emit_member(unit.target, unit.shape[0], unit.shape[1]))
     return "\n".join(out)
 
 
@@ -366,23 +533,77 @@ def compiled_slots(source):
     for label in labels:
         body, relocs = build.read_object_symbol_bytes(obj, label)
         calls = {offset: name for offset, rtype, name in relocs if rtype == 0x0014}
-        if (len(body) >= 8 and body[0] == 0x8D and body[1] == 0x4D and body[3] == 0xE9
-                and calls.get(4, "").startswith("??1Gen_uw_")):
-            key = ("AB", disp8(body[2]), int(calls[4][len("??1Gen_uw_"):][:8], 16))
-        elif (len(body) >= 11 and body[0] == 0x8B and body[1] == 0x45 and body[3] == 0x50
-                and body[4] == 0xE8 and body[9] == 0x59 and body[10] == 0xC3
-                and calls.get(5) == DELETE_NAME):
-            key = ("C", disp8(body[2]), None)
-        else:
-            continue
-        slots.setdefault(key, label)
+        key = emitted_key(body, calls)
+        if key is not None:
+            slots.setdefault(key, label)
     return slots
+
+
+# A label's bytes run to the end of its section, so the emitted side is
+# recognised by its opcodes alone -- never by its length -- and the callee comes
+# from the relocation rather than being guessed from the frame.
+#   prefix, opcode offset, opcode, family, callee prefix, callee reloc offset,
+#   (member-offset encoding, its offset) or None
+EMITTED_SHAPES = (
+    (b"\x8d\x4d", 3, 0xE9, "AB", "??1Gen_uw_",   4, None),
+    (b"\x8d\x8d", 6, 0xE9, "AB", "??1Gen_uw_",   7, None),
+    (b"\x8b\x4d", 3, 0xE9, "M",  "??1Gen_uwm_",  4, None),
+    (b"\x8b\x8d", 6, 0xE9, "M",  "??1Gen_uwm_",  7, None),
+    (b"\x8b\x4d", 3, 0x83, "M",  "??1Gen_uwm_",  7, ("imm8", 5)),
+    (b"\x8b\x4d", 3, 0x81, "M",  "??1Gen_uwm_", 10, ("imm32", 5)),
+    (b"\x8b\x8d", 6, 0x83, "M",  "??1Gen_uwm_", 10, ("imm8", 8)),
+    (b"\x8b\x8d", 6, 0x81, "M",  "??1Gen_uwm_", 13, ("imm32", 8)),
+)
+TARGET_IN_NAME = re.compile(r"^\?\?1Gen_uwm?_([0-9a-f]{8})@@QAE@XZ$")
+
+
+def emitted_target(name, prefix):
+    """The retail address encoded in an emitted destructor's own name, or None.
+
+    Gen_uw_new and Gen_uw_new2 share the Gen_uw_ prefix and carry no address, so
+    the whole name has to match -- taking eight characters on faith turns those
+    two into a ValueError deep inside the label walk.
+    """
+    match = TARGET_IN_NAME.match(name)
+    if match is None or not name.startswith(prefix):
+        return None
+    return int(match.group(1), 16)
+
+
+def emitted_key(body, calls):
+    """The (family, disp, target, member-offset) key one emitted funclet covers."""
+    if (len(body) >= 11 and body[0] == 0x8B and body[1] == 0x45 and body[3] == 0x50
+            and body[4] == 0xE8 and body[9] == 0x59 and body[10] == 0xC3
+            and calls.get(5) == DELETE_NAME):
+        return ("C", disp8(body[2]), None, 0)
+    if (len(body) >= 14 and body[0] == 0x8B and body[1] == 0x85 and body[6] == 0x50
+            and body[7] == 0xE8 and body[12] == 0x59 and body[13] == 0xC3
+            and calls.get(8) == DELETE_NAME):
+        return ("C", disp32(body, 2), None, 0)
+    for prefix, at, opcode, family, callee, call_at, imm in EMITTED_SHAPES:
+        if len(body) <= at or body[:2] != prefix or body[at] != opcode:
+            continue
+        target = emitted_target(calls.get(call_at, ""), callee)
+        if target is None:
+            continue
+        disp = disp8(body[2]) if prefix[1] in (0x4D, 0x45) else disp32(body, 2)
+        offset = 0
+        if imm is not None:
+            offset = disp8(body[imm[1]]) if imm[0] == "imm8" else disp32(body, imm[1])
+        return (family, disp, target, offset)
+    return None
 
 
 def key_of(funclet):
     if funclet.kind == "C":
-        return ("C", funclet.disp, None)
-    return ("AB", funclet.disp, funclet.target)
+        # Every emitted new-expression funclet calls ??3@YAXPAX@Z, which is pinned
+        # at each operator-delete address the retail funclets reach; the resolver
+        # tries the candidates and keeps whichever reproduces retail, so one
+        # emitted body serves every target at that slot.
+        return ("C", funclet.disp, None, 0)
+    if funclet.kind == "M":
+        return ("M", funclet.disp, funclet.target, funclet.imm)
+    return ("AB", funclet.disp, funclet.target, 0)
 
 
 def rewrite_lines(path, owned, fresh, newline):
@@ -423,6 +644,21 @@ class Snapshot:
     def __init__(self):
         self.ledgers = {path: path.read_bytes() for path in (FUNCTIONS, SYMBOLS, DELETED)}
         self.sources = {path: path.read_bytes() for path in owned_sources()}
+        self.staged = []
+
+    def stage(self, paths):
+        """git add the owned sources this run created.
+
+        check_csv rejects a row whose source is not in git -- such a row pushes
+        fine from here and breaks every other clone -- so a file the generator
+        just wrote has to be in the index before the gate can prove it. Specific
+        paths only, never `git add .`.
+        """
+        for path in paths:
+            relative = path.relative_to(ROOT).as_posix()
+            if git("ls-files", "--error-unmatch", "--", relative).returncode != 0:
+                git("add", "--", relative, check=True)
+                self.staged.append(relative)
 
     def restore(self, reason):
         for path, raw in self.ledgers.items():
@@ -432,8 +668,15 @@ class Snapshot:
                 path.unlink()
         for path, raw in self.sources.items():
             path.write_bytes(raw)
+        for relative in self.staged:
+            git("rm", "--cached", "--quiet", "--", relative)
         print("gen_uw: %s -- every ledger row, pin, tombstone and owned source REVERTED"
               % reason, file=sys.stderr)
+
+
+def git(*args, check=False):
+    return subprocess.run(["git", "-C", str(ROOT), *args], check=check,
+                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 def run(command, label):
@@ -468,16 +711,6 @@ def land():
             raise SystemExit(
                 "0x%08X is already claimed by %s -- a generated row would collide"
                 % (funclet.rva, ledger.claimed[funclet.rva]))
-        # A tombstone records a row that was retracted for cause. Emitting one
-        # again is a decision a person has to make against the recorded reason
-        # and fresh byte proof, so stop rather than resurrect it quietly.
-        name = "uw_%08x" % funclet.rva
-        if (name, funclet.rva) in ledger.tombstoned:
-            raise SystemExit(
-                "%s @ 0x%08X is tombstoned in reverse/deleted_rows.csv and this run would "
-                "re-land it. Reason recorded: %s\nEither byte-prove the row and retire that "
-                "tombstone in the same commit, or keep the tombstone and exclude the address."
-                % (name, funclet.rva, ledger.tombstoned[(name, funclet.rva)]))
     print("on-ladder %d rows / %d B ; off-ladder skipped %d (%s)"
           % (len(on_ladder), sum(f.size for f in on_ladder), len(off_ladder),
              ", ".join("%s=%d" % kv for kv in
@@ -488,7 +721,7 @@ def land():
     # three ledgers and every owned source back byte for byte.
     snapshot = Snapshot()
     try:
-        selectors = emit_and_write(ledger, on_ladder)
+        selectors = emit_and_write(ledger, on_ladder, snapshot)
         code = verify(selectors)
     except BaseException:
         snapshot.restore("interrupted")
@@ -499,7 +732,29 @@ def land():
     print("gen_uw: verified OK")
 
 
-def emit_and_write(ledger, on_ladder):
+def row_name(rva, tombstoned):
+    """This generator's name for the funclet at `rva`, stepped past a tombstone.
+
+    A tombstone retires a NAME at an address for a recorded reason; it does not
+    condemn the bytes. 0x00BFD6F0's says a GameState.cpp row anchored to a
+    compiler label stopped reproducing after a conversion renumbered the label --
+    a verdict on that row, not on this funclet, which the gate byte-proves from a
+    generated translation unit either way. Re-using the retired name would leave
+    deleted_rows.csv unable to say which row it retired, so the fresh claim takes
+    the next name. Resurrecting a tombstoned name is never the answer.
+    """
+    name = "uw_%08x" % rva
+    attempt = 1
+    while (name, rva) in tombstoned:
+        attempt += 1
+        name = "uw_%08x_r%d" % (rva, attempt)
+        print("  %s @ 0x%08X is tombstoned, so this claim lands as %s instead. "
+              "Recorded reason: %s"
+              % ("uw_%08x" % rva, rva, name, tombstoned[("uw_%08x" % rva, rva)]))
+    return name
+
+
+def emit_and_write(ledger, on_ladder, snapshot):
     """Compile the owned sources, then write rows, pins and tombstones.
 
     Returns the build selectors that prove what was written.
@@ -509,16 +764,15 @@ def emit_and_write(ledger, on_ladder):
     for funclet in on_ladder:
         by_key[key_of(funclet)].append(funclet)
 
-    rows, targets, written = [], set(), []
+    rows, written = [], []
+    dtor_targets, member_targets = set(), set()
     for index, units in enumerate(files):
         path = ROOT / source_name(index)
         path.write_text(emit_source(units), encoding="utf-8", newline="\n")
         slots = compiled_slots(path)
-        unit_targets = {u.target for u in units if u.kind == "type"}
-        targets |= unit_targets
-        emits_new = any(u.kind == "new" for u in units)
-        wanted = sorted(k for k in by_key if (k[0] == "AB" and k[2] in unit_targets)
-                        or (k[0] == "C" and emits_new))
+        dtor_targets |= {u.target for u in units if u.kind in ("local", "param")}
+        member_targets |= {u.target for u in units if u.kind == "member"}
+        wanted = sorted(set(k for unit in units for k in unit_keys(unit)) & set(by_key))
         missing = [k for k in wanted if k not in slots]
         if missing:
             raise SystemExit(
@@ -528,23 +782,32 @@ def emit_and_write(ledger, on_ladder):
         count = 0
         for key in wanted:
             for funclet in by_key[key]:
-                rows.append(("uw_%08x" % funclet.rva, "", "0x%08X" % funclet.rva,
+                rows.append((row_name(funclet.rva, ledger.tombstoned), "",
+                             "0x%08X" % funclet.rva,
                              str(funclet.size), source_name(index), "matched",
                              ROW_NOTES + slots[key]))
                 count += 1
         written.append(path)
         print("  %s: %d units, %d rows" % (path.name, len(units), count))
 
+    # A stale file is only unlinked, never `git rm`-ed: it is still tracked, so
+    # the deletion stages itself when the commit names the path, and a revert
+    # only has to write the bytes back.
     for stale in sorted(SOURCE_DIR.glob("uw_gen_*.cpp")):
         if stale not in written:
             stale.unlink()
             print("  removed stale %s" % stale.name)
+    snapshot.stage(written)
 
     # Every destructor target gets its own pin. The resolver matches a REL32
     # callee by NAME, so an address already pinned under some other name still
     # leaves ??1Gen_uw_* unresolvable -- filtering on the address would drop
-    # exactly the pins the build needs.
-    pins = [("??1Gen_uw_%08x@@QAE@XZ" % t, t) for t in sorted(targets)]
+    # exactly the pins the build needs. A target reached from both a local and a
+    # member subobject is pinned twice, once per type: the two types differ (the
+    # member's needs a throwing constructor), so they mangle differently and one
+    # pin cannot answer for the other.
+    pins = [("??1Gen_uw_%08x@@QAE@XZ" % t, t) for t in sorted(dtor_targets)]
+    pins += [("??1Gen_uwm_%08x@@QAE@XZ" % t, t) for t in sorted(member_targets)]
     pins += [(DELETE_NAME, f.target) for f in on_ladder
              if f.kind == "C" and not ledger.resolves(DELETE_NAME, f.target)]
     pins = sorted(set(pins), key=lambda pin: (pin[1], pin[0]))
@@ -607,27 +870,45 @@ def emit_and_write(ledger, on_ladder):
     return [path.relative_to(ROOT).as_posix() for path in written]
 
 
-def classify():
+def census():
     ledger = Ledger()
     on_ladder, off_ladder, tally, tally_bytes = read_funclets(ledger)
     print("=== unclaimed named-EH population by template ===")
     for label in sorted(tally):
         print("  %-22s %6d rows %8d B" % (label, tally[label], tally_bytes[label]))
     print("  %-22s %6d rows %8d B" % ("TOTAL", sum(tally.values()), sum(tally_bytes.values())))
-    print("\non-ladder (what land emits): %d rows / %d B"
-          % (len(on_ladder), sum(f.size for f in on_ladder)))
-    for kind, count in sorted(collections.Counter(f.kind for f in on_ladder).items()):
-        print("    %s %5d rows" % (kind, count))
-    print("off-ladder (no frame slot this generator can place): %d rows / %d B  %s"
-          % (len(off_ladder), sum(f.size for f in off_ladder),
-             dict(sorted(collections.Counter(f.kind for f in off_ladder).items()))))
+    landed = sum(f.size for f in on_ladder if ("uw_%08x" % f.rva, f.rva) in ledger.owned)
+    print("\non-ladder (what land emits): %d rows / %d B ; %d B of that is already landed"
+          % (len(on_ladder), sum(f.size for f in on_ladder), landed))
+    per_kind = collections.Counter()
+    per_kind_bytes = collections.Counter()
+    for funclet in on_ladder:
+        per_kind[funclet.kind] += 1
+        per_kind_bytes[funclet.kind] += funclet.size
+    for kind in sorted(per_kind):
+        print("    %s %5d rows %8d B" % (kind, per_kind[kind], per_kind_bytes[kind]))
+    print("off-ladder (no frame slot this generator can place): %d rows / %d B"
+          % (len(off_ladder), sum(f.size for f in off_ladder)))
+    reasons = collections.Counter()
+    reason_bytes = collections.Counter()
+    for funclet in off_ladder:
+        reason = unreachable(funclet).split(":")[0]
+        reasons[reason] += 1
+        reason_bytes[reason] += funclet.size
+    for reason in sorted(reason_bytes, key=lambda r: -reason_bytes[r]):
+        print("    %5d rows %7d B  %s" % (reasons[reason], reason_bytes[reason], reason))
     targets = {f.target for f in on_ladder if f.kind in "AB"}
-    print("distinct destructor targets: %d (%d already carry another name in symbols.csv, "
-          "which a pin filtered on address would wrongly skip)"
-          % (len(targets), sum(1 for t in targets if t in ledger.pinned)))
+    members = {f.target for f in on_ladder if f.kind == "M"}
+    print("distinct destructor targets: %d local/parameter + %d member (%d already carry "
+          "another name in symbols.csv, which a pin filtered on address would wrongly skip)"
+          % (len(targets), len(members),
+             sum(1 for t in targets | members if t in ledger.pinned)))
     print("template-C operator delete targets: %s"
           % sorted({hex(f.target) for f in on_ladder if f.kind == "C"}))
-    print("plan: %d file(s) at <= %d rows each" % (len(plan(on_ladder)), ROWS_PER_FILE))
+    units = [unit for units in plan(on_ladder) for unit in units]
+    print("plan: %d unit(s) over %d file(s) at <= %d rows each  %s"
+          % (len(units), len(plan(on_ladder)), ROWS_PER_FILE,
+             dict(sorted(collections.Counter(u.kind for u in units).items()))))
 
 
 def main():
@@ -635,7 +916,7 @@ def main():
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=("classify", "land"))
     args = parser.parse_args()
-    (classify if args.mode == "classify" else land)()
+    (census if args.mode == "classify" else land)()
 
 
 if __name__ == "__main__":

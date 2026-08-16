@@ -20,6 +20,7 @@ Four guarantees are asserted here, each one absent before this file existed:
     every owned source reverted on anything short of green.
 """
 import importlib.util
+import subprocess
 import sys
 from pathlib import Path
 
@@ -69,6 +70,11 @@ class World:
         self.deleted.write_text(DELETED_HEADER + "\n", encoding="utf-8")
         for name in {row.split(",")[4] for row in owned}:
             (tmp_path / name).write_text("// stale\n", encoding="utf-8")
+        # check_csv rejects a row whose source is untracked, so land() puts the
+        # sources it writes in the index: the tree it runs in has to be a repo.
+        subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+        for name in {row.split(",")[4] for row in owned}:
+            subprocess.run(["git", "-C", str(tmp_path), "add", "--", name], check=True)
 
         monkeypatch.setattr(gen_uw, "ROOT", tmp_path)
         monkeypatch.setattr(gen_uw, "FUNCTIONS", self.functions)
@@ -85,7 +91,7 @@ class World:
         monkeypatch.setattr(gen_uw, "run", self._gate, raising=False)
         self.gate = gate
 
-        made = [gen_uw.Funclet("A" if disp < 0 else "B", rva, size, disp, target)
+        made = [gen_uw.Funclet("A" if disp < 0 else "B", rva, size, disp, target, 0)
                 for rva, size, disp, target in funclets]
         monkeypatch.setattr(gen_uw, "read_funclets",
                             lambda ledger: (made, [], {}, {}))
@@ -100,9 +106,15 @@ class World:
                 for index, funclet in enumerate(gen_uw.read_funclets(None)[0])}
 
     def snapshot(self):
+        # The index is part of the state land() changes: it `git add`s the
+        # sources it writes, so a revert that leaves them staged hands the next
+        # commit a file with no rows.
+        tracked = subprocess.run(["git", "-C", str(self.root), "ls-files"],
+                                 capture_output=True, text=True, check=True).stdout
         return (self.functions.read_bytes(), self.symbols.read_bytes(),
                 self.deleted.read_bytes(),
-                {p.name: p.read_bytes() for p in sorted(self.source_dir.glob("*.cpp"))})
+                {p.name: p.read_bytes() for p in sorted(self.source_dir.glob("*.cpp"))},
+                tracked)
 
     @property
     def rows(self):
@@ -126,7 +138,8 @@ def test_a_red_gate_reverts_every_ledger_and_every_owned_source(tmp_path, monkey
     assert world.snapshot() == before, "a red gate must leave nothing behind"
 
 
-def test_a_green_gate_lands_the_rows_and_runs_check_csv(tmp_path, monkeypatch):
+def test_a_green_gate_lands_the_rows_stages_the_source_and_runs_check_csv(
+        tmp_path, monkeypatch):
     world = World(tmp_path, monkeypatch)
 
     gen_uw.land()
@@ -134,6 +147,9 @@ def test_a_green_gate_lands_the_rows_and_runs_check_csv(tmp_path, monkeypatch):
     assert f"uw_{RVA:08x}" in world.rows
     assert any("build.sh" in call for call in world.gate_calls)
     assert any("check_csv" in call for call in world.gate_calls)
+    assert OWNED_SOURCE in world.snapshot()[-1], (
+        "check_csv rejects a row whose source is untracked, so the gate can only "
+        "prove a generated file that is already in the index")
 
 
 def test_landing_twice_rewrites_the_same_pins_instead_of_appending(tmp_path, monkeypatch):
@@ -153,6 +169,26 @@ def test_landing_twice_rewrites_the_same_pins_instead_of_appending(tmp_path, mon
 
     assert world.snapshot() == once, "a second land must be a byte-for-byte no-op"
     assert world.symbols.read_bytes().count(gen_uw.PIN_NOTE_BYTES) == 1
+
+
+def test_a_tombstoned_name_is_renamed_around_never_resurrected(tmp_path, monkeypatch):
+    """A tombstone retires a NAME at an address, not the bytes at it.
+
+    0x00BFD6F0's tombstone is a verdict on a GameState.cpp row whose compiler
+    label renumbered, which says nothing about a funclet the gate byte-proves
+    from a generated TU. Re-using the retired name would leave deleted_rows.csv
+    unable to say which row it retired, so the claim takes the next name.
+    """
+    world = World(tmp_path, monkeypatch)
+    world.deleted.write_text(
+        DELETED_HEADER + f"\nuw_{RVA:08x},0x{RVA:08X},the earlier row's object symbol "
+        "renumbered and no label in that object reproduces retail\n", encoding="utf-8")
+
+    gen_uw.land()
+
+    rows = world.rows
+    assert f"uw_{RVA:08x}_r2,,0x{RVA:08X}," in rows
+    assert f"\nuw_{RVA:08x},,0x{RVA:08X}," not in rows, "the retired name stays retired"
 
 
 def test_a_dropped_owned_row_is_tombstoned(tmp_path, monkeypatch):
