@@ -158141,3 +158141,14 @@ _getobjname,,0x00996950,222,Code/Libraries/Source/Lua/ldebug.c,matched,
 ?findSpecialPowerTemplate@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@VAsciiString@@@Z,,0x000BA930,96,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ??A?$hash_map@W4NameKeyType@@P6APAVTransition@@XZU?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@P6APAVTransition@@XZ@_STL@@@_STL@@@_STL@@QAEAAP6APAVTransition@@XZABW4NameKeyType@@@Z,,0x0048B740,99,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,reloc-named: name address and size all from a byte-true call site
 ?insert_unique@?$_Rb_tree@HHU?$_Identity@H@_STL@@U?$less@H@2@V?$allocator@H@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@HU?$_Nonconst_traits@H@_STL@@@_STL@@_N@2@ABH@Z,,0x00235A30,145,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,reloc-named: name address and size all from a byte-true call site
+?d_00a04ea7@@YAXXZ,,0x00A04EA7,71,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e04ea7
+?d_00a56226@@YAXXZ,,0x00A56226,88,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e56226
+?d_00a6b249@@YAXXZ,,0x00A6B249,19,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e6b249
+?d_00a6b74f@@YAXXZ,,0x00A6B74F,19,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e6b74f
+?d_00a94e7b@@YAXXZ,,0x00A94E7B,34,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e94e7b
+?d_00a97c12@@YAXXZ,,0x00A97C12,34,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e97c12
+?d_00a98ff1@@YAXXZ,,0x00A98FF1,34,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e98ff1
+?d_00a9b789@@YAXXZ,,0x00A9B789,158,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e9b789
+?d_00a9c5f1@@YAXXZ,,0x00A9C5F1,246,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e9c5f1
+?d_00a9ff56@@YAXXZ,,0x00A9FF56,158,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e9ff56
+?d_00aa0756@@YAXXZ,,0x00AA0756,246,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00ea0756
