@@ -1820,7 +1820,7 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ??1Gen_dtor_00682770@@UAE@XZ,0x006823B0,105,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
 ??1UDP@@QAE@XZ,0x00684560,75,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,reloc-derived;call-sites=7;identity=real
 ??1Gen_dtor_00684ca0@@UAE@XZ,0x00684C90,11,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
-?sendMessage@LANAPI@@IAEXPAULANMessage@@I@Z,0x00684CF0,221,Code/GameEngine/Source/GameNetwork/lanapi.cpp,reloc-derived;call-sites=2;identity=real
+?sendMessage@LANAPI@@IAEXPAULANMessage@@I@Z,0x00684CF0,221,Code/GameEngine/Source/GameNetwork/LANAPI_RequestAccept_Thunk.cpp,reloc-derived;call-sites=3;identity=real
 ??1Gen_dtor_00688740@@UAE@XZ,0x00688680,149,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
 ??0BinkVideoPlayer@@QAE@XZ,0x00691230,90,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_00695260@@UAE@XZ,0x006912A0,105,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
@@ -2324,7 +2324,6 @@ _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/Game
 ??1Gen_dtor_00984630@@UAE@XZ,0x009845A0,70,Code/gen_small/dtors_010.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0098ed10@@UAE@XZ,0x0098EA20,212,Code/gen_small/dtors_010.cpp,reloc-derived;call-sites=1;identity=generated
 _luaV_execute,0x00997C80,2924,Code/Libraries/Source/Lua/ldo.c,reloc-derived;call-sites=1;identity=real
-_collecttable,0x00999D50,49,Code/Libraries/Source/Lua/lgc.c,reloc-derived;call-sites=2;identity=real
 _simpleexp,0x0099C810,292,Code/Libraries/Source/Lua/lparser.c,reloc-derived;call-sites=1;identity=real
 _luaX_lex,0x009A0B60,1134,Code/Libraries/Source/Lua/lparser.c,reloc-derived;call-sites=26;identity=real
 ?_M_insert_overflow@?$vector@U?$pair@PAVSubsystemInterface@@PAX@_STL@@V?$allocator@U?$pair@PAVSubsystemInterface@@PAX@_STL@@@2@@_STL@@IAEXPAU?$pair@PAVSubsystemInterface@@PAX@2@ABU32@ABU__false_type@2@I_N@Z,0x009A1E50,302,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,reloc-derived;call-sites=1;identity=real

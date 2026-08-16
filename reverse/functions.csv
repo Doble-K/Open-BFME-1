@@ -114198,8 +114198,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00997c80@@YAXXZ,,0x00997C80,2924,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d97c80
 ?d_0099c810@@YAXXZ,,0x0099C810,292,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c810
 ?d_0099ef70@@YAXXZ,,0x0099EF70,151,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9ef70
-?d_0099fde0@@YAXXZ,,0x0099FDE0,53,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9fde0
-?d_009a00d0@@YAXXZ,,0x009A00D0,669,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00da00d0
 ?d_009a0b60@@YAXXZ,,0x009A0B60,1134,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00da0b60
 ?d_009a1b70@@YAXXZ,,0x009A1B70,246,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00da1b70
 ?d_009a1f90@@YAXXZ,,0x009A1F90,93,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00da1f90
@@ -128397,7 +128395,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009934f0@@YAXXZ,,0x009934F0,20,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_00993510@@YAXXZ,,0x00993510,70,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_009945a0@@YAXXZ,,0x009945A0,155,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
-?d_0099f6f0@@YAXXZ,,0x0099F6F0,35,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_009a2560@@YAXXZ,,0x009A2560,8,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_009a2650@@YAXXZ,,0x009A2650,8,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_009a2670@@YAXXZ,,0x009A2670,6,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
@@ -160108,3 +160105,8 @@ _luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,
 ?putRaw@LZHLEncoder@@QAEXPBEI@Z,,0x00826D10,183,Code/Libraries/Source/Compression/LZHCompress/CompLibSource/Huff.cpp,matched,vendored=lzhl-1.0
 ?putMatch@LZHLEncoder@@QAEXPBEIII@Z,,0x00826DD0,327,Code/Libraries/Source/Compression/LZHCompress/CompLibSource/Huff.cpp,matched,vendored=lzhl-1.0
 ?flush@LZHLEncoder@@QAEIXZ,,0x00826F20,124,Code/Libraries/Source/Compression/LZHCompress/CompLibSource/Huff.cpp,matched,vendored=lzhl-1.0
+_hasmark,,0x00999BE0,84,Code/Libraries/Source/Lua/lgc.c,matched,vendored=lua-4.0.1
+_collecttable,,0x00999D50,49,Code/Libraries/Source/Lua/lgc.c,matched,vendored=lua-4.0.1
+_luaK_goiffalse,,0x0099F6F0,35,Code/Libraries/Source/Lua/lcode.c,matched,vendored=lua-4.0.1
+_luaX_init,,0x0099FDE0,53,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1
+_read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1;object-symbol=_read_number
