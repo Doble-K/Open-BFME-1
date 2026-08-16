@@ -581,31 +581,56 @@ Player::~Player()
 }
 
 //=============================================================================
+// BFME's relation maps carry one base vtable pointer where MemoryPoolObject
+// plus Snapshot give them two here, so m_map sits at +0x04 -- the same offset
+// setPlayerRelationship below already casts for. Spelled as types rather than
+// as a reference to the map so the address of m_map is still formed at the
+// call, which is what keeps the retail lea out of the empty() test.
+struct RetailTeamRelationMap { void *m_baseVtbl; TeamRelationMapType m_map; };
+struct RetailPlayerRelationMap { void *m_baseVtbl; PlayerRelationMapType m_map; };
+
+// m_teamRelations is at Player+0x290 and m_playerRelations at +0x28c, where
+// this tree has +0x1a8 and +0x1a4. Re-read at every use rather than hoisted
+// into a local: retail reloads m_playerRelations after getControllingPlayer,
+// which a local would have kept in a register.
+static RetailTeamRelationMap *teamRelationsOf( const Player *p ) { return *(RetailTeamRelationMap **)((char *)p + 0x290); }
+static RetailPlayerRelationMap *playerRelationsOf( const Player *p ) { return *(RetailPlayerRelationMap **)((char *)p + 0x28c); }
+
+// Team loses that second vtable pointer too, putting m_id at +0x08. A function
+// so the key stays an rvalue: find takes it by const reference, and retail
+// copies it to a stack temp rather than passing the member's own address.
+static TeamID getRetailTeamID( const Team *that ) { return *(const TeamID *)((const char *)that + 0x08); }
+
 //DECLARE_PERF_TIMER(Player_getRelationship)
-// ?getRelationship@Player@@QBE?AW4Relationship@@PBVTeam@@@Z present-unmatched
 Relationship Player::getRelationship(const Team *that) const
 {
 	//USE_PERF_TIMER(Player_getRelationship)
+	// getPlayerIndex needs no adjustment: retail reads +0x24 too.
 	if (that)
 	{
 		// do we have an override for that particular team? if so, return it.
-		if (!m_teamRelations->m_map.empty())
+		if (!teamRelationsOf(this)->m_map.empty())
 		{
-			TeamRelationMapType::const_iterator it = m_teamRelations->m_map.find(that->getID());			
-			if (it != m_teamRelations->m_map.end())
+			TeamRelationMapType::const_iterator it = teamRelationsOf(this)->m_map.find(getRetailTeamID(that));
+			if (it != teamRelationsOf(this)->m_map.end())
 			{
 				return (*it).second;
 			}
 		}
-		
+
 		// hummm... well, do we have something for that team's player?
-		if (!m_playerRelations->m_map.empty())
+		if (!playerRelationsOf(this)->m_map.empty())
 		{
 			const Player* thatPlayer = that->getControllingPlayer();
 			if (thatPlayer != NULL)
 			{
-				PlayerRelationMapType::const_iterator it = m_playerRelations->m_map.find(thatPlayer->getPlayerIndex());
-				if (it != m_playerRelations->m_map.end())
+				// Spelled out rather than through playerRelationsOf: as a call
+				// the reload gets scheduled ahead of the key store and lands in
+				// eax, where retail stores the key first and reloads into ecx.
+				const PlayerIndex thatIndex = thatPlayer->getPlayerIndex();
+				PlayerRelationMapType::const_iterator it =
+					(*(RetailPlayerRelationMap **)((char *)this + 0x28c))->m_map.find(thatIndex);
+				if (it != playerRelationsOf(this)->m_map.end())
 				{
 					return (*it).second;
 				}
