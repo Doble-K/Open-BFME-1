@@ -911,7 +911,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$ShareBufferClass@G@@QAE@HPBDH@Z,,0x00923E50,135,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ??0?$ShareBufferClass@I@@QAE@ABV0@@Z,,0x0092A090,174,Code/Libraries/Source/WWVegas/WWLib/ShareBufferClassUIntCopyConstructorThunk.cpp,matched,Exact 174B C++ raw constructor thunk Open-BFME5
 ??0?$ShareBufferClass@I@@QAE@HPBDH@Z,,0x005F39C0,139,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTreeBuffer.cpp,matched,
-??0?$ShareBufferClass@K@@QAE@HPBDH@Z,,0x006DB100,139,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ??0?$ShareBufferClass@M@@QAE@HPBDH@Z,,0x005F39C0,139,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??0?$ShareBufferClass@PAVTextureClass@@@@QAE@HPBDH@Z,,0x00929DF0,139,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ??0?$ShareBufferClass@PAVVertexMaterialClass@@@@QAE@HPBDH@Z,,0x00923DC0,139,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
