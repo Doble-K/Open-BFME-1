@@ -120,6 +120,14 @@ enum
 	LOSSES__KEY
 };
 
+// reference/shims/sweep/GameSpy/qr2/qr2.h numbers PID__KEY 24, which is
+// PING__KEY -- it leaves five reserved keys out of the run and everything
+// from TIMELIMIT down slides. The real qr2regkeys.h in Code/ has PID__KEY at
+// 27, and retail pushes 27, so this TU corrects it rather than the shim: the
+// shim is shared and editing it forces the full gate on every TU that sees it.
+#undef PID__KEY
+#define PID__KEY 27
+
 #define EXECRC_STR		"exeCRC"
 #define INICRC_STR		"iniCRC"
 #define PW_STR				"pw"
@@ -990,6 +998,10 @@ static void QRKeyListCallback
 		qr2_keybuffer_add(keyBuffer, GAMEVER_KEY);
 		//qr2_keybuffer_add(keyBuffer, GAMENAME_KEY);
 		qr2_keybuffer_add(keyBuffer, MAPNAME_KEY);
+		// BFME registers two more of the reserved keys than Zero Hour does, and
+		// in this order: 0x0C then 0x0B, TEAMPLAY before GAMEMODE.
+		qr2_keybuffer_add(keyBuffer, TEAMPLAY_KEY);
+		qr2_keybuffer_add(keyBuffer, GAMEMODE_KEY);
 		qr2_keybuffer_add(keyBuffer, EXECRC_KEY);
 		qr2_keybuffer_add(keyBuffer, INICRC_KEY);
 		qr2_keybuffer_add(keyBuffer, PW_KEY);
