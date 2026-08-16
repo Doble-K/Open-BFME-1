@@ -33,10 +33,25 @@ FIELDS = ["name", "export_rva", "target_rva", "target_size", "source", "status",
 
 
 def dedup_functions(path):
-    rows = [
-        row for row in csv.DictReader(path.open(encoding="utf-8", newline=""))
-        if row.get("name") != "name" and row.get("target_rva") != "target_rva"
-    ]
+    # Each row is carried as the bytes it arrived as, terminator included, and a
+    # survivor is re-emitted verbatim. Rebuilding rows through csv.DictWriter
+    # rewrote all three of functions.csv's historical terminators as \r\n --
+    # 95,184 lines on the live ledger, for rows that already exist byte for byte
+    # on every other branch, which is 95,184 fresh lines to a union merge. It
+    # collapsed nothing at all on that run (157,958 -> 157,958).
+    raw = path.read_bytes()
+    header, *records = ledger_io.split_records(raw)
+    rows = []
+    for payload, term in records:
+        values = ledger_io.fields(payload)
+        if not values:
+            continue    # a blank line; the live ledger holds two, csv.DictReader ate them
+        row = {field: values[i] if i < len(values) else "" for i, field in enumerate(FIELDS)}
+        if row["name"] == "name" and row["target_rva"] == "target_rva":
+            continue    # a header line a union merge pushed into the body
+        row["_record"] = payload + term
+        rows.append(row)
+
     def rank(row):
         return (0 if row["status"] == "matched" else 1,   # matched wins
                 int(row["target_size"]))                    # smaller (trimmed) wins
@@ -66,12 +81,13 @@ def dedup_functions(path):
         raise SystemExit(1)
 
     ordered = sorted(best.values(), key=lambda r: r["name"])
-    buffer = io.StringIO()
-    writer = csv.DictWriter(buffer, fieldnames=FIELDS)
-    writer.writeheader()
-    for row in ordered:
-        writer.writerow({field: row.get(field, "") for field in FIELDS})
-    path.write_text(buffer.getvalue(), encoding="utf-8")
+    out = header[0] + header[1] + b"".join(row["_record"] for row in ordered)
+    # Sorting is what makes two agents merging differently converge on one file,
+    # but it also moves every row appended since the last run. Writing only on a
+    # real change keeps `dedup_csv.py` -- the fix every check_csv message names --
+    # from handing the merge driver a whole-file reorder to collapse nothing.
+    if out != raw:
+        path.write_bytes(out)
     return len(rows), len(ordered)
 
 

@@ -120,6 +120,56 @@ def test_dedup_still_collapses_duplicate_pins(tmp_path):
 
 
 # --------------------------------------------------------------------------
+# dedup_csv over functions.csv: the same defect, at 60x the scale
+# --------------------------------------------------------------------------
+
+FN_HEADER = "name,export_rva,target_rva,target_size,source,status,notes"
+SRC = "Code/GameEngine/Source/Common/Thing.cpp"
+ROW_A = f"?a@Thing@@QAEXXZ,,0x00401000,16,{SRC},matched,"
+ROW_B = f"?b@Thing@@QAEXXZ,,0x00402000,16,{SRC},matched,"
+
+
+def functions(*rows_with_terms):
+    out = FN_HEADER.encode() + b"\r\n"
+    for row, term in rows_with_terms:
+        out += row.encode() + term
+    return out
+
+
+def test_dedup_functions_keeps_every_row_terminator_it_found(tmp_path):
+    """functions.csv legitimately carries \\r\\r\\n, \\r\\n and \\n. csv.DictWriter
+    rewrote all three as \\r\\n -- on the live ledger that is 95,184 lines the
+    union driver has never seen, for rows that already exist on every branch,
+    while collapsing nothing (157,958 -> 157,958)."""
+    path = tmp_path / "functions.csv"
+    path.write_bytes(functions((ROW_A, b"\r\r\n"), (ROW_B, b"\n")))
+    before = path.read_bytes()
+    assert dedup_csv.dedup_functions(path) == (2, 2)
+    assert path.read_bytes() == before, "nothing to collapse must mean nothing to write"
+
+
+def test_dedup_functions_still_collapses_and_keeps_the_survivor_verbatim(tmp_path):
+    path = tmp_path / "functions.csv"
+    path.write_bytes(functions((ROW_B, b"\r\r\n"), (ROW_A, b"\n"), (ROW_A, b"\r\n")))
+    assert dedup_csv.dedup_functions(path) == (3, 2)
+    kept = ledger_io.split_records(path.read_bytes())[1:]
+    assert [payload.decode() for payload, _ in kept] == [ROW_A, ROW_B]
+    assert {term for _, term in kept} == {b"\n", b"\r\r\n"}, (
+        "each survivor keeps the terminator it arrived with")
+
+
+def test_dedup_functions_still_refuses_a_two_source_tie(tmp_path):
+    path = tmp_path / "functions.csv"
+    other = ROW_A.replace(SRC, "Code/GameEngine/Source/Common/Other.cpp")
+    path.write_bytes(functions((ROW_A, b"\r\n"), (other, b"\r\n")))
+    before = path.read_bytes()
+    with pytest.raises(SystemExit) as exc:
+        dedup_csv.dedup_functions(path)
+    assert exc.value.code == 1
+    assert path.read_bytes() == before
+
+
+# --------------------------------------------------------------------------
 # ledger_io: one implementation of "which terminator", two policies over it
 # --------------------------------------------------------------------------
 
