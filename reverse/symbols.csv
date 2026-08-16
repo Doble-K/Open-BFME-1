@@ -69597,3 +69597,15 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?shutdownComplete@Shell@@QAEXPAVWindowLayout@@_N@Z,0x00002F1D,link thunk; reached from SinglePlayerMenuShutdown 0x004E94F0
 ?setNextDockActionFrame@AIDockProcessDockState@@QAEXXZ,0x00011F13,link thunk; called by AIDockProcessDockState::update at 0x0014FCE0
 ?findMyDrone@AIDockProcessDockState@@QAEPAVObject@@XZ,0x00044EDB,link thunk; called by AIDockProcessDockState::update at 0x0014FCE0
+??0Gen_t_00062210_mc4@@QAE@ABU0@@Z,0x00887B60,family-emit payload member
+??1Gen_t_00062f70_m4cd@@QAE@XZ,0x0000D828,family-emit payload member
+??1Gen_t_00078970_m16cd@@QAE@XZ,0x000782B0,family-emit payload member
+??1Gen_t_000789d0_m16cd@@QAE@XZ,0x000782B0,family-emit payload member
+??1Gen_t_00078a90_m16cd@@QAE@XZ,0x000782B0,family-emit payload member
+?_M_lower_bound@?$_Rb_tree@UGen_t_000633c0_m12cd@@U1@U?$_Identity@UGen_t_000633c0_m12cd@@@_STL@@U?$less@UGen_t_000633c0_m12cd@@@3@V?$allocator@UGen_t_000633c0_m12cd@@@3@@_STL@@ABEPAU?$_Rb_tree_node@UGen_t_000633c0_m12cd@@@2@ABUGen_t_000633c0_m12cd@@@Z,0x00062FC0,family-emit payload member
+?_M_lower_bound@?$_Rb_tree@UGen_t_000638a0_m12cd@@U1@U?$_Identity@UGen_t_000638a0_m12cd@@@_STL@@U?$less@UGen_t_000638a0_m12cd@@@3@V?$allocator@UGen_t_000638a0_m12cd@@@3@@_STL@@ABEPAU?$_Rb_tree_node@UGen_t_000638a0_m12cd@@@2@ABUGen_t_000638a0_m12cd@@@Z,0x00062FC0,family-emit payload member
+?_M_lower_bound@?$_Rb_tree@UGen_t_000777b0_m12cd@@U1@U?$_Identity@UGen_t_000777b0_m12cd@@@_STL@@U?$less@UGen_t_000777b0_m12cd@@@3@V?$allocator@UGen_t_000777b0_m12cd@@@3@@_STL@@ABEPAU?$_Rb_tree_node@UGen_t_000777b0_m12cd@@@2@ABUGen_t_000777b0_m12cd@@@Z,0x000773E0,family-emit payload member
+?_M_lower_bound@?$_Rb_tree@UGen_t_00078150_m12cd@@U1@U?$_Identity@UGen_t_00078150_m12cd@@@_STL@@U?$less@UGen_t_00078150_m12cd@@@3@V?$allocator@UGen_t_00078150_m12cd@@@3@@_STL@@ABEPAU?$_Rb_tree_node@UGen_t_00078150_m12cd@@@2@ABUGen_t_00078150_m12cd@@@Z,0x000773E0,family-emit payload member
+?_M_lower_bound@?$_Rb_tree@UGen_t_0007db80_m12cd@@U1@U?$_Identity@UGen_t_0007db80_m12cd@@@_STL@@U?$less@UGen_t_0007db80_m12cd@@@3@V?$allocator@UGen_t_0007db80_m12cd@@@3@@_STL@@ABEPAU?$_Rb_tree_node@UGen_t_0007db80_m12cd@@@2@ABUGen_t_0007db80_m12cd@@@Z,0x0007D780,family-emit payload member
+?_M_lower_bound@?$_Rb_tree@UGen_t_0007dba0_m12cd@@U1@U?$_Identity@UGen_t_0007dba0_m12cd@@@_STL@@U?$less@UGen_t_0007dba0_m12cd@@@3@V?$allocator@UGen_t_0007dba0_m12cd@@@3@@_STL@@ABEPAU?$_Rb_tree_node@UGen_t_0007dba0_m12cd@@@2@ABUGen_t_0007dba0_m12cd@@@Z,0x0007D840,family-emit payload member
+?_M_lower_bound@?$_Rb_tree@UGen_t_0007df10_m12cd@@U1@U?$_Identity@UGen_t_0007df10_m12cd@@@_STL@@U?$less@UGen_t_0007df10_m12cd@@@3@V?$allocator@UGen_t_0007df10_m12cd@@@3@@_STL@@ABEPAU?$_Rb_tree_node@UGen_t_0007df10_m12cd@@@2@ABUGen_t_0007df10_m12cd@@@Z,0x0007D780,family-emit payload member
