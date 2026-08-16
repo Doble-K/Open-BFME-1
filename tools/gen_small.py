@@ -3441,10 +3441,9 @@ def cmd_gen_tgrid(args):
     # which pattern explains a site, and re-selecting a landed one would rewrite
     # the committed TU that already claims it under a different instantiation.
     claimed, claimed_names, index = load_claims()
-    # Dump-transparent scanning lands here in its own step: a grid TU's rows are
-    # appended at pinned offsets, so widening its population is a separate,
-    # separately gated change ({} keeps this run's population exactly as it was).
-    hits = tg_scan(patterns, entries, blacklist, claimed, index, {})
+    boundaries = dump_boundaries()
+    hits = tg_scan(patterns, scan_population(entries, boundaries), blacklist,
+                   claimed, index, boundaries)
 
     resolution = tg_resolve(hits, TGRID_NOTE)
     claimable, chosen, callees = resolution.claimable, resolution.chosen, resolution.callees
