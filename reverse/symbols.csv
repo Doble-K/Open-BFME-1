@@ -69533,3 +69533,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?find@?$hash_map@HW4Relationship@@U?$hash@H@_STL@@U?$equal_to@H@3@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@3@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@2@ABH@Z,0x0001D8CC,ILT; PlayerRelationMap find in Player::getRelationship 0x000D19C0
 ?stopHostingAlready@PeerThreadClass@@QAEXPAX@Z,0x00029FBE,Open-BFME5 zh_sweep packet 0064e570 callee pin
 ?qr2_buffer_add@@YAXPAXPBD@Z,0x00855360,Open-BFME5 zh_sweep packet 0064e570 callee pin
+?removeAllSequentialScripts@ScriptEngine@@QAEXPAVObject@@@Z,0x0033C7B0,body behind gen-thunk ?b_0033c7b0@@YAXXZ; reached from 0x002EFAF0 through ILT 0x0003B26E

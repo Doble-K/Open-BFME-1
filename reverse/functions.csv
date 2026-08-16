@@ -157951,3 +157951,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?QRTeamKeyCallback@@YAXPAXHH00@Z,,0x0064E570,47,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThreadQRTeamKeyCallbackThunk.cpp,matched,
 ?open@RAMFile@@UAE_NPBDH@Z,,0x009D1A00,64,Code/GameEngine/Source/Common/System/RAMFileOpenByNameThunk.cpp,matched,
 ?Shutdown@ShdRendererClass@@SAXXZ,,0x003220C0,27,Code/Libraries/Source/WWVegas/wwshade/shdrenderer.cpp,matched,
+?doUnitStopSequentialScript@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFAF0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,zh_sweep packet 002efaf0; three ZH candidates fold under masked relocs and the tail target separates them

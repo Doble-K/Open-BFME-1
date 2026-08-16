@@ -5385,10 +5385,10 @@ void ScriptActions::doUnitStartSequentialScript(const AsciiString& unitName, con
 //-------------------------------------------------------------------------------------------------
 /** doUnitStopSequentialScript */
 //-------------------------------------------------------------------------------------------------
-// ?doUnitStopSequentialScript@ScriptActions@@IAEXABVAsciiString@@@Z present-unmatched
 void ScriptActions::doUnitStopSequentialScript(const AsciiString& unitName)
 {
-	Object *obj = TheScriptEngine->getUnitNamed(unitName);
+	// Through the retail slot numbering -- see BFMERetailScriptEngineVTable above.
+	Object *obj = ((BFMERetailScriptEngineVTable *)TheScriptEngine)->getUnitNamed(unitName);
 	if (!obj) {
 		return;
 	}
