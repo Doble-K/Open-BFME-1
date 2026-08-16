@@ -8649,3 +8649,4 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_006bfb50@@YAXXZ,0x006BFB50,gen-dump placeholder superseded by the converted C++ body at the same address
 ?d_006bf0c0@@YAXXZ,0x006BF0C0,gen-dump placeholder superseded by the converted C++ body at the same address
 ?d_006bfd70@@YAXXZ,0x006BFD70,gen-dump placeholder superseded by the converted C++ body at the same address
+?d_006f56a0@@YAXXZ,0x006F56A0,gen-dump placeholder superseded by W3DDisplayStringManager::update converted to C++ at the same address

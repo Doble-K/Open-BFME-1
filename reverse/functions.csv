@@ -147148,7 +147148,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_006f4990@@YAXXZ,,0x006F4990,22,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f4c00@@YAXXZ,,0x006F4C00,64,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f5660@@YAXXZ,,0x006F5660,43,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
-?d_006f56a0@@YAXXZ,,0x006F56A0,118,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f5760@@YAXXZ,,0x006F5760,56,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f5c40@@YAXXZ,,0x006F5C40,8,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f5d60@@YAXXZ,,0x006F5D60,343,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
@@ -157968,3 +157967,4 @@ _ghiIsPostAutoFree,,0x0087CAB0,8,Code/GameEngine/Source/GameNetwork/GameSpy/ghtt
 ?getModuleNameKey@WeaponFireSpecialAbilityUpdate@@UBE?AW4NameKeyType@@XZ,,0x0026D3F0,104,Code/GameEngine/Source/Common/Thing/ModuleNameKeys_05.cpp,matched,name proven by the literal verify_string_refs checks
 ?getModuleNameKey@WeaponSetSpecialAbilityUpdate@@UBE?AW4NameKeyType@@XZ,,0x0026DCF0,104,Code/GameEngine/Source/Common/Thing/ModuleNameKeys_05.cpp,matched,name proven by the literal verify_string_refs checks
 ?getModuleNameKey@WoundArrowUpdate@@UBE?AW4NameKeyType@@XZ,,0x0026E050,104,Code/GameEngine/Source/Common/Thing/ModuleNameKeys_05.cpp,matched,name proven by the literal verify_string_refs checks
+?update@W3DDisplayStringManager@@UAEXXZ,,0x006F56A0,118,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayStringManagerUpdateThunk.cpp,matched,
