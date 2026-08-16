@@ -94287,7 +94287,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?d_00a130d6@@YAXXZ,,0x00A130D6,250,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e130d6
 ?d_00a1441f@@YAXXZ,,0x00A1441F,250,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e1441f
 ?d_00a14519@@YAXXZ,,0x00A14519,250,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e14519
-?d_00a62a80@@YAXXZ,,0x00A62A80,250,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e62a80
 ?d_000629d0@@YAXXZ,,0x000629D0,501,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004629d0
 ?d_002a4880@@YAXXZ,,0x002A4880,501,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_006a4880
 ?d_0038a770@@YAXXZ,,0x0038A770,501,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0078a770
@@ -94343,7 +94342,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?d_00977db0@@YAXXZ,,0x00977DB0,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d77db0
 ?d_009a85f0@@YAXXZ,,0x009A85F0,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00da85f0
 ?d_00a6424b@@YAXXZ,,0x00A6424B,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e6424b
-?d_00afe280@@YAXXZ,,0x00AFE280,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=_com_handle_excepinfo
 ?d_004f44e0@@YAXXZ,,0x004F44E0,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_008f44e0
 ?d_005a3460@@YAXXZ,,0x005A3460,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_009a3460
 ?d_00713510@@YAXXZ,,0x00713510,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00b13510
@@ -123248,27 +123246,15 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009f6a90@@YAXXZ,,0x009F6A90,75,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=Add
 ?d_009f6b86@@YAXXZ,,0x009F6B86,59,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=AddResourceInstance
 ?d_009f6dbe@@YAXXZ,,0x009F6DBE,24,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df6dbe
-?d_009f6e00@@YAXXZ,,0x009F6E00,38,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=__onexit
 ?d_009f6f2e@@YAXXZ,,0x009F6F2E,24,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df6f2e
 ?d_009f7084@@YAXXZ,,0x009F7084,24,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df7084
-?d_009f7f0a@@YAXXZ,,0x009F7F0A,61,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=__RTC_Initialize
-?d_009f7f4e@@YAXXZ,,0x009F7F4E,61,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df7f4e
-?d_009f8071@@YAXXZ,,0x009F8071,16,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df8071
 ?d_009f8081@@YAXXZ,,0x009F8081,6,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df8081
 ?d_009f8ab0@@YAXXZ,,0x009F8AB0,16,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df8ab0
-?d_009f9b82@@YAXXZ,,0x009F9B82,48,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9b82
 ?d_009f9bc7@@YAXXZ,,0x009F9BC7,13,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9bc7
-?d_009f9bda@@YAXXZ,,0x009F9BDA,143,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9bda
 ?d_009f9c69@@YAXXZ,,0x009F9C69,13,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9c69
-?d_009f9c7c@@YAXXZ,,0x009F9C7C,165,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9c7c
-?d_009f9d34@@YAXXZ,,0x009F9D34,42,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9d34
-?d_009f9df2@@YAXXZ,,0x009F9DF2,42,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9df2
-?d_009f9ed1@@YAXXZ,,0x009F9ED1,47,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9ed1
 ?d_009f9f49@@YAXXZ,,0x009F9F49,13,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9f49
 ?d_009f9f73@@YAXXZ,,0x009F9F73,13,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9f73
-?d_009f9f9f@@YAXXZ,,0x009F9F9F,17,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9f9f
 ?d_009f9fbf@@YAXXZ,,0x009F9FBF,13,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9fbf
-?d_009f9fdb@@YAXXZ,,0x009F9FDB,17,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9fdb
 ?d_009f9ffe@@YAXXZ,,0x009F9FFE,13,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00df9ffe
 ?d_009fa017@@YAXXZ,,0x009FA017,42,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00dfa017
 ?d_009fa0f5@@YAXXZ,,0x009FA0F5,42,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00dfa0f5
@@ -123338,9 +123324,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009fdcde@@YAXXZ,,0x009FDCDE,157,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00dfdcde
 ?d_009fdd7b@@YAXXZ,,0x009FDD7B,188,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00dfdd7b
 ?d_009fde37@@YAXXZ,,0x009FDE37,223,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00dfde37
-?d_009fdf16@@YAXXZ,,0x009FDF16,216,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00dfdf16
-?d_009fe2a3@@YAXXZ,,0x009FE2A3,390,Code/gen_asm/d_009f2f00.asm,matched,gen-dump;ghidra=FUN_00dfe2a3
-?d_009fe449@@YAXXZ,,0x009FE449,529,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00dfe449
 ?d_009fe67a@@YAXXZ,,0x009FE67A,182,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00dfe67a
 ?d_009fe730@@YAXXZ,,0x009FE730,39,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00dfe730
 ?d_009fe757@@YAXXZ,,0x009FE757,57,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00dfe757
@@ -123384,7 +123367,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00a02157@@YAXXZ,,0x00A02157,86,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e02157
 ?d_00a04be8@@YAXXZ,,0x00A04BE8,25,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e04be8
 ?d_00a04ea7@@YAXXZ,,0x00A04EA7,71,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e04ea7
-?d_00a06bef@@YAXXZ,,0x00A06BEF,34,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e06bef
 ?d_00a06c1e@@YAXXZ,,0x00A06C1E,34,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e06c1e
 ?d_00a06c4d@@YAXXZ,,0x00A06C4D,171,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e06c4d
 ?d_00a06d1a@@YAXXZ,,0x00A06D1A,46,Code/gen_asm/d_009fe449.asm,matched,gen-dump;ghidra=FUN_00e06d1a
@@ -123607,7 +123589,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00a571eb@@YAXXZ,,0x00A571EB,28,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e571eb
 ?d_00a57bfd@@YAXXZ,,0x00A57BFD,28,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e57bfd
 ?d_00a589bd@@YAXXZ,,0x00A589BD,28,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e589bd
-?d_00a622b0@@YAXXZ,,0x00A622B0,79,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e622b0
 ?d_00a683d8@@YAXXZ,,0x00A683D8,55,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e683d8
 ?d_00a6840f@@YAXXZ,,0x00A6840F,55,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e6840f
 ?d_00a69174@@YAXXZ,,0x00A69174,56,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e69174
@@ -123676,9 +123657,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00abef04@@YAXXZ,,0x00ABEF04,8,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ebef04
 ?d_00abef0c@@YAXXZ,,0x00ABEF0C,8,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ebef0c
 ?d_00abef14@@YAXXZ,,0x00ABEF14,8,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ebef14
-?d_00ac7f80@@YAXXZ,,0x00AC7F80,41,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec7f80
-?d_00ac7fd0@@YAXXZ,,0x00AC7FD0,41,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec7fd0
-?d_00ac8000@@YAXXZ,,0x00AC8000,24,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec8000
 ?d_00acc800@@YAXXZ,,0x00ACC800,93,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ecc800
 ?d_00acc860@@YAXXZ,,0x00ACC860,93,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ecc860
 ?d_00afe940@@YAXXZ,,0x00AFE940,13,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00efe940
@@ -157959,3 +157937,39 @@ _gpiAppendCharToBuffer,,0x008F2950,100,Code/GameEngine/Source/GameNetwork/GameSp
 _gpiSendData,,0x008F2B40,162,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiBuffer.c,matched,vendored=gamespy-2004
 _gpiSendOrBufferChar,,0x008F2BF0,114,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiBuffer.c,matched,vendored=gamespy-2004
 _ghiCreateLock,,0x0087C670,40,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpCommon.c,matched,vendored=gamespy-2004
+__onexit,,0x009F6E00,38,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/msvcrt.lib,matched,vendored=msvcrt-vs2003;member=build\intel\dll_obj\atonexit.obj
+__RTC_Initialize,,0x009F7F0A,61,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/RunTmChk.lib,matched,vendored=RunTmChk-vs2003;member=..\build\intel\dll_obj\initsect.obj
+__RTC_Terminate,,0x009F7F4E,61,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/RunTmChk.lib,matched,vendored=RunTmChk-vs2003;member=..\build\intel\dll_obj\initsect.obj
+__RTC_SetErrorFunc,,0x009F8071,16,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/RunTmChk.lib,matched,vendored=RunTmChk-vs2003;member=..\build\intel\dll_obj\userapi.obj
+?WithinEpsilon@@YGHMM@Z,,0x009F9B82,48,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?sincosf@@YGXMPAM0@Z,,0x009F9BB2,21,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXFloat32To16Array@@YGPAUD3DXFLOAT16@@PAU1@PBMI@Z,,0x009F9BDA,143,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXFloat16To32Array@@YGPAMPAMPBUD3DXFLOAT16@@I@Z,,0x009F9C7C,165,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?init_D3DXVec2Hermite@@YGPAUD3DXVECTOR2@@PAU1@PBU1@111M@Z,,0x009F9D34,42,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXVec2Hermite@@YGPAUD3DXVECTOR2@@PAU1@PBU1@111M@Z,,0x009F9D64,142,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?init_D3DXVec2CatmullRom@@YGPAUD3DXVECTOR2@@PAU1@PBU1@111M@Z,,0x009F9DF2,42,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXVec2CatmullRom@@YGPAUD3DXVECTOR2@@PAU1@PBU1@111M@Z,,0x009F9E22,175,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?init_D3DXVec2BaryCentric@@YGPAUD3DXVECTOR2@@PAU1@PBU1@11MM@Z,,0x009F9ED1,47,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXVec2BaryCentric@@YGPAUD3DXVECTOR2@@PAU1@PBU1@11MM@Z,,0x009F9F06,67,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?init_D3DXVec2TransformArray@@YGPAUD3DXVECTOR4@@PAU1@IPBUD3DXVECTOR2@@IPBUD3DXMATRIX@@I@Z,,0x009F9F5C,17,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?init_D3DXVec2TransformCoordArray@@YGPAUD3DXVECTOR2@@PAU1@IPBU1@IPBUD3DXMATRIX@@I@Z,,0x009F9F9F,17,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?init_D3DXVec2TransformNormalArray@@YGPAUD3DXVECTOR2@@PAU1@IPBU1@IPBUD3DXMATRIX@@I@Z,,0x009F9FDB,17,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXVec3Hermite@@YGPAUD3DXVECTOR3@@PAU1@PBU1@111M@Z,,0x009FA047,174,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+??0D3DXVECTOR2@@QAE@MM@Z$obj\i386\csprite,,0x009FA125,18,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\csprite.obj;object-symbol=??0D3DXVECTOR2@@QAE@MM@Z
+??_0D3DXVECTOR2@@QAEAAU0@M@Z,,0x009FA237,23,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+??GD3DXQUATERNION@@QBE?AU0@XZ$obj\i386\keyframed,,0x009FAF30,37,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\keyframed.obj;object-symbol=??GD3DXQUATERNION@@QBE?AU0@XZ
+??GD3DXQUATERNION@@QBE?AU0@XZ$obj\i386\loadxh,,0x009FB2EF,37,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\loadxh.obj;object-symbol=??GD3DXQUATERNION@@QBE?AU0@XZ
+?D3DXVec3Dot@@YGMPBUD3DXVECTOR3@@0@Z$obj\i386\csprite,,0x009FBC19,31,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\csprite.obj;object-symbol=?D3DXVec3Dot@@YGMPBUD3DXVECTOR3@@0@Z
+?D3DXVec3Dot@@YGMPBUD3DXVECTOR3@@0@Z$obj\i386\d3dxmath,,0x009FBFF3,31,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj;object-symbol=?D3DXVec3Dot@@YGMPBUD3DXVECTOR3@@0@Z
+?c_D3DXVec3Project@@YGPAUD3DXVECTOR3@@PAU1@PBU1@PBU_D3DVIEWPORT9@@PBUD3DXMATRIX@@33@Z,,0x009FDF16,216,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXVec3Unproject@@YGPAUD3DXVECTOR3@@PAU1@PBU1@PBU_D3DVIEWPORT9@@PBUD3DXMATRIX@@33@Z,,0x009FE2A3,390,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+?c_D3DXVec3UnprojectArray@@YGPAUD3DXVECTOR3@@PAU1@IPBU1@IPBU_D3DVIEWPORT9@@PBUD3DXMATRIX@@33I@Z,,0x009FE449,529,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\d3dxmath.obj
+??0D3DXVECTOR2@@QAE@MM@Z$obj\i386\crendertoenvmap,,0x00A04AC3,18,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\crendertoenvmap.obj;object-symbol=??0D3DXVECTOR2@@QAE@MM@Z
+?LockIB@?$GXTri3Mesh@G$00$0PPPP@@@QAEJPAPAEK@Z,,0x00A06BEF,34,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\createmesh.obj
+?std_huff_tables@D3DX@@YGXPAUjpeg_compress_struct@1@@Z,,0x00A622B0,79,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\jcparam.obj
+?jpeg_set_defaults@D3DX@@YGXPAUjpeg_compress_struct@1@@Z,,0x00A62A80,250,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\jcparam.obj
+?jpeg_get_small@D3DX@@YGPAXPAUjpeg_common_struct@1@I@Z,,0x00AC7F80,41,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\jmemansi.obj
+?jpeg_get_large@D3DX@@YGPAXPAUjpeg_common_struct@1@I@Z,,0x00AC7FD0,41,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\jmemansi.obj
+?jpeg_free_large@D3DX@@YGXPAUjpeg_common_struct@1@PAXI@Z,,0x00AC8000,24,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\jmemansi.obj
+??1_variant_t@@QAE@XZ,,0x00AFD730,18,vendor/comsupp/comsupp.lib,matched,vendored=comsupp-vs2003;member=Release\comutil.obj
+?_com_handle_excepinfo@@YGJAAUtagEXCEPINFO@@PAPAUIErrorInfo@@@Z,,0x00AFE280,248,vendor/comsupp/comsupp.lib,matched,vendored=comsupp-vs2003;member=Release\invkerr.obj
