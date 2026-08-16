@@ -43,6 +43,7 @@ LIB_SUFFIXES = {".lib"}
 # lane instead of inflating the reverse-engineered figure. EA-authored
 # libraries (EAC, DirtySock, debug) are the game and stay out of this list.
 VENDORED_ROOTS = (
+    "Code/Libraries/Source/Compression/LZHCompress/",
     "Code/Libraries/Source/Compression/ZLib/",
     "Code/Libraries/Source/JPEG/",
     "Code/Libraries/Source/LibPNG/",
