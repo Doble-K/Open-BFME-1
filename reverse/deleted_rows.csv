@@ -20827,3 +20827,9 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_00921820@@YAXXZ,0x00921820,replaced by ??0VertexMaterialClass@@QAE@XZ
 ?d_00921940@@YAXXZ,0x00921940,replaced by ??1VertexMaterialClass@@UAE@XZ
 ?d_00966c00@@YAXXZ,0x00966C00,replaced by ?Apply@GridTextureMapperClass@@UAEXH@Z
+?d_00967120@@YAXXZ,0x00967120,replaced by the mapper Apply named by its vtable Clone slot
+?d_00967480@@YAXXZ,0x00967480,replaced by the mapper Apply named by its vtable Clone slot
+?d_00967ef0@@YAXXZ,0x00967EF0,replaced by the mapper Apply named by its vtable Clone slot
+?d_00968250@@YAXXZ,0x00968250,replaced by the mapper Apply named by its vtable Clone slot
+?d_009685b0@@YAXXZ,0x009685B0,replaced by the mapper Apply named by its vtable Clone slot
+?d_00968910@@YAXXZ,0x00968910,replaced by the mapper Apply named by its vtable Clone slot

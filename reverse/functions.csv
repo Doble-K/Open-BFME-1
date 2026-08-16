@@ -128381,12 +128381,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0095b410@@YAXXZ,,0x0095B410,52,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_0095c6f0@@YAXXZ,,0x0095C6F0,31,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00965fb0@@YAXXZ,,0x00965FB0,165,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_00967120@@YAXXZ,,0x00967120,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_00967480@@YAXXZ,,0x00967480,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_00967ef0@@YAXXZ,,0x00967EF0,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_00968250@@YAXXZ,,0x00968250,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_009685b0@@YAXXZ,,0x009685B0,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_00968910@@YAXXZ,,0x00968910,860,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_00969cd0@@YAXXZ,,0x00969CD0,39,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_00969d00@@YAXXZ,,0x00969D00,860,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_0096a130@@YAXXZ,,0x0096A130,39,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
@@ -160099,3 +160093,9 @@ _luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,
 ??0VertexMaterialClass@@QAE@XZ,,0x00921820,279,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??1VertexMaterialClass@@UAE@XZ,,0x00921940,129,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ?Apply@GridTextureMapperClass@@UAEXH@Z,,0x00966C00,863,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
+?Apply@ClassicEnvironmentMapperClass@@UAEXH@Z,,0x00967120,860,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
+?Apply@EnvironmentMapperClass@@UAEXH@Z,,0x00967480,860,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
+?Apply@WSClassicEnvironmentMapperClass@@UAEXH@Z,,0x00967EF0,860,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
+?Apply@WSEnvironmentMapperClass@@UAEXH@Z,,0x00968250,860,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
+?Apply@GridClassicEnvironmentMapperClass@@UAEXH@Z,,0x009685B0,860,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
+?Apply@GridEnvironmentMapperClass@@UAEXH@Z,,0x00968910,860,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
