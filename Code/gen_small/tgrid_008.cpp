@@ -11,11 +11,8 @@
 // every call target is read out of the retail bytes and pinned in
 // reverse/symbols.csv, so the bytes prove the callee.
 
-#include <list>
+#include <slist>
 
-struct Gen_p4pod { int a[1]; };
-bool operator==(const Gen_p4pod&, const Gen_p4pod&);
-bool operator<(const Gen_p4pod&, const Gen_p4pod&);
 struct Gen_p8pod { int a[2]; };
 bool operator==(const Gen_p8pod&, const Gen_p8pod&);
 bool operator<(const Gen_p8pod&, const Gen_p8pod&);
@@ -25,9 +22,6 @@ bool operator<(const Gen_p12pod&, const Gen_p12pod&);
 struct Gen_p16pod { int a[4]; };
 bool operator==(const Gen_p16pod&, const Gen_p16pod&);
 bool operator<(const Gen_p16pod&, const Gen_p16pod&);
-struct Gen_p4cd { int a[1]; Gen_p4cd(); Gen_p4cd(const Gen_p4cd&); ~Gen_p4cd(); Gen_p4cd& operator=(const Gen_p4cd&); };
-bool operator==(const Gen_p4cd&, const Gen_p4cd&);
-bool operator<(const Gen_p4cd&, const Gen_p4cd&);
 struct Gen_p8cd { int a[2]; Gen_p8cd(); Gen_p8cd(const Gen_p8cd&); ~Gen_p8cd(); Gen_p8cd& operator=(const Gen_p8cd&); };
 bool operator==(const Gen_p8cd&, const Gen_p8cd&);
 bool operator<(const Gen_p8cd&, const Gen_p8cd&);
@@ -38,13 +32,11 @@ struct Gen_p16cd { int a[4]; Gen_p16cd(); Gen_p16cd(const Gen_p16cd&); ~Gen_p16c
 bool operator==(const Gen_p16cd&, const Gen_p16cd&);
 bool operator<(const Gen_p16cd&, const Gen_p16cd&);
 
-template class _STL::list<int >;
-template class _STL::list<void * >;
-template class _STL::list<Gen_p4pod >;
-template class _STL::list<Gen_p8pod >;
-template class _STL::list<Gen_p12pod >;
-template class _STL::list<Gen_p16pod >;
-template class _STL::list<Gen_p4cd >;
-template class _STL::list<Gen_p8cd >;
-template class _STL::list<Gen_p12cd >;
-template class _STL::list<Gen_p16cd >;
+template class _STL::slist<int >;
+template class _STL::slist<void * >;
+template class _STL::slist<Gen_p8pod >;
+template class _STL::slist<Gen_p12pod >;
+template class _STL::slist<Gen_p16pod >;
+template class _STL::slist<Gen_p8cd >;
+template class _STL::slist<Gen_p12cd >;
+template class _STL::slist<Gen_p16cd >;

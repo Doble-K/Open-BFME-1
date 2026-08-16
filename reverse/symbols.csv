@@ -70562,3 +70562,13 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?_M_insert_overflow@?$vector@UGen_t_006f2820_m4pod@@V?$allocator@UGen_t_006f2820_m4pod@@@_STL@@@_STL@@IAEXPAUGen_t_006f2820_m4pod@@ABU3@ABU__false_type@2@I_N@Z,0x006F0150,family-emit payload member
 ?_M_insert_overflow@?$vector@UGen_t_00754630_m4pod@@V?$allocator@UGen_t_00754630_m4pod@@@_STL@@@_STL@@IAEXPAUGen_t_00754630_m4pod@@ABU3@ABU__false_type@2@I_N@Z,0x00753FC0,family-emit payload member
 ?_M_insert_overflow@?$vector@UGen_t_00787d40_m4pod@@V?$allocator@UGen_t_00787d40_m4pod@@@_STL@@@_STL@@IAEXPAUGen_t_00787d40_m4pod@@ABU3@ABU__false_type@2@I_N@Z,0x00786F50,family-emit payload member
+??$_M_assign_dispatch@PAG@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@AAEAAV01@PAG0ABU__false_type@1@@Z,0x004F3A20,gen-tgrid shared callee
+??$__find_if@PBDU?$_Eq_char_bound@V?$char_traits@D@_STL@@@_STL@@@_STL@@YAPBDPBD0U?$_Eq_char_bound@V?$char_traits@D@_STL@@@0@ABUrandom_access_iterator_tag@0@@Z,0x006528B0,gen-tgrid shared callee
+??$__find_if@V?$reverse_iterator@PBD@_STL@@U?$_Eq_char_bound@V?$char_traits@D@_STL@@@2@@_STL@@YA?AV?$reverse_iterator@PBD@0@V10@0U?$_Eq_char_bound@V?$char_traits@D@_STL@@@0@ABUrandom_access_iterator_tag@0@@Z,0x004C4530,gen-tgrid shared callee
+??$append@PAG@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@AAEAAV01@PAG0ABUforward_iterator_tag@1@@Z,0x004F2260,gen-tgrid shared callee
+?_M_insert_aux@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@AAEPAGPAGG@Z,0x0083E4D0,gen-tgrid shared callee
+?push_back@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAEXG@Z,0x00839530,gen-tgrid shared callee
+?reserve@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEXI@Z,0x0053A100,gen-tgrid shared callee
+?reserve@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAEXI@Z,0x00839590,gen-tgrid shared callee
+?_M_advance@?$_Deque_iterator_base@PAX@_STL@@QAEXH@Z,0x00887B60,gen-tgrid shared callee
+??0?$_STLP_alloc_proxy@U_Slist_node_base@_STL@@U?$_Slist_node@H@2@V?$allocator@U?$_Slist_node@H@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Slist_node@H@_STL@@@1@U_Slist_node_base@1@@Z,0x007122F0,gen-tgrid shared callee
