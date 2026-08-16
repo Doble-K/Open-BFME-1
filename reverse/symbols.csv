@@ -70882,3 +70882,4 @@ _listen@8,0x0081BE68,additive pin for _gpiStartConnect call resolution
 ??0GrantUpgradeCreateModuleData@@QAE@XZ,0x00008B89,link thunk to 0x0024FA80; the address the factory at 0x0011E560 encodes
 ??0W3DSupplyDrawModuleData@@QAE@XZ,0x0001E76D,link thunk to 0x0077DD50; the address the factory at 0x006BF3E0 encodes
 ??0W3DTruckDrawModuleData@@QAE@XZ,0x0003616F,link thunk to 0x0077F830; the address the factory at 0x006BF4F0 encodes
+?getObjectExitInterface@Object@@QBEPAVExitInterface@@XZ,0x00023D4E,link thunk; called three times by AIDockMoveToRallyState::onEnter at 0x0014F060
