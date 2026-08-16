@@ -305,13 +305,11 @@ GHIRecvResult ghiDoReceive
 )
 {
 	int rcode;
-	int socketError;
 	int len;
 
 	// How much to try and receive.
 	///////////////////////////////
-	//len = (*bufferLen - 1);
-    len = *bufferLen;
+	len = (*bufferLen - 1);
 
 	// Are we throttled?
 	////////////////////
@@ -342,21 +340,22 @@ GHIRecvResult ghiDoReceive
 	//////////////////////
 	if(rcode == SOCKET_ERROR)
 	{
-        (void)socketError;
+        int socketError;
+
         // Get the error code.
 		//////////////////////
-		socketError = GOAGetLastError(connection->socket);
+		socketError = WSAGetLastError();
 
 		// Check for nothing waiting.
 		/////////////////////////////
-		if((socketError == WSAEWOULDBLOCK) || (socketError == WSAEINPROGRESS))
+		if((socketError == WSAEWOULDBLOCK) || (socketError == WSAEINPROGRESS) || (socketError == WSAETIMEDOUT))
 			return GHINoData;
 
 		// There was a real error.
 		//////////////////////////
+		connection->socketError = socketError;
 		connection->completed = GHTTPTrue;
 		connection->result = GHTTPSocketFailed;
-		connection->socketError = socketError;
 		connection->connectionClosed = GHTTPTrue;
 
 		return GHIError;
@@ -401,13 +400,13 @@ int ghiDoSend
 
 		// Would block just means 0 bytes sent.
 		///////////////////////////////////////
-		error = GOAGetLastError(connection->socket);
-		if(error == WSAEWOULDBLOCK)
+		error = WSAGetLastError();
+		if((error == WSAEWOULDBLOCK) || (error == WSAEINPROGRESS) || (error == WSAETIMEDOUT))
 			return 0;
 
+		connection->socketError = error;
 		connection->completed = GHTTPTrue;
 		connection->result = GHTTPSocketFailed;
-		connection->socketError = error;
 		return SOCKET_ERROR;
 	}
 
