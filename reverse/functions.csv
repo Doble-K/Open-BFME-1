@@ -110324,7 +110324,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_007b7880@@YAXXZ,,0x007B7880,46,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb7880
 ?d_007b78c0@@YAXXZ,,0x007B78C0,46,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb78c0
 ?d_007b7dd0@@YAXXZ,,0x007B7DD0,226,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb7dd0
-?d_007b7fa0@@YAXXZ,,0x007B7FA0,63,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb7fa0
 ?d_007b8210@@YAXXZ,,0x007B8210,35,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb8210
 ?d_007b8980@@YAXXZ,,0x007B8980,1536,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb8980
 ?d_007b9280@@YAXXZ,,0x007B9280,273,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb9280
