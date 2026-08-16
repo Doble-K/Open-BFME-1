@@ -188,44 +188,6 @@ struct Gen_uwm_009eda50 { int m; Gen_uwm_009eda50(int); ~Gen_uwm_009eda50(); };
 struct Gen_uwm_009eeaa0 { int m; Gen_uwm_009eeaa0(int); ~Gen_uwm_009eeaa0(); };
 struct Gen_uwm_009eeab0 { int m; Gen_uwm_009eeab0(int); ~Gen_uwm_009eeab0(); };
 
-struct Gen_uws19968608_0002aaa9 { char q[19968608]; Gen_uws19968608_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19968656_0002aaa9 { char q[19968656]; Gen_uws19968656_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19968760_0002aaa9 { char q[19968760]; Gen_uws19968760_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19968784_0002aaa9 { char q[19968784]; Gen_uws19968784_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19969336_0002aaa9 { char q[19969336]; Gen_uws19969336_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19969392_0002aaa9 { char q[19969392]; Gen_uws19969392_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19969992_0002aaa9 { char q[19969992]; Gen_uws19969992_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19970032_0002aaa9 { char q[19970032]; Gen_uws19970032_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19970600_0002aaa9 { char q[19970600]; Gen_uws19970600_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19970640_0002aaa9 { char q[19970640]; Gen_uws19970640_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19971192_0002aaa9 { char q[19971192]; Gen_uws19971192_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19971384_0002aaa9 { char q[19971384]; Gen_uws19971384_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19971488_0002aaa9 { char q[19971488]; Gen_uws19971488_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19971592_0002aaa9 { char q[19971592]; Gen_uws19971592_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19971696_0002aaa9 { char q[19971696]; Gen_uws19971696_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19971800_0002aaa9 { char q[19971800]; Gen_uws19971800_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19971904_0002aaa9 { char q[19971904]; Gen_uws19971904_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19972008_0002aaa9 { char q[19972008]; Gen_uws19972008_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
-struct Gen_uws19972112_0002aaa9 { char q[19972112]; Gen_uws19972112_0002aaa9(int); static void operator delete(void *, unsigned int); };
-
 struct Gen_uws100_00891650 { char q[100]; Gen_uws100_00891650(int); static void operator delete(void *, unsigned int); };
 
 struct Gen_uws16_00891a80 { char q[16]; Gen_uws16_00891a80(int); static void operator delete(void *, unsigned int); };
@@ -1143,44 +1105,6 @@ struct Gen_uwh20_009eeab0 { char q0[68]; Gen_uwm_009eeab0 a0; Gen_uwm_009eeab0 z
 // ??0Gen_uwh20_009eeab0@@QAE@XZ absent-from-retail
 Gen_uwh20_009eeab0::Gen_uwh20_009eeab0() : a0(0), z(0) { char pad[20]; gen_uw_sink(pad); }
 
-Gen_uws19968608_0002aaa9 *gen_uw_s0_19968608_0002aaa9() { return new Gen_uws19968608_0002aaa9(0); }
-
-Gen_uws19968656_0002aaa9 *gen_uw_s0_19968656_0002aaa9() { return new Gen_uws19968656_0002aaa9(0); }
-
-Gen_uws19968760_0002aaa9 *gen_uw_s0_19968760_0002aaa9() { return new Gen_uws19968760_0002aaa9(0); }
-
-Gen_uws19968784_0002aaa9 *gen_uw_s0_19968784_0002aaa9() { return new Gen_uws19968784_0002aaa9(0); }
-
-Gen_uws19969336_0002aaa9 *gen_uw_s0_19969336_0002aaa9() { return new Gen_uws19969336_0002aaa9(0); }
-
-Gen_uws19969392_0002aaa9 *gen_uw_s0_19969392_0002aaa9() { return new Gen_uws19969392_0002aaa9(0); }
-
-Gen_uws19969992_0002aaa9 *gen_uw_s0_19969992_0002aaa9() { return new Gen_uws19969992_0002aaa9(0); }
-
-Gen_uws19970032_0002aaa9 *gen_uw_s0_19970032_0002aaa9() { return new Gen_uws19970032_0002aaa9(0); }
-
-Gen_uws19970600_0002aaa9 *gen_uw_s0_19970600_0002aaa9() { return new Gen_uws19970600_0002aaa9(0); }
-
-Gen_uws19970640_0002aaa9 *gen_uw_s0_19970640_0002aaa9() { return new Gen_uws19970640_0002aaa9(0); }
-
-Gen_uws19971192_0002aaa9 *gen_uw_s0_19971192_0002aaa9() { return new Gen_uws19971192_0002aaa9(0); }
-
-Gen_uws19971384_0002aaa9 *gen_uw_s0_19971384_0002aaa9() { return new Gen_uws19971384_0002aaa9(0); }
-
-Gen_uws19971488_0002aaa9 *gen_uw_s0_19971488_0002aaa9() { return new Gen_uws19971488_0002aaa9(0); }
-
-Gen_uws19971592_0002aaa9 *gen_uw_s0_19971592_0002aaa9() { return new Gen_uws19971592_0002aaa9(0); }
-
-Gen_uws19971696_0002aaa9 *gen_uw_s0_19971696_0002aaa9() { return new Gen_uws19971696_0002aaa9(0); }
-
-Gen_uws19971800_0002aaa9 *gen_uw_s0_19971800_0002aaa9() { return new Gen_uws19971800_0002aaa9(0); }
-
-Gen_uws19971904_0002aaa9 *gen_uw_s0_19971904_0002aaa9() { return new Gen_uws19971904_0002aaa9(0); }
-
-Gen_uws19972008_0002aaa9 *gen_uw_s0_19972008_0002aaa9() { return new Gen_uws19972008_0002aaa9(0); }
-
-Gen_uws19972112_0002aaa9 *gen_uw_s0_19972112_0002aaa9() { return new Gen_uws19972112_0002aaa9(0); }
-
 Gen_uws100_00891650 *gen_uw_s0_100_00891650() { return new Gen_uws100_00891650(0); }
 
 Gen_uws16_00891a80 *gen_uw_s0_16_00891a80() { return new Gen_uws16_00891a80(0); }
@@ -1236,3 +1160,25 @@ Gen_uwp_0002aaa9 *gen_uw_d0_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { return new (a0) G
 Gen_uwp_0002aaa9 *gen_uw_d0_8_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1) { gen_uw_sink(a0); return new (a1) Gen_uwp_0002aaa9(0); }
 
 Gen_uwp_0002aaa9 *gen_uw_d0_12_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1, Gen_uwt_0002aaa9 *a2) { gen_uw_sink(a0); gen_uw_sink(a1); return new (a2) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d8_8_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1) { gen_uw_sink(a0); char p[8]; gen_uw_sink(p); return new (a1) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d12_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[12]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d12_12_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1, Gen_uwt_0002aaa9 *a2) { gen_uw_sink(a0); gen_uw_sink(a1); char p[12]; gen_uw_sink(p); return new (a2) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d20_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[20]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d28_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[28]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d28_28_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1, Gen_uwt_0002aaa9 *a2, Gen_uwt_0002aaa9 *a3, Gen_uwt_0002aaa9 *a4, Gen_uwt_0002aaa9 *a5, Gen_uwt_0002aaa9 *a6) { gen_uw_sink(a0); gen_uw_sink(a1); gen_uw_sink(a2); gen_uw_sink(a3); gen_uw_sink(a4); gen_uw_sink(a5); char p[28]; gen_uw_sink(p); return new (a6) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d32_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[32]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d36_8_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1) { gen_uw_sink(a0); char p[36]; gen_uw_sink(p); return new (a1) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d44_8_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1) { gen_uw_sink(a0); char p[44]; gen_uw_sink(p); return new (a1) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d48_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[48]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_d92_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[92]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }

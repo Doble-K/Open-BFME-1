@@ -22,26 +22,42 @@ void *operator new(unsigned int, Gen_uwt_00033d3e *);
 void operator delete(void *, Gen_uwt_00033d3e *);
 struct Gen_uwp_00033d3e { int m; Gen_uwp_00033d3e(int); };
 
-Gen_uwp_0002aaa9 *gen_uw_d8_8_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1) { gen_uw_sink(a0); char p[8]; gen_uw_sink(p); return new (a1) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d12_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[12]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d12_12_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1, Gen_uwt_0002aaa9 *a2) { gen_uw_sink(a0); gen_uw_sink(a1); char p[12]; gen_uw_sink(p); return new (a2) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d20_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[20]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d28_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[28]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d28_28_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1, Gen_uwt_0002aaa9 *a2, Gen_uwt_0002aaa9 *a3, Gen_uwt_0002aaa9 *a4, Gen_uwt_0002aaa9 *a5, Gen_uwt_0002aaa9 *a6) { gen_uw_sink(a0); gen_uw_sink(a1); gen_uw_sink(a2); gen_uw_sink(a3); gen_uw_sink(a4); gen_uw_sink(a5); char p[28]; gen_uw_sink(p); return new (a6) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d32_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[32]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d36_8_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1) { gen_uw_sink(a0); char p[36]; gen_uw_sink(p); return new (a1) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d44_8_0002aaa9(Gen_uwt_0002aaa9 *a0, Gen_uwt_0002aaa9 *a1) { gen_uw_sink(a0); char p[44]; gen_uw_sink(p); return new (a1) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d48_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[48]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
-
-Gen_uwp_0002aaa9 *gen_uw_d92_4_0002aaa9(Gen_uwt_0002aaa9 *a0) { char p[92]; gen_uw_sink(p); return new (a0) Gen_uwp_0002aaa9(0); }
-
 Gen_uwp_00033d3e *gen_uw_d0_8_00033d3e(Gen_uwt_00033d3e *a0, Gen_uwt_00033d3e *a1) { gen_uw_sink(a0); return new (a1) Gen_uwp_00033d3e(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b260_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B260) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b290_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B290) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b2f8_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B2F8) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b310_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B310) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b538_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B538) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b570_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B570) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b7c8_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B7C8) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130b7f0_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130B7F0) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130ba28_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BA28) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130ba50_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BA50) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130bc78_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BC78) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130bd38_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BD38) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130bda0_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BDA0) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130be08_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BE08) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130be70_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BE70) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130bed8_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BED8) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130bf40_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BF40) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130bfa8_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130BFA8) Gen_uwp_0002aaa9(0); }
+
+Gen_uwp_0002aaa9 *gen_uw_k0_0130c010_0002aaa9() { return new ((Gen_uwt_0002aaa9 *)0x0130C010) Gen_uwp_0002aaa9(0); }

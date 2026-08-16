@@ -41,6 +41,9 @@ RVA = 0x00BF0000
 DTOR = "??1Gen_uw_0000d828@@QAE@XZ"
 MEMBER_DTOR = "??1Gen_uwm_0000d828@@QAE@XZ"
 TARGET = 0x0000D828
+# One of the 19 addresses retail pushes as a placement tag: .data, well past the
+# last raw byte of that section, at the 104-byte stride of the table it sits in.
+TAG = 0x0130B260
 
 
 def body(hexed, call_at):
@@ -70,6 +73,11 @@ TEMPLATES = [
      ("S", -0x110, 300)),
     ("8b 45 04 50 8b 4d f0 51 e8 00000000 83 c4 08 c3", 9, ("P", -0x10, 4)),
     ("8b 45 0c 50 8b 4d b0 51 e8 00000000 83 c4 08 c3", 9, ("P", -0x50, 12)),
+    # Byte for byte an S, decided a K because 0x0130B260 is an address in this
+    # image and no class is 19,968,608 bytes.
+    ("68 60 b2 30 01 8b 45 f0 50 e8 00000000 83 c4 08 c3", 10, ("K", -0x10, TAG)),
+    ("68 60 b2 30 01 8b 85 f0 fe ff ff 50 e8 00000000 83 c4 08 c3", 13,
+     ("K", -0x110, TAG)),
 ]
 SIZED_DELETE = {36: "??3Gen_uws36_0000d828@@SAXPAXI@Z",
                 300: "??3Gen_uws300_0000d828@@SAXPAXI@Z",
@@ -91,7 +99,7 @@ def test_emitted_bytes_decode_back_to_the_key_the_row_is_anchored_to(
     kind, disp, offset = expected
     raw = bytes.fromhex(hexed.replace(" ", ""))
     callee = {"C": gen_uw.DELETE_NAME, "M": MEMBER_DTOR, "P": PLACEMENT_DELETE,
-              "S": SIZED_DELETE.get(offset)}.get(kind, DTOR)
+              "K": PLACEMENT_DELETE, "S": SIZED_DELETE.get(offset)}.get(kind, DTOR)
 
     key = gen_uw.emitted_key(raw, {call_at: callee})
 
@@ -221,3 +229,70 @@ def test_the_placement_tag_type_is_what_separates_one_target_from_another():
     assert "void operator delete(void *, Gen_uwt_0000d828 *);" in text
     assert "gen_uw_d0_8_0000d828(Gen_uwt_0000d828 *a0, Gen_uwt_0000d828 *a1)" in text
     assert "new (a1) Gen_uwp_0000d828(0)" in text, "the LAST parameter is the tag"
+
+
+def test_a_pushed_address_is_a_placement_tag_and_never_a_class_size():
+    """The one thing separating the S and K templates is the immediate.
+
+    Nineteen retail funclets push a constant in the 0x0130Bxxx table and were
+    read as sizes, which put nineteen class-scoped sized deletes of 19,968,608
+    bytes and up in reverse/symbols.csv -- all nineteen pinned onto 0x0002AAA9,
+    an address whose body is a lone `ret` and which 253 placement-delete rows
+    already name as a free two-argument delete. One function cannot be the
+    class-scoped delete of nineteen classes; the immediate is an address.
+    """
+    assert gen_uw.delete_kind(TAG) == "K"
+    base, end = gen_uw.image_span()
+    assert base <= TAG < end, "the evidence is the image's own address range"
+    for size in (4, 16, 36, 300, 960, base - 1):
+        assert gen_uw.delete_kind(size) == "S", (
+            "%d is not an address in this image, so it is a class size" % size)
+
+
+def test_the_tag_and_the_slot_placement_share_one_pin():
+    """The constant-tag site and the parameter-slot site call the SAME free
+    two-argument delete, so one tag type and one pin answer for both. Modelling
+    the constant as a size gave every site a class of its own instead."""
+    text = gen_uw.emit_source([gen_uw.Unit("place", TARGET, 1, (0, 4)),
+                               gen_uw.Unit("tag", TARGET, 1, (0, TAG))])
+
+    assert text.count("void operator delete(void *, Gen_uwt_0000d828 *);") == 1
+    assert text.count("struct Gen_uwp_0000d828 {") == 1
+    assert "new ((Gen_uwt_0000d828 *)0x0130B260) Gen_uwp_0000d828(0)" in text
+    assert "Gen_uws" not in text, "a pushed address must not mint a sized-delete class"
+
+
+def test_two_operator_delete_pins_at_one_address_stop_the_run(tmp_path, monkeypatch):
+    """The guard that makes the mis-read immediate unrepeatable.
+
+    Reading a pushed address as a class size gave every one of 19 sites its own
+    Gen_uws<size> class and pinned all 19 class-scoped deletes onto the single
+    free placement delete they call. A destructor and its member twin may share
+    an address -- they are two invented types with one retail destructor -- but
+    an operator delete is a function, so two delete pins at one address are a
+    contradiction the run must not write.
+    """
+    sized = [gen_uw.Funclet("S", RVA + 8 * i, 15, -0x10, TARGET, 100 + i)
+             for i in range(2)]
+    monkeypatch.setattr(gen_uw, "compiled_slots",
+                        lambda source: {gen_uw.key_of(f): "$L%d" % (700 + i)
+                                        for i, f in enumerate(sized)})
+    monkeypatch.setattr(gen_uw, "SOURCE_DIR", tmp_path)
+    monkeypatch.setattr(gen_uw, "source_name", lambda index: "uw_gen_%03d.cpp" % index)
+    monkeypatch.setattr(gen_uw, "ROOT", tmp_path)
+
+    class Nothing:
+        tombstoned, owned, pinned, declined = {}, {}, set(), {}
+
+        def resolves(self, name, address):
+            return False
+
+    class Staging:
+        def stage(self, paths):
+            pass
+
+    with pytest.raises(SystemExit) as raised:
+        gen_uw.emit_and_write(Nothing(), sized, Staging())
+
+    assert "two different operator deletes" in str(raised.value)
+    assert "0x%08X" % TARGET in str(raised.value)
