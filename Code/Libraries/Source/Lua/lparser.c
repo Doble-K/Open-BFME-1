@@ -610,6 +610,10 @@ static void constructor (LexState *ls) {
 */
 
 
+/* EA: OP_PUSHBOOL emitter, defined in lcode.c (see the comment there). */
+extern void codepushbool (FuncState *fs, int b);
+
+
 static void simpleexp (LexState *ls, expdesc *v) {
   FuncState *fs = ls->fs;
   switch (ls->t.token) {
@@ -622,6 +626,16 @@ static void simpleexp (LexState *ls, expdesc *v) {
     case TK_STRING: {  /* simpleexp -> STRING */
       code_string(ls, ls->t.seminfo.ts);  /* must use `seminfo' before `next' */
       next(ls);
+      break;
+    }
+    case TK_TRUE: {  /* simpleexp -> `true' */
+      next(ls);
+      codepushbool(fs, 1);
+      break;
+    }
+    case TK_FALSE: {  /* simpleexp -> `false' */
+      next(ls);
+      codepushbool(fs, 0);
       break;
     }
     case TK_NIL: {  /* simpleexp -> NIL */

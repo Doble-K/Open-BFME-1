@@ -94326,7 +94326,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?d_00871930@@YAXXZ,,0x00871930,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c71930
 ?d_00883fb0@@YAXXZ,,0x00883FB0,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c83fb0
 ?d_0096ff70@@YAXXZ,,0x0096FF70,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d6ff70
-?d_00977db0@@YAXXZ,,0x00977DB0,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d77db0
 ?d_009a85f0@@YAXXZ,,0x009A85F0,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00da85f0
 ?d_004f44e0@@YAXXZ,,0x004F44E0,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_008f44e0
 ?d_005a3460@@YAXXZ,,0x005A3460,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_009a3460
@@ -114227,13 +114226,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00993e10@@YAXXZ,,0x00993E10,109,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d93e10
 ?d_00994e40@@YAXXZ,,0x00994E40,75,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d94e40
 ?d_00997c80@@YAXXZ,,0x00997C80,2924,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d97c80
-?d_0099bef0@@YAXXZ,,0x0099BEF0,146,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9bef0
-?d_0099bf90@@YAXXZ,,0x0099BF90,201,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9bf90
-?d_0099c060@@YAXXZ,,0x0099C060,281,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c060
-?d_0099c180@@YAXXZ,,0x0099C180,97,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c180
-?d_0099c2d0@@YAXXZ,,0x0099C2D0,181,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c2d0
 ?d_0099c810@@YAXXZ,,0x0099C810,292,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c810
-?d_0099ee10@@YAXXZ,,0x0099EE10,349,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9ee10
 ?d_0099ef70@@YAXXZ,,0x0099EF70,151,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9ef70
 ?d_0099fde0@@YAXXZ,,0x0099FDE0,53,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9fde0
 ?d_009a00d0@@YAXXZ,,0x009A00D0,669,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00da00d0
@@ -160099,3 +160092,10 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_009.cpp,matched,gen-funclet;obje
 uw_00c61feb,,0x00C61FEB,17,Code/gen_small/uw_gen_016.cpp,matched,gen-funclet;object-symbol=$L10249
 uw_00c62030,,0x00C62030,8,Code/gen_small/uw_gen_008.cpp,matched,gen-funclet;object-symbol=$L1155
 uw_00c62050,,0x00C62050,8,Code/gen_small/uw_gen_008.cpp,matched,gen-funclet;object-symbol=$L1165
+_recfield,,0x0099BEF0,146,Code/Libraries/Source/Lua/lparser.c,matched,
+_recfields,,0x0099BF90,201,Code/Libraries/Source/Lua/lparser.c,matched,
+_listfields,,0x0099C060,281,Code/Libraries/Source/Lua/lparser.c,matched,
+_constructor_part,,0x0099C180,97,Code/Libraries/Source/Lua/lparser.c,matched,
+_constructor,,0x0099C2D0,181,Code/Libraries/Source/Lua/lparser.c,matched,
+?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAM@Z,,0x00977DB0,248,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
+_luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,

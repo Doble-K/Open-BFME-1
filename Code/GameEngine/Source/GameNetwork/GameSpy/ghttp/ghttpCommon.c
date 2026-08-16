@@ -199,7 +199,7 @@ GHTTPBool ghiSocketSelect
 	GHTTPBool * exceptFlag
 )
 {
-#if 0
+#if 1
 	fd_set writeSet;
 	fd_set readSet;
 	fd_set exceptSet;

@@ -923,7 +923,6 @@ bool AdaptiveDeltaMotionChannelClass::Load_W3D(ChunkLoadClass & cload)
  *   02/23/2000 JGA  : Created.                                                                * 
  *=============================================================================================*/
 #define PACKET_SIZE (9)
-// ?AdaptiveDeltaMotionChannelClass::decompress present-unmatched
 void AdaptiveDeltaMotionChannelClass::decompress(uint32 frame_idx, float *outdata)
 {	  
 	// Start Over from the beginning
