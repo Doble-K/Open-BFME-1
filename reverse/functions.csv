@@ -106061,7 +106061,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000b9a70@@YAXXZ,,0x000B9A70,33,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b9a70
 ?d_000b9ad0@@YAXXZ,,0x000B9AD0,14,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b9ad0
 ?d_000ba5b0@@YAXXZ,,0x000BA5B0,31,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004ba5b0
-?d_000ba930@@YAXXZ,,0x000BA930,96,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004ba930
 ?d_000bb0e0@@YAXXZ,,0x000BB0E0,232,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004bb0e0
 ?d_000bb270@@YAXXZ,,0x000BB270,124,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004bb270
 ?d_000bb5d0@@YAXXZ,,0x000BB5D0,62,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004bb5d0
@@ -109036,7 +109035,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00235380@@YAXXZ,,0x00235380,118,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00635380
 ?d_00235420@@YAXXZ,,0x00235420,196,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00635420
 ?d_00235520@@YAXXZ,,0x00235520,145,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00635520
-?d_00235a30@@YAXXZ,,0x00235A30,145,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00635a30
 ?d_00235cd0@@YAXXZ,,0x00235CD0,53,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00635cd0
 ?d_00235d20@@YAXXZ,,0x00235D20,35,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00635d20
 ?d_002368c0@@YAXXZ,,0x002368C0,90,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_006368c0
@@ -113609,7 +113607,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0048b2c0@@YAXXZ,,0x0048B2C0,111,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_0088b2c0
 ?d_0048b390@@YAXXZ,,0x0048B390,79,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_0088b390
 ?d_0048b690@@YAXXZ,,0x0048B690,132,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_0088b690
-?d_0048b740@@YAXXZ,,0x0048B740,99,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_0088b740
 ?d_0048bd60@@YAXXZ,,0x0048BD60,104,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_0088bd60
 ?d_0048c200@@YAXXZ,,0x0048C200,90,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_0088c200
 ?d_0048c270@@YAXXZ,,0x0048C270,77,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_0088c270
@@ -158158,3 +158155,6 @@ _subexpr,,0x0099CA60,253,Code/Libraries/Source/Lua/lparser.c,matched,
 _var_or_func_tail,,0x0099C4B0,446,Code/Libraries/Source/Lua/lparser.c,matched,
 _getobjname,,0x00996950,222,Code/Libraries/Source/Lua/ldebug.c,matched,
 ?subdivision_util@SegLineRendererClass@@AAEXIPBVVector3@@PBMPAIPAV2@PAMPAVVector4@@5@Z,,0x009602A0,1753,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,
+?findSpecialPowerTemplate@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@VAsciiString@@@Z,,0x000BA930,96,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+??A?$hash_map@W4NameKeyType@@P6APAVTransition@@XZU?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@P6APAVTransition@@XZ@_STL@@@_STL@@@_STL@@QAEAAP6APAVTransition@@XZABW4NameKeyType@@@Z,,0x0048B740,99,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,reloc-named: name address and size all from a byte-true call site
+?insert_unique@?$_Rb_tree@HHU?$_Identity@H@_STL@@U?$less@H@2@V?$allocator@H@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@HU?$_Nonconst_traits@H@_STL@@@_STL@@_N@2@ABH@Z,,0x00235A30,145,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,reloc-named: name address and size all from a byte-true call site
