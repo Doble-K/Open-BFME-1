@@ -37,14 +37,18 @@ import collections
 import csv
 import re
 import struct
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import build      # noqa: E402
+import gen_small  # noqa: E402
 import harvest    # noqa: E402
 import ledger_io  # noqa: E402
+from add_match import parse_ledger  # noqa: E402
+from portable_lock import lock      # noqa: E402
 
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 SYMBOLS = ROOT / "reverse" / "symbols.csv"
@@ -52,6 +56,10 @@ DELETED = ROOT / "reverse" / "deleted_rows.csv"
 GHIDRA = ROOT / "reverse" / "ghidra_functions.csv"
 SOURCE_DIR = ROOT / "Code" / "gen_small"
 OWNED_SOURCE_DIR = "Code/gen_small/uw_gen_"
+# The lock add_match.py and gen_small.land_batch take. land() rewrites rows
+# rather than appending them, so a single-row append interleaving with it would
+# be erased by the rewrite -- or, worse, by the revert.
+LOCK_FILE = ROOT / "reverse" / ".add_match.lock"
 
 # Everything the generator owns is recognised by these two markers alone.
 ROW_NOTES = "gen-funclet;object-symbol="
@@ -87,25 +95,39 @@ class Ledger:
     """
 
     def __init__(self):
-        self.claimed = {}          # rva -> name, from rows we do not own
+        self.claimed = {}          # rva -> name, from identity-bearing rows we do not own
+        self.dumps = {}            # rva -> size, from gen-dump rows: bytes, no identity
+        self.owned = {}            # (name, rva) -> source, the rows this run replaces
         self.named = set()         # (name, address) pairs from rows we do not own
         self.addresses = set()     # byte-proved or explicitly pinned addresses
         self.pinned = set()        # addresses symbols.csv already carries a name for
+        self.declined = {}         # rva -> why read_funclets left this funclet behind
         matched = []
         with FUNCTIONS.open(encoding="utf-8", errors="replace", newline="") as handle:
             for row in csv.DictReader(handle):
-                if row["source"] and OWNED_SOURCE_DIR in row["source"]:
-                    continue
                 try:
                     rva = int(row["target_rva"], 16)
                     size = int(row["target_size"] or 0)
                 except ValueError:
                     continue
+                if row["source"] and OWNED_SOURCE_DIR in row["source"]:
+                    self.owned[(row["name"], rva)] = row["source"]
+                    continue
+                if row["status"] != "matched":
+                    self.claimed[rva] = row["name"]
+                    continue
+                self.addresses.add(rva)
+                self.named.add((row["name"], rva))
+                # A gen-dump row is retail's own bytes under a synthetic name: it
+                # proves the boundary (so it still answers `addresses`) and claims
+                # no identity, so a funclet body over the SAME range supersedes it
+                # instead of colliding with it. Anything else on those bytes is an
+                # identity and stays untouchable.
+                if build.is_scaffold_row(row):
+                    self.dumps[rva] = size
+                    continue
                 self.claimed[rva] = row["name"]
-                if row["status"] == "matched":
-                    matched.append((rva, rva + size))
-                    self.addresses.add(rva)
-                    self.named.add((row["name"], rva))
+                matched.append((rva, rva + size))
         with SYMBOLS.open(encoding="utf-8", errors="replace", newline="") as handle:
             for row in csv.DictReader(handle):
                 if (row.get("notes") or "").startswith(PIN_MARKER):
@@ -162,17 +184,30 @@ def read_funclets(ledger):
     Returns (on_ladder, off_ladder, tally, tally_bytes); the tallies count the
     whole population per class for the classify report.  A funclet is on the
     ladder when its displacement is a slot this generator can place in a frame.
+
+    `ledger.declined` collects, per address, why every funclet that did not make
+    it onto the ladder was left behind.  That is not a report: it is the reason
+    column of the tombstone a previously-landed row gets when it drops out.
     """
     data = build.EXE.read_bytes()
     on_ladder, off_ladder = [], []
     tally = collections.Counter()
     tally_bytes = collections.Counter()
+    ledger.declined = {}
     with GHIDRA.open(encoding="utf-8", newline="") as handle:
         for row in csv.DictReader(handle):
             if not row["name"].startswith(("Unwind@", "Catch@")):
                 continue
             rva, size = int(row["rva"], 16), int(row["size"])
             if ledger.overlaps(rva, size):
+                ledger.declined[rva] = ("0x%08X is claimed by another matched row"
+                                        % rva)
+                continue
+            dump = ledger.dumps.get(rva)
+            if dump is not None and dump != size:
+                ledger.declined[rva] = (
+                    "the gen-dump row at 0x%08X is %d bytes and Ghidra calls the "
+                    "funclet %d -- the boundary itself is in dispute" % (rva, dump, size))
                 continue
             body = data[rva:rva + size]
             kind = target = disp = None
@@ -188,14 +223,26 @@ def read_funclets(ledger):
             if kind is None:
                 tally["D other"] += 1
                 tally_bytes["D other"] += size
+                ledger.declined[rva] = (
+                    "the %d retail bytes at 0x%08X (%s...) match no funclet shape this "
+                    "generator emits" % (size, rva, body[:6].hex()))
                 continue
             label = "%s target-%s" % (kind, "known" if target in ledger.addresses else "UNKNOWN")
             tally[label] += 1
             tally_bytes[label] += size
             if target not in ledger.addresses:
+                ledger.declined[rva] = (
+                    "the destructor target 0x%08X this funclet jumps to is not a proven "
+                    "boundary, so no pin can name it" % target)
                 continue
             funclet = Funclet(kind, rva, size, disp, target)
-            (on_ladder if on_the_ladder(funclet) else off_ladder).append(funclet)
+            if on_the_ladder(funclet):
+                on_ladder.append(funclet)
+            else:
+                off_ladder.append(funclet)
+                ledger.declined[rva] = (
+                    "frame displacement %d is not a slot this generator can place"
+                    % disp)
     return on_ladder, off_ladder, tally, tally_bytes
 
 
@@ -344,16 +391,76 @@ def rewrite_lines(path, owned, fresh, newline):
     Splitting on b"\\n" and rejoining reproduces the file exactly, which matters:
     functions.csv carries three shapes of historical line-ending damage that a
     csv round-trip would silently normalise.
+
+    `owned` is asked about the payload with its trailing b"\\r"s removed, never
+    the raw split piece.  A predicate that ends in `endswith(note)` matched the
+    pins only while they were written LF; the commit that gave symbols.csv its
+    real CRLF terminator stopped every one of them being recognised, so each run
+    appended 511 pins it believed it had removed.  Nothing caught it because
+    land() had no gate -- check_csv says `exact duplicate row` the moment it does.
     """
     lines = path.read_bytes().split(b"\n")
-    kept = [line for line in lines if not owned(line)]
+    kept = [line for line in lines if not owned(line.rstrip(b"\r"))]
     if kept and kept[-1] == b"":
         kept.pop()
     kept += [text.encode("utf-8") + newline for text in fresh]
     path.write_bytes(b"\n".join(kept) + b"\n")
 
 
+def owned_sources():
+    return sorted(SOURCE_DIR.glob("uw_gen_*.cpp"))
+
+
+class Snapshot:
+    """Byte image of every file land() writes, opened BEFORE the first write.
+
+    A guard that opens at the gate instead of at the first write cannot put back
+    what the writes ahead of it did.  deleted_rows.csv is append-only and merges
+    by union, so a tombstone stranded against a reverted functions.csv is not a
+    cosmetic leftover: it permanently deletes a row that is still landed.
+    """
+
+    def __init__(self):
+        self.ledgers = {path: path.read_bytes() for path in (FUNCTIONS, SYMBOLS, DELETED)}
+        self.sources = {path: path.read_bytes() for path in owned_sources()}
+
+    def restore(self, reason):
+        for path, raw in self.ledgers.items():
+            path.write_bytes(raw)
+        for path in owned_sources():
+            if path not in self.sources:
+                path.unlink()
+        for path, raw in self.sources.items():
+            path.write_bytes(raw)
+        print("gen_uw: %s -- every ledger row, pin, tombstone and owned source REVERTED"
+              % reason, file=sys.stderr)
+
+
+def run(command, label):
+    print("gen_uw: %s" % label)
+    return subprocess.run(command, cwd=ROOT).returncode
+
+
+def verify(selectors):
+    """The scoped gate, then check_csv. Returns the first non-zero exit code."""
+    gate = ([sys.executable, str(ROOT / "tools" / "build.py"), *selectors]
+            if sys.platform == "win32" else [str(ROOT / "build.sh"), *selectors])
+    code = run(gate, "./build.sh " + " ".join(selectors))
+    if code == 0:
+        code = run([sys.executable, str(ROOT / "tools" / "check_csv.py")],
+                   "python3 tools/check_csv.py")
+    return code
+
+
 def land():
+    # One exclusive lock across derive -> write -> verify, the same lock
+    # add_match.py and gen_small.land_batch take. land() REWRITES its rows rather
+    # than appending them, so a concurrent single-row append would be erased by
+    # the rewrite, or by the revert that follows a red gate.
+    lock_handle = LOCK_FILE.open("a")
+    lock(lock_handle, exclusive=True,
+         wait_notice="gen_uw: waiting for the ledger lock (another append is running)...")
+
     ledger = Ledger()
     on_ladder, off_ladder, _, _ = read_funclets(ledger)
     for funclet in on_ladder:
@@ -376,6 +483,27 @@ def land():
              ", ".join("%s=%d" % kv for kv in
                        sorted(collections.Counter(f.kind for f in off_ladder).items()))))
 
+    # Everything from here writes. The snapshot opens first so a failure at any
+    # step -- a compile, a mixed symbols.csv, a red gate, a Ctrl-C -- puts all
+    # three ledgers and every owned source back byte for byte.
+    snapshot = Snapshot()
+    try:
+        selectors = emit_and_write(ledger, on_ladder)
+        code = verify(selectors)
+    except BaseException:
+        snapshot.restore("interrupted")
+        raise
+    if code != 0:
+        snapshot.restore("verification failed (exit %d)" % code)
+        raise SystemExit("gen_uw: nothing was changed")
+    print("gen_uw: verified OK")
+
+
+def emit_and_write(ledger, on_ladder):
+    """Compile the owned sources, then write rows, pins and tombstones.
+
+    Returns the build selectors that prove what was written.
+    """
     files = plan(on_ladder)
     by_key = collections.defaultdict(list)
     for funclet in on_ladder:
@@ -425,6 +553,42 @@ def land():
         raise SystemExit("pin duplicates a row that already carries it: %s" % redundant[:4])
 
     rows.sort(key=lambda row: row[2])
+    formatted = [",".join(row) for row in rows]
+    # symbols.csv is asked its terminator BEFORE functions.csv is touched: a
+    # mixed file makes that question fatal, and asking it after the first write
+    # is what left functions.csv rewritten with no pins behind it.
+    symbols_eol = ledger_io.uniform_terminator(SYMBOLS.read_bytes(), "symbols.csv")[:-1]
+
+    # gen_small.validate_rows is the one place a double claim is decided. Run
+    # against the ledger MINUS our own rows (Ledger already drops them), so every
+    # fresh row is new to it and the two answers it gives -- refuse, or supersede
+    # an exact-range gen-dump -- are the only two outcomes.
+    functions_raw = FUNCTIONS.read_bytes()
+    outside = [row for row in parse_ledger(functions_raw)
+               if OWNED_SOURCE_DIR not in row["source"]]
+    to_append, already, to_retract = gen_small.validate_rows(formatted, outside)
+    if already or len(to_append) != len(formatted):
+        raise SystemExit(
+            "gen_uw: %d of %d fresh row(s) are already in the ledger under a source this "
+            "generator does not own -- the rewrite would leave two rows on those bytes"
+            % (len(formatted) - len(to_append), len(formatted)))
+    if to_retract:
+        gen_small.retract_dump_rows(functions_raw, to_retract)
+
+    # The rewrite un-writes every owned row that is not in the fresh set. Without
+    # a tombstone the union merge driver puts each one back on the next rebase
+    # from a fork that predates this run, on top of whatever now owns the bytes.
+    live = {(row[0], int(row[2], 16)) for row in rows}
+    dropped = sorted(key for key in ledger.owned if key not in live)
+    if dropped:
+        gen_small.write_tombstones([
+            (name, rva, "gen_uw re-derived its population and no longer emits this "
+                        "funclet: " + ledger.declined.get(
+                            rva, "0x%08X is no longer a named EH funclet in "
+                                 "reverse/ghidra_functions.csv" % rva))
+            for name, rva in dropped])
+        print("  tombstoned %d owned row(s) the fresh compile no longer emits" % len(dropped))
+
     rewrite_lines(FUNCTIONS, OWNED_ROW_RE.search,
                   [",".join(row) for row in rows], b"\r")
     # rewrite_lines rejoins on b"\n", so `newline` is whatever precedes it -- b"\r"
@@ -435,11 +599,12 @@ def land():
     # terminators, so there is nothing uniform to ask it for.
     rewrite_lines(SYMBOLS, lambda line: line.startswith(b"?") and line.endswith(PIN_NOTE_BYTES),
                   ["%s,0x%08X,%s" % (name, address, PIN_NOTE) for name, address in pins],
-                  ledger_io.uniform_terminator(SYMBOLS.read_bytes(), "symbols.csv")[:-1])
+                  symbols_eol)
     print("landed %d rows across %d file(s); %d pins, %d of them at an address "
-          "symbols.csv already names differently"
+          "symbols.csv already names differently; %d superseded dump row(s)"
           % (len(rows), len(written), len(pins),
-             sum(1 for _, address in pins if address in ledger.pinned)))
+             sum(1 for _, address in pins if address in ledger.pinned), len(to_retract)))
+    return [path.relative_to(ROOT).as_posix() for path in written]
 
 
 def classify():

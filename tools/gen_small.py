@@ -4180,18 +4180,33 @@ def retract_dump_rows(functions_raw, to_retract):
         raise SystemExit(f"land: {len(keys)} dump row(s) to retract but {dropped} matched in "
                          "functions.csv — refusing a partial retraction; reconcile by hand")
     B.FUNCTIONS.write_bytes(kept)
-    lines = []
+    entries = []
     for owner, name, source in to_retract:
-        buf = io.StringIO()
-        csv.writer(buf, lineterminator="\n").writerow([
-            owner["name"], f"0x{owner['rva']:08X}",
+        entries.append((
+            owner["name"], owner["rva"],
             f"gen-dump placeholder superseded by the real identity of these bytes: {name}, "
             f"byte-verified from {source} over the same {owner['size']}-byte range. The "
-            f"{owner['source']} dump reproduces those bytes but carries no identity."])
-        lines.append(buf.getvalue())
+            f"{owner['source']} dump reproduces those bytes but carries no identity."))
         print(f"land: superseded dump row {owner['name']} @ 0x{owner['rva']:08X}/"
               f"{owner['size']}B ({owner['source']}) with {name} ({source}) — "
               "retracted and tombstoned")
+    write_tombstones(entries)
+
+
+def write_tombstones(entries):
+    """Append (name, rva, reason) rows to reverse/deleted_rows.csv.
+
+    The one place a deletion gets recorded. Every writer that drops a row goes
+    through here, gen_uw's rewrite included: functions.csv union-merges, so a row
+    removed without a tombstone is put straight back by the next rebase from a
+    branch that forked before the removal, and the reason column is the only
+    place the next reader learns why it went.
+    """
+    lines = []
+    for name, rva, reason in entries:
+        buf = io.StringIO()
+        csv.writer(buf, lineterminator="\n").writerow([name, f"0x{rva:08X}", reason])
+        lines.append(buf.getvalue())
     with DELETED.open("ab") as handle:
         handle.write("".join(lines).encode("utf-8"))
 
