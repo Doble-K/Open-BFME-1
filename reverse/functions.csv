@@ -107201,7 +107201,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0014ebf0@@YAXXZ,,0x0014EBF0,106,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ebf0
 ?d_0014ec80@@YAXXZ,,0x0014EC80,175,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ec80
 ?d_0014ed60@@YAXXZ,,0x0014ED60,75,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ed60
-?d_0014ee40@@YAXXZ,,0x0014EE40,81,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ee40
 ?d_0014ef00@@YAXXZ,,0x0014EF00,145,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ef00
 ?d_0014efc0@@YAXXZ,,0x0014EFC0,59,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054efc0
 ?d_0014f060@@YAXXZ,,0x0014F060,125,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054f060
@@ -157966,3 +157965,4 @@ _ghttpPostExA,,0x0087AB30,246,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/g
 _ghttpSaveExA,,0x0087A830,290,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpMain.c,matched,
 _ghttpStreamExA,,0x0087A960,233,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpMain.c,matched,
 _ghiSendBuffer,,0x0087DA50,135,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpBuffer.c,matched,
+?setNextDockActionFrame@AIDockProcessDockState@@QAEXXZ,,0x0014EE40,81,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,

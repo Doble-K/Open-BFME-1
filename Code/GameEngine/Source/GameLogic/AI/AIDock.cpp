@@ -182,6 +182,122 @@ void AIDockApproachState::xfer( Xfer *xfer )
 // agree -- action is +0x30, cancelDock +0x34, isDockOpen +0x38, all three
 // byte-verified by AIDockProcessDockState::update -- so only these two need
 // the cast.
+// BFME reaches AIUpdateInterface::getSupplyTruckAIInterface at vtable +0x144
+// where this tree puts it at +0x104. Only that one slot is named; the
+// eighty-one before it exist to place it.
+class BFMERetailAIUpdateVTable
+{
+public:
+	virtual void slot000() = 0;
+	virtual void slot004() = 0;
+	virtual void slot008() = 0;
+	virtual void slot00c() = 0;
+	virtual void slot010() = 0;
+	virtual void slot014() = 0;
+	virtual void slot018() = 0;
+	virtual void slot01c() = 0;
+	virtual void slot020() = 0;
+	virtual void slot024() = 0;
+	virtual void slot028() = 0;
+	virtual void slot02c() = 0;
+	virtual void slot030() = 0;
+	virtual void slot034() = 0;
+	virtual void slot038() = 0;
+	virtual void slot03c() = 0;
+	virtual void slot040() = 0;
+	virtual void slot044() = 0;
+	virtual void slot048() = 0;
+	virtual void slot04c() = 0;
+	virtual void slot050() = 0;
+	virtual void slot054() = 0;
+	virtual void slot058() = 0;
+	virtual void slot05c() = 0;
+	virtual void slot060() = 0;
+	virtual void slot064() = 0;
+	virtual void slot068() = 0;
+	virtual void slot06c() = 0;
+	virtual void slot070() = 0;
+	virtual void slot074() = 0;
+	virtual void slot078() = 0;
+	virtual void slot07c() = 0;
+	virtual void slot080() = 0;
+	virtual void slot084() = 0;
+	virtual void slot088() = 0;
+	virtual void slot08c() = 0;
+	virtual void slot090() = 0;
+	virtual void slot094() = 0;
+	virtual void slot098() = 0;
+	virtual void slot09c() = 0;
+	virtual void slot0a0() = 0;
+	virtual void slot0a4() = 0;
+	virtual void slot0a8() = 0;
+	virtual void slot0ac() = 0;
+	virtual void slot0b0() = 0;
+	virtual void slot0b4() = 0;
+	virtual void slot0b8() = 0;
+	virtual void slot0bc() = 0;
+	virtual void slot0c0() = 0;
+	virtual void slot0c4() = 0;
+	virtual void slot0c8() = 0;
+	virtual void slot0cc() = 0;
+	virtual void slot0d0() = 0;
+	virtual void slot0d4() = 0;
+	virtual void slot0d8() = 0;
+	virtual void slot0dc() = 0;
+	virtual void slot0e0() = 0;
+	virtual void slot0e4() = 0;
+	virtual void slot0e8() = 0;
+	virtual void slot0ec() = 0;
+	virtual void slot0f0() = 0;
+	virtual void slot0f4() = 0;
+	virtual void slot0f8() = 0;
+	virtual void slot0fc() = 0;
+	virtual void slot100() = 0;
+	virtual void slot104() = 0;
+	virtual void slot108() = 0;
+	virtual void slot10c() = 0;
+	virtual void slot110() = 0;
+	virtual void slot114() = 0;
+	virtual void slot118() = 0;
+	virtual void slot11c() = 0;
+	virtual void slot120() = 0;
+	virtual void slot124() = 0;
+	virtual void slot128() = 0;
+	virtual void slot12c() = 0;
+	virtual void slot130() = 0;
+	virtual void slot134() = 0;
+	virtual void slot138() = 0;
+	virtual void slot13c() = 0;
+	virtual void slot140() = 0;
+	virtual SupplyTruckAIInterface *getSupplyTruckAIInterface() = 0;	///< +0x144
+};
+
+// And SupplyTruckAIInterface::getActionDelayForDock at +0x4C, not +0x2C.
+class BFMERetailSupplyTruckVTable
+{
+public:
+	virtual void slot000() = 0;
+	virtual void slot004() = 0;
+	virtual void slot008() = 0;
+	virtual void slot00c() = 0;
+	virtual void slot010() = 0;
+	virtual void slot014() = 0;
+	virtual void slot018() = 0;
+	virtual void slot01c() = 0;
+	virtual void slot020() = 0;
+	virtual void slot024() = 0;
+	virtual void slot028() = 0;
+	virtual void slot02c() = 0;
+	virtual void slot030() = 0;
+	virtual void slot034() = 0;
+	virtual void slot038() = 0;
+	virtual void slot03c() = 0;
+	virtual void slot040() = 0;
+	virtual void slot044() = 0;
+	virtual void slot048() = 0;
+	virtual UnsignedInt getActionDelayForDock( Object *dock ) = 0;	///< +0x4C
+};
+
 class BFMERetailDockVTable
 {
 public:
@@ -642,14 +758,13 @@ AIDockProcessDockState::AIDockProcessDockState( StateMachine *machine ) : State(
 
 //----------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------
-// ?setNextDockActionFrame@AIDockProcessDockState@@ present-unmatched
 void AIDockProcessDockState::setNextDockActionFrame()
 {
 	// If we have a SupplyTruck Interface, then we will ask for our specific delay time
-	SupplyTruckAIInterface *supplyTruck = getMachineOwner()->getAI()->getSupplyTruckAIInterface();
+	SupplyTruckAIInterface *supplyTruck = ((BFMERetailAIUpdateVTable *)bfmeRetailAIUpdate( bfmeRetailMachineOwner( this ) ))->getSupplyTruckAIInterface();
 	if( supplyTruck )
 	{
-		m_nextDockActionFrame = TheGameLogic->getFrame() + supplyTruck->getActionDelayForDock( getMachineGoalObject() );
+		m_nextDockActionFrame = TheGameLogic->getFrame() + ((BFMERetailSupplyTruckVTable *)supplyTruck)->getActionDelayForDock( bfmeRetailMachine( this )->getGoalObject() );
 		return;
 	}
 
