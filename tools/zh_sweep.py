@@ -460,21 +460,27 @@ def do_packets(args):
     # run that causes it rather than in a diff nobody reads.
     dropped = [p.stem for p in PACKET_DIR.glob("*.md")
                if int(p.stem, 16) not in by_rva]
-    for stale in PACKET_DIR.glob("*.md"):
-        stale.unlink()
-    if dropped:
-        print(f"packets: dropping {len(dropped)} packet(s) this run does not "
-              f"reproduce: {' '.join(sorted(dropped)[:8])}"
-              + (" ..." if len(dropped) > 8 else ""))
+    # Render every packet BEFORE unlinking anything. The old order deleted the
+    # directory first and wrote as it went, so any failure part-way -- a missing
+    # objdump was enough -- left the queue empty with nothing to fall back on,
+    # and the leads people had hand-annotated into those files went with it.
+    rendered = {}
     covered = 0
     for rva, group in sorted(by_rva.items()):
         group.sort(key=lambda r: (-r["align"], r["sym"]))
         size = max(r["size"] for r in group)
         body = text[rva - text_rva : rva - text_rva + size]
         relocs = reloc_index[(group[0]["obj"], group[0]["sym"])]
-        (PACKET_DIR / f"{rva:08x}.md").write_text(
-            packet_text(rva, size, group, body, relocs, names))
+        rendered[rva] = packet_text(rva, size, group, body, relocs, names)
         covered += size
+    for stale in PACKET_DIR.glob("*.md"):
+        stale.unlink()
+    if dropped:
+        print(f"packets: dropping {len(dropped)} packet(s) this run does not "
+              f"reproduce: {' '.join(sorted(dropped)[:8])}"
+              + (" ..." if len(dropped) > 8 else ""))
+    for rva, packet in rendered.items():
+        (PACKET_DIR / f"{rva:08x}.md").write_text(packet)
     print(f"packets: {len(by_rva)} written to {PACKET_DIR.relative_to(ROOT)}, covering "
           f"{len(near)} candidate body/bodies over {covered:,} bytes of unclaimed .text")
 
@@ -488,13 +494,32 @@ def packet_relocs(objects):
     return index
 
 
+def hex_listing(body, rva):
+    """The retail bytes, sixteen to a line, when there is no disassembler.
+
+    Less convenient than a listing and just as authoritative: the packet's whole
+    job is to quote the target exactly, and a reader who needs mnemonics has the
+    address to look up.
+    """
+    lines = []
+    for offset in range(0, len(body), 16):
+        chunk = body[offset:offset + 16]
+        lines.append(f"  {rva + offset:6x}:\t" + " ".join(f"{b:02x}" for b in chunk))
+    return "\n".join(lines)
+
+
 def disassemble(body, rva):
     scratch = OUT_DIR / "disassemble.bin"
     scratch.parent.mkdir(parents=True, exist_ok=True)
     scratch.write_bytes(body)
-    listing = subprocess.run(
-        ["objdump", "-b", "binary", "-m", "i386", "-M", "intel",
-         f"--adjust-vma=0x{rva:x}", "-D", str(scratch)], capture_output=True)
+    try:
+        listing = subprocess.run(
+            ["objdump", "-b", "binary", "-m", "i386", "-M", "intel",
+             f"--adjust-vma=0x{rva:x}", "-D", str(scratch)], capture_output=True)
+    except FileNotFoundError:
+        # objdump is not part of this repo's toolchain and is absent on a plain
+        # Windows checkout. Falling back keeps the queue generatable there.
+        return hex_listing(body, rva)
     if listing.returncode != 0:
         raise SystemExit("zh_sweep: objdump failed: " + listing.stderr.decode(errors="replace"))
     lines = listing.stdout.decode(errors="replace").splitlines()
