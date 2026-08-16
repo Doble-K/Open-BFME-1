@@ -134,6 +134,15 @@ class Random2Class {
 // HY 6/14/01
 class Random3Class {
 	public:
+		// Retail inlines this constructor in rndstraw.cpp and CALLS it in
+		// seglinerenderer.cpp -- the out-of-line copy at 0x009E5EB0 is emitted
+		// from the latter -- so the decision is per translation unit and cannot
+		// be spelled once here. A TU that needs the call defines
+		// BFME_RANDOM3CLASS_CTOR_NOINLINE before including this header; every
+		// other TU is unaffected.
+#ifdef BFME_RANDOM3CLASS_CTOR_NOINLINE
+		__declspec(noinline)
+#endif
 		Random3Class(unsigned seed1=0, unsigned seed2=0) : Seed(seed1), Index(seed2) {}
 
 		operator int(void) {return(operator()());};

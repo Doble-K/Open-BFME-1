@@ -46,6 +46,12 @@ class CameraClass;
 #include "sortingrenderer.h"
 #include "vp.h"
 #include "vector3i.h"
+// Retail calls Random3Class::Random3Class here rather than expanding it --
+// `lea ecx,[esp+0x74]; push 0; push 0; call` in subdivision_util -- while it
+// expands it in rndstraw.cpp, so the decision is per translation unit. The
+// out-of-line copy already exists and is already matched, at 0x009E5EB0, and
+// is emitted from this very file.
+#define BFME_RANDOM3CLASS_CTOR_NOINLINE
 #include "random.h"
 #include "v3_rnd.h"
 #include "meshgeometry.h"
