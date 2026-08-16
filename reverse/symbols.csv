@@ -69535,3 +69535,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?qr2_buffer_add@@YAXPAXPBD@Z,0x00855360,Open-BFME5 zh_sweep packet 0064e570 callee pin
 ?removeAllSequentialScripts@ScriptEngine@@QAEXPAVObject@@@Z,0x0033C7B0,body behind gen-thunk ?b_0033c7b0@@YAXXZ; reached from 0x002EFAF0 through ILT 0x0003B26E
 ?erase@?$list@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QAE?AU?$_List_iterator@PAVObject@@U?$_Nonconst_traits@PAVObject@@@_STL@@@2@U32@@Z,0x000280CE,ILT thunk; pin from zh_sweep packet 0043f8e0
+?Render@WW3D@@SA_NPAVSceneClass@@PAVCameraClass@@_N2ABVVector3@@@Z,0x008FE3C0,bool-returning reading of the scene/camera Render; same body the enum-named pin at this address points at

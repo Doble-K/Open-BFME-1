@@ -157954,3 +157954,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?rawMouseToWindowMessage@@YA?AW4GameWindowMessage@@PBVGameMessage@@@Z,,0x005B9B90,106,Code/GameEngine/Source/GameClient/MessageStream/WindowXlat.cpp,matched,zh_sweep packet 005b9b94; real start is 4 bytes earlier than the packet reported
 ?isCurrentlyFerryingSupplies@WorkerAIUpdate@@UBE_NXZ,,0x002C7E30,60,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate_isCurrentlyFerryingSupplies_Thunk.cpp,matched,
 ?removeIdleWorker@InGameUI@@UAEXPAVObject@@H@Z,,0x0043F8E0,82,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,zh_sweep packet 0043f8e0
+?Render@WW3D@@SA_NABVLayerClass@@@Z,,0x008FE7D0,49,Code/Libraries/Source/WWVegas/WW3D2/WW3DRenderLayerThunk.cpp,matched,zh_sweep packet 008fe7d0; BFME narrows WW3DErrorType to a byte whose success value is 1
+?Render@WW3D@@SA_NABV?$List@PAVLayerClass@@@@@Z,,0x008FE810,92,Code/Libraries/Source/WWVegas/WW3D2/WW3DRenderLayerThunk.cpp,matched,
