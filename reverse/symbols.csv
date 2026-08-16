@@ -70878,3 +70878,7 @@ _listen@8,0x0081BE68,additive pin for _gpiStartConnect call resolution
 ??0BoneFXDamage@@QAE@PAVThing@@PBVModuleData@@@Z,0x00005B19,link thunk to 0x00250740; the address the factory at 0x0011E800 encodes
 ??0SquishCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003B16A,link thunk to 0x00216BA0; the address the factory at 0x0011EBA0 encodes
 ??0W3DSupplyDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00042E9C,link thunk to 0x0077DB70; the address the factory at 0x006BF360 encodes
+??0W3DDefaultDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00009FED,link thunk to 0x007513C0; the address the factory at 0x006BEFC0 encodes
+??0GrantUpgradeCreateModuleData@@QAE@XZ,0x00008B89,link thunk to 0x0024FA80; the address the factory at 0x0011E560 encodes
+??0W3DSupplyDrawModuleData@@QAE@XZ,0x0001E76D,link thunk to 0x0077DD50; the address the factory at 0x006BF3E0 encodes
+??0W3DTruckDrawModuleData@@QAE@XZ,0x0003616F,link thunk to 0x0077F830; the address the factory at 0x006BF4F0 encodes

@@ -11855,3 +11855,7 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_0011e800@@YAXXZ,0x0011E800,gen-dump placeholder superseded by BoneFXDamage::friend_newModuleInstance converted to C++
 ?d_0011eba0@@YAXXZ,0x0011EBA0,gen-dump placeholder superseded by SquishCollide::friend_newModuleInstance converted to C++
 ?d_006bf360@@YAXXZ,0x006BF360,gen-dump placeholder superseded by W3DSupplyDraw::friend_newModuleInstance converted to C++
+?d_006befc0@@YAXXZ,0x006BEFC0,gen-dump placeholder superseded by W3DDefaultDraw factory converted to C++
+?d_0011e560@@YAXXZ,0x0011E560,gen-dump placeholder superseded by GrantUpgradeCreate factory converted to C++
+?d_006bf3e0@@YAXXZ,0x006BF3E0,gen-dump placeholder superseded by W3DSupplyDraw factory converted to C++
+?d_006bf4f0@@YAXXZ,0x006BF4F0,gen-dump placeholder superseded by W3DTruckDraw factory converted to C++

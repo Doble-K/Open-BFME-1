@@ -13645,7 +13645,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@GrabPassengerSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120AB0,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/GrabPassengerSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@GrantScienceUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z;C++ alias
 ?friend_newModuleData@GrantStealthBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00118BB0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@GrantUpgradeCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x001171F0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@HealContain@@SAPAVModuleData@@PAVINI@@@Z,,0x001219D0,107,Code/GameEngine/Source/GameLogic/Object/Contain/HealContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@HealCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x0011EDC0,107,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/HealCrateCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@HeightDieUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118AA0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue cascade; located via ModuleFactory::init ModuleTemplate inline-build
@@ -13793,9 +13792,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@W3DQuadrupedDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DQuadrupedDrawModuleDataFactory.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@W3DRopeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DRopeDrawModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ W3D factory ICF alias
 ?friend_newModuleData@W3DScienceModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
-?friend_newModuleData@W3DSupplyDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DTreeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF710,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleData@W3DTruckDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FAD0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@WanderAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BEE0,128,Code/GameEngine/Source/GameLogic/AI/WanderAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@WaveGuideUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,Open-BFME5 exact C++ ICF alias; corrected one-byte int3 boundary; retail size 0x16C and constructor pin 0x30945
 ?friend_newModuleData@WeaponBonusUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001236C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -14031,7 +14028,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@UpgradeSoundSelectorClientBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00124B30,104,Code/GameEngine/Source/GameLogic/Object/Behavior/UpgradeSoundSelectorClientBehaviorFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleInstance@VeterancyCrateCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F0E0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleInstance@W3DDebrisDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BEF40,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleInstance@W3DDefaultDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@W3DProjectileStreamDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001194C0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@W3DRopeDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF2E0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@W3DTracerDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00114200,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
@@ -106889,7 +106885,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0011be30@@YAXXZ,,0x0011BE30,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051be30
 ?d_0011c030@@YAXXZ,,0x0011C030,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051c030
 ?d_0011cd10@@YAXXZ,,0x0011CD10,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051cd10
-?d_0011e560@@YAXXZ,,0x0011E560,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e560
 ?d_0011eed0@@YAXXZ,,0x0011EED0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eed0
 ?d_0011f0b0@@YAXXZ,,0x0011F0B0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f0b0
 ?d_001210a0@@YAXXZ,,0x001210A0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005210a0
@@ -117397,9 +117392,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006be9c0@@YAXXZ,,0x006BE9C0,94,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe9c0
 ?d_006beb90@@YAXXZ,,0x006BEB90,607,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abeb90
 ?d_006bee90@@YAXXZ,,0x006BEE90,63,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abee90
-?d_006befc0@@YAXXZ,,0x006BEFC0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abefc0
-?d_006bf3e0@@YAXXZ,,0x006BF3E0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf3e0
-?d_006bf4f0@@YAXXZ,,0x006BF4F0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf4f0
 ?d_006bf930@@YAXXZ,,0x006BF930,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf930
 ?d_006bffe0@@YAXXZ,,0x006BFFE0,1136,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abffe0
 ?d_006c0570@@YAXXZ,,0x006C0570,18,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00ac0570
@@ -157963,3 +157955,7 @@ _luaV_strconc,,0x009979D0,401,Code/Libraries/Source/Lua/lvm.c,matched,
 ?friend_newModuleInstance@BoneFXDamage@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E800,96,Code/GameEngine/Source/Common/Thing/BoneFXDamageFriendNewModuleInstanceThunk.cpp,matched,repointed; the registration string and the allocation size both put it here
 ?friend_newModuleInstance@SquishCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011EBA0,96,Code/GameEngine/Source/Common/Thing/SquishCollideFriendNewModuleInstanceThunk.cpp,matched,repointed; the registration string and the allocation size both put it here
 ?friend_newModuleInstance@W3DSupplyDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF360,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDrawFriendNewModuleInstanceThunk.cpp,matched,
+?friend_newModuleInstance@W3DDefaultDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BEFC0,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDrawFriendNewModuleInstanceThunk.cpp,matched,repointed; registration string and allocation size agree
+?friend_newModuleData@GrantUpgradeCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011E560,107,Code/GameEngine/Source/Common/Thing/GrantUpgradeCreateFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
+?friend_newModuleData@W3DSupplyDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF3E0,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDrawFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
+?friend_newModuleData@W3DTruckDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF4F0,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDrawFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
