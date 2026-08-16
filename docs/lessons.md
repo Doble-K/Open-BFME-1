@@ -388,3 +388,55 @@ so only the checks that actually gate the launcher were touched. But the rule
 generalises: when a diff is *only* conditional branches turning unconditional, or
 shows `nop` runs inside a body, suspect the binary before rewriting the source. No
 amount of C++ reproduces a patch.
+
+
+## Triaging a red DIR32 gate: count the rows on each side
+
+`DIR32 consistency: FAIL n NEW inconsistent symbol(s)` names the symbol and its
+two bases and stops there. `tools/dir32.py <symbol>` finishes the sentence -- it
+lists the ledger rows that resolve the symbol to each base -- and the shape of
+that list usually decides the case on its own.
+
+As of 2026-08-16 the gate is red on six symbols, and **four of them are one row
+each disagreeing with a large consensus**:
+
+    ?TheScriptEngine@@3PAVScriptEngine@@A
+        0x012F076C   38 rows
+        0x012F0888    1 row   ScriptActions_doTeamSpinForFramecount_Thunk.cpp @ 0x002F11E0
+
+    ??_7Snapshot@@6B@
+        0x01073744   35 rows
+        0x01110C78    1 row   BehaviorModuleConstructorThunk.cpp @ 0x005F84E0
+    ??_7BehaviorModule@@6BBehaviorModuleInterface@@@
+        0x0109CA98   20 rows
+        0x01112EC8    1 row   the same row
+    ??_7BehaviorModule@@6BObjectModule@@@
+        0x0109CB5C   20 rows
+        0x01112ECC    1 row   the same row
+
+One row against twenty is not a second legitimate base; it is a row whose body
+references a *different* global or installs a *different* vtable than its source
+says. That is invisible to the byte gate, because relocation sites are masked --
+which is the whole reason this check exists. The BehaviorModule constructor row
+is the clearer of the two: retail at 0x005F84E0 installs three vtables that are
+each four bytes apart from each other in a block nothing else in the ledger
+touches, so it is the constructor of some other class that derives from the same
+three bases, not BehaviorModule's.
+
+The remaining two are one row against one row and need different evidence:
+
+    ??1FileInfoStruct@MixFileCreator@@QAE@XZ     0x0041AAD2 / 0x00436AB1
+    ??_7?$ShareBufferClass@K@@6B@                0x0111E154 / 0x0113C108
+
+Both `FileInfoStruct` bases are odd addresses, so both are incremental-link
+thunks for the same destructor, and different call sites legitimately encode
+different thunks -- the same reasoning `build.py` already applies to
+`__ehhandler$`. That one is a whitelist candidate, not a bug.
+
+**Why it matters beyond the symbols:** `.githooks/pre-commit` forces the full
+gate on any staged `*.h` or `reference/shims/*`, so while DIR32 is red **no
+header or shim change can commit at all**. That blocks unrelated work: the
+zh_sweep shim numbers four qr2 reserved keys wrong (`PID__KEY` as 24, which is
+`PING__KEY`), and correcting it -- a four-line edit -- has to be done TU-locally
+with `#undef` instead. Anything that fixes these four rows unblocks a category,
+not a file.
