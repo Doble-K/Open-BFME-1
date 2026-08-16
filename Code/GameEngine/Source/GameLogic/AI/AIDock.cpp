@@ -298,12 +298,44 @@ public:
 	virtual UnsignedInt getActionDelayForDock( Object *dock ) = 0;	///< +0x4C
 };
 
+// ExitInterface::getRallyPoint sits at +0x20 here, not +0x1C.
+class BFMERetailExitVTable
+{
+public:
+	virtual void slot000() = 0;
+	virtual void slot004() = 0;
+	virtual void slot008() = 0;
+	virtual void slot00c() = 0;
+	virtual void slot010() = 0;
+	virtual void slot014() = 0;
+	virtual void slot018() = 0;
+	virtual void slot01c() = 0;
+	virtual const Coord3D *getRallyPoint( void ) const = 0;	///< +0x20
+};
+
 class BFMERetailDockVTable
 {
 public:
-	virtual void slot00() = 0;
+	virtual void slot000() = 0;
 	virtual Bool reserveApproachPosition( Object *owner, Coord3D *goalPos, Int *approach ) = 0;	///< +0x04
 	virtual Bool reserveAdvancePosition( Object *owner, Coord3D *goalPos, Int *approach ) = 0;	///< +0x08
+	virtual void slot00c() = 0;
+	virtual void slot010() = 0;
+	virtual void getEnterPosition( Object *owner, Coord3D *pos ) = 0;	///< +0x14
+	virtual void slot018() = 0;
+	virtual void slot01c() = 0;
+	virtual void slot020() = 0;
+	virtual void slot024() = 0;
+	virtual void slot028() = 0;
+	virtual void slot02c() = 0;
+	virtual void slot030() = 0;
+	virtual void slot034() = 0;
+	virtual void slot038() = 0;
+	virtual void slot03c() = 0;
+	virtual void slot040() = 0;
+	virtual void slot044() = 0;
+	virtual Bool isAllowPassthroughType( void ) = 0;	///< +0x48
+	virtual Bool isRallyPointAfterDockType( void ) = 0;	///< +0x4C
 };
 
 static StateMachine *bfmeRetailMachine( const State *state )
@@ -580,10 +612,9 @@ void AIDockAdvancePositionState::onExit( StateExitType status )
 /**
  * Move to the dock's entry position.
  */
-// ?onEnter@AIDockMoveToEntryState@@ present-unmatched
 StateReturnType AIDockMoveToEntryState::onEnter( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
   DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -596,20 +627,20 @@ StateReturnType AIDockMoveToEntryState::onEnter( void )
 	// fail if the dock is closed
 	if( dock->isDockOpen() == FALSE )
 	{
-		dock->cancelDock( getMachineOwner() );
+		dock->cancelDock( bfmeRetailMachineOwner( this ) );
 		return STATE_FAILURE;
 	}
 
-	AIUpdateInterface *ai = getMachineOwner()->getAIUpdateInterface();
-	if( ai  &&  dock->isAllowPassthroughType() ) 
+	AIUpdateInterface *ai = bfmeRetailAIUpdate( bfmeRetailMachineOwner( this ) );
+	if( ai  &&  ((BFMERetailDockVTable *)dock)->isAllowPassthroughType() ) 
 	{
-		ai->ignoreObstacle( getMachineGoalObject() );
+		ai->ignoreObstacle( bfmeRetailMachine( this )->getGoalObject() );
 	}
 
 	// get the enter position and set as our goal position
-	dock->getEnterPosition( getMachineOwner(), &m_goalPosition );
+	((BFMERetailDockVTable *)dock)->getEnterPosition( bfmeRetailMachineOwner( this ), &m_goalPosition );
 
-	( (AIDockMachine*)getMachine() )->m_approachPosition = -1;
+	*bfmeRetailApproachPosition( this ) = -1;
 
 	// this behavior is an extention of basic MoveTo
 	return AIInternalMoveToState::onEnter();
@@ -998,10 +1029,9 @@ void AIDockMoveToExitState::onExit( StateExitType status )
 /**
  * Move to the dock's rally position, if he wants me to.
  */
-// ?onEnter@AIDockMoveToRallyState@@ present-unmatched
 StateReturnType AIDockMoveToRallyState::onEnter( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
   DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -1012,16 +1042,16 @@ StateReturnType AIDockMoveToRallyState::onEnter( void )
 		return STATE_FAILURE;
 
 	// if they don't have anywhere to send us, then we are good
-	if( ! dock->isRallyPointAfterDockType()															//Chooses not to
+	if( ! ((BFMERetailDockVTable *)dock)->isRallyPointAfterDockType()															//Chooses not to
 		|| goalObject->getObjectExitInterface() == NULL										//or can't
-		|| goalObject->getObjectExitInterface()->getRallyPoint() == NULL	//or can't right now.
+		|| ((BFMERetailExitVTable *)goalObject->getObjectExitInterface())->getRallyPoint() == NULL	//or can't right now.
 		)
 	{
 		return STATE_SUCCESS; // Success in an Enter is like success in an update.  We're all fine here
 	}
 
 	// get the rally point and set as our goal position
-	m_goalPosition = *goalObject->getObjectExitInterface()->getRallyPoint();
+	m_goalPosition = *((BFMERetailExitVTable *)goalObject->getObjectExitInterface())->getRallyPoint();
 
 	// this behavior is an extention of basic MoveTo
 	return AIInternalMoveToState::onEnter();
