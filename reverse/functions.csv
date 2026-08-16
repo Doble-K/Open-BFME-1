@@ -157948,3 +157948,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?getRelationship@Player@@QBE?AW4Relationship@@PBVTeam@@@Z,,0x000D19C0,162,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,zh_sweep packet 000d19c0
 ?getMinMaxAndCenter@AIGroup@@QAE_NPAUCoord2D@@0PAUCoord3D@@@Z,,0x00151F70,326,Code/GameEngine/Source/GameLogic/AI/AIGroup_getMinMaxAndCenter_Thunk.cpp,matched,zh_sweep packet 00151f70
 ?QuotedPrintableToUnicodeString@@YA?AVUnicodeString@@VAsciiString@@@Z,,0x001062C0,349,Code/GameEngine/Source/Common/System/QuotedPrintable.cpp,matched,zh_sweep packet 001062c0
+?buildNonDupRandomIndexList@@YAXHHQAH@Z,,0x002A35A0,70,Code/GameEngine/Source/GameLogic/Object/Update/RubbleRiseUpdate.cpp,matched,
+?QRTeamKeyCallback@@YAXPAXHH00@Z,,0x0064E570,47,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThreadQRTeamKeyCallbackThunk.cpp,matched,
