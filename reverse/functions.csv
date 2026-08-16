@@ -105136,7 +105136,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00484f60@@YAXXZ,,0x00484F60,270,Code/gen_asm/d_00475b00.asm,matched,gen-dump;ghidra=FUN_00884f60
 ?d_004850c0@@YAXXZ,,0x004850C0,736,Code/gen_asm/d_00475b00.asm,matched,gen-dump;ghidra=FUN_008850c0
 ?d_00485460@@YAXXZ,,0x00485460,114,Code/gen_asm/d_00475b00.asm,matched,gen-dump;ghidra=FUN_00885460
-?d_004854f0@@YAXXZ,,0x004854F0,453,Code/gen_asm/d_00475b00.asm,matched,gen-dump;ghidra=FUN_008854f0
 ?d_00485930@@YAXXZ,,0x00485930,40,Code/gen_asm/d_00475b00.asm,matched,gen-dump;ghidra=FUN_00885930
 ?d_00485a30@@YAXXZ,,0x00485A30,94,Code/gen_asm/d_00475b00.asm,matched,gen-dump;ghidra=FUN_00885a30
 ?d_00487870@@YAXXZ,,0x00487870,234,Code/gen_asm/d_00475b00.asm,matched,gen-dump;ghidra=FUN_00887870
@@ -160099,3 +160098,4 @@ _constructor_part,,0x0099C180,97,Code/Libraries/Source/Lua/lparser.c,matched,
 _constructor,,0x0099C2D0,181,Code/Libraries/Source/Lua/lparser.c,matched,
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAM@Z,,0x00977DB0,248,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 _luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,
+?parseScreenRect@@YA_NPAH000@Z,,0x004854F0,453,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScriptParseScreenRectThunk.cpp,matched,
