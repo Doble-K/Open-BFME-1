@@ -78,6 +78,18 @@ def test_a_real_row_is_never_offered(gen_small):
     assert 0x00ABCF00 not in gen_small(GEN_ASM_DUMP, REAL).dump_boundaries()
 
 
+def test_an_unmatched_dump_row_is_not_a_proven_boundary(gen_small):
+    """validate_rows would take it over; the scan will not scan at its width.
+
+    The value of a dump boundary here is that its extent is verified. An
+    unmatched row is a hypothesis about an address, and a candidate scanned at
+    an unverified width costs the whole wave rather than the one site.
+    """
+    unmatched_dump = GEN_ASM_DUMP.replace(",matched,", ",unmatched,")
+    assert gen_small(unmatched_dump, GEN_SMALL_DUMP).dump_boundaries() == {
+        SMALL_RVA: (SMALL_SIZE, "?d_00abce00@@YAXXZ")}
+
+
 def test_a_second_row_at_the_address_withdraws_the_boundary(gen_small):
     """An unmatched row shares the dump's rva: opaque to `owned`, invisible to
     the matched-range index, and fatal to the wave at land time."""

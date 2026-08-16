@@ -428,6 +428,13 @@ def dump_boundaries():
     `tg_scan` hides a supersedable dump from `owned`, and the overlap index it
     falls back on holds matched ranges only -- so a co-located UNMATCHED row
     would be invisible to both, and validate_rows aborts the whole wave on it.
+
+    Narrower than validate_rows on one point, deliberately: the dump row itself
+    has to be `matched`. validate_rows would take over an unmatched scaffold row
+    too, but the whole value of a dump boundary here is that its extent is
+    PROVEN, and an unmatched row is a hypothesis about an address. Scanning at a
+    width nobody verified is the one direction that costs a wave rather than a
+    site. (None exist today: the ledger is 100% matched.)
     """
     at_rva = collections.defaultdict(list)
     for row in B.load_claim_rows(counting_dumps=True, matched_only=False):
