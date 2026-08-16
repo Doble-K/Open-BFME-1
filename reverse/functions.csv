@@ -143825,7 +143825,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00710e60@@YAXXZ,,0x00710E60,6,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00710fb0@@YAXXZ,,0x00710FB0,6,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00711920@@YAXXZ,,0x00711920,65,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
-?d_00711ab0@@YAXXZ,,0x00711AB0,62,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00712280@@YAXXZ,,0x00712280,13,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00715d80@@YAXXZ,,0x00715D80,46,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_007164a0@@YAXXZ,,0x007164A0,6,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
@@ -158152,3 +158151,4 @@ _getobjname,,0x00996950,222,Code/Libraries/Source/Lua/ldebug.c,matched,
 ?d3dx9_twin_00ab2f10@@YAXXZ,,0x00AB2F10,532,vendor/d3dx9/d3dx9.lib,matched,"vendored=d3dx9-summer2003;member=obj\i386\cshaderprogram.obj;object-symbol=?MatchIFCOND@CShaderProgram@D3DXShader@@IAEJXZ;lib-twin=2 masked-identical archive bodies could sit at this address and nothing in the image separates them, so this name asserts none of them"
 ?d3dx9_twin_00ab3d6f@@YAXXZ,,0x00AB3D6F,532,vendor/d3dx9/d3dx9.lib,matched,"vendored=d3dx9-summer2003;member=obj\i386\cshaderprogram.obj;object-symbol=?MatchBREAK_COND@CShaderProgram@D3DXShader@@IAEJXZ;lib-twin=2 masked-identical archive bodies could sit at this address and nothing in the image separates them, so this name asserts none of them"
 ?d3dx9_twin_00abf19e@@YAXXZ,,0x00ABF19E,22,vendor/d3dx9/d3dx9.lib,matched,"vendored=d3dx9-summer2003;member=obj\i386\ctransform.obj;object-symbol=?CompareIndex@CTReorderInstructions@D3DXShader@@KGHIIPBX@Z;lib-twin=2 masked-identical archive bodies could sit at this address and nothing in the image separates them, so this name asserts none of them"
+?draw@RTS2DScene@@UAEXXZ,,0x00711AB0,62,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS2DSceneDrawThunk.cpp,matched,
