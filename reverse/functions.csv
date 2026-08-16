@@ -117949,7 +117949,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00728250@@YAXXZ,,0x00728250,61,Code/gen_asm/d_00725710.asm,matched,gen-dump;ghidra=FUN_00b28250
 ?d_007282a0@@YAXXZ,,0x007282A0,821,Code/gen_asm/d_00725710.asm,matched,gen-dump;ghidra=FUN_00b282a0
 ?d_007286f0@@YAXXZ,,0x007286F0,97,Code/gen_asm/d_00725710.asm,matched,gen-dump;ghidra=FUN_00b286f0
-?d_00728770@@YAXXZ,,0x00728770,83,Code/gen_asm/d_00725710.asm,matched,gen-dump;ghidra=FUN_00b28770
 ?d_007287e0@@YAXXZ,,0x007287E0,21,Code/gen_asm/d_00725710.asm,matched,gen-dump;ghidra=FUN_00b287e0
 ?d_00728800@@YAXXZ,,0x00728800,130,Code/gen_asm/d_00725710.asm,matched,gen-dump;ghidra=FUN_00b28800
 ?d_007288b0@@YAXXZ,,0x007288B0,305,Code/gen_asm/d_00725710.asm,matched,gen-dump;ghidra=FUN_00b288b0
@@ -143234,7 +143233,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004e4cd0@@YAXXZ,,0x004E4CD0,22,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e5020@@YAXXZ,,0x004E5020,55,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e5d30@@YAXXZ,,0x004E5D30,31,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
-?d_004e94f0@@YAXXZ,,0x004E94F0,64,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e9540@@YAXXZ,,0x004E9540,61,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e98e0@@YAXXZ,,0x004E98E0,443,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e9b20@@YAXXZ,,0x004E9B20,6,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
@@ -157968,3 +157966,5 @@ _ghiFreeLock,,0x0087C6A0,41,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ght
 ??0MultiListObjectClass@@QAE@XZ,,0x006D1170,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,gen-alias;object-symbol=??0MultiListObjectClass@@QAE@XZ;C++ alias
 ?dup_002edc00@@YAXXZ,,0x002EDC00,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,gen-alias;object-symbol=?doStopCameraFollowUnit@ScriptActions@@IAEXXZ;C++ alias
 ?dup_009db560@@YAXXZ,,0x009DB560,12,Code/GameEngine/Source/GameNetwork/GameSpy/nonport.c,matched,gen-alias;object-symbol=_msleep;C++ alias
+?allocateTerrainBuffers@W3DTerrainBackground@@QAEXPAVWorldHeightMap@@HHH@Z,,0x00728770,83,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainBackgroundAllocateThunk.cpp,matched,
+?SinglePlayerMenuShutdown@@YAXPAVWindowLayout@@PAX@Z,,0x004E94F0,64,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,matched,

@@ -43,6 +43,21 @@
 #include "GameClient/KeyDefs.h"
 #include "GameClient/GameWindowManager.h"
 
+// BFME calls WindowLayout::hide through the vtable -- retail is
+// `mov edx,[esi]; call [edx+0x10]` -- where this tree declares it non-virtual
+// and the call comes out direct. Only the one slot is named; the four before
+// it exist to place it. TU-local because WindowLayout.h is shared and a header
+// change runs the full gate.
+class BFMERetailWindowLayoutVTable
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot04() = 0;
+	virtual void slot08() = 0;
+	virtual void slot0c() = 0;
+	virtual void hide( Bool immediate ) = 0;				///< +0x10
+};
+
 static Bool isShuttingDown = false;
 static Bool buttonPushed = false;
 //-------------------------------------------------------------------------------------------------
@@ -54,7 +69,7 @@ static void shutdownComplete( WindowLayout *layout )
 	isShuttingDown = false;
 
 	// hide the layout
-	layout->hide( TRUE );
+	((BFMERetailWindowLayoutVTable *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout );

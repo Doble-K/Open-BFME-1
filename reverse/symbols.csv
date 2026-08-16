@@ -69593,3 +69593,5 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??0W3DLightDrawModuleData@@QAE@XZ,0x00028D9E,module-data constructor called by W3DLightDraw::friend_newModuleData at 0x006BFB50
 ??0W3DScriptedModelDrawModuleData@@QAE@XZ,0x0000289C,module-data constructor called by W3DScriptedModelDraw::friend_newModuleData at 0x006BF0C0
 ??0W3DStreakDrawModuleData@@QAE@XZ,0x000302EC,module-data constructor called by W3DStreakDraw::friend_newModuleData at 0x006BFD70
+?freeTerrainBuffers@W3DTerrainBackground@@IAEXXZ,0x00044AA3,link thunk; called by allocateTerrainBuffers at 0x00728770
+?shutdownComplete@Shell@@QAEXPAVWindowLayout@@_N@Z,0x00002F1D,link thunk; reached from SinglePlayerMenuShutdown 0x004E94F0
