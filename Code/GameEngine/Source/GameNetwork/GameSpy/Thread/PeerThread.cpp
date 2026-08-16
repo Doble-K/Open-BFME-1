@@ -120,14 +120,6 @@ enum
 	LOSSES__KEY
 };
 
-// reference/shims/sweep/GameSpy/qr2/qr2.h numbers PID__KEY 24, which is
-// PING__KEY -- it leaves five reserved keys out of the run and everything
-// from TIMELIMIT down slides. The real qr2regkeys.h in Code/ has PID__KEY at
-// 27, and retail pushes 27, so this TU corrects it rather than the shim: the
-// shim is shared and editing it forces the full gate on every TU that sees it.
-#undef PID__KEY
-#define PID__KEY 27
-
 #define EXECRC_STR		"exeCRC"
 #define INICRC_STR		"iniCRC"
 #define PW_STR				"pw"

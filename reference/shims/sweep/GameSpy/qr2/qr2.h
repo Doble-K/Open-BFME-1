@@ -40,9 +40,20 @@ typedef void *qr2_keybuffer_t;
 #define GAMEMODE_KEY    11
 #define TEAMPLAY_KEY    12
 #define FRAGLIMIT_KEY   13
-#define TIMELIMIT_KEY   14
-#define PASSWORD_KEY    15
-#define PID__KEY        24
+#define TEAMFRAGLIMIT_KEY 14
+#define TIMEELAPSED_KEY 15
+#define TIMELIMIT_KEY   16
+#define ROUNDTIME_KEY   17
+#define ROUNDELAPSED_KEY 18
+#define PASSWORD_KEY    19
+#define GROUPID_KEY     20
+#define PLAYER__KEY     21
+#define SCORE__KEY      22
+#define SKILL__KEY      23
+#define PING__KEY       24
+#define TEAM__KEY       25
+#define DEATHS__KEY     26
+#define PID__KEY        27
 
 void qr2_buffer_add(qr2_buffer_t buffer, const char *value);
 void qr2_buffer_add_int(qr2_buffer_t buffer, int value);
