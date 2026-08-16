@@ -29,15 +29,21 @@ Per attempt the transaction is exactly gen_small.land_batch's:
   binary append            CRLF rows, symbols.csv's own terminator for pins
   git add                  a row's source must be in git or check_csv rejects it
   ./build.sh <sources> && tools/check_csv.py
-  on ANY failure: all three ledgers are restored byte for byte
+  on ANY failure from retract_dump_rows onward — a gate verdict, a lost
+  .git/index.lock under `git add`, a KeyboardInterrupt — all three ledgers are
+  restored byte for byte before the error leaves this module. The guard has to
+  open at the first WRITE, not at the gate: a tombstone that outlives an aborted
+  run deletes that dump off every other clone on the next union merge.
 
 Recovery. A wave is wide, and one TU in it can be unprovable for reasons that
 have nothing to do with the other nineteen rows — a deterministic C1001 in that
 source, or a row somebody else landed there that no longer verifies. When the
-gate fails, the failing source or row is read out of the gate's own output,
-those rows leave the wave (to their next `altN_source` if the CSV named one,
-otherwise to build/land_wave_dropped.csv with the gate text that condemned
-them), and the remainder is attempted again from a clean ledger. A drop is
+gate fails, the failing source or row is read out of the gate's own output —
+off a line that is ITSELF a failure, because the gate prints the name of a row
+it just proved too — and those rows leave the wave (to their next `altN_source`
+if the CSV named one, otherwise to build/land_wave_dropped.csv with the gate
+text that condemned them), and the remainder is attempted again from a clean
+ledger. A drop is
 always printed and always reported; the exit status is nonzero whenever
 anything was dropped, so no caller can read a partial wave as a full one.
 
@@ -71,6 +77,13 @@ COMPILE_FAILED_RE = re.compile(r"^compile failed: (\S+)$", re.M)
 ROW_FAILED_RE = re.compile(r"^\s+FAIL (\S+) \((\S+)\)\s*$", re.M)
 SOURCE_CLAIM_RE = re.compile(r"^ {4}(Code/\S+?): ", re.M)
 OBJECT_SYMBOL_RE = re.compile(r"(?:^|;)object-symbol=([^;]+)")
+# A line may only condemn a row if the line is itself a failure. build.py prints
+# "  <name> ({source})" for a row it just PROVED (build.py:1213, the one-row OK
+# case), so a bare mention is not evidence. These are the shapes that are:
+# check_csv renders every problem as "  - <text>", build.py prints FAIL/ERROR,
+# and an uncaught exception's last line is "SomeError: <text>".
+GATE_FAILURE_LINE_RE = re.compile(
+    r"^\s+- |\bFAIL\b|\bERROR\b|^\w*(?:Error|Exception): |\bnot found\b")
 
 
 class WaveRow:
@@ -130,6 +143,18 @@ def read_wave(path):
             rows.append(row)
     if not rows:
         raise SystemExit(f"land_wave: {path} holds no rows — nothing to land")
+    # validate_rows overlaps a batch against the LEDGER, never against itself, so
+    # two wave rows straddling the same bytes reach the gate and come back as a
+    # check_csv problem nobody can attribute. Same start and same end cannot occur
+    # here — a duplicate rva is already refused above — so any overlap is a defect.
+    ordered = sorted(rows, key=lambda row: row.rva)
+    for first, second in zip(ordered, ordered[1:]):
+        if second.rva < first.rva + first.size:
+            raise SystemExit(
+                f"land_wave: {path} lines {first.line} and {second.line} claim overlapping "
+                f"ranges: {first.name} [0x{first.rva:08X}, 0x{first.rva + first.size:08X}) and "
+                f"{second.name} [0x{second.rva:08X}, 0x{second.rva + second.size:08X}). "
+                "One of the two extents is wrong; nothing was changed.")
     return rows
 
 
@@ -189,7 +214,7 @@ def read_pins(path):
 # the transaction
 # --------------------------------------------------------------------------
 
-Attempt = collections.namedtuple("Attempt", "ok appended retracted pins output")
+Attempt = collections.namedtuple("Attempt", "ok appended already_landed retracted pins output")
 
 
 def snapshot():
@@ -251,9 +276,21 @@ def attempt(rows, pins):
         if not (ROOT / rel).exists():
             raise SystemExit(f"land_wave: {rel} does not exist — a wave row cannot name a "
                              "source that is not in the tree. Nothing was changed.")
-    formatted = [G.format_row(row.name, row.rva, row.size, row.source, row.notes)
-                 for row in rows]
-    to_append, landed, to_retract = G.validate_rows(formatted, ledger_rows)
+    by_text = {}
+    for row in rows:
+        text = G.format_row(row.name, row.rva, row.size, row.source, row.notes)
+        if text in by_text:
+            raise SystemExit(f"land_wave: wave lines {by_text[text].line} and {row.line} format "
+                             f"to the same ledger row ({text}); nothing was changed")
+        by_text[text] = row
+    to_append, landed_count, to_retract = G.validate_rows(list(by_text), ledger_rows)
+    appending = set(to_append)
+    appended_rows = [by_text[text] for text in to_append]
+    already_rows = [row for text, row in by_text.items() if text not in appending]
+    if len(already_rows) != landed_count:
+        raise SystemExit(f"land_wave: validate_rows reported {landed_count} already-landed "
+                         f"row(s) but withheld {len(already_rows)} of this wave's {len(rows)}; "
+                         "the two disagree, so nothing was changed")
 
     pinned = G.load_pins()
     new_pins = []
@@ -267,33 +304,43 @@ def attempt(rows, pins):
         new_pins.append(pin)
 
     if not to_append and not new_pins:
-        print(f"land_wave: 0 new rows, 0 new pins ({landed} already landed) — nothing to verify")
-        return Attempt(True, 0, 0, 0, "")
+        print(f"land_wave: nothing to append — all {len(rows)} row(s) are already in "
+              "functions.csv exactly as this wave states them; NO gate was run")
+        return Attempt(True, [], already_rows, 0, 0, "")
 
-    if to_retract:
-        G.retract_dump_rows(functions_raw, to_retract)
-    with B.FUNCTIONS.open("ab") as handle:
-        handle.write(b"".join(row.encode("utf-8") + b"\r\n" for row in to_append))
-    if new_pins:
-        with B.SYMBOLS.open("ab") as handle:
-            handle.write(b"".join(pin.encode("utf-8") + symbols_eol for pin in new_pins))
-
-    selectors = sorted({row.source for row in rows})
-    staged = stage_sources(selectors)
-    print(f"land_wave: appended {len(to_append)} row(s) and {len(new_pins)} pin(s) over "
-          f"{len(selectors)} source(s) ({landed} already landed, {len(to_retract)} dump "
-          f"row(s) superseded)")
+    staged = []
 
     def revert(reason):
         restore(snap)
         for rel in staged:
-            G.git("rm", "--cached", "--quiet", "--", rel)
+            result = G.git("rm", "--cached", "--quiet", "--", rel)
+            if result.returncode != 0:
+                print(f"land_wave: could NOT un-stage {rel} (git rm --cached exit "
+                      f"{result.returncode}) — it is still in the index; run "
+                      f"`git reset -- {rel}` before committing anything", file=sys.stderr)
         print(f"land_wave: {reason} — {len(to_append)} row(s), {len(new_pins)} pin(s), "
               f"{len(to_retract)} retraction(s)"
               + (f" and {len(staged)} staged source(s)" if staged else "")
               + " REVERTED (ledgers restored byte for byte)", file=sys.stderr)
 
+    # The guard opens at the FIRST write, not at the gate: retract_dump_rows
+    # rewrites functions.csv and appends a tombstone to deleted_rows.csv, and a
+    # tombstone that survives an abort deletes that dump off every other clone on
+    # the next union merge. Anything between here and the gate's verdict — a lost
+    # .git/index.lock under stage_sources, ENOSPC on the 18 MB append — has to
+    # land in revert(), or the ledgers stay mutated with nothing to restore them.
     try:
+        if to_retract:
+            G.retract_dump_rows(functions_raw, to_retract)
+        with B.FUNCTIONS.open("ab") as handle:
+            handle.write(b"".join(row.encode("utf-8") + b"\r\n" for row in to_append))
+        if new_pins:
+            with B.SYMBOLS.open("ab") as handle:
+                handle.write(b"".join(pin.encode("utf-8") + symbols_eol for pin in new_pins))
+        stage_sources(selectors, staged)
+        print(f"land_wave: appended {len(to_append)} row(s) and {len(new_pins)} pin(s) over "
+              f"{len(selectors)} source(s) ({landed_count} already landed, {len(to_retract)} "
+              "dump row(s) superseded)")
         code, output = run_streamed([str(ROOT / "build.sh"), *selectors],
                                     "./build.sh " + " ".join(selectors))
         if code == 0:
@@ -301,30 +348,34 @@ def attempt(rows, pins):
                 [sys.executable, str(ROOT / "tools" / "check_csv.py")],
                 "python3 tools/check_csv.py")
             output += check_output
-    except BaseException:
-        revert("interrupted")
+    except BaseException as exc:
+        revert(f"aborted by {type(exc).__name__}" + (f": {exc}" if str(exc) else ""))
         raise
     if code != 0:
         revert(f"gate failed (exit {code})")
-        return Attempt(False, 0, 0, 0, output)
+        return Attempt(False, [], [], 0, 0, output)
     print(f"land_wave: verified OK — {len(to_append)} row(s) and {len(new_pins)} pin(s) are live")
-    return Attempt(True, len(to_append), len(to_retract), len(new_pins), output)
+    return Attempt(True, appended_rows, already_rows, len(to_retract), len(new_pins), output)
 
 
-def stage_sources(selectors):
+def stage_sources(selectors, staged):
     """check_csv rejects a row whose source is not in git, so stage the new ones.
 
-    Explicit paths only, and only the ones this wave's rows actually name.
+    Explicit paths only, and only the ones this wave's rows actually name. Each
+    path is recorded in the caller's `staged` as it is added, so a failure part
+    way through still leaves revert() the exact set to un-stage.
     """
-    staged = []
     for rel in selectors:
-        if not (ROOT / rel).exists():
-            raise SystemExit(f"land_wave: {rel} does not exist — a wave row cannot name a "
-                             "source that is not on disk")
-        if G.git("ls-files", "--error-unmatch", "--", rel).returncode != 0:
-            G.git("add", "--", rel, check=True)
-            staged.append(rel)
-    return staged
+        if G.git("ls-files", "--error-unmatch", "--", rel).returncode == 0:
+            continue
+        # Not G.git(check=True): that routes stderr to DEVNULL, so a lost index
+        # lock would surface as a bare "exit status 128" with no reason attached.
+        result = subprocess.run(["git", "-C", str(ROOT), "add", "--", rel],
+                                capture_output=True, text=True)
+        if result.returncode != 0:
+            raise SystemExit(f"land_wave: git add {rel} failed (exit {result.returncode}): "
+                             f"{result.stderr.strip() or '(git printed nothing)'}")
+        staged.append(rel)
 
 
 def run_streamed(command, label):
@@ -380,8 +431,13 @@ def attribute(output, rows):
         # bad row) and the COFF symbol its notes aim the comparison at (how a
         # mistyped object-symbol= surfaces — `symbol not found in object: ...`,
         # raised before build.py can name the row it came from). Both are unique
-        # decorated names, so a hit is evidence, not a guess.
+        # decorated names — but only on a line that is itself a failure. build.py
+        # prints "  <name> (<source>)" for a row it just PROVED, so matching on any
+        # mention would let a green verify_functions condemn its own row when the
+        # run failed somewhere else entirely.
         for line in output.splitlines():
+            if not GATE_FAILURE_LINE_RE.search(line):
+                continue
             for row in rows:
                 if any(token in line for token in gate_identity(row)):
                     blame(row, f"named by the gate: {line.strip()}")
@@ -415,7 +471,11 @@ def record_drops(dropped, wave_path):
 
 
 def land(rows, pins, wave_path, max_attempts):
-    """-> (landed rows, [(row, reason)] dropped). Holds the ledger lock throughout."""
+    """-> (appended rows, already-held rows, [(row, reason)] dropped).
+
+    Appended and already-held are reported apart because only the first is a
+    delta this run moved. Holds the ledger lock throughout.
+    """
     handle = G.LOCK_FILE.open("a")
     lock(handle, exclusive=True,
          wait_notice="land_wave: waiting for ledger lock (another append is running)...")
@@ -426,7 +486,7 @@ def land(rows, pins, wave_path, max_attempts):
                   f"{sum(row.size for row in pending):,d} byte(s)")
             result = attempt(pending, pins)
             if result.ok:
-                return pending, dropped
+                return result.appended, result.already_landed, dropped
             blamed = attribute(result.output, pending)
             if not blamed:
                 raise SystemExit(
@@ -448,7 +508,7 @@ def land(rows, pins, wave_path, max_attempts):
                     dropped.append((row, entry[1]))
             pending = keep
             if not pending:
-                return [], dropped
+                return [], [], dropped
         raise SystemExit(f"land_wave: gave up after {max_attempts} attempts with "
                          f"{len(pending)} row(s) still unproved; the ledgers are byte-identical "
                          "to before the run. Raise --max-attempts only if the drops above show "
@@ -477,7 +537,7 @@ def main(argv=None):
           f"over {len({r.source for r in rows})} source(s), {len(pins)} pin(s)")
 
     try:
-        landed, dropped = land(rows, pins, args.wave, args.max_attempts)
+        appended, already, dropped = land(rows, pins, args.wave, args.max_attempts)
     except G.FormatError as exc:
         # A malformed field or a double claim is a defect in whatever wrote the
         # wave, caught before a single byte was appended. Routing around it would
@@ -485,8 +545,15 @@ def main(argv=None):
         raise SystemExit(f"land_wave: this wave conflicts with the ledger — {exc}. "
                          "Nothing was changed.")
 
-    print(f"\nland_wave: landed {len(landed)} row(s), {sum(r.size for r in landed):,d} byte(s) "
-          f"over {len({r.source for r in landed})} source(s)")
+    print(f"\nland_wave: appended and proved {len(appended)} row(s), "
+          f"{sum(r.size for r in appended):,d} byte(s) over "
+          f"{len({r.source for r in appended})} source(s)")
+    if already:
+        # Never folded into the figure above: those rows were in functions.csv
+        # before this run, so counting them as landed reports a progress delta this
+        # run did not move — and when every row is already held no gate ran at all.
+        print(f"land_wave: {len(already)} row(s), {sum(r.size for r in already):,d} byte(s) "
+              "were already in functions.csv before this run — NOT part of that figure")
     if dropped:
         print(f"land_wave: dropped {len(dropped)} row(s), "
               f"{sum(r.size for r, _ in dropped):,d} byte(s) — reported in "

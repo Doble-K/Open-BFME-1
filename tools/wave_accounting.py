@@ -48,7 +48,12 @@ loudly rather than pretending.
 The alias rows carry a synthetic `?a_<rva>@@YAXXZ` name in the same family as
 the `?d_<rva>@@YAXXZ` dumps they supersede: what is recovered is that these
 bytes rebuild from a TU we hold, not which function they were. A recovered
-identity replaces the name later, the way it does for any gen row.
+identity replaces the name later, the way it does for any gen row — and the
+notes lead with `gen-alias;` so that check_csv can enforce it. Without that
+prefix check_csv reads a synthetic name and a real one over the same range as
+an ICF alias group and lets BOTH stand (check_csv.py:173-190); with it, the
+placeholder is the one that must yield. The `;` costs nothing: build.py's
+`object-symbol=` and progress.py's gen-lane test both anchor on `^` or `;`.
 
 Subcommands
   report            per-mechanism byte accounting over the not-held universe
@@ -78,6 +83,8 @@ ALL_MECHS = ("A", "B", "C", "D", "E", "F", "G1", "G2", "H", "I")
 SUBKINDS = ("genasm", "naked", "unclaimed")
 LIB_SUFFIXES = {".lib", ".obj"}
 ALIAS_NOTE = "C++ alias"
+# check_csv keys the placeholder-must-yield rule on notes STARTING with "gen-".
+ALIAS_NOTE_PREFIX = "gen-alias;"
 OBJECT_SYMBOL_RE = re.compile(r"(?:^|;)object-symbol=([^;]+)")
 
 
@@ -533,7 +540,8 @@ def alias_owners(models, limit):
         if key in seen:
             continue
         seen.add(key)
-        owners.append((row["source"], f"object-symbol={key[1]};{ALIAS_NOTE}"))
+        owners.append((row["source"],
+                       f"{ALIAS_NOTE_PREFIX}object-symbol={key[1]};{ALIAS_NOTE}"))
         if len(owners) > limit:
             break
     return owners
