@@ -105932,7 +105932,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000a1d60@@YAXXZ,,0x000A1D60,17,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a1d60
 ?d_000a1d80@@YAXXZ,,0x000A1D80,38,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a1d80
 ?d_000a1dd0@@YAXXZ,,0x000A1DD0,314,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a1dd0
-?d_000a1fb0@@YAXXZ,,0x000A1FB0,102,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a1fb0
 ?d_000a2030@@YAXXZ,,0x000A2030,196,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a2030
 ?d_000a21f0@@YAXXZ,,0x000A21F0,41,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a21f0
 ?d_000a2230@@YAXXZ,,0x000A2230,97,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a2230
@@ -157948,3 +157947,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?setFullyObscuredByShroud@W3DTankTruckDraw@@UAEX_N@Z,,0x007815E0,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw_setFullyObscuredByShroud_Thunk.cpp,matched,zh_sweep packet 007815e0
 ?doTeamSpinForFramecount@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F11E0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamSpinForFramecount_Thunk.cpp,matched,zh_sweep packet 002f11e0
 ?resetIdleScan@TurretAIIdleState@@AAEXXZ,,0x0018CAF0,55,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_resetIdleScan_Thunk.cpp,matched,zh_sweep packet 0018caf0
+?friend_onCondition@State@@QAEXP6A_NPAV1@PAX@ZI1PBD@Z,,0x000A1FB0,102,Code/GameEngine/Source/Common/State_friend_onCondition_Thunk.cpp,matched,zh_sweep packet 000a1fb0
