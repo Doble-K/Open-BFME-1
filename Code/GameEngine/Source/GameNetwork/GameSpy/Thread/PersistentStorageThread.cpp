@@ -1193,34 +1193,31 @@ PSPlayerStats::PSPlayerStats( void )
 	reset();
 }
 
-// ?reset@PSPlayerStats@@ present-unmatched
 void PSPlayerStats::reset( void )
 {
-	id = 0;
-	locale = 0;
-	gamesAsRandom = 0;
-	lastFPS = 0;
-	lastGeneral = 0;
-	gamesInRowWithLastGeneral = 0;
-	builtNuke = 0;
-	builtSCUD = 0;
-	builtParticleCannon = 0;
-	challengeMedals = 0;
-	battleHonors = 0;
-	winsInARow = 0;
-	maxWinsInARow = 0;
-	lossesInARow = 0;
-	maxLossesInARow = 0;
-	disconsInARow = 0;
-	maxDisconsInARow = 0;
-	desyncsInARow = 0;
-	maxDesyncsInARow = 0;
-	lastLadderPort = 0;
-
-	//Added By Sadullah Nader
-	maxQMwinsInARow = 0;
-	QMwinsInARow = 0;
-	//
+	BfmePlayerStats &me = (BfmePlayerStats &)*this;
+	me.id = 0;
+	me.locale = 0;
+	me.gamesAsRandom = 0;
+	me.lastFPS = 0;
+	me.lastSide = 1;                 // no side chosen yet reads as side 1, not 0
+	me.gamesInRowWithLastSide = 0;
+	me.battleHonors = 0;
+	me.challengeMedals = 0;
+	me.winsInARow = 0;
+	me.maxWinsInARow = 0;
+	me.lossesInARow = 0;
+	me.maxLossesInARow = 0;
+	me.gamesOn1_1_Ladder = 0;
+	me.gamesOn2_2_Ladder = 0;
+	me.disconsInARow = 0;
+	me.maxDisconsInARow = 0;
+	me.desyncsInARow = 0;
+	me.maxDesyncsInARow = 0;
+	me.lastLadderPlayed = "";
+	me.best1v1LadderRank = -1;       // unranked
+	me.best2v2LadderRank = -1;
+	me.dateCreated = "";
 }
 
 //-------------------------------------------------------------------------
