@@ -72188,3 +72188,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?setFlipRecursive@W3DTerrainBackground@@IAEXHHH@Z,0x0001B5F9
 ??0Keyboard@@QAE@XZ,0x00049148,incremental-link thunk retail uses from DirectInputKeyboard ctor
 ??1BfmeEvaSideSoundsArray@@QAE@XZ,0x0089CC70,provisional structural name: incremental-link thunk fronting 0x0089C900 the dtor of EvaCheckInfo member at +0x8; count-plus-array container not an STLport vector
+?_M_erase@?$_Rb_tree@HU?$pair@$$CBHPAU_SBServer@@@_STL@@U?$_Select1st@U?$pair@$$CBHPAU_SBServer@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHPAU_SBServer@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHPAU_SBServer@@@_STL@@@2@@Z,0x0004412A,incremental-link thunk fronting the tree_k4_p4pod _M_erase at 0x005C5DF0
