@@ -122311,7 +122311,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0039ec60@@YAXXZ,,0x0039EC60,13,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_0039ef60@@YAXXZ,,0x0039EF60,244,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a06b0@@YAXXZ,,0x003A06B0,98,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
-?d_003a0810@@YAXXZ,,0x003A0810,53,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a0cf0@@YAXXZ,,0x003A0CF0,87,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a0da0@@YAXXZ,,0x003A0DA0,356,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a0f60@@YAXXZ,,0x003A0F60,14,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?getApparentControllingPlayer@GarrisonContain@@UBEPBVPlayer@@PBV2@@Z,,0x0021E340,88,Code/GameEngine/Source/Common/GarrisonContain_getApparentControllingPlayer_Thunk.cpp,matched,
 ?ParseActionDataChunk@ScriptAction@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00358FE0,59,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptsParseActionDataChunkThunk.cpp,matched,Open-BFME7: isolated port; BFME Script keeps m_action at +0x20 not +0x28; tie vs ParseActionFalseDataChunk broken by the twin at 0x00359030 reading +0x24
 ?SinglePlayerMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004E9540,61,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,matched,Open-BFME7: ZH body verbatim; both callee pins already existed and the static shutdownComplete inlines exactly as its sibling SinglePlayerMenuShutdown proved
+??0RankInfo@@QAE@XZ,,0x003A0810,53,Code/GameEngine/Source/GameLogic/System/RankInfoConstructorThunk.cpp,matched,Open-BFME7: layout read off the store sequence; BFME adds five -1 words at +0x14..+0x24 the reference RankInfo does not have
