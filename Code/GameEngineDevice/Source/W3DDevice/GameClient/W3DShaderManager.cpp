@@ -92,6 +92,28 @@ extern "C" __declspec(dllimport) int __stdcall HeapFree(void *, unsigned long, v
 // Turn this on to turn off pixel shaders. jba[4/3/2003]
 #define do_not_DISABLE_PIXEL_SHADERS 1
 
+// BFME's IDirect3DDevice8 is not the retail-SDK interface the sweep shim models:
+// its method table is shifted, so calling the shim's SetTexture/SetPixelShader
+// declarations emits the wrong vtable slot. dx8wrapper.h already reaches slot 65
+// by hand for Set_DX8_Texture; these do the same for the slots this file needs.
+namespace {
+	enum { BFME_SET_TEXTURE_SLOT = 65, BFME_SET_PIXEL_SHADER_SLOT = 107 };
+	typedef HRESULT (__stdcall *BFMESetTextureFn)(IDirect3DDevice8 *, DWORD, IDirect3DBaseTexture8 *);
+	typedef HRESULT (__stdcall *BFMESetPixelShaderFn)(IDirect3DDevice8 *, DWORD);
+
+	__forceinline void bfmeSetTexture(DWORD stage, IDirect3DBaseTexture8 *texture)
+	{
+		IDirect3DDevice8 *device = DX8Wrapper::_Get_D3D_Device8();
+		(*(BFMESetTextureFn **)device)[BFME_SET_TEXTURE_SLOT](device, stage, texture);
+	}
+
+	__forceinline void bfmeSetPixelShader(DWORD handle)
+	{
+		IDirect3DDevice8 *device = DX8Wrapper::_Get_D3D_Device8();
+		(*(BFMESetPixelShaderFn **)device)[BFME_SET_PIXEL_SHADER_SLOT](device, handle);
+	}
+}
+
 /** Interface definition for custom shaders we define in our app.  These shaders can perform more complex
 	operations than those allowed in the WW3D2 shader system.
 */
@@ -1661,8 +1683,8 @@ void TerrainShader2Stage::reset(void)
 	ShaderClass::Invalidate();
 
 	//Free references to textures
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(0, NULL);
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(1, NULL);
+	bfmeSetTexture(0, NULL);
+	bfmeSetTexture(1, NULL);
 
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|0);
@@ -2202,16 +2224,13 @@ Int TerrainShaderPixelShader::set(Int pass)
 // ?reset@TerrainShaderPixelShader@@EAEXXZ present-unmatched
 void TerrainShaderPixelShader::reset(void)
 {
-// ?_Get_D3D_Device8@DX8Wrapper@@SAPAUIDirect3DDevice8@@XZ present-unmatched
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(2,NULL);	//release reference to any texture
-// ?_Get_D3D_Device8@DX8Wrapper@@SAPAUIDirect3DDevice8@@XZ present-unmatched
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(3,NULL);	//release reference to any texture
+	bfmeSetTexture(2,NULL);	//release reference to any texture
+	bfmeSetTexture(3,NULL);	//release reference to any texture
 
-// ?_Get_D3D_Device8@DX8Wrapper@@SAPAUIDirect3DDevice8@@XZ present-unmatched
-	DX8Wrapper::_Get_D3D_Device8()->SetPixelShader(0);	//turn off pixel shader
+	bfmeSetPixelShader(0);	//turn off pixel shader
 
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(0, NULL);
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(1, NULL);
+	bfmeSetTexture(0, NULL);
+	bfmeSetTexture(1, NULL);
 
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|0);
@@ -3412,14 +3431,13 @@ Int FlatTerrainShader2Stage::init( void )
 	return TRUE;
 }
 
-// ?reset@FlatTerrainShader2Stage@@UAEXXZ present-unmatched
 void FlatTerrainShader2Stage::reset(void)
 {
 	ShaderClass::Invalidate();
 
 	//Free references to textures
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(0, NULL);
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(1, NULL);
+	bfmeSetTexture(0, NULL);
+	bfmeSetTexture(1, NULL);
 
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|0);
@@ -3861,19 +3879,15 @@ Int FlatTerrainShaderPixelShader::set(Int pass)
 	return TRUE;
 }
 
-// ?reset@FlatTerrainShaderPixelShader@@UAEXXZ present-unmatched
 void FlatTerrainShaderPixelShader::reset(void)
 {
-// ?_Get_D3D_Device8@DX8Wrapper@@SAPAUIDirect3DDevice8@@XZ present-unmatched
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(2,NULL);	//release reference to any texture
-// ?_Get_D3D_Device8@DX8Wrapper@@SAPAUIDirect3DDevice8@@XZ present-unmatched
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(3,NULL);	//release reference to any texture
+	bfmeSetTexture(2,NULL);	//release reference to any texture
+	bfmeSetTexture(3,NULL);	//release reference to any texture
 
-// ?_Get_D3D_Device8@DX8Wrapper@@SAPAUIDirect3DDevice8@@XZ present-unmatched
-	DX8Wrapper::_Get_D3D_Device8()->SetPixelShader(0);	//turn off pixel shader
+	bfmeSetPixelShader(0);	//turn off pixel shader
 
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(0, NULL);
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(1, NULL);
+	bfmeSetTexture(0, NULL);
+	bfmeSetTexture(1, NULL);
 
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|0);
