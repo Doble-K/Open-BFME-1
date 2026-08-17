@@ -69,9 +69,30 @@ address is not a function start.
   mid-instruction inside an 0f 84 displacement). A size rule derived from the
   early cases would silently no-op on those.
 
-  The end-invariance is the only thing true in both directions: keep the end,
-  snap the start to the enclosing start in reverse/ghidra_functions.csv,
-  recompute size = end - start. No case analysis needed.
+  The end-invariance is the only thing true in both directions: keep the end and
+  recover the start from reverse/ghidra_functions.csv. But "snap to the enclosing
+  start" is UNDER-SPECIFIED and ships at 3 of 6. Back-snapping and forward-snapping
+  each fix one class and fail SILENTLY on the other, returning a real, plausible
+  function start that is simply the wrong body -- the previous function for the
+  padding class, the next function for the interior class. That is worse than
+  today's banner, which at least announces that it does not know.
+
+  The directional test is 6 of 6 (verified here against the live inventory):
+
+      P = greatest ghidra start <= A
+      if P + size(P) > A:  body = P                        # inside a function
+      else:                body = least ghidra start >= A  # in padding
+      size = packet_end - body
+
+  The coverage test decides the class without trusting the packet's size line.
+  The inventory has a start for all six bad addresses with sizes matching retail
+  exactly (191, 207, 4042, 248, 306, 11), including the mid-instruction case, so
+  no missing-start fallback is needed.
+
+  KEEP the existing "spans N function start(s)" check. Snapping fixes the address;
+  it does not make a packet convertible. 0x00C0A3CE snaps correctly to 0xC0A3CB and
+  is still an 11-byte gen_uw funclet whose packet end would claim 155 bytes across
+  9 starts.
 - Identity: eight independent packets named the wrong function, one of them a
   function already landed at another address. Identity fails hardest where the
   sweep reports a TIE between candidates.
