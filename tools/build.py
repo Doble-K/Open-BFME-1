@@ -898,50 +898,102 @@ def compile_source(source, output):
               f"{source.relative_to(ROOT)} ({attempt + 2}/3)", file=sys.stderr)
 
 
-def resolve_funclet_by_evidence(path, row, target):
-    """Re-find a gen-funclet body whose recorded $L label no longer exists.
+def is_funclet_row(row, object_symbol):
+    """True for a gen-funclet row pinned to a compiler-local $L label."""
+    return bool("gen-funclet" in (row.get("notes") or "")
+                and re.fullmatch(r"\$L\d+", object_symbol))
+
+
+def holds_funclet(body, relocs, target):
+    """True if `body` starts with this row's funclet.
+
+    Pre-link, every relocation site holds an addend rather than the address the
+    linker wrote, so those bytes are masked out of both sides -- the same
+    comparison compile_function makes, one step earlier and without the pins.
+    """
+    size = len(target)
+    if len(body) < size:
+        return False
+    left, right = bytearray(body[:size]), bytearray(target)
+    for offset, _rtype, _sym in relocs:
+        if offset + 4 <= size:
+            left[offset:offset + 4] = right[offset:offset + 4] = b"\0\0\0\0"
+    return left == right
+
+
+def funclet_candidates(path, row, target):
+    """Every $L body in the claimed parent's group that IS this row's funclet.
 
     An SEH funclet has no name of its own, so those rows pin it to the
     compiler-local label its parent's COMDAT happened to receive. Those numbers
-    are assigned per translation unit and shift whenever ANY unrelated edit to
-    the TU changes how many labels precede them, which silently breaks rows
-    whose funclet is byte-for-byte untouched. That has taken the full build
-    down repeatedly; a hand repair goes stale the next time the TU is touched.
+    are per-compilation ordinals: they shift whenever ANY unrelated edit to the
+    TU changes how many labels precede them, and the pin then names a DIFFERENT
+    body -- which is why nothing may trust one it has not just checked. When
+    this was written 184 of the ledger's 20,045 funclet pins had already been
+    renumbered off their body.
 
-    Recover it from evidence instead of bookkeeping: inside the section that
-    also holds __ehhandler$<parent> -- the parent's own funclet group -- take
-    the $L symbols whose bytes equal retail at this row's address once
-    relocation sites are masked. Only a unique answer is accepted, so an
-    ambiguous group still fails loudly rather than guessing.
+    Identity comes from evidence instead: inside the section that also holds
+    __ehhandler$<parent> -- the parent's own funclet group -- the $L symbols
+    whose bytes equal retail at this row's address. The caller decides, and only
+    a unique answer may be used; a group of look-alikes has to fail loudly.
     """
     parent = re.search(r"(?:^|;)parent=([^;]+)", row.get("notes", ""))
     if not parent:
-        return None
+        return []
     stat = path.stat()
     data, sections, symbols = _object_layout(str(path), stat.st_mtime_ns, stat.st_size)
     handler = f"__ehhandler${parent.group(1)}"
     group = [s["section"] for s in symbols
              if s["name"] == handler and s["section"] > 0]
     if not group:
-        return None
-    size = len(target)
+        return []
     hits = []
     for symbol in symbols:
         if symbol["section"] != group[0] or not re.fullmatch(r"\$L\d+", symbol["name"]):
             continue
         try:
-            body, relocs = read_object_symbol_bytes(path, symbol["name"], size)
+            body, relocs = read_object_symbol_bytes(path, symbol["name"], len(target))
         except ValueError:
             continue
-        if len(body) < size:
-            continue
-        left, right = bytearray(body[:size]), bytearray(target)
-        for offset, _rtype, _sym in relocs:
-            if offset + 4 <= size:
-                left[offset:offset + 4] = right[offset:offset + 4] = b"\0\0\0\0"
-        if left == right:
+        if holds_funclet(body, relocs, target):
             hits.append(symbol["name"])
-    return hits[0] if len(hits) == 1 else None
+    return hits
+
+
+def read_funclet(row, object_symbol, output, target):
+    """The bytes of a gen-funclet row's body, and a note when the pin was stale.
+
+    Returns (bytes, relocs, note). The $L pin is a hint that has to earn its
+    keep: the moment it does not hold this funclet, the body is re-identified
+    from the parent's group (see funclet_candidates) or the row goes red with
+    what it actually compiled. Nothing is ever picked from a field of two.
+    """
+    try:
+        compiled, relocs = read_object_symbol_bytes(output, object_symbol, len(target))
+    except ValueError as missing:
+        compiled, relocs, gone = None, None, missing
+    else:
+        if holds_funclet(compiled, relocs, target):
+            return compiled, relocs, None
+        gone = None
+
+    hits = funclet_candidates(output, row, target)
+    if len(hits) > 1:
+        raise SystemExit(
+            f"{row['name']} ({row['source']}): {object_symbol} does not hold this funclet "
+            f"and {len(hits)} bodies in the parent's group match it equally "
+            f"({', '.join(hits)}). Byte evidence cannot tell them apart, so the gate will "
+            "not pick one — the row needs a body it can name on its own.")
+    if hits:
+        compiled, relocs = read_object_symbol_bytes(output, hits[0], len(target))
+        return compiled, relocs, (
+            f"{object_symbol} was renumbered by an edit to this TU; the body is {hits[0]} "
+            "in the object built now (stale ledger pin, not a byte mismatch)")
+    if gone is not None:
+        raise gone
+    return compiled, relocs, (
+        f"{object_symbol} no longer holds this funclet and nothing in the parent's group "
+        "does either, so this is the body that label names now")
 
 
 def compile_function(row, symbol_map, output):
@@ -949,15 +1001,11 @@ def compile_function(row, symbol_map, output):
     target_size = int(row["target_size"])
     target = read_target_bytes(target_rva, target_size)
     object_symbol = ledger_object_symbol(row)
-    try:
+    note = None
+    if is_funclet_row(row, object_symbol):
+        compiled, relocs, note = read_funclet(row, object_symbol, output, target)
+    else:
         compiled, relocs = read_object_symbol_bytes(output, object_symbol, target_size)
-    except ValueError:
-        recovered = None
-        if "gen-funclet" in (row.get("notes") or "") and re.fullmatch(r"\$L\d+", object_symbol):
-            recovered = resolve_funclet_by_evidence(output, row, target)
-        if recovered is None:
-            raise
-        compiled, relocs = read_object_symbol_bytes(output, recovered, target_size)
 
     # A lib member is pre-link code: every relocation site still holds an addend
     # rather than the address the linker wrote, and its callees are
@@ -1001,6 +1049,7 @@ def compile_function(row, symbol_map, output):
         "relocs": relocs,
         "masked": masked,
         "concrete": target_size - sum(covered),
+        "note": note,
     }
 
 
@@ -1221,6 +1270,7 @@ def verify_functions(only=None):
 
     failures = 0
     patches = []
+    renumbered = []
     for row in rows:
         patch = compile_function(row, symbol_map, row_object(row))
         target = patch["target"]
@@ -1229,10 +1279,14 @@ def verify_functions(only=None):
         thin = patch["masked"] and patch["concrete"] < MIN_LIB_CONCRETE
         if compiled == target and not thin:
             patches.append(patch)
+            if patch["note"]:
+                renumbered.append(f"{row['name']} ({row['source']}): {patch['note']}")
             continue
 
         failures += 1
         print(f"  FAIL {row['name']} ({row['source']})")
+        if patch["note"]:
+            print(f"    {patch['note']}")
         if thin and compiled == target:
             print(f"    only {patch['concrete']} of {len(target)} byte(s) lie outside a "
                   "relocation site; a masked comparison this thin proves nothing")
@@ -1242,6 +1296,13 @@ def verify_functions(only=None):
             print(f"    unresolved call(s): {calls} (add to reverse/symbols.csv)")
         print(f"    target:   {format_bytes(target)}")
         print(f"    compiled: {format_bytes(compiled)}")
+
+    if renumbered:
+        # Green, but on a pin the ledger got wrong: say so every time, or the
+        # only record of a rotting pin is the day it lands on a look-alike.
+        print(f"Funclet pins: {len(renumbered)} row(s) verified past a renumbered $L label")
+        for line in renumbered[:5]:
+            print(f"    {line}")
 
     if failures:
         print(f"Functions: FAIL {failures}/{total}")
