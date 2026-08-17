@@ -129,3 +129,39 @@ def test_a_truncated_read_is_not_mistaken_for_a_stub():
     a jump into whatever the next bytes happen to be."""
     read = _reader({0x00FFFFFC: bytes([0xE9, 0x01])})
     assert gen_small.tinst_resolve(read, 0x00FFFFFC) == 0x00FFFFFC
+
+
+# The call slots are the half a masked comparison cannot see, and they are where
+# two instantiations that compile to identical code differ: deque<int>'s
+# _M_push_back_aux_v is its neighbours' code reaching a different
+# _M_reallocate_map. So the pin has to come out of the RETAIL bytes.
+
+def test_a_rel32_callee_is_pinned_at_the_address_retail_reaches():
+    # e8 90 06 9c ff at offset 35 of the body at 0x006472C0 reaches 0x00007978
+    retail = bytes(35) + bytes([0xE8]) + (0x00007978 - (0x006472C0 + 35 + 5)
+                                          & 0xFFFFFFFF).to_bytes(4, "little")
+    pins = gen_small.tinst_callee_pins(
+        0x006472C0, retail, [(36, 0x0014, "?_M_reallocate_map@@YAXXZ")], {})
+    assert pins == {"?_M_reallocate_map@@YAXXZ,0x00007978"}
+
+
+def test_a_name_that_already_answers_is_not_pinned_again():
+    """symbols.csv is additive, so a second address under one name turns that
+    name's slot into a wildcard for every other site that uses it."""
+    retail = bytes(4) + bytes([0xE8, 0x00, 0x00, 0x00, 0x00])
+    pinned = {"?_M_reallocate_map@@YAXXZ": {0x009EE360}}
+    assert gen_small.tinst_callee_pins(
+        0x006472C0, retail, [(5, 0x0014, "?_M_reallocate_map@@YAXXZ")], pinned) == set()
+
+
+def test_only_rel32_slots_are_pinned():
+    """A DIR32 slot holds an absolute address, not a displacement, so decoding
+    it as one would pin a nonsense target."""
+    retail = bytes([0x00] * 8)
+    assert gen_small.tinst_callee_pins(
+        0x006472C0, retail, [(0, 0x0006, "?some_data@@3HA")], {}) == set()
+
+
+def test_a_slot_running_past_the_body_is_not_decoded():
+    assert gen_small.tinst_callee_pins(
+        0x006472C0, bytes([0xE8, 0x01]), [(1, 0x0014, "?f@@YAXXZ")], {}) == set()

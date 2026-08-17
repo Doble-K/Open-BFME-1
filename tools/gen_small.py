@@ -3817,6 +3817,7 @@ def tinst_probe(read, named, cell, headers, claimed, taken):
     # the expensive part of a run and the batch number shifts every time an
     # earlier cell lands, which would throw the whole compile cache away.
     key = re.sub(r"[^A-Za-z0-9]+", "_", f"{container}_{spelling}").strip("_")[:58]
+    pinned = load_pin_addresses()
     for regime, flags in TINST_REGIMES.items():
         for prerts in ((True, False) if headers else (False,)):
             source = PENDING_DIR / f"tinstprobe_{key}_{regime}.cpp"
@@ -3829,7 +3830,7 @@ def tinst_probe(read, named, cell, headers, claimed, taken):
                     B.compile_source(source, obj)
             except BaseException:      # compile_source signals failure with SystemExit
                 continue
-            hits = []
+            hits, pins = [], set()
             for symbol, body, relocs in tg_object_bodies(obj):
                 if symbol not in named or symbol in claimed:
                     continue
@@ -3844,9 +3845,32 @@ def tinst_probe(read, named, cell, headers, claimed, taken):
                 if any(body[i] != retail[i] for i in range(len(body)) if i not in masked):
                     continue
                 hits.append((symbol, rva, len(body)))
+                pins.update(tinst_callee_pins(rva, retail, relocs, pinned))
             if hits:
-                return hits, text, regime
-    return [], None, None
+                return hits, text, regime, sorted(pins)
+    return [], None, None, []
+
+
+def tinst_callee_pins(rva, retail, relocs, pinned):
+    """The symbols.csv lines a matched body needs, read out of the RETAIL bytes.
+
+    Matching outside the relocation slots proves the code and says nothing about
+    where the calls go, which is exactly how a body can be byte-identical and
+    still be the wrong instantiation -- `deque<int>::_M_push_back_aux_v` differs
+    from its neighbours only in which _M_reallocate_map it reaches. So each
+    REL32 target is decoded from retail and pinned under the symbol the object
+    relocates against, and the gate then proves the slot rather than masking it.
+
+    A name that already answers to some address is left alone: appending a
+    second address to it turns its slot into a wildcard for every other site.
+    """
+    out = set()
+    for offset, rtype, symbol in relocs:
+        if rtype != 0x0014 or offset + 4 > len(retail) or symbol in pinned:
+            continue
+        displacement = int.from_bytes(retail[offset:offset + 4], "little", signed=True)
+        out.add(f"{symbol},0x{(rva + offset + 4 + displacement) & 0xFFFFFFFF:08X}")
+    return out
 
 
 def tinst_source_path(number):
@@ -3887,8 +3911,8 @@ def cmd_gen_tinst(args):
         if missing:
             refused[f"no reference header for {missing[0]}"] += 1
             continue
-        hits, text, regime = tinst_probe(read, named, (container, spelling),
-                                         headers, claimed, taken)
+        hits, text, regime, pins = tinst_probe(read, named, (container, spelling),
+                                               headers, claimed, taken)
         if not hits:
             refused["no member reproduces the retail bytes"] += 1
             continue
@@ -3897,7 +3921,7 @@ def cmd_gen_tinst(args):
                 f"{source.relative_to(ROOT).as_posix()},matched,"
                 f"{TINST_NOTE};element={spelling};regime={regime}"
                 for symbol, rva, size in sorted(hits, key=lambda h: -h[2])]
-        verified = tg_write_batch(source, text, rows, [], thunks, report, TINST_NOTE)
+        verified = tg_write_batch(source, text, rows, pins, thunks, report, TINST_NOTE)
         if verified:
             written.append(verified)
             number = tinst_next_number(number + 1)
