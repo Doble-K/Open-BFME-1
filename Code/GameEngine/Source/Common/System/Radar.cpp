@@ -976,7 +976,24 @@ Object *Radar::objectUnderRadarPixel( const ICoord2D *pixel )
 // ------------------------------------------------------------------------------------------------
 /** Search the object list for an object that maps to the given logical radar coords */
 // ------------------------------------------------------------------------------------------------
-// ?searchListForRadarLocationMatch@Radar@@IAEPAVObject@@PAVRadarObject@@PAUICoord2D@@@Z present-unmatched
+// ------------------------------------------------------------------------------------------------
+// Open-BFME5: BFME's RadarObject carries ONE vtable pointer where the reference
+// Common/Radar.h gives it two -- it derives from both MemoryPoolObject and
+// Snapshot there -- so m_object is at +0x4 and m_next at +0x8 rather than +0x8
+// and +0xc.  Exactly the shift TintEnvelope showed this morning.  Radar.h is
+// shared and this file already owns eighteen matched rows compiled against the
+// reference offsets, so the two reads are spelled here and nowhere else.
+// ------------------------------------------------------------------------------------------------
+static Object *bfmeRadarObjectGetObject( RadarObject *radarObject )
+{
+	return *(Object **)((char *)radarObject + 0x4);
+}
+
+static RadarObject *bfmeRadarObjectGetNext( RadarObject *radarObject )
+{
+	return *(RadarObject **)((char *)radarObject + 0x8);
+}
+
 Object *Radar::searchListForRadarLocationMatch( RadarObject *listHead, ICoord2D *radarMatch )
 {
 
@@ -987,11 +1004,11 @@ Object *Radar::searchListForRadarLocationMatch( RadarObject *listHead, ICoord2D 
 	// scan the list
 	RadarObject *radarObject;
 	ICoord2D radar;
-	for( radarObject = listHead; radarObject; radarObject = radarObject->friend_getNext() )
+	for( radarObject = listHead; radarObject; radarObject = bfmeRadarObjectGetNext( radarObject ) )
 	{
 
 		// get object
-		Object *obj = radarObject->friend_getObject();
+		Object *obj = bfmeRadarObjectGetObject( radarObject );
 		
 		// sanity
 		if( obj == NULL )
