@@ -72202,3 +72202,7 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ??4BfmeRendererListBase@@QAEAAV0@ABV0@@Z,0x00887B60,provisional structural name: the four-byte base half of Render2DSentenceClass::PendingSurfaceStruct::Renderers; the address is an ICF group the ledger leads with StringBase<char>?s copy ctor
 ?_M_erase@?$_Rb_tree@IU?$pair@$$CBIPAVState@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVState@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBIPAVState@@@_STL@@@2@@Z,0x0001D9C1,ICF alias: this thunk already carries several _M_erase names for four-byte-key trees and fronts the body at 0x00655230
 ?prependDirtyModule@PartitionDirtyListOwner@@QAEXPAVPartitionData@@@Z,0x008F8C50,descriptive name; BFME-only dirty-list link helper called from PartitionData::makeDirty
+?setInt@UserPreferences@@QAEXVAsciiString@@H@Z,0x00009B3D,incremental-link thunk fronting the unclaimed body 0x000A96F0
+?getInt@UserPreferences@@QBEHVAsciiString@@H@Z,0x000443B9,incremental-link thunk fronting the unclaimed body 0x000A9490
+?setBool@UserPreferences@@QAEXVAsciiString@@_N@Z,0x00017CC9,incremental-link thunk
+?getBool@UserPreferences@@QBE_NVAsciiString@@_N@Z,0x0002C7CD,incremental-link thunk
