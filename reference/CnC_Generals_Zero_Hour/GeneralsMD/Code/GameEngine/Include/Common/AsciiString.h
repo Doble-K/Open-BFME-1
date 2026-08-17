@@ -360,6 +360,14 @@ inline AsciiString::AsciiString() : m_data(0)
 }
 
 // -----------------------------------------------------
+// Open-BFME5: retail's inlining decision for this constructor is per call site,
+// not global -- some TUs expand it, some call it out of line at 0x00088BC0. So
+// the attribute is guarded and the macro is defined by the one TU that needs it,
+// never here. A blanket __declspec(noinline) would land the callers and break
+// every TU that expands it. See docs/lessons.md.
+#ifdef BFME_ASCIISTRING_CSTR_CTOR_NOINLINE
+__declspec(noinline)
+#endif
 inline AsciiString::AsciiString(const char* s) : m_data(0)
 {
 	//DEBUG_ASSERTCRASH(isMemoryManagerOfficiallyInited(), ("Initializing AsciiStrings prior to main (ie, as static vars) can cause memory leak reporting problems. Are you sure you want to do this?\n"));

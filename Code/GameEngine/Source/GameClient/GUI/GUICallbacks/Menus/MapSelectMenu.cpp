@@ -2,6 +2,10 @@
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
+// Open-BFME5: retail calls AsciiString(const char *) out of line at 0x00088BC0
+// from this TU. The attribute lives guarded in AsciiString.h; the choice is
+// per call site, so it is opted into here rather than turned on globally.
+#define BFME_ASCIISTRING_CSTR_CTOR_NOINLINE
 // stlport
 /*
 **	Command & Conquer Generals Zero Hour(tm)
@@ -96,6 +100,25 @@ static void doGameStart( void )
 
 
 //-------------------------------------------------------------------------------------------------
+// Open-BFME5: BFME made WindowLayout::hide VIRTUAL, at vtable slot 0x10. The
+// Zero Hour WindowLayout.h in this tree declares it an ordinary member, so we
+// emit a direct call to the right function instead of a dispatch. Correcting
+// the declaration would touch every TU that includes WindowLayout.h and force
+// the full repo gate, so it is spelled TU-locally: a shim whose fifth virtual
+// lands on that slot, and a cast at each call site. Slots 0-3 stay anonymous
+// because nothing here needs them. Same shim as NetworkDirectConnect.cpp.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+//-------------------------------------------------------------------------------------------------
 /** This is called when a shutdown is complete for this menu */
 //-------------------------------------------------------------------------------------------------
 static void shutdownComplete( WindowLayout *layout )
@@ -175,7 +198,11 @@ void MapSelectMenuInit( WindowLayout *layout, void *userData )
 	startGame = false;
 	TheShell->showShellMap(TRUE);
 	// show menu
-	layout->hide( FALSE );
+	// Open-BFME5: BFME made WindowLayout::hide virtual -- retail reaches it here
+	// through vtable slot 0x10 (`mov eax,[ecx]` / `call [eax+0x10]`) where the
+	// Zero Hour header declares it an ordinary member. Same drift and same
+	// TU-local shim as NetworkDirectConnect.cpp; see BfmeVirtualHideLayout above.
+	((BfmeVirtualHideLayout *)layout)->hide( FALSE );
 
 	OptionPreferences pref;
 	Bool usesSystemMapDir = pref.usesSystemMapDir();
