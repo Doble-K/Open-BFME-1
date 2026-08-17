@@ -1,7 +1,13 @@
 // cl: /MD
-/* Lua 4.0.1 -- pristine upstream source (TeCGraf, PUC-Rio), lua.org fossil
-   lua-4.0.1.tar.gz, flattened from src/ and src/lib/.  Statically linked
-   into lotrbfme.exe behind GameLogic/ScriptEngine/LuaScriptEngine.cpp.
+/* Lua 4.0.1 (TeCGraf, PUC-Rio), lua.org lua-4.0.1.tar.gz, flattened from
+   src/, src/lib/, src/luac/ and include/.  Statically linked into
+   lotrbfme.exe behind GameLogic/ScriptEngine/LuaScriptEngine.cpp.
+   ALTERED SOURCE VERSION: upstream plus a reconstruction of EA's own changes
+   to the language (a boolean type tag, OP_PUSHBOOL, an extra luaH_new
+   argument).  PROVENANCE.txt lists every file that differs from upstream and
+   how; a file absent from that list is upstream byte-for-byte apart from this
+   header.  Saying so is a condition of the licence at lua.h:215, not a
+   courtesy.
    Retail linked the DLL CRT, so libc calls are __imp__ indirect calls --
    /MD is what makes those call sites byte-exact. */
 /*

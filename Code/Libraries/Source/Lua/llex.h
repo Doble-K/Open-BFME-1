@@ -1,3 +1,6 @@
+/* ALTERED SOURCE VERSION -- this header differs from upstream Lua 4.0.1.
+   See PROVENANCE.txt for what changed and why; marking the alteration is a
+   condition of the licence at lua.h:215. */
 /*
 ** $Id: llex.h,v 1.31 2000/09/27 17:41:58 roberto Exp $
 ** Lexical Analyzer
