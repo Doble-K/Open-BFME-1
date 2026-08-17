@@ -23,6 +23,12 @@ Two rules keep this from over-suppressing, which would be worse than the leak:
   somewhere else the old verdict no longer covers it. Where the row records no
   RVA there is no boundary to have moved, and the verdict stands: the 3-field
   shape is a finding about the symbol.
+
+A third rule keeps it from UNDER-correcting. Statuses are a closed vocabulary
+and anything outside it is an annotation, so before `void` existed there was no
+way to take back a row — an address typed rather than measured stayed live
+forever, and the follow-up row could only ask a human to disregard it. `void`
+is the one status that retracts rather than decides; see VOID_STATUS.
 """
 from pathlib import Path
 
@@ -45,12 +51,22 @@ RESOLVED_STATUSES = frozenset({
 })
 VERDICT_STATUSES = DEAD_END_STATUSES | RESOLVED_STATUSES
 
+# `void` is not a verdict about the symbol — it is a retraction of the row it
+# names, and the only way an append-only log can take back an address that was
+# typed rather than measured. It deletes every EARLIER verdict at exactly its
+# (symbol, rva); a verdict recorded at that boundary afterwards is new evidence
+# and stands. Without it a mis-typed locator is permanent: _LoadInt was logged
+# at 0x0099D2E0, which is 16 bytes inside _chunk's matched body and has nothing
+# to do with _LoadInt, and the correction row appended next could only ask a
+# human to read the earlier row as void — no tool could act on that sentence.
+VOID_STATUS = "void"
+
 _BY_BOUNDARY = None   # {symbol: {rva|None: latest status}}
 _LATEST = None        # {symbol: latest status seen at any boundary}
 
 
 def _parse(fields):
-    """Return (symbol, status, rva) for one log row, or None if it is not a verdict."""
+    """Return (symbol, status, rva) for one log row, or None if it carries neither."""
     if len(fields) >= 5:
         symbol, rva_text, status = fields[0], fields[1], fields[3]
         try:
@@ -70,6 +86,7 @@ def _load():
     _BY_BOUNDARY, _LATEST = {}, {}
     if not RE_ATTEMPTS.exists():
         return
+    rows = []
     with RE_ATTEMPTS.open(encoding="utf-8", errors="replace") as handle:
         for line in handle:
             parsed = _parse(line.rstrip("\r\n").split("\t"))
@@ -78,10 +95,29 @@ def _load():
             symbol, status, rva = parsed
             if not symbol or not status:
                 continue
+            if status == VOID_STATUS:
+                rows.append((symbol, status, rva))
+                continue
             if status not in VERDICT_STATUSES:
                 continue          # an annotation never overrides a standing verdict
-            _BY_BOUNDARY.setdefault(symbol, {})[rva] = status
-            _LATEST[symbol] = status
+            rows.append((symbol, status, rva))
+
+    # A void retracts only the rows ABOVE it at its own (symbol, rva), so the
+    # log stays chronological and re-recording the same boundary later works.
+    live = [True] * len(rows)
+    for index, (symbol, status, rva) in enumerate(rows):
+        if status != VOID_STATUS:
+            continue
+        live[index] = False
+        for earlier in range(index):
+            if rows[earlier][0] == symbol and rows[earlier][2] == rva:
+                live[earlier] = False
+
+    for keep, (symbol, status, rva) in zip(live, rows):
+        if not keep:
+            continue
+        _BY_BOUNDARY.setdefault(symbol, {})[rva] = status
+        _LATEST[symbol] = status
 
 
 def is_dead_end(symbol, rva=None, *, boundary_moved=False):
@@ -106,6 +142,34 @@ def is_dead_end(symbol, rva=None, *, boundary_moved=False):
     return _LATEST.get(symbol) in DEAD_END_STATUSES
 
 
+def _voidable(symbol, rva_text):
+    """True when some row in the log already records `symbol` at `rva_text`.
+
+    Read straight off the file rather than through the index: the index has
+    already applied voids, so asking it would refuse a second void of a row
+    that a first one retracted — and would also hide a malformed row that only
+    a human can see. This is the check that keeps a void honest about having
+    something to retract.
+    """
+    if not RE_ATTEMPTS.exists():
+        return False
+    try:
+        rva = int(rva_text, 16)
+    except ValueError:
+        return False
+    with RE_ATTEMPTS.open(encoding="utf-8", errors="replace") as handle:
+        for line in handle:
+            fields = line.rstrip("\r\n").split("\t")
+            if len(fields) < 5 or fields[0] != symbol:
+                continue
+            try:
+                if int(fields[1], 16) == rva and fields[3] != VOID_STATUS:
+                    return True
+            except ValueError:
+                continue
+    return False
+
+
 def stats():
     """Return (symbols carrying a live dead-end verdict, total symbols logged)."""
     _load()
@@ -124,6 +188,10 @@ def _record(argv):
     Usage:
       python3 tools/re_log.py record <symbol> <rva> <size> <status> <evidence...>
 
+    `<status> = void` retracts an earlier row instead of adding a verdict: pass
+    the SAME symbol and rva as the row being taken back, and say in the evidence
+    which row and why. It is refused unless such a row exists.
+
     Put attempt duration and model in the evidence free-text (e.g. "t=25min
     model=haiku ...") — that is what lets the selection weights in
     tools/yield_model.py be refit from outcomes instead of guessed.
@@ -132,11 +200,17 @@ def _record(argv):
         raise SystemExit(_record.__doc__)
     symbol, rva_text, size_text, status = argv[0], argv[1], argv[2], argv[3]
     evidence = " ".join(argv[4:])
-    if status not in VERDICT_STATUSES:
+    if status not in VERDICT_STATUSES and status != VOID_STATUS:
         raise SystemExit(
             f"unknown status {status!r}. Dead ends: {sorted(DEAD_END_STATUSES)}; "
-            f"resolutions: {sorted(RESOLVED_STATUSES)}. An unrecognised status "
+            f"resolutions: {sorted(RESOLVED_STATUSES)}; retraction: "
+            f"{VOID_STATUS!r}. An unrecognised status "
             f"would be ignored by every queue, so it is refused here.")
+    if status == VOID_STATUS and not _voidable(symbol, rva_text):
+        raise SystemExit(
+            f"nothing to void: no earlier verdict for {symbol!r} at {rva_text}. "
+            f"A void that matches no row is a typo about a typo, and would sit "
+            f"in the log forever looking like it had retracted something.")
     int(rva_text, 16), int(size_text)          # fail loudly on malformed fields
     row = f"{symbol}\t{rva_text}\t{size_text}\t{status}\t{evidence}\r\n"
     with RE_ATTEMPTS.open("ab") as handle:

@@ -329,6 +329,72 @@ def test_a_verdict_with_no_boundary_is_not_released_by_a_snap(ranked):
     print("PASS dead-end verdicts recorded without an rva survive a boundary snap")
 
 
+def test_void_retracts_the_row_it_names_and_nothing_else():
+    """An append-only log still has to be able to take back a typed address.
+
+    `_LoadInt` was logged `blocked` at 0x0099D2E0 — an address typed from memory,
+    16 bytes inside `_chunk`'s matched body, nothing to do with lundump.c. The
+    row appended after it says "read the 0x0099D2E0 entry as void", which is a
+    sentence for a human; every queue kept reading the phantom boundary as a
+    finished investigation. `void` is the machine-readable form.
+
+    Written to FAIL on the code before the fix: with void rows treated as
+    unknown-status annotations — exactly what the old reader did with them —
+    the first assertion below is True, not False.
+    """
+    import re_log
+
+    false_locator, measured = 0x0099D2E0, 0x0099D670
+
+    def fresh(void_enabled):
+        re_log._BY_BOUNDARY = re_log._LATEST = None
+        re_log.VOID_STATUS = "void" if void_enabled else "__void_disabled__"
+        re_log._load()
+
+    try:
+        fresh(True)
+        assert not re_log.is_dead_end("_LoadInt", false_locator, boundary_moved=True), (
+            "the retracted boundary still suppresses candidates")
+        assert re_log.is_dead_end("_LoadInt", measured, boundary_moved=True), (
+            "voiding the typo also released the boundary that WAS measured")
+
+        fresh(False)
+        assert re_log.is_dead_end("_LoadInt", false_locator, boundary_moved=True), (
+            "this test cannot fail on the broken code, so it proves nothing")
+    finally:
+        fresh(True)
+
+    # A void names a row; one that names no row is a typo about a typo.
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "tools" / "re_log.py"), "record",
+         "?NeverLoggedAnywhere@@QAEXXZ", "0x00400000", "16", "void", "nothing to take back"],
+        cwd=ROOT, capture_output=True, text=True, timeout=60, check=False)
+    assert proc.returncode != 0, "a void matching no row was accepted"
+    assert "nothing to void" in proc.stdout + proc.stderr
+    print("PASS void retracts only its own (symbol, rva); unmatched voids refused")
+
+
+def test_void_is_positional_so_a_later_verdict_still_stands(tmp_path, monkeypatch):
+    """Voids retract upwards only. Re-recording a boundary after voiding it is
+    new evidence and must count, or a single typo would poison an address for
+    the life of the repository."""
+    import re_log
+
+    log = tmp_path / "re_attempts.log"
+    log.write_text(
+        "?Sym@@QAEXXZ\t0x00401000\t16\tblocked\tfirst, wrong\r\n"
+        "?Sym@@QAEXXZ\t0x00401000\t16\tvoid\tretracts the above\r\n"
+        "?Sym@@QAEXXZ\t0x00401000\t16\tblocked\tmeasured this time\r\n",
+        encoding="utf-8")
+    monkeypatch.setattr(re_log, "RE_ATTEMPTS", log)
+    re_log._BY_BOUNDARY = re_log._LATEST = None
+    try:
+        assert re_log.is_dead_end("?Sym@@QAEXXZ", 0x00401000, boundary_moved=True)
+    finally:
+        re_log._BY_BOUNDARY = re_log._LATEST = None
+    print("PASS void retracts earlier rows only; a later verdict survives it")
+
+
 def test_structural_queue_is_collapsed_and_validated(ranked):
     """One item per address, each carrying every name that still fits its body,
     and the retail extent -- not the drifted source size -- in the command."""
