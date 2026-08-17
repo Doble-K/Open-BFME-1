@@ -2094,7 +2094,6 @@ void ReverseSoundTransition::reverse( void )
 	m_isForward = FALSE;
 }
 
-// ?draw@ReverseSoundTransition@@UAEXXZ present-unmatched
 void ReverseSoundTransition::draw( void )
 {
 }

@@ -150,7 +150,6 @@ void CDDrive::refreshInfo( void )
 // CDDrive::getDisk
 //============================================================================
 
-// ?getDisk@CDDrive@@ present-unmatched
 CD::Disk CDDrive::getDisk( void )
 {
 	return m_disk;

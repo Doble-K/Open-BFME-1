@@ -843,7 +843,6 @@ Int GameWindowManager::winRelease( GameWindow *window )
 //-------------------------------------------------------------------------------------------------
 /** Returns the current mouse captor. */
 //-------------------------------------------------------------------------------------------------
-// ?winGetCapture@GameWindowManager@@UAEPAVGameWindow@@XZ present-unmatched
 GameWindow *GameWindowManager::winGetCapture( void )
 {
 
