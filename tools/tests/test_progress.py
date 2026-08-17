@@ -272,6 +272,37 @@ def test_source_lanes_partition_claims_and_exclude_dumps():
     print("PASS provenance lanes partition claimed bytes; dumps excluded")
 
 
+def test_gamespy_sdk_c_is_vendored_but_the_cpp_beside_it_is_not():
+    """GameSpy's SDK is the one vendored tree that shares a directory with the
+    game's own code, so the lane split has to key on extension there.
+
+    Before this was fixed, every GameSpy .c row scored as "C++ we wrote" and
+    90,073 bytes of a 2004 third-party SDK inflated the authored figure -- the
+    exact defect d57cc1fcf named when it routed LZHCompress. The .cpp assertion
+    is the half that keeps the fix from over-reaching: PeerDefs.cpp and the
+    thunks beside gp.c ARE this project's.
+    """
+    root = "Code/GameEngine/Source/GameNetwork/GameSpy/"
+    assert progress.source_lane(root + "gp/gp.c", "", False) == "vendored"
+    assert progress.source_lane(root + "nonport.c", "", False) == "vendored"
+    assert progress.source_lane(root + "PeerDefs.cpp", "", False) == "authored"
+    assert progress.source_lane(root + "gp/gp.c", "gen-alias;", False) == "generated"
+
+    # ...and the headline may not move when a byte changes lane, because
+    # rebuildable() spans authored and vendored alike.
+    matched, notes = {}, {}
+    for name, rva, size, source in (
+        ("sdk-c", 0x1000, 10, root + "qr2/qr2.c"),
+        ("game-cpp", 0x1010, 10, root + "GSConfig.cpp"),
+    ):
+        matched.update(row(name, rva, size, source))
+        notes[(name, f"0x{rva:X}")] = ""
+    split = progress.source_split(matched, notes, 0x1000, 100)
+    assert split["vendored"] == 10 and split["authored"] == 10, split
+    assert progress.rebuildable(split) == 20, split
+    print("PASS GameSpy SDK .c routes to the vendored lane; .cpp stays authored")
+
+
 def test_dump_pass_moved_zero_recovered_bytes():
     """The metric must not be movable by a script.
 
@@ -363,6 +394,7 @@ def main():
     test_b08_is_zero_byte_progress()
     test_details_are_opt_in()
     test_source_lanes_partition_claims_and_exclude_dumps()
+    test_gamespy_sdk_c_is_vendored_but_the_cpp_beside_it_is_not()
     test_dump_pass_moved_zero_recovered_bytes()
     test_readme_headline_is_a_recovered_figure()
     test_readme_never_overstates_coverage()

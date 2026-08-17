@@ -54,6 +54,14 @@ VENDORED_ROOTS = (
     # Microsoft compiled it, so it is not this game's identity.
     "build/toolchains/",
 )
+# GameSpy's SDK is the one vendored library that cannot be routed by directory:
+# EA dropped its C sources straight into the game's own C++ directory, so
+# GameSpy/gp/gp.c sits beside this project's GameSpy/GSConfig.cpp. Extension is
+# the discriminator EA's layout leaves us -- every one of the 36 .c files under
+# this root carries the SDK's own banner, every .cpp beside them is this game's,
+# and Code/ holds no other .c outside VENDORED_ROOTS. Checked, not assumed:
+#   find Code -name '*.c' | grep -v <the vendored roots>   ->  empty
+VENDORED_C_ROOTS = ("Code/GameEngine/Source/GameNetwork/GameSpy/",)
 # Files a generator writes: one body per retail funclet, thunk or template
 # instance, with a synthetic name. Path and note are both checked so a
 # generator cannot move the recovered figure by omitting its own marker.
@@ -398,7 +406,11 @@ def source_lane(source, notes, naked):
         return "dump"
     if source.startswith(GENERATED_ROOTS) or GEN_NOTE_RE.search(notes):
         return "generated"
-    return "vendored" if source.startswith(VENDORED_ROOTS) else "authored"
+    if source.startswith(VENDORED_ROOTS):
+        return "vendored"
+    if source.startswith(VENDORED_C_ROOTS) and Path(source).suffix.lower() == ".c":
+        return "vendored"
+    return "authored"
 
 
 def source_split(matched, notes, text_start, text_size, naked_rows=()):
