@@ -94,18 +94,27 @@ const Int PIXELS_PER_GRID = 8; // default tex resolution allocated for each tile
 //=============================================================================
 /** Loads the terrain into the vertex buffer for drawing. */
 //=============================================================================
-// ?setFlip@W3DTerrainBackground@@QAEXPAVWorldHeightMap@@@Z present-unmatched
+// BFME layout overlay for W3DTerrainBackground::setFlip (see retail 0x00729F00).
+// ZH header offsets diverge; retail reads m_width@0x48, m_map@0x4c, m_initialized@0x50.
+struct BFMETerrainBgSetFlipLayout {
+	unsigned int _pad_00[18];               // 0x00..0x48
+	Int width;                              // 0x48
+	WorldHeightMap *map;                    // 0x4c
+	Bool initialized;                       // 0x50
+};
+
 void W3DTerrainBackground::setFlip(WorldHeightMap *htMap)
 {
-	if (m_map==NULL) return;
+	BFMETerrainBgSetFlipLayout *self = (BFMETerrainBgSetFlipLayout *)this;
+	if (self->map==NULL) return;
 	if (htMap) {
-		REF_PTR_SET(m_map, htMap);
+		REF_PTR_SET(self->map, htMap);
 	}
-	if (!m_initialized) {
+	if (!self->initialized) {
 		return;
 	}
 
-	setFlipRecursive(0, 0, m_width);
+	setFlipRecursive(0, 0, self->width);
 
 
 }
