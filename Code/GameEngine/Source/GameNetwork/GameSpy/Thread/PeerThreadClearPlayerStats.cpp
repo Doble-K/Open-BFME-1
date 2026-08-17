@@ -2,21 +2,25 @@
 
 // FILE: PeerThreadClearPlayerStats.cpp ///////////////////////////////////////
 //
-// PeerThreadClass::clearPlayerStats, retail 0x0064C640, and its neighbour
-// clearServers, retail 0x006ABC00 -- the same inlined _Rb_tree::clear() on a
-// third map, kept here because it is blocked on the same thing.
+// PeerThreadClass::clearPlayerStats, retail 0x0064C640.
 //
-// PeerThread.cpp compiles this at 73 of 75 bytes; the two disagreements are the
-// two member offsets, +0x94 and +0xa0 against the port's +0x98 and +0xa4.
-// Everything ahead of the stats maps is four bytes wider there.  That is not
-// fixable inside PeerThread.cpp: it owns 44 matched rows, and the drift is not
-// uniform -- clearServers at 0x006ABC00 wants m_stagingServers at +0x1b8 where
-// the same port puts it at +0x1fc, sixty-eight bytes out, so at least one more
-// member disagreement sits between the two.  Only the two offsets this body
-// proves are spelled here; the head is opaque filler.
+// PeerThread.cpp compiles it at 73 of 75 bytes; the two disagreements are the
+// stats maps' offsets, +0x94 and +0xa0 against that file's +0x98 and +0xa4.
+// It declares PeerThreadClass inside the .cpp, so the fix would ordinarily go
+// there -- but the drift is not one uniform shift.  addServerToMap at
+// 0x00647950 wants m_nextStagingServer and m_stagingServers at +0x208 and
+// +0x20c where the same file puts them at +0x1f8 and +0x1fc: four bytes out at
+// the front of the class and sixteen the other way by the tail.  Two
+// independent disagreements across a class 44 matched rows already satisfy, so
+// this body moved out with only the offsets it proves and the rest as opaque
+// filler.
 //
-// The map is STLport's _Rb_tree spelled out far enough to inline clear(): a
-// header node pointer, a node count and an empty comparator, twelve bytes,
+// The two tail members are declared below even though nothing here uses them.
+// They are what addServerToMap measured, and they are the reason this file
+// exists rather than a four-byte edit in PeerThread.cpp.
+//
+// The stats map is STLport's _Rb_tree spelled out far enough to inline clear():
+// a header node pointer, a node count and an empty comparator, twelve bytes,
 // which is exactly the stride between the two members.  The template arguments
 // are carried in full because _M_erase is resolved by mangled name against
 // reverse/symbols.csv, where it already sits at 0x0003120F.
@@ -97,14 +101,31 @@ typedef _STL::_Rb_tree<BfmeStdString,
 											 _STL::less<BfmeStdString>,
 											 _STL::allocator<BfmeStatPair> > PlayerStatMap;
 
+namespace _STL
+{
+
+// Only operator[] is needed, and retail calls it rather than inlining it, so
+// the body never has to exist here.  Twelve bytes, the same _Rb_tree.
+template <class Key, class Type, class Compare, class Alloc>
+class map
+{
+public:
+	Type &operator[](const Key &key);
+private:
+	_Rb_tree_node_base *_M_header;
+	unsigned int _M_node_count;
+	Compare _M_key_compare;
+};
+
+}
+
 struct _SBServer;
 typedef _STL::pair<const int, _SBServer *> BfmeServerPair;
 
-typedef _STL::_Rb_tree<int,
-											 BfmeServerPair,
-											 _STL::_Select1st<BfmeServerPair>,
-											 _STL::less<int>,
-											 _STL::allocator<BfmeServerPair> > StagingServerMap;
+typedef _STL::map<int,
+									_SBServer *,
+									_STL::less<int>,
+									_STL::allocator<BfmeServerPair> > StagingServerMap;
 
 // GroupRoom is 1 and StagingRoom is 2: retail decrements the argument once for
 // the first arm and once more for the second.
@@ -115,15 +136,15 @@ class PeerThreadClass
 public:
 
 	void clearPlayerStats( RoomType roomType );
-	void clearServers( void );
 
 private:
 
 	char m_bfmeHead[0x94];
 	PlayerStatMap m_groupRoomStats;					// @0x94
 	PlayerStatMap m_stagingRoomStats;				// @0xa0
-	char m_bfmeMiddle[0x1b8 - 0xac];
-	StagingServerMap m_stagingServers;			// @0x1b8
+	char m_bfmeMiddle[0x208 - 0xac];
+	int m_nextStagingServer;								// @0x208
+	StagingServerMap m_stagingServers;			// @0x20c
 
 };
 
@@ -138,12 +159,4 @@ void PeerThreadClass::clearPlayerStats( RoomType roomType )
 			m_stagingRoomStats.clear();
 			break;
 	}
-}
-
-// Retail 0x006ABC00.  The same clear(), on a map<Int, SBServer> at +0x1b8 --
-// sixty-eight bytes ahead of where PeerThread.cpp's own layout puts it, which
-// is the second, independent drift that keeps both of these out of that file.
-void PeerThreadClass::clearServers( void )
-{
-	m_stagingServers.clear();
 }
