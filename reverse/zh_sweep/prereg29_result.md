@@ -46,6 +46,24 @@ address is not a function start.
   end, snap the start to the enclosing ghidra start, recompute size.
   NOT universal — slice 1 re-derived all ten of its boundaries from the PE and
   found delta +0 on every one. Reconcile before treating the rule as general.
+
+  DO NOT implement this as "snap past the leading int3 run". Commit 1c78906e5
+  records that mechanism from a two-packet sample where the candidate overshoot
+  happened to equal the padding. It does not generalise: of three early-anchored
+  packets in another slice the deltas are 2, 1, 13 against int3 runs of 36, 4, 13,
+  so snapping to the start of the run would have placed 0x001DC59E thirty-six
+  bytes early instead of two — worse than the bug. The slide is (candidate length
+  - real length), not the pad.
+
+  DO NOT implement it as a size formula either. Half the bad cases go the other
+  way, starting INSIDE the body, where packet_size = real_size MINUS delta
+  (0x00747493 245 vs 248, 0x0070F97D 293 vs 306, one of them landing
+  mid-instruction inside an 0f 84 displacement). A size rule derived from the
+  early cases would silently no-op on those.
+
+  The end-invariance is the only thing true in both directions: keep the end,
+  snap the start to the enclosing start in reverse/ghidra_functions.csv,
+  recompute size = end - start. No case analysis needed.
 - Identity: eight independent packets named the wrong function, one of them a
   function already landed at another address. Identity fails hardest where the
   sweep reports a TIE between candidates.
