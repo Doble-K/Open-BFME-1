@@ -102151,7 +102151,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002f05d0@@YAXXZ,,0x002F05D0,11,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f05d0
 ?d_002f06c0@@YAXXZ,,0x002F06C0,14,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f06c0
 ?d_002f06e0@@YAXXZ,,0x002F06E0,75,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f06e0
-?d_002f0740@@YAXXZ,,0x002F0740,76,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f0740
 ?d_002f08c0@@YAXXZ,,0x002F08C0,19,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f08c0
 ?d_002f0930@@YAXXZ,,0x002F0930,14,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f0930
 ?d_002f0950@@YAXXZ,,0x002F0950,22,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f0950
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?ParseActionDataChunk@ScriptAction@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00358FE0,59,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptsParseActionDataChunkThunk.cpp,matched,Open-BFME7: isolated port; BFME Script keeps m_action at +0x20 not +0x28; tie vs ParseActionFalseDataChunk broken by the twin at 0x00359030 reading +0x24
 ?SinglePlayerMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004E9540,61,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,matched,Open-BFME7: ZH body verbatim; both callee pins already existed and the static shutdownComplete inlines exactly as its sibling SinglePlayerMenuShutdown proved
 ??0RankInfo@@QAE@XZ,,0x003A0810,53,Code/GameEngine/Source/GameLogic/System/RankInfoConstructorThunk.cpp,matched,Open-BFME7: layout read off the store sequence; BFME adds five -1 words at +0x14..+0x24 the reference RankInfo does not have
+?doAddCommandBarButton@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F0740,76,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,

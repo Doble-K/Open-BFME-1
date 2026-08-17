@@ -6984,10 +6984,33 @@ void ScriptActions::doTeamGuardInTunnelNetwork(const AsciiString& teamName)
 // BFME expands ZH: primary CommandSet pass + ThingTemplate+0x294 related sets.
 
 //-------------------------------------------------------------------------------------------------
-// ?doAddCommandBarButton@ScriptActions@@IAEXABVAsciiString@@0H@Z present-unmatched
+// BFME's script-only command slot ceiling is 20; ZH's ControlBar.h says 18. Kept
+// local to this body so the other MAX_COMMANDS_PER_SET uses in this TU, which
+// are already matched at 18, keep the value they verified with.
+#define MAX_COMMANDS_PER_SET 20
+// Two more BFME shapes read off the retail bytes: findTemplate takes only the
+// name (ZH's defaulted `check` would add the `push 1` retail does not have),
+// and the command set string is at ThingTemplate+0x2c, where ZH puts it at
+// +0x18. Declared TU-locally so neither reference header has to move.
+class BfmeThingFactory
+{
+public:
+	const ThingTemplate *findTemplate(const AsciiString &name);
+};
+
+class BfmeThingTemplate
+{
+public:
+	const AsciiString &friend_getCommandSetString() const { return m_commandSetString; }
+
+private:
+	char m_pad[0x2c];
+	AsciiString m_commandSetString;			// +0x2c
+};
+
 void ScriptActions::doAddCommandBarButton(const AsciiString& buttonName, const AsciiString& objectType, Int slotNum)
 {
-	const ThingTemplate *templ = TheThingFactory->findTemplate(objectType);
+	const ThingTemplate *templ = ((BfmeThingFactory *)TheThingFactory)->findTemplate(objectType);
 	if (!templ) {
 		return;
 	}
@@ -7005,8 +7028,9 @@ void ScriptActions::doAddCommandBarButton(const AsciiString& buttonName, const A
 	if (slotNum < 0 || slotNum >= MAX_COMMANDS_PER_SET)
 		return;
 
-	TheGameLogic->setControlBarOverride(templ->friend_getCommandSetString(), slotNum, commandButton);
+	TheGameLogic->setControlBarOverride(((const BfmeThingTemplate *)templ)->friend_getCommandSetString(), slotNum, commandButton);
 }
+#undef MAX_COMMANDS_PER_SET
 
 //-------------------------------------------------------------------------------------------------
 // ?doAffectSkillPointsModifier@ScriptActions@@IAEXABVAsciiString@@M@Z present-unmatched

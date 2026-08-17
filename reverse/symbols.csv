@@ -72174,3 +72174,5 @@ _ghiInitBuffer,0x0087D740,decode_calls pin for _ghiNewConnection callee
 ?closeKeyboard@DirectInputKeyboard@@IAEXXZ,0x0004A13D,zh_sweep packet 006bb53f callee pin
 _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Create import stub (see Win32DIKeyboardOpen.cpp)
 ?ParseAction@ScriptAction@@KAPAV1@AAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,0x0001720B,Open-BFME7: incremental-link thunk called by ParseActionDataChunk 0x00358FE0 and its ParseActionFalseDataChunk twin 0x00359030
+?findTemplate@BfmeThingFactory@@QAEPBVThingTemplate@@ABVAsciiString@@@Z,0x00028560,BFME one-arg ThingFactory findTemplate; ScriptActions doAddCommandBarButton facade
+?setControlBarOverride@GameLogic@@QAEXABVAsciiString@@HPBVCommandButton@@@Z,0x0000193D,zh_sweep packet 002f0740 callee pin (thunk)
