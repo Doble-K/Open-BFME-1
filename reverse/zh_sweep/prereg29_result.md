@@ -54,9 +54,16 @@ address is not a function start. The exact partition, with no overlap:
   when it is only the lower bound.
 
   Per-band lower bounds, measured over all 144: 5/81 (6.2%), 6/38 (15.8%), 4/14
-  (28.6%), 3/7 (42.9%), 1/4 (25.0%). The rate rises across the first four bands and
-  then does NOT keep rising; an earlier claim of 75% in the largest band does not
-  survive, and with 4 packets that band does not support a rate at all.
+  (28.6%), then 42.9% and 25.0% under the yield_model cut, or 33.3% and 50.0% if the
+  top boundary moves to 1024. The top band flips direction with the cut because it
+  holds 4 packets, or 2. Do not read a rate out of it either way; an earlier claim of
+  75% there does not survive.
+
+  The size association itself is real and does not depend on binning: point-biserial
+  r(size, is-bad) = +0.227 over all 144, Spearman +0.281 with average ranks, median
+  size 109 bytes for bad addresses against 48 for the rest. Bigger bodies are
+  likelier to be mis-addressed, which is what the derivation predicts — a longer body
+  gives the unverified length more room to be wrong.
 
   One slice is NOT representative and must not be used to characterise the packet
   set: it drew all four band-2 bad addresses in the entire population plus the only
