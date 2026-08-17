@@ -33,10 +33,16 @@ build = _load("build")
 next_work = _load("next_work")
 
 
-def call_row(caller_rva, callee_rva, opcode=0xE8, symbol="?callee@@YAXXZ"):
-    """A byte-true row whose first instruction calls callee_rva."""
+def call_row(caller_rva, callee_rva, opcode=0xE8, symbol="?callee@@YAXXZ",
+             name="?caller@@YAXXZ"):
+    """A byte-true row whose first instruction calls callee_rva.
+
+    `name` is the caller's own ledger name: the harvester reads it to decide
+    whether the row is entitled to name anything (a ?dup_<rva> row is not), so
+    a fixture that omitted it would exercise the wrong branch.
+    """
     displacement = struct.pack("<i", callee_rva - caller_rva - 5)
-    return {"target_rva": caller_rva, "source": "Code/test.cpp",
+    return {"name": name, "target_rva": caller_rva, "source": "Code/test.cpp",
             "target": bytes([opcode]) + displacement + b"\xc3",
             "relocs": [(1, REL32, symbol)]}
 
@@ -226,3 +232,71 @@ def test_the_queue_drops_published_rows_the_ledger_has_claimed():
     assert rva not in {int(c["target_rva"], 16) for c in inside}
     assert "1 already landed" in note, note
     print(f"PASS the queue drops 0x{rva:X} once claimed, by name or by range")
+
+
+def a_dup_claimed_function():
+    """A body whose ONLY ledger claim is a ?dup_<rva> row, and which Ghidra
+    still calls FUN_. The ledger covers its bytes and names nothing."""
+    inventory = {int(row["rva"], 16): row["name"] for row in csv.DictReader(
+        (ROOT / "reverse" / "ghidra_functions.csv").open(
+            newline="", encoding="utf-8"))}
+    names_by_rva = {}
+    for row in build.load_all_function_rows():
+        names_by_rva.setdefault(int(row["target_rva"], 16), []).append(row["name"])
+    for body in build.build_call_thunks():
+        names = names_by_rva.get(body)
+        if (names and all(build.DUP_ALIAS_RE.match(n) for n in names)
+                and inventory.get(body, "").startswith("FUN_")):
+            return body
+    raise AssertionError("no dup-claimed anonymous thunked body in the ledger")
+
+
+def test_a_dup_row_does_not_lend_its_callee_names_to_the_harvest():
+    """?dup_<rva> rows carry Zero Hour's names for Zero Hour's callees.
+
+    The row's bytes are retail's, but the relocation symbols come from whichever
+    member of an ICF fold the reference TU happened to compile, and BFME does
+    not fold the same set. Two landed twins of ZH's
+    GadgetSliderSetDisabled*ThumbColor named 0x00479040 winSetDisabledColor;
+    six BFME call sites had recovered winSetEnabledBorderColor for that address,
+    the two names collided, and select_reloc_names dropped the address. The
+    identity was deleted from a derived file with no other record.
+    """
+    body, _ = a_thunked_function()
+    real = call_row(0x1000, body, symbol="?winSetEnabledBorderColor@GameWindow@@QAEHHH@Z")
+    twin = call_row(0x2000, body, symbol="?winSetDisabledColor@GameWindow@@QAEHHH@Z",
+                    name="?dup_0047b680@@YAXXZ")
+
+    named = build.harvest_reloc_names([real, twin])
+    assert named[body]["names"] == {"?winSetEnabledBorderColor@GameWindow@@QAEHHH@Z"}, named
+    assert named[body]["sites"] == 1, named
+
+    # The control: without the filter both names land and the address is lost.
+    both = build.harvest_reloc_names([real, dict(twin, name="?other@@YAXXZ")])
+    assert len(both[body]["names"]) == 2 and build.select_reloc_names(both) == []
+    print("PASS a dup_ row's ZH callee names stay out of the identity harvest")
+
+
+def test_a_dup_claimed_address_is_still_anonymous_to_the_harvest():
+    """Covering an address is not naming it.
+
+    A ?dup_<rva> row says in its own name that the identity is unproven, so the
+    one recovered name for that address has to survive. It did not: the dup row
+    counted as `claimed` and the harvested
+    ?findCommandSet@ControlBar@@... at 0x4A0340 was dropped on the same gate run
+    that landed the twin over it.
+    """
+    body = a_dup_claimed_function()
+    rows = build.select_reloc_names(build.harvest_reloc_names(
+        [call_row(0x1000, body, symbol="?realName@SomeClass@@QAEXXZ")]))
+    assert [int(r["target_rva"], 16) for r in rows] == [body], (hex(body), rows)
+
+    # ...while an address a real name already claims stays out.
+    claimed_body = next(
+        int(row["target_rva"], 16) for row in build.load_all_function_rows()
+        if not build.is_scaffold_row(row)
+        and not build.DUP_ALIAS_RE.match(row["name"])
+        and int(row["target_rva"], 16) in build.build_call_thunks())
+    assert build.select_reloc_names(build.harvest_reloc_names(
+        [call_row(0x1000, claimed_body, symbol="?realName@SomeClass@@QAEXXZ")])) == []
+    print(f"PASS 0x{body:X} is still nameable behind its dup_ row")

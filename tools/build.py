@@ -1084,6 +1084,11 @@ CLONE_LOCAL_RE = re.compile(r"\?A0x[0-9A-Fa-f]{8}")
 # here: the Gen_uw* family was invisible to this pattern for one phase and 15 of
 # its pins were published as recovered identity.
 GEN_PLACEHOLDER_RE = re.compile(r"Gen_(?:t|dtorv?)_[0-9a-f]{8}|Gen_uw[a-z]*\d*_")
+# tools/zh_sweep.py names a row ?dup_<rva>@@YAXXZ when the bytes are proven by a
+# Zero Hour twin but the identity is not: the twin is one member of an ICF fold
+# and the reference TU's COMDAT it compiled is recorded in object-symbol= only
+# as the build directive it is. Such a row claims an address without naming it.
+DUP_ALIAS_RE = re.compile(r"^\?dup_[0-9a-f]{8}@@YAXXZ$")
 
 
 def harvest_reloc_names(patches):
@@ -1101,6 +1106,16 @@ def harvest_reloc_names(patches):
     an incremental-link thunk, so a lone `jmp` at the target is followed to the
     body it stands for.
 
+    A ?dup_<rva> row does not contribute. Its bytes are retail's, but the
+    relocation SYMBOLS are the Zero Hour TU's names for the Zero Hour functions
+    an arbitrary fold member calls -- and where BFME folded a different set,
+    that name is simply wrong here. Two landed twins of ZH's
+    GadgetSliderSetDisabled*ThumbColor named 0x00479040 winSetDisabledColor,
+    colliding with the ?winSetEnabledBorderColor@GameWindow@@QAEHHH@Z that six
+    BFME call sites had recovered, and select_reloc_names dropped the address
+    rather than guess. A row that admits it is not an identity cannot lend its
+    callee names to an identity harvest.
+
     Returns {body rva: {"names": set, "sources": set, "sites": int}}.
     """
     data, sections = exe_image()
@@ -1116,6 +1131,8 @@ def harvest_reloc_names(patches):
 
     named = {}
     for patch in patches:
+        if DUP_ALIAS_RE.match(patch["name"]):
+            continue
         target = patch["target"]
         for offset, rtype, symbol in patch["relocs"]:
             if rtype != REL32 or offset < 1 or offset + 4 > len(target):
@@ -1142,13 +1159,20 @@ def select_reloc_names(named):
     a contradiction the arity gate cannot see, so an address named more than one
     way is dropped rather than guessed at. Addresses the ledger already claims,
     or that Ghidra already names, are not new identity.
+
+    "Claims" means NAMES, not covers. A gen-dump row pins bytes under a
+    synthetic name and a ?dup_<rva> row pins them under a Zero Hour twin whose
+    identity it explicitly disclaims; both leave the address anonymous, and
+    both would otherwise swallow the one piece of evidence that could name it
+    -- the recovered ?findCommandSet@ControlBar@@... at 0x4A0340 survived only
+    because a human went looking after the line vanished.
     """
     inventory = {}
     with GHIDRA_FUNCTIONS.open("r", encoding="utf-8", newline="") as handle:
         for row in csv.DictReader(handle):
             inventory[int(row["rva"], 16)] = (int(row["size"]), row["name"])
     claimed = {int(row["target_rva"], 16) for row in load_all_function_rows()
-               if not is_scaffold_row(row)}
+               if not is_scaffold_row(row) and not DUP_ALIAS_RE.match(row["name"])}
 
     selected = []
     for rva, entry in sorted(named.items()):
