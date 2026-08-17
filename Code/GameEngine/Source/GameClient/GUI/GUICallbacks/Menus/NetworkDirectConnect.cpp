@@ -364,6 +364,27 @@ void NetworkDirectConnectInit( WindowLayout *layout, void *userData )
 } // NetworkDirectConnectInit
 
 //-------------------------------------------------------------------------------------------------
+// Open-BFME5: BFME made WindowLayout::hide VIRTUAL. Retail reaches it through
+// vtable slot 0x10 -- `mov eax,[esi]` then `call dword ptr [eax+0x10]` -- where
+// the Zero Hour WindowLayout.h in this tree declares it an ordinary member and
+// we emit a direct `call 0x00497A00`. That direct target is the right function;
+// only the dispatch is wrong. Correcting the declaration would touch every TU
+// that includes WindowLayout.h and force the full repo gate, so it is spelled
+// TU-locally instead: a shim whose fifth virtual lands on that slot, and a cast
+// at the one call site that needs it. Slots 0-3 stay anonymous because nothing
+// here needs them.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+//-------------------------------------------------------------------------------------------------
 /** This is called when a shutdown is complete for this menu */
 //-------------------------------------------------------------------------------------------------
 static void shutdownComplete( WindowLayout *layout )
@@ -372,7 +393,7 @@ static void shutdownComplete( WindowLayout *layout )
 	isShuttingDown = false;
 
 	// hide the layout
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout );
