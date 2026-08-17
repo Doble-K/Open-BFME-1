@@ -421,31 +421,46 @@ def stlport_include_dir():
 # its flags from the path instead. Both settings below are what the 420-TU sweep
 # compiled and matched with.
 ZH_REFERENCE_ROOT = ROOT / "reference" / "CnC_Generals_Zero_Hour" / "GeneralsMD" / "Code"
-_ZH_REL = ZH_REFERENCE_ROOT.relative_to(ROOT).as_posix()
-_ZH_FLAGS = ["-DNDEBUG", "-DWIN32", "-D_WINDOWS", "-MD", "-EHsc"] + [
-    "-I" + directory
-    for directory in ["reference/shims/sweep"] + [
-        f"{_ZH_REL}/{part}"
-        for part in (
-            "GameEngine/Include", "GameEngine/Source", "Libraries/Include",
-            "Libraries/Source", "Libraries/Source/Compression",
-            "Libraries/Source/WWVegas", "Libraries/Source/WWVegas/WWLib",
-            "GameEngineDevice/Include", "Libraries/Source/WWVegas/WW3D2",
-            "Libraries/Source/WWVegas/WWMath", "Libraries/Source/WWVegas/WWDebug",
-            "Libraries/Source/WWVegas/WWSaveLoad", "Main",
-        )
-    ]
-]
+# The base game beside it. BFME forked the SAGE engine before Zero Hour did, so
+# where the expansion's copy of a translation unit drifted, the base game's copy
+# is the one whose bodies still compile byte-true.
+GENERALS_REFERENCE_ROOT = ROOT / "reference" / "CnC_Generals_Zero_Hour" / "Generals" / "Code"
+_ZH_INCLUDE_PARTS = (
+    "GameEngine/Include", "GameEngine/Source", "Libraries/Include",
+    "Libraries/Source", "Libraries/Source/Compression",
+    "Libraries/Source/WWVegas", "Libraries/Source/WWVegas/WWLib",
+    "GameEngineDevice/Include", "Libraries/Source/WWVegas/WW3D2",
+    "Libraries/Source/WWVegas/WWMath", "Libraries/Source/WWVegas/WWDebug",
+    "Libraries/Source/WWVegas/WWSaveLoad", "Main",
+)
+
+
+def _reference_include_dirs(*roots):
+    return ["-I" + directory for directory in ["reference/shims/sweep"] + [
+        f"{root.relative_to(ROOT).as_posix()}/{part}"
+        for root in roots for part in _ZH_INCLUDE_PARTS
+    ]]
+
+
+_ZH_BASE_FLAGS = ["-DNDEBUG", "-DWIN32", "-D_WINDOWS", "-MD", "-EHsc"]
+_ZH_FLAGS = _ZH_BASE_FLAGS + _reference_include_dirs(ZH_REFERENCE_ROOT)
+# Base-game headers win; the Zero Hour tail is on the path only because
+# reference/shims/sweep was written against the expansion and includes headers
+# (Common/ObjectStatusTypes.h) the base game never shipped.
+_GENERALS_FLAGS = _ZH_BASE_FLAGS + _reference_include_dirs(
+    GENERALS_REFERENCE_ROOT, ZH_REFERENCE_ROOT)
 
 
 def zh_reference_source(source):
-    """`source` as a path relative to the vendored Zero Hour tree, or None."""
+    """`source` relative to whichever vendored SAGE tree holds it, or None."""
     if source is None:
         return None
-    try:
-        return resolved(source).relative_to(ZH_REFERENCE_ROOT).as_posix()
-    except ValueError:
-        return None
+    for root in (ZH_REFERENCE_ROOT, GENERALS_REFERENCE_ROOT):
+        try:
+            return resolved(source).relative_to(root).as_posix()
+        except ValueError:
+            continue
+    return None
 
 
 def source_needs_stlport(source):
@@ -511,7 +526,11 @@ def source_extra_flags(source):
     # than relying on every editor to write BOM-free files. Windows PowerShell's
     # `Set-Content -Encoding UTF8` writes one by default.
     if zh_reference_source(source) is not None:
-        return _ZH_FLAGS
+        try:
+            resolved(source).relative_to(GENERALS_REFERENCE_ROOT)
+        except ValueError:
+            return _ZH_FLAGS
+        return _GENERALS_FLAGS
     with source.open("r", encoding="utf-8-sig", errors="replace") as handle:
         for line in handle.read(2048).splitlines():
             if line.startswith("// cl:"):
