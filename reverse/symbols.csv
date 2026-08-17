@@ -72173,3 +72173,4 @@ _ghiInitBuffer,0x0087D740,decode_calls pin for _ghiNewConnection callee
 ?_M_fill_insert@?$vector@HV?$allocator@H@_STL@@@_STL@@QAEXPAHIABH@Z,0x000395CC,ILT thunk to 0x001DBAB0 - the ObjectTypes TU instantiation; the ledger row of this name is a different copy at 0x00067740
 ?closeKeyboard@DirectInputKeyboard@@IAEXXZ,0x0004A13D,zh_sweep packet 006bb53f callee pin
 _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Create import stub (see Win32DIKeyboardOpen.cpp)
+?ParseAction@ScriptAction@@KAPAV1@AAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,0x0001720B,Open-BFME7: incremental-link thunk called by ParseActionDataChunk 0x00358FE0 and its ParseActionFalseDataChunk twin 0x00359030

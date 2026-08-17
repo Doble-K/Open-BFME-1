@@ -121892,7 +121892,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00356bf0@@YAXXZ,,0x00356BF0,16,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00357340@@YAXXZ,,0x00357340,33,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00357370@@YAXXZ,,0x00357370,33,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
-?d_00358fe0@@YAXXZ,,0x00358FE0,59,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00359030@@YAXXZ,,0x00359030,59,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00359240@@YAXXZ,,0x00359240,69,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00359440@@YAXXZ,,0x00359440,69,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ??0ScriptAction@@IAE@XZ,,0x0034FF60,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionProtectedCtorThunk.cpp,matched,
 ?_M_clear@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@IAEXXZ,,0x000E3ED0,103,Code/GameEngine/Source/Common/RTS/PlayerTemplateVectorClearThunk.cpp,matched,
 ?getApparentControllingPlayer@GarrisonContain@@UBEPBVPlayer@@PBV2@@Z,,0x0021E340,88,Code/GameEngine/Source/Common/GarrisonContain_getApparentControllingPlayer_Thunk.cpp,matched,
+?ParseActionDataChunk@ScriptAction@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00358FE0,59,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptsParseActionDataChunkThunk.cpp,matched,Open-BFME7: isolated port; BFME Script keeps m_action at +0x20 not +0x28; tie vs ParseActionFalseDataChunk broken by the twin at 0x00359030 reading +0x24
