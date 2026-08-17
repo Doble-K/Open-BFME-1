@@ -89,14 +89,19 @@ PlayerList::PlayerList() :
 
 //-----------------------------------------------------------------------------
 // ?getNthPlayer@PlayerList@@ present-unmatched
-Player *PlayerList::getNthPlayer(Int i) 
-{ 
-	if( i < 0 || i >= MAX_PLAYER_COUNT )
+// This TU's own copy is never claimed (the real ?getNthPlayer@PlayerList@@QAEPAVPlayer@@H@Z
+// row is matched from PlayerListSetLocalPlayer.cpp), but it still gets inlined into
+// getEachPlayerFromMask below within this TU, so its bound has to agree with retail's
+// 0x20 (32), not the ZH-header MAX_PLAYER_COUNT of 16 -- same split documented in
+// PlayerListSetLocalPlayer.cpp.
+Player *PlayerList::getNthPlayer(Int i)
+{
+	if( i < 0 || i >= 32 )
 	{
 //		DEBUG_CRASH( ("Illegal player index\n") );
 		return NULL;
 	}
-	return m_players[i]; 
+	return m_players[i];
 }
 
 //-----------------------------------------------------------------------------
@@ -359,13 +364,17 @@ Player *PlayerList::getPlayerFromMask( PlayerMaskType mask )
 }  // end getPlayerFromMask
 
 //-----------------------------------------------------------------------------
-// ?getEachPlayerFromMask@PlayerList@@ present-unmatched
+// ?getEachPlayerFromMask@PlayerList@@QAEPAVPlayer@@AAG@Z
 Player *PlayerList::getEachPlayerFromMask( PlayerMaskType& maskToAdjust )
 {
 	Player *player = NULL;
 	Int i;
 
-	for( i = 0; i < MAX_PLAYER_COUNT; i++ )
+	// BFME's retail bound here is 0x20 (32), not the ZH-header MAX_PLAYER_COUNT
+	// of 16 -- same split documented for PlayerList::setLocalPlayer and the
+	// dtor in this file/PlayerListSetLocalPlayer.cpp. Literal to avoid moving
+	// the macro (and every other already-matched user of it) to 32.
+	for( i = 0; i < 32; i++ )
 	{
 		
 		player = getNthPlayer( i );

@@ -578,7 +578,6 @@ TextureClass * MeshMatDescClass::Get_Texture(int pidx,int pass,int stage) const
 	return NULL;
 }
 
-// ?Peek_Material@MeshMatDescClass@@QBEPAVVertexMaterialClass@@HH@Z present-unmatched
 VertexMaterialClass * MeshMatDescClass::Peek_Material(int vidx,int pass) const
 {
 	if (MaterialArray[pass]) {
