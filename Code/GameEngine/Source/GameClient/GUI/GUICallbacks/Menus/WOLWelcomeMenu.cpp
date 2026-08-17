@@ -73,6 +73,26 @@
 #include "GameNetwork/GameSpy/MainMenuUtils.h"
 #include "GameNetwork/WOLBrowser/WebBrowser.h"
 
+//-------------------------------------------------------------------------------------------------
+// Open-BFME5: BFME made WindowLayout::hide VIRTUAL. Retail reaches it through
+// vtable slot 0x10 -- `mov eax,[esi]' then `call dword ptr [eax+0x10]' -- where
+// the Zero Hour WindowLayout.h in this tree declares it an ordinary member and
+// we emit a direct call. Correcting the declaration would touch every TU that
+// includes WindowLayout.h and force the full repo gate, so it is spelled
+// TU-locally, the same way NetworkDirectConnect.cpp and CreditsMenu.cpp do it:
+// a shim whose fifth virtual lands on that slot, and a cast at each call site.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -200,7 +220,7 @@ static void shutdownComplete( WindowLayout *layout )
 	isShuttingDown = FALSE;
 
 	// hide the layout
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout, (nextScreen != NULL) );
@@ -548,7 +568,7 @@ void WOLWelcomeMenuInit( WindowLayout *layout, void *userData )
 //	TheShell->registerWithAnimateManager(buttonBack, WIN_ANIMATION_SLIDE_BOTTOM, TRUE, 1);
 
 	// Show Menu
-	layout->hide( FALSE );
+	((BfmeVirtualHideLayout *)layout)->hide( FALSE );
 
 	// Set Keyboard to Main Parent
 	TheWindowManager->winSetFocus( parentWOLWelcome );
