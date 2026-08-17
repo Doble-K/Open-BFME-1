@@ -886,18 +886,17 @@ ALT_OWNERS = 4          # alternate bodies per address, for land_wave's retry lo
 
 
 def dump_rows():
-    """{rva: size} for the gen-dump rows in Code/gen_asm/ a wave may supersede.
+    """{rva: size} for every gen-dump row a wave may supersede.
 
-    Dumpness is the NOTE, not the directory (validate_rows supersedes on that
-    rule), but the directory is the scope this sweep was measured over, so both
-    are required and the 331 dumps living elsewhere are left to their owners.
+    Dumpness is the NOTE and only the NOTE — the same predicate validate_rows
+    supersedes on, and the one 349 dumps outside Code/gen_asm/ are invisible to
+    when a tool asks the directory instead.
     """
     rows = {int(row["target_rva"], 16): int(row["target_size"])
-            for row in build.load_all_function_rows()
-            if row["source"].startswith("Code/gen_asm/") and build.is_scaffold_row(row)}
+            for row in build.load_all_function_rows() if build.is_scaffold_row(row)}
     if not rows:
-        raise SystemExit("zh_sweep: the ledger holds no Code/gen_asm dump rows — "
-                         "land-multi has nothing to supersede")
+        raise SystemExit("zh_sweep: the ledger holds no gen-dump rows — land-multi has "
+                         "nothing to supersede")
     return rows
 
 
