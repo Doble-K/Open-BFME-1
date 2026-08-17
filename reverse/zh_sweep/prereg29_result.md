@@ -37,12 +37,33 @@ C++; a naked/__emit body byte-matches by construction and was counted not-landed
 
 The packets that pointed at the right place converted well above baseline. The
 ones that did not, did not — and 19 of the 144 packets carry a banner saying their
-address is not a function start (13%, of which 6 sit in padding and 13 inside another
-body). An earlier draft of this file said 51 of 144, and that figure was wrong: the
-grep behind it also matched 32 packets whose first lines say "measured from the int3
-padding at 0xNNNN", which is a truthful statement of how the EXTENT was derived, not
-a claim that the address is bad. Any per-band rate derived from the 51 is void, and
-that is what made one slice's 0-of-10 bad starts look anomalous when it was not.
+address is not a function start. The exact partition, with no overlap:
+
+      19  say "is not a function start"        13.2%   (6 in padding, 13 interior)
+      93  say "is a confirmed function start"  64.6%
+      32  assert neither                       22.2%
+     ---
+     144
+
+  So the honest statement is a BOUND, not a rate: at least 13.2% are bad, at most
+  35.4% could be, and 22.2% were never checked. Two earlier figures in this file
+  were both wrong in different directions. 51 of 144 counted bad plus never-checked
+  as if all were bad, because the grep behind it also matched the size line
+  "measured from the int3 padding at 0xNNNN" -- which is the provenance of a CORRECT
+  end measurement, not a defect. Then 19 of 144 was published as if it were the rate
+  when it is only the lower bound.
+
+  Per-band lower bounds, measured over all 144: 5/81 (6.2%), 6/38 (15.8%), 4/14
+  (28.6%), 3/7 (42.9%), 1/4 (25.0%). The rate rises across the first four bands and
+  then does NOT keep rising; an earlier claim of 75% in the largest band does not
+  survive, and with 4 packets that band does not support a rate at all.
+
+  One slice is NOT representative and must not be used to characterise the packet
+  set: it drew all four band-2 bad addresses in the entire population plus the only
+  bad address in band 4, against an expectation of 2.8 bad in its nine. Its 1-of-9
+  strict tally is the worst-case draw of the three, and its "7 of 9 carried a
+  metadata defect" is a fact about those nine, not a population estimate. That agent
+  reported this against its own result.
 
 - Start addresses: in the bad cases the END is correct and only the START is
   derived, from a length the sweep never verified. Packets whose extent came from
