@@ -1223,21 +1223,47 @@ def pick_candidates(bodies, rows, held, landing, limits):
     return by_address, rejects, covered
 
 
-def dir32_consistent(chosen, landing, whitelist):
-    """Drop every placement that would give one symbol a second base.
+def dir32_consistent(chosen, by_address, landing, whitelist):
+    """Keep, per address, a twin whose DIR32 symbols land where the ledger has them.
 
-    Two ways that happens: the wave disagrees with itself, or it disagrees with a
-    row already in the ledger. Both fail the full gate identically, and the fix
-    is never a whitelist entry — it is not landing the placement that caused it.
-    Greedy to a fixpoint: the base covering the most bytes keeps its addresses.
+    Two ways a wave breaks verify_dir32_consistency: it disagrees with itself, or
+    it disagrees with a row already in the ledger. Both fail the full gate
+    identically, and the fix is never a whitelist entry — it is not landing the
+    placement that caused it.
+
+    But "the placement" is a whole family: retail folds identical code, and the
+    twins at one address differ in exactly the bytes that are blanked — which
+    vtable, which pool. So a twin that puts ??_7SomeClass@@6B@ somewhere the
+    ledger does not have it is not a reason to abandon the address; its sibling
+    that agrees is the one to land. Only twins of the same class are considered,
+    because a twin from a worse class needs pins this run harvested for another
+    body. What is left is settled greedily to a fixpoint: the base covering the
+    most bytes keeps its addresses.
     """
-    bases = {rva: landing.dir32_bases(rva, entry["body"], whitelist)
-             for rva, entry in chosen.items()}
-    wanted = {sym for syms in bases.values() for sym in syms}
+    families = {rva: [(entry, landing.dir32_bases(rva, entry["body"], whitelist))
+                      for entry in by_address[rva]
+                      if entry["class"] == chosen[rva]["class"]
+                      and CLASS_RANK[entry["class"]] < CLASS_RANK["rel32-mismatch"]]
+                or [(chosen[rva], landing.dir32_bases(rva, chosen[rva]["body"], whitelist))]
+                for rva in chosen}
+    wanted = {sym for family in families.values() for _, syms in family for sym in syms}
     if not wanted:
         return chosen, {}
-    existing = existing_dir32_bases(wanted)
-    live, dropped = dict(chosen), {}
+    existing = dict(existing_dir32_bases(wanted))
+    live, bases, dropped = {}, {}, {}
+    for rva, family in families.items():
+        agreeing = [(entry, syms) for entry, syms in family
+                    if all(base in existing[sym]
+                           for sym, base in syms.items() if sym in existing)]
+        if agreeing:
+            live[rva], bases[rva] = agreeing[0]
+            continue
+        entry, syms = family[0]
+        sym, base = next((s, b) for s, b in sorted(syms.items())
+                         if s in existing and b not in existing[s])
+        dropped[rva] = (f"{sym} would resolve to 0x{base:08X} here, but "
+                        f"{'/'.join(f'0x{b:08X}' for b in sorted(existing[sym]))} elsewhere, "
+                        f"and no twin of this body agrees")
     while True:
         by_symbol = defaultdict(lambda: defaultdict(list))
         for rva in live:
@@ -1448,7 +1474,7 @@ def do_land_multi(args):
           f"{len(unprovable)} address(es) dropped unproven")
 
     whitelist = whitelisted_dir32()
-    chosen, conflicts = dir32_consistent(chosen, landing, whitelist)
+    chosen, conflicts = dir32_consistent(chosen, by_address, landing, whitelist)
     report_drops("DIR32 consistency", conflicts, None)
     print(f"land-multi: {len(chosen)} address(es) survive the DIR32 pre-check "
           f"({len(conflicts)} dropped)")
