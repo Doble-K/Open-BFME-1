@@ -100872,7 +100872,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00258300@@YAXXZ,,0x00258300,25,Code/gen_asm/d_0024e310.asm,matched,gen-dump;ghidra=FUN_00658300
 ?d_00258600@@YAXXZ,,0x00258600,45,Code/gen_asm/d_0024e310.asm,matched,gen-dump;ghidra=FUN_00658600
 ?d_00258fb0@@YAXXZ,,0x00258FB0,30,Code/gen_asm/d_0024e310.asm,matched,gen-dump;ghidra=FUN_00658fb0
-?d_00259010@@YAXXZ,,0x00259010,46,Code/gen_asm/d_0024e310.asm,matched,gen-dump;ghidra=FUN_00659010
 ?d_00259060@@YAXXZ,,0x00259060,25,Code/gen_asm/d_0024e310.asm,matched,gen-dump;ghidra=FUN_00659060
 ?d_00259160@@YAXXZ,,0x00259160,86,Code/gen_asm/d_0024e310.asm,matched,gen-dump;ghidra=FUN_00659160
 ?d_002592a0@@YAXXZ,,0x002592A0,52,Code/gen_asm/d_0024e310.asm,matched,gen-dump;ghidra=FUN_006592a0
@@ -160110,3 +160109,4 @@ _luaX_init,,0x0099FDE0,53,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-
 _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1;object-symbol=_read_number
 ?push_back@?$vector@URunwayInfo@FlightDeckBehavior@@V?$allocator@URunwayInfo@FlightDeckBehavior@@@_STL@@@_STL@@QAEXABURunwayInfo@FlightDeckBehavior@@@Z,,0x0039EE00,64,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,
 ?messageBoxYes@@YAXXZ,,0x004D9010,48,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfoMessageBoxYesThunk.cpp,matched,Open-BFME7: isolated port of PopupPlayerInfo.cpp static messageBoxYes; BFME BuddyRequest 0x2B8 and GameSpyInfoInterface +7 virtuals
+??0CloudBreakSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00259010,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CloudBreakSpecialPower.cpp,matched,Open-BFME7: clean C++ empty derived constructor; identity from the three vtables it writes (CloudBreakSpecialPower getModuleNameKey + SpecialPowerModule slots) and its sole caller friend_newModuleInstance
