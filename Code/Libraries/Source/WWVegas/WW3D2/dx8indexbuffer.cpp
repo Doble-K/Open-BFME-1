@@ -133,13 +133,11 @@ unsigned IndexBufferClass::Get_Total_Allocated_Memory()
 	return _IndexBufferTotalSize;
 }
 
-// ?Add_Engine_Ref@IndexBufferClass@@QBEXXZ present-unmatched
 void IndexBufferClass::Add_Engine_Ref() const
 {
 	engine_refs++; 
 }
 
-// ?Release_Engine_Ref@IndexBufferClass@@QBEXXZ present-unmatched
 void IndexBufferClass::Release_Engine_Ref() const
 {
 	engine_refs--;

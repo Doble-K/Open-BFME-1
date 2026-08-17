@@ -144,7 +144,6 @@ unsigned VertexBufferClass::Get_Total_Allocated_Memory()
 
 // ----------------------------------------------------------------------------
 
-// ?Add_Engine_Ref@VertexBufferClass@@ present-unmatched
 void VertexBufferClass::Add_Engine_Ref() const
 {
 	engine_refs++;
@@ -152,7 +151,6 @@ void VertexBufferClass::Add_Engine_Ref() const
 
 // ----------------------------------------------------------------------------
 
-// ?Release_Engine_Ref@VertexBufferClass@@ present-unmatched
 void VertexBufferClass::Release_Engine_Ref() const
 {
 	engine_refs--;

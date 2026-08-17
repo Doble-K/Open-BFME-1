@@ -72213,3 +72213,10 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?updateContextOCLTimer@ControlBar@@AAEXXZ,0x000331C2,incremental-link thunk read out of the call displacement in populateOCLTimer
 ?setPortraitByObject@ControlBar@@AAEXPAVObject@@@Z,0x0002262E,incremental-link thunk read out of the call displacement in populateOCLTimer
 ?shutdownComplete@@YAXPAVWindowLayout@@@Z,0x0050B190,per-TU static copy in WOLWelcomeMenu.cpp read out of the call displacement in WOLWelcomeMenuShutdown
+?ensureUniqueBufferOfSize@AsciiString@@IAEXH_NPBD1@Z,0x00032182,ILT thunk read out of AIGuardPickUpCrateState ctor call displacement; real body 0x0014F280 (d_0014f280, gen-dump)
+??4StreakRendererClass@@QAEAAV0@ABV0@@Z,0x0095C860,read out of StreakLineClass::operator= call displacement; body is gen-dump d_0095c860
+?drawCheckBoxText@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,0x0078FDE0,read out of W3DGadgetCheckBoxDraw call displacement; body is gen-dump d_0078fde0
+?buildFieldParse@SpecialPowerModuleData@@SAXAAVMultiIniFieldParse@@@Z,0x00022584,ILT thunk read out of BaikonurLaunchPowerModuleData::buildFieldParse call displacement; real body 0x0077D380 (d_0077d380, gen-dump)
+?markAsDead@AIUpdateInterface@@QAEXXZ,0x00025BFD,ILT thunk read out of StructureCollapseUpdate::onDie call displacement; real body 0x0026EE80 (d_0026ee80, gen-dump)
+?deselectObject@GameLogic@@QAEXPAVObject@@G_N@Z,0x0001EC2C,ILT thunk read out of StructureCollapseUpdate::onDie call displacement; real body 0x00382F50 (d_00382f50, gen-dump)
+??1LANGameSlot@@QAE@XZ,0x00029A69,ILT thunk read out of LANGameInfo::setSlot call displacement; real body 0x006858A0 (d_006858a0, gen-dump)
