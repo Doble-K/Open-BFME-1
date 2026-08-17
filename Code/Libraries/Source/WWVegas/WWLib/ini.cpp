@@ -757,7 +757,6 @@ INISection * INIClass::Find_Section(char const * section) const
  *   07/02/1996 JLB : Created.                                                                 *
  *   11/02/1996 JLB : Uses index manager.                                                      *
  *=============================================================================================*/
-// ?Section_Count@INIClass@@QBEHXZ absent-from-retail
 int INIClass::Section_Count(void) const
 {
 	return(SectionIndex->Count());
