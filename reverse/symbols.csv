@@ -72186,3 +72186,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ??A?$map@HIU?$less@H@_STL@@V?$allocator@U?$pair@$$CBHI@_STL@@@2@@_STL@@QAEAAIABH@Z,0x0003DD2A,incremental-link thunk retail uses from PSPlayerStats::incorporate
 ?Get_Opacity@VertexMaterialClass@@QBEMXZ,0x00921130
 ?setFlipRecursive@W3DTerrainBackground@@IAEXHHH@Z,0x0001B5F9
+??0Keyboard@@QAE@XZ,0x00049148,incremental-link thunk retail uses from DirectInputKeyboard ctor
