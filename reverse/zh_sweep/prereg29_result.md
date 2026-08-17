@@ -36,8 +36,13 @@ C++; a naked/__emit body byte-matches by construction and was counted not-landed
 ## What the misses were, and why this is not a contradiction
 
 The packets that pointed at the right place converted well above baseline. The
-ones that did not, did not — and 51 of the 144 packets carry a banner saying their
-address is not a function start.
+ones that did not, did not — and 19 of the 144 packets carry a banner saying their
+address is not a function start (13%, of which 6 sit in padding and 13 inside another
+body). An earlier draft of this file said 51 of 144, and that figure was wrong: the
+grep behind it also matched 32 packets whose first lines say "measured from the int3
+padding at 0xNNNN", which is a truthful statement of how the EXTENT was derived, not
+a claim that the address is bad. Any per-band rate derived from the 51 is void, and
+that is what made one slice's 0-of-10 bad starts look anomalous when it was not.
 
 - Start addresses: in the bad cases the END is correct and only the START is
   derived, from a length the sweep never verified. Packets whose extent came from
@@ -88,6 +93,17 @@ address is not a function start.
   The inventory has a start for all six bad addresses with sizes matching retail
   exactly (191, 207, 4042, 248, 306, 11), including the mid-instruction case, so
   no missing-start fallback is needed.
+
+  Validated over the whole banner population, not a hand-picked sample: the rule
+  returns a real ghidra start 19 of 19, and the direction it picks agrees with the
+  packet's own label in all 19 — the 6 padding packets snap forward, the 13 interior
+  ones snap back. Two independent signals, no disagreement, so an implementer can use
+  the coverage test and treat the label as a free assertion. Note the majority is
+  BACK-snap, 13 of 19: a forward-only rule would have been wrong for 13, not 3.
+
+  Extent is a separate problem from address. Derived size is correct for 11 of the 12
+  packets whose end does not span a later start; the miss is 0x0092A6C3, where
+  ghidra's own extent is 2 bytes short (found independently by two slices).
 
   KEEP the existing "spans N function start(s)" check. Snapping fixes the address;
   it does not make a packet convertible. 0x00C0A3CE snaps correctly to 0xC0A3CB and
