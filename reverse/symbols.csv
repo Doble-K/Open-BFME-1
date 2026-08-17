@@ -72184,3 +72184,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?setTerrainTextureFilters@@YAXI@Z,0x00038389
 ?Apply_Render_State_Changes@DX8Wrapper@@SAXXZ,0x00904890
 ??A?$map@HIU?$less@H@_STL@@V?$allocator@U?$pair@$$CBHI@_STL@@@2@@_STL@@QAEAAIABH@Z,0x0003DD2A,incremental-link thunk retail uses from PSPlayerStats::incorporate
+?Get_Opacity@VertexMaterialClass@@QBEMXZ,0x00921130

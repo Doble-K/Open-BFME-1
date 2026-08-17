@@ -39,6 +39,24 @@
  * Functions:                                                                                  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+// Retail disagrees with the WW3D2-local vertmaterial.h about VertexMaterialClass
+// on two points that Post_Load_Process is the first body to feel:
+//   - it is 0x6C, not 0x70. Set_Ambient_Color_Source (0x00921160) writes
+//     [ecx+0x10], so the local header's extra `_bfme_vmat_v0` dword ahead of
+//     MaterialOld is not there; the reference copy, which omits it, is right.
+//   - it has no pooled operator new. The allocation here is a bare
+//     `push 0x6c; call ??2@YAPAXI@Z`, not the getClassMemoryPool() +
+//     allocateFromW3DMemPool pair W3DMPO_GLUE generates.
+// The local header is shared by 17 other TUs, so take the reference layout by
+// angle-bracket include (its VERTMATERIAL_H guard then swallows the local copy
+// meshmatdesc.h pulls in) and drop the glue for the length of that include only.
+#include "always.h"
+#pragma push_macro("W3DMPO_GLUE")
+#undef W3DMPO_GLUE
+#define W3DMPO_GLUE(ARGCLASS)
+#include <vertmaterial.h>
+#pragma pop_macro("W3DMPO_GLUE")
+
 #include "meshmatdesc.h"
 #include "texture.h"
 #include "vertmaterial.h"
@@ -564,7 +582,14 @@ TextureClass * MeshMatDescClass::Get_Texture(int pidx,int pass,int stage) const
 VertexMaterialClass * MeshMatDescClass::Peek_Material(int vidx,int pass) const
 {
 	if (MaterialArray[pass]) {
-		return MaterialArray[pass]->Peek_Element(vidx);
+		// BFME reads ShareBufferClass::RawBuffer (+0x08) here rather than Array
+		// (+0x0C) -- the same choice the MatBufferClass copy ctor above makes.
+		// It is not an inlined Peek_Element: that body still stands at 0x006BCB60
+		// reading [ecx+0x0c]. RawBuffer is protected and MeshMatDescClass is not a
+		// subclass, so reach it by its verified offset (ctor 0x005F3BE0 stores the
+		// raw allocation at +0x08, the aligned view at +0x0C; this instantiation is
+		// always unaligned, so the two hold the same pointer).
+		return (*(VertexMaterialClass ***)((char *)MaterialArray[pass] + 0x08))[vidx];
 	}
 	return Material[pass];
 }
@@ -670,7 +695,6 @@ void MeshMatDescClass::Install_UV_Array(int pass,int stage,Vector2 * uvs,int cou
 }
 
 
-// ?Post_Load_Process@MeshMatDescClass@@QAEX_NPAVMeshModelClass@@@Z present-unmatched
 void MeshMatDescClass::Post_Load_Process(bool lighting_enabled,MeshModelClass * parent)
 {
 	/*
