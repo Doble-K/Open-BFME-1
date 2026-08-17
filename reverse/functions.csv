@@ -124082,7 +124082,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004d8f70@@YAXXZ,,0x004D8F70,24,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004d8f90@@YAXXZ,,0x004D8F90,22,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004d8fb0@@YAXXZ,,0x004D8FB0,69,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
-?d_004d9010@@YAXXZ,,0x004D9010,48,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004de170@@YAXXZ,,0x004DE170,11,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004de1f0@@YAXXZ,,0x004DE1F0,93,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004df090@@YAXXZ,,0x004DF090,81,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
@@ -160110,3 +160109,4 @@ _luaK_goiffalse,,0x0099F6F0,35,Code/Libraries/Source/Lua/lcode.c,matched,vendore
 _luaX_init,,0x0099FDE0,53,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1
 _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1;object-symbol=_read_number
 ?push_back@?$vector@URunwayInfo@FlightDeckBehavior@@V?$allocator@URunwayInfo@FlightDeckBehavior@@@_STL@@@_STL@@QAEXABURunwayInfo@FlightDeckBehavior@@@Z,,0x0039EE00,64,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,
+?messageBoxYes@@YAXXZ,,0x004D9010,48,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfoMessageBoxYesThunk.cpp,matched,Open-BFME7: isolated port of PopupPlayerInfo.cpp static messageBoxYes; BFME BuddyRequest 0x2B8 and GameSpyInfoInterface +7 virtuals
