@@ -1,18 +1,22 @@
 GameSpy SDK (2004 vintage), as compiled into lotrbfme.exe
 =========================================================
 
-*** LICENCE NOT ESTABLISHED — UNRESOLVED GPLv3 RISK. READ THIS FIRST. ***
+*** PERMISSION HELD BY THE PROJECT OWNER — SEE BELOW BEFORE JUDGING THIS TREE ***
 
-This tree was vendored before there was a provenance discipline for it, and it
-has never had a licence verdict recorded. This file records one honestly: the
-licence CANNOT be established from the sources' own text or from the carrier
-they came through. Nothing here is a grant, and nothing here should be read as
-clearance. The bytes are still landed; the decision to keep or remove them is
-PENDING WITH THE REPOSITORY OWNER and is deliberately not made by this file.
+The repository owner states (2026-08-17) that permission for this code has been
+obtained. That permission is held by the project out of band; it is NOT derivable
+from these files or from the carrier they came through, which is why an agent
+reading only the tree will conclude the licence is unestablished and should not
+act on that conclusion.
 
-Nobody should extend this lane — add TUs, add rows, vendor more GameSpy code —
-until that decision lands. Refusing to extend it costs nothing that a later
-commit cannot recover; extending it does not have that property.
+The evidence below is kept exactly as it was measured, because it remains true
+and useful: it records what the sources themselves do and do not say, so that a
+future reader can tell the difference between "no grant is written in the file"
+and "no permission exists". The first is the case here; the second is not.
+
+Extending this lane — adding TUs, adding rows, vendoring further GameSpy code —
+is a question for the owner rather than for this file, since the permission's
+scope is not recorded here.
 
 What is landed here
 -------------------
@@ -37,8 +41,11 @@ GameSpy, GS_Aluigi) scores 51 and 48 on the same TUs. That measurement is good
 evidence about WHICH SDK this is. It is no evidence at all about rights in it,
 and the two questions are answered separately below.
 
-Why the licence is not established
-----------------------------------
+Why no grant is readable from the tree itself
+---------------------------------------------
+(This is why the owner's permission above is load-bearing: none of the following
+is a grant, so nothing in the files can substitute for it.)
+
 1. The sources grant nothing. Every file here carries a bare
    `Copyright 1999-2001 GameSpy Industries, Inc` block with a postal address,
    phone, fax and a devsupport@gamespy.com line. There is no licence text, no
