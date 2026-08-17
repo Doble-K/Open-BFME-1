@@ -72207,3 +72207,8 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?setBool@UserPreferences@@QAEXVAsciiString@@_N@Z,0x00017CC9,incremental-link thunk
 ?getBool@UserPreferences@@QBE_NVAsciiString@@_N@Z,0x0002C7CD,incremental-link thunk
 ?newMap@Player@@QAEXXZ,0x0001DB15,decoded from PlayerList::newMap call site at 0x000DF313; ILT thunk body 0x000C9200
+?findCommandButton@ControlBar@@AAEPBVCommandButton@@ABVAsciiString@@@Z,0x0003B59D,incremental-link thunk read out of the call displacement in populateOCLTimer
+?setControlCommand@ControlBar@@AAEXPAVGameWindow@@PBVCommandButton@@@Z,0x00015DA7,incremental-link thunk read out of the call displacement in populateOCLTimer
+?winSetStatus@GameWindow@@QAEXI@Z,0x00033523,incremental-link thunk read out of the call displacement in populateOCLTimer
+?updateContextOCLTimer@ControlBar@@AAEXXZ,0x000331C2,incremental-link thunk read out of the call displacement in populateOCLTimer
+?setPortraitByObject@ControlBar@@AAEXPAVObject@@@Z,0x0002262E,incremental-link thunk read out of the call displacement in populateOCLTimer

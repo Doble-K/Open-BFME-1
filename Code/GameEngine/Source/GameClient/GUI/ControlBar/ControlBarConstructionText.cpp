@@ -32,8 +32,10 @@ template <class Type>
 class StringBase
 {
 private:
+	StringBase(const char *s);
 	StringBase(const StringBase &that);
 	friend class UnicodeString;
+	friend class AsciiString;
 };
 
 class UnicodeString
@@ -61,7 +63,29 @@ private:
 
 };
 
-class GameWindow;
+class AsciiString
+{
+public:
+
+	AsciiString(const char *s)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(s);
+	}
+
+	AsciiString(const AsciiString &that);
+	~AsciiString();
+
+private:
+
+	void *m_text;
+
+};
+
+class GameWindow
+{
+public:
+	void winSetStatus( UnsignedInt status );
+};
 
 class Object
 {
@@ -161,15 +185,25 @@ extern GameText *TheGameText;
 
 void GadgetStaticTextSetText( GameWindow *window, UnicodeString text );
 
+class CommandButton;
+
 class ControlBar
 {
 public:
 
 	void updateConstructionTextDisplay( Object *obj );
+	void populateOCLTimer( Object *creatorObject );
 
 private:
 
-	char m_bfmeHead[0x68];
+	const CommandButton *findCommandButton( const AsciiString &name );
+	void setControlCommand( GameWindow *button, const CommandButton *commandButton );
+	void updateContextOCLTimer( void );
+	void setPortraitByObject( Object *obj );
+
+	char m_bfmeHead[0x54];
+	GameWindow *m_bfmeContextParentOclTimer;		// @0x54, m_contextParent[CP_OCL_TIMER]
+	char m_bfmeMiddle[0x68 - 0x58];
 	Real m_displayedConstructPercent;						// @0x68
 
 };
@@ -189,3 +223,33 @@ void ControlBar::updateConstructionTextDisplay( Object *obj )
 	m_displayedConstructPercent = obj->getConstructionPercent();
 
 }  // end updateConstructionTextDisplay
+
+// Retail 0x004AAA70.  BFME dropped the two KINDOF branches Zero Hour has --
+// there is no isKindOf call in these 182 bytes at all -- and always sets the
+// sell button.  The order is the reference's only up to a point: retail builds
+// and destroys the findCommandButton temporary BEFORE calling nameToKey, so
+// that statement comes first here.
+void ControlBar::populateOCLTimer( Object *creatorObject )
+{
+
+	// sanity
+	if( creatorObject == 0 )
+		return;
+
+	// get our parent window
+	GameWindow *parent = m_bfmeContextParentOclTimer;
+
+	const CommandButton *commandButton = findCommandButton( "Command_Sell" );
+	NameKeyType id = TheNameKeyGenerator->nameToKey( "ControlBar.wnd:OCLTimerSellButton" );
+	GameWindow *win = TheWindowManager->winGetWindowFromId( parent, id );
+
+	setControlCommand( win, commandButton );
+	win->winSetStatus( 0x200000 );								// WIN_STATUS_USE_OVERLAY_STATES
+
+	// set the text percent and bar of our timer we are displaying
+	updateContextOCLTimer( );
+
+	// set the portrait for the thing being constructed
+	setPortraitByObject( creatorObject );
+
+}  // end populateOCLTimer
