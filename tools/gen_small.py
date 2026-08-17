@@ -27,6 +27,10 @@ Subcommands
   gen-tgrid   write Code/gen_small/tgrid_<batch>.cpp: STLport templates
               instantiated over a synthetic payload grid, claiming the retail
               container bodies those instantiations reproduce byte for byte.
+  gen-tinst   the same instantiation, driven the other way round: the element
+              type is read OUT of the body's own STLport-decorated name in
+              reverse/reloc_names.csv, so the retail body is identified by name
+              rather than placed by shape. Writes Code/gen_small/tinst_<batch>.cpp.
   gen-dtors   write one Code/gen_small/dtors_<batch>.cpp (scalar `??_G`) or
               dtorsv_<batch>.cpp (vector `??_E`) batch of synthetic classes whose
               compiler-generated deleting destructors are the retail bodies.
@@ -3564,6 +3568,331 @@ def cmd_gen_tgrid(args):
         print("gen-tgrid: 0 new — every claimable site is already in the ledger")
 
 
+# --------------------------------------------------------------------------
+# gen-tinst: container instantiations over the REAL element types
+# --------------------------------------------------------------------------
+#
+# gen-tgrid claims what a SHAPE proves: a synthetic payload of some size and
+# lifecycle, whose name never reaches the bytes. That is the right instrument
+# for an anonymous body, and the wrong one here. ~35 KB of retail container
+# members are already NAMED -- reverse/reloc_names.csv and reverse/symbols.csv
+# carry their STLport-decorated names, element type and all -- and those names
+# are evidence a shape comparison cannot produce. Every four-byte trivially
+# assignable element type compiles `_M_fill_insert` to the same 282 bytes, so a
+# masked scan over that family names nothing (see the resize family at
+# 0x001DC360); the decorated name names it exactly.
+#
+# So gen-tinst runs the identification backwards from gen-tgrid: it reads the
+# element type OUT of the name, instantiates the vendored STLport 4.5.3 template
+# over that type, and checks each emitted body against the retail address its own
+# name names. Nothing is placed by search, so there is no ambiguity to resolve.
+
+TINST_NOTE = "gen-tinst"
+TINST_REF = "reference/CnC_Generals_Zero_Hour/GeneralsMD/Code"
+TINST_INCDIRS = [f"{TINST_REF}/GameEngine/Include", f"{TINST_REF}/GameEngine/Source",
+                 f"{TINST_REF}/GameEngineDevice/Include", f"{TINST_REF}/Libraries/Include",
+                 f"{TINST_REF}/Libraries/Source", f"{TINST_REF}/Libraries/Source/WWVegas",
+                 f"{TINST_REF}/Libraries/Source/WWVegas/WWLib",
+                 f"{TINST_REF}/Libraries/Source/WWVegas/WWMath",
+                 f"{TINST_REF}/Libraries/Source/WWVegas/WW3D2",
+                 f"{TINST_REF}/Libraries/Source/WWVegas/WWDebug",
+                 f"{TINST_REF}/Libraries/Source/WWVegas/WWSaveLoad"]
+TINST_SHIMS = ["reference/shims/science", "reference/shims/iniexception",
+               "reference/shims/ini_noinline", "reference/shims/stlp_nodealloc",
+               "reference/shims/sweep"]
+# Which allocator a retail body was compiled under is not knowable from its
+# name, so both regimes are tried and only an exact byte match decides.
+TINST_REGIMES = {"plain": "/DNDEBUG /MD /EHsc",
+                 "node": "/DNDEBUG /DBFME_STLP_NODE_ALLOC /D_STLP_USE_STATIC_LIB /MD /EHsc"}
+TINST_NS = {"vector": "_STL::vector", "list": "_STL::list",
+            "deque": "_STL::deque", "slist": "_STL::slist"}
+TINST_PRIM = {"C": "signed char", "D": "char", "E": "unsigned char", "F": "short",
+              "G": "unsigned short", "H": "int", "I": "unsigned int", "J": "long",
+              "K": "unsigned long", "M": "float", "N": "double", "X": "void",
+              "_N": "bool", "_J": "__int64", "_K": "unsigned __int64"}
+TINST_BUILTIN = {"_STL", "pair", "vector", "list", "deque", "slist", "const",
+                 "unsigned", "int", "char", "float", "double", "bool", "void",
+                 "short", "long", "signed"}
+TINST_CONTAINER = re.compile(r"\?\$(vector|list|deque|slist)@")
+
+
+def tinst_demangle(mangled):
+    """C++ spelling for one mangled type, or None when this parser cannot.
+
+    Refusing is the point: a guessed spelling would instantiate over the WRONG
+    element type and, for the many size classes that compile identically, still
+    land on a plausible body. Only shapes this understands exactly get emitted.
+    """
+    mangled = mangled.strip()
+    if mangled in TINST_PRIM:
+        return TINST_PRIM[mangled]
+    for prefix, wrap in (("PA", "{} *"), ("PB", "const {} *"), ("AA", "{} &")):
+        if mangled.startswith(prefix):
+            inner = tinst_demangle(mangled[len(prefix):])
+            return wrap.format(inner) if inner else None
+    # W4Name@@ enum, VName@@ class, UName@@ struct; nested names read outward
+    match = re.fullmatch(r"(?:W4|V|U|T)([A-Za-z_0-9]+(?:@[A-Za-z_0-9]+)*)@@", mangled)
+    if match:
+        return "::".join(reversed(match.group(1).split("@")))
+    match = re.fullmatch(r"[VU]\?\$([A-Za-z_0-9]+)@(.*)@(_STL|rts)@@", mangled)
+    if match:
+        name, args, namespace = match.groups()
+        spelled = tinst_arglist(args)
+        return f"{namespace}::{name}<{', '.join(spelled)} >" if spelled else None
+    return None
+
+
+def tinst_arglist(mangled):
+    """[C++ spellings] for a mangled template argument list, or None."""
+    args, position = [], 0
+    while position < len(mangled):
+        rest = mangled[position:]
+        if rest.startswith(("V?$", "U?$")):
+            end = tinst_template_end(mangled, position)
+            if end is None:
+                return None
+            piece = tinst_demangle(mangled[position:end])
+            position = end
+        else:
+            match = re.match(r"(?:W4|V|U|T)[A-Za-z_0-9]+(?:@[A-Za-z_0-9]+)*@@"
+                             r"|P[AB][A-Za-z_0-9]*(?:@[A-Za-z_0-9]+)*@@|PAX|_N|[CDEFGHIJKMNX]",
+                             rest)
+            if not match:
+                return None
+            piece = tinst_demangle(match.group(0))
+            position += match.end()
+        if piece is None:
+            return None
+        args.append(piece)
+    return args or None
+
+
+def tinst_template_end(mangled, start):
+    """Index just past the `V?$name@...@ns@@` beginning at `start`, or None."""
+    depth, position = 0, start
+    while position < len(mangled):
+        if mangled.startswith("?$", position):
+            depth += 1
+            position += 2
+            continue
+        match = re.match(r"@(?:_STL|rts)@@", mangled[position:])
+        if match:
+            depth -= 1
+            position += match.end()
+            if not depth:
+                return position
+            continue
+        position += 1
+    return None
+
+
+def tinst_element(name):
+    """(container, mangled element) for a one-parameter sequence container."""
+    match = TINST_CONTAINER.search(name)
+    if not match:
+        return None, None
+    rest = name[match.end():]
+    cut = rest.find("V?$allocator@")
+    return (match.group(1), rest[:cut]) if cut >= 0 else (match.group(1), None)
+
+
+def tinst_resolve(read, rva):
+    """Follow the 5-byte incremental-link `jmp rel32` stub to the real body.
+
+    The linker gives every STL member an ILT entry and it is the ILT address the
+    name tables record, so a name looked up raw lands on five bytes rather than
+    on the function.
+    """
+    for _ in range(3):
+        head = read(rva, 5)
+        if len(head) != 5 or head[0] != 0xE9:
+            return rva
+        rva = (rva + 5 + int.from_bytes(head[1:5], "little", signed=True)) & 0xFFFFFFFF
+    return rva
+
+
+def tinst_named_population():
+    """{decorated name: rva} for every STLport-decorated retail name on record."""
+    named = {}
+    def note(name, rva, size):
+        if name not in named or size > named[name][1]:
+            named[name] = (rva, size)
+    for path, address, size in (("reverse/reloc_names.csv", "target_rva", "target_size"),
+                                ("reverse/symbols.csv", "address", None)):
+        with open(ROOT / path, newline="", encoding="utf-8") as handle:
+            for row in csv.DictReader(handle):
+                if "@_STL@@" not in row["name"]:
+                    continue
+                try:
+                    note(row["name"], int(row[address], 16),
+                         int(row[size]) if size else 0)
+                except ValueError:
+                    continue
+    return named
+
+
+def tinst_header_for(base):
+    """The reference-tree header defining `base`, as an #include spelling."""
+    if base in TINST_BUILTIN or not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", base):
+        return None
+    found = subprocess.run(["rg", "-l", rf"^\s*(class|struct)\s+{base}\b", "--glob", "*.h",
+                            TINST_REF], cwd=ROOT, capture_output=True, text=True)
+    best = None
+    for path in found.stdout.split():
+        for directory in TINST_INCDIRS:
+            if not path.startswith(directory + "/"):
+                continue
+            spelling = path[len(directory) + 1:]
+            # a header named after the type is its definition far more often
+            rank = (0 if spelling.rsplit("/", 1)[-1].lower().startswith(base.lower()) else 1,
+                    len(spelling))
+            if best is None or rank < best[0]:
+                best = (rank, spelling)
+    return best[1] if best else None
+
+
+def tinst_render(flags, headers, container, spelling, prerts):
+    """One instantiation TU. `// cl:` and `// stlport` must stay in the first
+    lines: build.py reads only the head of a source to decide both."""
+    lines = ["// cl: " + flags + ("".join(" /I" + d for d in TINST_SHIMS + TINST_INCDIRS)
+                                  if headers or prerts else ""),
+             "// stlport",
+             "// Generated by: python3 tools/gen_small.py gen-tinst",
+             "// Do not edit by hand; regenerate instead.",
+             "//",
+             "// A retail body that IS this instantiation. The element type is read out",
+             "// of the body's own STLport-decorated name, not out of its shape -- every",
+             "// four-byte trivially assignable element compiles these members to the",
+             "// same bytes, so the shape names nothing and the name names it exactly.",
+             "//",
+             f"// element: {spelling}   container: {container}", ""]
+    if prerts:
+        lines.append('#include "PreRTS.h"')
+    lines += [f'#include "{header}"' for header in headers]
+    lines += ["", "#include <cstring>", "",
+              "// Retail reaches memmove through the import slot (`ff 15`); the pin",
+              "// `_bfme_memmove_ptr` is already in reverse/symbols.csv at that slot.",
+              'extern "C" void *(__cdecl *bfme_memmove_ptr)'
+              "(void *, const void *, unsigned int);",
+              "#define memmove (*bfme_memmove_ptr)",
+              f"#include <{container}>",
+              "#undef memmove", "",
+              f"template class {TINST_NS[container]}<{spelling} >;"]
+    return "\n".join(lines) + "\n"
+
+
+def tinst_cells(read, named):
+    """{(container, spelling): bytes at stake} for every unclaimed named body."""
+    claimed = {int(row["target_rva"], 16) for row in B.load_all_function_rows()
+               if "gen_asm" not in row["source"] and not row["source"].endswith(".asm")}
+    dumps = {int(row["target_rva"], 16): int(row["target_size"])
+             for row in B.load_all_function_rows()
+             if "gen_asm" in row["source"] or row["source"].endswith(".asm")}
+    stake = collections.Counter()
+    for name, (rva, size) in named.items():
+        body = tinst_resolve(read, rva)
+        if body in claimed:
+            continue
+        container, element = tinst_element(name)
+        if not container or element is None or "Gen_" in element:
+            continue          # a Gen_* payload is gen-tgrid's, by construction
+        spelling = tinst_demangle(element)
+        if not spelling:
+            continue
+        stake[(container, spelling)] += dumps.get(body, size)
+    return stake
+
+
+def tinst_probe(read, named, cell, headers, number):
+    """[(row, size)] for the bodies one cell reproduces exactly, over both
+    allocator regimes; the first regime that compiles AND matches wins."""
+    container, spelling = cell
+    claimed = {row["name"] for row in B.load_all_function_rows()}
+    for regime, flags in TINST_REGIMES.items():
+        for prerts in ((True, False) if headers else (False,)):
+            source = PENDING_DIR / f"tinstprobe_{number:03d}_{regime}.cpp"
+            text = tinst_render(flags, headers, container, spelling, prerts)
+            if not source.exists() or source.read_text(encoding="utf-8") != text:
+                source.write_text(text, encoding="utf-8")
+            obj = B.obj_path(source)
+            try:
+                if not B.compile_is_current(source, obj):
+                    B.compile_source(source, obj)
+            except BaseException:      # compile_source signals failure with SystemExit
+                continue
+            hits = []
+            for symbol, body, relocs in tg_object_bodies(obj):
+                if symbol not in named or symbol in claimed:
+                    continue
+                rva = tinst_resolve(read, named[symbol][0])
+                retail = read(rva, len(body))
+                if len(retail) != len(body):
+                    continue
+                masked = {position for offset, _, _ in relocs
+                          for position in range(offset, min(offset + 4, len(body)))}
+                if any(body[i] != retail[i] for i in range(len(body)) if i not in masked):
+                    continue
+                hits.append((symbol, rva, len(body)))
+            if hits:
+                return hits, text, regime
+    return [], None, None
+
+
+def tinst_source_path(number):
+    return GEN_DIR / f"tinst_{number:03d}.cpp"
+
+
+def cmd_gen_tinst(args):
+    read = exe_reader()
+    named = tinst_named_population()
+    stake = tinst_cells(read, named)
+    order = sorted(stake, key=lambda cell: -stake[cell])
+    if args.only:
+        order = [c for c in order if args.only in c[1]]
+    print(f"gen-tinst: {len(order)} element type(s) named in the retail tables, "
+          f"{sum(stake[c] for c in order)} unclaimed byte(s) at stake")
+
+    number = 0
+    while tinst_source_path(number).exists():
+        number += 1
+    thunks, report = B.build_call_thunks(), collections.Counter()
+    written, refused = [], collections.Counter()
+    for container, spelling in order[:args.batches]:
+        headers, missing = [], []
+        for base in dict.fromkeys(re.findall(r"[A-Za-z_][A-Za-z_0-9]*", spelling)):
+            header = tinst_header_for(base)
+            (headers.append(header) if header else
+             missing.append(base) if base not in TINST_BUILTIN else None)
+        if missing:
+            refused[f"no reference header for {missing[0]}"] += 1
+            continue
+        hits, text, regime = tinst_probe(read, named, (container, spelling),
+                                         headers, number)
+        if not hits:
+            refused["no member reproduces the retail bytes"] += 1
+            continue
+        source = tinst_source_path(number)
+        rows = [f"{symbol},,0x{rva:08X},{size},"
+                f"{source.relative_to(ROOT).as_posix()},matched,"
+                f"{TINST_NOTE};element={spelling};regime={regime}"
+                for symbol, rva, size in sorted(hits, key=lambda h: -h[2])]
+        verified = tg_write_batch(source, text, rows, [], thunks, report, TINST_NOTE)
+        if verified:
+            written.append(verified)
+            number += 1
+        else:
+            source.unlink(missing_ok=True)
+
+    new = sum(len(rows) for rows in written)
+    print(f"gen-tinst: {len(written)} batch(es) pending, {new} verified new row(s) "
+          f"({sum(int(row.split(',')[3]) for rows in written for row in rows)} bytes), "
+          f"{report['verify-failed']} verify-failed")
+    for reason, count in refused.most_common():
+        print(f"gen-tinst: {count} cell(s) refused: {reason}")
+    if not new:
+        print("gen-tinst: 0 new — every reproducible member is already in the ledger")
+
+
 def tg_site_pins(rva, found, allowed, new_pins, pinned, resolved, instance,
                  label=TGRID_NOTE):
     """The symbols.csv lines one site needs.
@@ -4390,6 +4719,14 @@ def main(argv=None):
     tgrid.add_argument("--batches", type=int, default=4,
                        help="new per-site TUs to write per run")
     tgrid.set_defaults(func=cmd_gen_tgrid)
+    tinst = sub.add_parser("gen-tinst",
+                           help="write Code/gen_small/tinst_NNN.cpp batches of STLport "
+                                "instantiations over the REAL element types the retail "
+                                "name tables carry")
+    tinst.add_argument("--batches", type=int, default=8,
+                       help="element types to try per run (each is one TU)")
+    tinst.add_argument("--only", help="restrict to element types containing this text")
+    tinst.set_defaults(func=cmd_gen_tinst)
     sub.add_parser("probe", help="byte-verify one instance of every skeleton"
                    ).set_defaults(func=cmd_probe)
     shims = sub.add_parser("gen-shims", help="write one Code/gen_small/fun_NNN.cpp batch")
