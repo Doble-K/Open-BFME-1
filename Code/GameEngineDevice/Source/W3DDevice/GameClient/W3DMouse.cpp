@@ -158,7 +158,6 @@ void W3DMouse::initPolygonAssets(void)
 	}
 }
 
-// ?freePolygonAssets@W3DMouse@@ present-unmatched
 void W3DMouse::freePolygonAssets(void)
 {
 
@@ -324,7 +323,17 @@ void W3DMouse::initW3DAssets(void)
 		m_camera->Set_Projection_Type( CameraClass::ORTHO );
 }
 
-// ?freeW3DAssets@W3DMouse@@ present-unmatched
+// BFME reaches Remove_Render_Object at the interface scene's vtable +0x0c, one
+// slot ahead of where the ZH SceneClass declaration puts it.
+class BfmeInterfaceScene
+{
+public:
+	virtual void bfme_scene_0( void ) = 0;
+	virtual void bfme_scene_4( void ) = 0;
+	virtual void bfme_scene_8( void ) = 0;
+	virtual void Remove_Render_Object( RenderObjClass *obj ) = 0;
+};
+
 void W3DMouse::freeW3DAssets(void)
 {
 
@@ -332,13 +341,15 @@ void W3DMouse::freeW3DAssets(void)
 	{
 		if (W3DDisplay::m_3DInterfaceScene && cursorModels[i])
 		{
-			W3DDisplay::m_3DInterfaceScene->Remove_Render_Object(cursorModels[i]);
+			((BfmeInterfaceScene *)W3DDisplay::m_3DInterfaceScene)->Remove_Render_Object(cursorModels[i]);
 		}
-		REF_PTR_RELEASE(cursorModels[i]);
-		REF_PTR_RELEASE(cursorAnims[i]);
+		// BFME's REF_PTR_RELEASE nulls the pointer inside the guard; ZH's macro
+		// leaves the store outside it, which costs a reload after the release.
+		if (cursorModels[i]) { cursorModels[i]->Release_Ref(); cursorModels[i] = NULL; }
+		if (cursorAnims[i]) { cursorAnims[i]->Release_Ref(); cursorAnims[i] = NULL; }
 	}
 
-	REF_PTR_RELEASE(m_camera);
+	if (m_camera) { m_camera->Release_Ref(); m_camera = NULL; }
 }
 
 //-------------------------------------------------------------------------------------------------

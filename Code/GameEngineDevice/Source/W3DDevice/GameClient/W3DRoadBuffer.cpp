@@ -2667,10 +2667,12 @@ void W3DRoadBuffer::insertTeeIntersections(void)
 //=============================================================================
 /** Inserts curved segments along connected segments. */
 //=============================================================================
-// ?insertCurveSegments@W3DRoadBuffer@@IAEXXZ present-unmatched
 void W3DRoadBuffer::insertCurveSegments(void)
 {
-	// Insert the curve segments. 
+	// BFME added a guard vs ZH: refuses to walk m_roads before init (proven by
+	// target byte read of this+0xc, m_initialized's proven offset).
+	if (!m_initialized) return;
+	// Insert the curve segments.
 	Int numRoadSegments = m_numRoads;
 	Int i;
 	Int segmentStartIndex = -1;

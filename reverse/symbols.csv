@@ -72169,3 +72169,7 @@ _ghiInitBuffer,0x0087D740,decode_calls pin for _ghiNewConnection callee
 ??$_Construct@URunwayInfo@FlightDeckBehavior@@U12@@_STL@@YAXPAURunwayInfo@FlightDeckBehavior@@ABU12@@Z,0x00008049,
 ?_M_insert_overflow@?$vector@URunwayInfo@FlightDeckBehavior@@V?$allocator@URunwayInfo@FlightDeckBehavior@@@_STL@@@_STL@@IAEXPAURunwayInfo@FlightDeckBehavior@@ABU34@ABU__false_type@2@I_N@Z,0x00025C89,
 ?switchToContext@ControlBar@@IAEXW4ControlBarContext@@PAVDrawable@@@Z,0x000329D4,Open-BFME7: incremental-link thunk for the real body at 0x0049E780 (int3-bounded start; reads m_currContext at +0x60 and m_currentSelectedDrawable at +0x5C); the ledger row for this name sits at 0x0049E901 which is inside that body
+?_M_insert_overflow@?$vector@PBVThingTemplate@@V?$allocator@PBVThingTemplate@@@_STL@@@_STL@@IAEXPAPBVThingTemplate@@ABQBV3@ABU__true_type@2@I_N@Z,0x0000C5F4,zh_sweep packet 001dc59e callee pin
+?_M_fill_insert@?$vector@HV?$allocator@H@_STL@@@_STL@@QAEXPAHIABH@Z,0x000395CC,ILT thunk to 0x001DBAB0 - the ObjectTypes TU instantiation; the ledger row of this name is a different copy at 0x00067740
+?closeKeyboard@DirectInputKeyboard@@IAEXXZ,0x0004A13D,zh_sweep packet 006bb53f callee pin
+_bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Create import stub (see Win32DIKeyboardOpen.cpp)

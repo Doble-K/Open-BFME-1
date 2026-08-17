@@ -41,6 +41,10 @@
 #include "Common/ThingTemplate.h"
 #include "Common/Xfer.h"
 
+// BFME's findTemplate is out of line and takes only the name; ZH's is an inline
+// forwarder that passes the default check flag as a second argument.
+struct BFMEThingFactory { const ThingTemplate *findTemplate(const AsciiString &name); };
+
 //-------------------------------------------------------------------------------------------------
 // ??0ObjectTypes@@ present-unmatched
 ObjectTypes::ObjectTypes()
@@ -120,12 +124,15 @@ Bool ObjectTypes::isInSet(const ThingTemplate* objectType) const
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?prepForPlayerCounting@ObjectTypes@@ present-unmatched
 Int ObjectTypes::prepForPlayerCounting( std::vector<const ThingTemplate *>& templates, std::vector<Int>& counts)
 {
+	// same +0x08 overlay as isInSet above
+	struct BFMEObjectTypes { char pad[0x08]; AsciiStringVec m_objectTypes; };
+	BFMEObjectTypes *self = (BFMEObjectTypes *)this;
+
 	AsciiStringVecIt it;
-	for (it = m_objectTypes.begin(); it != m_objectTypes.end(); ++it) {
-		const ThingTemplate *templ = TheThingFactory->findTemplate(*it);
+	for (it = self->m_objectTypes.begin(); it != self->m_objectTypes.end(); ++it) {
+		const ThingTemplate *templ = ((BFMEThingFactory *)TheThingFactory)->findTemplate(*it);
 		if (templ) {
 			templates.push_back(templ);
 		}
