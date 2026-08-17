@@ -7,15 +7,26 @@ bytes at several addresses — addresses that today carry only a `Code/gen_asm/`
 dump or no row at all. Those bodies need no new source: one more row on the TU
 that already compiles them, with an `object-symbol=` note, is the whole claim.
 
-What this sweeps, and why those two classes only
-------------------------------------------------
+What this sweeps, and the three classes it sweeps in
+---------------------------------------------------
 `build.py:compile_function` copies every DIR32 site straight out of retail and
 re-encodes every REL32 from `symbol_map`. So a span verifies at a second address
 without resolving a single callee **iff** it carries no REL32: a reloc-free span
 compares byte for byte, and a DIR32-only span compares byte for byte outside the
-4-byte pointer sites the gate would have copied anyway. A REL32-bearing span is
-not aliasable at all — its displacement is relative to the address it sits at —
-so it is skipped, never masked into a smaller claim.
+4-byte pointer sites the gate would have copied anyway.
+
+A REL32 site cannot be aliased by COPYING — its displacement is measured from
+the address it sits at — but it does not have to be: the gate re-encodes it from
+scratch at whatever address the row names. It seeds from `symbol_map[sym][0]`
+and stops at the first candidate whose displacement reproduces retail, so at an
+alias address it writes retail's own four bytes exactly when the callee retail's
+displacement points at, `rva + off + 4 + disp`, is one of that symbol's
+candidates — and writes the last candidate's displacement, silently wrong, when
+it is not. `rel32` is the class where every site passes that test: the alias
+calls the same functions the compiled span calls, the ledger already holds each
+of them, and only the displacement differs. Deriving the implied callee here is
+that arithmetic run forwards, so a span is only ever offered at an address where
+the gate is already going to agree with retail.
 
 Circularity — the one thing that makes this measurement worthless
 -----------------------------------------------------------------
@@ -44,7 +55,8 @@ Targets
 
 Subcommands
   report                     classify at HEAD and print the byte accounting
-  wave --class rf|dir32      write a wave CSV for tools/land_wave.py
+  wave --class rf|dir32|rel32
+                             write a wave CSV for tools/land_wave.py
   extend                     the reverse direction: held rows whose object
                              symbol is LONGER than target_size and whose retail
                              tail matches, i.e. rows trimmed short at claim time
@@ -77,6 +89,8 @@ A0X_RE = re.compile(r"\?A0x[0-9A-Fa-f]{8}")
 ALIAS_NOTE_PREFIX = "gen-alias;"
 ALIAS_NOTE = "C++ alias"
 OWNER_PREF = {"code": 0, "vendor": 1, "reference": 2, "gen_small": 3}
+CLASSES = ("rf", "dir32", "rel32")
+CLASS_RANK = {cls: i for i, cls in enumerate(CLASSES)}
 Owner = collections.namedtuple("Owner", "source symbol cls holes sites")
 
 
@@ -165,6 +179,13 @@ class Universe:
             self.all_names.add(row["name"])
             self.all_rvas[int(row["target_rva"], 16)] += 1
             self.placements[B.ledger_object_symbol(row)] += 1
+        # {name: {address}} — every address a REL32 site is allowed to reach.
+        # build.load_symbol_map keeps its candidates as ordered lists because its
+        # resolver walks them in order and reports the last one it tried;
+        # membership is the only question the rel32 class asks, and one of those
+        # lists runs to 9,155 entries.
+        self.symbol_addresses = {name: set(addresses)
+                                 for name, addresses in B.load_symbol_map().items()}
 
     @staticmethod
     def best_lane(lanes):
@@ -225,12 +246,20 @@ class Universe:
 # --------------------------------------------------------------------------
 
 def source_objects(uni, stats):
-    """{source: obj path} for every ledger source with an obj at least as new.
+    """{source: obj path} for every ledger source whose obj the gate would reuse.
 
     A stale obj is dropped, not used: the gate recompiles from the source on
     disk, so a candidate derived from an older object would be proved against
     bytes this repository no longer produces and would take its whole TU's wave
     down with it.
+
+    "Stale" has to be `compile_is_current` — source, compile command and every
+    recorded header byte-identical — and not an mtime comparison, because those
+    two disagree in exactly the case this tool is run in. build.py:_portable
+    exists so a fresh worktree can be seeded from the main clone's warm cache;
+    every obj in it is then OLDER than the checkout that just wrote the sources,
+    and mtime throws away thousands of objects the gate has already proved
+    current. It read 88 of 4,712 sources that way.
     """
     out = {}
     for source in sorted(uni.sources):
@@ -242,7 +271,7 @@ def source_objects(uni, stats):
         if not obj.exists():
             stats["obj_missing"] += 1
             continue
-        if obj.stat().st_mtime < path.stat().st_mtime:
+        if not B.compile_is_current(path, obj):
             stats["obj_stale"] += 1
             continue
         out[source] = obj
@@ -293,6 +322,57 @@ def dir32_sites(body, relocs, image, rva, size):
         final = int.from_bytes(image.body(rva + offset, 4), "little")
         addend = int.from_bytes(body[offset:offset + 4], "little")
         out.append((symbol, (final - addend) & 0xFFFFFFFF))
+    return out
+
+
+def classify(body, inside, stats):
+    """(class, mask offsets) for one compiled span, or None if it is not aliasable."""
+    if not inside:
+        return "rf", []
+    types = {t for _, t, _ in inside}
+    if types <= {DIR32}:
+        cls = "dir32"
+    elif types <= {DIR32, REL32}:
+        if any(offset + 4 > len(body) for offset, rtype, _ in inside if rtype == REL32):
+            # compile_function raises SystemExit on a REL32 site running past the
+            # row's end — the whole gate dead, not one failed row — and it is
+            # right to: a call displacement cannot end after the body does, so
+            # what is wrong there is the boundary. Never offer such a span.
+            stats["skip_rel32_straddles_end"] += 1
+            return None
+        cls = "rel32"
+    else:
+        stats["skip_other_reloc"] += 1
+        return None
+    holes = sorted(offset for offset, _, _ in inside)
+    if len(body) - min(4 * len(holes), len(body)) < MIN_CONCRETE:
+        stats[f"skip_{cls}_thin"] += 1
+        return None
+    return cls, holes
+
+
+def rel32_callees(body, relocs, image, rva, symbol_map, stats):
+    """[(symbol, callee)] for the REL32 sites of a claim at `rva`, or None.
+
+    None means one site's callee is not one the gate could encode here, and that
+    is the whole difference between this class and a masked guess: the four bytes
+    are not compared, they are re-derived, and `rva + off + 4 + disp` is the only
+    address at which re-deriving them reproduces retail.
+    """
+    out = []
+    for offset, rtype, symbol in relocs:
+        if rtype != REL32:
+            continue
+        candidates = symbol_map.get(symbol)
+        if not candidates:
+            stats["skip_rel32_callee_unplaced"] += 1
+            return None
+        displacement = int.from_bytes(image.body(rva + offset, 4), "little", signed=True)
+        callee = (rva + offset + 4 + displacement) & 0xFFFFFFFF
+        if callee not in candidates:
+            stats["skip_rel32_callee_elsewhere"] += 1
+            return None
+        out.append((symbol, callee))
     return out
 
 
@@ -379,18 +459,10 @@ def sweep(uni, image, objects, exclude_circular=True, stats=None):
                 continue
             stats["spans"] += 1
             inside = [(o, t, s) for (o, t, s) in relocs if o < len(body)]
-            types = {t for _, t, _ in inside}
-            if not inside:
-                cls, holes = "rf", []
-            elif types <= {DIR32}:
-                cls = "dir32"
-                holes = sorted(o for o, _, _ in inside)
-                if len(body) - min(4 * len(holes), len(body)) < MIN_CONCRETE:
-                    stats["skip_dir32_thin"] += 1
-                    continue
-            else:
-                stats["skip_rel32"] += 1
+            classified = classify(body, inside, stats)
+            if classified is None:
                 continue
+            cls, holes = classified
 
             if len(body) < 8:
                 candidates = small.get(body, []) if cls == "rf" else []
@@ -415,8 +487,11 @@ def sweep(uni, image, objects, exclude_circular=True, stats=None):
                     # Every target this span hits is a dump of this same span.
                     stats["skip_naked_bytes"] += 1
                     break
+                if cls == "rel32" and rel32_callees(body, inside, image, rva,
+                                                    uni.symbol_addresses, stats) is None:
+                    continue
                 record = matches.setdefault((kind, rva, size), {"owners": []})
-                sites = dir32_sites(body, inside, image, rva, size) if cls == "dir32" else []
+                sites = dir32_sites(body, inside, image, rva, size) if cls != "rf" else []
                 record["owners"].append(Owner(source, name, cls, len(holes), tuple(sites)))
 
     # A DIR32 site is a hole in the comparison: the gate copies those four bytes
@@ -446,8 +521,8 @@ def sweep(uni, image, objects, exclude_circular=True, stats=None):
 
 
 def rank(cls, source):
-    """Best owner first: reloc-free over DIR32, real TU over generated stub."""
-    return (cls != "rf", OWNER_PREF[owner_class(source)], source)
+    """Best owner first: fewest bytes the gate re-derives, real TU over stub."""
+    return (CLASS_RANK[cls], OWNER_PREF[owner_class(source)], source)
 
 
 def verify_no_circularity(uni, matches):
@@ -498,7 +573,7 @@ def cmd_report(args):
     print("newly-claimable bodies (target is a dump row or unclaimed today):")
     grand = 0
     for kind in ("dump", "uncl"):
-        for cls in ("rf", "dir32"):
+        for cls in CLASSES:
             rows, size = counts[(kind, cls, "rows")], counts[(kind, cls, "bytes")]
             grand += size
             print(f"  {kind:5s} {cls:6s} {rows:6d} rows {size:10,d} B")
@@ -586,7 +661,7 @@ def wave_name(uni, record, rva, folds, taken, skipped):
 
 def cmd_wave(args):
     uni, image, objects, stats = load()
-    if args.klass == "dir32" and (stats["obj_missing"] or stats["obj_stale"]):
+    if args.klass != "rf" and (stats["obj_missing"] or stats["obj_stale"]):
         # Not fatal — the base rule below only ever ACCEPTS on proven agreement,
         # so an unreadable source costs candidates, never correctness. It is worth
         # saying out loud because it is the whole difference in this class's yield.
@@ -803,7 +878,7 @@ def main(argv=None):
     report.set_defaults(func=cmd_report)
 
     wave = sub.add_parser("wave", help="write a wave CSV for tools/land_wave.py")
-    wave.add_argument("--class", dest="klass", required=True, choices=("rf", "dir32"))
+    wave.add_argument("--class", dest="klass", required=True, choices=CLASSES)
     wave.add_argument("--out", required=True)
     wave.add_argument("--limit", type=int, default=0, help="stop after this many rows")
     wave.add_argument("--min-size", type=int, default=1)
