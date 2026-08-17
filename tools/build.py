@@ -1601,6 +1601,14 @@ def main(only=None):
     patches = verify_functions()
     verify_string_refs(load_function_rows())
     verify_dir32_consistency(load_function_rows())
+    # Identity, not bytes: verify_functions proves each row's bytes, and a
+    # symbols.csv pin that names the WRONG body still reproduces them (that is
+    # how the ControlBar and GameWindow misidentifications passed a green gate).
+    # 3.4s on a >10min gate, reading only the retail image and the ledgers, so
+    # it needs no cached artifact and no compile output -- imported here rather
+    # than at module scope because pin_consistency imports this module.
+    import pin_consistency
+    pin_consistency.verify()
     verify_source_claims()
     verify_noop_patch(patches)
 
