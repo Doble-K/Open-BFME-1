@@ -1027,6 +1027,20 @@ def compile_function(row, symbol_map, output):
         elif rtype == 0x0006:  # IMAGE_REL_I386_DIR32
             resolved[offset : offset + 4] = target[offset : offset + 4]
         elif rtype == 0x0014:  # IMAGE_REL_I386_REL32
+            # `resolved` is a bytearray, so assigning four bytes at
+            # target_size-1..-3 EXTENDS it instead of failing: the row compiles
+            # longer than it claims, clobbers its own last bytes on the way, and
+            # surfaces as two hex dumps of different lengths naming neither the
+            # extent nor this site. A call displacement cannot end after the
+            # function does, so what is wrong here is the boundary, not the
+            # write -- clipping would only make a wrong boundary compare equal.
+            if offset + 4 > target_size:
+                raise SystemExit(
+                    f"{row['name']} ({row['source']}): REL32 site at offset {offset} "
+                    f"(0x{offset:x}) for {sym_name} needs {offset + 4} bytes but the row "
+                    f"claims target_size {target_size}. The row's extent is wrong: raise "
+                    "it to the real end of the function. This displacement is part of "
+                    "this body, not of whatever follows it.")
             if sym_name in symbol_map:
                 next_address = target_rva + offset + 4
                 candidates = symbol_map[sym_name]
