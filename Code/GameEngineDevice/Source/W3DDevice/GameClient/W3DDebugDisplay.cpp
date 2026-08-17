@@ -15,11 +15,21 @@
 //    m_width/m_height/m_rightMargin/m_leftMargin (0x20 bytes), then
 //    W3DDebugDisplay adds m_font/m_fontWidth/m_fontHeight before it. So the
 //    layout did not drift; only the class hierarchy did.
-//  - Retail's destructor stores exactly two vtables, the derived one and one
-//    base. Zero Hour's chain is three deep -- W3DDebugDisplay : DebugDisplay :
-//    DebugDisplayInterface -- and each level's inline destructor stamps its
-//    own vptr, which would be three stores. BFME collapses that to two, so the
-//    hierarchy here is two levels.
+//  - Retail's destructor emits two vptr stores, but the chain is three deep,
+//    not two. The packet originally read "two stores, so two levels" and named
+//    the base DebugDisplay; that is wrong, and it collided with the base the
+//    DebugDisplay constructor stores. .rdata settles it: 0x0110F898 is twelve
+//    slots of which 1..11 are all the same _purecall stub -- an all-abstract
+//    interface -- while 0x0110F8D4 is thirteen distinct thunks with only the
+//    last one _purecall, and 0x005BD1C0 (??0DebugDisplay@@QAE@XZ) stores
+//    0x0110F8D4 and calls its own slot 3 absolutely at 0x0110F8E0. A
+//    constructor stamps its own class, so 0x0110F8D4 is ??_7DebugDisplay@@6B@
+//    and 0x0110F898 is ??_7DebugDisplayInterface@@6B@.
+//    The middle level is still there: ~DebugDisplay's inline vptr store is
+//    immediately overwritten by ~DebugDisplayInterface's with nothing in
+//    between, so the compiler drops it as a dead store. Spelling all three
+//    levels reproduces that -- two stores, and the surviving base reloc names
+//    the interface.
 //  - freeDisplayString is [vtbl+0x28] on TheDisplayStringManager, slot 10.
 
 class DisplayString;
@@ -44,7 +54,13 @@ public:
 
 extern DisplayStringManager *TheDisplayStringManager;				///< retail 0x012F12CC
 
-class DebugDisplay
+class DebugDisplayInterface
+{
+public:
+	virtual ~DebugDisplayInterface() {}
+};
+
+class DebugDisplay : public DebugDisplayInterface
 {
 public:
 	virtual ~DebugDisplay() {}
