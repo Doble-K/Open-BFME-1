@@ -2409,17 +2409,16 @@ Int CloudTextureShader::set(Int stage)
 	return TRUE;
 }
 
-// ?reset@CloudTextureShader@@EAEXXZ present-unmatched
 void CloudTextureShader::reset(void)
 {
 	//Free reference to texture
 	bfmeSetTexture(m_stageOfSet, NULL);
 	//Turn off texture projection
-	BFME_SET_TSS( m_stageOfSet, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
-	BFME_SET_TSS( m_stageOfSet, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|m_stageOfSet);
+	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
+	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|m_stageOfSet);
 
-	BFME_SET_TSS( m_stageOfSet, D3DTSS_COLOROP,   D3DTOP_DISABLE );
-	BFME_SET_TSS( m_stageOfSet, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
+	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_COLOROP,   D3DTOP_DISABLE );
+	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
 }
 
 /*===========================================================================================*/
@@ -2567,12 +2566,16 @@ Int RoadShaderPixelShader::set(Int pass)
 	return TRUE;
 }
 
-// ?reset@RoadShaderPixelShader@@EAEXXZ present-unmatched
 void RoadShaderPixelShader::reset(void)
 {
 
-// ?_Get_D3D_Device8@DX8Wrapper@@SAPAUIDirect3DDevice8@@XZ present-unmatched
-	DX8Wrapper::_Get_D3D_Device8()->SetPixelShader(0);	//turn off pixel shader
+	bfmeSetTexture(2,NULL);	//release reference to any texture
+	bfmeSetTexture(3,NULL);	//release reference to any texture
+
+	bfmeSetPixelShader(0);	//turn off pixel shader
+
+	bfmeSetTexture(0, NULL);
+	bfmeSetTexture(1, NULL);
 
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|0);
@@ -2751,12 +2754,14 @@ Int RoadShader2Stage::set(Int pass)
 	return TRUE;
 }
 
-// ?reset@RoadShader2Stage@@EAEXXZ present-unmatched
 void RoadShader2Stage::reset(void)
 {
 	ShaderClass::Invalidate();
 
 	//Free references to textures
+	bfmeSetTexture(0, NULL);
+	bfmeSetTexture(1, NULL);
+
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 	DX8Wrapper::Set_DX8_Texture_Stage_State( 0, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|0);
 
