@@ -100427,7 +100427,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0021dda0@@YAXXZ,,0x0021DDA0,653,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_0061dda0
 ?d_0021e1c0@@YAXXZ,,0x0021E1C0,123,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_0061e1c0
 ?d_0021e260@@YAXXZ,,0x0021E260,137,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_0061e260
-?d_0021e340@@YAXXZ,,0x0021E340,88,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_0061e340
 ?d_0021e3b0@@YAXXZ,,0x0021E3B0,232,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_0061e3b0
 ?d_0021e4e0@@YAXXZ,,0x0021E4E0,48,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_0061e4e0
 ?d_0021e520@@YAXXZ,,0x0021E520,134,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_0061e520
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?openKeyboard@DirectInputKeyboard@@IAEXXZ,,0x006BB540,207,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIKeyboardOpen.cpp,matched,
 ??0ScriptAction@@IAE@XZ,,0x0034FF60,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionProtectedCtorThunk.cpp,matched,
 ?_M_clear@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@IAEXXZ,,0x000E3ED0,103,Code/GameEngine/Source/Common/RTS/PlayerTemplateVectorClearThunk.cpp,matched,
+?getApparentControllingPlayer@GarrisonContain@@UBEPBVPlayer@@PBV2@@Z,,0x0021E340,88,Code/GameEngine/Source/Common/GarrisonContain_getApparentControllingPlayer_Thunk.cpp,matched,
