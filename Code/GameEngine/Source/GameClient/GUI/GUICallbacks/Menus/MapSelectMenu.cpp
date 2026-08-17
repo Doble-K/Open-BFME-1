@@ -103,8 +103,13 @@ static void shutdownComplete( WindowLayout *layout )
 
 	isShuttingDown = false;
 
-	// hide the layout
-	layout->hide( TRUE );
+	// Open-BFME5: BFME dropped Zero Hour's `layout->hide( TRUE )` here. Retail
+	// inlines this helper wholesale into MapSelectMenuUpdate at 0x004D1BD0 and
+	// the inlined copy is `mov eax,[esp+4]` / `mov ecx,[TheShell]` / `push 0` /
+	// `push eax` / clear the flag / call -- no vtable load, no hide, and no room
+	// for one in the 79-byte extent. NetworkDirectConnect.cpp still has the hide
+	// and reaches it through vtable slot 0x10, so this is a per-menu change and
+	// not a change to WindowLayout.
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout );
