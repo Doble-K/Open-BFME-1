@@ -103312,7 +103312,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0039ebe0@@YAXXZ,,0x0039EBE0,101,Code/gen_asm/d_00390400.asm,matched,gen-dump;ghidra=FUN_0079ebe0
 ?d_0039ec70@@YAXXZ,,0x0039EC70,287,Code/gen_asm/d_00390400.asm,matched,gen-dump;ghidra=FUN_0079ec70
 ?d_0039ede0@@YAXXZ,,0x0039EDE0,24,Code/gen_asm/d_00390400.asm,matched,gen-dump;ghidra=FUN_0079ede0
-?d_0039ee00@@YAXXZ,,0x0039EE00,64,Code/gen_asm/d_00390400.asm,matched,gen-dump;ghidra=FUN_0079ee00
 ?d_0039ee50@@YAXXZ,,0x0039EE50,211,Code/gen_asm/d_00390400.asm,matched,gen-dump;ghidra=FUN_0079ee50
 ?d_0039f470@@YAXXZ,,0x0039F470,1456,Code/gen_asm/d_00390400.asm,matched,gen-dump;ghidra=FUN_0079f470
 ?d_0039fba0@@YAXXZ,,0x0039FBA0,421,Code/gen_asm/d_00390400.asm,matched,gen-dump;ghidra=FUN_0079fba0
@@ -160110,3 +160109,4 @@ _collecttable,,0x00999D50,49,Code/Libraries/Source/Lua/lgc.c,matched,vendored=lu
 _luaK_goiffalse,,0x0099F6F0,35,Code/Libraries/Source/Lua/lcode.c,matched,vendored=lua-4.0.1
 _luaX_init,,0x0099FDE0,53,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1
 _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1;object-symbol=_read_number
+?push_back@?$vector@URunwayInfo@FlightDeckBehavior@@V?$allocator@URunwayInfo@FlightDeckBehavior@@@_STL@@@_STL@@QAEXABURunwayInfo@FlightDeckBehavior@@@Z,,0x0039EE00,64,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,

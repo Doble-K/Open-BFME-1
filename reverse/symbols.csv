@@ -72166,3 +72166,5 @@ _ghiInitBuffer,0x0087D740,decode_calls pin for _ghiNewConnection callee
 ??0ProductionPrerequisite@@QAE@ABV0@@Z,0x00783D50,pin for ProductionPrerequisiteConstructShim::construct() copy-ctor callee
 ?getName@LANGameInfo@@QAE?AVUnicodeString@@XZ,0x00041FC9,Open-BFME5 ILT target read from the RequestAccept call displacement at 0x0068614B
 ?makeSortedTmp@HuffStat@@IAEHPAUHuffStatTmpStruct@@@Z,0x00825E80
+??$_Construct@URunwayInfo@FlightDeckBehavior@@U12@@_STL@@YAXPAURunwayInfo@FlightDeckBehavior@@ABU12@@Z,0x00008049,
+?_M_insert_overflow@?$vector@URunwayInfo@FlightDeckBehavior@@V?$allocator@URunwayInfo@FlightDeckBehavior@@@_STL@@@_STL@@IAEXPAURunwayInfo@FlightDeckBehavior@@ABU34@ABU__false_type@2@I_N@Z,0x00025C89,
