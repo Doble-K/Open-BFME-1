@@ -162,16 +162,92 @@ GameWindow *listboxChatWindowLanGame = NULL;
 NameKeyType listboxChatWindowLanGameID = NAMEKEY_INVALID;
 WindowLayout *mapSelectLayout = NULL;
 
+//-------------------------------------------------------------------------------------------------
+// Open-BFME5: three vtable slots this file reaches that BFME moved, spelled
+// as TU-local facades because LANAPI.h and GameInfo.h are shared and none of
+// the intervening slots is identified by the body that measured them.
+//
+//   LANAPIInterface::GetMyGame        [eax+0xc4], reference [eax+0xa8]
+//   GameInfo::amIHost                 [eax+0x10]; the reference declares it
+//                                     non-virtual and we emit a direct call
+//   GameInfo::getLocalSlotNum         [eax+0x14], reference [eax+0x0c]
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualLanApi
+{
+public:
+	virtual void slot000() = 0;
+	virtual void slot004() = 0;
+	virtual void slot008() = 0;
+	virtual void slot00C() = 0;
+	virtual void slot010() = 0;
+	virtual void slot014() = 0;
+	virtual void slot018() = 0;
+	virtual void slot01C() = 0;
+	virtual void slot020() = 0;
+	virtual void slot024() = 0;
+	virtual void slot028() = 0;
+	virtual void slot02C() = 0;
+	virtual void slot030() = 0;
+	virtual void slot034() = 0;
+	virtual void slot038() = 0;
+	virtual void slot03C() = 0;
+	virtual void slot040() = 0;
+	virtual void slot044() = 0;
+	virtual void slot048() = 0;
+	virtual void slot04C() = 0;
+	virtual void slot050() = 0;
+	virtual void slot054() = 0;
+	virtual void slot058() = 0;
+	virtual void slot05C() = 0;
+	virtual void slot060() = 0;
+	virtual void slot064() = 0;
+	virtual void slot068() = 0;
+	virtual void slot06C() = 0;
+	virtual void slot070() = 0;
+	virtual void slot074() = 0;
+	virtual void slot078() = 0;
+	virtual void slot07C() = 0;
+	virtual void slot080() = 0;
+	virtual void slot084() = 0;
+	virtual void slot088() = 0;
+	virtual void slot08C() = 0;
+	virtual void slot090() = 0;
+	virtual void slot094() = 0;
+	virtual void slot098() = 0;
+	virtual void slot09C() = 0;
+	virtual void slot0A0() = 0;
+	virtual void slot0A4() = 0;
+	virtual void slot0A8() = 0;
+	virtual void slot0AC() = 0;
+	virtual void slot0B0() = 0;
+	virtual void slot0B4() = 0;
+	virtual void slot0B8() = 0;
+	virtual void slot0BC() = 0;
+	virtual void slot0C0() = 0;
+	virtual LANGameInfo *GetMyGame( void ) = 0;
+};
+
+class BfmeVirtualLanGameInfo
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual Bool amIHost( void ) = 0;
+	virtual Int getLocalSlotNum( void ) = 0;
+};
+
 static Int getNextSelectablePlayer(Int start)
 {
-	LANGameInfo *game = TheLAN->GetMyGame();
-	if (!game->amIHost())
+	LANGameInfo *game = ((BfmeVirtualLanApi *)TheLAN)->GetMyGame();
+	if (!((BfmeVirtualLanGameInfo *)game)->amIHost())
 		return -1;
 	for (Int j=start; j<MAX_SLOTS; ++j)
 	{
 		LANGameSlot *slot = game->getLANSlot(j);
 		if (slot && slot->getStartPos() == -1 &&
-			( (j==game->getLocalSlotNum() && game->getConstSlot(j)->getPlayerTemplate()!=PLAYERTEMPLATE_OBSERVER)
+			( (j==((BfmeVirtualLanGameInfo *)game)->getLocalSlotNum() && game->getConstSlot(j)->getPlayerTemplate()!=PLAYERTEMPLATE_OBSERVER)
 			|| slot->isAI()))
 		{
 			return j;

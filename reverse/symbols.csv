@@ -72197,3 +72197,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?init@Win32Mouse@@UAEXXZ,0x0000B7B2,incremental-link thunk fronting the unclaimed body 0x006BC0A0
 ?Execute@ThreadClass@@QAEXXZ,0x009DB650,additive: the address is also claimed as ?openLiveHandle@BFMENetworkBackend@@QAEXXZ; it sits beside the Set_Priority body at 0x009DB540 which is what a thread.cpp compiland looks like
 ?Set_Priority@ThreadClass@@QAEXH@Z,0x009DB540,25-byte unclaimed body immediately ahead of the Execute candidate
+?getLANSlot@LANGameInfo@@QAEPAVLANGameSlot@@H@Z,0x000061D6,ICF alias: this thunk chains to the GameInfo::getSlot body at 0x0061E8B0; the two accessors compile to the same bytes
