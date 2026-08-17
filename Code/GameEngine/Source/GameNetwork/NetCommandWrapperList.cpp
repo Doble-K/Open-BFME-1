@@ -188,7 +188,6 @@ UnsignedShort NetCommandWrapperListNode::getCommandID() {
 	return m_commandID;
 }
 
-// ?getRawDataLength@NetCommandWrapperListNode@@QAEIXZ present-unmatched
 UnsignedInt NetCommandWrapperListNode::getRawDataLength() {
 	return m_dataLength;
 }
