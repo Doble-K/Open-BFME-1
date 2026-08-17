@@ -72181,3 +72181,5 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ??$fill@PAMM@_STL@@YAXPAM0ABM@Z,0x00011171,Open-BFME5 ILT thunk to 0x00459A00 - the fill() both fill-arms of _M_fill_insert at 0x00459D90 call; same TU 0x390 bytes below it
 ?_M_insert_overflow@?$vector@MV?$allocator@M@_STL@@@_STL@@IAEXPAMABMABU__true_type@2@I_N@Z,0x000264D1,Open-BFME5 ILT thunk to 0x000D32E0 - the overflow arm of _M_fill_insert at 0x00459D90. That body already carries a generated four-byte-POD _M_insert_overflow identity (Gen_t_000d6300_m4pod) which agrees the element is four bytes wide
 ?doGameStart@@YAXXZ,0x004D1B00,Open-BFME5 MapSelectMenu.cpp file-static; target of the rel32 at 0x004D1BE8 inside MapSelectMenuUpdate. Also referenced from 0x004D1B0C which reads the same startGame flag 0x012F3E6D. MainMenu.cpp declares a static of this name too - if that one ever needs pinning it is a second row here, not an edit to this one
+?setTerrainTextureFilters@@YAXI@Z,0x00038389
+?Apply_Render_State_Changes@DX8Wrapper@@SAXXZ,0x00904890

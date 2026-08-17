@@ -61,7 +61,16 @@ extern "C" __declspec(dllimport) int __stdcall HeapFree(void *, unsigned long, v
 //
 //-----------------------------------------------------------------------------
 
+// The DX8 state caches and per-frame counters this file's shader passes update
+// in line are protected statics of DX8Wrapper; retail reached them because the
+// updates lived inside DX8Wrapper's own inline members. See BFME_SET_TSS below
+// for why they cannot stay there here.
+// Confined to this include: leaving it on re-mangles every protected member
+// declared later in this file (?...@@IAE... becomes ?...@@QAE...), which breaks
+// the ledger rows that name them.
+#define protected public
 #include "dx8wrapper.h"
+#undef protected
 #include "assetmgr.h"
 #include "Lib/BaseType.h"
 #include "Common/File.h"
@@ -96,6 +105,12 @@ extern "C" __declspec(dllimport) int __stdcall HeapFree(void *, unsigned long, v
 // its method table is shifted, so calling the shim's SetTexture/SetPixelShader
 // declarations emits the wrong vtable slot. dx8wrapper.h already reaches slot 65
 // by hand for Set_DX8_Texture; these do the same for the slots this file needs.
+// BFME's texture release is not RefCountClass's inline decrement -- its
+// TextureClass does not derive RefCountClass at all and releases through an
+// out-of-line body that can auto-delete via the vtable. The shim's
+// TextureBaseClass only spells the inline one, so name the real entry point.
+class BFMETextureRelease { public: void Release_Ref(); };
+
 namespace {
 	enum { BFME_SET_TEXTURE_SLOT = 65, BFME_SET_PIXEL_SHADER_SLOT = 107 };
 	typedef HRESULT (__stdcall *BFMESetTextureFn)(IDirect3DDevice8 *, DWORD, IDirect3DBaseTexture8 *);
@@ -112,7 +127,81 @@ namespace {
 		IDirect3DDevice8 *device = DX8Wrapper::_Get_D3D_Device8();
 		(*(BFMESetPixelShaderFn **)device)[BFME_SET_PIXEL_SHADER_SLOT](device, handle);
 	}
+
+	// BFME's device splits the sampler states (addressing, filtering, anisotropy)
+	// out of the texture-stage state block onto their own method, indexed the way
+	// D3D9 numbers D3DSAMPLERSTATETYPE rather than the DX8 D3DTSS_ values. Those
+	// sets are neither cached nor snapshot-logged; only the two counters move.
+	enum { BFME_SAMP_ADDRESSU = 1, BFME_SAMP_ADDRESSV = 2, BFME_SAMP_MAGFILTER = 5,
+	       BFME_SAMP_MINFILTER = 6, BFME_SAMP_MIPFILTER = 7, BFME_SAMP_MAXANISOTROPY = 10 };
+	enum { BFME_SET_TSS_SLOT = 67, BFME_SET_RS_SLOT = 57, BFME_SET_SAMP_SLOT = 69 };
+
+	// BFME's texture binding hands the stage's previous texture back through the
+	// reference argument for the caller to release, so clearing a stage means
+	// owning a local whose destructor drops it -- which is why the call site sits
+	// inside an unwind state. Same shape boxrobj.cpp already matches.
+	class StageTextureRef
+	{
+		BFMETextureRelease *Texture;
+
+	public:
+		StageTextureRef() : Texture(NULL) {}
+		~StageTextureRef() { if (Texture) Texture->Release_Ref(); }
+		operator TextureBaseClass *&() { return *(TextureBaseClass **)&Texture; }
+	};
+	typedef HRESULT (__stdcall *BFMESetTSSFn)(IDirect3DDevice8 *, DWORD, DWORD, DWORD);
+	typedef HRESULT (__stdcall *BFMESetRSFn)(IDirect3DDevice8 *, DWORD, DWORD);
 }
+
+// The shader passes below expand the state setters in line, the way retail did.
+// They cannot call DX8Wrapper's inline wrappers to get that: MSVC 7.1 refuses
+// __forceinline for any function that constructs an object with a destructor
+// (warning C4714), and the snapshot block builds a StringClass. Every pass that
+// wants the out-of-line form calls Set_DX8_Texture_Stage_State instead, which
+// resolves to retail's ..._Body.
+#define BFME_SET_TSS(stage_, state_, value_)                                                 \
+	if (DX8Wrapper::TextureStageStates[stage_][state_] != (unsigned)(value_)) {              \
+		if (WW3D::Is_Snapshot_Activated()) {                                                 \
+			StringClass value_name(0, true);                                                 \
+			DX8Wrapper::Get_DX8_Texture_Stage_State_Value_Name(value_name,                   \
+				(D3DTEXTURESTAGESTATETYPE)(state_), (value_));                               \
+		}                                                                                    \
+		DX8Wrapper::TextureStageStates[stage_][state_] = (value_);                           \
+		IDirect3DDevice8 *tss_device_ = DX8Wrapper::_Get_D3D_Device8();                      \
+		(*(BFMESetTSSFn **)tss_device_)[BFME_SET_TSS_SLOT](tss_device_,                      \
+			(stage_), (state_), (value_));                                                   \
+		number_of_DX8_calls++;                                                               \
+		DX8Wrapper::texture_stage_state_changes++;                                           \
+	}
+
+#define BFME_SET_SAMP(stage_, type_, value_)                                                 \
+	{                                                                                        \
+		IDirect3DDevice8 *samp_device_ = DX8Wrapper::_Get_D3D_Device8();                      \
+		(*(BFMESetTSSFn **)samp_device_)[BFME_SET_SAMP_SLOT](samp_device_,                    \
+			(stage_), (type_), (value_));                                                     \
+		number_of_DX8_calls++;                                                                \
+		DX8Wrapper::texture_stage_state_changes++;                                            \
+	}
+
+// BFME hoisted the per-stage min/mag/mip filter selection (TheGlobalData's
+// bilinear/trilinear flags, plus an anisotropy cap check) out of every shader
+// pass into one helper each pass calls once per texture stage.
+void __cdecl setTerrainTextureFilters(unsigned stage);
+void BoxSetTexture(unsigned stage, TextureBaseClass *&texture);
+
+#define BFME_SET_RS(state_, value_)                                                          \
+	if (DX8Wrapper::RenderStates[state_] != (unsigned)(value_)) {                            \
+		if (WW3D::Is_Snapshot_Activated()) {                                                 \
+			StringClass value_name(0, true);                                                 \
+			DX8Wrapper::Get_DX8_Render_State_Value_Name(value_name,                          \
+				(D3DRENDERSTATETYPE)(state_), (value_));                                     \
+		}                                                                                    \
+		DX8Wrapper::RenderStates[state_] = (value_);                                         \
+		IDirect3DDevice8 *rs_device_ = DX8Wrapper::_Get_D3D_Device8();                       \
+		(*(BFMESetRSFn **)rs_device_)[BFME_SET_RS_SLOT](rs_device_, (state_), (value_));     \
+		number_of_DX8_calls++;                                                               \
+		DX8Wrapper::render_state_changes++;                                                  \
+	}
 
 /** Interface definition for custom shaders we define in our app.  These shaders can perform more complex
 	operations than those allowed in the WW3D2 shader system.
@@ -1560,12 +1649,14 @@ Int MaskTextureShader::set(Int pass)
 	return TRUE;
 }
 
-// ?reset@MaskTextureShader@@EAEXXZ present-unmatched
 void MaskTextureShader::reset(void)
 {
-	DX8Wrapper::Set_Texture(0,NULL);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXCOORDINDEX, 0);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(0,  D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);	
+	{
+		StageTextureRef texture;
+		BoxSetTexture(0,texture);
+	}
+	BFME_SET_TSS(0,  D3DTSS_TEXCOORDINDEX, 0);
+	BFME_SET_TSS(0,  D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 }
 
 /*===========================================================================================*/
