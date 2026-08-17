@@ -202,13 +202,20 @@ def symbols_writers():
 
 
 def test_the_set_of_symbols_writers_is_the_one_this_file_reasons_about():
-    """A fifth writer must not appear without deciding this question."""
+    """A new writer must not appear without deciding this question.
+
+    zh_sweep is the sixth, and it appends for the one case land_wave refuses:
+    a callee already pinned at another address, called again from a site whose
+    own target is proven byte-equal. It answers this file's question the same
+    way — gen_small.line_terminator, which is ledger_io.uniform_terminator.
+    """
     assert symbols_writers() == ["dedup_csv.py", "gen_small.py", "gen_uw.py",
-                                 "land_wave.py", "locate.py"], symbols_writers()
+                                 "land_wave.py", "locate.py",
+                                 "zh_sweep.py"], symbols_writers()
 
 
 @pytest.mark.parametrize("tool", ["dedup_csv.py", "gen_small.py", "gen_uw.py",
-                                  "land_wave.py", "locate.py"])
+                                  "land_wave.py", "locate.py", "zh_sweep.py"])
 def test_a_symbols_writer_takes_the_terminator_from_the_file(tool):
     text = (TOOLS / tool).read_text(encoding="utf-8")
     assert "uniform_terminator" in text or "line_terminator" in text or \
