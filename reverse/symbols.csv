@@ -72199,3 +72199,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?Set_Priority@ThreadClass@@QAEXH@Z,0x009DB540,25-byte unclaimed body immediately ahead of the Execute candidate
 ?getLANSlot@LANGameInfo@@QAEPAVLANGameSlot@@H@Z,0x000061D6,ICF alias: this thunk chains to the GameInfo::getSlot body at 0x0061E8B0; the two accessors compile to the same bytes
 ?setTooltipText@WinInstanceData@@QAEXVUnicodeString@@@Z,0x00040B92,incremental-link thunk fronting the unclaimed body 0x00499CC0
+??4BfmeRendererListBase@@QAEAAV0@ABV0@@Z,0x00887B60,provisional structural name: the four-byte base half of Render2DSentenceClass::PendingSurfaceStruct::Renderers; the address is an ICF group the ledger leads with StringBase<char>?s copy ctor
