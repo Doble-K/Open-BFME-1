@@ -53,6 +53,13 @@ VENDORED_ROOTS = (
     # toolchain rather than copied under vendor/. Same lane as vendor/d3dx9:
     # Microsoft compiled it, so it is not this game's identity.
     "build/toolchains/",
+    # EA's Zero Hour source, compiled verbatim out of the pristine reference
+    # tree the project is forbidden to modify. A row sourced here was not
+    # written from this game's disassembly -- it is another game's source that
+    # happens to compile to the same bytes -- so it belongs beside the other
+    # upstreams rather than in the reverse-engineered figure. (EA-authored
+    # libraries that BFME itself ships under Code/ are the game and stay out.)
+    "reference/CnC_Generals_Zero_Hour/",
 )
 # GameSpy's SDK is the one vendored library that cannot be routed by directory:
 # EA dropped its C sources straight into the game's own C++ directory, so

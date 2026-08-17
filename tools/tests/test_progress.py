@@ -272,6 +272,35 @@ def test_source_lanes_partition_claims_and_exclude_dumps():
     print("PASS provenance lanes partition claimed bytes; dumps excluded")
 
 
+def test_zero_hour_reference_source_is_not_authored():
+    """A row compiled out of the pristine Zero Hour tree is EA's source, not ours.
+
+    The zh_sweep waves point ledger rows straight at
+    reference/CnC_Generals_Zero_Hour/... — a tree this project is forbidden to
+    modify — so nobody wrote those bytes from the disassembly. Before the lane
+    was added, 34,291 bytes of Zero Hour scored as "C++ we wrote". The headline
+    may not move either way: rebuildable() spans authored and vendored alike.
+    """
+    zh = "reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source/"
+    assert progress.source_lane(zh + "GameClient/GUI/ControlBar/ControlBar.cpp",
+                                "", False) == "vendored"
+    # ...and only under that root. The shims are ours, and so is Code/.
+    assert progress.source_lane("reference/shims/controlbar/x.cpp", "", False) == "authored"
+    assert progress.source_lane("Code/GameEngine/Source/Common/x.cpp", "", False) == "authored"
+
+    matched, notes = {}, {}
+    for name, rva, size, source in (
+        ("zh-twin", 0x1000, 10, zh + "Common/x.cpp"),
+        ("ours", 0x1010, 10, "Code/GameEngine/Source/Common/y.cpp"),
+    ):
+        matched.update(row(name, rva, size, source))
+        notes[(name, f"0x{rva:X}")] = ""
+    split = progress.source_split(matched, notes, 0x1000, 100)
+    assert split["vendored"] == 10 and split["authored"] == 10, split
+    assert progress.rebuildable(split) == 20, split
+    print("PASS Zero Hour reference source lands in the vendored lane")
+
+
 def test_gamespy_sdk_c_is_vendored_but_the_cpp_beside_it_is_not():
     """GameSpy's SDK is the one vendored tree that shares a directory with the
     game's own code, so the lane split has to key on extension there.
@@ -394,6 +423,7 @@ def main():
     test_b08_is_zero_byte_progress()
     test_details_are_opt_in()
     test_source_lanes_partition_claims_and_exclude_dumps()
+    test_zero_hour_reference_source_is_not_authored()
     test_gamespy_sdk_c_is_vendored_but_the_cpp_beside_it_is_not()
     test_dump_pass_moved_zero_recovered_bytes()
     test_readme_headline_is_a_recovered_figure()
