@@ -91,3 +91,30 @@ its files legitimately contain `__emit` already, so scanning it would fire on th
 re-vendor rather than on any real regression. Rule B — a matched RVA that had a clean C++
 source must still have one — reads whatever path a row names, so a `reference/` row can
 never be swapped out from under a live clean claim.
+
+## Third-party code we measured and did not vendor
+
+Two libraries the binary statically links are reachable byte-wise and were refused on
+licence. Both refusals were measured, not assumed; re-derive only if you have new evidence
+of a grant, because the sources themselves have not changed.
+
+**nbench / BYTEmark 2.2.3 — 26,719 B** over `0x008739A0-0x0087A4A0`, of which 10,495 B sits
+in the sub-span the retail evidence actually anchors (`0x008739F9-0x00876599`). Identity is
+not in doubt: `calc_confidence`'s error string, the `wordcat.h` catalogue, the
+`CPU:Stringsort` tag, and the 0.09 BETA constant in nbench1.c's back-prop loop are all in
+`.rdata`, and EA's own `Benchmark.dsp` names the files. The distribution contains **no
+permission grant of any kind** — every file carries a BYTE/McGraw-Hill *disclaimer* of
+warranty, and the README ships the BSD warranty paragraph with the permission clause absent.
+A BSD licence minus its grant is not a licence. Most of the hole is `gen_asm` dump anyway,
+so landing it would have been mostly lane transfer.
+
+**GameSpy Chat + Peer — 83,817 B** (Chat `0x0085E000-0x00870000`, Peer `0x00870000-0x00878000`).
+The BSD-3-Clause text circulating with the SDK is a 2014 republisher's addition — in
+`nitrocaster/GameSpy` the licence file lands three minutes *before* the sources — and the
+best-informed downstream (`GameProgressive/UniSpySDK`) later revised its own claim to
+"proprietary EA, non-commercial only". EA's GPLv3 Generals/ZH release ships no GameSpy
+sources at all. Note the separate, already-landed `vendored=gamespy-2004` lane is covered by
+permission the project holds out of band; see that tree's `PROVENANCE.txt`. This note is
+about vendoring *further* GameSpy code, whose scope is a question for the project owner.
+web.archive.org returned 503 throughout the search, so an archived primary grant is
+UNCHECKED rather than ruled out.
