@@ -123922,7 +123922,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004a3c70@@YAXXZ,,0x004A3C70,128,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004a3e60@@YAXXZ,,0x004A3E60,27,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004a64f0@@YAXXZ,,0x004A64F0,8,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
-?d_004a6520@@YAXXZ,,0x004A6520,63,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004a6ac0@@YAXXZ,,0x004A6AC0,33,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004a8f10@@YAXXZ,,0x004A8F10,138,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004a8fc0@@YAXXZ,,0x004A8FC0,52,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?messageBoxYes@@YAXXZ,,0x004D9010,48,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfoMessageBoxYesThunk.cpp,matched,Open-BFME7: isolated port of PopupPlayerInfo.cpp static messageBoxYes; BFME BuddyRequest 0x2B8 and GameSpyInfoInterface +7 virtuals
 ??0CloudBreakSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00259010,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CloudBreakSpecialPower.cpp,matched,Open-BFME7: clean C++ empty derived constructor; identity from the three vtables it writes (CloudBreakSpecialPower getModuleNameKey + SpecialPowerModule slots) and its sole caller friend_newModuleInstance
 ??$__destroy_aux@U?$_Deque_iterator@VPeerRequest@@U?$_Nonconst_traits@VPeerRequest@@@_STL@@@_STL@@@_STL@@YAXU?$_Deque_iterator@VPeerRequest@@U?$_Nonconst_traits@VPeerRequest@@@_STL@@@0@0ABU__false_type@0@@Z,,0x00647650,62,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,Open-BFME7: four-way tie broken by the element destructor - thunk 0x00016BD5 resolves to 0x004D52D0 PeerRequest not PSRequest; stride 0x194 needs the nat shim PeerRequest
+?processCommandTransitionUI@ControlBar@@IAE?AW4CBCommandStatus@@PAVGameWindow@@W4GadgetGameMessage@@@Z,,0x004A6520,63,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarProcessCommandTransitionUIThunk.cpp,matched,Open-BFME7: isolated port; BFME ControlBar puts the drawable at +0x5C and the context at +0x60 and ControlBarContext has two more values ahead of MULTI_SELECT
