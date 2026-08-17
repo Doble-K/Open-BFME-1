@@ -40,6 +40,16 @@
 #include "GameClient/Keyboard.h"
 #include "GameClient/KeyDefs.h"
 
+// BFME dropped ZH's inline `KeyboardIO m_keys[NUM_KEYS]`, so every member past
+// m_shift2Key sits 0x7F4 lower than the ZH header puts it. Retail pins the real
+// offsets: getKeyStatusData reads [ecx+key*8+0x19] (m_keyStatus at +0x18, stride
+// still 8) and Keyboard::init stores m_inputFrame at +0xE18, which is exactly
+// +0x818 + 256*6 -- so m_keyNames begins at +0x818. Re-base the table here
+// rather than in the shared header, which other TUs match against as-is.
+namespace {
+	struct BfmeKeyName { WideChar stdKey; WideChar shifted; WideChar shifted2; };
+}
+#define m_keyNames (*(BfmeKeyName (*)[Keyboard::KEY_NAMES_COUNT])((char *)this + 0x818))
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////////////////////////
 Keyboard *TheKeyboard = NULL;
@@ -260,7 +270,6 @@ Bool Keyboard::checkKeyRepeat( void )
 //-------------------------------------------------------------------------------------------------
 /** Initialize the keyboard key-names array */
 //-------------------------------------------------------------------------------------------------
-// ?initKeyNames@Keyboard@@ present-unmatched
 void Keyboard::initKeyNames( void )
 {
 	Int i;
@@ -457,7 +466,7 @@ void Keyboard::initKeyNames( void )
 			_set_keyname_(L'1',				L'!',				L'\0',	KEY_1  );
 			_set_keyname_(L'2',				L'\"',			L'\0',	KEY_2  );
 			_set_keyname_(L'3',				0x00A3,			L'\0',	KEY_3  );	//�
-			_set_keyname_(L'4',				L'$',				L'�',		KEY_4  );
+			_set_keyname_(L'4',				L'$',				0x20AC,			KEY_4  );	// EURO SIGN; the vendored copy lost it to U+FFFD
 			_set_keyname_(L'5',				L'%',				L'\0',	KEY_5  );
 			_set_keyname_(L'6',				L'^',				L'\0',	KEY_6  );
 			_set_keyname_(L'7',				L'&',				L'\0',	KEY_7  );
