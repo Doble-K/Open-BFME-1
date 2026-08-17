@@ -610,7 +610,7 @@ encoding was spelled, stop rewriting the source. Log it, and note that the
 body, the layout and the convention were all correct — that is the part worth
 keeping.
 
-## A work packet's callee pins are matched by name, not followed
+## A work packet's callee pins were matched by name, not followed
 
 `reverse/zh_sweep/packets/0059eb90.md` proposes `AttackNugget::parse` at 98.6%
 and lists, under "Callee pins (paste unresolved ones into
@@ -625,6 +625,13 @@ ledger's `??0AttackNugget@@QAE@XZ` is at `0x001D6CD0`, reached through a
 *different* thunk at `0x00022B42`. The sweep took the name from its Zero Hour
 candidate, found that name already in the ledger, and marked the pin resolved
 without ever following the thunk it had just printed.
+
+`callee_pins` now asks that question of the decoded address instead, so the
+same pin reads `(unpinned: this is the address retail calls; the ledger holds
+this name at 0x001D6CD0; reverse/symbols.csv pins it at 0x00022B42)`. Over the
+live queue that took 171 markings to 107. The lesson outlives the fix: a
+marking says an address is pinned, never that the body is the function its name
+promises.
 
 Pasting that pin and building would have produced a byte-exact body under a
 name whose constructor it does not call. **Disassemble the ILT target before

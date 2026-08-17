@@ -31,7 +31,7 @@ import struct
 import subprocess
 import sys
 import textwrap
-from collections import Counter, defaultdict
+from collections import Counter, defaultdict, namedtuple
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -530,7 +530,8 @@ def do_packets(args):
         start = validator.corrected_start(record["rva"])
         by_rva.setdefault(record["rva"] if start is None else start, []).append(record)
     reloc_index = packet_relocs({r["obj"] for r in near})
-    names = {row["name"] for row in build.load_all_function_rows()}
+    # Once: it re-reads the exe and scans .text for the thunk table.
+    sources = pin_sources()
     PACKET_DIR.mkdir(parents=True, exist_ok=True)
     # Render every packet BEFORE unlinking anything. The old order deleted the
     # directory first and wrote as it went, so any failure part-way -- a missing
@@ -557,7 +558,7 @@ def do_packets(args):
             continue
         body = text[rva - text_rva : rva - text_rva + bounds["served"]]
         relocs = reloc_index[(group[0]["obj"], group[0]["sym"])]
-        rendered[rva] = packet_text(rva, bounds, group, body, relocs, names)
+        rendered[rva] = packet_text(rva, bounds, group, body, relocs, sources)
         covered += bounds["served"]
         bodies += len(group)
         verdicts[{True: "function start", False: bounds["start_why"],
@@ -632,19 +633,73 @@ def disassemble(body, rva):
     return "\n".join(lines[body_start:])
 
 
-def callee_pins(rva, body, relocs, names):
+Callee = namedtuple("Callee", "ledger_targets csv_targets ledger_rvas csv_rvas")
+
+
+def pin_sources():
+    """{name: Callee} — every address a call to `name` may legitimately encode.
+
+    A name is not an address. `build.load_symbol_map` already folds in the ILT
+    thunks a call site encodes in place of the body, but it merges the ledger
+    and reverse/symbols.csv into one list, and which of the two holds an address
+    is the whole claim a pin makes: symbols.csv routinely pins a per-TU copy of
+    a name the ledger holds somewhere else entirely, as
+    ?releaseBuffer@UnicodeString@@IAEXXZ is a ledger row at 0x009409F0 and a
+    separate BFME body at 0x008881D0. The rvas are carried apart from the
+    targets because they are what a reader can look up, and the target sets are
+    not: `build_call_thunks` scans for every 0xE9 byte, so one body reaches 171
+    "thunks" and printing them would bury the two addresses that matter.
+    """
+    thunks = build.build_call_thunks()
+    ledger_rvas, csv_rvas = defaultdict(list), defaultdict(list)
+    for row in build.load_all_function_rows():
+        ledger_rvas[row["name"]].append(int(row["target_rva"], 16))
+    with build.SYMBOLS.open("r", encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            csv_rvas[row["name"]].append(int(row["address"], 16))
+    sources = {}
+    for name, candidates in build.load_symbol_map().items():
+        owned = {target for rva in ledger_rvas[name] for target in thunks.get(rva, []) + [rva]}
+        sources[name] = Callee(owned, set(candidates) - owned,
+                               ledger_rvas[name], csv_rvas[name])
+    return sources
+
+
+def elsewhere(callee):
+    """Where a name IS known, for a call site that reaches none of it."""
+    known = [f"{label} {', '.join(f'0x{rva:08X}' for rva in rvas)}"
+             for label, rvas in (("the ledger holds this name at", callee.ledger_rvas),
+                                 ("reverse/symbols.csv pins it at", callee.csv_rvas)) if rvas]
+    return f" (unpinned: this is the address retail calls; {'; '.join(known)})" if known else ""
+
+
+def callee_pins(rva, body, relocs, sources):
     """Each REL32 callee with the address THIS call site encodes in retail.
 
     The displacement is read out of the retail bytes, so the address is the
     binary's own answer rather than a guess: callee = site + 4 + displacement.
+    Whether it is pinned is therefore asked of that address and not of the name:
+    retail folds and duplicates bodies, so a name the ledger holds is routinely
+    called HERE at a copy the ledger does not hold, and a pin that reads the
+    name alone asserts a symbol is landed while quoting an address no row
+    covers. docs/lessons.md:613 is that trap.
     """
     lines = []
     for offset, kind, callee in relocs:
         if kind != REL32 or offset + 4 > len(body):
             continue
         displacement = struct.unpack_from("<i", body, offset)[0]
-        known = " (already in the ledger)" if callee in names else ""
-        lines.append(f"{callee},0x{rva + offset + 4 + displacement:08X}{known}")
+        target = rva + offset + 4 + displacement
+        symbol = sources.get(callee)
+        if symbol is None:
+            mark = ""
+        elif target in symbol.ledger_targets:
+            mark = " (already in the ledger)"
+        elif target in symbol.csv_targets:
+            mark = " (already pinned in reverse/symbols.csv)"
+        else:
+            mark = elsewhere(symbol)
+        lines.append(f"{callee},0x{target:08X}{mark}")
     return "\n".join(lines) or "(no relative calls in this body)"
 
 
@@ -747,7 +802,7 @@ def header_lines(rva, bounds, best):
     return [wrap(line, indent="  ") for line in lines]
 
 
-def packet_text(rva, bounds, group, body, relocs, names):
+def packet_text(rva, bounds, group, body, relocs, sources):
     best = group[0]
     candidates = [f"- `{r['sym']}`\n  in `{r['source']}` "
                   f"({percent(r['compared']['agree'])} of {r['compared']['compared']} "
@@ -788,7 +843,7 @@ def packet_text(rva, bounds, group, body, relocs, names):
         "## Callee pins (paste unresolved ones into reverse/symbols.csv)",
         "",
         "```",
-        callee_pins(rva, body, relocs, names),
+        callee_pins(rva, body, relocs, sources),
         "```",
         "",
         "## Landing it",

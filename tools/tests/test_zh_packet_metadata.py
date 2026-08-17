@@ -16,6 +16,7 @@ import csv
 import importlib.util
 import json
 import re
+import struct
 import sys
 import types
 from pathlib import Path
@@ -57,9 +58,17 @@ def near(rva, size, sym="?candidate@Thing@@QAEXXZ", align=0.9, relocs=3):
             "rva": rva, "bucket": "near", "align": align, "claimed": False}
 
 
-def run_packets(tmp_path, monkeypatch, records, ledger_rows=(), relocs=()):
-    """do_packets over a synthetic image; returns {rva: packet text}."""
-    text = image()
+def run_packets(tmp_path, monkeypatch, records, ledger_rows=(), relocs=(), pins=(),
+                patches=()):
+    """do_packets over a synthetic image; returns {rva: packet text}.
+
+    `patches` writes retail bytes at an rva, which is how a call site is given a
+    displacement to decode; `pins` is the scratch reverse/symbols.csv.
+    """
+    text = bytearray(image())
+    for rva, raw in patches:
+        text[rva - TEXT_RVA : rva - TEXT_RVA + len(raw)] = raw
+    text = bytes(text)
     ledger = tmp_path / "functions.csv"
     ledger.write_text(LEDGER_HEADER + "\r\n" + "".join(r + "\r\n" for r in ledger_rows),
                       encoding="utf-8")
@@ -67,6 +76,9 @@ def run_packets(tmp_path, monkeypatch, records, ledger_rows=(), relocs=()):
     inventory.write_text("rva,size,name\n"
                          + "".join(f"0x{rva:x},{size},FUN_{rva:08x}\n"
                                    for rva, size in KNOWN.items()), encoding="utf-8")
+    symbols = tmp_path / "symbols.csv"
+    symbols.write_text("name,address,notes\n" + "".join(p + "\n" for p in pins),
+                       encoding="utf-8")
     (tmp_path / "match.json").write_text(json.dumps(list(records)))
     packets = tmp_path / "packets"
     monkeypatch.setattr(zh_sweep, "MATCH_JSON", tmp_path / "match.json")
@@ -77,7 +89,12 @@ def run_packets(tmp_path, monkeypatch, records, ledger_rows=(), relocs=()):
     monkeypatch.setattr(zh_sweep, "packet_relocs",
                         lambda objects: {("T.obj", r["sym"]): list(relocs) for r in records})
     monkeypatch.setattr(build, "FUNCTIONS", ledger)
+    monkeypatch.setattr(build, "SYMBOLS", symbols)
     monkeypatch.setattr(build, "GHIDRA_FUNCTIONS", inventory)
+    # The synthetic image carries no incremental-link thunk table. Left alone,
+    # load_symbol_map() re-reads the real 4MB exe on every call and folds its
+    # thunks into these addresses.
+    monkeypatch.setattr(build, "build_call_thunks", lambda: {})
     monkeypatch.setattr(build, "read_target_bytes",
                         lambda rva, size: text[rva - TEXT_RVA : rva - TEXT_RVA + size])
 
@@ -198,3 +215,50 @@ def test_no_packet_for_ground_the_ledger_already_claims(tmp_path, monkeypatch):
     written = run_packets(tmp_path, monkeypatch, [near(0x3000, 16)], ledger_rows=[claimed])
 
     assert written == {}
+
+
+CALLEE = "?callee@Thing@@QAEXXZ"
+CALLEE_ROW = f"{CALLEE},,0x00002000,32,{SOURCE},matched,"
+
+
+def calls(target, site=0x3004):
+    """A REL32 site at `site` whose retail displacement decodes to `target`."""
+    return {"relocs": [(site - 0x3000, zh_sweep.REL32, CALLEE)],
+            "patches": [(site, struct.pack("<i", target - (site + 4)))]}
+
+
+def pins_of(packet):
+    return packet.split("## Callee pins")[1].split("```")[1].strip()
+
+
+def test_a_pin_is_marked_when_the_ledger_holds_the_address_this_site_calls(
+        tmp_path, monkeypatch):
+    written = run_packets(tmp_path, monkeypatch, [near(0x3000, 16)],
+                          ledger_rows=[CALLEE_ROW], **calls(0x2000))
+
+    assert pins_of(written[0x3000]) == f"{CALLEE},0x00002000 (already in the ledger)"
+
+
+def test_a_pin_naming_a_copy_the_ledger_does_not_hold_is_not_marked(tmp_path, monkeypatch):
+    """The name is in the ledger and the address is not, which is what a name
+    test cannot see: retail folds and duplicates bodies, so this site reaches a
+    copy no row covers. Saying "already in the ledger" over it tells a converter
+    the callee is landed at an address the ledger has never claimed."""
+    written = run_packets(tmp_path, monkeypatch, [near(0x3000, 16)],
+                          ledger_rows=[CALLEE_ROW], **calls(0x3800))
+
+    assert pins_of(written[0x3000]) == (f"{CALLEE},0x00003800 (unpinned: this is the address "
+                                        "retail calls; the ledger holds this name at "
+                                        "0x00002000)")
+
+
+def test_a_pin_only_symbols_csv_holds_names_symbols_csv_and_not_the_ledger(
+        tmp_path, monkeypatch):
+    """load_symbol_map() is not a subset of the ledger's names. An address it
+    resolves only because symbols.csv pins it is resolvable, but it is not a
+    ledger row and there is no source behind it."""
+    written = run_packets(tmp_path, monkeypatch, [near(0x3000, 16)],
+                          pins=[f"{CALLEE},0x00002400,per-TU copy"], **calls(0x2400))
+
+    assert pins_of(written[0x3000]) == (f"{CALLEE},0x00002400 "
+                                        "(already pinned in reverse/symbols.csv)")
