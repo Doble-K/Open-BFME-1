@@ -154,6 +154,52 @@ static void drawStaticTextText( GameWindow *window, WinInstanceData *instData,
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+//-------------------------------------------------------------------------------------------------
+// Open-BFME5: BFME's GameWindow carries one more four-byte member ahead of
+// m_instData than the reference GameClient/GameWindow.h does, so every read
+// the Gadget accessors inline out of it lands four bytes low.  Retail reads
+// m_instData.m_enabledDrawData[0] at +0x48 and m_disabledDrawData[0] at
+// +0xb4; through that header they come out at +0x44 and +0xb0.
+//
+// WinInstanceData itself is NOT the thing that moved.  Both bodies below also
+// read instData->m_imageOffset through the separate WinInstanceData parameter,
+// at +0x17c, and retail and the reference header agree on that to the byte.
+// The extra member is in GameWindow, ahead of the embedded copy.
+//
+// Spelled here as two casts rather than in GameWindow.h, which nearly every
+// GameClient source includes -- and which would move a great many already
+// matched rows at once.
+//-------------------------------------------------------------------------------------------------
+struct BfmeWinDrawData
+{
+	const Image *image;
+	Color color;
+	Color borderColor;
+};
+
+static const BfmeWinDrawData *bfmeEnabledDrawData0( GameWindow *g )
+{
+	return (const BfmeWinDrawData *)((const char *)g + 0x48);
+}
+
+static const BfmeWinDrawData *bfmeDisabledDrawData0( GameWindow *g )
+{
+	return (const BfmeWinDrawData *)((const char *)g + 0xb4);
+}
+
+// The four Gadget accessors this TU already owns rows for are 11-byte and
+// 8-byte bodies -- `mov eax,[esp+4]; mov eax,[eax+N]; ret' -- which every
+// accessor in the game reading the same offset folds into. They are kept
+// emitted here by taking their addresses, because the draw bodies no longer
+// call them. Their rows still verify against the reference offsets, and this
+// change is not in a position to revisit whether identical-code folding put
+// the right names on them: read against the layout the two draw bodies prove,
+// each of the three disabled ones sits one field early.
+static const Image *(*s_bfmeKeepDisabledImage)( GameWindow * ) = GadgetStaticTextGetDisabledImage;
+static Color (*s_bfmeKeepDisabledColor)( GameWindow * ) = GadgetStaticTextGetDisabledColor;
+static Color (*s_bfmeKeepDisabledBorderColor)( GameWindow * ) = GadgetStaticTextGetDisabledBorderColor;
+static Color (*s_bfmeKeepEnabledColor)( GameWindow * ) = GadgetStaticTextGetEnabledColor;
+
 // W3DGadgetStaticTextDraw ====================================================
 /** Draw colored text field using standard graphics */
 //=============================================================================
@@ -171,8 +217,8 @@ void W3DGadgetStaticTextDraw( GameWindow *window, WinInstanceData *instData )
 	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
-		backColor					= GadgetStaticTextGetDisabledColor( window );
-		backBorder				= GadgetStaticTextGetDisabledBorderColor( window );
+		backColor					= bfmeDisabledDrawData0( window )->color;
+		backBorder				= bfmeDisabledDrawData0( window )->borderColor;
 		textColor					= window->winGetDisabledTextColor();
 		textOutlineColor	= window->winGetDisabledTextBorderColor();
 
@@ -180,8 +226,8 @@ void W3DGadgetStaticTextDraw( GameWindow *window, WinInstanceData *instData )
 	else
 	{
 
-		backColor					= GadgetStaticTextGetEnabledColor( window );
-		backBorder				= GadgetStaticTextGetEnabledBorderColor( window );
+		backColor					= bfmeEnabledDrawData0( window )->color;
+		backBorder				= bfmeEnabledDrawData0( window )->borderColor;
 		textColor					= window->winGetEnabledTextColor();
 		textOutlineColor	= window->winGetEnabledTextBorderColor();
 
@@ -238,7 +284,7 @@ void W3DGadgetStaticTextImageDraw( GameWindow *window, WinInstanceData *instData
 	if( BitTest( window->winGetStatus(), WIN_STATUS_ENABLED ) == FALSE )
 	{
 
-		image							= GadgetStaticTextGetDisabledImage( window );
+		image							= bfmeDisabledDrawData0( window )->image;
 		textColor					= window->winGetDisabledTextColor();
 		textOutlineColor	= window->winGetDisabledTextBorderColor();
 
@@ -246,7 +292,7 @@ void W3DGadgetStaticTextImageDraw( GameWindow *window, WinInstanceData *instData
 	else
 	{
 
-		image							= GadgetStaticTextGetEnabledImage( window );
+		image							= bfmeEnabledDrawData0( window )->image;
 		textColor					= window->winGetEnabledTextColor();
 		textOutlineColor	= window->winGetEnabledTextBorderColor();
 

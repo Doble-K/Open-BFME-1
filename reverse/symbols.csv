@@ -72189,3 +72189,8 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ??0Keyboard@@QAE@XZ,0x00049148,incremental-link thunk retail uses from DirectInputKeyboard ctor
 ??1BfmeEvaSideSoundsArray@@QAE@XZ,0x0089CC70,provisional structural name: incremental-link thunk fronting 0x0089C900 the dtor of EvaCheckInfo member at +0x8; count-plus-array container not an STLport vector
 ?erase@?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAEPAUICoord2D@@PAU3@0@Z,0x0000890E,ICF alias: this thunk fronts 0x00451E10 which the ledger already names the vector<INILine> erase; both elements are eight bytes so the two folded
+?insert_unique@?$_Rb_tree@HU?$pair@$$CBH_N@_STL@@U?$_Select1st@U?$pair@$$CBH_N@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBH_N@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBH_N@_STL@@U?$_Nonconst_traits@U?$pair@$$CBH_N@_STL@@@2@@2@U32@ABU?$pair@$$CBH_N@2@@Z,0x0001D1BF,ICF alias: thunk fronts 0x00594310 which the ledger names the same insert_unique over a four-byte key and a POD value
+?winGetDisabledTextColor@GameWindow@@QAEHXZ,0x0002D4E8,ICF alias: thunk fronts the folded 8-byte accessor at 0x00478720
+?winGetDisabledTextBorderColor@GameWindow@@QAEHXZ,0x0002C55C,ICF alias: thunk fronts the folded 8-byte accessor at 0x00478730
+?winGetEnabledTextColor@GameWindow@@QAEHXZ,0x0002A5D1,ICF alias: thunk fronts the folded 8-byte accessor at 0x00478700
+?drawStaticTextText@@YAXPAVGameWindow@@PAVWinInstanceData@@HH@Z,0x00796BA0,the 346-byte body immediately ahead of W3DGadgetStaticTextDraw in the same compiland
