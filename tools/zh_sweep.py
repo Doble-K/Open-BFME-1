@@ -517,9 +517,18 @@ def do_packets(args):
     # identical code, so one address routinely answers to a dozen Zero Hour
     # template instantiations; they are one function to convert, and a file per
     # candidate would hand the same work out a dozen times.
+    #
+    # The address itself is a guess too, and for 19 of 144 a refuted one: the
+    # needle aligned inside a body or in its padding. Correcting it here, before
+    # anything reads it, is what makes the header verdict, the extent, the bytes
+    # quoted and the live-claim check below all describe the same one body. An
+    # address the inventory merely does not cover is left alone -- it keeps its
+    # unverified banner rather than being snapped to a body nobody placed it in.
+    validator = ghidra_validator()
     by_rva = {}
     for record in near:
-        by_rva.setdefault(record["rva"], []).append(record)
+        start = validator.corrected_start(record["rva"])
+        by_rva.setdefault(record["rva"] if start is None else start, []).append(record)
     reloc_index = packet_relocs({r["obj"] for r in near})
     names = {row["name"] for row in build.load_all_function_rows()}
     PACKET_DIR.mkdir(parents=True, exist_ok=True)
@@ -527,7 +536,6 @@ def do_packets(args):
     # directory first and wrote as it went, so any failure part-way -- a missing
     # objdump was enough -- left the queue empty with nothing to fall back on,
     # and the leads people had hand-annotated into those files went with it.
-    validator = ghidra_validator()
     rendered = {}
     covered = solved = bodies = inflated = 0
     verdicts, extents, conflicts = Counter(), Counter(), 0

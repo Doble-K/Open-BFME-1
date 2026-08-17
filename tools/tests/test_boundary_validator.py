@@ -177,6 +177,32 @@ def test_positive_evidence_refuses():
     print("PASS int3 padding, interior addresses and spanned starts are refused")
 
 
+def test_a_refuted_address_is_corrected_to_the_body_the_inventory_names():
+    """A refused address is still evidence: the needle aligned on a real body,
+    it just named the wrong point in it. The two refusals point opposite ways --
+    interior back to the start enclosing it, padding forward to the start it
+    runs up to -- which is why no single-direction rule recovers both."""
+    code = bytes([0x55, 0x8B, 0xEC, 0xC3])
+    read = fake_image({0x1400: code, 0x1480: code, 0x1500: code})
+    known = boundary_validator.BoundaryValidator(read, {0x1400: 4, 0x1500: 4})
+
+    assert known.check_start(0x1402) == (False, "interior-of-function")
+    assert known.corrected_start(0x1402) == 0x1400
+    assert known.check_start(0x1420) == (False, "in-int3-padding")
+    assert known.corrected_start(0x1420) == 0x1500
+    # 0x1480 is code the inventory never covered: unknown, not wrong. The
+    # tempting wrong rule -- correct whenever `containing()` is None -- snaps it
+    # forward to 0x1500, past its own end, and does that to all 32 such live
+    # addresses. Absence of evidence decides nothing here either.
+    assert known.check_start(0x1480) == (None, "unmapped-gap")
+    assert known.corrected_start(0x1480) is None
+    # padding past the last known start: a body ends here, but nothing says where
+    assert known.check_start(0x1600) == (False, "in-int3-padding")
+    assert known.corrected_start(0x1600) is None
+    assert known.corrected_start(0x1400) is None, "a confirmed start needs no correction"
+    print("PASS refuted addresses correct to their body, unmapped ones are left alone")
+
+
 def test_arity_is_per_name_and_read_from_the_retail_body():
     """What makes collapse pay: one address, many claimant names, and the body's
     own stack cleanup rules out the ones it cannot be. Read at the retail extent
@@ -215,6 +241,7 @@ def main():
     test_collision_collapse_serves_each_address_once()
     test_absence_of_evidence_never_refuses()
     test_positive_evidence_refuses()
+    test_a_refuted_address_is_corrected_to_the_body_the_inventory_names()
     test_arity_is_per_name_and_read_from_the_retail_body()
     test_a_drifted_size_warns_and_is_still_served()
     print("ALL TESTS PASSED")

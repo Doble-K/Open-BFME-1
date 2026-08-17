@@ -29,6 +29,10 @@ TEXT_VA, TEXT_SIZE = 0x1000, 0xC72000
 # MSVC pads between functions with int3. A single 0xCC is more often an operand
 # or displacement byte, so only a run of them is evidence of a boundary.
 MIN_PAD_RUN = 3
+# The two refusals that name a body: one the address sits inside, one the
+# padding it sits in runs up to. `unmapped-gap` and `outside-.text` name none,
+# so there is nothing to correct them to -- see `corrected_start`.
+CORRECTABLE = {"interior-of-function", "in-int3-padding"}
 
 
 class BoundaryValidator:
@@ -88,6 +92,28 @@ class BoundaryValidator:
         if self.containing(rva) is not None:
             return False, "interior-of-function"
         return None, "unmapped-gap"
+
+    def corrected_start(self, rva):
+        """Where the body at a REFUTED address actually starts, or None.
+
+        An address `check_start` refuses is wrong about one specific body, and
+        the inventory names it: an interior address back-snaps to the start
+        enclosing it, and one in int3 padding forward-snaps to the start the
+        padding runs up to. The two directions are opposite, which is why a size
+        formula fitted to either no-ops on the other.
+
+        The gate is here rather than in the caller because the tempting wrong
+        rule -- correcting on `containing() is None` -- forward-snaps every
+        unmapped address too, and those are unknown, not wrong: each lands past
+        its own current end. Absence of evidence still never decides anything.
+        """
+        if self.check_start(rva)[1] not in CORRECTABLE:
+            return None
+        inside = self.containing(rva)
+        if inside is not None:
+            return inside
+        index = bisect.bisect_left(self.starts, rva)
+        return self.starts[index] if index < len(self.starts) else None
 
     def check_end(self, rva, size):
         """C2: does [rva, rva+size) walk over a boundary? Returns a reason or None.

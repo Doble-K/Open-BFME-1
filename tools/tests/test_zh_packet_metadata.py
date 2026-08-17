@@ -96,16 +96,43 @@ def flat(packet):
     return " ".join(packet.split())
 
 
-def test_an_interior_address_is_never_presented_as_a_function_start(tmp_path, monkeypatch):
+def test_an_interior_address_is_corrected_to_the_body_it_landed_in(tmp_path, monkeypatch):
     """0x2010 is 16 bytes inside a body the inventory knows. The sweep placed a
-    candidate there anyway, which is how 25 of 335 live packets were addressed."""
+    candidate there anyway, which is how 25 of 335 live packets were addressed.
+    Printing that as a warning still hands over the wrong address; the inventory
+    names the right one, so the packet is addressed there and its extent read
+    there too -- 32 bytes of the enclosing body, not 24 of the candidate."""
     written = run_packets(tmp_path, monkeypatch, [near(0x2010, 24)])
 
-    packet = flat(written[0x2010])
-    assert "**This address is not a function start.**" in packet
-    assert "16 byte(s) inside the function at 0x00002000" in packet
-    assert "Do not add a ledger row at this address" in packet
-    assert "confirmed function start" not in packet
+    assert list(written) == [0x2000]
+    packet = flat(written[0x2000])
+    assert "not a function start" not in packet
+    assert "address is a confirmed function start (reverse/ghidra_functions.csv)" in packet
+    assert served_size(written[0x2000]) == 32
+
+
+def test_an_address_in_padding_is_corrected_forward_to_the_next_body(tmp_path, monkeypatch):
+    """The same error pointing the other way: 0x2020 is int3 between the two
+    bodies, so the body it names is the one the padding runs up to. Back-snapping
+    recovers none of these, which is why the correction reads `containing()`."""
+    written = run_packets(tmp_path, monkeypatch, [near(PAD, 24)])
+
+    assert list(written) == [0x3000]
+    packet = flat(written[0x3000])
+    assert "not a function start" not in packet
+    assert "address is a confirmed function start (reverse/ghidra_functions.csv)" in packet
+    assert served_size(written[0x3000]) == 16
+
+
+def test_an_address_the_inventory_does_not_cover_is_not_moved(tmp_path, monkeypatch):
+    """0x2100 has no row at or covering it and is not padding. That is unknown,
+    not wrong: it sits before a known start, so a rule keying off `containing()
+    is None` snaps it forward to 0x3000, past its own end -- over the live queue
+    that moves every one of the 32 such addresses, two of them onto each other."""
+    written = run_packets(tmp_path, monkeypatch, [near(0x2100, 24)])
+
+    assert list(written) == [0x2100]
+    assert "treat the start as unverified" in flat(written[0x2100])
 
 
 def test_a_confirmed_start_says_so_and_says_where_from(tmp_path, monkeypatch):
