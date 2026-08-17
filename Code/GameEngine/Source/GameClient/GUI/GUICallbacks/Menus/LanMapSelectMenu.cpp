@@ -185,11 +185,30 @@ void LanMapSelectMenuInit( WindowLayout *layout, void *userData )
 //-------------------------------------------------------------------------------------------------
 /** MapSelect menu shutdown method */
 //-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+// Open-BFME5: BFME made WindowLayout::hide VIRTUAL. Retail reaches it through
+// vtable slot 0x10 -- `mov eax,[esi]' then `call dword ptr [eax+0x10]' -- where
+// the Zero Hour WindowLayout.h in this tree declares it an ordinary member and
+// we emit a direct call. Correcting the declaration would touch every TU that
+// includes WindowLayout.h and force the full repo gate, so it is spelled
+// TU-locally, the same way NetworkDirectConnect.cpp already does it: a shim
+// whose fifth virtual lands on that slot, and a cast at the one call site.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
 void LanMapSelectMenuShutdown( WindowLayout *layout, void *userData )
 {
 
 	// hide menu
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	NullifyControls();
 	

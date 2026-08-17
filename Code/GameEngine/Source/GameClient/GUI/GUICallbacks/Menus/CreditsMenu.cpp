@@ -117,20 +117,92 @@ void CreditsMenuInit( WindowLayout *layout, void *userData )
 //-------------------------------------------------------------------------------------------------
 /** single player menu shutdown method */
 //-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+// Open-BFME5: three BFME/ZH interface differences this one body proves, all
+// spelled TU-locally rather than in the headers they belong to -- Shell.h,
+// WindowLayout.h and GameAudio.h are included almost everywhere and editing
+// any of them forces the full repo gate.
+//
+// 1. CreditsManager::reset is one vtable slot later in BFME: retail calls
+//    [eax+0x10], the reference header puts it at [eax+0x0c].
+// 2. WindowLayout::hide is VIRTUAL in BFME, reached through slot 0x10, where
+//    the reference declares it an ordinary member and we emit a direct call.
+//    Same shim NetworkDirectConnect.cpp and LanMapSelectMenu.cpp already use.
+// 3. The audio call that closes this function takes THREE arguments at slot
+//    0x6c where ZH's removeAudioEvent takes one at 0x38. Retail pushes 0, then
+//    1, then 2, so the arguments are (2, 1, 0) -- and not the single
+//    AHSV_StopTheMusicFade the reference passes. This body does not say what
+//    they mean, so the shim names the slot and not the semantics. Only the
+//    call site inside this function is evidence; the one in CreditsMenuInit is
+//    left alone until a body proves it too.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualCreditsReset
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void reset() = 0;
+};
+
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+class BfmeVirtualAudioSlot6C
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot04() = 0;
+	virtual void slot08() = 0;
+	virtual void slot0C() = 0;
+	virtual void slot10() = 0;
+	virtual void slot14() = 0;
+	virtual void slot18() = 0;
+	virtual void slot1C() = 0;
+	virtual void slot20() = 0;
+	virtual void slot24() = 0;
+	virtual void slot28() = 0;
+	virtual void slot2C() = 0;
+	virtual void slot30() = 0;
+	virtual void slot34() = 0;
+	virtual void slot38() = 0;
+	virtual void slot3C() = 0;
+	virtual void slot40() = 0;
+	virtual void slot44() = 0;
+	virtual void slot48() = 0;
+	virtual void slot4C() = 0;
+	virtual void slot50() = 0;
+	virtual void slot54() = 0;
+	virtual void slot58() = 0;
+	virtual void slot5C() = 0;
+	virtual void slot60() = 0;
+	virtual void slot64() = 0;
+	virtual void slot68() = 0;
+	virtual void bfmeAudioSlot6C( Int a, Int b, Int c ) = 0;
+};
+
 void CreditsMenuShutdown( WindowLayout *layout, void *userData )
 {
-	TheCredits->reset();
+	((BfmeVirtualCreditsReset *)TheCredits)->reset();
 	delete TheCredits;
 	TheCredits = NULL;
 	TheShell->showShellMap(TRUE);
 
 	// hide menu
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout );
 
-	TheAudio->removeAudioEvent( AHSV_StopTheMusicFade );
+	((BfmeVirtualAudioSlot6C *)TheAudio)->bfmeAudioSlot6C( 2, 1, 0 );
 
 }  // end CreditsMenuShutdown
 
