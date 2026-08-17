@@ -72,8 +72,7 @@ static inline void bfmeDataChunkYieldToOS(void)
 		reinterpret_cast<BFME_GameEngineServiceWindowsOS *>(TheGameEngine)->serviceWindowsOS();
 }
 
-// ??0CachedFileInputStream@@QAE@XZ present-unmatched
-CachedFileInputStream::CachedFileInputStream(void):m_buffer(NULL),m_size(0)
+CachedFileInputStream::CachedFileInputStream(void)
 {
 }
 
