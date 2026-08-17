@@ -3803,14 +3803,17 @@ def tinst_cells(read, named):
     return stake
 
 
-def tinst_probe(read, named, cell, headers, number):
+def tinst_probe(read, named, cell, headers, claimed):
     """[(row, size)] for the bodies one cell reproduces exactly, over both
     allocator regimes; the first regime that compiles AND matches wins."""
     container, spelling = cell
-    claimed = {row["name"] for row in B.load_all_function_rows()}
+    # Keyed on the cell, never on the output batch number: the probe object is
+    # the expensive part of a run and the batch number shifts every time an
+    # earlier cell lands, which would throw the whole compile cache away.
+    key = re.sub(r"[^A-Za-z0-9]+", "_", f"{container}_{spelling}").strip("_")[:58]
     for regime, flags in TINST_REGIMES.items():
         for prerts in ((True, False) if headers else (False,)):
-            source = PENDING_DIR / f"tinstprobe_{number:03d}_{regime}.cpp"
+            source = PENDING_DIR / f"tinstprobe_{key}_{regime}.cpp"
             text = tinst_render(flags, headers, container, spelling, prerts)
             if not source.exists() or source.read_text(encoding="utf-8") != text:
                 source.write_text(text, encoding="utf-8")
@@ -3857,6 +3860,7 @@ def cmd_gen_tinst(args):
         number += 1
     thunks, report = B.build_call_thunks(), collections.Counter()
     written, refused = [], collections.Counter()
+    claimed = {row["name"] for row in B.load_all_function_rows()}
     for container, spelling in order[:args.batches]:
         headers, missing = [], []
         for base in dict.fromkeys(re.findall(r"[A-Za-z_][A-Za-z_0-9]*", spelling)):
@@ -3867,7 +3871,7 @@ def cmd_gen_tinst(args):
             refused[f"no reference header for {missing[0]}"] += 1
             continue
         hits, text, regime = tinst_probe(read, named, (container, spelling),
-                                         headers, number)
+                                         headers, claimed)
         if not hits:
             refused["no member reproduces the retail bytes"] += 1
             continue
