@@ -355,13 +355,42 @@ void W3DMouse::freeW3DAssets(void)
 //-------------------------------------------------------------------------------------------------
 /** Initialize our device */
 //-------------------------------------------------------------------------------------------------
-// ?init@W3DMouse@@ present-unmatched
+//-------------------------------------------------------------------------------------------------
+// Open-BFME5: Mouse::setCursor is four vtable slots later in BFME. Retail
+// reaches it through [eax+0x38]; the reference GameClient/Mouse.h puts it at
+// [eax+0x28]. Spelled TU-locally as a facade with the intervening slots left
+// anonymous, because Mouse.h is included across the whole GameClient and the
+// four slots that were inserted ahead of setCursor are not something this
+// body identifies -- it only shows where setCursor ended up.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualMouseSetCursor
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot04() = 0;
+	virtual void slot08() = 0;
+	virtual void slot0C() = 0;
+	virtual void slot10() = 0;
+	virtual void slot14() = 0;
+	virtual void slot18() = 0;
+	virtual void slot1C() = 0;
+	virtual void slot20() = 0;
+	virtual void slot24() = 0;
+	virtual void slot28() = 0;
+	virtual void slot2C() = 0;
+	virtual void slot30() = 0;
+	virtual void slot34() = 0;
+	// Int and not Mouse::MouseCursor: the enum is nested in the class this
+	// facade stands in for, and the argument is a four-byte push either way.
+	virtual void setCursor( Int cursor ) = 0;
+};
+
 void W3DMouse::init( void )
 {
 
 	//check if system already initialized and texture assets loaded.
 	Win32Mouse::init();
-	setCursor(ARROW);	//set default starting cursor image
+	((BfmeVirtualMouseSetCursor *)this)->setCursor(ARROW);	//set default starting cursor image
 
 	WWASSERT(!thread.Is_Running());
 
