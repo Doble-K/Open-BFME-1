@@ -53,11 +53,21 @@ address is not a function start. The exact partition, with no overlap:
   end measurement, not a defect. Then 19 of 144 was published as if it were the rate
   when it is only the lower bound.
 
-  Per-band lower bounds, measured over all 144: 5/81 (6.2%), 6/38 (15.8%), 4/14
-  (28.6%), then 42.9% and 25.0% under the yield_model cut, or 33.3% and 50.0% if the
-  top boundary moves to 1024. The top band flips direction with the cut because it
-  holds 4 packets, or 2. Do not read a rate out of it either way; an earlier claim of
-  75% there does not survive.
+  Per-band lower bounds, measured over all 144, and only the first three are worth
+  banding: 5/81 (6.2%), 6/38 (15.8%), 4/14 (28.6%) across <64, 64-127, 128-255.
+  That climb is identical under every cut tried.
+
+  ABOVE 256 BYTES, DO NOT BAND IT. Report 4 of 11 = 36.4% pooled and say the sample
+  cannot resolve a trend inside it. The whole population over 256 B is
+
+      265*  286  293*  303  338*  434  453  793  837  1753  4057*      (* = bad)
+
+  -- every bad address but one sits in 265-338, then five consecutive clean packets
+  to 1753, then one bad at 4057. Splitting that at 512 gives 42.9% then 25.0%
+  (falling); splitting at 1024 gives 33.3% then 50.0% (rising). Nothing changes but
+  the cut: moving it shifts the 793 and 837 packets across. Both readings are four
+  events, and "50% in the largest band" is one packet out of two. An earlier claim of
+  75% there does not survive either.
 
   The size association itself is real and does not depend on binning: point-biserial
   r(size, is-bad) = +0.227 over all 144, Spearman +0.281 with average ranks, median
