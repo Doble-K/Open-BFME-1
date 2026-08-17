@@ -3803,9 +3803,15 @@ def tinst_cells(read, named):
     return stake
 
 
-def tinst_probe(read, named, cell, headers, claimed):
+def tinst_probe(read, named, cell, headers, claimed, taken):
     """[(row, size)] for the bodies one cell reproduces exactly, over both
-    allocator regimes; the first regime that compiles AND matches wins."""
+    allocator regimes; the first regime that compiles AND matches wins.
+
+    A body is skipped when its NAME is already in the ledger and, separately,
+    when its ADDRESS is -- gen-tgrid reaches many of the same bodies first and
+    lands them under a synthetic `tg_*` name, which leaves the address claimed
+    while the decorated name is still free.
+    """
     container, spelling = cell
     # Keyed on the cell, never on the output batch number: the probe object is
     # the expensive part of a run and the batch number shifts every time an
@@ -3828,6 +3834,8 @@ def tinst_probe(read, named, cell, headers, claimed):
                 if symbol not in named or symbol in claimed:
                     continue
                 rva = tinst_resolve(read, named[symbol][0])
+                if rva in taken:
+                    continue
                 retail = read(rva, len(body))
                 if len(retail) != len(body):
                     continue
@@ -3845,6 +3853,15 @@ def tinst_source_path(number):
     return GEN_DIR / f"tinst_{number:03d}.cpp"
 
 
+def tinst_next_number(number):
+    """The next free batch number. Landed batches are not contiguous once one
+    has been retired, and walking past every existing file is what keeps a run
+    from writing over a file whose rows are already live."""
+    while tinst_source_path(number).exists():
+        number += 1
+    return number
+
+
 def cmd_gen_tinst(args):
     read = exe_reader()
     named = tinst_named_population()
@@ -3855,12 +3872,12 @@ def cmd_gen_tinst(args):
     print(f"gen-tinst: {len(order)} element type(s) named in the retail tables, "
           f"{sum(stake[c] for c in order)} unclaimed byte(s) at stake")
 
-    number = 0
-    while tinst_source_path(number).exists():
-        number += 1
+    number = tinst_next_number(0)
     thunks, report = B.build_call_thunks(), collections.Counter()
     written, refused = [], collections.Counter()
     claimed = {row["name"] for row in B.load_all_function_rows()}
+    taken = {int(row["target_rva"], 16) for row in B.load_all_function_rows()
+             if "gen_asm" not in row["source"] and not row["source"].endswith(".asm")}
     for container, spelling in order[:args.batches]:
         headers, missing = [], []
         for base in dict.fromkeys(re.findall(r"[A-Za-z_][A-Za-z_0-9]*", spelling)):
@@ -3871,7 +3888,7 @@ def cmd_gen_tinst(args):
             refused[f"no reference header for {missing[0]}"] += 1
             continue
         hits, text, regime = tinst_probe(read, named, (container, spelling),
-                                         headers, claimed)
+                                         headers, claimed, taken)
         if not hits:
             refused["no member reproduces the retail bytes"] += 1
             continue
@@ -3883,7 +3900,7 @@ def cmd_gen_tinst(args):
         verified = tg_write_batch(source, text, rows, [], thunks, report, TINST_NOTE)
         if verified:
             written.append(verified)
-            number += 1
+            number = tinst_next_number(number + 1)
         else:
             source.unlink(missing_ok=True)
 
