@@ -101016,7 +101016,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0026a8f0@@YAXXZ,,0x0026A8F0,17,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066a8f0
 ?d_0026a930@@YAXXZ,,0x0026A930,7,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066a930
 ?d_0026a980@@YAXXZ,,0x0026A980,89,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066a980
-?d_0026aa20@@YAXXZ,,0x0026AA20,123,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066aa20
 ?d_0026aac0@@YAXXZ,,0x0026AAC0,195,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066aac0
 ?d_0026b080@@YAXXZ,,0x0026B080,25,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066b080
 ?d_0026b1d0@@YAXXZ,,0x0026B1D0,18,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066b1d0
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?SinglePlayerMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004E9540,61,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,matched,Open-BFME7: ZH body verbatim; both callee pins already existed and the static shutdownComplete inlines exactly as its sibling SinglePlayerMenuShutdown proved
 ??0RankInfo@@QAE@XZ,,0x003A0810,53,Code/GameEngine/Source/GameLogic/System/RankInfoConstructorThunk.cpp,matched,Open-BFME7: layout read off the store sequence; BFME adds five -1 words at +0x14..+0x24 the reference RankInfo does not have
 ?doAddCommandBarButton@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F0740,76,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
+?isReady@SpecialPowerModule@@UBE_NXZ,,0x0026AA20,123,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule_isReady_Thunk.cpp,matched,
