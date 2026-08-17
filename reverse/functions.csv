@@ -124098,7 +124098,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004e4790@@YAXXZ,,0x004E4790,989,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e5020@@YAXXZ,,0x004E5020,55,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e5d30@@YAXXZ,,0x004E5D30,31,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
-?d_004e9540@@YAXXZ,,0x004E9540,61,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e98e0@@YAXXZ,,0x004E98E0,443,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e9b20@@YAXXZ,,0x004E9B20,6,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
 ?d_004e9b30@@YAXXZ,,0x004E9B30,13,Code/gen_asm/d_004e1090.asm,matched,gen-dump;bounds=high
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?_M_clear@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@IAEXXZ,,0x000E3ED0,103,Code/GameEngine/Source/Common/RTS/PlayerTemplateVectorClearThunk.cpp,matched,
 ?getApparentControllingPlayer@GarrisonContain@@UBEPBVPlayer@@PBV2@@Z,,0x0021E340,88,Code/GameEngine/Source/Common/GarrisonContain_getApparentControllingPlayer_Thunk.cpp,matched,
 ?ParseActionDataChunk@ScriptAction@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00358FE0,59,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptsParseActionDataChunkThunk.cpp,matched,Open-BFME7: isolated port; BFME Script keeps m_action at +0x20 not +0x28; tie vs ParseActionFalseDataChunk broken by the twin at 0x00359030 reading +0x24
+?SinglePlayerMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004E9540,61,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,matched,Open-BFME7: ZH body verbatim; both callee pins already existed and the static shutdownComplete inlines exactly as its sibling SinglePlayerMenuShutdown proved
