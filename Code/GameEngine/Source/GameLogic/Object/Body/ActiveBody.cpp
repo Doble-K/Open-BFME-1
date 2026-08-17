@@ -1351,7 +1351,6 @@ Bool ActiveBody::isSubdued() const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?getHealth@ActiveBody@@ present-unmatched
 Real ActiveBody::getHealth() const
 {
 	return m_currentHealth;
@@ -1359,7 +1358,6 @@ Real ActiveBody::getHealth() const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?getDamageState@ActiveBody@@ present-unmatched
 BodyDamageType ActiveBody::getDamageState() const
 {
 	return m_curDamageState;

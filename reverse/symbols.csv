@@ -72220,3 +72220,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?markAsDead@AIUpdateInterface@@QAEXXZ,0x00025BFD,ILT thunk read out of StructureCollapseUpdate::onDie call displacement; real body 0x0026EE80 (d_0026ee80, gen-dump)
 ?deselectObject@GameLogic@@QAEXPAVObject@@G_N@Z,0x0001EC2C,ILT thunk read out of StructureCollapseUpdate::onDie call displacement; real body 0x00382F50 (d_00382f50, gen-dump)
 ??1LANGameSlot@@QAE@XZ,0x00029A69,ILT thunk read out of LANGameInfo::setSlot call displacement; real body 0x006858A0 (d_006858a0, gen-dump)
+?setEffectivelyDead@Object@@QAEX_N@Z,0x00030887,ILT thunk -> body 0x001C7E60 (matched); AIUpdateInterface::markAsDead call site
