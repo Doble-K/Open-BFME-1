@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/psplayerstats /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /DBFME_STLP_NODE_ALLOC /Ireference/shims/psplayerstats /Ireference/shims/stlp_nodealloc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -44,6 +44,25 @@
 
 #include "Common/StackDump.h"
 #include "Common/SubsystemInterface.h"
+
+// Retail's STLport leaves _String_base::_M_allocate_block's rejection path
+// empty -- a request for zero, or for more than max_size(), just leaves the
+// string unallocated. The vendored 4.5.3 copy calls _M_throw_length_error()
+// there instead, and that throw is the entire remaining difference in the
+// return-value copy of formatPlayerKVPairs below. Specialise the one
+// instantiation this file needs so it matches what shipped; the guard itself
+// is unchanged, so a rejected size still allocates nothing.
+_STLP_BEGIN_NAMESPACE
+template <> void _String_base<char, allocator<char> >::_M_allocate_block(size_t __n)
+{
+	if ((__n <= (max_size() + 1)) && (__n > 0))
+	{
+		_M_start = _M_end_of_storage.allocate(__n);
+		_M_finish = _M_start;
+		_M_end_of_storage._M_data = _M_start + __n;
+	}
+}
+_STLP_END_NAMESPACE
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -1313,8 +1332,75 @@ PSPlayerStats GameSpyPSMessageQueueInterface::parsePlayerKVPairs( std::string kv
 
 	return s;
 }
+// The psplayerstats shim header labels PSPlayerStats with Zero Hour's field
+// names. BFME kept Zero Hour's *shape* -- same member count, same stride, which
+// is why the copy constructor at 0x6577D0 byte-matches through that shim -- but
+// moved the labels: four streak maps take map slots 2-5, pushing games..QMGames
+// down by four, and the scalar tail is relabelled outright. Below is what the
+// retail body at 0x655360 actually reads, at the offsets it reads it from.
+// Relabelling the shim would touch four translation units and cost a full-tree
+// gate; this view keeps the change TU-local until that is worth paying for.
+struct BfmePlayerStats
+{
+	Int id;                             // +0x000
+	PerGeneralMap wins;                 // +0x004
+	PerGeneralMap losses;               // +0x010
+	PerGeneralMap currentWinStreaks;    // +0x01c
+	PerGeneralMap currentLossStreaks;   // +0x028
+	PerGeneralMap worstLossStreaks;     // +0x034
+	PerGeneralMap bestWinStreaks;       // +0x040
+	PerGeneralMap games;                // +0x04c
+	PerGeneralMap duration;             // +0x058
+	PerGeneralMap unitsKilled;          // +0x064
+	PerGeneralMap unitsLost;            // +0x070
+	PerGeneralMap unitsBuilt;           // +0x07c
+	PerGeneralMap buildingsKilled;      // +0x088
+	PerGeneralMap buildingsLost;        // +0x094
+	PerGeneralMap buildingsBuilt;       // +0x0a0
+	PerGeneralMap earnings;             // +0x0ac
+	PerGeneralMap discons;              // +0x0b8
+	PerGeneralMap desyncs;              // +0x0c4
+	PerGeneralMap surrenders;           // +0x0d0
+	PerGeneralMap gamesOf2p;            // +0x0dc
+	PerGeneralMap gamesOf3p;            // +0x0e8
+	PerGeneralMap gamesOf4p;            // +0x0f4
+	PerGeneralMap gamesOf5p;            // +0x100
+	PerGeneralMap gamesOf6p;            // +0x10c
+	PerGeneralMap gamesOf7p;            // +0x118
+	PerGeneralMap gamesOf8p;            // +0x124
+	PerGeneralMap customGames;          // +0x130
+	PerGeneralMap QMGames;              // +0x13c
+	Int locale;                         // +0x148
+	std::string dateCreated;            // +0x14c
+	Int gamesAsRandom;                  // +0x158
+	std::string options;                // +0x15c
+	std::string systemSpec;             // +0x168
+	Real lastFPS;                       // +0x174
+	Int lastSide;                       // +0x178
+	Int gamesInRowWithLastSide;         // +0x17c
+	Int challengeMedals;                // +0x180
+	Int battleHonors;                   // +0x184
+	Int winsInARow;                     // +0x188
+	Int maxWinsInARow;                  // +0x18c
+	Int lossesInARow;                   // +0x190
+	Int maxLossesInARow;                // +0x194
+	Int gamesOn1_1_Ladder;              // +0x198
+	Int gamesOn2_2_Ladder;              // +0x19c
+	Int disconsInARow;                  // +0x1a0
+	Int maxDisconsInARow;               // +0x1a4
+	Int desyncsInARow;                  // +0x1a8
+	Int maxDesyncsInARow;               // +0x1ac
+	Int best1v1LadderRank;              // +0x1b0
+	Int best2v2LadderRank;              // +0x1b4
+	std::string lastLadderPlayed;       // +0x1b8
+};
 
-#define ITERATE_OVER(x) for (it = stats.x.begin(); it != stats.x.end(); ++it) \
+// fails the build loudly if the shim's layout ever stops agreeing with the view
+typedef char BfmePlayerStatsMatchesShim[sizeof(BfmePlayerStats) == sizeof(PSPlayerStats) ? 1 : -1];
+
+#define BFME_STATS ((BfmePlayerStats &)stats)
+
+#define ITERATE_OVER(x) for (it = BFME_STATS.x.begin(); it != BFME_STATS.x.end(); ++it) \
 { \
 	if (it->second > 0) \
 	{ \
@@ -1325,7 +1411,6 @@ PSPlayerStats GameSpyPSMessageQueueInterface::parsePlayerKVPairs( std::string kv
 
 #include "Common/PlayerTemplate.h"
 
-// ?formatPlayerKVPairs@GameSpyPSMessageQueueInterface@@ present-unmatched
 std::string GameSpyPSMessageQueueInterface::formatPlayerKVPairs( PSPlayerStats stats )
 {
 	char kvbuf[256];
@@ -1343,23 +1428,7 @@ std::string GameSpyPSMessageQueueInterface::formatPlayerKVPairs( PSPlayerStats s
 	ITERATE_OVER(buildingsLost);
 	ITERATE_OVER(buildingsBuilt);
 	ITERATE_OVER(earnings);
-	ITERATE_OVER(techCaptured);
-
-	//GS  Report all disconnects, even if zero, because might have been 
-	//previously reported as 1 by updateAdditionalGameSpyDisconnections
-//	ITERATE_OVER(discons);
-	for (Int ptIdx = 0; ptIdx < ThePlayerTemplateStore->getPlayerTemplateCount(); ++ptIdx)
-	{
-//		const PlayerTemplate* pTemplate = ThePlayerTemplateStore->getNthPlayerTemplate(ptIdx);
-//		const GeneralPersona* pGeneral = TheChallengeGenerals->getGeneralByTemplateName(pTemplate->getName());
-//		BOOL isReported = pGeneral ? pGeneral->isStartingEnabled() : FALSE;
-//		if( !isReported )
-//			continue;  //don't report unplayable templates (observer, boss, etc.)
-
-		sprintf(kvbuf, "\\discons%d\\%d", ptIdx, stats.discons[ptIdx]);
-		s.append(kvbuf);
-	}
-
+	ITERATE_OVER(discons);
 	ITERATE_OVER(desyncs);
 	ITERATE_OVER(surrenders);
 	ITERATE_OVER(gamesOf2p);
@@ -1371,131 +1440,150 @@ std::string GameSpyPSMessageQueueInterface::formatPlayerKVPairs( PSPlayerStats s
 	ITERATE_OVER(gamesOf8p);
 	ITERATE_OVER(customGames);
 	ITERATE_OVER(QMGames);
-	
-	if (stats.locale > 0)
+	ITERATE_OVER(currentWinStreaks);
+	ITERATE_OVER(currentLossStreaks);
+	ITERATE_OVER(worstLossStreaks);
+	ITERATE_OVER(bestWinStreaks);
+
+	if (BFME_STATS.locale > 0)
 	{
-		sprintf(kvbuf, "\\locale\\%d", stats.locale);
+		sprintf(kvbuf, "\\locale\\%d", BFME_STATS.locale);
 		s.append(kvbuf);
 	}
 
-	if (stats.gamesAsRandom > 0)
+	if (BFME_STATS.gamesAsRandom > 0)
 	{
-		sprintf(kvbuf, "\\random\\%d", stats.gamesAsRandom);
+		sprintf(kvbuf, "\\random\\%d", BFME_STATS.gamesAsRandom);
 		s.append(kvbuf);
 	}
 
-	if (stats.options.length())
+	if (BFME_STATS.options.length())
 	{
-		_snprintf(kvbuf, 256, "\\options\\%s", stats.options.c_str());
+		_snprintf(kvbuf, 256, "\\options\\%s", BFME_STATS.options.c_str());
 		kvbuf[255] = 0;
 		s.append(kvbuf);
 	}
 
-	if (stats.systemSpec.length())
+	if (BFME_STATS.systemSpec.length())
 	{
-		_snprintf(kvbuf, 256, "\\systemSpec\\%s", stats.systemSpec.c_str());
+		_snprintf(kvbuf, 256, "\\systemSpec\\%s", BFME_STATS.systemSpec.c_str());
 		kvbuf[255] = 0;
 		s.append(kvbuf);
 	}
 
-	if (stats.lastFPS > 0.0f)
+	if (BFME_STATS.lastFPS > 0.0f)
 	{
-		sprintf(kvbuf, "\\fps\\%g", stats.lastFPS);
+		sprintf(kvbuf, "\\fps\\%g", BFME_STATS.lastFPS);
 		s.append(kvbuf);
 	}
-	if (stats.lastGeneral >= 0)
+	if (BFME_STATS.lastSide >= 0)
 	{
-		sprintf(kvbuf, "\\lastGeneral\\%d", stats.lastGeneral);
+		sprintf(kvbuf, "\\lastSide\\%d", BFME_STATS.lastSide);
 		s.append(kvbuf);
 	}
-	if (stats.gamesInRowWithLastGeneral >= 0)
+	if (BFME_STATS.gamesInRowWithLastSide >= 0)
 	{
-		sprintf(kvbuf, "\\genInRow\\%d", stats.gamesInRowWithLastGeneral);
+		sprintf(kvbuf, "\\genInRow\\%d", BFME_STATS.gamesInRowWithLastSide);
 		s.append(kvbuf);
 	}
-	if (stats.builtParticleCannon >= 0)
+	if (BFME_STATS.challengeMedals > 0)
 	{
-		sprintf(kvbuf, "\\builtCannon\\%d", stats.builtParticleCannon);
+		sprintf(kvbuf, "\\challenge\\%d", BFME_STATS.challengeMedals);
 		s.append(kvbuf);
 	}
-	if (stats.builtNuke >= 0)
+	if (BFME_STATS.battleHonors > 0)
 	{
-		sprintf(kvbuf, "\\builtNuke\\%d", stats.builtNuke);
-		s.append(kvbuf);
-	}
-	if (stats.builtSCUD >= 0)
-	{
-		sprintf(kvbuf, "\\builtSCUD\\%d", stats.builtSCUD);
-		s.append(kvbuf);
-	}
-	if (stats.challengeMedals > 0)
-	{
-		sprintf(kvbuf, "\\challenge\\%d", stats.challengeMedals);
-		s.append(kvbuf);
-	}
-	if (stats.battleHonors > 0)
-	{
-		sprintf(kvbuf, "\\battle\\%d", stats.battleHonors);
+		sprintf(kvbuf, "\\battle\\%d", BFME_STATS.battleHonors);
 		s.append(kvbuf);
 	}
 
-	//if (stats.winsInARow > 0)
+	// the streak counters themselves are reported every time, only their maxima are guarded
 	{
-		sprintf(kvbuf, "\\WinRow\\%d", stats.winsInARow);
+		sprintf(kvbuf, "\\WinRow\\%d", BFME_STATS.winsInARow);
 		s.append(kvbuf);
 	}
-	if (stats.maxWinsInARow > 0)
+	if (BFME_STATS.maxWinsInARow > 0)
 	{
-		sprintf(kvbuf, "\\WinRowMax\\%d", stats.maxWinsInARow);
-		s.append(kvbuf);
-	}
-
-	//if (stats.lossesInARow > 0)
-	{
-		sprintf(kvbuf, "\\LossRow\\%d", stats.lossesInARow);
-		s.append(kvbuf);
-	}
-	if (stats.maxLossesInARow > 0)
-	{
-		sprintf(kvbuf, "\\LossRowMax\\%d", stats.maxLossesInARow);
+		sprintf(kvbuf, "\\WinRowMax\\%d", BFME_STATS.maxWinsInARow);
 		s.append(kvbuf);
 	}
 
-	//if (stats.disconsInARow > 0)
 	{
-		sprintf(kvbuf, "\\DCRow\\%d", stats.disconsInARow);
+		sprintf(kvbuf, "\\LossRow\\%d", BFME_STATS.lossesInARow);
 		s.append(kvbuf);
 	}
-	if (stats.maxDisconsInARow > 0)
+	if (BFME_STATS.maxLossesInARow > 0)
 	{
-		sprintf(kvbuf, "\\DCRowMax\\%d", stats.maxDisconsInARow);
-		s.append(kvbuf);
-	}
-
-	//if (stats.desyncsInARow > 0)
-	{
-		sprintf(kvbuf, "\\DSRow\\%d", stats.desyncsInARow);
-		s.append(kvbuf);
-	}
-	if (stats.maxDesyncsInARow > 0)
-	{
-		sprintf(kvbuf, "\\DSRowMax\\%d", stats.maxDesyncsInARow);
+		sprintf(kvbuf, "\\LossRowMax\\%d", BFME_STATS.maxLossesInARow);
 		s.append(kvbuf);
 	}
 
-	if (stats.lastLadderPort > 0)
 	{
-		sprintf(kvbuf, "\\ladderPort\\%d", stats.lastLadderPort);
+		sprintf(kvbuf, "\\DCRow\\%d", BFME_STATS.disconsInARow);
 		s.append(kvbuf);
 	}
-	if (stats.lastLadderHost.length())
+	if (BFME_STATS.maxDisconsInARow > 0)
 	{
-		_snprintf(kvbuf, 256, "\\ladderHost\\%s", stats.lastLadderHost.c_str());
+		sprintf(kvbuf, "\\DCRowMax\\%d", BFME_STATS.maxDisconsInARow);
+		s.append(kvbuf);
+	}
+
+	{
+		sprintf(kvbuf, "\\DSRow\\%d", BFME_STATS.desyncsInARow);
+		s.append(kvbuf);
+	}
+	if (BFME_STATS.maxDesyncsInARow > 0)
+	{
+		sprintf(kvbuf, "\\DSRowMax\\%d", BFME_STATS.maxDesyncsInARow);
+		s.append(kvbuf);
+	}
+
+	if (BFME_STATS.best1v1LadderRank > 0)
+	{
+		sprintf(kvbuf, "\\best1v1LadderRank\\%d", BFME_STATS.best1v1LadderRank);
+		s.append(kvbuf);
+	}
+	if (BFME_STATS.best2v2LadderRank > 0)
+	{
+		sprintf(kvbuf, "\\best2v2LadderRank\\%d", BFME_STATS.best2v2LadderRank);
+		s.append(kvbuf);
+	}
+	if (BFME_STATS.lastLadderPlayed.length())
+	{
+		_snprintf(kvbuf, 256, "\\lastLadderPlayed\\%s", BFME_STATS.lastLadderPlayed.c_str());
 		kvbuf[255] = 0;
 		s.append(kvbuf);
 	}
+	if (BFME_STATS.dateCreated.length())
+	{
+		_snprintf(kvbuf, 256, "\\dateCreated\\%s", BFME_STATS.dateCreated.c_str());
+		kvbuf[255] = 0;
+		s.append(kvbuf);
+	}
+	if (BFME_STATS.gamesOn1_1_Ladder > 0)
+	{
+		sprintf(kvbuf, "\\gamesOn1_1_Ladder\\%d", BFME_STATS.gamesOn1_1_Ladder);
+		s.append(kvbuf);
+	}
+	if (BFME_STATS.gamesOn2_2_Ladder > 0)
+	{
+		sprintf(kvbuf, "\\gamesOn2_2_Ladder\\%d", BFME_STATS.gamesOn2_2_Ladder);
+		s.append(kvbuf);
+	}
 
-	DEBUG_LOG(("Formatted persistent values as '%s'\n", s.c_str()));
+	// One DEBUG_LOG call cannot carry the whole KV string, so it goes out in
+	// 511-character chunks. A release build drops the log call but keeps the
+	// walk, which is how the chunk size was read back off retail.
+	Int charsLeft = s.length();
+	const char *chunk = s.c_str();
+	while (charsLeft > 0)
+	{
+		Int thisChunk = std::min(511, charsLeft);
+		DEBUG_LOG(("%.*s", thisChunk, chunk));
+		chunk += thisChunk;
+		charsLeft -= thisChunk;
+	}
+
 	return s;
 }
 
