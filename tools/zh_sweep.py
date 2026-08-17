@@ -1275,21 +1275,22 @@ def harvest_pins(chosen, by_address, landing):
     body reproduces retail there — the precedent from 1a6060b38, and the only
     thing separating a pin from a guess.
 
-    A callee reverse/symbols.csv already spends at a DIFFERENT address blocks its
-    address too: symbols.csv is additive and build.py would take both, but
-    land_wave refuses to add a second address for a pinned name and would abort
-    the whole wave over it. That address leaves the wave instead.
+    Pins split in two by how they can be written. A callee reverse/symbols.csv
+    already spends at a DIFFERENT address comes back as `extra`: symbols.csv is
+    additive and 512 names in it already hold several addresses, but land_wave
+    refuses to add a second address for a pinned name and would abort the whole
+    wave, so those go in by append instead of through its transaction.
     """
     needed = {rva: [(entry, landing.unresolved_calls(rva, entry["body"]))
                     for entry in by_address[rva]]
               for rva, entry in chosen.items()
               if landing.unresolved_calls(rva, entry["body"])}
     if not needed:
-        return {}, {}
+        return {}, {}, {}
     spent = spent_pins()
     carved = landing.callee_bodies({sym for twins in needed.values()
                                     for _, sites in twins for sym, _ in sites})
-    pins, unprovable = defaultdict(set), {}
+    pins, extra, unprovable = defaultdict(set), defaultdict(set), {}
     for rva, twins in needed.items():
         # Every twin at this address is byte-true; they differ in which callee
         # they name at each site, so one can be provable where another is not.
@@ -1298,18 +1299,50 @@ def harvest_pins(chosen, by_address, landing):
         for entry, sites in twins:
             unproven = {sym for sym, target in sites
                         if not landing.proves(carved, sym, target)}
-            blocked = {sym for sym, target in sites if sym in spent and spent[sym] != target}
-            if unproven or blocked:
+            if unproven:
                 failed |= {f"{sym} (not byte-equal at the encoded address)" for sym in unproven}
-                failed |= {f"{sym} (already pinned elsewhere in symbols.csv)" for sym in blocked}
                 continue
             chosen[rva] = entry
             for sym, target in sites:
-                pins[sym].add(target)
+                (extra if sym in spent and spent[sym] != target else pins)[sym].add(target)
             break
         else:
             unprovable[rva] = "no twin's callees prove out: " + ", ".join(sorted(failed)[:3])
-    return pins, unprovable
+    return pins, extra, unprovable
+
+
+def append_extra_pins(extra):
+    """Append pins for names symbols.csv already spends elsewhere, under the lock.
+
+    Not routed through land_wave: its guard exists so a wave cannot silently
+    re-point a pinned callee, and this is the other case — the same callee
+    called from a second site, at an address proven byte-equal on its own. The
+    file's own terminator is asked for rather than assumed, and nothing already
+    in it is rewritten: symbols.csv merges with git's union driver, so respelling
+    a line another clone still holds gives the next rebase both spellings.
+    """
+    import gen_small as G                  # noqa: E402 — only the apply path needs it
+    from portable_lock import lock, unlock
+    existing = {(row["name"], int(row["address"], 16))
+                for row in csv.DictReader(build.SYMBOLS.open(encoding="utf-8", newline=""))}
+    lines = [G.format_pin(sym, target,
+                          "zh-landmulti per-site callee copy (body proven byte-equal)")
+             for sym in sorted(extra) for target in sorted(extra[sym])
+             if (sym, target) not in existing]
+    if not lines:
+        return 0
+    handle = G.LOCK_FILE.open("a")
+    lock(handle, exclusive=True, wait_notice="land-multi: waiting for the ledger lock...")
+    try:
+        terminator = G.line_terminator(build.SYMBOLS.read_bytes(), "symbols.csv")
+        with build.SYMBOLS.open("ab") as symbols:
+            symbols.write(b"".join(line.encode("utf-8") + terminator for line in lines))
+    finally:
+        unlock(handle)
+        handle.close()
+    for line in lines:
+        print(f"  pin {line}")
+    return len(lines)
 
 
 def spent_pins():
@@ -1378,7 +1411,7 @@ def write_csv(path, rows):
 def do_land_multi(args):
     rows = dump_rows()
     sizes = set(rows.values())
-    print(f"land-multi: {len(rows):,} Code/gen_asm dump row(s) at HEAD, "
+    print(f"land-multi: {len(rows):,} gen-dump row(s) at HEAD, "
           f"{sum(rows.values()):,} bytes, {len(sizes)} distinct size(s)")
     bodies = multi_placements(args.objects, sizes, args.rederive)
     landing = Landing(args.objects)
@@ -1407,10 +1440,12 @@ def do_land_multi(args):
               f"{reject['retail']!r} — no Zero Hour twin has it")
 
     chosen = {rva: entries[0] for rva, entries in by_address.items()}
-    pins, unprovable = harvest_pins(chosen, by_address, landing)
+    pins, extra, unprovable = harvest_pins(chosen, by_address, landing)
     report_drops("unproven callee", unprovable, chosen)
     print(f"land-multi: {sum(len(v) for v in pins.values())} proven pin(s) over "
-          f"{len(pins)} callee symbol(s); {len(unprovable)} address(es) dropped unproven")
+          f"{len(pins)} callee symbol(s) + {sum(len(v) for v in extra.values())} on "
+          f"{len(extra)} callee(s) symbols.csv already spends elsewhere; "
+          f"{len(unprovable)} address(es) dropped unproven")
 
     whitelist = whitelisted_dir32()
     chosen, conflicts = dir32_consistent(chosen, landing, whitelist)
@@ -1418,7 +1453,7 @@ def do_land_multi(args):
     print(f"land-multi: {len(chosen)} address(es) survive the DIR32 pre-check "
           f"({len(conflicts)} dropped)")
 
-    chosen = trim(chosen, by_address, args)
+    chosen = trim(chosen, args)
     alternates = {rva: interchangeable(rva, chosen[rva], by_address[rva][1:], landing, whitelist)
                   for rva in chosen}
     wave = write_csv(WAVE_CSV, wave_rows(chosen, alternates))
@@ -1432,6 +1467,18 @@ def do_land_multi(args):
         print("land-multi: --apply not given; nothing was landed")
         return
     import land_wave                       # noqa: E402 — pulls in gen_small; only --apply needs it
+    # Only what the rows STILL in the wave need: trim cuts the wave down, and a
+    # pin for a row that was cut is a claim about the ledger nothing in it uses.
+    wanted = {site for rva, entry in chosen.items()
+              for site in landing.unresolved_calls(rva, entry["body"])}
+    needed = defaultdict(set)
+    for sym, targets in extra.items():
+        for target in targets:
+            if (sym, target) in wanted:
+                needed[sym].add(target)
+    appended = append_extra_pins(needed)
+    print(f"land-multi: appended {appended} pin(s) to reverse/symbols.csv for callees it "
+          "already spends at another address")
     argv = [str(wave), "--max-attempts", str(args.max_attempts)]
     if pinned:
         argv += ["--pins", str(pin_csv)]
@@ -1450,7 +1497,7 @@ def pin_rows(pins, chosen, landing):
             for sym in sorted(live) for target in sorted(live[sym])]
 
 
-def trim(chosen, by_address, args):
+def trim(chosen, args):
     """Cut the wave down to what one gate round should carry.
 
     Sources are the unit that costs: land_wave compiles each one, and a wave
