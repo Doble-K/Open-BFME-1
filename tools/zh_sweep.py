@@ -8,10 +8,11 @@ function COMDAT out of the objects, blanks every relocation slot -- those four
 bytes hold link-time addresses two different executables cannot be expected to
 agree on -- and searches .text for a placement of what is left.
 
-  compile   build ZH translation units into the sweep object cache
-  match     carve and place every COMDAT            -> build/zh_sweep/match.json
-  land      append ledger rows for placements that survive filtering
-  packets   write conversion work packets for near misses at unclaimed addresses
+  compile     build ZH translation units into the sweep object cache
+  match       carve and place every COMDAT          -> build/zh_sweep/match.json
+  land        append ledger rows for placements that survive filtering
+  land-multi  supersede gen-dump rows with the exact-MULTI placements
+  packets     write conversion work packets for near misses at unclaimed addresses
 
 A placement is evidence of identical CODE, which is not the same as evidence of
 identity: `land` drops every placement that overlaps ground another row already
@@ -23,12 +24,14 @@ ambiguous match as a unique one.
 import argparse
 import bisect
 import csv
+import hashlib
 import json
+import re
 import struct
 import subprocess
 import sys
 import textwrap
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -792,6 +795,630 @@ def packet_text(rva, bounds, group, body, relocs, names):
     ])
 
 
+# --------------------------------------------------------------------------
+# land-multi: the exact-MULTI placements, landed over gen-dump rows
+# --------------------------------------------------------------------------
+#
+# `land` only lands a body that places at exactly ONE address, because a unique
+# placement is evidence about identity. The bodies below place at many: retail
+# folds identical code, so one Zero Hour body is byte-true at a dozen addresses
+# and says nothing about which function any one of them is. That is still worth
+# landing -- the ledger stops holding a byte dump and starts holding a real
+# source that reproduces those bytes -- but only under a name that admits it:
+# ?dup_<rva>@@YAXXZ, with the COMDAT the bytes came from in object-symbol=.
+#
+# A real name here would need positive proof this address is that function, and
+# an ICF twin is exactly the case where nobody has it.
+
+MULTI_JSON = OUT_DIR / "multi_placements.json"
+WAVE_CSV = OUT_DIR / "landmulti_wave.csv"
+PINS_CSV = OUT_DIR / "landmulti_pins.csv"
+REJECT_CSV = OUT_DIR / "landmulti_string_rejects.csv"
+CLASS_RANK = {"zero-reloc": 0, "rel32-all-resolve": 1, "dir32-masked": 2,
+              "rel32-mismatch": 3, "rel32-unknown": 4}
+LOCAL_LABEL_RE = re.compile(r"\$[A-Za-z]+\d+")
+IMAGE_BASE = 0x400000
+MULTI_NOTE = "zh-landmulti exact-multi ZH twin"
+ALT_OWNERS = 4          # alternate bodies per address, for land_wave's retry loop
+
+
+def dump_rows():
+    """{rva: size} for the gen-dump rows in Code/gen_asm/ a wave may supersede.
+
+    Dumpness is the NOTE, not the directory (validate_rows supersedes on that
+    rule), but the directory is the scope this sweep was measured over, so both
+    are required and the 331 dumps living elsewhere are left to their owners.
+    """
+    rows = {int(row["target_rva"], 16): int(row["target_size"])
+            for row in build.load_all_function_rows()
+            if row["source"].startswith("Code/gen_asm/") and build.is_scaffold_row(row)}
+    if not rows:
+        raise SystemExit("zh_sweep: the ledger holds no Code/gen_asm dump rows — "
+                         "land-multi has nothing to supersede")
+    return rows
+
+
+def cache_fingerprint(objects):
+    """What the placement search actually depends on: the image and every object."""
+    digest = hashlib.sha1(build.EXE.read_bytes())
+    for obj in objects:
+        digest.update(obj.name.encode())
+        digest.update(obj.read_bytes())
+    return digest.hexdigest()
+
+
+def multi_placements(objects_dir, sizes, rederive):
+    """Cache-cached: every carved body that places exactly at >1 .text address.
+
+    Only body sizes some dump row has are searched -- a body no dump row can
+    receive cannot become a candidate, and searching for it costs the same as
+    searching for one that can.
+
+    The search is minutes of work over inputs that do not move between waves, so
+    it is cached under a fingerprint of the image and the objects it read. Dump
+    rows only ever leave the ledger, so a cache derived for a SUPERSET of this
+    run's sizes still holds every body this run could use; any other difference
+    re-derives rather than filtering a cache blind.
+    """
+    objects = sorted(Path(objects_dir).glob("*.obj"))
+    if not objects:
+        raise SystemExit(f"zh_sweep: no .obj files in {objects_dir} — run `zh_sweep compile` "
+                         "first, or point --objects at a populated sweep cache")
+    fingerprint = cache_fingerprint(objects)
+    if MULTI_JSON.exists() and not rederive:
+        cached = json.loads(MULTI_JSON.read_text())
+        covered = set(sizes) <= set(cached["sizes"])
+        if cached["fingerprint"] == fingerprint and covered:
+            bodies = [b for b in cached["bodies"] if b["size"] in sizes]
+            print(f"land-multi: {len(bodies)} multi-placed body/bodies from "
+                  f"{MULTI_JSON.relative_to(ROOT)} ({len(cached['bodies'])} cached over "
+                  f"{len(cached['sizes'])} size(s))")
+            return bodies
+        print(f"land-multi: re-deriving — cached fingerprint "
+              f"{'matches' if cached['fingerprint'] == fingerprint else 'DIFFERS'}, cached sizes "
+              f"{'cover' if covered else 'do NOT cover'} this run's {len(sizes)}")
+
+    text_rva, text = retail_text()
+    sources = zh_sources()
+    bodies, seen = [], set()
+    for index, obj in enumerate(objects, start=1):
+        source = object_source(obj, sources)
+        for name, body, relocs in carve(obj.read_bytes()):
+            if len(body) < MIN_FUNC or name in seen:
+                continue
+            seen.add(name)                      # first object wins, as do_match does
+            if len(body) not in sizes:
+                continue
+            masked, holes = mask(body, relocs)
+            exact = [text_rva + candidate for candidate in placements(text, body, masked, holes)
+                     if alignment(text[candidate:candidate + len(body)], masked, holes) == 1.0]
+            if len(exact) < 2:
+                continue
+            bodies.append({"sym": name, "obj": obj.name, "source": source, "size": len(body),
+                           "relocs": [[o, k, s] for o, k, s in relocs], "addresses": exact})
+        if index % 200 == 0:
+            print(f"  {index}/{len(objects)} objects, {len(bodies)} multi-placed bodies",
+                  flush=True)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    MULTI_JSON.write_text(json.dumps({"fingerprint": fingerprint, "sizes": sorted(sizes),
+                                      "bodies": bodies}))
+    print(f"land-multi: {len(bodies)} multi-placed body/bodies -> "
+          f"{MULTI_JSON.relative_to(ROOT)}")
+    return bodies
+
+
+class Landing:
+    """Everything a land-multi run asks of the retail image and the object cache."""
+
+    def __init__(self, objects_dir):
+        self.objects = Path(objects_dir)
+        self.data, self.sections = build.exe_image()
+        self.text_rva, self.text = retail_text()
+        section = next(s for s in self.sections if s["name"] == ".text")
+        self.low, self.high = section["rva"], section["rva"] + section["size"]
+        self.symbols = {name: set(addresses)
+                        for name, addresses in build.load_symbol_map().items()}
+        self._bodies, self._literals, self._thunks = {}, {}, {}
+
+    def at(self, rva, size):
+        offset = build.rva_to_file_offset(self.sections, rva)
+        return self.data[offset:offset + size]
+
+    def u32(self, rva):
+        return struct.unpack_from("<I", self.at(rva, 4))[0]
+
+    def rel32_target(self, rva, offset):
+        site = rva - self.text_rva + offset
+        return rva + offset + 4 + struct.unpack_from("<i", self.text, site)[0]
+
+    def follow(self, rva):
+        """The body a call lands in, past any incremental-link thunk."""
+        if rva not in self._thunks:
+            self._thunks[rva] = (build.follow_thunk(self.data, self.sections, rva,
+                                                    self.low, self.high)
+                                 if self.low <= rva < self.high else rva)
+        return self._thunks[rva]
+
+    def compiled(self, body):
+        """The candidate's own compiled bytes — where DIR32 addends are read."""
+        key = (body["obj"], body["sym"])
+        if key not in self._bodies:
+            self._bodies[key] = build.read_object_symbol_bytes(
+                self.objects / body["obj"], body["sym"], body["size"])[0]
+        return self._bodies[key]
+
+    def literal(self, body, sym):
+        """The string COMDAT's own bytes, or None when this object does not define it."""
+        key = (body["obj"], sym)
+        if key not in self._literals:
+            try:
+                self._literals[key] = build.read_object_symbol_bytes(
+                    self.objects / body["obj"], sym)[0]
+            except ValueError:
+                self._literals[key] = None
+        return self._literals[key]
+
+    def cstring(self, rva, limit=96):
+        """The retail string at `rva`, for a rejection log — identity intel, not a check."""
+        raw = self.at(rva, limit)
+        return raw.split(b"\0", 1)[0].decode("ascii", errors="replace")
+
+    def sites(self, body):
+        """The relocations that lie inside the claimed extent; nothing else is compared."""
+        return [(offset, kind, sym) for offset, kind, sym in body["relocs"]
+                if offset + 4 <= body["size"]]
+
+    def classify(self, rva, body):
+        """Which verifier decides this placement, once the row is in the ledger."""
+        relocs = self.sites(body)
+        if not relocs:
+            return "zero-reloc"
+        mismatch = unknown = False
+        for offset, kind, sym in relocs:
+            if kind != REL32:
+                continue
+            if sym not in self.symbols:
+                unknown = True
+            elif self.rel32_target(rva, offset) not in self.symbols[sym]:
+                mismatch = True
+        if mismatch:
+            return "rel32-mismatch"
+        if unknown:
+            return "rel32-unknown"
+        if any(kind == DIR32 for _, kind, _ in relocs):
+            return "dir32-masked"
+        return "rel32-all-resolve"
+
+    def string_sites(self, body):
+        return [(offset, sym) for offset, kind, sym in self.sites(body)
+                if kind == DIR32 and sym.startswith("??_C@")]
+
+    def strings_agree(self, rva, body):
+        """verify_string_refs' own rule, asked BEFORE landing instead of after.
+
+        An exact twin reproduces retail with the pointer blanked, so a wrong twin
+        places perfectly and then points at a Zero Hour class name where retail
+        holds a BFME one. Returns (ok, reason, [retail string]) — the strings are
+        the byproduct: they name the BFME-only identity living at that address.
+        """
+        compiled = self.compiled(body)
+        found = []
+        for offset, sym in self.string_sites(body):
+            content = self.literal(body, sym)
+            if content is None:
+                return False, f"literal {sym[:40]} is not defined in {body['obj']}", found
+            content = content.rstrip(b"\0")
+            addend = struct.unpack_from("<i", compiled, offset)[0]
+            if 0 < addend <= len(content):
+                content = content[addend:]
+            try:
+                pointer = self.u32(rva + offset) - IMAGE_BASE
+                retail = self.at(pointer, max(len(content), 1))
+                found.append(self.cstring(pointer))
+            except ValueError as exc:
+                return False, f"string pointer at +{offset} is not in any section: {exc}", found
+            if content and retail != content:
+                return False, (f"literal {content[:60].decode('ascii', 'replace')!r} != retail "
+                               f"{found[-1][:60]!r}"), found
+            if not content and retail[:1] != b"\0":
+                return False, f'literal "" but retail holds {found[-1][:60]!r}', found
+        return True, "", found
+
+    def dir32_bases(self, rva, body, whitelist):
+        """{symbol: base} for the DIR32 sites verify_dir32_consistency gates.
+
+        Same exclusions as build.py: string literals are verified by content,
+        compiler-local labels and __ehhandler$ stubs are per-TU by construction,
+        and a whitelisted symbol is already known to hold several bases.
+        """
+        compiled = self.compiled(body)
+        bases = {}
+        for offset, kind, sym in self.sites(body):
+            if kind != DIR32 or sym.startswith("??_C@") or sym in whitelist:
+                continue
+            if LOCAL_LABEL_RE.fullmatch(sym) or sym.startswith("__ehhandler$"):
+                continue
+            addend = struct.unpack_from("<I", compiled, offset)[0]
+            bases[sym] = (self.u32(rva + offset) - addend) & 0xFFFFFFFF
+        return bases
+
+    def unresolved_calls(self, rva, body):
+        """(symbol, target) per REL32 site retail encodes somewhere the map does not have."""
+        out = []
+        for offset, kind, sym in self.sites(body):
+            if kind != REL32:
+                continue
+            target = self.rel32_target(rva, offset)
+            if sym in self.symbols and target in self.symbols[sym]:
+                continue
+            out.append((sym, self.follow(target)))
+        return out
+
+    def callee_bodies(self, wanted):
+        """{symbol: (bytes, relocs)} carved out of the cache for the pin proof."""
+        carved = {}
+        for obj in sorted(self.objects.glob("*.obj")):
+            for name, body, relocs in carve(obj.read_bytes()):
+                if name in wanted and name not in carved:
+                    carved[name] = (bytes(body), relocs)
+        return carved
+
+    def proves(self, carved, sym, target):
+        """The byte-equal precedent (1a6060b38): pin only where the CALLEE's own
+        compiled body reproduces retail at the address this call site encodes."""
+        entry = carved.get(sym)
+        if entry is None:
+            return False
+        body, relocs = entry
+        masked, holes = mask(body, relocs)
+        try:
+            window = self.at(target, len(body))
+        except ValueError:
+            return False
+        return len(window) == len(body) and all(
+            holes[index] or window[index] == masked[index] for index in range(len(body)))
+
+
+def whitelisted_dir32():
+    path = ROOT / "reverse" / "dir32_consistency_whitelist.txt"
+    if not path.exists():
+        raise SystemExit(f"zh_sweep: {path.relative_to(ROOT)} is missing; without it every "
+                         "known-legitimate multi-base symbol reads as a new conflict")
+    return {line.strip() for line in path.read_text().splitlines()
+            if line.strip() and not line.startswith("#")}
+
+
+def existing_dir32_bases(wanted):
+    """{symbol: {base}} for `wanted` over every matched row already in the ledger.
+
+    verify_dir32_consistency runs only in the FULL gate and land_wave's gate is
+    scoped, so a wave that disagrees with an existing row about where a symbol
+    lives lands green and fails the next full build — which is how 18 whitelist
+    entries got added to make a red master pass. Asked here instead, before a
+    row is written.
+    """
+    bases = defaultdict(set)
+    rows = build.load_function_rows()
+    print(f"land-multi: DIR32 pre-check — scanning {len(rows):,} matched row(s) for "
+          f"{len(wanted)} symbol(s)", flush=True)
+    for row in rows:
+        obj = build.require_row_object(row)
+        rva, size = int(row["target_rva"], 16), int(row["target_size"])
+        try:
+            body, relocs = build.read_object_symbol_bytes(
+                obj, build.ledger_object_symbol(row), size)
+        except ValueError:
+            # The same skip verify_dir32_consistency itself takes: a row whose
+            # symbol is not in its object contributes no base to either side.
+            continue
+        target = None
+        for offset, kind, sym in relocs:
+            if kind != DIR32 or sym not in wanted or offset + 4 > min(size, len(body)):
+                continue
+            if target is None:
+                target = build.read_target_bytes(rva, size)
+            final = struct.unpack_from("<I", target, offset)[0]
+            addend = struct.unpack_from("<I", body, offset)[0]
+            bases[sym].add((final - addend) & 0xFFFFFFFF)
+    return bases
+
+
+def pick_candidates(bodies, rows, held, landing, limits):
+    """Per dump address, the bodies that can be landed on it, best class first.
+
+    A candidate must start EXACTLY at a dump row, agree with it on size, and sit
+    on ground no matched row claims. Everything after that is which twin, not
+    whether: they are all byte-true, so they are ranked by the class of verifier
+    that will judge them and tie-broken on the symbol so a re-run picks the same.
+    """
+    by_address, rejects = defaultdict(list), []
+    for body in bodies:
+        for rva in body["addresses"]:
+            if rows.get(rva) != body["size"] or held(rva, body["size"]):
+                continue
+            entry = {"body": body, "rva": rva, "size": body["size"],
+                     "class": landing.classify(rva, body)}
+            if landing.string_sites(body):
+                ok, why, strings = landing.strings_agree(rva, body)
+                if not ok:
+                    rejects.append({"rva": rva, "size": body["size"], "sym": body["sym"],
+                                    "source": body["source"], "reason": why,
+                                    "retail": " | ".join(strings)})
+                    continue
+                entry["strings"] = strings
+            by_address[rva].append(entry)
+    for entries in by_address.values():
+        entries.sort(key=lambda e: (CLASS_RANK[e["class"]], e["body"]["sym"]))
+    # `covered` is every address some twin can serve, asked BEFORE the class
+    # filter: a rejection only means "no Zero Hour twin has retail's string here"
+    # when the address has no surviving candidate at all, and a --classes run
+    # that hid the surviving one would otherwise report a solved address as
+    # BFME-only intel.
+    covered = set(by_address)
+    if limits.get("classes"):
+        by_address = {rva: entries for rva, entries in by_address.items()
+                      if entries[0]["class"] in limits["classes"]}
+    return by_address, rejects, covered
+
+
+def dir32_consistent(chosen, landing, whitelist):
+    """Drop every placement that would give one symbol a second base.
+
+    Two ways that happens: the wave disagrees with itself, or it disagrees with a
+    row already in the ledger. Both fail the full gate identically, and the fix
+    is never a whitelist entry — it is not landing the placement that caused it.
+    Greedy to a fixpoint: the base covering the most bytes keeps its addresses.
+    """
+    bases = {rva: landing.dir32_bases(rva, entry["body"], whitelist)
+             for rva, entry in chosen.items()}
+    wanted = {sym for syms in bases.values() for sym in syms}
+    if not wanted:
+        return chosen, {}
+    existing = existing_dir32_bases(wanted)
+    live, dropped = dict(chosen), {}
+    while True:
+        by_symbol = defaultdict(lambda: defaultdict(list))
+        for rva in live:
+            for sym, base in bases[rva].items():
+                by_symbol[sym][base].append(rva)
+        drop = {}
+        for sym, seen in by_symbol.items():
+            options = dict(seen)
+            for base in existing.get(sym, ()):
+                options.setdefault(base, [])
+            if len(options) <= 1:
+                continue
+            keep = max(options, key=lambda base: (sum(live[r]["size"] for r in options[base])
+                                                  + (10 ** 9 if base in existing.get(sym, ()) else 0),
+                                                  -base))
+            for base, addresses in options.items():
+                if base == keep:
+                    continue
+                for rva in addresses:
+                    drop[rva] = (f"{sym} would resolve to 0x{base:08X} here, but "
+                                 f"0x{keep:08X} elsewhere")
+        if not drop:
+            return live, dropped
+        for rva, reason in drop.items():
+            live.pop(rva)
+            dropped[rva] = reason
+
+
+def harvest_pins(chosen, by_address, landing):
+    """Per-site callee pins for the mismatch/unknown classes, byte-equal only.
+
+    A wave row whose REL32 site the symbol map cannot resolve fails the gate, so
+    each such site needs the callee pinned at the address retail's own
+    displacement points to. The pin is only written where the callee's compiled
+    body reproduces retail there — the precedent from 1a6060b38, and the only
+    thing separating a pin from a guess.
+
+    A callee reverse/symbols.csv already spends at a DIFFERENT address blocks its
+    address too: symbols.csv is additive and build.py would take both, but
+    land_wave refuses to add a second address for a pinned name and would abort
+    the whole wave over it. That address leaves the wave instead.
+    """
+    needed = {rva: [(entry, landing.unresolved_calls(rva, entry["body"]))
+                    for entry in by_address[rva]]
+              for rva, entry in chosen.items()
+              if landing.unresolved_calls(rva, entry["body"])}
+    if not needed:
+        return {}, {}
+    spent = spent_pins()
+    carved = landing.callee_bodies({sym for twins in needed.values()
+                                    for _, sites in twins for sym, _ in sites})
+    pins, unprovable = defaultdict(set), {}
+    for rva, twins in needed.items():
+        # Every twin at this address is byte-true; they differ in which callee
+        # they name at each site, so one can be provable where another is not.
+        # Trying only the first is how the spike's 247 pins collapsed to 1.
+        failed = set()
+        for entry, sites in twins:
+            unproven = {sym for sym, target in sites
+                        if not landing.proves(carved, sym, target)}
+            blocked = {sym for sym, target in sites if sym in spent and spent[sym] != target}
+            if unproven or blocked:
+                failed |= {f"{sym} (not byte-equal at the encoded address)" for sym in unproven}
+                failed |= {f"{sym} (already pinned elsewhere in symbols.csv)" for sym in blocked}
+                continue
+            chosen[rva] = entry
+            for sym, target in sites:
+                pins[sym].add(target)
+            break
+        else:
+            unprovable[rva] = "no twin's callees prove out: " + ", ".join(sorted(failed)[:3])
+    return pins, unprovable
+
+
+def spent_pins():
+    """{name: address} reverse/symbols.csv already holds, exactly as land_wave reads it."""
+    with build.SYMBOLS.open(encoding="utf-8", newline="") as handle:
+        return {row["name"]: int(row["address"], 16) for row in csv.DictReader(handle)}
+
+
+def report_drops(label, dropped, chosen, show=6):
+    """Say what left the wave and why, without printing three hundred lines of it."""
+    for index, rva in enumerate(sorted(dropped)):
+        if index < show:
+            print(f"  DROP 0x{rva:08X} ({label}): {dropped[rva]}")
+        if chosen is not None:
+            chosen.pop(rva, None)
+    if len(dropped) > show:
+        print(f"  ... {len(dropped) - show} more {label} drop(s)")
+
+
+def wave_rows(chosen, alternates):
+    """The land_wave CSV: one dup_ row per address, alternates for its retry loop."""
+    header = ["name", "rva", "size", "source", "notes"]
+    for index in range(1, ALT_OWNERS + 1):
+        header += [f"alt{index}_source", f"alt{index}_notes"]
+    lines = [header]
+    for rva in sorted(chosen):
+        entry = chosen[rva]
+        record = [f"?dup_{rva:08x}@@YAXXZ", f"0x{rva:08X}", str(entry["size"]),
+                  entry["body"]["source"], owner_notes(entry)]
+        for other in alternates[rva][:ALT_OWNERS]:
+            record += [other["body"]["source"], owner_notes(other)]
+        lines.append(record + [""] * (len(header) - len(record)))
+    return lines
+
+
+def interchangeable(rva, chosen, others, landing, whitelist):
+    """The twins land_wave may retry this address on without changing its proof.
+
+    An alternate owner is only a different translation unit to compile the same
+    bytes from — but two twins can carry different DIR32 addends or call
+    different callees, and the wave was pre-checked against the chosen one. An
+    alternate that would move a DIR32 base or need a pin nobody proved is not an
+    alternate, it is a second landing nobody checked.
+    """
+    keep = []
+    reference = (landing.dir32_bases(rva, chosen["body"], whitelist),
+                 sorted(landing.unresolved_calls(rva, chosen["body"])))
+    for other in others:
+        if (landing.dir32_bases(rva, other["body"], whitelist),
+                sorted(landing.unresolved_calls(rva, other["body"]))) == reference:
+            keep.append(other)
+    return keep
+
+
+def owner_notes(entry):
+    return f"{MULTI_NOTE} ({entry['class']});object-symbol={entry['body']['sym']}"
+
+
+def write_csv(path, rows):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        csv.writer(handle, lineterminator="\n").writerows(rows)
+    return path
+
+
+def do_land_multi(args):
+    rows = dump_rows()
+    sizes = set(rows.values())
+    print(f"land-multi: {len(rows):,} Code/gen_asm dump row(s) at HEAD, "
+          f"{sum(rows.values()):,} bytes, {len(sizes)} distinct size(s)")
+    bodies = multi_placements(args.objects, sizes, args.rederive)
+    landing = Landing(args.objects)
+    held = merged_claims()
+    limits = {"classes": set(args.classes.split(",")) if args.classes else None}
+    by_address, rejects, covered = pick_candidates(bodies, rows, held, landing, limits)
+    counts, byte_counts = Counter(), Counter()
+    for entries in by_address.values():
+        counts[entries[0]["class"]] += 1
+        byte_counts[entries[0]["class"]] += entries[0]["size"]
+    print(f"\nland-multi: {len(by_address)} dump address(es) an exact-multi twin can be "
+          f"landed on, {sum(byte_counts.values()):,} bytes")
+    for name in CLASS_RANK:
+        print(f"  {name:18s} {counts[name]:5d} addrs {byte_counts[name]:9,d} B")
+    print(f"  string rejections  {len(rejects):5d} addr-body pair(s) — "
+          f"{REJECT_CSV.relative_to(ROOT)}")
+    write_csv(REJECT_CSV, [["rva", "size", "sym", "source", "reason", "retail_strings"]]
+              + [[f"0x{r['rva']:08X}", r["size"], r["sym"], r["source"], r["reason"],
+                  r["retail"]] for r in sorted(rejects, key=lambda r: r["rva"])])
+    # The rejections are a deliverable, not a loss: the retail string a wrong twin
+    # points at is the class name living at that address, and these bodies are
+    # getModuleNameKey/getClassMemoryPool shapes where the name IS the identity.
+    unsolved = {r["rva"]: r for r in rejects if r["rva"] not in covered}
+    for rva, reject in sorted(unsolved.items()):
+        print(f"  string reject 0x{rva:08X}/{reject['size']}B: retail names "
+              f"{reject['retail']!r} — no Zero Hour twin has it")
+
+    chosen = {rva: entries[0] for rva, entries in by_address.items()}
+    pins, unprovable = harvest_pins(chosen, by_address, landing)
+    report_drops("unproven callee", unprovable, chosen)
+    print(f"land-multi: {sum(len(v) for v in pins.values())} proven pin(s) over "
+          f"{len(pins)} callee symbol(s); {len(unprovable)} address(es) dropped unproven")
+
+    whitelist = whitelisted_dir32()
+    chosen, conflicts = dir32_consistent(chosen, landing, whitelist)
+    report_drops("DIR32 consistency", conflicts, None)
+    print(f"land-multi: {len(chosen)} address(es) survive the DIR32 pre-check "
+          f"({len(conflicts)} dropped)")
+
+    chosen = trim(chosen, by_address, args)
+    alternates = {rva: interchangeable(rva, chosen[rva], by_address[rva][1:], landing, whitelist)
+                  for rva in chosen}
+    wave = write_csv(WAVE_CSV, wave_rows(chosen, alternates))
+    pinned = pin_rows(pins, chosen, landing)
+    pin_csv = write_csv(PINS_CSV, [["name", "address", "notes"]] + pinned)
+    print(f"\nland-multi: wave {wave.relative_to(ROOT)} — {len(chosen)} row(s), "
+          f"{sum(e['size'] for e in chosen.values()):,} bytes over "
+          f"{len({e['body']['source'] for e in chosen.values()})} source(s); "
+          f"{len(pinned)} pin(s) -> {pin_csv.relative_to(ROOT)}")
+    if not args.apply:
+        print("land-multi: --apply not given; nothing was landed")
+        return
+    import land_wave                       # noqa: E402 — pulls in gen_small; only --apply needs it
+    argv = [str(wave), "--max-attempts", str(args.max_attempts)]
+    if pinned:
+        argv += ["--pins", str(pin_csv)]
+    raise SystemExit(land_wave.main(argv))
+
+
+def pin_rows(pins, chosen, landing):
+    """The pins the surviving rows still need, in reverse/symbols.csv's columns."""
+    live = defaultdict(set)
+    for rva, entry in chosen.items():
+        for sym, target in landing.unresolved_calls(rva, entry["body"]):
+            if target in pins.get(sym, ()):
+                live[sym].add(target)
+    return [[sym, f"0x{target:08X}",
+             "zh-landmulti per-site callee copy (body proven byte-equal)"]
+            for sym in sorted(live) for target in sorted(live[sym])]
+
+
+def trim(chosen, by_address, args):
+    """Cut the wave down to what one gate round should carry.
+
+    Sources are the unit that costs: land_wave compiles each one, and a wave
+    spanning two hundred Zero Hour translation units is a gate nobody can wait
+    out. Sources are taken whole and in address order so a re-run with the same
+    limits builds the same wave.
+    """
+    per_source = defaultdict(list)
+    for rva in sorted(chosen):
+        per_source[chosen[rva]["body"]["source"]].append(rva)
+    kept, sources = {}, 0
+    for source in sorted(per_source, key=lambda s: (-sum(chosen[r]["size"]
+                                                         for r in per_source[s]), s)):
+        if args.max_sources and sources >= args.max_sources:
+            break
+        addresses = per_source[source][:args.max_per_source or None]
+        if args.max_rows and len(kept) + len(addresses) > args.max_rows:
+            addresses = addresses[:args.max_rows - len(kept)]
+        if not addresses:
+            continue
+        sources += 1
+        for rva in addresses:
+            kept[rva] = chosen[rva]
+        if args.max_rows and len(kept) >= args.max_rows:
+            break
+    if not kept:
+        raise SystemExit("land-multi: every candidate was filtered out — nothing to land")
+    return kept
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -806,6 +1433,24 @@ def main():
     land_parser.add_argument("--apply", action="store_true",
                              help="append the rows and byte-verify each source")
     land_parser.set_defaults(run=do_land)
+    multi_parser = sub.add_parser("land-multi",
+                                  help="supersede gen-dump rows with exact-MULTI placements")
+    multi_parser.add_argument("--objects", default=str(OBJ_DIR),
+                              help=f"sweep object cache (default {OBJ_DIR.relative_to(ROOT)})")
+    multi_parser.add_argument("--classes",
+                              help="comma-separated subset of " + ",".join(CLASS_RANK))
+    multi_parser.add_argument("--max-rows", type=int, default=0, help="cap rows in the wave")
+    multi_parser.add_argument("--max-sources", type=int, default=0,
+                              help="cap translation units in the wave (each one is a compile)")
+    multi_parser.add_argument("--max-per-source", type=int, default=0,
+                              help="cap rows taken from any one translation unit")
+    multi_parser.add_argument("--max-attempts", type=int, default=8,
+                              help="land_wave gate rounds (default 8)")
+    multi_parser.add_argument("--rederive", action="store_true",
+                              help="ignore the cached placement search")
+    multi_parser.add_argument("--apply", action="store_true",
+                              help="land the wave through tools/land_wave.py")
+    multi_parser.set_defaults(run=do_land_multi)
     sub.add_parser("packets", help="work packets for unclaimed near misses").set_defaults(
         run=do_packets)
     args = parser.parse_args()
