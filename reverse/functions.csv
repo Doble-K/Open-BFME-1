@@ -97963,7 +97963,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000e2e50@@YAXXZ,,0x000E2E50,918,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004e2e50
 ?d_000e32d0@@YAXXZ,,0x000E32D0,903,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004e32d0
 ?d_000e3d80@@YAXXZ,,0x000E3D80,171,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004e3d80
-?d_000e3ed0@@YAXXZ,,0x000E3ED0,103,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004e3ed0
 ?d_000e4000@@YAXXZ,,0x000E4000,289,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004e4000
 ?d_000e4650@@YAXXZ,,0x000E4650,101,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004e4650
 ?d_000e49e0@@YAXXZ,,0x000E49E0,8,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004e49e0
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?prepForPlayerCounting@ObjectTypes@@QAEHAAV?$vector@PBVThingTemplate@@V?$allocator@PBVThingTemplate@@@_STL@@@_STL@@AAV?$vector@HV?$allocator@H@_STL@@@3@@Z,,0x001DC5A0,191,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,
 ?openKeyboard@DirectInputKeyboard@@IAEXXZ,,0x006BB540,207,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIKeyboardOpen.cpp,matched,
 ??0ScriptAction@@IAE@XZ,,0x0034FF60,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionProtectedCtorThunk.cpp,matched,
+?_M_clear@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@IAEXXZ,,0x000E3ED0,103,Code/GameEngine/Source/Common/RTS/PlayerTemplateVectorClearThunk.cpp,matched,
