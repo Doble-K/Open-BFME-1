@@ -67264,10 +67264,8 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?findMemoryPool@MemoryPoolFactory@@QAEPAVMemoryPool@@PBD@Z,0x0003ADD7,pool-glue cascade callee (from retail call site)
 ?findModule@Object@@IBEPAVModule@@W4NameKeyType@@@Z,0x0002AE23
 ?findMultiplayerColorDefinitionByName@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0003F436,harvested from parseMultiplayerColorDefinition (thunk)
-?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z,0x00036D27,pinharvest x1 (thunk)
 ?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z,0x00044EEF,pinharvest x1 (thunk)
 ?findNonConstCommandSet@ControlBar@@AAEPAVCommandSet@@ABVAsciiString@@@Z,0x00036D27,pinharvest x1 (thunk)
-?findNonConstCommandSet@ControlBar@@AAEPAVCommandSet@@ABVAsciiString@@@Z,0x00044EEF,pinharvest x1 (thunk)
 ?findObjectByID@GameLogic@@QAEPAVObject@@H@Z,0x0001F253,ILT thunk to GameLogic::findObjectByID
 ?findRoad@TerrainRoadCollection@@QAEPAVTerrainRoadType@@VAsciiString@@@Z,0x00019DC6,walks the list at collection+0x08; identical 246-byte body to findBridge which walks +0x0c. Called by the Road block whose create branch is the already-matched newRoad
 ?findSpecialPowerTemplate@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@VAsciiString@@@Z,0x00020F04,harvested from parseSpecialPowerTemplate (thunk)

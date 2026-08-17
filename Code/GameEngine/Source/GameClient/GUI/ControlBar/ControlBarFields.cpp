@@ -3,7 +3,10 @@
 //
 // ControlBar member functions byte-matched against the reconstructed BFME
 // field boundary (reference/shims/controlbar/GameClient/ControlBar.h):
-// m_specialPowerShortcutParent@0xFC (ZH header has it at 0x184).
+// m_specialPowerShortcutParent@0xFC (ZH header has it at 0x184). The two
+// list heads in that shim, m_commandButtons@0x28 and m_commandSets@0x2c,
+// are ZH's own offsets — see the shim's header comment for why the earlier
+// "BFME moved them" note was a swapped identity, not drift.
 //
 // They live here rather than in GUI/ControlBar/ControlBar.cpp because that
 // TU resolves GameClient/ControlBar.h to the ZH-layout reference header (40+
@@ -45,20 +48,32 @@ struct BFMEAsciiStringView
 	}
 };
 
-// m_commandButtons@0x2c and the CommandButton/AsciiString layouts are
-// proven by the exact 126-byte body at retail RVA 0x4A0270. Keep the
-// comparison in this TU-local view: its source shape mirrors the inline
+// m_commandSets@0x2c and the CommandSet/AsciiString layouts are proven by
+// the exact 126-byte body at retail RVA 0x4A0270. It is the SET loop, not
+// the button loop: it walks its nodes via node+0x60, and retail's
+// findCommandSet (0x4A0340) is the body that calls it. Keep the comparison
+// in this TU-local view: its source shape mirrors the inline
 // AsciiString::compare implementation and emits the retail double null
 // checks and sub/mov/test tail.
-CommandButton *ControlBar::findNonConstCommandButton( const AsciiString& name )
+CommandSet *ControlBar::findNonConstCommandSet( const AsciiString& name )
 {
-	for( const CommandButton *command = m_commandButtons; command; command = command->getNext() )
+	for( const CommandSet *set = m_commandSets; set; set = set->getNext() )
 	{
-		const BFMEAsciiStringView &commandName = reinterpret_cast<const BFMEAsciiStringView &>( command->getName() );
+		const BFMEAsciiStringView &setName = reinterpret_cast<const BFMEAsciiStringView &>( set->getName() );
 		const BFMEAsciiStringView &searchName = reinterpret_cast<const BFMEAsciiStringView &>( name );
-		if( commandName.compare( searchName ) == 0 )
-			return const_cast<CommandButton *>( command );
+		if( setName.compare( searchName ) == 0 )
+			return const_cast<CommandSet *>( set );
 	}
 
 	return NULL;
 }
+
+// ?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z
+// is the OTHER 126-byte loop, at retail 0x4A01B0, and is still unmatched.
+// Compiling the set loop above against m_commandButtons@0x28 / node+0x14
+// reproduces retail's instruction sequence there exactly, at the same 126
+// bytes, down to the leading `8b 41 28` — and differs only by a register
+// permutation (retail parks the node in ebp and materialises the NULL return
+// after the pops; MSVC 7.1 here parks it in eax and xors first). Source-shape
+// rewrites are not the lever: this same shape DOES match the set loop. Do not
+// re-derive the identity — it is pinned by the call graph in the shim header.
