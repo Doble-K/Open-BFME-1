@@ -188,10 +188,18 @@ float SegmentedLineClass::Get_Noise_Amplitude(void)
 	return LineRenderer.Get_Noise_Amplitude();
 }
 
-// ?SegmentedLineClass::Get_Merge_Abort_Factor present-unmatched
 float SegmentedLineClass::Get_Merge_Abort_Factor(void)
 {
-	return LineRenderer.Get_Merge_Abort_Factor();
+	// BFME field-order drift: retail's getter was left pointing at the old
+	// pre-insertion slot. Retail inserted a new 4-byte float member (still
+	// unidentified) directly before SubdivisionLevel, shifting SubdivisionLevel/
+	// NoiseAmplitude/MergeAbortFactor/TextureTileFactor down by 4 bytes each
+	// (see the BFME-drift comment on SegLineRendererClass::_BFME_Unknown_Member
+	// in seglinerenderer.h). Set_Merge_Abort_Factor was correctly repointed at
+	// the real (now-shifted) MergeAbortFactor slot, but this getter reads the
+	// new member's slot instead -- a genuine retail getter/setter mismatch
+	// caused by the drift, reproduced here byte-for-byte rather than "fixed".
+	return LineRenderer._BFME_Unknown_Member;
 }
 
 // ?SegmentedLineClass::Get_Subdivision_Levels present-unmatched
@@ -206,10 +214,16 @@ SegLineRendererClass::TextureMapMode SegmentedLineClass::Get_Texture_Mapping_Mod
 	return LineRenderer.Get_Texture_Mapping_Mode(); 
 }
 
-// ?SegmentedLineClass::Get_Texture_Tile_Factor present-unmatched
 float SegmentedLineClass::Get_Texture_Tile_Factor(void)
 {
-	return LineRenderer.Get_Texture_Tile_Factor();
+	// BFME field-order drift: LineRenderer.Get_Texture_Tile_Factor() is the
+	// shared-header inline, which (per a since-disproven "swap" theory
+	// documented on that inline) forwards to MergeAbortFactor instead of
+	// TextureTileFactor. That reads field offset 0x108 here; retail reads
+	// 0x10C -- TextureTileFactor's own slot. Read the real field directly
+	// (SegmentedLineClass is a friend of SegLineRendererClass) instead of
+	// touching the shared header used by other TUs.
+	return LineRenderer.TextureTileFactor;
 }
 
 Vector2 SegmentedLineClass::Get_UV_Offset_Rate(void)
