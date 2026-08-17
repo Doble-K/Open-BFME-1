@@ -25,6 +25,17 @@ cannot pin to an address (`tools/find_declared_unmatched.py`). The headers and
     361e612094a870c36f9d652774a6fd78e6d9e04a0392c439811da41ba3a59a2b  hdisp.tbl        1,919
     3d8ce0562678efb2d6167b5cd2d109a020fccfb120bdd9e8237e40ae952f135a  henc.tbl         7,123
 
+All nine were re-fetched and re-hashed on 2026-08-17: the seven headers and
+.tbl files are `cmp`-identical to that commit, and `diff` on the two .cpp files
+shows comment-only additions, no code line changed.
+
+One inconsistency is upstream's own and is left as found: Huff.cpp's banner says
+"LZH-Light algorithm implementation v 1.01" while Lz.cpp's says "v 1.0". The
+repo, this file and the `vendored=lzhl-1.0` tag all say 1.0, after the release
+and the directory, not after Huff.cpp's banner. Nothing here depends on which
+banner is right — the release is pinned by the commit hash above and by the
+3,104 bytes of table data below, neither of which the banner touches.
+
 Why the initial commit and not the branch tip
 ---------------------------------------------
 `main` carries four post-import commits, each of which is a change to the 1998
@@ -41,19 +52,39 @@ Why this program and not one of the forks
 -----------------------------------------
 LZH-Light emits no strings, so there is no "assembler version 4.09.00.1126" to
 read out of the image the way vendor/d3dx9 could. The discriminator here is
-static DATA. Huff.cpp's four `.tbl` files are compiled into five initialised
-arrays, and all five appear in retail's `.data`, byte for byte, each at exactly
-ONE address, laid out contiguously in the order the compiler emits them:
+static DATA. Huff.cpp's four `.tbl` files are compiled into seven initialised
+arrays, which land in retail's `.data` as five contiguous blocks, byte for byte,
+each block at exactly ONE address, in the order the compiler emits them.
 
-    0x012C51E0  1,772 B  LZHLEncoderStat::symbolTable0            (henc.tbl)
-    0x012C58D0     64 B  decompress's local _dispTable            (hdisp.tbl)
-    0x012C5910     64 B  decompress's local _matchOverTable
-    0x012C5950  1,024 B  putMatch's local _dispTable              (hdisp.tbl)
-    0x012C5D50    180 B  putMatch's local _matchOverTable
+Addresses below are VIRTUAL ADDRESSES (imagebase 0x400000), NOT the RVAs the
+ledger uses — read as an RVA, 0x012C51E0 is past the end of the image. Both are
+given so neither reading can be guessed at:
 
-3,104 bytes of Huffman tables, unique in a 20 MB image. On top of that, 26
-whole function bodies from these two TUs reproduce retail exactly, at 26
-distinct addresses inside one contiguous run.
+    VA          RVA         size
+    0x012C51E0  0x00EC51E0  1,772 B  three statics in one block, in this order:
+                                       1,096 B  LZHLEncoderStat::symbolTable0
+                                                  Symbol[274], 4 B each  (henc.tbl)
+                                         128 B  LZHLDecoderStat::groupTable0
+                                                  Group[16], 8 B each    (hdec_g.tbl)
+                                         548 B  LZHLDecoderStat::symbolTable0
+                                                  HUFFINT[274], 2 B each (hdec_s.tbl)
+    0x012C58D0  0x00EC58D0     64 B  decompress's local _dispTable   (hdisp.tbl)
+    0x012C5910  0x00EC5910     64 B  decompress's local _matchOverTable
+    0x012C5950  0x00EC5950  1,024 B  putMatch's local _dispTable     (hdisp.tbl)
+    0x012C5D50  0x00EC5D50    180 B  putMatch's local _matchOverTable
+
+The three-way split of the first COMDAT is arithmetic, not assertion:
+NHUFFSYMBOLS is 274 and HUFFINT/HUFFUINT are 16-bit (_huff.h:25-27), so
+274*4 + 16*8 + 274*2 = 1,772 exactly, and each sub-block reads back at its
+offset as the matching .tbl: (7,0x14),(8,0x30),(8,0x31) at +0, (2,0),(3,4) at
++1096, 256,257,258 at +1224.
+
+3,104 bytes of Huffman tables, unique in a 20 MB image. On top of that, 31
+whole function bodies from these two TUs reproduce retail exactly, 4,310 bytes
+at 31 distinct addresses inside one contiguous run. (This paragraph read "26 ...
+at 26 distinct addresses" until 2026-08-17: it was written mid-wave and never
+refreshed when the last five bodies landed in the same commit. The ledger is
+the count of record — `grep -c 'vendored=lzhl-1.0' reverse/functions.csv`.)
 
 Two other public carriers were compiled and rejected:
 
@@ -79,7 +110,8 @@ Where the files sit
 -------------------
 `Code/Libraries/Source/Compression/LZHCompress/CompLib{Header,Source}` is EA's
 own layout for this library, read out of the Zero Hour Compression.dsp file
-list. Upstream ships all thirteen files flat; splitting them across the two
+list. Upstream ships all fourteen files flat (the nine taken here plus Lzhl.cpp,
+Lzhl_tcp.cpp, lzhl.h, Lzhl_tcp.h and Test.c); splitting them across the two
 directories is why each .cpp carries
 `-ICode/Libraries/Source/Compression/LZHCompress/CompLibHeader` on its `// cl:`
 line. `/DNDEBUG` is load-bearing (these bodies carry no assert). `/MD` is NOT:
