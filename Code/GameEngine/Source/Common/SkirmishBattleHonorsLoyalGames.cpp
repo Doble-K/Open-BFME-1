@@ -45,6 +45,8 @@ class AsciiString
 {
 public:
 
+	AsciiString() { m_text = 0; }
+
 	AsciiString(const char *s)
 	{
 		((StringBase<char> *)this)->StringBase<char>::StringBase(s);
@@ -60,6 +62,17 @@ public:
 	~AsciiString();
 
 	static AsciiString TheEmptyString;
+
+	// Inline, not the shim's out-of-line delegation: retail inlines this to a
+	// null test, a +8 and a fallback pointer.
+	const char *str() const
+	{
+		return m_text ? (const char *)m_text + 8 : "";
+	}
+
+	// The format string is an AsciiString BY VALUE, not a const char *:
+	// retail builds a temporary from the literal and passes it.
+	void __cdecl format(AsciiString fmt, ...);
 
 private:
 
@@ -93,8 +106,8 @@ public:
 class SkirmishBattleHonors : public UserPreferences
 {
 public:
-	void setLastHouse(AsciiString val);
-	AsciiString getLastHouse(void) const;
+	void setLastGeneral(AsciiString val);
+	AsciiString getLastGeneral(void) const;
 	void setBuiltSCUD(void);
 	Bool builtSCUD(void) const;
 	void setBuiltParticleCannon(void);
@@ -105,6 +118,8 @@ public:
 	Int getChallengeMedals(void) const;
 	void setHonors(Int which);
 	Int getHonors(void) const;
+	void setEnduranceMedal(AsciiString mapName, Int difficulty, int numAIs);
+	Int getEnduranceMedal(AsciiString mapName, Int difficulty) const;
 	void setNumGamesLoyal(Int val);
 	Int getNumGamesLoyal(void) const;
 };
@@ -170,12 +185,26 @@ Int SkirmishBattleHonors::getNumGamesLoyal(void) const
 	return getInt("LoyalGames", 0);
 }
 
-void SkirmishBattleHonors::setLastHouse(AsciiString val)
+void SkirmishBattleHonors::setLastGeneral(AsciiString val)
 {
 	setAsciiString("LastHouse", val);
 }
 
-AsciiString SkirmishBattleHonors::getLastHouse(void) const
+AsciiString SkirmishBattleHonors::getLastGeneral(void) const
 {
 	return getAsciiString("LastHouse", AsciiString::TheEmptyString);
+}
+
+void SkirmishBattleHonors::setEnduranceMedal(AsciiString mapName, Int difficulty, int numAIs)
+{
+	AsciiString key;
+	key.format("%s_%d", mapName.str(), difficulty);
+	setInt(key, numAIs);
+}
+
+Int SkirmishBattleHonors::getEnduranceMedal(AsciiString mapName, Int difficulty) const
+{
+	AsciiString key;
+	key.format("%s_%d", mapName.str(), difficulty);
+	return getInt(key, 0);
 }
