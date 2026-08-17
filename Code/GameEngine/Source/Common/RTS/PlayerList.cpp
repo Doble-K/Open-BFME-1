@@ -250,17 +250,18 @@ void PlayerList::init()
 }
 
 //-----------------------------------------------------------------------------
-// ?update@PlayerList@@UAEXXZ — exact retail body in PlayerListUpdate.cpp.
+// NOTE ?update@PlayerList@@UAEXXZ — exact retail body in PlayerListUpdate.cpp.
 // Split out because it needs MAX_PLAYER_COUNT=32 (BFME's count, see the note
 // there); raising the constant for this whole TU moves the stack frames behind
 // the constructor's and newGame's already-matched EH funclets.
 
 //-----------------------------------------------------------------------------
-// ?newMap@PlayerList@@ present-unmatched
 void PlayerList::newMap()
 {
 	// update all players
-	for( Int i = 0; i < MAX_PLAYER_COUNT; i++ )
+	// BFME's retail bound here is 0x20 (32), not the ZH-header MAX_PLAYER_COUNT
+	// of 16 -- same split documented for getEachPlayerFromMask above.
+	for( Int i = 0; i < 32; i++ )
 	{
 		m_players[i]->newMap();
 	}  // end for i
@@ -343,15 +344,19 @@ void PlayerList::setLocalPlayer(Player *player)
 }
 
 //-----------------------------------------------------------------------------
-// ?getPlayerFromMask@PlayerList@@ present-unmatched
 Player *PlayerList::getPlayerFromMask( PlayerMaskType mask )
 {
+	if (mask == 0)
+		return NULL;
+
 	Player *player = NULL;
 	Int i;
 
-	for( i = 0; i < MAX_PLAYER_COUNT; i++ )
+	// BFME's retail bound here is 0x20 (32), not the ZH-header MAX_PLAYER_COUNT
+	// of 16 -- same split documented for getEachPlayerFromMask above.
+	for( i = 0; i < 32; i++ )
 	{
-		
+
 		player = getNthPlayer( i );
 		if( player && player->getPlayerMask() == mask )
 			return player;

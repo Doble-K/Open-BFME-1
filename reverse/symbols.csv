@@ -72206,3 +72206,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?getInt@UserPreferences@@QBEHVAsciiString@@H@Z,0x000443B9,incremental-link thunk fronting the unclaimed body 0x000A9490
 ?setBool@UserPreferences@@QAEXVAsciiString@@_N@Z,0x00017CC9,incremental-link thunk
 ?getBool@UserPreferences@@QBE_NVAsciiString@@_N@Z,0x0002C7CD,incremental-link thunk
+?newMap@Player@@QAEXXZ,0x0001DB15,decoded from PlayerList::newMap call site at 0x000DF313; ILT thunk body 0x000C9200
