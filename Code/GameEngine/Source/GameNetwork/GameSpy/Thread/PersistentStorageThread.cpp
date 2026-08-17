@@ -224,17 +224,94 @@ static void debugDumpPlayerStats( const PSPlayerStats& stats )
 
 //-------------------------------------------------------------------------
 
-#define INCORPORATE_MAP(x) for (it = other.x.begin(); it != other.x.end(); ++it) \
+// The psplayerstats shim header labels PSPlayerStats with Zero Hour's field
+// names. BFME kept Zero Hour's *shape* -- same member count, same stride, which
+// is why the copy constructor at 0x6577D0 byte-matches through that shim -- but
+// moved the labels: four streak maps take map slots 2-5, pushing games..QMGames
+// down by four, and the scalar tail is relabelled outright. Below is what the
+// retail body at 0x655360 actually reads, at the offsets it reads it from.
+// Relabelling the shim would touch four translation units and cost a full-tree
+// gate; this view keeps the change TU-local until that is worth paying for.
+struct BfmePlayerStats
+{
+	Int id;                             // +0x000
+	PerGeneralMap wins;                 // +0x004
+	PerGeneralMap losses;               // +0x010
+	PerGeneralMap currentWinStreaks;    // +0x01c
+	PerGeneralMap currentLossStreaks;   // +0x028
+	PerGeneralMap worstLossStreaks;     // +0x034
+	PerGeneralMap bestWinStreaks;       // +0x040
+	PerGeneralMap games;                // +0x04c
+	PerGeneralMap duration;             // +0x058
+	PerGeneralMap unitsKilled;          // +0x064
+	PerGeneralMap unitsLost;            // +0x070
+	PerGeneralMap unitsBuilt;           // +0x07c
+	PerGeneralMap buildingsKilled;      // +0x088
+	PerGeneralMap buildingsLost;        // +0x094
+	PerGeneralMap buildingsBuilt;       // +0x0a0
+	PerGeneralMap earnings;             // +0x0ac
+	PerGeneralMap discons;              // +0x0b8
+	PerGeneralMap desyncs;              // +0x0c4
+	PerGeneralMap surrenders;           // +0x0d0
+	PerGeneralMap gamesOf2p;            // +0x0dc
+	PerGeneralMap gamesOf3p;            // +0x0e8
+	PerGeneralMap gamesOf4p;            // +0x0f4
+	PerGeneralMap gamesOf5p;            // +0x100
+	PerGeneralMap gamesOf6p;            // +0x10c
+	PerGeneralMap gamesOf7p;            // +0x118
+	PerGeneralMap gamesOf8p;            // +0x124
+	PerGeneralMap customGames;          // +0x130
+	PerGeneralMap QMGames;              // +0x13c
+	Int locale;                         // +0x148
+	std::string dateCreated;            // +0x14c
+	Int gamesAsRandom;                  // +0x158
+	std::string options;                // +0x15c
+	std::string systemSpec;             // +0x168
+	Real lastFPS;                       // +0x174
+	Int lastSide;                       // +0x178
+	Int gamesInRowWithLastSide;         // +0x17c
+	Int challengeMedals;                // +0x180
+	Int battleHonors;                   // +0x184
+	Int winsInARow;                     // +0x188
+	Int maxWinsInARow;                  // +0x18c
+	Int lossesInARow;                   // +0x190
+	Int maxLossesInARow;                // +0x194
+	Int gamesOn1_1_Ladder;              // +0x198
+	Int gamesOn2_2_Ladder;              // +0x19c
+	Int disconsInARow;                  // +0x1a0
+	Int maxDisconsInARow;               // +0x1a4
+	Int desyncsInARow;                  // +0x1a8
+	Int maxDesyncsInARow;               // +0x1ac
+	Int best1v1LadderRank;              // +0x1b0
+	Int best2v2LadderRank;              // +0x1b4
+	std::string lastLadderPlayed;       // +0x1b8
+};
+
+// fails the build loudly if the shim's layout ever stops agreeing with the view
+typedef char BfmePlayerStatsMatchesShim[sizeof(BfmePlayerStats) == sizeof(PSPlayerStats) ? 1 : -1];
+
+#define BFME_OTHER them
+#define BFME_THIS  me
+
+#define INCORPORATE_MAP(x) for (it = BFME_OTHER.x.begin(); it != BFME_OTHER.x.end(); ++it) \
 { \
 	if (it->second > 0) \
 	{ \
-		x[it->first] = it->second; \
+		BFME_THIS.x[it->first] = it->second; \
 	} \
 }
 
-// ?incorporate@PSPlayerStats@@ present-unmatched
+// A current streak of zero is meaningful -- it has to overwrite the old non-zero
+// value when the streak breaks -- so these two copy unguarded.
+#define INCORPORATE_MAP_ALWAYS(x) for (it = BFME_OTHER.x.begin(); it != BFME_OTHER.x.end(); ++it) \
+{ \
+	BFME_THIS.x[it->first] = it->second; \
+}
+
 void PSPlayerStats::incorporate( const PSPlayerStats& other )
 {
+	BfmePlayerStats &me = (BfmePlayerStats &)*this;
+	const BfmePlayerStats &them = (const BfmePlayerStats &)other;
 	PerGeneralMap::const_iterator it;
 	INCORPORATE_MAP(wins);
 	INCORPORATE_MAP(losses);
@@ -247,13 +324,7 @@ void PSPlayerStats::incorporate( const PSPlayerStats& other )
 	INCORPORATE_MAP(buildingsLost);
 	INCORPORATE_MAP(buildingsBuilt);
 	INCORPORATE_MAP(earnings);
-	INCORPORATE_MAP(techCaptured);
-
-	//GS  Clear all disconnects so that we don't retain any that were
-	//previously reported as 1 by updateAdditionalGameSpyDisconnections
-	discons.clear();
 	INCORPORATE_MAP(discons);
-
 	INCORPORATE_MAP(desyncs);
 	INCORPORATE_MAP(surrenders);
 	INCORPORATE_MAP(gamesOf2p);
@@ -265,99 +336,109 @@ void PSPlayerStats::incorporate( const PSPlayerStats& other )
 	INCORPORATE_MAP(gamesOf8p);
 	INCORPORATE_MAP(customGames);
 	INCORPORATE_MAP(QMGames);
-	
-	if (other.locale > 0)
+	INCORPORATE_MAP_ALWAYS(currentWinStreaks);
+	INCORPORATE_MAP_ALWAYS(currentLossStreaks);
+	INCORPORATE_MAP(worstLossStreaks);
+	INCORPORATE_MAP(bestWinStreaks);
+
+	if (BFME_OTHER.locale > 0)
 	{
-		locale = other.locale;
-	}
-	
-	if (other.gamesAsRandom > 0)
-	{
-		gamesAsRandom = other.gamesAsRandom;
+		BFME_THIS.locale = BFME_OTHER.locale;
 	}
 
-	if (other.options.length())
+	if (BFME_OTHER.gamesAsRandom > 0)
 	{
-		options = other.options;
+		BFME_THIS.gamesAsRandom = BFME_OTHER.gamesAsRandom;
 	}
 
-	if (other.systemSpec.length())
+	if (BFME_OTHER.options.length())
 	{
-		systemSpec = other.systemSpec;
+		BFME_THIS.options = BFME_OTHER.options;
 	}
 
-	if (other.lastFPS > 0.0f)
+	if (BFME_OTHER.systemSpec.length())
 	{
-		lastFPS = other.lastFPS;
+		BFME_THIS.systemSpec = BFME_OTHER.systemSpec;
 	}
 
-	if (other.battleHonors > 0)
+	if (BFME_OTHER.lastFPS > 0.0f)
 	{
-		battleHonors |= other.battleHonors;
+		BFME_THIS.lastFPS = BFME_OTHER.lastFPS;
 	}
-	if (other.challengeMedals > 0)
+
+	// honours and medals are bit sets, so they merge rather than overwrite
+	if (BFME_OTHER.battleHonors > 0)
 	{
-		challengeMedals |= other.challengeMedals;
+		BFME_THIS.battleHonors |= BFME_OTHER.battleHonors;
 	}
-	if (other.lastGeneral >= 0)
+	if (BFME_OTHER.challengeMedals > 0)
 	{
-		lastGeneral = other.lastGeneral;
+		BFME_THIS.challengeMedals |= BFME_OTHER.challengeMedals;
 	}
-	if (other.gamesInRowWithLastGeneral >= 0)
+	if (BFME_OTHER.lastSide >= 0)
 	{
-		gamesInRowWithLastGeneral = other.gamesInRowWithLastGeneral;
+		BFME_THIS.lastSide = BFME_OTHER.lastSide;
 	}
-	if (other.builtParticleCannon >= 0)
+	if (BFME_OTHER.gamesInRowWithLastSide >= 0)
 	{
-		builtParticleCannon = other.builtParticleCannon;
+		BFME_THIS.gamesInRowWithLastSide = BFME_OTHER.gamesInRowWithLastSide;
 	}
-	if (other.builtNuke >= 0)
+	if (BFME_OTHER.winsInARow >= 0)
 	{
-		builtNuke = other.builtNuke;
+		BFME_THIS.winsInARow = BFME_OTHER.winsInARow;
 	}
-	if (other.builtSCUD >= 0)
+	if (BFME_OTHER.maxWinsInARow >= 0)
 	{
-		builtSCUD = other.builtSCUD;
+		BFME_THIS.maxWinsInARow = BFME_OTHER.maxWinsInARow;
 	}
-	if (other.winsInARow >= 0)
+	if (BFME_OTHER.lossesInARow >= 0)
 	{
-		winsInARow = other.winsInARow;
+		BFME_THIS.lossesInARow = BFME_OTHER.lossesInARow;
 	}
-	if (other.maxWinsInARow >= 0)
+	if (BFME_OTHER.maxLossesInARow >= 0)
 	{
-		maxWinsInARow = other.maxWinsInARow;
+		BFME_THIS.maxLossesInARow = BFME_OTHER.maxLossesInARow;
 	}
-	if (other.lossesInARow >= 0)
+	if (BFME_OTHER.disconsInARow >= 0)
 	{
-		lossesInARow = other.lossesInARow;
+		BFME_THIS.disconsInARow = BFME_OTHER.disconsInARow;
 	}
-	if (other.maxLossesInARow >= 0)
+	if (BFME_OTHER.maxDisconsInARow >= 0)
 	{
-		maxLossesInARow = other.maxLossesInARow;
+		BFME_THIS.maxDisconsInARow = BFME_OTHER.maxDisconsInARow;
 	}
-	if (other.disconsInARow >= 0)
+	if (BFME_OTHER.desyncsInARow >= 0)
 	{
-		disconsInARow = other.disconsInARow;
+		BFME_THIS.desyncsInARow = BFME_OTHER.desyncsInARow;
 	}
-	if (other.maxDisconsInARow >= 0)
+	if (BFME_OTHER.maxDesyncsInARow >= 0)
 	{
-		maxDisconsInARow = other.maxDisconsInARow;
+		BFME_THIS.maxDesyncsInARow = BFME_OTHER.maxDesyncsInARow;
 	}
-	if (other.desyncsInARow >= 0)
+
+	if (BFME_OTHER.dateCreated.length())
 	{
-		desyncsInARow = other.desyncsInARow;
+		BFME_THIS.dateCreated = BFME_OTHER.dateCreated;
 	}
-	if (other.maxDesyncsInARow >= 0)
+	if (BFME_OTHER.gamesOn1_1_Ladder >= 0)
 	{
-		maxDesyncsInARow = other.maxDesyncsInARow;
+		BFME_THIS.gamesOn1_1_Ladder = BFME_OTHER.gamesOn1_1_Ladder;
 	}
-	if (other.lastLadderPort >= 0)
+	if (BFME_OTHER.gamesOn2_2_Ladder >= 0)
 	{
-		lastLadderPort = other.lastLadderPort;
+		BFME_THIS.gamesOn2_2_Ladder = BFME_OTHER.gamesOn2_2_Ladder;
 	}
-	if (other.lastLadderHost.length())
+	if (BFME_OTHER.best1v1LadderRank > 0)
 	{
-		lastLadderHost = other.lastLadderHost;
+		BFME_THIS.best1v1LadderRank = BFME_OTHER.best1v1LadderRank;
+	}
+	if (BFME_OTHER.best2v2LadderRank > 0)
+	{
+		BFME_THIS.best2v2LadderRank = BFME_OTHER.best2v2LadderRank;
+	}
+	if (BFME_OTHER.lastLadderPlayed.length())
+	{
+		BFME_THIS.lastLadderPlayed = BFME_OTHER.lastLadderPlayed;
 	}
 }
 
@@ -1332,72 +1413,6 @@ PSPlayerStats GameSpyPSMessageQueueInterface::parsePlayerKVPairs( std::string kv
 
 	return s;
 }
-// The psplayerstats shim header labels PSPlayerStats with Zero Hour's field
-// names. BFME kept Zero Hour's *shape* -- same member count, same stride, which
-// is why the copy constructor at 0x6577D0 byte-matches through that shim -- but
-// moved the labels: four streak maps take map slots 2-5, pushing games..QMGames
-// down by four, and the scalar tail is relabelled outright. Below is what the
-// retail body at 0x655360 actually reads, at the offsets it reads it from.
-// Relabelling the shim would touch four translation units and cost a full-tree
-// gate; this view keeps the change TU-local until that is worth paying for.
-struct BfmePlayerStats
-{
-	Int id;                             // +0x000
-	PerGeneralMap wins;                 // +0x004
-	PerGeneralMap losses;               // +0x010
-	PerGeneralMap currentWinStreaks;    // +0x01c
-	PerGeneralMap currentLossStreaks;   // +0x028
-	PerGeneralMap worstLossStreaks;     // +0x034
-	PerGeneralMap bestWinStreaks;       // +0x040
-	PerGeneralMap games;                // +0x04c
-	PerGeneralMap duration;             // +0x058
-	PerGeneralMap unitsKilled;          // +0x064
-	PerGeneralMap unitsLost;            // +0x070
-	PerGeneralMap unitsBuilt;           // +0x07c
-	PerGeneralMap buildingsKilled;      // +0x088
-	PerGeneralMap buildingsLost;        // +0x094
-	PerGeneralMap buildingsBuilt;       // +0x0a0
-	PerGeneralMap earnings;             // +0x0ac
-	PerGeneralMap discons;              // +0x0b8
-	PerGeneralMap desyncs;              // +0x0c4
-	PerGeneralMap surrenders;           // +0x0d0
-	PerGeneralMap gamesOf2p;            // +0x0dc
-	PerGeneralMap gamesOf3p;            // +0x0e8
-	PerGeneralMap gamesOf4p;            // +0x0f4
-	PerGeneralMap gamesOf5p;            // +0x100
-	PerGeneralMap gamesOf6p;            // +0x10c
-	PerGeneralMap gamesOf7p;            // +0x118
-	PerGeneralMap gamesOf8p;            // +0x124
-	PerGeneralMap customGames;          // +0x130
-	PerGeneralMap QMGames;              // +0x13c
-	Int locale;                         // +0x148
-	std::string dateCreated;            // +0x14c
-	Int gamesAsRandom;                  // +0x158
-	std::string options;                // +0x15c
-	std::string systemSpec;             // +0x168
-	Real lastFPS;                       // +0x174
-	Int lastSide;                       // +0x178
-	Int gamesInRowWithLastSide;         // +0x17c
-	Int challengeMedals;                // +0x180
-	Int battleHonors;                   // +0x184
-	Int winsInARow;                     // +0x188
-	Int maxWinsInARow;                  // +0x18c
-	Int lossesInARow;                   // +0x190
-	Int maxLossesInARow;                // +0x194
-	Int gamesOn1_1_Ladder;              // +0x198
-	Int gamesOn2_2_Ladder;              // +0x19c
-	Int disconsInARow;                  // +0x1a0
-	Int maxDisconsInARow;               // +0x1a4
-	Int desyncsInARow;                  // +0x1a8
-	Int maxDesyncsInARow;               // +0x1ac
-	Int best1v1LadderRank;              // +0x1b0
-	Int best2v2LadderRank;              // +0x1b4
-	std::string lastLadderPlayed;       // +0x1b8
-};
-
-// fails the build loudly if the shim's layout ever stops agreeing with the view
-typedef char BfmePlayerStatsMatchesShim[sizeof(BfmePlayerStats) == sizeof(PSPlayerStats) ? 1 : -1];
-
 #define BFME_STATS ((BfmePlayerStats &)stats)
 
 #define ITERATE_OVER(x) for (it = BFME_STATS.x.begin(); it != BFME_STATS.x.end(); ++it) \

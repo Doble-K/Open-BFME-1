@@ -72183,3 +72183,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?doGameStart@@YAXXZ,0x004D1B00,Open-BFME5 MapSelectMenu.cpp file-static; target of the rel32 at 0x004D1BE8 inside MapSelectMenuUpdate. Also referenced from 0x004D1B0C which reads the same startGame flag 0x012F3E6D. MainMenu.cpp declares a static of this name too - if that one ever needs pinning it is a second row here, not an edit to this one
 ?setTerrainTextureFilters@@YAXI@Z,0x00038389
 ?Apply_Render_State_Changes@DX8Wrapper@@SAXXZ,0x00904890
+??A?$map@HIU?$less@H@_STL@@V?$allocator@U?$pair@$$CBHI@_STL@@@2@@_STL@@QAEAAIABH@Z,0x0003DD2A,incremental-link thunk retail uses from PSPlayerStats::incorporate
