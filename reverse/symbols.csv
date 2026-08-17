@@ -72187,3 +72187,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 ?Get_Opacity@VertexMaterialClass@@QBEMXZ,0x00921130
 ?setFlipRecursive@W3DTerrainBackground@@IAEXHHH@Z,0x0001B5F9
 ??0Keyboard@@QAE@XZ,0x00049148,incremental-link thunk retail uses from DirectInputKeyboard ctor
+??1BfmeEvaSideSoundsArray@@QAE@XZ,0x0089CC70,provisional structural name: incremental-link thunk fronting 0x0089C900 the dtor of EvaCheckInfo member at +0x8; count-plus-array container not an STLport vector
