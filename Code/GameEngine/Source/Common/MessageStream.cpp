@@ -4,6 +4,9 @@
 #include "PreRTS.h"
 #include "Common/MessageStream.h"
 
+// BFME inserted ARGUMENTDATATYPE_SQUADID ahead of LOCATION, moving UNKNOWN to 12.
+#define BFME_ARGUMENTDATATYPE_UNKNOWN ((GameMessageArgumentDataType)12)
+
 MessageStream *TheMessageStream = NULL;
 CommandList *TheCommandList = NULL;
 
@@ -18,6 +21,21 @@ const GameMessageArgumentType *GameMessage::getArgument(Int argIndex) const
 
 	DEBUG_CRASH(("argument not found"));
 	return &junk;
+}
+
+GameMessageArgumentDataType GameMessage::getArgumentDataType( Int argIndex )
+{
+	if (argIndex >= m_argCount) {
+		return BFME_ARGUMENTDATATYPE_UNKNOWN;
+	}
+	int i=0;
+	for (GameMessageArgument *a = m_argList; a && (i < argIndex); a=a->m_next, ++i );
+
+	if (a != NULL)
+	{
+		return a->m_type;
+	}
+	return BFME_ARGUMENTDATATYPE_UNKNOWN;
 }
 
 void GameMessageList::appendMessage(GameMessage *msg)
