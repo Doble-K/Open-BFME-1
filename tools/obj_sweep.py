@@ -325,6 +325,41 @@ def dir32_sites(body, relocs, image, rva, size):
     return out
 
 
+def string_refs_agree(obj, body, relocs, image, rva, size):
+    """True when every `??_C@` site points at the literal the object holds.
+
+    `dir32_sites` exempts string constants from the base-agreement rule on
+    purpose — a pooled literal legitimately sits at a different address in every
+    TU — so at those sites the masked comparison is the only thing standing
+    between a body and the look-alike whose single difference is which string it
+    loads. `build.py:verify_string_refs` is what catches that, and it runs AFTER
+    the byte comparison: ten such rows passed `Functions: OK 1227/1227` and then
+    took the whole wave down at the next stage, naming no source the lander
+    could route around. This is that check asked at candidate time instead.
+    """
+    for offset, rtype, symbol in relocs:
+        if rtype != DIR32 or offset + 4 > size or not symbol.startswith("??_C@"):
+            continue
+        pointer = int.from_bytes(image.body(rva + offset, 4), "little")
+        try:
+            literal, _ = B.read_object_symbol_bytes(obj, symbol)
+            start = B.rva_to_file_offset(image.sections, pointer - IMAGE_BASE)
+        except ValueError:
+            return False
+        content = literal.rstrip(b"\0")
+        # A pooled literal is referenced as symbol+addend ("DBGHELP.DLL"+4 is
+        # "ELP.DLL"), and the binary holds that tail at the address written here.
+        addend = int.from_bytes(body[offset:offset + 4], "little", signed=True)
+        if 0 < addend <= len(content):
+            content = content[addend:]
+        if not content:
+            if image.data[start:start + 1] != b"\0":
+                return False
+        elif image.data[start:start + len(content)] != content:
+            return False
+    return True
+
+
 def classify(body, inside, stats):
     """(class, mask offsets) for one compiled span, or None if it is not aliasable."""
     if not inside:
@@ -489,6 +524,9 @@ def sweep(uni, image, objects, exclude_circular=True, stats=None):
                     break
                 if cls == "rel32" and rel32_callees(body, inside, image, rva,
                                                     uni.symbol_addresses, stats) is None:
+                    continue
+                if cls != "rf" and not string_refs_agree(obj, body, inside, image, rva, size):
+                    stats["skip_string_ref_elsewhere"] += 1
                     continue
                 record = matches.setdefault((kind, rva, size), {"owners": []})
                 sites = dir32_sites(body, inside, image, rva, size) if cls != "rf" else []
