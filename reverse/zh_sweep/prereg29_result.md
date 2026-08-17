@@ -55,6 +55,14 @@ address is not a function start.
   bytes early instead of two — worse than the bug. The slide is (candidate length
   - real length), not the pad.
 
+  The slice that proposed the int3 mechanism then measured it against retail and
+  refuted itself: the true runs before its own two addresses are 18 and 21 bytes
+  against deltas of 4 and 2, so its starts sit INSIDE those runs. It had seen only
+  the 4 and 2 leading 0xCC bytes its packets' quoted ranges happen to begin with,
+  and generalised from truncated evidence. Its practice was right — it looked both
+  real starts up in the ghidra inventory — and only its write-up was wrong.
+  Retracted in fb3c6a70f, which supersedes the record in af52c2d6f.
+
   DO NOT implement it as a size formula either. Half the bad cases go the other
   way, starting INSIDE the body, where packet_size = real_size MINUS delta
   (0x00747493 245 vs 248, 0x0070F97D 293 vs 306, one of them landing
