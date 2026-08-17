@@ -160,7 +160,12 @@ namespace {
 // wants the out-of-line form calls Set_DX8_Texture_Stage_State instead, which
 // resolves to retail's ..._Body.
 #define BFME_SET_TSS(stage_, state_, value_)                                                 \
-	if (DX8Wrapper::TextureStageStates[stage_][state_] != (unsigned)(value_)) {              \
+	if ((unsigned)(stage_) >= MAX_TEXTURE_STAGES) {                                          \
+		IDirect3DDevice8 *tss_raw_ = DX8Wrapper::_Get_D3D_Device8();                         \
+		(*(BFMESetTSSFn **)tss_raw_)[BFME_SET_TSS_SLOT](tss_raw_,                            \
+			(stage_), (state_), (value_));                                                   \
+		number_of_DX8_calls++;                                                               \
+	} else if (DX8Wrapper::TextureStageStates[stage_][state_] != (unsigned)(value_)) {       \
 		if (WW3D::Is_Snapshot_Activated()) {                                                 \
 			StringClass value_name(0, true);                                                 \
 			DX8Wrapper::Get_DX8_Texture_Stage_State_Value_Name(value_name,                   \
@@ -1448,10 +1453,13 @@ Int ShroudTextureShader::set(Int stage)
 // ?reset@ShroudTextureShader@@EAEXXZ present-unmatched
 void ShroudTextureShader::reset(void)
 {
-	DX8Wrapper::Set_Texture(m_stageOfSet,NULL);
-	DX8Wrapper::Set_DX8_Render_State(D3DRS_ZFUNC,D3DCMP_LESSEQUAL);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(m_stageOfSet,  D3DTSS_TEXCOORDINDEX, m_stageOfSet);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(m_stageOfSet,  D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);	
+	{
+		StageTextureRef texture;
+		BoxSetTexture(m_stageOfSet,texture);
+	}
+	BFME_SET_RS(D3DRS_ZFUNC,D3DCMP_LESSEQUAL);
+	BFME_SET_TSS(m_stageOfSet,  D3DTSS_TEXCOORDINDEX, m_stageOfSet);
+	BFME_SET_TSS(m_stageOfSet,  D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 }
 
 ///Shroud layer rendering shader
@@ -1545,10 +1553,13 @@ Int FlatShroudTextureShader::set(Int stage)
 void FlatShroudTextureShader::reset(void)
 {
 	if (m_stageOfSet < MAX_TEXTURE_STAGES)
-		DX8Wrapper::Set_Texture(m_stageOfSet,NULL);
-	DX8Wrapper::Set_DX8_Render_State(D3DRS_ZFUNC,D3DCMP_LESSEQUAL);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(m_stageOfSet,  D3DTSS_TEXCOORDINDEX, m_stageOfSet);
-	DX8Wrapper::Set_DX8_Texture_Stage_State(m_stageOfSet,  D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);	
+	{
+		StageTextureRef texture;
+		BoxSetTexture(m_stageOfSet,texture);
+	}
+	BFME_SET_RS(D3DRS_ZFUNC,D3DCMP_LESSEQUAL);
+	BFME_SET_TSS(m_stageOfSet,  D3DTSS_TEXCOORDINDEX, m_stageOfSet);
+	BFME_SET_TSS(m_stageOfSet,  D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
 }
 
 ///Mask layer rendering shader
@@ -1768,7 +1779,6 @@ Int TerrainShader2Stage::init( void )
 	return TRUE;
 }
 
-// ?reset@TerrainShader2Stage@@UAEXXZ present-unmatched
 void TerrainShader2Stage::reset(void)
 {
 	ShaderClass::Invalidate();
@@ -2312,7 +2322,6 @@ Int TerrainShaderPixelShader::set(Int pass)
 	return TRUE;
 }
 
-// ?reset@TerrainShaderPixelShader@@EAEXXZ present-unmatched
 void TerrainShaderPixelShader::reset(void)
 {
 	bfmeSetTexture(2,NULL);	//release reference to any texture
@@ -2404,13 +2413,13 @@ Int CloudTextureShader::set(Int stage)
 void CloudTextureShader::reset(void)
 {
 	//Free reference to texture
-	DX8Wrapper::_Get_D3D_Device8()->SetTexture(m_stageOfSet, NULL);
+	bfmeSetTexture(m_stageOfSet, NULL);
 	//Turn off texture projection
-	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
-	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|m_stageOfSet);
+	BFME_SET_TSS( m_stageOfSet, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
+	BFME_SET_TSS( m_stageOfSet, D3DTSS_TEXCOORDINDEX, D3DTSS_TCI_PASSTHRU|m_stageOfSet);
 
-	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_COLOROP,   D3DTOP_DISABLE );
-	DX8Wrapper::Set_DX8_Texture_Stage_State( m_stageOfSet, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
+	BFME_SET_TSS( m_stageOfSet, D3DTSS_COLOROP,   D3DTOP_DISABLE );
+	BFME_SET_TSS( m_stageOfSet, D3DTSS_ALPHAOP,   D3DTOP_DISABLE );
 }
 
 /*===========================================================================================*/
