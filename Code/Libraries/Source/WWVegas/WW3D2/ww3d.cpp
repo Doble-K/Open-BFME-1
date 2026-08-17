@@ -1197,7 +1197,6 @@ void WW3D::Flush(RenderInfoClass & rinfo)
  * HISTORY:                                                                                    *
  *   3/24/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?End_Render@WW3D@@ present-unmatched
 __declspec(naked) WW3DErrorType WW3D::End_Render(bool flip_frame)
 {
 	__asm {
@@ -1326,7 +1325,6 @@ unsigned int WW3D::Get_Last_Frame_Vertex_Count(void)
  * HISTORY:                                                                                    *
  *   3/24/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?Sync@WW3D@@ present-unmatched
 void WW3D::Sync(unsigned int sync_time)
 {
 	PreviousSyncTime = SyncTime;
@@ -2003,7 +2001,6 @@ bool WW3D::Is_Large_Texture_Extra_Reduction_Enabled(void)
  * HISTORY:                                                                                    *
  *   7/21/99    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?Peek_Default_Debug_Material@WW3D@@ present-unmatched
 VertexMaterialClass * WW3D::Peek_Default_Debug_Material(void)
 {
 #ifdef WWDEBUG
@@ -2107,7 +2104,6 @@ WW3DErrorType WW3D::On_Deactivate_App(void)
 }
 
 
-// ?On_Activate_App@WW3D@@ present-unmatched
 WW3DErrorType WW3D::On_Activate_App(void)
 {
 	return WW3D_ERROR_OK;
@@ -2189,13 +2185,11 @@ void WW3D::Override_Current_Static_Sort_Lists(StaticSortListClass * sort_list)
 }
 
 
-// ?Reset_Current_Static_Sort_Lists_To_Default@WW3D@@ present-unmatched
 void WW3D::Reset_Current_Static_Sort_Lists_To_Default(void)
 {
 	CurrentStaticSortLists = DefaultStaticSortLists;
 }
 
-// ?Set_Gamma@WW3D@@ present-unmatched
 void WW3D::Set_Gamma(float gamma,float bright,float contrast,bool calibrate)
 {
 	DX8Wrapper::Set_Gamma(gamma,bright,contrast,calibrate);

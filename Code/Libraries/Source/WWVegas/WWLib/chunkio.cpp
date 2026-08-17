@@ -162,6 +162,12 @@ uint32 ChunkLoadClass::Cur_Chunk_Length()
 }
 
 
+int ChunkLoadClass::Cur_Chunk_Depth()
+{
+	return *(int *)((char *)this + 0x08);
+}
+
+
 // The high bit of a chunk's size word is the "this chunk holds sub-chunks"
 // flag, so the test is the raw masked word rather than a bool.
 int ChunkLoadClass::Contains_Chunks()

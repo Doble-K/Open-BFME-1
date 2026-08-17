@@ -321,10 +321,14 @@ void SegmentedLineClass::Set_Texture_Mapping_Mode(SegLineRendererClass::TextureM
 	LineRenderer.Set_Texture_Mapping_Mode(mode);
 }
 
-// ?SegmentedLineClass::Set_Texture_Tile_Factor present-unmatched
 void SegmentedLineClass::Set_Texture_Tile_Factor(float factor)
 {
-	LineRenderer.Set_Texture_Tile_Factor(factor);
+	// BFME field-order drift: retail's SegLineRendererClass::Set_Texture_Tile_Factor
+	// (the one at 0x95FEF0) clamps the value, but this forwarder does not call it --
+	// it writes LineRenderer's TextureTileFactor slot directly, unclamped. Reproduced
+	// byte-for-byte (SegmentedLineClass is a friend of SegLineRendererClass) rather
+	// than routed through the clamped setter.
+	LineRenderer.TextureTileFactor = factor;
 }
 
 void SegmentedLineClass::Set_UV_Offset_Rate(const Vector2 &rate)

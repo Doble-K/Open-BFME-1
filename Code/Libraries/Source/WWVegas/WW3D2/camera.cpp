@@ -773,7 +773,6 @@ float CameraClass::Get_Vertical_FOV(void) const
 	return 2*WWMath::Atan2(height,2.0);
 }
 
-// ?Get_Aspect_Ratio@CameraClass@@QBEMXZ present-unmatched
 float CameraClass::Get_Aspect_Ratio(void) const 
 { 
 	return AspectRatio;
