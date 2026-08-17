@@ -108193,7 +108193,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00647100@@YAXXZ,,0x00647100,164,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a47100
 ?d_006472c0@@YAXXZ,,0x006472C0,101,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a472c0
 ?d_00647470@@YAXXZ,,0x00647470,370,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a47470
-?d_00647650@@YAXXZ,,0x00647650,62,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a47650
 ?d_006476a0@@YAXXZ,,0x006476A0,62,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a476a0
 ?d_00647720@@YAXXZ,,0x00647720,35,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a47720
 ?d_00647750@@YAXXZ,,0x00647750,35,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a47750
@@ -160110,3 +160109,4 @@ _read_number$llex,,0x009A00D0,669,Code/Libraries/Source/Lua/llex.c,matched,vendo
 ?push_back@?$vector@URunwayInfo@FlightDeckBehavior@@V?$allocator@URunwayInfo@FlightDeckBehavior@@@_STL@@@_STL@@QAEXABURunwayInfo@FlightDeckBehavior@@@Z,,0x0039EE00,64,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,
 ?messageBoxYes@@YAXXZ,,0x004D9010,48,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfoMessageBoxYesThunk.cpp,matched,Open-BFME7: isolated port of PopupPlayerInfo.cpp static messageBoxYes; BFME BuddyRequest 0x2B8 and GameSpyInfoInterface +7 virtuals
 ??0CloudBreakSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00259010,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CloudBreakSpecialPower.cpp,matched,Open-BFME7: clean C++ empty derived constructor; identity from the three vtables it writes (CloudBreakSpecialPower getModuleNameKey + SpecialPowerModule slots) and its sole caller friend_newModuleInstance
+??$__destroy_aux@U?$_Deque_iterator@VPeerRequest@@U?$_Nonconst_traits@VPeerRequest@@@_STL@@@_STL@@@_STL@@YAXU?$_Deque_iterator@VPeerRequest@@U?$_Nonconst_traits@VPeerRequest@@@_STL@@@0@0ABU__false_type@0@@Z,,0x00647650,62,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,Open-BFME7: four-way tie broken by the element destructor - thunk 0x00016BD5 resolves to 0x004D52D0 PeerRequest not PSRequest; stride 0x194 needs the nat shim PeerRequest
