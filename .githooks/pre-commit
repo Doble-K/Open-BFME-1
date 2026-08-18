@@ -45,9 +45,11 @@ python3 tools/conversion_gate.py HEAD : || fail "conversion direction (see above
 staged_sources=()
 ledger_changed=0
 wide_change=0
+baseline_changed=0
 while IFS= read -r path; do
     case "$path" in
         Code/*.cpp) staged_sources+=("$path") ;;
+        reverse/pin_consistency_baseline.csv) baseline_changed=1 ;;
         reverse/functions.csv|reverse/symbols.csv) ledger_changed=1 ;;
         # A header or shim recompiles many TUs while changing NO ledger rows,
         # so the delta byte-verify below would prove nothing. Any such change
@@ -68,7 +70,8 @@ while IFS= read -r path; do
     esac
 done < <(git diff --cached --name-only --diff-filter=A | grep -E '\.(cpp|c|h|hpp|asm)$' || true)
 
-if [ "${#staged_sources[@]}" -eq 0 ] && [ "$ledger_changed" -eq 0 ] && [ "$wide_change" -eq 0 ]; then
+if [ "${#staged_sources[@]}" -eq 0 ] && [ "$ledger_changed" -eq 0 ] \
+   && [ "$wide_change" -eq 0 ] && [ "$baseline_changed" -eq 0 ]; then
     exit 0
 fi
 
@@ -85,7 +88,7 @@ for path in "${staged_sources[@]}"; do
         dirty+=("$path")
     fi
 done
-for ledger in reverse/functions.csv reverse/symbols.csv; do
+for ledger in reverse/functions.csv reverse/symbols.csv reverse/pin_consistency_baseline.csv; do
     if ! git diff --cached --quiet -- "$ledger" && ! git diff --quiet -- "$ledger"; then
         dirty+=("$ledger")
     fi
@@ -99,6 +102,24 @@ fi
 #    claims, malformed rows, missing sources. Turns union-merge corruption into
 #    an immediate loud failure instead of someone else's red build later.
 python3 tools/check_csv.py --staged || fail "ledger integrity (see above)"
+
+# 1b) Identity, not bytes. reverse/symbols.csv is an ADDITIVE candidate list:
+#     the REL32 resolver keeps the first pinned address that reproduces retail,
+#     so a pin naming the WRONG function still byte-matches and the delta build
+#     below proves nothing about it. Only the full gate ran this guard, and a
+#     ledger-only edit never triggers the full gate — it takes the scoped path —
+#     so the one check built for exactly this change had never run on it. 1.6s,
+#     reads only the retail image and the ledgers.
+if [ "$ledger_changed" -ne 0 ]; then
+    python3 tools/pin_consistency.py --check || fail "pin consistency (see above)"
+fi
+# The baseline is a debt register that may only shrink. --write-baseline refuses
+# to grow it, but a hand-typed line is the same anti-pattern, so the committed
+# file is checked against HEAD as well.
+if [ "$baseline_changed" -ne 0 ]; then
+    python3 tools/pin_consistency.py --assert-shrink-only HEAD \
+        || fail "pin_consistency_baseline.csv grew (see above)"
+fi
 
 # 2) Every function defined in staged sources must be declared in the ledger.
 if [ "${#staged_sources[@]}" -ne 0 ]; then

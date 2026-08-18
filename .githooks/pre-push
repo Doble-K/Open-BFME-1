@@ -40,6 +40,17 @@ while read -r _local_ref local_sha _remote_ref remote_sha; do
     # Runs before the build because it costs a second and the build costs minutes.
     python3 tools/conversion_gate.py "$base" "$local_sha" || fail "conversion direction (see above)"
 
+    # Identity, for the same reason conversion_gate runs here: byte-verification
+    # cannot see it. reverse/symbols.csv is an ADDITIVE candidate list, so a pin
+    # naming the WRONG function still reproduces its caller's bytes and every
+    # scoped build below stays green. This guard only ever ran in the full gate,
+    # which no hook path reaches — pre-commit runs it for header/shim changes
+    # only, and this hook is bounded by push size and never full — so a wrong
+    # pin could reach origin without one check ever looking at it. 1.6s.
+    python3 tools/pin_consistency.py --check || fail "pin consistency (see above)"
+    python3 tools/pin_consistency.py --assert-shrink-only "$base" --at "$local_sha" \
+        || fail "pin_consistency_baseline.csv grew across the outgoing range (see above)"
+
     mapfile -t delta < <(python3 tools/delta_sources.py --range "$base" "$local_sha")
 
     # Sources the range EDITS while leaving their ledger rows alone are absent
