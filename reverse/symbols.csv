@@ -1415,8 +1415,6 @@ name,address,notes
 ??0GrantScienceUpgradeModuleData@@QAE@XZ,0x0003C556,pinharvest x1 (thunk)
 ??0GrantScienceUpgradeModuleData@@QAE@XZ,0x00046B5A,pinharvest x1 (thunk)
 ??0GrantScienceUpgradeModuleData@@QAE@XZ,0x00048A3B,pinharvest x1 (thunk)
-??0GrantStealthBehaviorModuleData@@QAE@XZ,0x0000E9F8,pinharvest x1 (thunk)
-??0GrantStealthBehaviorModuleData@@QAE@XZ,0x0000ECFF,pinharvest x1 (thunk)
 ??0GrantStealthBehaviorModuleData@@QAE@XZ,0x0003FD5A,pinharvest x1 (thunk)
 ??0GrantUpgradeCreateModuleData@@QAE@XZ,0x000118E7,pinharvest x1 (thunk)
 ??0GrantUpgradeCreateModuleData@@QAE@XZ,0x000261CA,pinharvest x1 (thunk)
@@ -1439,9 +1437,7 @@ name,address,notes
 ??0HordeGarrisonContainModuleData@@QAE@XZ,0x0000DF7B,HordeGarrisonContain ModuleData ctor
 ??0HordeTransportContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000023A1,HordeTransportContain ctor base call
 ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00037619,derived-ICF
-??0HordeUpdateModuleData@@QAE@XZ,0x00014EA2,pinharvest x1 (thunk)
 ??0HordeUpdateModuleData@@QAE@XZ,0x0001BE41,pinharvest x1 (thunk)
-??0HordeUpdateModuleData@@QAE@XZ,0x00030EBD,pinharvest x1 (thunk)
 ??0HorseHordeContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003A8FF,HorseHordeContain out-of-line base MI ctor
 ??0INIException@@QAA@HPBDZZ,0x00850600,INI retail variadic exception constructor
 ??0IgnorePreferences@@QAE@XZ,0x0002E389,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
@@ -1508,7 +1504,6 @@ name,address,notes
 ??0MissingAnimClass@@QAE@PBD@Z,0x00034559,callers use this thunk (like findMemoryPool 0x3ADD7); real body drift candidate 0x9723BF
 ??0MissingGeomClass@@QAE@PBD@Z,0x00034559,pinharvest x1 (thunk)
 ??0MissingGeomClass@@QAE@PBD@Z,0x00042C3A,pinharvest x1 (thunk)
-??0MissingTextureClass@@QAE@PBD@Z,0x00034559,pinharvest x1 (thunk)
 ??0MissingTextureClass@@QAE@PBD@Z,0x00042C3A,pinharvest x1 (thunk)
 ??0MobMemberSlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002A379,pinharvest x1 (thunk)
 ??0MobMemberSlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048338,pinharvest x1 (thunk)
@@ -1545,13 +1540,7 @@ name,address,notes
 ??0MultiplayerSettings@@QAE@XZ,0x0002B0BC,harvested from parseMultiplayerSettingsDefinition (thunk)
 ??0NetCommandMsg@@QAE@XZ,0x000132B4,hit-decoded x4 (thunk)
 ??0NetCommandWrapperListNode@@QAE@PAVNetWrapperCommandMsg@@@Z,0x0002D8C1,ILT thunk; real body 0xA76380
-??0NetDestroyPlayerCommandMsg@@QAE@XZ,0x0000F8D0,pinharvest x1 (thunk)
-??0NetDestroyPlayerCommandMsg@@QAE@XZ,0x000195CE,pinharvest x1 (thunk)
 ??0NetDestroyPlayerCommandMsg@@QAE@XZ,0x0002B904,pinharvest x1 (thunk)
-??0NetDestroyPlayerCommandMsg@@QAE@XZ,0x0002F536,pinharvest x1 (thunk)
-??0NetDisconnectFrameCommandMsg@@QAE@XZ,0x0000F8D0,pinharvest x1 (thunk)
-??0NetDisconnectFrameCommandMsg@@QAE@XZ,0x000195CE,pinharvest x1 (thunk)
-??0NetDisconnectFrameCommandMsg@@QAE@XZ,0x0002B904,pinharvest x1 (thunk)
 ??0NetDisconnectFrameCommandMsg@@QAE@XZ,0x0002F536,pinharvest x1 (thunk)
 ??0NetDisconnectKeepAliveCommandMsg@@QAE@XZ,0x000132B4,pinharvest x2 (thunk)
 ??0NetDisconnectKeepAliveCommandMsg@@QAE@XZ,0x00024F87,pinharvest x1 (thunk)
@@ -1559,9 +1548,6 @@ name,address,notes
 ??0NetDisconnectKeepAliveCommandMsg@@QAE@XZ,0x00049F71,pinharvest x1 (thunk)
 ??0NetDisconnectPlayerCommandMsg@@QAE@XZ,0x0002173D,ILT thunk; real body 0xA73C20
 ??0NetDisconnectScreenOffCommandMsg@@QAE@XZ,0x0000F8D0,pinharvest x1 (thunk)
-??0NetDisconnectScreenOffCommandMsg@@QAE@XZ,0x000195CE,pinharvest x1 (thunk)
-??0NetDisconnectScreenOffCommandMsg@@QAE@XZ,0x0002B904,pinharvest x1 (thunk)
-??0NetDisconnectScreenOffCommandMsg@@QAE@XZ,0x0002F536,pinharvest x1 (thunk)
 ??0NetDisconnectVoteCommandMsg@@QAE@XZ,0x0002B346,ILT thunk; real body 0xA73CD0
 ??0NetFileProgressCommandMsg@@QAE@XZ,0x000409DA,ILT thunk; real body 0xA74030
 ??0NetFrameResendRequestCommandMsg@@QAE@XZ,0x0000F8D0,pinharvest x1 (thunk)
@@ -1582,10 +1568,8 @@ name,address,notes
 ??0NetPacketRouterQueryCommandMsg@@QAE@XZ,0x00024F87,pinharvest x1 (thunk)
 ??0NetPacketRouterQueryCommandMsg@@QAE@XZ,0x0002FAD1,pinharvest x1 (thunk)
 ??0NetPacketRouterQueryCommandMsg@@QAE@XZ,0x00049F71,pinharvest x1 (thunk)
-??0NetPlayerLeaveCommandMsg@@QAE@XZ,0x000266AC,pinharvest x1 (thunk)
 ??0NetPlayerLeaveCommandMsg@@QAE@XZ,0x00044C8D,pinharvest x1 (thunk)
 ??0NetProgressCommandMsg@@QAE@XZ,0x000266AC,pinharvest x1 (thunk)
-??0NetProgressCommandMsg@@QAE@XZ,0x00044C8D,pinharvest x1 (thunk)
 ??0NetWrapperCommandMsg@@QAE@XZ,0x0002A586,ILT thunk; real body 0xA73DD0
 ??0Network@@QAE@XZ,0x00029C12
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00006780,pinharvest x1 (thunk)
@@ -1642,7 +1626,6 @@ name,address,notes
 ??0ParkingPlaceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003C3BC,pinharvest x1 (thunk)
 ??0ParticleBufferClass@@QAE@ABV0@@Z,0x00989A20
 ??0ParticleSystemTemplateTail@FXParticleSystem@@QAE@ABV01@@Z,0x0003E6A3,ParticleSystemTemplate tail copy constructor pin
-??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,0x0000C063,pinharvest x1 (thunk)
 ??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,0x0002DE75,pinharvest x1 (thunk)
 ??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003C3BC
 ??0PhysicsBehaviorModuleData@@QAE@XZ,0x00007FF4,pinharvest x1 (thunk)
@@ -1666,10 +1649,6 @@ name,address,notes
 ??0PointDefenseLaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002911D,pinharvest x1 (thunk)
 ??0PointDefenseLaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x000341A3,pinharvest x1 (thunk)
 ??0PointDefenseLaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00046EA7,pinharvest x1 (thunk)
-??0PointDefenseLaserUpdateModuleData@@QAE@XZ,0x00004D9A,pinharvest x1 (thunk)
-??0PointDefenseLaserUpdateModuleData@@QAE@XZ,0x0001B905,pinharvest x1 (thunk)
-??0PointDefenseLaserUpdateModuleData@@QAE@XZ,0x0002A923,pinharvest x1 (thunk)
-??0PointDefenseLaserUpdateModuleData@@QAE@XZ,0x0002DA24,pinharvest x1 (thunk)
 ??0PointDefenseLaserUpdateModuleData@@QAE@XZ,0x0003CA01,pinharvest x1 (thunk)
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x000391A3,PointEmissionVolume clone copy-ctor pin
 ??0PointGroupClass@@QAE@XZ,0x00912580,derived from ParticleBufferClass main ctor aligned call sites
@@ -1692,7 +1671,6 @@ name,address,notes
 ??0PropagandaTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00EF5C,module ctor (friend_newModuleInstance retail call target)
 ??0PropagandaTowerBehaviorModuleData@@QAE@XZ,0x00010B2C
 ??0QuadDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0002218D,QuadDrawModuleTemplate clone copy-ctor pin
-??0QueueProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00001CDA,pinharvest x1 (thunk)
 ??0QueueProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002D40C,pinharvest x1 (thunk)
 ??0QueuedDownload@@QAE@ABV0@@Z,0x0001005F,pinharvest x1 (thunk)
 ??0QueuedDownload@@QAE@ABV0@@Z,0x00018ACA,pinharvest x1 (thunk)
@@ -1731,7 +1709,6 @@ name,address,notes
 ??0RailedTransportDockUpdateModuleData@@QAE@XZ,0x0002E069,pinharvest x1 (thunk)
 ??0RainOfFireUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000A0E2,retail ModuleFactory cp081 constructor thunk
 ??0RankInfo@@QAE@XZ,0x00026FDA,harvested from friend_parseRankDefinition (thunk)
-??0RebuildHoleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00001CDA,pinharvest x1 (thunk)
 ??0RebuildHoleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002D40C,pinharvest x1 (thunk)
 ??0RebuildHoleBehaviorModuleData@@QAE@XZ,0x000118E7,pinharvest x1 (thunk)
 ??0RebuildHoleBehaviorModuleData@@QAE@XZ,0x000261CA,pinharvest x1 (thunk)
@@ -1880,7 +1857,6 @@ name,address,notes
 ??0SpyVisionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00025581,pinharvest x1 (thunk)
 ??0SpyVisionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00041547,pinharvest x1 (thunk)
 ??0SpyVisionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048B9E,pinharvest x1 (thunk)
-??0SpyVisionUpdateModuleData@@QAE@XZ,0x00009804,pinharvest x1 (thunk)
 ??0SpyVisionUpdateModuleData@@QAE@XZ,0x00035E22,pinharvest x1 (thunk)
 ??0SquishCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001D3AE,pinharvest x1 (thunk)
 ??0SquishCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001F5C3,pinharvest x1 (thunk)
@@ -2013,14 +1989,11 @@ name,address,notes
 ??0W3DDisplay@@QAE@XZ,0x00002432
 ??0W3DGameWindowManager@@QAE@XZ,0x00021701
 ??0W3DInGameUI@@QAE@XZ,0x0003CDB2
-??0W3DLaserDrawModuleData@@QAE@XZ,0x00014EA2,pinharvest x1 (thunk)
 ??0W3DLaserDrawModuleData@@QAE@XZ,0x0001BE41,pinharvest x1 (thunk)
-??0W3DLaserDrawModuleData@@QAE@XZ,0x00030EBD,pinharvest x1 (thunk)
 ??0W3DModelDrawModuleData@@QAE@XZ,0x00025EBE,pinharvest x1 (thunk)
 ??0W3DOverlordAircraftDrawModuleData@@QAE@XZ,0x00025EBE,pinharvest x1 (thunk)
 ??0W3DOverlordTankDrawModuleData@@QAE@XZ,0x0000260D
 ??0W3DProjectileStreamDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002B67,pinharvest x1 (thunk)
-??0W3DProjectileStreamDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x000483E2,pinharvest x1 (thunk)
 ??0W3DProjectileStreamDrawModuleData@@QAE@XZ,0x00001780,pinharvest x1 (thunk)
 ??0W3DProjectileStreamDrawModuleData@@QAE@XZ,0x0001ECBD,pinharvest x1 (thunk)
 ??0W3DProjectileStreamDrawModuleData@@QAE@XZ,0x0002C9D0,pinharvest x1 (thunk)
@@ -2059,10 +2032,6 @@ name,address,notes
 ??0WeaponBonusUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00038C35,pinharvest x1 (thunk)
 ??0WeaponBonusUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003DB36,pinharvest x1 (thunk)
 ??0WeaponBonusUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0004B510,pinharvest x1 (thunk)
-??0WeaponBonusUpdateModuleData@@QAE@XZ,0x00004D9A,pinharvest x1 (thunk)
-??0WeaponBonusUpdateModuleData@@QAE@XZ,0x0001B905,pinharvest x1 (thunk)
-??0WeaponBonusUpdateModuleData@@QAE@XZ,0x0002A923,pinharvest x1 (thunk)
-??0WeaponBonusUpdateModuleData@@QAE@XZ,0x0002DA24,pinharvest x1 (thunk)
 ??0WeaponBonusUpdateModuleData@@QAE@XZ,0x0003CA01,pinharvest x1 (thunk)
 ??0WeaponBonusUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x000375B5,module ctor (friend_newModuleInstance retail call target)
 ??0WeaponFireSpecialAbilityUpdateModuleDataBase@@QAE@XZ,0x0003F503,WeaponFireSpecialAbilityUpdateModuleData ctor base
@@ -5552,7 +5521,6 @@ name,address,notes
 ?Load_W3D@AdaptiveDeltaMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977CC0
 ?Load_W3D@TimeCodedMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977A00
 ?Log_DX8_ErrorCode@@YAXI@Z,0x0087CAC0,hit-decoded x5 (body)
-?Log_DX8_ErrorCode@@YAXI@Z,0x0087CD60,hit-decoded x5 (body)
 ?MD5Update@@YAXPAUMD5_CTX@@PAEI@Z,0x0086AE20
 ?Make_Geometry_Unique@MeshModelClass@@QAEXXZ,0x0094EE80
 ?Make_Unique@MeshClass@@QAEX_N@Z,0x0092C400
@@ -5620,7 +5588,6 @@ name,address,notes
 ?Release_Ref@TextureBaseClass@@QAEXXZ,0x009EB7A0,hider decl in texture.h; WORD refcount+flags release
 ?Release_Ref@TextureClass@@QAEXXZ,0x009EB7A0,BFME texture release: WORD refcount+flag bits at [this+4]; auto-delete via vtbl slot 8 when bit24 set ??? TextureClass does NOT derive RefCountClass
 ?Remove@?$DLNodeClass@VThumbnailManagerClass@@@@QAEXXZ,0x00041763,pinharvest x4 (thunk)
-?Remove@?$DLNodeClass@VThumbnailManagerClass@@@@QAEXXZ,0x00939430,pinharvest x4 (body)
 ?Remove_All@?$SList@VTagBlockIndex@@@@UAEXXZ,0x0000B9CE,pinharvest x1 (thunk)
 ?Remove_All@?$SList@VTagBlockIndex@@@@UAEXXZ,0x0000DBA7,pinharvest x1 (thunk)
 ?Remove_All@?$SList@VTagBlockIndex@@@@UAEXXZ,0x009EDD30,pinharvest x1 (body)
@@ -5628,7 +5595,6 @@ name,address,notes
 ?Remove_Index@?$IndexClass@HPAUINISection@@@@QAE_NABH@Z,0x009E2730
 ?Remove_Polygon_Renderer@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@@Z,0x00947D30
 ?Remove_Tail@?$DLListClass@VThumbnailManagerClass@@@@QAEXXZ,0x00047852,pinharvest x1 (thunk)
-?Remove_Tail@?$DLListClass@VThumbnailManagerClass@@@@QAEXXZ,0x009394F0,pinharvest x1 (body)
 ?Remove_Texture_Category@DX8FVFCategoryContainer@@QAEXPAVDX8TextureCategoryClass@@@Z,0x00946650,REL32 pin for DX8TextureCategoryClass::Remove_Polygon_Renderer
 ?Render@LineGroupClass@@QAEXAAVRenderInfoClass@@@Z,0x0098ED30
 ?Render@PointGroupClass@@QAEXAAVRenderInfoClass@@H@Z,0x00917B70,derived from Render_Particles call sites; BFME added the int param
@@ -5755,9 +5721,6 @@ name,address,notes
 ?Resize@?$SimpleVecClass@VVector3i16@@@@UAE_NH@Z,0x0092C510,pinharvest x3 (body)
 ?Resize@?$SimpleVecClass@VVector3i16@@@@UAE_NH@Z,0x00944EF0,pinharvest x3 (body)
 ?Resize@?$SimpleVecClass@VVector4@@@@UAE_NH@Z,0x00031593,site-decoded x3 (thunk)
-?Resize@?$SimpleVecClass@VVector4@@@@UAE_NH@Z,0x00038ECE,site-decoded x3 (thunk)
-?Resize@?$SimpleVecClass@VVector4@@@@UAE_NH@Z,0x00918430,site-decoded x3 (body)
-?Resize@?$SimpleVecClass@VVector4@@@@UAE_NH@Z,0x009E5FD0,caller-derived (2 matched callers agree)
 ?RetailScriptVTable@@3PAPAXA,0x010E858C,Open-BFME5 retail Script vtable value
 ?Scale@MeshGeometryClass@@QAEXABVVector3@@@Z,0x00925610
 ?Scale@SegLineRendererClass@@QAEXM@Z,0x0095FF30
@@ -67292,8 +67255,6 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?freeBlock@MemoryPool@@QAEXPAX@Z,0x00AFE830,pinharvest x1 (body)
 ?freeBlock@MemoryPool@@QAEXPAX@Z,0x00AFF6B0,pinharvest x1 (body)
 ?freeBridgeBuffers@W3DBridgeBuffer@@AAEXXZ,0x00003E59,W3DBridgeBuffer::freeBridgeBuffers via ILT thunk
-?freeBytes@AsciiString@@AAEXXZ,0x0004B439,caller-derived (e9 thunk)
-?freeBytes@AsciiString@@AAEXXZ,0x0012C877,caller-derived (prologue)
 ?freeBytes@AsciiString@@AAEXXZ,0x00887940,caller-derived (4 matched callers agree, body)
 ?freeHordeContainOwnedBuffer@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 HordeContain owned-buffer deallocator
 ?freeMapResources@HeightMapRenderObjClass@@UAEHXZ,0x000225D4,HeightMapRenderObjClass destructor call target through retail ILT
