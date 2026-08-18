@@ -72185,3 +72185,4 @@ _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Crea
 _SBLastListErrorA,0x008680B0,adjacency-lane pin: jmp target of _ServerBrowserListQueryErrorA tail-call
 _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body in ghttpCommon.c
 ?restoreGlobalDataFields@RecorderClass@@QAEXXZ,0x0000BD1B,BFME-only RecorderClass entry ReplayMenuShutdown opens with; ILT thunk to body 0x00097360
+?setGamePaused@BfmeGameLogicPause@@QAEX_NH0@Z,0x00006F50,BFME three-argument GameLogic::setGamePaused; ILT thunk to body 0x00383490

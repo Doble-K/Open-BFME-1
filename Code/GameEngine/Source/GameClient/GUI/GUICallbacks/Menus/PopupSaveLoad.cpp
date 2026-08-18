@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/campaignmanagerascii /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -94,6 +94,34 @@ static Bool isPopup = FALSE;
 static Int	initialGadgetDelay = 2;
 static Bool justEntered = FALSE;
 static Bool isShuttingDown = false;
+
+// BFME pauses the game while this popup is up and hands the entry state back
+// on the way out.  The saved flag is the static that follows isShuttingDown.
+static Bool wasGamePausedOnEntry = FALSE;
+
+// WindowLayout::hide is virtual in BFME (slot 0x10) and non-virtual in the
+// vendored ZH header— the same drift NetworkDirectConnect.cpp, CreditsMenu.cpp
+// and WOLWelcomeMenu.cpp each spell TU-locally rather than edit the header.
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+// BFME grew GameLogic::setGamePaused a middle parameter.  The body at
+// 0x00383490 is ZH's: the same early-out on m_gamePaused at +0x11c and the same
+// m_inputEnabledMemory / m_mouseVisibleMemory pair at +0x11e / +0x11f, but it
+// takes three arguments and reads the middle one as a full dword against 1 and
+// 2, so it is an Int mode rather than ZH's Bool pauseMusic.
+class BfmeGameLogicPause
+{
+public:
+	void setGamePaused( Bool paused, Int pauseMode, Bool affectInput );
+};
 
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
 extern Bool DontShowMainMenu; //KRIS
@@ -262,11 +290,13 @@ void SaveLoadMenuFullScreenInit( WindowLayout *layout, void *userData )
 void SaveLoadMenuShutdown( WindowLayout *layout, void *userData )
 {
 	
+	((BfmeGameLogicPause *)TheGameLogic)->setGamePaused( wasGamePausedOnEntry, 0, TRUE );
+
 	Bool popImmediate = *(Bool *)userData;
 	if( popImmediate )
 	{
 
-		layout->hide( TRUE );
+		((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 		TheShell->shutdownComplete( layout );
 		return;
 
