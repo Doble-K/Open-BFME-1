@@ -13,10 +13,11 @@
 // those are ours. All three are DIR32 slots the verifier fills in from the
 // target, so none of them affect the bytes.
 //
-// CloudEffect next door is the same shape and stays unclaimed: its settings
-// struct is 0x90 bytes with non-trivial members, so the copy goes through a
-// compiler-generated operator= that nothing in the image names, and an
-// unresolved REL32 does not verify.
+// CloudEffect next door is the same shape. Its settings struct copies through a
+// compiler-generated operator= that nothing in the image names - which is how
+// it was landed: the generated body at 0x0040B430 spells the whole layout, so
+// reconstructing the struct from it makes MSVC generate the same function and
+// the pin names our own symbol. See CloudEffect.cpp.
 #include "PreRTS.h"
 #include "Common/INI.h"
 
