@@ -130,7 +130,6 @@ void W3DStatusCircle::Get_Obj_Space_Bounding_Box(AABoxClass & box) const
 	box.Init(minPt,maxPt);
 }
 
-// ?Class_ID@W3DStatusCircle@@UBEHXZ present-unmatched
 Int W3DStatusCircle::Class_ID(void) const
 {
 	return RenderObjClass::CLASSID_UNKNOWN;
