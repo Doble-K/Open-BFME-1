@@ -970,22 +970,10 @@ void W3DRadar::update( void )
 //-------------------------------------------------------------------------------------------------
 /** Reset the radar for the new map data being given to it */
 //-------------------------------------------------------------------------------------------------
-// ?newMap@W3DRadar@@UAEXPAVTerrainLogic@@@Z present-unmatched
 void W3DRadar::newMap( TerrainLogic *terrain )
 {
-
-	//
-	// extending functionality, call the base class ... this will cause a reset of the
-	// system which will clear out our textures but not free them
-	//
+	*reinterpret_cast<Bool *>(reinterpret_cast<char *>(this) + 0x146c) = TRUE;
 	Radar::newMap( terrain );
-
-	// sanity
-	if( terrain == NULL )
-		return;
-
-	// build terrain texture
-	buildTerrainTexture( terrain );
 
 }  // end newMap
 

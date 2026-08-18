@@ -72213,3 +72213,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?W3DRadarResetUnlock@@YAXXZ,0x00905B10,W3DRadar reset direct-call device unlock
 ?setObjectsShouldReceiveDifficultyBonus@ScriptEngine@@QAEX_N@Z,0x000126BB,GameLogic::prepareNewGame direct-call ILT thunk
 ?hide@Shell@@QAEX_N@Z,0x000428ED,GameLogic::prepareNewGame direct-call ILT thunk
+?newMap@Radar@@UAEXPAVTerrainLogic@@@Z,0x000386AE,W3DRadar newMap retail base thunk
