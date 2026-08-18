@@ -28,8 +28,13 @@
 //   0x0050ACC0 + 0x150 = 0x0050AE10  "WOLStatusMenu.wnd:..."
 //
 // Four for four, and Zero Hour spells all four bodies as the same two lines.
+//
 // The sixth copy, 0x004FEFE0, has nothing 0x150 above it that pushes a literal,
-// so it stays unclaimed.
+// and the ordering fact could not place it.  The FunctionLexicon table does:
+// retail wires every .wnd callback by name through a (const char *, function,
+// 0) triple in .data, and the triple at 0x012A9CC8 names "WOLLocaleSelectShutdown"
+// against the ILT thunk at 0x0041500F, which jumps to 0x004FEFE0.  That is the
+// binary naming the body itself, not an inference from adjacency.
 // WindowLayout::hide is virtual in BFME at vtable slot 0x10 -- the fifth file
 // today to say so -- and Shell::shutdownComplete takes a second argument the
 // reference does not have; retail passes FALSE.
@@ -87,6 +92,15 @@ void WOLMessageWindowShutdown( WindowLayout *layout, void *userData )
 }
 
 void WOLQMScoreScreenShutdown( WindowLayout *layout, void *userData )
+{
+	// hide menu
+	((BfmeVirtualHideLayout *)layout)->hide( true );
+
+	// our shutdown is complete
+	TheShell->shutdownComplete( layout, false );
+}
+
+void WOLLocaleSelectShutdown( WindowLayout *layout, void *userData )
 {
 	// hide menu
 	((BfmeVirtualHideLayout *)layout)->hide( true );
