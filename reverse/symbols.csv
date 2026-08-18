@@ -72217,3 +72217,6 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?awardInitialCaptureBonus@AutoDepositUpdate@@QAEXPAVPlayer@@@Z,0x00038A87,Player::becomingTeamMember direct-call ILT thunk
 ?localApplyBattlePlanBonusesToObject@@YAXPAVObject@@PAX@Z,0x000D5A40,Player::becomingTeamMember retail helper
 ?removeBattlePlanBonusesForObject@Player@@QBEXPAVObject@@@Z,0x0002017B,Player::becomingTeamMember direct-call ILT thunk
+?getVisionRange@Object@@QBEMXZ,0x00014B4B,AIMoveAwayFromRepulsorsState::onEnter direct-call ILT thunk
+?findClosestRepulsor@AI@@QAEPAVObject@@PBV2@M@Z,0x0002BDB4,AIMoveAwayFromRepulsorsState::onEnter direct-call ILT thunk
+?requestSafePath@AIUpdateInterface@@QAEXW4ObjectID@@@Z,0x00001410,AIMoveAwayFromRepulsorsState::onEnter direct-call ILT thunk
