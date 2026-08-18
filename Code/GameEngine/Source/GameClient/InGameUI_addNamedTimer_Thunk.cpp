@@ -1,246 +1,145 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class AsciiString;
+#include <map>
+
+typedef int Int;
+typedef float Real;
+typedef unsigned char Bool;
+typedef unsigned int Color;
+
+class AsciiString
+{
+public:
+	AsciiString() : m_data(0) {}
+	AsciiString(const AsciiString &other);
+	~AsciiString();
+	AsciiString &operator=(const AsciiString &other);
+	bool operator<(const AsciiString &other) const;
+
+private:
+	void *m_data;
+};
+
 class UnicodeString;
+
+template <class T>
+class StringBase
+{
+private:
+	friend class UnicodeString;
+
+	StringBase(const StringBase<T> &other);
+	~StringBase();
+
+protected:
+	StringBase() : m_data(0) {}
+
+private:
+	void *m_data;
+};
+
+class UnicodeString : public StringBase<unsigned short>
+{
+public:
+	UnicodeString() {}
+	UnicodeString(const UnicodeString &other) : StringBase<unsigned short>(other) {}
+	~UnicodeString() {}
+	UnicodeString &operator=(const UnicodeString &other);
+
+	static UnicodeString TheEmptyString;
+};
+
+class GameFont;
+
+class DisplayString
+{
+public:
+	virtual void slot00();
+	virtual void setText(UnicodeString text);
+	virtual void slot08();
+	virtual void slot0C();
+	virtual void slot10();
+	virtual void reset();
+	virtual void setFont(GameFont *font);
+};
+
+class DisplayStringManager
+{
+public:
+	virtual void slot00(); virtual void slot04(); virtual void slot08();
+	virtual void slot0C(); virtual void slot10(); virtual void slot14();
+	virtual void slot18(); virtual void slot1C(); virtual void slot20();
+	virtual DisplayString *newDisplayString();
+};
+
+class GlobalLanguageData
+{
+public:
+	Int adjustFontSize(Int pointSize);
+};
+
+class FontLibrary
+{
+public:
+	GameFont *getFont(AsciiString *name, Real pointSize, Bool bold);
+};
+
+extern DisplayStringManager *TheDisplayStringManager;
+extern GlobalLanguageData *TheGlobalLanguageData;
+extern FontLibrary *TheFontLibrary;
+
+class NamedTimerInfo
+{
+public:
+	virtual ~NamedTimerInfo();
+
+	AsciiString m_timerName;
+	UnicodeString timerText;
+	DisplayString *displayString;
+	unsigned int timestamp;
+	Color color;
+	Bool isCountdown;
+};
+
+typedef std::map<AsciiString, NamedTimerInfo *> NamedTimerMap;
+
+struct BfmeInGameUINamedTimerLayout
+{
+	unsigned char m_unreconstructed_000[0x77C];
+	NamedTimerMap m_namedTimers;
+	unsigned char m_unreconstructed_788[0x1C];
+	AsciiString m_namedTimerNormalFont;
+	Int m_namedTimerNormalPointSize;
+	Bool m_namedTimerNormalBold;
+	unsigned char m_unreconstructed_7AD[3];
+	Color m_namedTimerNormalColor;
+};
+
 class InGameUI
 {
 public:
-	void addNamedTimer(const AsciiString &, const UnicodeString &, bool);
+	void addNamedTimer(const AsciiString &timerName, const UnicodeString &text, bool isCountdown);
+	void removeNamedTimer(const AsciiString &timerName);
 };
 
-// ?addNamedTimer@InGameUI@@QAEXABVAsciiString@@ABVUnicodeString@@_N@Z
-__declspec(naked) void InGameUI::addNamedTimer(const AsciiString &, const UnicodeString &, bool)
+// BFME kept this block at the older offsets while Zero Hour grew InGameUI substantially.
+void InGameUI::addNamedTimer(const AsciiString &timerName, const UnicodeString &text, bool isCountdown)
 {
-	__asm {
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0xe3
-        __emit 0x71
-        __emit 0x43
-        __emit 0x00
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x74
-        __emit 0x0e
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x58
-        __emit 0x57
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x89
-        __emit 0x70
-        __emit 0x04
-        __emit 0x89
-        __emit 0x70
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x53
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x04
-        __emit 0xe8
-        __emit 0x1f
-        __emit 0xcf
-        __emit 0x43
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x87
-        __emit 0xb0
-        __emit 0x07
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x89
-        __emit 0x46
-        __emit 0x14
-        __emit 0xe8
-        __emit 0xa9
-        __emit 0xd7
-        __emit 0x43
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xcc
-        __emit 0x12
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x24
-        __emit 0x89
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0xff
-        __emit 0x52
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x97
-        __emit 0xa8
-        __emit 0x07
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x28
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x8a
-        __emit 0x8f
-        __emit 0xac
-        __emit 0x07
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x84
-        __emit 0x14
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x52
-        __emit 0xe8
-        __emit 0xab
-        __emit 0xa0
-        __emit 0xbb
-        __emit 0xff
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0xdb
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x38
-        __emit 0x1b
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x87
-        __emit 0xa4
-        __emit 0x07
-        __emit 0x00
-        __emit 0x00
-        __emit 0xd9
-        __emit 0x1c
-        __emit 0x24
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xe9
-        __emit 0xfd
-        __emit 0xbb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0x50
-        __emit 0xff
-        __emit 0x55
-        __emit 0x18
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x68
-        __emit 0x54
-        __emit 0x6e
-        __emit 0x33
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x0e
-        __emit 0xd6
-        __emit 0x43
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x04
-        __emit 0x8a
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x53
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x88
-        __emit 0x46
-        __emit 0x18
-        __emit 0xe8
-        __emit 0x32
-        __emit 0xc1
-        __emit 0xbf
-        __emit 0xff
-        __emit 0x53
-        __emit 0x8d
-        __emit 0x8f
-        __emit 0x7c
-        __emit 0x07
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x81
-        __emit 0x06
-        __emit 0xc0
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x30
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
-	}
+	BfmeInGameUINamedTimerLayout *ui = reinterpret_cast<BfmeInGameUINamedTimerLayout *>(this);
+	NamedTimerInfo *info = new NamedTimerInfo;
+	info->m_timerName = timerName;
+	info->color = ui->m_namedTimerNormalColor;
+	info->timerText = text;
+	info->displayString = TheDisplayStringManager->newDisplayString();
+	info->displayString->reset();
+	info->displayString->setFont(TheFontLibrary->getFont(&ui->m_namedTimerNormalFont,
+		(Real)TheGlobalLanguageData->adjustFontSize(ui->m_namedTimerNormalPointSize),
+		ui->m_namedTimerNormalBold));
+	info->displayString->setText(UnicodeString::TheEmptyString);
+	info->timestamp = -1;
+	info->isCountdown = isCountdown;
+
+	removeNamedTimer(timerName);
+	ui->m_namedTimers[timerName] = info;
 }

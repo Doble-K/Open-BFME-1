@@ -72194,3 +72194,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?DeinitLanGameGadgets@@YAXXZ,0x00024613,ILT thunk to body 0x004CB010
 ?isGamePaused@BfmeGameLogicPause@@QAE_NXZ,0x00022C96,derived from the REL32 displacement at 0x004DF520
 ?populateSaveGameListbox@BfmeGameStateSaveList@@QAEXPAVGameWindow@@W4SaveLoadLayoutType@@@Z,0x0004209B,ILT thunk to the body at 0x00111DB0 which ends ret 8
+?removeNamedTimer@InGameUI@@QAEXABVAsciiString@@@Z,0x00046F42,addNamedTimer retail call site; ILT thunk to body 0x0044A1B0
+??A?$map@VAsciiString@@PAVNamedTimerInfo@@U?$less@VAsciiString@@@_STL@@V?$allocator@U?$pair@$$CBVAsciiString@@PAVNamedTimerInfo@@@_STL@@@4@@_STL@@QAEAAPAVNamedTimerInfo@@ABVAsciiString@@@Z,0x0004B49D,addNamedTimer retail call site; ILT thunk to body 0x0044A860
