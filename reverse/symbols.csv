@@ -72230,6 +72230,7 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?updateScorches@BaseHeightMapScorchUpdater@@QAEXXZ,0x00032966,BaseHeightMap scorch update ILT thunk
 ?BaseHeightMapScorchSetShader@@YAXABVShaderClass@@@Z,0x000173C3,BaseHeightMap drawScorches shader ILT thunk
 ?BaseHeightMapScorchSetZBias@@YAXH@Z,0x00905AB0,BaseHeightMap drawScorches integer Z-bias helper
+?writeByte@DataChunkOutput@@QAEXD@Z,0x00010983,WriteScriptDataChunk direct-call ILT thunk
 ?BaseHeightMapScorchStageChanges@@3IA,0x01340568,BaseHeightMap drawScorches sampler-state counter
 ?resize@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEXI_N@Z,0x00038ED3,BaseHeightMap visible-cliff bit vector resize ILT thunk
 ?evaluateAsVisibleCliff@BaseHeightMapRenderObjClass@@QAE_NHHM@Z,0x00004AFC,BaseHeightMap visible-cliff evaluator ILT thunk
