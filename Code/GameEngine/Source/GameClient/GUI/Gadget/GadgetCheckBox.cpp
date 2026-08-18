@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/stringbaseunicode /Ireference/shims/stringbaseascii /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -72,6 +72,71 @@
 ///////////////////////////////////////////////////////////////////////////////
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+//-------------------------------------------------------------------------------------------------
+// Two BFME drifts the checkbox input callback needs. winNextTab and winPrevTab
+// are vtable slots 0x94 and 0x98 of GameWindowManager, and the tab direction
+// comes from a shift flag: retail reads bit 0x10 of the byte at +8 of the
+// keyboard singleton at 0x012F4C50. Only the offset and the bit are
+// recoverable from the call site, so the reader is named for them.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualTabWindowManager
+{
+public:
+	virtual void slot000() = 0;
+	virtual void slot004() = 0;
+	virtual void slot008() = 0;
+	virtual void slot00C() = 0;
+	virtual void slot010() = 0;
+	virtual void slot014() = 0;
+	virtual void slot018() = 0;
+	virtual void slot01C() = 0;
+	virtual void slot020() = 0;
+	virtual void slot024() = 0;
+	virtual void slot028() = 0;
+	virtual void slot02C() = 0;
+	virtual void slot030() = 0;
+	virtual void slot034() = 0;
+	virtual void slot038() = 0;
+	virtual void slot03C() = 0;
+	virtual void slot040() = 0;
+	virtual void slot044() = 0;
+	virtual void slot048() = 0;
+	virtual void slot04C() = 0;
+	virtual void slot050() = 0;
+	virtual void slot054() = 0;
+	virtual void slot058() = 0;
+	virtual void slot05C() = 0;
+	virtual void slot060() = 0;
+	virtual void slot064() = 0;
+	virtual void slot068() = 0;
+	virtual void slot06C() = 0;
+	virtual void slot070() = 0;
+	virtual void slot074() = 0;
+	virtual void slot078() = 0;
+	virtual void slot07C() = 0;
+	virtual void slot080() = 0;
+	virtual void slot084() = 0;
+	virtual void slot088() = 0;
+	virtual void slot08C() = 0;
+	virtual void slot090() = 0;
+	virtual void winNextTab( GameWindow *window ) = 0;   // slot 0x94
+	virtual void winPrevTab( GameWindow *window ) = 0;   // slot 0x98
+};
+
+class BfmeKeyboardModifiers
+{
+public:
+	char m_pad[8];
+	unsigned char m_flagsAt8;
+};
+
+extern BfmeKeyboardModifiers *TheBfmeKeyboardModifiers;
+
+static Bool bfmeShiftHeld( void )
+{
+	return BitTest( TheBfmeKeyboardModifiers->m_flagsAt8, 0x10 );
+}
+
 
 // GadgetCheckBoxInput ========================================================
 /** Handle input for check box */
@@ -212,27 +277,23 @@ WindowMsgHandledType GadgetCheckBoxInput( GameWindow *window, UnsignedInt msg,
 				}  // end enter/space
 
 				// --------------------------------------------------------------------
-				case KEY_DOWN:
-				case KEY_RIGHT:
+				// BFME keeps only TAB here - no DOWN/RIGHT and no UP/LEFT case at all -
+				// and picks the direction from the shift modifier instead. Three cases
+				// is why retail compares 0x0F, 0x1C and 0x39 in a chain where the Zero
+				// Hour set compiles to a jump table.
 				case KEY_TAB:
 				{
 
 					if( BitTest( mData2, KEY_STATE_DOWN ) )
-						TheWindowManager->winNextTab(window);
+					{
+						if( bfmeShiftHeld() )
+							((BfmeVirtualTabWindowManager *)TheWindowManager)->winPrevTab(window);
+						else
+							((BfmeVirtualTabWindowManager *)TheWindowManager)->winNextTab(window);
+					}
 					break;
 
-				}  // end down, right, tab
-
-				// --------------------------------------------------------------------
-				case KEY_UP:
-				case KEY_LEFT:
-				{
-
-					if( BitTest( mData2, KEY_STATE_DOWN ) )
-						TheWindowManager->winPrevTab(window);
-					break;
-
-				}  // end up, left
+				}  // end tab
 
 				// --------------------------------------------------------------------
 				default:
