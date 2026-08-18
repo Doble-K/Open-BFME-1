@@ -72218,6 +72218,9 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?TheW3DRadarFormatCaps@@3PAVW3DRadarFormatCaps@@A,0x00F40578,W3DRadar BFME caps singleton ABI shim
 ?findFormat@@YA?AW4WW3DFormat@@QBW41@@Z,0x006C09B0,W3DRadar retail texture format selector
 ?update@Radar@@UAEXXZ,0x00030E77,W3DRadar update retail base thunk
+?updateCenter@BaseHeightMapUpdateNoArgs@@QAEXXZ,0x0003BECB,BaseHeightMap retail road update thunk
+?updateCenter@BaseHeightMapUpdateCamera@@QAEXPAVCameraClass@@@Z,0x00017C56,BaseHeightMap retail terrain update thunk
+?updateCenter@BaseHeightMapUpdateBridge@@QAEXPAVCameraClass@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x00015C49,BaseHeightMap retail bridge update thunk
 ?awardInitialCaptureBonus@AutoDepositUpdate@@QAEXPAVPlayer@@@Z,0x00038A87,Player::becomingTeamMember direct-call ILT thunk
 ?localApplyBattlePlanBonusesToObject@@YAXPAVObject@@PAX@Z,0x000D5A40,Player::becomingTeamMember retail helper
 ?removeBattlePlanBonusesForObject@Player@@QBEXPAVObject@@@Z,0x0002017B,Player::becomingTeamMember direct-call ILT thunk

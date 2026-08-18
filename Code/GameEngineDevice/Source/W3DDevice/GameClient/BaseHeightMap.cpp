@@ -3498,36 +3498,77 @@ rendered portion of the terrain.  Only a 96x96 section is rendered at any time,
 even though maps can be up to 1024x1024.  This function determines which subset
 is rendered. */
 //=============================================================================
-// ?updateCenter@BaseHeightMapRenderObjClass@@UAEXPAVCameraClass@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z present-unmatched
+class BaseHeightMapUpdateNoArgs
+{
+public:
+	void updateCenter();
+};
+
+class BaseHeightMapUpdateBridge
+{
+public:
+	void updateCenter(CameraClass *camera, RefRenderObjListIterator *lights);
+};
+
+class BaseHeightMapUpdateCamera
+{
+public:
+	void updateCenter(CameraClass *camera);
+};
+
 void BaseHeightMapRenderObjClass::updateCenter(CameraClass *camera , RefRenderObjListIterator *pLightsIterator)
 {
-	if (m_map==NULL) {
+	// BFME added terrain buffers and uses a substantially larger layout than Zero Hour.
+	char *heightMap = reinterpret_cast<char *>(this);
+	if (*reinterpret_cast<void **>(heightMap + 0x2ff4) == NULL) {
 		return;
 	}
-	if (m_updating) {
+	if (*reinterpret_cast<unsigned char *>(heightMap + 0x2ff9)) {
 		return;
 	}
 
-	if (m_treeBuffer) {
-		m_treeBuffer->doFullUpdate();	// Tell the trees to update for view change.
+	void *buffer = *reinterpret_cast<void **>(heightMap + 0x3094);
+	if (buffer) {
+		*reinterpret_cast<unsigned char *>(reinterpret_cast<char *>(buffer) + 0x2a7cb6) = 1;
 	}
-	if (m_propBuffer) {
-		m_propBuffer->doFullUpdate();	// Tell the trees to update for view change.
+	buffer = *reinterpret_cast<void **>(heightMap + 0x3098);
+	if (buffer) {
+		*reinterpret_cast<unsigned char *>(reinterpret_cast<char *>(buffer) + 0x1e1cce) = 1;
 	}
-	m_updating = true;
-#ifdef DO_ROADS
-	if (m_roadBuffer) {
-		m_roadBuffer->updateCenter();
+	W3DPropBuffer *prop = *reinterpret_cast<W3DPropBuffer **>(heightMap + 0x309c);
+	if (prop) {
+		prop->doFullUpdate();
 	}
-#endif
-	if (m_needFullUpdate) {
-		m_bridgeBuffer->doFullUpdate();
-		m_bridgeBuffer->updateCenter(camera, pLightsIterator);
-		m_updating = false;
-		return;
+
+	*reinterpret_cast<unsigned char *>(heightMap + 0x2ff9) = 1;
+	BaseHeightMapUpdateNoArgs *road =
+		*reinterpret_cast<BaseHeightMapUpdateNoArgs **>(heightMap + 0x30ac);
+	if (road) {
+		road->updateCenter();
 	}
-	m_bridgeBuffer->updateCenter(camera, pLightsIterator);
-	m_updating = false;
+
+	if (*reinterpret_cast<unsigned char *>(heightMap + 0x3009)) {
+		W3DBridgeBuffer *bridge = *reinterpret_cast<W3DBridgeBuffer **>(heightMap + 0x30b0);
+		if (bridge) {
+			bridge->doFullUpdate();
+		}
+		BaseHeightMapUpdateCamera *terrain =
+			*reinterpret_cast<BaseHeightMapUpdateCamera **>(heightMap + 0x30a4);
+		if (terrain) {
+			*reinterpret_cast<unsigned char *>(reinterpret_cast<char *>(terrain) + 0x29) = 1;
+		}
+	}
+	BaseHeightMapUpdateBridge *bridge =
+		*reinterpret_cast<BaseHeightMapUpdateBridge **>(heightMap + 0x30b0);
+	if (bridge) {
+		bridge->updateCenter(camera, pLightsIterator);
+	}
+	BaseHeightMapUpdateCamera *terrain =
+		*reinterpret_cast<BaseHeightMapUpdateCamera **>(heightMap + 0x30a4);
+	if (terrain) {
+		terrain->updateCenter(camera);
+	}
+	*reinterpret_cast<unsigned char *>(heightMap + 0x2ff9) = 0;
 }
 
 //=============================================================================
