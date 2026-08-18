@@ -297,3 +297,27 @@ void * __stdcall createAptScreenWOLQuickMatchMenu( void *context )
 {
 	return new BfmeQuickMatchScreen( context );
 }
+
+// OnlineProfile, retail 0x0055BBA0, object 0x3C bytes. Two departures from the
+// rest: it is __cdecl rather than __stdcall - retail returns with a bare ret -
+// and it refuses to build a second one, returning null when the singleton at
+// 0x012F4AB4 is already set.
+class BfmeOnlineProfileScreen
+{
+public:
+	BfmeOnlineProfileScreen( void *context );
+
+private:
+	char m_unmodelled[ 0x3C ];
+};
+
+extern void *TheBfmeOnlineProfileSlot;   // 0x012F4AB4
+
+// ?createAptScreenOnlineProfile@@YAPAXPAX@Z
+void *createAptScreenOnlineProfile( void *context )
+{
+	if( TheBfmeOnlineProfileSlot )
+		return 0;
+
+	return new BfmeOnlineProfileScreen( context );
+}
