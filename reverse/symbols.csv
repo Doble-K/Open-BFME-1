@@ -68272,7 +68272,7 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?shutdown@TerrainTracksShutdownShim@@QAEXXZ,0x0072EDF0,TerrainTracksRenderObjClassSystem::shutdown incremental-link thunk target through a TU-local forwarding shim
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,0x000319CB
 ?shutdown@WaterTracksShutdownShim@@QAEXXZ,0x007AC560,WaterTracksRenderSystem::shutdown incremental-link thunk target through a TU-local forwarding shim
-?shutdownComplete@@YAXPAVWindowLayout@@@Z,0x004FFA40,WOLLoginMenuShutdown static helper
+?shutdownCompleteWOLLoginMenu@@YAXPAVWindowLayout@@@Z,0x004FFA40,per-TU static; retail ?shutdownComplete@@YAXPAVWindowLayout@@@Z in WOLLoginMenu.cpp renamed in source so one key means one body
 ?shutdownComplete@Shell@@QAEXPAVWindowLayout@@H@Z,0x00002F1D,Shell push immediate-completion thunk
 ?spin@LockClass@FastCriticalSectionClass@@CIXPAI@Z,0x00026FA8,FastCriticalSectionClass::LockClass spin-acquire (shared out-of-line body reached via ILT thunk); StringClass locks resolve here
 ?start@W3DShaderManagerStartRenderToTextureShim@@SAXXZ,0x007171F0,W3DShaderManager incremental-link static thunk target through a TU-local forwarding shim

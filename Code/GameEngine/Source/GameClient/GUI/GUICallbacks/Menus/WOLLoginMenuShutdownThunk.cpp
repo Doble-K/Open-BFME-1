@@ -63,7 +63,13 @@ static Bool loggedInOK;
 static GameSpyLoginPreferences *loginPref;
 static char *nextScreen;
 
-static __declspec(noinline) void shutdownComplete(WindowLayout *layout)
+// Retail spells this `static void shutdownComplete(WindowLayout *)`, but that
+// name is file-scoped and ~30 menu TUs each define their own. symbols.csv is a
+// flat name->address map with no room for two meanings of one key, so the
+// resolver would pick whichever copy happened to reproduce a displacement
+// first. Spelled per-TU here so the pin is unambiguous; retail symbol is
+// ?shutdownComplete@@YAXPAVWindowLayout@@@Z in WOLLoginMenu.cpp @0x004FFA40.
+static __declspec(noinline) void shutdownCompleteWOLLoginMenu(WindowLayout *layout)
 {
     isShuttingDown = false;
     layout->hide(true);
@@ -99,7 +105,7 @@ void WOLLoginMenuShutdown(WindowLayout *layout, void *userData)
     Bool popImmediate = *(Bool *)userData;
     if (popImmediate)
     {
-        shutdownComplete(layout);
+        shutdownCompleteWOLLoginMenu(layout);
         return;
     }
 
