@@ -1,233 +1,135 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: preserve the retail payload layout and STLPort growth path.
 
-class INI;
+extern "C" unsigned int __cdecl strlen(const char *text);
+#pragma intrinsic(strlen)
+
+inline void *__cdecl operator new(unsigned int, void *place)
+{
+    return place;
+}
+
+inline void __cdecl operator delete(void *, void *)
+{
+}
+
+class INI
+{
+public:
+    const char *getNextToken(const char *separators);
+    const char *getNextTokenOrNull(const char *separators);
+    static int scanInt(const char *text);
+};
+
+class AsciiString;
+
+template <typename T>
+class StringBase
+{
+    T *m_text;
+
+    friend class AsciiString;
+    StringBase(const StringBase<T> &that);
+
+public:
+    void set(const T *text, int length);
+};
+
+class AsciiString
+{
+    char *m_text;
+
+public:
+    AsciiString() { m_text = 0; }
+    AsciiString(const AsciiString &that)
+    {
+        ((StringBase<char> *)this)->StringBase<char>::StringBase(
+            *(const StringBase<char> *)&that);
+    }
+    ~AsciiString();
+    void set(const char *text)
+    {
+        ((StringBase<char> *)this)->set(text, text ? strlen(text) : 0);
+    }
+};
+
+namespace _STL
+{
+struct __false_type
+{
+};
+
+template <typename Destination, typename Source>
+__declspec(noinline) void _Construct(Destination *place, const Source &value)
+{
+    new (place) Destination(value);
+}
+
+template <typename T>
+class allocator
+{
+};
+
+template <typename T, typename Allocator>
+class vector
+{
+    T *m_start;
+    T *m_finish;
+    T *m_end;
+
+protected:
+    void _M_insert_overflow(T *position, const T &value,
+                            const __false_type &, unsigned int count,
+                            bool atEnd);
+
+public:
+    void push_back(const T &value)
+    {
+        T *end = m_end;
+        T *finish = m_finish;
+        if (finish != end)
+        {
+            _Construct(finish, value);
+            ++m_finish;
+        }
+        else
+        {
+            __false_type tag;
+            _M_insert_overflow(finish, value, tag, 1, true);
+        }
+    }
+};
+}
+
 class DeliverPayloadNugget
 {
 public:
-	static void __cdecl parsePayload(INI *, void *, void *, const void *);
+    struct Payload
+    {
+        AsciiString m_payloadName;
+        int m_payloadCount;
+
+        Payload() {}
+    };
+
+    static void __cdecl parsePayload(INI *ini, void *instance, void *,
+                                     const void *);
+
+private:
+    char m_beforePayload[0x1c];
+    _STL::vector<Payload, _STL::allocator<Payload> > m_payload;
 };
 
-// ?parsePayload@DeliverPayloadNugget@@SAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl DeliverPayloadNugget::parsePayload(INI *, void *, void *, const void *)
+void __cdecl DeliverPayloadNugget::parsePayload(INI *ini, void *instance,
+                                                 void *, const void *)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x88
-        __emit 0x24
-        __emit 0x01
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x89
-        __emit 0x0c
-        __emit 0x5b
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0xe8
-        __emit 0xce
-        __emit 0x0c
-        __emit 0x5b
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x24
-        __emit 0x29
-        __emit 0x5b
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x05
-        __emit 0xb8
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x74
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xc7
-        __emit 0x8d
-        __emit 0x50
-        __emit 0x01
-        __emit 0x8a
-        __emit 0x08
-        __emit 0x40
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x75
-        __emit 0xf9
-        __emit 0x2b
-        __emit 0xc2
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x50
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0xe8
-        __emit 0xe5
-        __emit 0x7f
-        __emit 0x5e
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x20
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x74
-        __emit 0x15
-        __emit 0x51
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x94
-        __emit 0xa6
-        __emit 0xd9
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0x89
-        __emit 0x46
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x12
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x52
-        __emit 0x51
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xab
-        __emit 0xf2
-        __emit 0xd8
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xb8
-        __emit 0x7b
-        __emit 0x5e
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
-	}
+    DeliverPayloadNugget *self = (DeliverPayloadNugget *)instance;
+    const char *name = ini->getNextToken(0);
+    const char *countText = ini->getNextTokenOrNull(0);
+    int count = countText ? INI::scanInt(countText) : 1;
+
+    Payload payload;
+    payload.m_payloadCount = count;
+    payload.m_payloadName.set(name);
+    self->m_payload.push_back(payload);
 }
