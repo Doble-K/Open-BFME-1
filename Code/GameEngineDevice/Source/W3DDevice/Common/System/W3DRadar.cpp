@@ -888,34 +888,71 @@ void W3DRadar::init( void )
 //-------------------------------------------------------------------------------------------------
 /** Reset the radar to the initial empty state ready for new data */
 //-------------------------------------------------------------------------------------------------
-// ?reset@W3DRadar@@UAEXXZ present-unmatched
+// BFME's value surfaces and radar layout differ from the shared Zero Hour headers.
+class W3DRadarResetSurface
+{
+public:
+	~W3DRadarResetSurface();
+	void clear( UnsignedInt color );
+
+private:
+	void *m_surface;
+};
+
+class W3DRadarResetTexture
+{
+public:
+	W3DRadarResetSurface getSurfaceLevel();
+};
+
+class W3DRadarResetTextureRef
+{
+public:
+	void releaseRef();
+};
+
+class W3DRadarResetVirtuals
+{
+public:
+	virtual void slot00();
+	virtual void slot04();
+	virtual void slot08();
+	virtual void slot0C();
+	virtual void slot10();
+	virtual void slot14();
+	virtual void slot18();
+	virtual void slot1C();
+	virtual void slot20();
+	virtual void slot24();
+	virtual void slot28();
+};
+
+extern void W3DRadarResetLock();
+extern void W3DRadarResetUnlock();
+
 void W3DRadar::reset( void )
 {
-
-	// extending functionality, call base class
 	Radar::reset();
+	W3DRadarResetLock();
 
-	// clear our texture data, but do not delete the resources
-	SurfaceClass *surface;
+	char *radar = reinterpret_cast<char *>(this) + 4;
+	reinterpret_cast<W3DRadarResetTexture *>(radar + 0x1474)->getSurfaceLevel().clear(0);
+	reinterpret_cast<W3DRadarResetTexture *>(radar + 0x1484)->getSurfaceLevel().clear(0);
 
-	surface = m_terrainTexture->Get_Surface_Level();
-	if( surface )
+	W3DRadarResetTextureRef *&texture =
+		*reinterpret_cast<W3DRadarResetTextureRef **>(radar + 0x1478);
+	if (texture)
 	{
-		surface->Clear();
-		REF_PTR_RELEASE(surface);
+		texture->releaseRef();
+		texture = NULL;
 	}
 
-	surface = m_overlayTexture->Get_Surface_Level();
-	if( surface )
-	{
-		surface->Clear();
-		REF_PTR_RELEASE(surface);
-	}
-
-	// don't call Clear(); that wips to transparent. do this instead.
-	//gs Dude, it's called CLEARshroud.  It needs to clear the shroud.
-	clearShroud();
-	
+	W3DRadarResetVirtuals *virtuals =
+		reinterpret_cast<W3DRadarResetVirtuals *>(this);
+	virtuals->slot20();
+	virtuals->slot28();
+	*reinterpret_cast<Bool *>(radar + 0x1468) = TRUE;
+	W3DRadarResetUnlock();
 }  // end reset
 
 //-------------------------------------------------------------------------------------------------

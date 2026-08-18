@@ -72205,3 +72205,9 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?getPlayerName@ConnectionManager@@QAE?AVUnicodeString@@H@Z,0x00012A62,DisconnectManager::disconnectPlayer direct-call ILT thunk
 ?removePlayer@DisconnectMenu@@QAEXHVUnicodeString@@@Z,0x0003F233,DisconnectManager::disconnectPlayer direct-call ILT thunk
 ?disconnectPlayer@ConnectionManager@@QAE?AW4PlayerLeaveCode@@H@Z,0x00028D5D,DisconnectManager::disconnectPlayer direct-call ILT thunk
+?W3DRadarResetLock@@YAXXZ,0x00903090,W3DRadar reset direct-call device lock
+?getSurfaceLevel@W3DRadarResetTexture@@QAE?AVW3DRadarResetSurface@@XZ,0x0090E670,W3DRadar reset BFME value-surface accessor
+?clear@W3DRadarResetSurface@@QAEXI@Z,0x008FC830,W3DRadar reset BFME value-surface clear
+??1W3DRadarResetSurface@@QAE@XZ,0x008FC5B0,W3DRadar reset BFME value-surface destructor
+?releaseRef@W3DRadarResetTextureRef@@QAEXXZ,0x009EB7A0,W3DRadar reset texture release ABI shim
+?W3DRadarResetUnlock@@YAXXZ,0x00905B10,W3DRadar reset direct-call device unlock
