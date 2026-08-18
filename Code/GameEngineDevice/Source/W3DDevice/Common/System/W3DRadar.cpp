@@ -141,39 +141,80 @@ void W3DRadar::initializeTextureFormats( void )
 //-------------------------------------------------------------------------------------------------
 /** Delete resources used specifically in this W3D radar implemetation */
 //-------------------------------------------------------------------------------------------------
-// ?deleteResources@W3DRadar@@IAEXXZ present-unmatched
+// BFME owns additional texture references and icon images absent from the shared Zero Hour layout.
+class W3DRadarResetTextureRef
+{
+public:
+	void releaseRef();
+};
+
+class W3DRadarDeleteImage
+{
+public:
+	virtual ~W3DRadarDeleteImage();
+};
+
 void W3DRadar::deleteResources( void )
 {
+	char *radar = reinterpret_cast<char *>(this);
+	W3DRadarResetTextureRef *&texture0 =
+		*reinterpret_cast<W3DRadarResetTextureRef **>(radar + 0x1478);
+	if (texture0)
+	{
+		texture0->releaseRef();
+		texture0 = NULL;
+	}
+	W3DRadarDeleteImage *&image0 = *reinterpret_cast<W3DRadarDeleteImage **>(radar + 0x1474);
+	delete image0;
+	image0 = NULL;
 
-	//
-	// delete terrain resources used
-	//
-	if( m_terrainTexture )
-		m_terrainTexture->Release_Ref();
-	m_terrainTexture = NULL;
-	if( m_terrainImage )
-		m_terrainImage->deleteInstance();
-	m_terrainImage = NULL;
+	W3DRadarResetTextureRef *&texture1 =
+		*reinterpret_cast<W3DRadarResetTextureRef **>(radar + 0x1488);
+	if (texture1)
+	{
+		texture1->releaseRef();
+		texture1 = NULL;
+	}
+	W3DRadarDeleteImage *&image1 = *reinterpret_cast<W3DRadarDeleteImage **>(radar + 0x1484);
+	delete image1;
+	image1 = NULL;
 
-	//
-	// delete overlay resources used
-	//
-	if( m_overlayTexture )
-		m_overlayTexture->Release_Ref();
-	m_overlayTexture = NULL;
-	if( m_overlayImage )
-		m_overlayImage->deleteInstance();
-	m_overlayImage = NULL;
+	W3DRadarResetTextureRef *&texture2 =
+		*reinterpret_cast<W3DRadarResetTextureRef **>(radar + 0x1494);
+	if (texture2)
+	{
+		texture2->releaseRef();
+		texture2 = NULL;
+	}
+	W3DRadarDeleteImage *&image2 = *reinterpret_cast<W3DRadarDeleteImage **>(radar + 0x1490);
+	delete image2;
+	image2 = NULL;
 
-	//
-	// delete shroud resources used
-	//
-	if( m_shroudTexture )
-		m_shroudTexture->Release_Ref();
-	m_shroudTexture = NULL;
-	if( m_shroudImage )
-		m_shroudImage->deleteInstance();
-	m_shroudImage = NULL;
+	W3DRadarResetTextureRef *&texture3 =
+		*reinterpret_cast<W3DRadarResetTextureRef **>(radar + 0x14a0);
+	if (texture3)
+	{
+		texture3->releaseRef();
+		texture3 = NULL;
+	}
+	W3DRadarDeleteImage *&image3 = *reinterpret_cast<W3DRadarDeleteImage **>(radar + 0x149c);
+	delete image3;
+	image3 = NULL;
+
+	W3DRadarResetTextureRef *&texture4 =
+		*reinterpret_cast<W3DRadarResetTextureRef **>(radar + 0x147c);
+	if (texture4)
+	{
+		texture4->releaseRef();
+		texture4 = NULL;
+	}
+
+	W3DRadarDeleteImage **images = reinterpret_cast<W3DRadarDeleteImage **>(radar + 0x14b0);
+	for (Int i = 11; i; --i, ++images)
+	{
+		delete *images;
+		*images = NULL;
+	}
 
 }  // end deleteResources
 
@@ -903,12 +944,6 @@ class W3DRadarResetTexture
 {
 public:
 	W3DRadarResetSurface getSurfaceLevel();
-};
-
-class W3DRadarResetTextureRef
-{
-public:
-	void releaseRef();
 };
 
 class W3DRadarResetVirtuals
