@@ -72292,3 +72292,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0BfmeAptScreenQuickMatchMenu@@QAE@PAX@Z,0x0001F0AF,ILT thunk to the QuickMatchMenu screen constructor
 ?setLeftMouseButton@BfmeSelectionTranslator@@QAEX_N@Z,0x0002F3A1,derived from the REL32 displacement at 0x00478F60
 ?setDragSelecting@BfmeSelectionTranslator@@QAEXXZ,0x000306DE,derived from the REL32 displacement at 0x00478F60
+?bfmeRegisterHouseColor@@YAXPBD0@Z,0x00900D70,the two-argument __cdecl function the HouseColor parser hands its two strings to; unnamed in the image
