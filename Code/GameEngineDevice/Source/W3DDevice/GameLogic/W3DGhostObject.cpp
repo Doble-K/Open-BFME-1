@@ -290,7 +290,6 @@ void W3DRenderObjectSnapshot::xfer( Xfer *xfer )
 // ------------------------------------------------------------------------------------------------
 /** Load post process */
 // ------------------------------------------------------------------------------------------------
-// ?loadPostProcess@W3DRenderObjectSnapshot@@MAEXXZ present-unmatched
 void W3DRenderObjectSnapshot::loadPostProcess( void )
 {
 
