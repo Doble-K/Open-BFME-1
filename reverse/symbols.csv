@@ -72275,3 +72275,18 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?doSend@NATProbeTransport@@QAEXXZ,0x00015D3E,NAT sendAProbe transport send ILT thunk
 ?nameToKey@NameKeyGenerator@@QAEIPBD@Z,0x0003ADD7,ILT thunk to the const char* overload body at 0x0008FFC0
 ??4CloudEffect@@QAEAAU0@ABU0@@Z,0x0000C662,ILT thunk to the compiler-generated assignment at 0x0040B430
+??0BfmeAptScreenMainMenu@@QAE@PAX@Z,0x0003A73D,ILT thunk to the screen constructor at 0x0051F3A0
+??0BfmeAptScreenLoadScreen@@QAE@PAX@Z,0x00039B6C,ILT thunk to the LoadScreen.apt screen constructor
+??0BfmeAptScreenLanLobby@@QAE@PAX@Z,0x0001FDA2,ILT thunk to the LanLobby.apt screen constructor
+??0BfmeAptScreenOnlineShell@@QAE@PAX@Z,0x00033EA1,ILT thunk to the OnlineShell.apt screen constructor
+??0BfmeAptScreenOptions@@QAE@PAX@Z,0x0000C059,ILT thunk to the Options.apt screen constructor
+??0BfmeAptScreenDisconnectScreen@@QAE@PAX@Z,0x0000BFB9,ILT thunk to the DisconnectScreen.apt screen constructor
+??0BfmeAptScreenSaveLoad@@QAE@PAX@Z,0x00003AD0,ILT thunk to the SaveLoad.apt screen constructor
+??0BfmeAptScreenSkirmish@@QAE@PAX@Z,0x000025C7,ILT thunk to the Skirmish.apt screen constructor
+??0BfmeAptScreenQuitMenu@@QAE@PAX@Z,0x00025153,ILT thunk to the QuitMenu.apt screen constructor
+??0BfmeAptScreenObjectives@@QAE@PAX@Z,0x0000508D,ILT thunk to the Objectives.apt and PlayerStatus.apt screen constructor
+??0BfmeAptScreenScoreScreen@@QAE@PAX@Z,0x00017233,ILT thunk to the ScoreScreen.apt screen constructor
+??0BfmeAptScreenCampaignReview@@QAE@PAX@Z,0x0003D09B,ILT thunk to the CampaignReview.apt screen constructor
+??0BfmeAptScreenInGameChat@@QAE@PAX@Z,0x0004A750,ILT thunk to the InGameChat.apt screen constructor
+??0BfmeAptScreenSpellStore@@QAE@PAX@Z,0x00036647,ILT thunk to the SpellStore.apt screen constructor
+??0BfmeAptScreenQuickMatchMenu@@QAE@PAX@Z,0x0001F0AF,ILT thunk to the QuickMatchMenu screen constructor
