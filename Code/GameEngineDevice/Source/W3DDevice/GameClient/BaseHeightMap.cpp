@@ -100,6 +100,9 @@
 #include "W3DDevice/GameClient/W3DSmudge.h"
 #include "W3DDevice/GameClient/W3DSnow.h"
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -1123,11 +1126,13 @@ Bool BaseHeightMapRenderObjClass::isClearLineOfSight(const Coord3D& pos, const C
 //=============================================================================
 /** Returns maximum height of the 4 corners containing the given point */
 //=============================================================================
-// ?getMaxCellHeight@BaseHeightMapRenderObjClass@@QBEMMM@Z present-unmatched
 Real BaseHeightMapRenderObjClass::getMaxCellHeight(Real x, Real y) const
 {
 	float p0,p1,p2,p3;
 	float height;
+	WorldHeightMap *logicHeightMap = m_map;
+	// BFME rereads the owning map while sampling instead of folding every access into this local.
+	_ReadWriteBarrier();
 
 	//	3-----2
 	//  |    /|
@@ -1136,19 +1141,17 @@ Real BaseHeightMapRenderObjClass::getMaxCellHeight(Real x, Real y) const
 	//  0-----1
 	//Find surrounding grid points
 
-	if (m_map == NULL)
+	if (logicHeightMap == NULL)
 	{	//sample point is not on the heightmap
 		return 0.0f;	//return default height
 	}
 
-  WorldHeightMap *logicHeightMap = TheTerrainVisual?TheTerrainVisual->getLogicHeightMap():m_map;
-
-
 	Int offset = 1;
+	Int borderSize = m_map->getBorderSizeInline();
 	Int iX = x/MAP_XY_FACTOR;
 	Int iY = y/MAP_XY_FACTOR;
-	iX += logicHeightMap->getBorderSizeInline();
-	iY += logicHeightMap->getBorderSizeInline();
+	iX += borderSize;
+	iY += borderSize;
 	if (iX<0) iX = 0;
 	if (iY<0) iY = 0;
 	if (iX >= (logicHeightMap->getXExtent()-1)) {
@@ -1157,11 +1160,14 @@ Real BaseHeightMapRenderObjClass::getMaxCellHeight(Real x, Real y) const
 	if (iY >= (logicHeightMap->getYExtent()-1)) {
 		iY = logicHeightMap->getYExtent()-2;
 	}
-	UnsignedByte *data = logicHeightMap->getDataPtr();
-	p0=data[iX+iY*logicHeightMap->getXExtent()]*MAP_HEIGHT_SCALE;
-	p1=data[(iX+offset)+iY*logicHeightMap->getXExtent()]*MAP_HEIGHT_SCALE;
-	p2=data[(iX+offset)+(iY+offset)*logicHeightMap->getXExtent()]*MAP_HEIGHT_SCALE;
-	p3=data[iX+(iY+offset)*logicHeightMap->getXExtent()]*MAP_HEIGHT_SCALE;
+	register UnsignedShort *data;
+	_ReadWriteBarrier();
+	data = reinterpret_cast<UnsignedShort *>(logicHeightMap->getDataPtr());
+	Int xExtent = m_map->getXExtent();
+	p0=data[iX+iY*xExtent]*0.0390625f;
+	p1=data[(iX+offset)+iY*xExtent]*0.0390625f;
+	p2=data[(iX+offset)+(iY+offset)*xExtent]*0.0390625f;
+	p3=data[iX+(iY+offset)*xExtent]*0.0390625f;
 
 	height=p0;
 	height=__max(height,p1);
