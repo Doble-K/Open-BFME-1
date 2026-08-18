@@ -72302,3 +72302,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?addPlayerArmy@BfmeLivingWorldCampaignManager@@QAEXPAVLivingWorldPlayerArmy@@@Z,0x00037786,derived from the REL32 displacement at 0x00366410
 ??1LivingWorldPlayerArmy@@QAE@XZ,0x00006C4E,derived from the REL32 displacement at 0x00366410
 ?findArmyIcon@BfmeLivingWorldManagerIcons@@QAEPAVBfmeArmyIcon@@ABVAsciiString@@@Z,0x00002C89,derived from the REL32 displacement at 0x0060B820
+??0EmotionNugget@@QAE@XZ,0x0001193C,derived from the REL32 displacement at 0x0037B8A0
+?addNugget@EmotionSystem@@QAEXPAVEmotionNugget@@@Z,0x000170D0,derived from the REL32 displacement at 0x0037B8A0
