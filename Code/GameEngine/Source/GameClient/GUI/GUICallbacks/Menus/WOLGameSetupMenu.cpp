@@ -70,6 +70,83 @@
 #include "GameNetwork/GUIUtil.h"
 #include "GameNetwork/GameSpy/GSConfig.h"
 
+//-------------------------------------------------------------------------------------------------
+// Two BFME vtable drifts this file needs. Both are read straight off the retail
+// call sites in getNextSelectablePlayer at 0x004F0B60, which is the body that
+// proves this compiland owns them: GameSpyInfoInterface::getCurrentStagingRoom
+// is slot 0xC4 (0xA8 in the vendored header) and GameInfo::amIHost /
+// getLocalSlotNum are slots 0x10 / 0x14 (0x08 / 0x0C there). Spelled TU-locally
+// rather than in the headers, the way this tree spells every other slot drift.
+//-------------------------------------------------------------------------------------------------
+class GameSpyStagingRoom;
+
+class BfmeVirtualGameSpyInfo
+{
+public:
+	virtual void slot000() = 0;
+	virtual void slot004() = 0;
+	virtual void slot008() = 0;
+	virtual void slot00C() = 0;
+	virtual void slot010() = 0;
+	virtual void slot014() = 0;
+	virtual void slot018() = 0;
+	virtual void slot01C() = 0;
+	virtual void slot020() = 0;
+	virtual void slot024() = 0;
+	virtual void slot028() = 0;
+	virtual void slot02C() = 0;
+	virtual void slot030() = 0;
+	virtual void slot034() = 0;
+	virtual void slot038() = 0;
+	virtual void slot03C() = 0;
+	virtual void slot040() = 0;
+	virtual void slot044() = 0;
+	virtual void slot048() = 0;
+	virtual void slot04C() = 0;
+	virtual void slot050() = 0;
+	virtual void slot054() = 0;
+	virtual void slot058() = 0;
+	virtual void slot05C() = 0;
+	virtual void slot060() = 0;
+	virtual void slot064() = 0;
+	virtual void slot068() = 0;
+	virtual void slot06C() = 0;
+	virtual void slot070() = 0;
+	virtual void slot074() = 0;
+	virtual void slot078() = 0;
+	virtual void slot07C() = 0;
+	virtual void slot080() = 0;
+	virtual void slot084() = 0;
+	virtual void slot088() = 0;
+	virtual void slot08C() = 0;
+	virtual void slot090() = 0;
+	virtual void slot094() = 0;
+	virtual void slot098() = 0;
+	virtual void slot09C() = 0;
+	virtual void slot0A0() = 0;
+	virtual void slot0A4() = 0;
+	virtual void slot0A8() = 0;
+	virtual void slot0AC() = 0;
+	virtual void slot0B0() = 0;
+	virtual void slot0B4() = 0;
+	virtual void slot0B8() = 0;
+	virtual void slot0BC() = 0;
+	virtual void slot0C0() = 0;
+	virtual GameSpyStagingRoom *getCurrentStagingRoom() = 0;
+};
+
+class BfmeVirtualStagingRoom
+{
+public:
+	virtual void slot000() = 0;
+	virtual void slot004() = 0;
+	virtual void slot008() = 0;
+	virtual void slot00C() = 0;
+	virtual Bool amIHost() = 0;
+	virtual Int getLocalSlotNum() = 0;
+};
+
+
 void WOLDisplaySlotList( void );
 
 #ifdef _INTERNAL
@@ -2548,14 +2625,14 @@ Bool handleGameSetupSlashCommands(UnicodeString uText)
 
 static Int getNextSelectablePlayer(Int start)
 {
-	GameSpyStagingRoom *game = TheGameSpyInfo->getCurrentStagingRoom();
-	if (!game->amIHost())
+	GameSpyStagingRoom *game = ((BfmeVirtualGameSpyInfo *)TheGameSpyInfo)->getCurrentStagingRoom();
+	if (!((BfmeVirtualStagingRoom *)game)->amIHost())
 		return -1;
 	for (Int j=start; j<MAX_SLOTS; ++j)
 	{
 		GameSpyGameSlot *slot = game->getGameSpySlot(j);
 		if (slot && slot->getStartPos() == -1 &&
-			( (j==game->getLocalSlotNum() && game->getConstSlot(j)->getPlayerTemplate()!=PLAYERTEMPLATE_OBSERVER)
+			( (j==((BfmeVirtualStagingRoom *)game)->getLocalSlotNum() && game->getConstSlot(j)->getPlayerTemplate()!=PLAYERTEMPLATE_OBSERVER)
 			|| slot->isAI()))
 		{
 			return j;

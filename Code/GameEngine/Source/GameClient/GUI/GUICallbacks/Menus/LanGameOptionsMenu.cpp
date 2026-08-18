@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/stringbaseunicode /Ireference/shims/campaignmanagerascii /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -64,6 +64,53 @@
 #include "Common/MultiplayerSettings.h"
 #include "GameClient/GameText.h"
 #include "GameNetwork/GUIUtil.h"
+
+//-------------------------------------------------------------------------------------------------
+// WindowLayout::hide is virtual in BFME (vtable slot 0x10) and non-virtual in
+// the vendored ZH header. Editing the header would touch every TU that includes
+// it, so the drift is spelled TU-locally: a shim whose fifth virtual lands on
+// that slot, and a cast at each call site.
+//-------------------------------------------------------------------------------------------------
+// Mouse::setCursor is vtable slot 0x38 in BFME and 0x28 in the vendored ZH
+// header - BFME carries four more virtuals ahead of it.
+class BfmeVirtualCursorMouse
+{
+public:
+	virtual void slot00() = 0; virtual void slot04() = 0; virtual void slot08() = 0;
+	virtual void slot0C() = 0; virtual void slot10() = 0; virtual void slot14() = 0;
+	virtual void slot18() = 0; virtual void slot1C() = 0; virtual void slot20() = 0;
+	virtual void slot24() = 0; virtual void slot28() = 0; virtual void slot2C() = 0;
+	virtual void slot30() = 0; virtual void slot34() = 0;
+	virtual void setCursor( Int cursor ) = 0;
+};
+
+// LANAPIInterface::ResetGameStartTimer is vtable slot 0x68 in BFME and 0x54 in
+// the vendored header.
+class BfmeVirtualStartTimerLAN
+{
+public:
+	virtual void slot00() = 0; virtual void slot04() = 0; virtual void slot08() = 0;
+	virtual void slot0C() = 0; virtual void slot10() = 0; virtual void slot14() = 0;
+	virtual void slot18() = 0; virtual void slot1C() = 0; virtual void slot20() = 0;
+	virtual void slot24() = 0; virtual void slot28() = 0; virtual void slot2C() = 0;
+	virtual void slot30() = 0; virtual void slot34() = 0; virtual void slot38() = 0;
+	virtual void slot3C() = 0; virtual void slot40() = 0; virtual void slot44() = 0;
+	virtual void slot48() = 0; virtual void slot4C() = 0; virtual void slot50() = 0;
+	virtual void slot54() = 0; virtual void slot58() = 0; virtual void slot5C() = 0;
+	virtual void slot60() = 0; virtual void slot64() = 0;
+	virtual void ResetGameStartTimer() = 0;
+};
+
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -1006,7 +1053,7 @@ void LanGameOptionsMenuInit( WindowLayout *layout, void *userData )
 //	}
 //
 	// Show the Menu
-	layout->hide( FALSE );
+	((BfmeVirtualHideLayout *)layout)->hide( FALSE );
 	
 	// Set Keyboard to Main Parent
 	TheWindowManager->winSetFocus( parentLanGameOptions );
@@ -1077,14 +1124,14 @@ void updateGameOptions( void )
 //-------------------------------------------------------------------------------------------------
 /** This is called when a shutdown is complete for this menu */
 //-------------------------------------------------------------------------------------------------
-static void shutdownComplete( WindowLayout *layout )
+static void shutdownCompleteLanGameOptionsMenu( WindowLayout *layout )
 {
 	DeinitLanGameGadgets();
 	textEntryMapDisplay = NULL;
 	LANisShuttingDown = false;
 
 	// hide the layout
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout, (LANnextScreen != NULL) );
@@ -1103,7 +1150,7 @@ static void shutdownComplete( WindowLayout *layout )
 //-------------------------------------------------------------------------------------------------
 void LanGameOptionsMenuShutdown( WindowLayout *layout, void *userData )
 {
-	TheMouse->setCursor(Mouse::ARROW);
+	((BfmeVirtualCursorMouse *)TheMouse)->setCursor(Mouse::ARROW);
 	TheMouse->setMouseText(UnicodeString::TheEmptyString,NULL,NULL);
 	EnableSlotListUpdates(FALSE);
 	LANisShuttingDown = true;
@@ -1113,7 +1160,7 @@ void LanGameOptionsMenuShutdown( WindowLayout *layout, void *userData )
 	if( popImmediate )
 	{
 
-		shutdownComplete( layout );
+		shutdownCompleteLanGameOptionsMenu( layout );
 		return;
 
 	}  //end if
@@ -1121,11 +1168,11 @@ void LanGameOptionsMenuShutdown( WindowLayout *layout, void *userData )
 	TheShell->reverseAnimatewindow();
 	TheTransitionHandler->reverse("LanGameOptionsFade");
 	if (TheLAN)
-		TheLAN->ResetGameStartTimer();
+		((BfmeVirtualStartTimerLAN *)TheLAN)->ResetGameStartTimer();
 
 	/*
 	// hide menu
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// Reset the LAN singleton
 //	TheLAN->reset();
@@ -1141,7 +1188,7 @@ void LanGameOptionsMenuShutdown( WindowLayout *layout, void *userData )
 void LanGameOptionsMenuUpdate( WindowLayout * layout, void *userData)
 {
 	if(LANisShuttingDown && TheShell->isAnimFinished() && TheTransitionHandler->isFinished())
-		shutdownComplete(layout);
+		shutdownCompleteLanGameOptionsMenu(layout);
 	//TheLAN->update(); // this is handled in the lobby
 }// void LanGameOptionsMenuUpdate( WindowLayout * layout, void *userData)
 
@@ -1320,7 +1367,7 @@ WindowMsgHandledType LanGameOptionsMenuSystem( GameWindow *window, UnsignedInt m
 				
 					mapSelectLayout = TheWindowManager->winCreateLayout( AsciiString( "Menus/LanMapSelectMenu.wnd" ) );
 					mapSelectLayout->runInit();
-					mapSelectLayout->hide( FALSE );
+					((BfmeVirtualHideLayout *)mapSelectLayout)->hide( FALSE );
 					mapSelectLayout->bringForward();
 
 				}

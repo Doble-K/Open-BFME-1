@@ -72187,3 +72187,7 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?restoreGlobalDataFields@RecorderClass@@QAEXXZ,0x0000BD1B,BFME-only RecorderClass entry ReplayMenuShutdown opens with; ILT thunk to body 0x00097360
 ?setGamePaused@BfmeGameLogicPause@@QAEX_NH0@Z,0x00006F50,BFME three-argument GameLogic::setGamePaused; ILT thunk to body 0x00383490
 ?finishSinglePlayerInit@@YAXXZ,0x0001F78F,ScoreScreen.cpp TU-local; ILT thunk to body 0x004E4790
+?setMouseText@Mouse@@QAEXVUnicodeString@@PBURGBAColorInt@@1@Z,0x0002FBD0,ILT thunk to body 0x005A5950
+?EnableSlotListUpdates@@YAX_N@Z,0x000345EF,ILT thunk to body 0x006237A0
+?shutdownCompleteLanGameOptionsMenu@@YAXPAVWindowLayout@@@Z,0x004CBA70,LanGameOptionsMenu.cpp file-static shutdownComplete; spelled per-TU because ~30 menu files each define one
+?getGameSpySlot@GameSpyStagingRoom@@QAEPAVGameSpyGameSlot@@H@Z,0x000061D6,ICF alias: this thunk chains to the GameInfo::getSlot body at 0x0061E8B0; the slot accessors compile to the same bytes

@@ -466,3 +466,18 @@ _png_PLTE
 # file statics apart across TUs. Surfaced when SinglePlayerMenuShutdown landed
 # in b94028866; before that only the WOL TU referenced the name.
 _isShuttingDown
+
+# Four more file statics that exist independently in two menu TUs each -- the
+# same class as _parentID, _staticTextStatus and _isShuttingDown above. A
+# name-based check cannot tell file statics apart across objects.
+#   _isOverlayActive          PopupPlayerInfo.cpp 0x12F4014 / WOLBuddyOverlay.cpp 0x12F4230
+#   _mapList                  LanMapSelectMenu.cpp 0x12F3DFC / WOLMapSelectMenu.cpp 0x12F4768
+#   _winMapPreview            LanMapSelectMenu.cpp 0x12F3E00 / WOLMapSelectMenu.cpp 0x12F4758
+#   _buttonMapStartPosition   LanMapSelectMenu.cpp 0x12F3E0C / WOLMapSelectMenu.cpp 0x12F476C
+# Surfaced when GameSpyPlayerInfoOverlayShutdown, WOLBuddyOverlayShutdown and
+# WOLMapSelectMenuShutdown landed; before that only one TU of each pair
+# referenced the name.
+_isOverlayActive
+_mapList
+_winMapPreview
+_buttonMapStartPosition
