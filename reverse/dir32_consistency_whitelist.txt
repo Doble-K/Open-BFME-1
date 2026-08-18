@@ -481,3 +481,13 @@ _isOverlayActive
 _mapList
 _winMapPreview
 _buttonMapStartPosition
+
+# Three more of the same: file statics with one name and one variable per menu
+# object. Surfaced when the WOL score-screen Inits landed; the Input callbacks
+# had already been claiming the names from their own TUs.
+#   _buttonDisconnect     WOLStatusMenu.cpp 0x12F3EE0 / WOLCustomScoreScreen.cpp 0x12F42B4 / WOLQMScoreScreen.cpp 0x12F47EC
+#   _buttonDisconnectID   WOLStatusMenu.cpp 0x12F3EDC / WOLCustomScoreScreen.cpp 0x12F42A8 / WOLQMScoreScreen.cpp 0x12F47E0
+#   _buttonLobby          WOLCustomScoreScreen.cpp 0x12F42B8 / WOLWelcomeMenu.cpp 0x12F4878
+_buttonDisconnect
+_buttonDisconnectID
+_buttonLobby
