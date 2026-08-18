@@ -2822,7 +2822,35 @@ __declspec(naked) void BaseHeightMapRenderObjClass::updateShorelineTiles(Int, In
 
 /** Generate a lookup table for arbitrary angled impassable area viewing. */
 // ?updateViewImpassableAreas@BaseHeightMapRenderObjClass@@QAEX_NHHHH@Z
-// Body in BaseHeightMap_updateViewImpassableAreas.asm (exact 328B retail).
+void BaseHeightMapRenderObjClass::updateViewImpassableAreas(
+	Bool partial, Int minX, Int maxX, Int minY, Int maxY)
+{
+	char *heightMap = reinterpret_cast<char *>(this);
+	// BFME inserts eight bytes before the packed cliff vector relative to the imported header.
+	BaseHeightMapRenderObjClass *bfmeLayout =
+		reinterpret_cast<BaseHeightMapRenderObjClass *>(heightMap + 8);
+	Int xSize = m_map->getXExtent();
+	Int ySize = m_map->getYExtent();
+	if (bfmeLayout->m_showAsVisibleCliff.size() != xSize * ySize) {
+		bfmeLayout->m_showAsVisibleCliff.resize(xSize * ySize);
+	}
+
+	if (!partial) {
+		minX = 0;
+		minY = 0;
+		maxX = xSize;
+		maxY = ySize;
+	}
+
+	Real slope = *reinterpret_cast<Real *>(heightMap + 0x2fd0);
+	Real tanImpassableRad = tan(slope / 360.0f * 2.0f * PI);
+	for (Int j = minY; j < maxY; ++j) {
+		for (Int i = minX; i < maxX; ++i) {
+			bfmeLayout->m_showAsVisibleCliff[i + j * xSize] =
+				evaluateAsVisibleCliff(i, j, tanImpassableRad);
+		}
+	}
+}
 
 /** Generate a lookup table which can be used to generate an
 alpha value from a given set of uv coordinates.  Currently used
