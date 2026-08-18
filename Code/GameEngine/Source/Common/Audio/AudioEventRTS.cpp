@@ -593,7 +593,6 @@ void AudioEventRTS::setPlayingHandle( AudioHandle handle )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getPlayingHandle@AudioEventRTS@@ present-unmatched
 AudioHandle AudioEventRTS::getPlayingHandle( void )
 {
 	return m_playingHandle;

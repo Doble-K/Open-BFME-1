@@ -94,6 +94,66 @@ class OverlapScanner:
         return out
 
 
+_CAPSTONE_DISASSEMBLER = None
+
+
+def _capstone_disassembler():
+    """One detail-mode 32-bit capstone, built on first use (see gen_small.py's
+    disassembler() -- capstone is an optional dependency, so this stays lazy)."""
+    global _CAPSTONE_DISASSEMBLER
+    if _CAPSTONE_DISASSEMBLER is None:
+        import capstone
+        md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+        md.detail = True
+        _CAPSTONE_DISASSEMBLER = md
+    return _CAPSTONE_DISASSEMBLER
+
+
+def detect_second_function(exe_data, gap_start, gap_end):
+    """Multi-function check: a gap find_gaps only ever guarantees ONE known
+    boundary can still hold a second, UNKNOWN function body -- and when it
+    does, the reported gap_len is wrong for BOTH bodies, not just the second.
+
+    Detection rule (the second clause is required, not optional): a `ret`
+    ending strictly before gap_end WITH real (non-0xCC) bytes after it, AND
+    that landing point is not merely an early return of the SAME function
+    reachable from an earlier jcc/jmp inside the gap. Without the second
+    clause, an ordinary "if (x) return;" early exit -- ret, then the rest of
+    the function's body reachable by a jump earlier in the gap -- would be
+    misreported as two functions on every such gap.
+
+    Returns a dict describing the split point, or None. Returns None (silently)
+    when capstone is not installed -- this check is additive, so its absence
+    must not break find_gaps.py's core mode.
+    """
+    try:
+        md = _capstone_disassembler()
+    except ImportError:
+        return None
+
+    chunk = exe_data[gap_start:gap_end]
+    branch_targets = set()
+    for insn in md.disasm(chunk, gap_start):
+        mnem = insn.mnemonic
+        if mnem in ("ret", "retf"):
+            ret_end = insn.address + insn.size
+            if ret_end >= gap_end:
+                continue
+            tail = exe_data[ret_end:gap_end]
+            real_tail = len(tail) - tail.count(0xCC)
+            if real_tail <= 0:
+                continue
+            reachable = any(gap_start <= t < gap_end and t >= ret_end for t in branch_targets)
+            if not reachable:
+                return {"ret_at": insn.address, "second_start": ret_end,
+                        "second_real_bytes": real_tail}
+        elif mnem.startswith("j") or mnem.startswith("loop"):
+            for op in insn.operands:
+                if op.type == 2:  # X86_OP_IMM
+                    branch_targets.add(op.imm)
+    return None
+
+
 def is_stub_name(name: str) -> bool:
     """Heuristic: gen_asm/dtor-stub/enumerator/dup/alias rows aren't real named
     functions and gaps between two of them are almost always 0xCC alignment
@@ -211,6 +271,9 @@ def main():
         all_gaps.append(rec)
 
         if gap_len <= args.max_size and len(starts) <= 1:
+            rec["multi_function"] = (
+                detect_second_function(exe_data, gap_start, gap_end) if exe_data is not None else None
+            )
             unambiguous.append(rec)
 
     print(f"\nTotal non-empty gaps: {len(all_gaps)}", file=sys.stderr)
@@ -219,13 +282,18 @@ def main():
     if args.out:
         with open(args.out, "w", encoding="utf-8", newline="") as f:
             w = csv.writer(f)
+            # multi_function is appended as a trailing column -- readers keyed by
+            # header name (csv.DictReader) are unaffected, and readers keyed by
+            # position still get every original column at its original index.
             w.writerow(["gap_start", "gap_end", "gap_len", "real_bytes", "align", "before_name", "before_source",
-                        "after_name", "after_source", "n_boundaries", "boundary_names"])
+                        "after_name", "after_source", "n_boundaries", "boundary_names", "multi_function"])
             for r in all_gaps:
                 bnames = ";".join(sorted(set([h[2] for h in r["ghidra_hits"]] + [h[2] for h in r["reloc_hits"]])))
+                mf = r.get("multi_function")
+                mf_field = f"second_start=0x{mf['second_start']:08X}" if mf else ""
                 w.writerow([hex(r["gap_start"]), hex(r["gap_end"]), r["gap_len"], r["real_bytes"], r["align"],
                             r["before_name"], r["before_source"], r["after_name"], r["after_source"],
-                            r["n_boundaries"], bnames])
+                            r["n_boundaries"], bnames, mf_field])
         print(f"Wrote full gap report to {args.out}", file=sys.stderr)
 
     print("\n=== Unambiguous single-function gaps ===")
@@ -234,6 +302,19 @@ def main():
         print(f"gap {hex(r['gap_start'])}-{hex(r['gap_end'])} len={r['gap_len']} align={r['align']} "
               f"between [{r['before_name']} <- {r['before_source']}] and [{r['after_name']} <- {r['after_source']}] "
               f"boundary={bnames}")
+
+    multi = [r for r in unambiguous if r.get("multi_function")]
+    print(f"\nGaps flagged as holding a SECOND, unaccounted function (reported size is "
+          f"wrong for BOTH bodies): {len(multi)} of {len(unambiguous)}", file=sys.stderr)
+    if multi:
+        print("\n=== Gaps holding two functions (reported gap_len is wrong for both) ===")
+        for r in multi:
+            mf = r["multi_function"]
+            print(f"gap {hex(r['gap_start'])}-{hex(r['gap_end'])} len={r['gap_len']} "
+                  f"first body ends near ret@0x{mf['ret_at']:08X}, second body starts at "
+                  f"0x{mf['second_start']:08X} ({mf['second_real_bytes']} real bytes) "
+                  f"between [{r['before_name']} <- {r['before_source']}] and "
+                  f"[{r['after_name']} <- {r['after_source']}]")
 
 
 if __name__ == "__main__":
