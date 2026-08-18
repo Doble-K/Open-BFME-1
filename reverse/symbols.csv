@@ -5772,6 +5772,8 @@ name,address,notes
 ?Set_Position@RenderObjClass@@UAEXABVVector3@@@Z,0x00982330,pinharvest x1 (body)
 ?Set_Render_Device@DX8Wrapper@@KA_NHHHHH_N00@Z,0x0090B020,pinharvest x5 (body)
 ?Set_Render_Device@DX8Wrapper@@KA_NPBDHHHH_N@Z,0x0090B850,pinharvest x3 (body)
+?Set_Shader@DX8Wrapper@@SAXABVShaderClass@@@Z,0x000173C3,W3DBibBuffer renderBibs retail ILT call
+?detailAlphaShader@@3VShaderClass@@A,0x012BA78C,W3DBibBuffer renderBibs TU-local shader object
 ?Set_Shader@LineGroupClass@@QAEXABVShaderClass@@@Z,0x0098E940,derived from ParticleBufferClass main ctor aligned call sites
 ?Set_Shader@PointGroupClass@@QAEXVShaderClass@@@Z,0x009120E0,derived from ParticleBufferClass main ctor aligned call sites
 ?Set_Single_Texture@MeshMatDescClass@@QAEXPAVTextureClass@@HH@Z,0x0002F8E2,pinharvest x2 (thunk)
@@ -67702,6 +67704,7 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?load@MapCacheLoadUserMapsShim@@QAE_NXZ,0x004577C0,MapCache loadUserMaps incremental-link thunk target through a TU-local forwarding shim
 ?loadBridgesInVertexAndIndexBuffers@W3DBridgeBuffer@@IAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x000367EB
 ?loadBridgesInVertexAndIndexBuffers@W3DBridgeBufferLoadBridgesShim@@QAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x006D9F50,W3DBridgeBuffer incremental-link thunk target through a TU-local forwarding shim
+?loadBibsInVertexAndIndexBuffers@W3DBibBuffer@@IAEXXZ,0x00020DB0,W3DBibBuffer renderBibs retail ILT call
 ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@H@Z,0x00853F10,BFME loadDirectory takes a 5th arg; body shared with the 4-arg ledger row name,
 ?loadDockPositions@DockUpdate@@IAEXXZ,0x0000C595,ILT thunk to 0x002CB0A0
 ?loadDockPositions@DockUpdateLoadDockPositionsShim@@QAEXXZ,0x002CB0A0,DockUpdate::loadDockPositions incremental-link thunk target through a TU-local forwarding shim

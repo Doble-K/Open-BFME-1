@@ -1,199 +1,62 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+class IndexBufferClass;
+class ShaderClass;
+class TextureBaseClass;
+class VertexBufferClass;
+
+class DX8Wrapper
+{
+public:
+	static void Set_Index_Buffer(const IndexBufferClass *buffer, unsigned short index_base_offset);
+	static void Set_Vertex_Buffer(const VertexBufferClass *buffer, unsigned stream = 0);
+	static void Set_Shader(const ShaderClass &shader);
+	static void Draw_Triangles(unsigned short start_index, unsigned short polygon_count, unsigned short min_vertex_index, unsigned short vertex_count);
+};
+
+void __cdecl BoxSetTexture(unsigned stage, TextureBaseClass *&texture);
+extern ShaderClass detailAlphaShader;
 
 class W3DBibBuffer
 {
 public:
 	void renderBibs();
+
+protected:
+	void loadBibsInVertexAndIndexBuffers();
+
+private:
+	VertexBufferClass *m_vertexBib;
+	int m_vertexBibSize;
+	IndexBufferClass *m_indexBib;
+	int m_indexBibSize;
+	TextureBaseClass *m_bibTexture;
+	TextureBaseClass *m_highlightBibTexture;
+	unsigned short m_curNumBibVertices;
+	int m_curNumBibIndices;
+	int m_curNumNormalBibIndices;
+	unsigned short m_curNumNormalBibVertex;
 };
 
-// ?renderBibs@W3DBibBuffer@@QAEXXZ
-__declspec(naked) void W3DBibBuffer::renderBibs()
+void W3DBibBuffer::renderBibs()
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0xd8
-        __emit 0x9a
-        __emit 0x94
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xa3
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x82
-        __emit 0xd1
-        __emit 0x22
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0e
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0xe8
-        __emit 0xd8
-        __emit 0xd0
-        __emit 0x22
-        __emit 0x00
-        __emit 0x68
-        __emit 0x8c
-        __emit 0xa7
-        __emit 0x2b
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xc1
-        __emit 0x00
-        __emit 0x94
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x20
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x30
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x10
-        __emit 0x52
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xa9
-        __emit 0xe7
-        __emit 0x22
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x20
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x24
-        __emit 0x50
-        __emit 0xb8
-        __emit 0x56
-        __emit 0x55
-        __emit 0x55
-        __emit 0x55
-        __emit 0xf7
-        __emit 0xe9
-        __emit 0x8b
-        __emit 0xca
-        __emit 0xc1
-        __emit 0xe9
-        __emit 0x1f
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x03
-        __emit 0xca
-        __emit 0x51
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xb7
-        __emit 0xfa
-        __emit 0x22
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x56
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0x56
-        __emit 0x20
-        __emit 0x7e
-        __emit 0x42
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x14
-        __emit 0x50
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x71
-        __emit 0xe7
-        __emit 0x22
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x56
-        __emit 0x20
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x24
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x18
-        __emit 0x66
-        __emit 0x2b
-        __emit 0xc8
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x1c
-        __emit 0x50
-        __emit 0x2b
-        __emit 0xca
-        __emit 0xb8
-        __emit 0x56
-        __emit 0x55
-        __emit 0x55
-        __emit 0x55
-        __emit 0xf7
-        __emit 0xe9
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x20
-        __emit 0x8b
-        __emit 0xc2
-        __emit 0xc1
-        __emit 0xe8
-        __emit 0x1f
-        __emit 0x03
-        __emit 0xc2
-        __emit 0x50
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x6d
-        __emit 0xfa
-        __emit 0x22
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x18
-        __emit 0x5e
-        __emit 0xc3
+	loadBibsInVertexAndIndexBuffers();
+	if (m_curNumBibIndices == 0)
+		return;
+
+	DX8Wrapper::Set_Index_Buffer(m_indexBib, 0);
+	DX8Wrapper::Set_Vertex_Buffer(m_vertexBib);
+	DX8Wrapper::Set_Shader(detailAlphaShader);
+
+	if (m_curNumNormalBibIndices != 0)
+	{
+		BoxSetTexture(0, m_bibTexture);
+		DX8Wrapper::Draw_Triangles(0, m_curNumNormalBibIndices / 3, 0, m_curNumNormalBibVertex);
+	}
+
+	if (m_curNumBibIndices > m_curNumNormalBibIndices)
+	{
+		BoxSetTexture(0, m_highlightBibTexture);
+		DX8Wrapper::Draw_Triangles(m_curNumNormalBibIndices, (m_curNumBibIndices - m_curNumNormalBibIndices) / 3, m_curNumNormalBibVertex, m_curNumBibVertices - m_curNumNormalBibVertex);
 	}
 }
