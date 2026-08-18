@@ -72294,3 +72294,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?setDragSelecting@BfmeSelectionTranslator@@QAEXXZ,0x000306DE,derived from the REL32 displacement at 0x00478F60
 ?bfmeRegisterHouseColor@@YAXPBD0@Z,0x00900D70,the two-argument __cdecl function the HouseColor parser hands its two strings to; unnamed in the image
 ?parseBlock@BfmePlayerAITypeSet@@QAEXPAVINI@@@Z,0x000DEEC0,the PlayerAITypeSet member the block parser hands its INI to; unnamed in the image
+?addActionTemplate@BfmeScriptEngineTemplates@@QAEXPAVTemplate@@@Z,0x0001A672,derived from the REL32 displacement at 0x00340A40
+?addConditionTemplate@BfmeScriptEngineTemplates@@QAEXPAVTemplate@@@Z,0x00040B8D,ILT thunk to the body at 0x0033D790
