@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/stringbaseunicode /Ireference/shims/stringbaseascii /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -44,6 +44,34 @@
 #include "GameClient/GameWindowManager.h"
 #include "GameClient/GadgetListBox.h"
 #include "GameClient/GadgetTextEntry.h"
+
+//-------------------------------------------------------------------------------------------------
+// WindowLayout::hide is virtual in BFME (vtable slot 0x10) and non-virtual in
+// the vendored ZH header. Editing the header would touch every TU that includes
+// it, so the drift is spelled TU-locally: a shim whose fifth virtual lands on
+// that slot, and a cast at each call site.
+//-------------------------------------------------------------------------------------------------
+// BFME closes WOLStatusMenuInit by clearing one GameWindow field the vendored
+// header does not describe: retail reads parentWOLStatus back and, when it is
+// non-null, stores zero at +0x1F4. Only the offset is recoverable from the
+// call site, so the field is named for it rather than guessed at.
+class BfmeGameWindowFields
+{
+public:
+	char m_pad[0x1F4];
+	void *m_fieldAt1F4;
+};
+
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
 //#include "GameNetwork/WOL.h"
 //#include "GameNetwork/WOLmenus.h"
 
@@ -73,10 +101,13 @@ void WOLStatusMenuInit( WindowLayout *layout, void *userData )
 		TheNameKeyGenerator->nameToKey( AsciiString( "WOLStatusMenu.wnd:ListboxStatus" ) ) );
 	
 	// Show Menu
-	layout->hide( FALSE );
+	((BfmeVirtualHideLayout *)layout)->hide( FALSE );
 
 	// Set Keyboard to Main Parent
 	TheWindowManager->winSetFocus( parentWOLStatus );
+
+	if( parentWOLStatus )
+		((BfmeGameWindowFields *)parentWOLStatus)->m_fieldAt1F4 = NULL;
 
 	//progressLayout = TheShell->top();
 
@@ -90,7 +121,7 @@ void WOLStatusMenuShutdown( WindowLayout *layout, void *userData )
 {
 
 	// hide menu
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout );
