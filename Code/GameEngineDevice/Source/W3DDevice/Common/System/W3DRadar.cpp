@@ -81,12 +81,20 @@ inline Bool legalRadarPoint( Int px, Int py )
 
 //-------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-static WW3DFormat findFormat(const WW3DFormat formats[])
+class W3DRadarFormatCaps
+{
+public:
+	Bool supportTextureFormat(WW3DFormat format);
+};
+
+extern W3DRadarFormatCaps *TheW3DRadarFormatCaps;
+
+static __declspec(noinline) WW3DFormat findFormat(const WW3DFormat formats[])
 {
 	for( Int i = 0; formats[ i ] != WW3D_FORMAT_UNKNOWN; i++ )
 	{
 
-		if( DX8Wrapper::Get_Current_Caps()->Support_Texture_Format( formats[ i ] ) )
+		if( TheW3DRadarFormatCaps->supportTextureFormat( formats[ i ] ) )
 		{
 
 			return formats[ i ];
@@ -103,38 +111,41 @@ static WW3DFormat findFormat(const WW3DFormat formats[])
 	* be supported by the hardware.  The "more preferred" formats appear at the top of
 	* the format tables in order from most preferred to least preferred */
 //-------------------------------------------------------------------------------------------------
-// ?initializeTextureFormats@W3DRadar@@IAEXXZ present-unmatched
 void W3DRadar::initializeTextureFormats( void )
 {
 	const WW3DFormat terrainFormats[] = 
 	{
-		WW3D_FORMAT_R8G8B8,
-		WW3D_FORMAT_X8R8G8B8,
-		WW3D_FORMAT_R5G6B5,
-		WW3D_FORMAT_X1R5G5B5,
+		static_cast<WW3DFormat>(20),
+		static_cast<WW3DFormat>(22),
+		static_cast<WW3DFormat>(23),
+		static_cast<WW3DFormat>(24),
 		WW3D_FORMAT_UNKNOWN				// keep this one last
 	};
 	const WW3DFormat overlayFormats[] = 
 	{
-		WW3D_FORMAT_A8R8G8B8,
-		WW3D_FORMAT_A4R4G4B4,
+		static_cast<WW3DFormat>(21),
+		static_cast<WW3DFormat>(26),
 		WW3D_FORMAT_UNKNOWN				// keep this one last
 	};
 	const WW3DFormat shroudFormats[] = 
 	{
-		WW3D_FORMAT_A8R8G8B8,
-		WW3D_FORMAT_A4R4G4B4,
+		static_cast<WW3DFormat>(21),
+		static_cast<WW3DFormat>(26),
 		WW3D_FORMAT_UNKNOWN				// keep this one last
 	};
+	const WW3DFormat borderShroudFormats[] =
+	{
+		static_cast<WW3DFormat>(21),
+		static_cast<WW3DFormat>(26),
+		WW3D_FORMAT_UNKNOWN
+	};
 
-	// find a format for the terrain texture
-	m_terrainTextureFormat = findFormat(terrainFormats);
-
-	// find a format for the overlay texture
-	m_overlayTextureFormat = findFormat(overlayFormats);
-
-	// find a format for the shroud texture
-	m_shroudTextureFormat = findFormat(shroudFormats);
+	// BFME has a fourth radar texture absent from the shared Zero Hour layout.
+	char *radar = reinterpret_cast<char *>(this);
+	*reinterpret_cast<WW3DFormat *>(radar + 0x1470) = findFormat(terrainFormats);
+	*reinterpret_cast<WW3DFormat *>(radar + 0x1480) = findFormat(overlayFormats);
+	*reinterpret_cast<WW3DFormat *>(radar + 0x148c) = findFormat(shroudFormats);
+	*reinterpret_cast<WW3DFormat *>(radar + 0x1498) = findFormat(borderShroudFormats);
 
 }  // end initializeTextureFormats
 
