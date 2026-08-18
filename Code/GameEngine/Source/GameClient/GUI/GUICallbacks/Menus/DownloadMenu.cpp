@@ -393,6 +393,23 @@ WindowMsgHandledType DownloadMenuInput( GameWindow *window, UnsignedInt msg,
 }  // end DownloadMenuInput
 
 //-------------------------------------------------------------------------------------------------
+// BFME does not call HandleCanceledDownload from the cancel button. It clears one
+// byte at +0x259 of the singleton at 0x012F49B4 and goes straight to
+// closeDownloadWindow. Nothing else in the image names that singleton, so it and
+// the member are named for what the call site proves - an offset and a store of
+// zero - and no layout is invented around them.
+//-------------------------------------------------------------------------------------------------
+class BfmeDownloadState
+{
+public:
+	char m_pad[0x259];
+	Bool m_flagAt259;
+};
+
+extern BfmeDownloadState *TheBfmeDownloadState;
+
+
+//-------------------------------------------------------------------------------------------------
 /** menu window system callback */
 //-------------------------------------------------------------------------------------------------
 WindowMsgHandledType DownloadMenuSystem( GameWindow *window, UnsignedInt msg, 
@@ -436,7 +453,8 @@ WindowMsgHandledType DownloadMenuSystem( GameWindow *window, UnsignedInt msg,
       
 			if( controlID == buttonCancelID )
 			{
-				HandleCanceledDownload();
+				if( TheBfmeDownloadState )
+					TheBfmeDownloadState->m_flagAt259 = FALSE;
 				closeDownloadWindow();
 			}  // end if
 	
