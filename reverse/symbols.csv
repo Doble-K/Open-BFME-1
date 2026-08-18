@@ -72214,3 +72214,6 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?setObjectsShouldReceiveDifficultyBonus@ScriptEngine@@QAEX_N@Z,0x000126BB,GameLogic::prepareNewGame direct-call ILT thunk
 ?hide@Shell@@QAEX_N@Z,0x000428ED,GameLogic::prepareNewGame direct-call ILT thunk
 ?newMap@Radar@@UAEXPAVTerrainLogic@@@Z,0x000386AE,W3DRadar newMap retail base thunk
+?awardInitialCaptureBonus@AutoDepositUpdate@@QAEXPAVPlayer@@@Z,0x00038A87,Player::becomingTeamMember direct-call ILT thunk
+?localApplyBattlePlanBonusesToObject@@YAXPAVObject@@PAX@Z,0x000D5A40,Player::becomingTeamMember retail helper
+?removeBattlePlanBonusesForObject@Player@@QBEXPAVObject@@@Z,0x0002017B,Player::becomingTeamMember direct-call ILT thunk

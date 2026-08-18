@@ -1,254 +1,222 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+
+typedef bool Bool;
+typedef int Int;
+
+enum NameKeyType
+{
+	NAMEKEY_INVALID
+};
 
 class Object;
+class Player;
+
+class Overridable
+{
+public:
+	virtual ~Overridable();
+	const Overridable *getFinalOverride() const;
+
+	Overridable *m_nextOverride;
+};
+
+class ThingTemplate : public Overridable
+{
+public:
+	unsigned char m_unreconstructed_008[0xC0];
+	unsigned int m_kindOf;
+};
+
+#define BFME_VTABLE_SLOT(offset) virtual void slot##offset();
+
+class BfmeHighSlotVTable
+{
+public:
+	BFME_VTABLE_SLOT(000) BFME_VTABLE_SLOT(004) BFME_VTABLE_SLOT(008) BFME_VTABLE_SLOT(00C)
+	BFME_VTABLE_SLOT(010) BFME_VTABLE_SLOT(014) BFME_VTABLE_SLOT(018) BFME_VTABLE_SLOT(01C)
+	BFME_VTABLE_SLOT(020) BFME_VTABLE_SLOT(024) BFME_VTABLE_SLOT(028) BFME_VTABLE_SLOT(02C)
+	BFME_VTABLE_SLOT(030) BFME_VTABLE_SLOT(034) BFME_VTABLE_SLOT(038) BFME_VTABLE_SLOT(03C)
+	BFME_VTABLE_SLOT(040) BFME_VTABLE_SLOT(044) BFME_VTABLE_SLOT(048) BFME_VTABLE_SLOT(04C)
+	BFME_VTABLE_SLOT(050) BFME_VTABLE_SLOT(054) BFME_VTABLE_SLOT(058) BFME_VTABLE_SLOT(05C)
+	BFME_VTABLE_SLOT(060) BFME_VTABLE_SLOT(064) BFME_VTABLE_SLOT(068) BFME_VTABLE_SLOT(06C)
+	BFME_VTABLE_SLOT(070) BFME_VTABLE_SLOT(074) BFME_VTABLE_SLOT(078) BFME_VTABLE_SLOT(07C)
+	BFME_VTABLE_SLOT(080) BFME_VTABLE_SLOT(084) BFME_VTABLE_SLOT(088) BFME_VTABLE_SLOT(08C)
+	BFME_VTABLE_SLOT(090) BFME_VTABLE_SLOT(094) BFME_VTABLE_SLOT(098) BFME_VTABLE_SLOT(09C)
+	BFME_VTABLE_SLOT(0A0) BFME_VTABLE_SLOT(0A4) BFME_VTABLE_SLOT(0A8) BFME_VTABLE_SLOT(0AC)
+	BFME_VTABLE_SLOT(0B0) BFME_VTABLE_SLOT(0B4) BFME_VTABLE_SLOT(0B8) BFME_VTABLE_SLOT(0BC)
+	BFME_VTABLE_SLOT(0C0) BFME_VTABLE_SLOT(0C4) BFME_VTABLE_SLOT(0C8) BFME_VTABLE_SLOT(0CC)
+	BFME_VTABLE_SLOT(0D0) BFME_VTABLE_SLOT(0D4) BFME_VTABLE_SLOT(0D8) BFME_VTABLE_SLOT(0DC)
+	BFME_VTABLE_SLOT(0E0) BFME_VTABLE_SLOT(0E4) BFME_VTABLE_SLOT(0E8) BFME_VTABLE_SLOT(0EC)
+	BFME_VTABLE_SLOT(0F0) BFME_VTABLE_SLOT(0F4) BFME_VTABLE_SLOT(0F8) BFME_VTABLE_SLOT(0FC)
+	BFME_VTABLE_SLOT(100) BFME_VTABLE_SLOT(104) BFME_VTABLE_SLOT(108) BFME_VTABLE_SLOT(10C)
+	BFME_VTABLE_SLOT(110) BFME_VTABLE_SLOT(114) BFME_VTABLE_SLOT(118) BFME_VTABLE_SLOT(11C)
+	BFME_VTABLE_SLOT(120) BFME_VTABLE_SLOT(124) BFME_VTABLE_SLOT(128) BFME_VTABLE_SLOT(12C)
+	BFME_VTABLE_SLOT(130) BFME_VTABLE_SLOT(134) BFME_VTABLE_SLOT(138) BFME_VTABLE_SLOT(13C)
+	BFME_VTABLE_SLOT(140) BFME_VTABLE_SLOT(144) BFME_VTABLE_SLOT(148) BFME_VTABLE_SLOT(14C)
+	BFME_VTABLE_SLOT(150) BFME_VTABLE_SLOT(154) BFME_VTABLE_SLOT(158) BFME_VTABLE_SLOT(15C)
+	BFME_VTABLE_SLOT(160) BFME_VTABLE_SLOT(164) BFME_VTABLE_SLOT(168) BFME_VTABLE_SLOT(16C)
+	BFME_VTABLE_SLOT(170) BFME_VTABLE_SLOT(174) BFME_VTABLE_SLOT(178)
+};
+
+#undef BFME_VTABLE_SLOT
+
+class AIUpdateInterface : public BfmeHighSlotVTable
+{
+public:
+	virtual void slot17C();
+	virtual Bool isIdle();
+};
+
+class Module;
+class UpdateModule
+{
+};
+
+class Object
+{
+public:
+	void friend_adjustPowerForPlayer(Bool yes);
+
+	UpdateModule *findUpdateModule(NameKeyType key) const
+	{
+		return (UpdateModule *)findModule(key);
+	}
+
+	Bool areModulesReady() const
+	{
+		return m_modulesReady;
+	}
+
+	unsigned int getKindOf() const
+	{
+		const ThingTemplate *thing = m_thingTemplate;
+		if (thing && thing->m_nextOverride)
+			thing = (const ThingTemplate *)thing->m_nextOverride->getFinalOverride();
+		return thing->m_kindOf;
+	}
+
+	AIUpdateInterface *getAIUpdateInterface() const
+	{
+		return m_aiUpdate;
+	}
+
+	Bool isUnderConstruction() const
+	{
+		return (m_statusBits & 0x04) != 0;
+	}
+
+protected:
+	Module *findModule(NameKeyType key) const;
+
+private:
+	unsigned char m_unreconstructed_000[0x04];
+	ThingTemplate *m_thingTemplate;
+	unsigned char m_unreconstructed_008[0x88];
+	unsigned char m_statusBits;
+	unsigned char m_unreconstructed_091[0x173];
+	AIUpdateInterface *m_aiUpdate;
+	unsigned char m_unreconstructed_208[0x139];
+	Bool m_modulesReady;
+};
+
+class AutoDepositUpdate : public UpdateModule
+{
+public:
+	void awardInitialCaptureBonus(Player *player);
+};
+
+class PlayerList
+{
+public:
+	Player *getNeutralPlayer() const
+	{
+		return m_neutralPlayer;
+	}
+
+private:
+	unsigned char m_unreconstructed_00[0x14];
+	Player *m_neutralPlayer;
+};
+
+class NameKeyGenerator
+{
+public:
+	NameKeyType nameToKey(const char *name);
+};
+
+class InGameUI : public BfmeHighSlotVTable
+{
+public:
+	virtual void addIdleWorker(Object *object);
+	virtual void removeIdleWorker(Object *object, Int playerIndex);
+};
+
+void localApplyBattlePlanBonusesToObject(Object *object, void *bonuses);
+
 class Player
 {
 public:
-	void becomingTeamMember(Object *, bool);
+	void becomingTeamMember(Object *object, Bool yes);
+	void removeBattlePlanBonusesForObject(Object *object) const;
+
+	Int getNumBattlePlansActive() const
+	{
+		return m_bombardBattlePlans + m_holdTheLineBattlePlans + m_searchAndDestroyBattlePlans;
+	}
+
+	void applyBattlePlanBonusesForObject(Object *object) const
+	{
+		localApplyBattlePlanBonusesToObject(object, m_battlePlanBonuses);
+	}
+
+	Int getPlayerIndex() const
+	{
+		return m_playerIndex;
+	}
+
+private:
+	unsigned char m_unreconstructed_00[0x24];
+	Int m_playerIndex;
+	unsigned char m_unreconstructed_28[0x3C];
+	Int m_bombardBattlePlans;
+	Int m_holdTheLineBattlePlans;
+	Int m_searchAndDestroyBattlePlans;
+	void *m_battlePlanBonuses;
 };
 
-// ?becomingTeamMember@Player@@QAEXPAVObject@@_N@Z
-__declspec(naked) void Player::becomingTeamMember(Object *, bool)
+extern PlayerList *ThePlayerList;
+extern NameKeyGenerator *TheNameKeyGenerator;
+extern InGameUI *TheInGameUI;
+
+void Player::becomingTeamMember(Object *object, Bool yes)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xd9
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf6
-        __emit 0x86
-        __emit 0x90
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x04
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x75
-        __emit 0x08
-        __emit 0x53
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xf1
-        __emit 0x9b
-        __emit 0xf4
-        __emit 0xff
-        __emit 0xa1
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x3b
-        __emit 0x78
-        __emit 0x14
-        __emit 0x74
-        __emit 0x28
-        __emit 0x84
-        __emit 0xdb
-        __emit 0x74
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x00
-        __emit 0xd6
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x68
-        __emit 0x24
-        __emit 0x40
-        __emit 0x08
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x13
-        __emit 0x37
-        __emit 0xf6
-        __emit 0xff
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x57
-        __emit 0x37
-        __emit 0xf5
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x08
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0xe8
-        __emit 0xaf
-        __emit 0x13
-        __emit 0xf6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x68
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x64
-        __emit 0x03
-        __emit 0xc8
-        __emit 0x03
-        __emit 0xca
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x7e
-        __emit 0x25
-        __emit 0x8a
-        __emit 0x86
-        __emit 0x41
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x1b
-        __emit 0x84
-        __emit 0xdb
-        __emit 0x74
-        __emit 0x0f
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x70
-        __emit 0x52
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x3f
-        __emit 0xe3
-        __emit 0xff
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x08
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x6d
-        __emit 0x8a
-        __emit 0xf4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x05
-        __emit 0xe8
-        __emit 0x9a
-        __emit 0xab
-        __emit 0xf2
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x88
-        __emit 0xc8
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf6
-        __emit 0xc5
-        __emit 0x40
-        __emit 0x74
-        __emit 0x3c
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x04
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x32
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x90
-        __emit 0x80
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x26
-        __emit 0x84
-        __emit 0xdb
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x8c
-        __emit 0x14
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x74
-        __emit 0x0f
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x56
-        __emit 0xff
-        __emit 0x92
-        __emit 0x7c
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x52
-        __emit 0x56
-        __emit 0xff
-        __emit 0x90
-        __emit 0x80
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	if (!object)
+		return;
+
+	if (!object->isUnderConstruction())
+		object->friend_adjustPowerForPlayer(yes);
+
+	if (this != ThePlayerList->getNeutralPlayer() && yes)
+	{
+		NameKeyType key = TheNameKeyGenerator->nameToKey("AutoDepositUpdate");
+		AutoDepositUpdate *update = (AutoDepositUpdate *)object->findUpdateModule(key);
+		if (update)
+			update->awardInitialCaptureBonus(this);
+	}
+
+	if (getNumBattlePlansActive() > 0 && object->areModulesReady())
+	{
+		if (yes)
+			applyBattlePlanBonusesForObject(object);
+		else
+			removeBattlePlanBonusesForObject(object);
+	}
+
+	if ((object->getKindOf() & 0x4000) != 0 && object->getAIUpdateInterface() && object->getAIUpdateInterface()->isIdle())
+	{
+		if (yes)
+			TheInGameUI->addIdleWorker(object);
+		else
+			TheInGameUI->removeIdleWorker(object, getPlayerIndex());
 	}
 }
