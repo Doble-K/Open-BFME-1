@@ -48,6 +48,9 @@
 #include "GameClient/Drawable.h"
 #include "GameClient/InGameUI.h"
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 const Int MAX_IDX = 32;
 
 //-------------------------------------------------------------------------------------------------
@@ -133,23 +136,72 @@ static void parseOCL( INI* ini, void *instance, void * /*store*/, const void* /*
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?beginStructureCollapse@StructureCollapseUpdate@@IAEXPBVDamageInfo@@@Z present-unmatched
+Int __cdecl StructureCollapseRandom(Int low, Int high, const char *file, Int line);
+
+class StructureCollapseRetailLayout
+{
+public:
+	Real getCollapseHeight();
+};
+
+class StructureCollapsePosition
+{
+public:
+	StructureCollapsePosition(
+		const Coord3D &base, char *collapse, Real collapseHeight, Real constructedFraction)
+	{
+		// Retail stages the by-reference temporary before calculating its height.
+		_ReadWriteBarrier();
+		Real height = -collapseHeight * (1.0f - constructedFraction);
+		*reinterpret_cast<Real *>(collapse + 0x34) = height;
+		x = base.x;
+		y = base.y;
+		z = base.z + height;
+	}
+
+	Real x;
+	Real y;
+	Real z;
+};
+
+class StructureCollapseRetailObject
+{
+public:
+	void setPosition(const StructureCollapsePosition &position, Bool updatePartition);
+};
+
+// ?beginStructureCollapse@StructureCollapseUpdate@@IAEXPBVDamageInfo@@@Z
 void StructureCollapseUpdate::beginStructureCollapse(const DamageInfo *damageInfo)
 {
-	const StructureCollapseUpdateModuleData *d = getStructureCollapseUpdateModuleData();
-
-
-	Object *building = getObject();
+	// BFME shifted the module/object pointers and caches the collapse origin after the ZH layout ends.
+	char *collapse = reinterpret_cast<char *>(this);
+	const char *moduleData = *reinterpret_cast<const char **>(collapse + 4);
+	Object *building = *reinterpret_cast<Object **>(collapse + 8);
+	Coord3D *collapsePosition = reinterpret_cast<Coord3D *>(collapse + 0x38);
+	*collapsePosition = *reinterpret_cast<const Coord3D *>(reinterpret_cast<const char *>(building) + 0x38);
 	UnsignedInt now = TheGameLogic->getFrame();
-	// This has to use a game logic random value since the bursts can spawn debris, and debris is sync'd.
-	m_collapseFrame = now + GameLogicRandomValue(d->m_minCollapseDelay, d->m_maxCollapseDelay);
+	m_collapseFrame = now + StructureCollapseRandom(
+		*reinterpret_cast<const Int *>(moduleData + 0x34),
+		*reinterpret_cast<const Int *>(moduleData + 0x38),
+		// The deterministic RNG call records retail's original source location.
+		"F:\\bfme\\Code\\gameengine\\Source\\GameLogic\\Object\\Update\\StructureCollapseUpdate.cpp", 131);
 
-	doPhaseStuff(SCPHASE_INITIAL, building->getPosition());
+	doPhaseStuff(SCPHASE_INITIAL,
+		reinterpret_cast<const Coord3D *>(reinterpret_cast<const char *>(building) + 0x38));
 
 	m_collapseState = COLLAPSESTATE_WAITINGFORCOLLAPSESTART;
 	m_currentHeight = 0.0f;
+	if ((*reinterpret_cast<const UnsignedInt *>(reinterpret_cast<const char *>(building) + 0x134) & 0x2000) != 0) {
+		Real constructionPercent =
+			*reinterpret_cast<const Real *>(reinterpret_cast<const char *>(building) + 0x220);
+		Real collapseHeight = reinterpret_cast<StructureCollapseRetailLayout *>(this)->getCollapseHeight();
+		Real constructedFraction = constructionPercent * 0.01f;
+		reinterpret_cast<StructureCollapseRetailObject *>(building)->setPosition(
+			StructureCollapsePosition(
+				*collapsePosition, collapse, collapseHeight, constructedFraction), false);
+	}
 
-	setWakeFrame(getObject(), UPDATE_SLEEP_NONE);
+	setWakeFrame(*reinterpret_cast<Object **>(collapse + 8), UPDATE_SLEEP_NONE);
 }
 
 //-------------------------------------------------------------------------------------------------

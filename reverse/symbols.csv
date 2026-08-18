@@ -72251,3 +72251,8 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?setBorderShroudLevel30BC@BaseHeightMapResetShroud@@QAEXE@Z,0x0000BFF5,BaseHeightMap border-level call for BFME shroud at this+0x30BC
 ??0BaseHeightMapResetStringBase@@QAE@PBD@Z,0x00888BC0,BaseHeightMap reset string-base constructor body
 ?updateMacroTexture@BaseHeightMapResetTerrain@@QAEXVBaseHeightMapResetAsciiString@@_N@Z,0x00003CE2,BaseHeightMap reset two-argument macro-texture ILT thunk
+?StructureCollapseRandom@@YAHHHPBDH@Z,0x00001BAE,StructureCollapse begin deterministic random ILT thunk
+?doPhaseStuff@StructureCollapseUpdate@@IAEXW4StructureCollapsePhaseType@@PBUCoord3D@@@Z,0x00022872,StructureCollapse initial-phase ILT thunk
+?getCollapseHeight@StructureCollapseRetailLayout@@QAEMXZ,0x0002DAE2,StructureCollapse BFME height helper ILT thunk
+?setPosition@StructureCollapseRetailObject@@QAEXABVStructureCollapsePosition@@_N@Z,0x0001621B,StructureCollapse BFME position setter ILT thunk
+?setWakeFrame@UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,StructureCollapse wake-frame ILT thunk
