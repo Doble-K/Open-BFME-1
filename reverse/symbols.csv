@@ -72227,3 +72227,7 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?getVisionRange@Object@@QBEMXZ,0x00014B4B,AIMoveAwayFromRepulsorsState::onEnter direct-call ILT thunk
 ?findClosestRepulsor@AI@@QAEPAVObject@@PBV2@M@Z,0x0002BDB4,AIMoveAwayFromRepulsorsState::onEnter direct-call ILT thunk
 ?requestSafePath@AIUpdateInterface@@QAEXW4ObjectID@@@Z,0x00001410,AIMoveAwayFromRepulsorsState::onEnter direct-call ILT thunk
+?updateScorches@BaseHeightMapScorchUpdater@@QAEXXZ,0x00032966,BaseHeightMap scorch update ILT thunk
+?BaseHeightMapScorchSetShader@@YAXABVShaderClass@@@Z,0x000173C3,BaseHeightMap drawScorches shader ILT thunk
+?BaseHeightMapScorchSetZBias@@YAXH@Z,0x00905AB0,BaseHeightMap drawScorches integer Z-bias helper
+?BaseHeightMapScorchStageChanges@@3IA,0x01340568,BaseHeightMap drawScorches sampler-state counter

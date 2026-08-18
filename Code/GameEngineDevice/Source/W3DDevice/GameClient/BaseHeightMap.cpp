@@ -118,6 +118,23 @@ extern HeightMapRenderObjClass *TheHeightMap;
 
 static ShaderClass detailOpaqueShader(SC_DETAIL_BLEND);
 
+#ifdef DO_SCORCH
+class BaseHeightMapScorchUpdater
+{
+public:
+	void updateScorches();
+};
+
+void __cdecl BaseHeightMapScorchSetShader(const ShaderClass &shader);
+void __cdecl BaseHeightMapScorchSetZBias(Int bias);
+void __cdecl BoxSetTexture(unsigned stage, TextureBaseClass *&texture);
+extern UnsignedInt BaseHeightMapScorchStageChanges;
+
+namespace {
+	typedef HRESULT (__stdcall *BFMESetSamplerState)(IDirect3DDevice8 *, DWORD, DWORD, DWORD);
+}
+#endif
+
 //-----------------------------------------------------------------------------
 //         Global Functions & Data                                              
 //-----------------------------------------------------------------------------
@@ -189,22 +206,37 @@ Int BaseHeightMapRenderObjClass::freeMapResources(void)
 //=============================================================================
 /** Draws the scorch marks. */
 //=============================================================================
-// ?drawScorches@BaseHeightMapRenderObjClass@@IAEXXZ present-unmatched
 void BaseHeightMapRenderObjClass::drawScorches(void)
 {
-
-	updateScorches();
-	if (m_curNumScorchIndices == 0) {
+	char *heightMap = reinterpret_cast<char *>(this);
+	reinterpret_cast<BaseHeightMapScorchUpdater *>(this)->updateScorches();
+	if (*reinterpret_cast<Int *>(heightMap + 0xe0) == 0 || Is_Hidden()) {
 		return;
 	}
-	DX8Wrapper::Set_Index_Buffer(m_indexScorch,0);
-	DX8Wrapper::Set_Vertex_Buffer(m_vertexScorch);
-	DX8Wrapper::Set_Shader(ShaderClass::_PresetAlphaShader);
 
-	DX8Wrapper::Set_Texture(0,m_scorchTexture);
-	if (Is_Hidden() == 0) {
-		DX8Wrapper::Draw_Triangles(	0,m_curNumScorchIndices/3, 0,	m_curNumScorchVertices);
-	}
+	BaseHeightMapScorchSetShader(ShaderClass::_PresetAlphaShader);
+	DX8Wrapper::Set_Index_Buffer(
+		*reinterpret_cast<IndexBufferClass **>(heightMap + 0xd4), 0);
+	DX8Wrapper::Set_Vertex_Buffer(
+		*reinterpret_cast<VertexBufferClass **>(heightMap + 0xd0));
+	TextureBaseClass *&texture = *reinterpret_cast<TextureBaseClass **>(heightMap + 0xd8);
+	BoxSetTexture(0, texture);
+	BaseHeightMapScorchSetZBias(1);
+
+	DX8Wrapper::Apply_Render_State_Changes();
+	IDirect3DDevice8 *device = DX8Wrapper::_Get_D3D_Device8();
+	(*(BFMESetSamplerState **)device)[69](device, 0, 1, D3DTADDRESS_CLAMP);
+	number_of_DX8_calls++;
+	BaseHeightMapScorchStageChanges++;
+	device = DX8Wrapper::_Get_D3D_Device8();
+	(*(BFMESetSamplerState **)device)[69](device, 0, 2, D3DTADDRESS_CLAMP);
+	number_of_DX8_calls++;
+	BaseHeightMapScorchStageChanges++;
+
+	UnsignedShort vertices = *reinterpret_cast<UnsignedShort *>(heightMap + 0xdc);
+	Int indices = *reinterpret_cast<Int *>(heightMap + 0xe0);
+	DX8Wrapper::Draw_Triangles(0, indices / 3, 0, vertices);
+	BaseHeightMapScorchSetZBias(0);
 }
 #endif
 
