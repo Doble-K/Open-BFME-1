@@ -72268,3 +72268,8 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?allocateNewWeapon@WeaponStore@@QBEPAVWeapon@@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,0x000122BF,WeaponFireSpecialAbilityUpdate Weapon allocation ILT thunk
 ?loadAmmoNow@Weapon@@QAEXPBVThing@@@Z,0x0000FED4,WeaponFireSpecialAbilityUpdate load-ammo ILT thunk
 ?TheWeaponStore@@3PAVWeaponStore@@A,0x00EEF738,WeaponFireSpecialAbilityUpdate global store address
+??0?$NATProbeStringBase@D@@QAE@PBD@Z,0x00888BC0,NAT sendAProbe string constructor body
+?format@NATProbeString@@QAAXV1@ZZ,0x00888FF0,NAT sendAProbe string formatter body
+?releaseBuffer@?$NATProbeStringBase@D@@IAEXXZ,0x00887940,NAT sendAProbe string release body
+?queueSend@NATProbeTransport@@QAEXABUNATProbeAddress@@PBEH@Z,0x00049F80,NAT sendAProbe transport queue ILT thunk
+?doSend@NATProbeTransport@@QAEXXZ,0x00015D3E,NAT sendAProbe transport send ILT thunk

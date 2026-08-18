@@ -735,14 +735,62 @@ void NAT::doThisConnectionRound() {
 	}
 }
 
-// ?sendAProbe@NAT@@IAEXIGH@Z present-unmatched
-void NAT::sendAProbe(UnsignedInt ip, UnsignedShort port, Int fromNode) {
-	DEBUG_LOG(("NAT::sendAProbe - sending a probe from port %d to %d.%d.%d.%d:%d\n", getSlotPort(m_connectionNodes[m_localNodeNumber].m_slotIndex),
-							ip >> 24, (ip >> 16) & 0xff, (ip >> 8) & 0xff, ip & 0xff, port));
-	AsciiString str;
+template<class CharT>
+class NATProbeStringBase
+{
+public:
+	NATProbeStringBase() : m_data(NULL) {}
+	NATProbeStringBase(const CharT *text);
+	~NATProbeStringBase() { releaseBuffer(); }
+
+protected:
+	void releaseBuffer();
+	CharT *m_data;
+};
+
+class NATProbeString : public NATProbeStringBase<char>
+{
+public:
+	NATProbeString() {}
+	NATProbeString(const char *text) : NATProbeStringBase<char>(text) {}
+
+	void __cdecl format(NATProbeString format, ...);
+
+	const unsigned char *str() const
+	{
+		return m_data ? reinterpret_cast<unsigned char *>(m_data) + 8 : reinterpret_cast<const unsigned char *>("");
+	}
+
+	Int getLength() const
+	{
+		return m_data ? *reinterpret_cast<const UnsignedShort *>(reinterpret_cast<unsigned char *>(m_data) + 4) : 0;
+	}
+};
+
+struct NATProbeAddress
+{
+	NATProbeAddress(UnsignedInt newIP, UnsignedShort newPort) : ip(newIP), port(newPort) {}
+
+	UnsignedInt ip;
+	UnsignedShort port;
+};
+
+class NATProbeTransport
+{
+public:
+	void queueSend(const NATProbeAddress &address, const unsigned char *data, Int length);
+	void doSend();
+};
+
+// ?sendAProbe@NAT@@IAEXIGH@Z
+void NAT::sendAProbe(UnsignedInt ip, UnsignedShort port, Int fromNode)
+{
+	NATProbeString str;
 	str.format("PROBE%d", fromNode);
-	m_transport->queueSend(ip, port, (unsigned char *)str.str(), str.getLength() + 1);
-	m_transport->doSend();
+
+	(*reinterpret_cast<NATProbeTransport **>(reinterpret_cast<unsigned char *>(this) + 4))->queueSend(
+		NATProbeAddress(ip, port), str.str(), str.getLength() + 1);
+	(*reinterpret_cast<NATProbeTransport **>(reinterpret_cast<unsigned char *>(this) + 4))->doSend();
 }
 
 // find the next mangled source port, and then send it to the other player.
