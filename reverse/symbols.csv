@@ -72196,3 +72196,8 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?populateSaveGameListbox@BfmeGameStateSaveList@@QAEXPAVGameWindow@@W4SaveLoadLayoutType@@@Z,0x0004209B,ILT thunk to the body at 0x00111DB0 which ends ret 8
 ?removeNamedTimer@InGameUI@@QAEXABVAsciiString@@@Z,0x00046F42,addNamedTimer retail call site; ILT thunk to body 0x0044A1B0
 ??A?$map@VAsciiString@@PAVNamedTimerInfo@@U?$less@VAsciiString@@@_STL@@V?$allocator@U?$pair@$$CBVAsciiString@@PAVNamedTimerInfo@@@_STL@@@4@@_STL@@QAEAAPAVNamedTimerInfo@@ABVAsciiString@@@Z,0x0004B49D,addNamedTimer retail call site; ILT thunk to body 0x0044A860
+??0LANPreferences@@QAE@XZ,0x00025B80,PopulateRemoteIPComboBox direct-call ILT thunk to LANPreferences constructor
+??1LANPreferences@@UAE@XZ,0x00040DB3,PopulateRemoteIPComboBox direct-call ILT thunk to LANPreferences destructor
+?getNumRemoteIPs@LANPreferences@@QAEHXZ,0x0003E464,PopulateRemoteIPComboBox direct-call ILT thunk to getNumRemoteIPs
+?getRemoteIPEntry@LANPreferences@@QAE?AVUnicodeString@@H@Z,0x0002B62A,PopulateRemoteIPComboBox direct-call ILT thunk to getRemoteIPEntry
+?GadgetComboBoxAddEntryPopulateRemoteIPComboBox@@YAHPAVGameWindow@@VPopulateRemoteIPComboBoxEntry@@H@Z,0x0002F338,ABI-compatible call alias required for BFME VC7.1 argument scheduling

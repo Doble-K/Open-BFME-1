@@ -91,6 +91,17 @@ static GameWindow *editPlayerName = NULL;
 static GameWindow *comboboxRemoteIP = NULL;
 static GameWindow *staticLocalIP = NULL;
 
+// BFME's VC7.1 object schedules the argument EH slot first only for a converting class.
+class PopulateRemoteIPComboBoxEntry : public UnicodeString
+{
+public:
+	PopulateRemoteIPComboBoxEntry(const UnicodeString &source) : UnicodeString(source) {}
+};
+
+extern Int GadgetComboBoxAddEntryPopulateRemoteIPComboBox(
+	GameWindow *comboBox, PopulateRemoteIPComboBoxEntry text, Color color);
+#pragma comment(linker, "/alternatename:?GadgetComboBoxAddEntryPopulateRemoteIPComboBox@@YAHPAVGameWindow@@VPopulateRemoteIPComboBoxEntry@@H@Z=?GadgetComboBoxAddEntry@@YAHPAVGameWindow@@VUnicodeString@@H@Z")
+
 void PopulateRemoteIPComboBox()
 {
 	LANPreferences userprefs;
@@ -103,7 +114,7 @@ void PopulateRemoteIPComboBox()
 	{
 		UnicodeString entry;
 		entry = userprefs.getRemoteIPEntry(i);
-		GadgetComboBoxAddEntry(comboboxRemoteIP, entry, white);
+		GadgetComboBoxAddEntryPopulateRemoteIPComboBox(comboboxRemoteIP, entry, white);
 	}
 
 	if (numRemoteIPs > 0)
