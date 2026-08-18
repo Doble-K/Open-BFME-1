@@ -72256,3 +72256,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?getCollapseHeight@StructureCollapseRetailLayout@@QAEMXZ,0x0002DAE2,StructureCollapse BFME height helper ILT thunk
 ?setPosition@StructureCollapseRetailObject@@QAEXABVStructureCollapsePosition@@_N@Z,0x0001621B,StructureCollapse BFME position setter ILT thunk
 ?setWakeFrame@UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,StructureCollapse wake-frame ILT thunk
+?Resize@?$VectorClass@U_ENUM_VALUE@EnumParameterClass@@@@UAE_NHPBU_ENUM_VALUE@EnumParameterClass@@@Z,0x0093E4D0,pinharvest (call-site decode from ?Resize@?$DynamicVectorClass@U_ENUM_VALUE@EnumParameterClass@@@@ at 0x93E700; body not source-owned)
+??_EProxyArrayClass@@UAEPAXI@Z,0x0097C9B0,pinharvest (call-site decode from ??_EProxyArrayClass@@WBA@AEPAXI@Z adjustor thunk at 0x97B7B0; body already matched as gen-dtor ??_GGen_dtor_0097c9b0)

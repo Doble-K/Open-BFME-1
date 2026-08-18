@@ -341,8 +341,23 @@ def main():
         if not args.gap_end:
             print("icf_scan: --rva requires --gap-end", file=sys.stderr)
             raise SystemExit(2)
-        gaps = [{"gap_start": int(args.rva, 16), "gap_end": int(args.gap_end, 16),
-                "before_name": "", "before_source": "", "after_name": "", "after_source": ""}]
+        rva_start = int(args.rva, 16)
+        rva_end = int(args.gap_end, 16)
+        matched = FG.stream_matched_rows(FG.FUNCTIONS_CSV)
+        before_name, before_source = "", ""
+        after_name, after_source = "", ""
+        for rva, size, name, source in matched:
+            if rva + size == rva_start:
+                before_name, before_source = name, source
+            if rva == rva_end:
+                after_name, after_source = name, source
+        if not before_source or not after_source:
+            print(f"icf_scan: warning: could not resolve flanking source(s) for "
+                  f"0x{rva_start:08X}-0x{rva_end:08X} from functions.csv "
+                  f"(before={before_source!r} after={after_source!r})", file=sys.stderr)
+        gaps = [{"gap_start": rva_start, "gap_end": rva_end,
+                "before_name": before_name, "before_source": before_source,
+                "after_name": after_name, "after_source": after_source}]
     elif args.gaps_csv:
         gaps = load_gaps_csv(args.gaps_csv)
     else:

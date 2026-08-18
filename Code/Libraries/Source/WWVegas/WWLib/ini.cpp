@@ -325,7 +325,6 @@ bool INIClass::Clear(char const * section, char const * entry)
  * HISTORY:                                                                                    *
  *   9/7/2001   AJA:  Created.                                                                 *
  *=============================================================================================*/
-// ?Get_Filename@INIClass@@QBEPBDXZ absent-from-retail
 const char * INIClass::Get_Filename (void) const
 {
 	return Filename;
