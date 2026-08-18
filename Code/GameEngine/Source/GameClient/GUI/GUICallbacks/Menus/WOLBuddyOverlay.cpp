@@ -58,6 +58,23 @@
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "GameNetwork/GameSpy/ThreadUtils.h"
 
+//-------------------------------------------------------------------------------------------------
+// WindowLayout::hide is virtual in BFME (vtable slot 0x10) and non-virtual in
+// the vendored ZH header. Editing the header would touch every TU that includes
+// it, so the drift is spelled TU-locally: a shim whose fifth virtual lands on
+// that slot, and a cast at each call site.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
 
 #ifdef _INTERNAL
@@ -1861,7 +1878,7 @@ void showNotificationBox( AsciiString nick, UnicodeString message)
 //		return;
 	if( !noticeLayout )
 		noticeLayout = TheWindowManager->winCreateLayout( "Menus/PopupBuddyListNotification.wnd" );
-	noticeLayout->hide( FALSE );
+	((BfmeVirtualHideLayout *)noticeLayout)->hide( FALSE );
 	if (buttonNotificationID == NAMEKEY_INVALID)
 	{
 		buttonNotificationID = TheNameKeyGenerator->nameToKey("PopupBuddyListNotification.wnd:ButtonNotification");
@@ -3199,7 +3216,7 @@ void WOLBuddyOverlayShutdown( WindowLayout *layout, void *userData )
 	listboxIgnore = NULL;
 
 	// hide menu
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	//TheShell->shutdownComplete( layout );

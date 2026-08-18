@@ -49,6 +49,23 @@
 #include "GameClient/MapUtil.h"
 #include "GameNetwork/GUIUtil.h"
 
+//-------------------------------------------------------------------------------------------------
+// WindowLayout::hide is virtual in BFME (vtable slot 0x10) and non-virtual in
+// the vendored ZH header. Editing the header would touch every TU that includes
+// it, so the drift is spelled TU-locally: a shim whose fifth virtual lands on
+// that slot, and a cast at each call site.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -208,7 +225,7 @@ void WOLMapSelectMenuShutdown( WindowLayout *layout, void *userData )
 	NullifyControls();
 
 	// hide menu
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 	
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout );

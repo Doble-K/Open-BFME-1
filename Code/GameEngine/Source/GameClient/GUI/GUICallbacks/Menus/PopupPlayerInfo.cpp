@@ -65,6 +65,23 @@
 
 #include "WWDownload/Registry.h"
 
+//-------------------------------------------------------------------------------------------------
+// WindowLayout::hide is virtual in BFME (vtable slot 0x10) and non-virtual in
+// the vendored ZH header. Editing the header would touch every TU that includes
+// it, so the drift is spelled TU-locally: a shim whose fifth virtual lands on
+// that slot, and a cast at each call site.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -1224,7 +1241,7 @@ void GameSpyPlayerInfoOverlayInit( WindowLayout *layout, void *userData )
 	checkBoxNonAsianFont = TheWindowManager->winGetWindowFromId( parent,  checkBoxNonAsianFontID);
 
 	// Show Menu
-	layout->hide( FALSE );
+	((BfmeVirtualHideLayout *)layout)->hide( FALSE );
 
 	// Set Keyboard to Main Parent
 	TheWindowManager->winSetFocus( parent );
@@ -1282,7 +1299,7 @@ void GameSpyPlayerInfoOverlayInit( WindowLayout *layout, void *userData )
 void GameSpyPlayerInfoOverlayShutdown( WindowLayout *layout, void *userData )
 {
 	// hide menu
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	parent = NULL;
 
