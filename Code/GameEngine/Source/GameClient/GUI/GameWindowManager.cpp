@@ -310,7 +310,9 @@ WindowMsgHandledType PassSelectedButtonsToParentSystem( GameWindow *window, Unsi
 	if( window == NULL )
 		return MSG_IGNORED;
 
-	if( (msg == GBM_SELECTED)  ||  (msg == GBM_SELECTED_RIGHT) || (msg == GBM_MOUSE_ENTERING) || (msg == GBM_MOUSE_LEAVING) || (msg == GEM_EDIT_DONE))
+	// BFME passes one more message up than Zero Hour does: GSM_SLIDER_TRACK,
+	// 0x400B, compared last in the retail chain at 0x0047C190.
+	if( (msg == GBM_SELECTED)  ||  (msg == GBM_SELECTED_RIGHT) || (msg == GBM_MOUSE_ENTERING) || (msg == GBM_MOUSE_LEAVING) || (msg == GEM_EDIT_DONE) || (msg == GSM_SLIDER_TRACK))
 	{
 		GameWindow *parent = window->winGetParent();
 
