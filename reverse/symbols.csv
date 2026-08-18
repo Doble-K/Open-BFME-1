@@ -72192,3 +72192,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?shutdownCompleteLanGameOptionsMenu@@YAXPAVWindowLayout@@@Z,0x004CBA70,LanGameOptionsMenu.cpp file-static shutdownComplete; spelled per-TU because ~30 menu files each define one
 ?getGameSpySlot@GameSpyStagingRoom@@QAEPAVGameSpyGameSlot@@H@Z,0x000061D6,ICF alias: this thunk chains to the GameInfo::getSlot body at 0x0061E8B0; the slot accessors compile to the same bytes
 ?DeinitLanGameGadgets@@YAXXZ,0x00024613,ILT thunk to body 0x004CB010
+?isGamePaused@BfmeGameLogicPause@@QAE_NXZ,0x00022C96,derived from the REL32 displacement at 0x004DF520
+?populateSaveGameListbox@BfmeGameStateSaveList@@QAEXPAVGameWindow@@W4SaveLoadLayoutType@@@Z,0x0004209B,ILT thunk to the body at 0x00111DB0 which ends ret 8

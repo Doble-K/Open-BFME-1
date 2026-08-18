@@ -117,10 +117,23 @@ public:
 // m_inputEnabledMemory / m_mouseVisibleMemory pair at +0x11e / +0x11f, but it
 // takes three arguments and reads the middle one as a full dword against 1 and
 // 2, so it is an Int mode rather than ZH's Bool pauseMusic.
+// The body this file reaches for populateSaveGameListbox is at 0x00111DB0 and
+// ends `ret 8`, so it takes the window and the layout type exactly as Zero
+// Hour spells it. The ledger already carries that decorated name at
+// 0x001121A0, which is a different address; spelled TU-locally here so this
+// file pins the body its own call site encodes and claims nothing about the
+// other row.
+class BfmeGameStateSaveList
+{
+public:
+	void populateSaveGameListbox( GameWindow *listbox, SaveLoadLayoutType layoutType );
+};
+
 class BfmeGameLogicPause
 {
 public:
 	void setGamePaused( Bool paused, Int pauseMode, Bool affectInput );
+	Bool isGamePaused();
 };
 
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
@@ -208,7 +221,7 @@ void SaveLoadMenuInit( WindowLayout *layout, void *userData )
 	DEBUG_ASSERTCRASH( listboxGames != NULL, ("SaveLoadMenuInit - Unable to find games listbox\n") );
 
 	// populate the listbox with the save games on disk
-	TheGameState->populateSaveGameListbox( listboxGames, currentLayoutType );
+	((BfmeGameStateSaveList *)TheGameState)->populateSaveGameListbox( listboxGames, currentLayoutType );
 
 	// update the availability of the menu buttons
 	updateMenuActions();
@@ -271,17 +284,22 @@ void SaveLoadMenuFullScreenInit( WindowLayout *layout, void *userData )
 	DEBUG_ASSERTCRASH( listboxGames != NULL, ("SaveLoadMenuInit - Unable to find games listbox\n") );
 
 	// populate the listbox with the save games on disk
-	TheGameState->populateSaveGameListbox( listboxGames, currentLayoutType );
+	((BfmeGameStateSaveList *)TheGameState)->populateSaveGameListbox( listboxGames, currentLayoutType );
 
 	// update the availability of the menu buttons
 	updateMenuActions();
 
-	layout->hide(FALSE);
+	((BfmeVirtualHideLayout *)layout)->hide(FALSE);
 	justEntered = TRUE;
 	initialGadgetDelay = 2;
 	if(parent)
 		parent->winHide(TRUE);
 	isShuttingDown = false;
+
+	// BFME pauses the game behind the full-screen save/load menu, remembering
+	// the state SaveLoadMenuShutdown hands back. ZH has neither line.
+	wasGamePausedOnEntry = ((BfmeGameLogicPause *)TheGameLogic)->isGamePaused();
+	((BfmeGameLogicPause *)TheGameLogic)->setGamePaused( TRUE, 0, TRUE );
 }  // end SaveLoadMenuInit
 
 //-------------------------------------------------------------------------------------------------
@@ -756,7 +774,7 @@ WindowMsgHandledType SaveLoadMenuSystem( GameWindow *window, UnsignedInt msg,
 					DeleteFile( filepath.str() );
 					
 					// repopulate the listbox
-					TheGameState->populateSaveGameListbox( listboxGames, currentLayoutType );
+					((BfmeGameStateSaveList *)TheGameState)->populateSaveGameListbox( listboxGames, currentLayoutType );
 
 				}  // end if
 
