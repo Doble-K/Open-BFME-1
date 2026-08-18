@@ -14,9 +14,19 @@ and useful: it records what the sources themselves do and do not say, so that a
 future reader can tell the difference between "no grant is written in the file"
 and "no permission exists". The first is the case here; the second is not.
 
-Extending this lane — adding TUs, adding rows, vendoring further GameSpy code —
-is a question for the owner rather than for this file, since the permission's
-scope is not recorded here.
+Scope, asked and answered (2026-08-18). The owner was asked directly whether the
+permission covers the 2007 GameSpy SDK, specifically the Chat and Peer modules,
+and answered that it does. So extending this lane — adding TUs, adding rows,
+vendoring Chat/Peer — is permitted, and does not need to be re-litigated by each
+agent that reads the evidence below and reaches the obvious conclusion from the
+files alone. That conclusion is correct about the FILES and wrong about the
+PROJECT, which is the whole reason this paragraph exists.
+
+Two limits on the paragraph, so it is not read as more than it is. It records
+what the owner stated, not a licence document: no grant text exists in the
+sources, and nothing here creates one. And it covers the GameSpy SDK only —
+other third-party code in this repository is governed by its own record, and
+docs/matching.md still refuses nbench/BYTEmark on the merits.
 
 What is landed here
 -------------------

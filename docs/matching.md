@@ -92,11 +92,13 @@ re-vendor rather than on any real regression. Rule B — a matched RVA that had 
 source must still have one — reads whatever path a row names, so a `reference/` row can
 never be swapped out from under a live clean claim.
 
-## Third-party code we measured and did not vendor
+## Third-party code the binary links, and where each one stands
 
-Two libraries the binary statically links are reachable byte-wise and were refused on
-licence. Both refusals were measured, not assumed; re-derive only if you have new evidence
-of a grant, because the sources themselves have not changed.
+Two libraries the binary statically links are reachable byte-wise but carry no grant in
+their own sources. One is refused on the merits; the other is permitted by a project
+permission held outside the files. Read both before concluding anything from a source tree:
+the sources have not changed, so re-deriving them will keep producing the same evidence and
+the same wrong conclusion about the second one.
 
 **nbench / BYTEmark 2.2.3 — 26,719 B** over `0x008739A0-0x0087A4A0`, of which 10,495 B sits
 in the sub-span the retail evidence actually anchors (`0x008739F9-0x00876599`). Identity is
@@ -108,13 +110,17 @@ warranty, and the README ships the BSD warranty paragraph with the permission cl
 A BSD licence minus its grant is not a licence. Most of the hole is `gen_asm` dump anyway,
 so landing it would have been mostly lane transfer.
 
-**GameSpy Chat + Peer — 83,817 B** (Chat `0x0085E000-0x00870000`, Peer `0x00870000-0x00878000`).
-The BSD-3-Clause text circulating with the SDK is a 2014 republisher's addition — in
-`nitrocaster/GameSpy` the licence file lands three minutes *before* the sources — and the
-best-informed downstream (`GameProgressive/UniSpySDK`) later revised its own claim to
-"proprietary EA, non-commercial only". EA's GPLv3 Generals/ZH release ships no GameSpy
-sources at all. Note the separate, already-landed `vendored=gamespy-2004` lane is covered by
-permission the project holds out of band; see that tree's `PROVENANCE.txt`. This note is
-about vendoring *further* GameSpy code, whose scope is a question for the project owner.
-web.archive.org returned 503 throughout the search, so an archived primary grant is
-UNCHECKED rather than ruled out.
+**GameSpy Chat + Peer — permitted; ~36,000 B of genuinely unclaimed bytes.**
+The owner confirmed on 2026-08-18 that the project's permission covers the 2007
+GameSpy SDK including Chat and Peer, so this is no longer refused; see that tree's
+`PROVENANCE.txt` for the scope statement and its limits. The licence evidence
+below stands as a description of the FILES — there is no grant text in them, and
+the BSD-3-Clause copy circulating with the SDK is a 2014 republisher's own file
+(it lands three minutes before the sources, alone) — which is why an agent reading
+only the tree will reach the wrong conclusion about the project and should read
+the PROVENANCE first.
+Sizing, re-derived at HEAD rather than from the original spike: the Chat region
+`0x0085E000-0x00870000` and Peer `0x00870000-0x00878000` hold 83,817 B not held as
+real source, but 51,910 B of that is already-attached `gen_asm` dump, so the large
+majority is lane transfer and new `Total exact` is bounded by the ~36,000 B
+currently unclaimed.
