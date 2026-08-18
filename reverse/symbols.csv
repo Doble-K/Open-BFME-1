@@ -72290,3 +72290,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0BfmeAptScreenInGameChat@@QAE@PAX@Z,0x0004A750,ILT thunk to the InGameChat.apt screen constructor
 ??0BfmeAptScreenSpellStore@@QAE@PAX@Z,0x00036647,ILT thunk to the SpellStore.apt screen constructor
 ??0BfmeAptScreenQuickMatchMenu@@QAE@PAX@Z,0x0001F0AF,ILT thunk to the QuickMatchMenu screen constructor
+?setLeftMouseButton@BfmeSelectionTranslator@@QAEX_N@Z,0x0002F3A1,derived from the REL32 displacement at 0x00478F60
+?setDragSelecting@BfmeSelectionTranslator@@QAEXXZ,0x000306DE,derived from the REL32 displacement at 0x00478F60
