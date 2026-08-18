@@ -146,6 +146,27 @@ WindowMsgHandledType PopupCommunicatorInput( GameWindow *window, UnsignedInt msg
 }  // end PopupCommunicatorInput
 
 //-------------------------------------------------------------------------------------------------
+// WindowLayout::destroyWindows is vtable slot 0x20 in BFME where the vendored
+// header has it non-virtual, and deleteInstance() - the MemoryPoolObject macro -
+// is the scalar deleting destructor at slot 4 with the deleting flag set. Both
+// read off the retail call site in PopupCommunicatorSystem at 0x004D3CA0.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualLayoutTeardown
+{
+public:
+	virtual void slot00() = 0;
+	virtual void deletingDestructor( UnsignedInt flags ) = 0;   // slot 0x04
+	virtual void slot08() = 0;
+	virtual void slot0C() = 0;
+	virtual void slot10() = 0;
+	virtual void slot14() = 0;
+	virtual void slot18() = 0;
+	virtual void slot1C() = 0;
+	virtual void destroyWindows() = 0;                          // slot 0x20
+};
+
+
+//-------------------------------------------------------------------------------------------------
 /** Popup Communicator window system callback */
 //-------------------------------------------------------------------------------------------------
 WindowMsgHandledType PopupCommunicatorSystem( GameWindow *window, UnsignedInt msg, 
@@ -189,9 +210,9 @@ WindowMsgHandledType PopupCommunicatorSystem( GameWindow *window, UnsignedInt ms
       
 			if( controlID == buttonOkID )
 			{
-        WindowLayout *popupCommunicatorLayout = window->winGetLayout();
+        BfmeVirtualLayoutTeardown *popupCommunicatorLayout = (BfmeVirtualLayoutTeardown *)window->winGetLayout();
         popupCommunicatorLayout->destroyWindows();
-				popupCommunicatorLayout->deleteInstance();
+				popupCommunicatorLayout->deletingDestructor( 1 );
 				popupCommunicatorLayout = NULL;
 			}  // end if
 	
