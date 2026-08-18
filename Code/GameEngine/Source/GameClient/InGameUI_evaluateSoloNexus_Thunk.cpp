@@ -1,229 +1,154 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class Drawable;
+enum DrawableID
+{
+	INVALID_DRAWABLE_ID = 0
+};
+
+enum KindOfType
+{
+	KINDOF_MOB_NEXUS = 46,
+	KINDOF_IGNORED_IN_GUI = 47
+};
+
+class Overridable
+{
+public:
+	const Overridable *getFinalOverride() const
+	{
+		return m_nextOverride ? m_nextOverride->getFinalOverride() : this;
+	}
+
+private:
+	void *m_vtable;
+	Overridable *m_nextOverride;
+};
+
+class ThingTemplate : public Overridable
+{
+public:
+	unsigned int mobNexusMask() const
+	{
+		return m_kindOf[1] & 0x4000;
+	}
+
+	unsigned int ignoredInGUIMask() const
+	{
+		return m_kindOf[1] & 0x8000;
+	}
+
+private:
+	char m_unused[0xc0];
+	unsigned int m_kindOf[2];
+};
+
+template <class T> class Override
+{
+public:
+	const T *operator->() const
+	{
+		if (!m_overridable)
+			return 0;
+		return static_cast<const T *>(m_overridable->getFinalOverride());
+	}
+
+private:
+	const T *m_overridable;
+};
+
+class Thing
+{
+public:
+	bool isKindOf(KindOfType type) const;
+
+protected:
+	void *m_vtable;
+	Override<ThingTemplate> m_template;
+
+	const ThingTemplate *getTemplate() const
+	{
+		return m_template.operator->();
+	}
+};
+
+class Object : public Thing
+{
+public:
+	const ThingTemplate *getTemplateForKindOf() const
+	{
+		return getTemplate();
+	}
+};
+
+class Drawable
+{
+public:
+	DrawableID getID() const;
+
+	Object *getObject() const
+	{
+		return m_object;
+	}
+
+private:
+	char m_unused[0xfc];
+	Object *m_object;
+};
+
+struct DrawableListNode
+{
+	DrawableListNode *next;
+	DrawableListNode *previous;
+	Drawable *drawable;
+};
+
 class InGameUI
 {
 protected:
-	void evaluateSoloNexus(Drawable *);
+	void evaluateSoloNexus(Drawable *newlyAddedDrawable);
+
+private:
+	char m_unusedBeforeSelection[0x18];
+	DrawableListNode *m_selectedDrawables;
+	char m_unusedBeforeSoloNexus[0x1388];
+	DrawableID m_soloNexusSelectedDrawableID;
 };
 
-// ?evaluateSoloNexus@InGameUI@@IAEXPAVDrawable@@@Z
-__declspec(naked) void InGameUI::evaluateSoloNexus(Drawable *)
+void InGameUI::evaluateSoloNexus(Drawable *newlyAddedDrawable)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x55
-        __emit 0x56
-        __emit 0x57
-        __emit 0x33
-        __emit 0xff
-        __emit 0x3b
-        __emit 0xc7
-        __emit 0x8b
-        __emit 0xe9
-        __emit 0x89
-        __emit 0xbd
-        __emit 0xa4
-        __emit 0x13
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x28
-        __emit 0x8b
-        __emit 0xb0
-        __emit 0xfc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xf7
-        __emit 0x74
-        __emit 0x1e
-        __emit 0x6a
-        __emit 0x2e
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xb7
-        __emit 0xe1
-        __emit 0xbe
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xaa
-        __emit 0xe1
-        __emit 0xbe
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x92
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x45
-        __emit 0x18
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x18
-        __emit 0x3b
-        __emit 0xd8
-        __emit 0x89
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x7f
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x90
-        __emit 0x8b
-        __emit 0x7b
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xb7
-        __emit 0xfc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x59
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x05
-        __emit 0xe8
-        __emit 0x0b
-        __emit 0xdf
-        __emit 0xbb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x88
-        __emit 0xcc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf6
-        __emit 0xc5
-        __emit 0x40
-        __emit 0x74
-        __emit 0x1e
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x40
-        __emit 0x66
-        __emit 0x3d
-        __emit 0x01
-        __emit 0x00
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x75
-        __emit 0x3a
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x30
-        __emit 0x57
-        __emit 0xbc
-        __emit 0xff
-        __emit 0x89
-        __emit 0x85
-        __emit 0xa4
-        __emit 0x13
-        __emit 0x00
-        __emit 0x00
-        __emit 0xeb
-        __emit 0x1d
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x05
-        __emit 0xe8
-        __emit 0xcf
-        __emit 0xde
-        __emit 0xbb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x88
-        __emit 0xcc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xed
-        __emit 0x79
-        __emit 0x0e
-        __emit 0x8b
-        __emit 0x1b
-        __emit 0x3b
-        __emit 0x5d
-        __emit 0x18
-        __emit 0x75
-        __emit 0x93
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x85
-        __emit 0xa4
-        __emit 0x13
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	m_soloNexusSelectedDrawableID = INVALID_DRAWABLE_ID;
+
+	if (newlyAddedDrawable)
+	{
+		const Object *newObject = newlyAddedDrawable->getObject();
+		if (newObject && !newObject->isKindOf(KINDOF_MOB_NEXUS)
+				&& !newObject->isKindOf(KINDOF_IGNORED_IN_GUI))
+			return;
+	}
+
+	unsigned short nexusesFound = 0;
+	for (DrawableListNode *it = m_selectedDrawables->next;
+			it != m_selectedDrawables; it = it->next)
+	{
+		Drawable *drawable = it->drawable;
+		const Object *object = drawable->getObject();
+		if (!object)
+			continue;
+
+		if (object->getTemplateForKindOf()->mobNexusMask())
+		{
+			if (++nexusesFound == 1)
+				m_soloNexusSelectedDrawableID = drawable->getID();
+			else
+			{
+				m_soloNexusSelectedDrawableID = INVALID_DRAWABLE_ID;
+				return;
+			}
+		}
+		else if (!object->getTemplateForKindOf()->ignoredInGUIMask())
+		{
+			m_soloNexusSelectedDrawableID = INVALID_DRAWABLE_ID;
+			return;
+		}
 	}
 }
