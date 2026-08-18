@@ -1486,7 +1486,8 @@ def verify_dir32_consistency(rows):
     (base = binary_addr - compiled_addend). A symbol with >1 base is a candidate hidden discrepancy.
     Whitelist (reverse/dir32_consistency_whitelist.txt) holds the CURRENT known-legitimate cases
     (double-linked TUs CRC32_Table/_COLLISION_EPSILON; the investigated FX ctor/dtor vtable artifacts).
-    Self-bootstrapping: writes the whitelist on first run; afterwards any NEW inconsistency FAILS."""
+    Hand-written only: an absent whitelist is a hard failure listing the candidates, never an
+    auto-written free pass, and any NEW inconsistency FAILS."""
     from collections import defaultdict
     whitelist_path = ROOT / "reverse" / "dir32_consistency_whitelist.txt"
     sym2base = defaultdict(set)
@@ -1520,12 +1521,16 @@ def verify_dir32_consistency(rows):
             sym2base[sym].add((final - addend) & 0xFFFFFFFF)
     inconsistent = sorted(s for s, b in sym2base.items() if len(b) > 1)
     if not whitelist_path.exists():
-        whitelist_path.write_text("# DIR32 consistency whitelist — symbols with >1 resolved base that are\n"
-            "# KNOWN-legitimate (doubly-linked TUs / investigated FX vtable artifacts). Any symbol NOT\n"
-            "# listed here that becomes inconsistent is a NEW candidate bug and fails the build.\n"
-            + "".join(s + "\n" for s in inconsistent))
-        print(f"DIR32 consistency: wrote whitelist ({len(inconsistent)} known cases) — review reverse/dir32_consistency_whitelist.txt")
-        return
+        # NOT self-seeding. Auto-writing this file is how 18 entries got in
+        # without a human ever reading them, 8 of them hiding placements this
+        # very check had proved wrong (dropped in 25801f359). A missing
+        # whitelist is a missing review, and a missing review is a failure.
+        raise SystemExit(
+            f"DIR32 consistency: {whitelist_path.relative_to(ROOT)} is missing. This check does NOT "
+            f"seed itself — an auto-written whitelist is an unreviewed free pass. The {len(inconsistent)} "
+            "currently inconsistent symbol(s) are listed below; READ them, confirm each is a legitimate "
+            "doubly-linked TU or investigated vtable artifact, and commit the file by hand:\n"
+            + "".join("    " + s + "\n" for s in inconsistent))
     whitelist = {l.strip() for l in whitelist_path.read_text().splitlines() if l.strip() and not l.startswith("#")}
     new = [s for s in inconsistent if s not in whitelist]
     if new:
@@ -1616,10 +1621,6 @@ def main(only=None):
         verify_string_refs(rows)
         return
     print("Full verification")
-    verify_baseline()
-    patches = verify_functions()
-    verify_string_refs(load_function_rows())
-    verify_dir32_consistency(load_function_rows())
     # Identity, not bytes: verify_functions proves each row's bytes, and a
     # symbols.csv pin that names the WRONG body still reproduces them (that is
     # how the ControlBar and GameWindow misidentifications passed a green gate).
@@ -1627,9 +1628,50 @@ def main(only=None):
     # it needs no cached artifact and no compile output -- imported here rather
     # than at module scope because pin_consistency imports this module.
     import pin_consistency
-    pin_consistency.verify()
-    verify_source_claims()
-    verify_noop_patch(patches)
+
+    # EVERY check reports, then the gate exits ONCE. Exiting at the first
+    # failure makes each late check hostage to every earlier one: a live DIR32
+    # red sat four statements ahead of the pin guard, so the guard built to
+    # catch what a green gate cannot had itself never run on master -- and a
+    # report of "only the pre-existing DIR32 red" reads identically whether the
+    # later checks passed or never executed. Ordering is not a safety property;
+    # running is.
+    failed = []
+
+    def run(label, check):
+        """Run one check, recording rather than propagating its SystemExit.
+
+        Only SystemExit is caught, and only a failing code: a check that dies
+        any other way is a bug in the gate itself and must still crash loudly.
+        """
+        try:
+            return check()
+        except SystemExit as exc:
+            if not exc.code:
+                raise
+            failed.append(label)
+            return None
+
+    run("baseline", verify_baseline)
+    patches = run("functions", verify_functions)
+    rows = load_function_rows()
+    run("string-refs", lambda: verify_string_refs(rows))
+    run("dir32 consistency", lambda: verify_dir32_consistency(rows))
+    run("pin consistency", pin_consistency.verify)
+    run("source claims", verify_source_claims)
+    if patches is None:
+        # The no-op patch needs the compiled patch set, so a failed
+        # verify_functions leaves it unrunnable. Say that out loud and stay red
+        # rather than skipping it into a green summary.
+        print("No-op patch: FAIL not run — verify_functions did not produce a patch set")
+        failed.append("no-op patch (unrunnable)")
+    else:
+        run("no-op patch", lambda: verify_noop_patch(patches))
+
+    if failed:
+        print(f"\nFULL GATE: FAIL — {len(failed)} red: " + ", ".join(failed))
+        raise SystemExit(1)
+    print("\nFULL GATE: OK — every check green")
 
 
 if __name__ == "__main__":
