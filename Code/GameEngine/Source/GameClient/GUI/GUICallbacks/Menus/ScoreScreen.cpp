@@ -399,6 +399,21 @@ void FixupScoreScreenMovieWindow( void )
 	}
 }
 
+//-------------------------------------------------------------------------------------------------
+// WindowLayout::hide is virtual in BFME (vtable slot 0x10) and non-virtual in
+// the vendored header, so the call site is spelled through a shim the same way
+// NetworkDirectConnect.cpp, CreditsMenu.cpp and WOLWelcomeMenu.cpp spell it.
+//-------------------------------------------------------------------------------------------------
+class BfmeVirtualHideLayout
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot4() = 0;
+	virtual void slot8() = 0;
+	virtual void slotC() = 0;
+	virtual void hide( Bool immediate ) = 0;
+};
+
 /** Shutdown the ScoreScreen */
 //-------------------------------------------------------------------------------------------------
 void ScoreScreenShutdown( WindowLayout *layout, void *userData )
@@ -406,12 +421,13 @@ void ScoreScreenShutdown( WindowLayout *layout, void *userData )
 	DontShowMainMenu = FALSE; //KRIS
 
 	// hide the layout
-	layout->hide( TRUE );
+	((BfmeVirtualHideLayout *)layout)->hide( TRUE );
 
 	// our shutdown is complete
 	TheShell->shutdownComplete( layout );
 
-	TheAudio->removeAudioEvent( AHSV_StopTheMusicFade );
+	// ZH follows with TheAudio->removeAudioEvent( AHSV_StopTheMusicFade );
+	// BFME does not - retail is these three lines and thirty-seven bytes.
 
 }
 
@@ -432,32 +448,10 @@ void ScoreScreenUpdate( WindowLayout * layout, void *userData)
 		s_needToFinishSinglePlayerInit = FALSE;
 	}
 	
-	//TheGameLogic->clearGameData() gets called after ScoreScreenInit and before the
-	//first ScoreScreenUpdate(), so it was creatively moved here so we can actually
-	//hear the music play.
-	if( TheGameInfo && g_playMusic )
-	{
-		g_playMusic = FALSE;
-		
-		GameSlot *lSlot = TheGameInfo->getSlot(TheGameInfo->getLocalSlotNum());
-		const PlayerTemplate* pt;
-
-		if (lSlot && lSlot->getPlayerTemplate() >= 0)
-			pt = ThePlayerTemplateStore->getNthPlayerTemplate(lSlot->getPlayerTemplate());
-		else
-			pt = ThePlayerTemplateStore->findPlayerTemplate( TheNameKeyGenerator->nameToKey("FactionObserver") );
-		AsciiString musicName = pt->getScoreScreenMusic();
-		if ( !musicName.isEmpty() )
-		{
-			TheAudio->removeAudioEvent( AHSV_StopTheMusicFade );
-			AudioEventRTS event( musicName );
-			event.setShouldFade( TRUE );
-			TheAudio->addAudioEvent( &event );
-			TheAudio->update();//Since GameEngine::update() is suspended until after I am gone... 
-		}
-
-
-	}
+	// ZH follows with a block that starts the score-screen music: guarded by
+	// TheGameInfo && g_playMusic, it looks the local slot's PlayerTemplate up and
+	// plays its getScoreScreenMusic().  BFME has none of it - retail is the two
+	// blocks above and fifty-five bytes, ending at the isHidden byte read.
 }
 
 /** Input function for the ScoreScreen */
