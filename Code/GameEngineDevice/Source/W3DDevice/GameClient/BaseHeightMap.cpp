@@ -717,38 +717,130 @@ void BaseHeightMapRenderObjClass::updateMacroTexture(AsciiString textureName)
 //=============================================================================
 /** Updates the macro noise/lightmap texture (pass 3) */
 //=============================================================================
-// ?reset@BaseHeightMapRenderObjClass@@UAEXXZ present-unmatched
+class BaseHeightMapResetBuffer
+{
+public:
+	void clear3094();
+	void clear30B4();
+	void clear3098();
+	void clear30AC();
+	void clear30B0();
+	void clear30A4();
+	void clear30A0();
+};
+
+class BaseHeightMapResetShroud
+{
+public:
+	void reset30B8();
+	void setBorderShroudLevel30B8(UnsignedByte level);
+	void reset30BC();
+	void setBorderShroudLevel30BC(UnsignedByte level);
+};
+
+class BaseHeightMapResetStringBase
+{
+public:
+	BaseHeightMapResetStringBase(const char *text);
+	BaseHeightMapResetStringBase(const BaseHeightMapResetStringBase &text);
+};
+
+// Visible delegation preserves retail's by-value unwind-record scheduling.
+class BaseHeightMapResetAsciiString
+{
+public:
+	BaseHeightMapResetAsciiString(const char *text)
+	{
+		((BaseHeightMapResetStringBase *)this)->BaseHeightMapResetStringBase::BaseHeightMapResetStringBase(text);
+	}
+	BaseHeightMapResetAsciiString(const BaseHeightMapResetAsciiString &text)
+	{
+		((BaseHeightMapResetStringBase *)this)->BaseHeightMapResetStringBase::BaseHeightMapResetStringBase(
+			*(const BaseHeightMapResetStringBase *)&text);
+	}
+	~BaseHeightMapResetAsciiString();
+
+private:
+	void *m_data;
+};
+
+class BaseHeightMapResetTerrain
+{
+public:
+	void updateMacroTexture(BaseHeightMapResetAsciiString textureName, Bool force);
+};
+
+// ?reset@BaseHeightMapRenderObjClass@@UAEXXZ
 void BaseHeightMapRenderObjClass::reset(void)
 {
-	if (m_treeBuffer) {
-		m_treeBuffer->clearAllTrees();
+	// BFME added terrain buffers and a second cliff vector absent from the imported header.
+	char *heightMap = reinterpret_cast<char *>(this);
+	BaseHeightMapResetBuffer *buffer3094 =
+		*reinterpret_cast<BaseHeightMapResetBuffer **>(heightMap + 0x3094);
+	*reinterpret_cast<UnsignedByte *>(heightMap + 0x30d0) = 1;
+	if (buffer3094) {
+		buffer3094->clear3094();
 	}
-	if (m_propBuffer) {
-		m_propBuffer->clearAllProps();
+	BaseHeightMapResetBuffer *buffer30B4 =
+		*reinterpret_cast<BaseHeightMapResetBuffer **>(heightMap + 0x30b4);
+	if (buffer30B4) {
+		buffer30B4->clear30B4();
 	}
-	clearAllScorches();
-#ifdef TEST_CUSTOM_EDGING
-	m_customEdging ->clearAllEdging();
-#endif
-#ifdef DO_ROADS
-	if (m_roadBuffer) {
-		m_roadBuffer->clearAllRoads();
+	BaseHeightMapResetBuffer *buffer3098 =
+		*reinterpret_cast<BaseHeightMapResetBuffer **>(heightMap + 0x3098);
+	if (buffer3098) {
+		buffer3098->clear3098();
 	}
-#endif
-	if (m_bridgeBuffer) {
-		m_bridgeBuffer->clearAllBridges();
+	W3DPropBuffer *propBuffer =
+		*reinterpret_cast<W3DPropBuffer **>(heightMap + 0x309c);
+	if (propBuffer) {
+		propBuffer->clearAllProps();
 	}
 
-	if (m_bibBuffer) {
-		m_bibBuffer->clearAllBibs();
+	BaseHeightMapResetBuffer *buffer30AC =
+		*reinterpret_cast<BaseHeightMapResetBuffer **>(heightMap + 0x30ac);
+	*reinterpret_cast<Int *>(heightMap + 0x2fc4) = 0;
+	*reinterpret_cast<Int *>(heightMap + 0x2fc8) = 0;
+	*reinterpret_cast<Int *>(heightMap + 0x2fcc) = 0;
+	*reinterpret_cast<Int *>(heightMap + 0x2fe0) = 0;
+	if (buffer30AC) {
+		buffer30AC->clear30AC();
+	}
+	BaseHeightMapResetBuffer *buffer30B0 =
+		*reinterpret_cast<BaseHeightMapResetBuffer **>(heightMap + 0x30b0);
+	if (buffer30B0) {
+		buffer30B0->clear30B0();
+	}
+	BaseHeightMapResetBuffer *buffer30A4 =
+		*reinterpret_cast<BaseHeightMapResetBuffer **>(heightMap + 0x30a4);
+	if (buffer30A4) {
+		buffer30A4->clear30A4();
+	}
+	BaseHeightMapResetBuffer *buffer30A0 =
+		*reinterpret_cast<BaseHeightMapResetBuffer **>(heightMap + 0x30a0);
+	if (buffer30A0) {
+		buffer30A0->clear30A0();
 	}
 
-	m_showAsVisibleCliff.clear();
+	BaseHeightMapRenderObjClass *bfmeVisibleCliffLayout =
+		reinterpret_cast<BaseHeightMapRenderObjClass *>(heightMap + 8);
+	bfmeVisibleCliffLayout->m_showAsVisibleCliff.clear();
+	BaseHeightMapRenderObjClass *bfmeImpassableLayout =
+		reinterpret_cast<BaseHeightMapRenderObjClass *>(heightMap + 0x1c);
+	bfmeImpassableLayout->m_showAsVisibleCliff.clear();
 
-	if (m_shroud)
-	{	m_shroud->reset();
-		m_shroud->setBorderShroudLevel((W3DShroudLevel)TheGlobalData->m_shroudAlpha);	//assume border is always black at start.
+	if (*reinterpret_cast<BaseHeightMapResetShroud **>(heightMap + 0x30b8)) {
+		(*reinterpret_cast<BaseHeightMapResetShroud **>(heightMap + 0x30b8))->reset30B8();
+		(*reinterpret_cast<BaseHeightMapResetShroud **>(heightMap + 0x30b8))->setBorderShroudLevel30B8(
+			*reinterpret_cast<const UnsignedByte *>(reinterpret_cast<const char *>(TheGlobalData) + 0xc86));
 	}
+	if (*reinterpret_cast<BaseHeightMapResetShroud **>(heightMap + 0x30bc)) {
+		(*reinterpret_cast<BaseHeightMapResetShroud **>(heightMap + 0x30bc))->reset30BC();
+		(*reinterpret_cast<BaseHeightMapResetShroud **>(heightMap + 0x30bc))->setBorderShroudLevel30BC(
+			*reinterpret_cast<const UnsignedByte *>(reinterpret_cast<const char *>(TheGlobalData) + 0xca0));
+	}
+	reinterpret_cast<BaseHeightMapResetTerrain *>(this)->updateMacroTexture(
+		BaseHeightMapResetAsciiString(""), false);
 }
 
 /**@todo: Ray intersection needs to be optimized with some sort of grid-tracing

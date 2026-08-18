@@ -72237,3 +72237,17 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?BaseHeightMapScorchStageChanges@@3IA,0x01340568,BaseHeightMap drawScorches sampler-state counter
 ?resize@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEXI_N@Z,0x00038ED3,BaseHeightMap visible-cliff bit vector resize ILT thunk
 ?evaluateAsVisibleCliff@BaseHeightMapRenderObjClass@@QAE_NHHM@Z,0x00004AFC,BaseHeightMap visible-cliff evaluator ILT thunk
+?clear3094@BaseHeightMapResetBuffer@@QAEXXZ,0x0000DDD7,BaseHeightMap reset call for BFME buffer at this+0x3094
+?clear30B4@BaseHeightMapResetBuffer@@QAEXXZ,0x0003697B,BaseHeightMap reset call for BFME buffer at this+0x30B4
+?clear3098@BaseHeightMapResetBuffer@@QAEXXZ,0x00045D72,BaseHeightMap reset call for BFME buffer at this+0x3098
+?clear30AC@BaseHeightMapResetBuffer@@QAEXXZ,0x000336F9,BaseHeightMap reset call for BFME buffer at this+0x30AC
+?clear30B0@BaseHeightMapResetBuffer@@QAEXXZ,0x00003E59,BaseHeightMap reset call for BFME buffer at this+0x30B0
+?clear30A4@BaseHeightMapResetBuffer@@QAEXXZ,0x0003A5E4,BaseHeightMap reset call for BFME buffer at this+0x30A4
+?clear30A0@BaseHeightMapResetBuffer@@QAEXXZ,0x000404D0,BaseHeightMap reset call for BFME buffer at this+0x30A0
+?erase@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAE?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@U32@0@Z,0x00029631,BaseHeightMap reset packed-bool vector erase ILT thunk
+?reset30B8@BaseHeightMapResetShroud@@QAEXXZ,0x0000AA4C,BaseHeightMap reset call for BFME shroud at this+0x30B8
+?setBorderShroudLevel30B8@BaseHeightMapResetShroud@@QAEXE@Z,0x00028420,BaseHeightMap border-level call for BFME shroud at this+0x30B8
+?reset30BC@BaseHeightMapResetShroud@@QAEXXZ,0x000272FF,BaseHeightMap reset call for BFME shroud at this+0x30BC
+?setBorderShroudLevel30BC@BaseHeightMapResetShroud@@QAEXE@Z,0x0000BFF5,BaseHeightMap border-level call for BFME shroud at this+0x30BC
+??0BaseHeightMapResetStringBase@@QAE@PBD@Z,0x00888BC0,BaseHeightMap reset string-base constructor body
+?updateMacroTexture@BaseHeightMapResetTerrain@@QAEXVBaseHeightMapResetAsciiString@@_N@Z,0x00003CE2,BaseHeightMap reset two-argument macro-texture ILT thunk
