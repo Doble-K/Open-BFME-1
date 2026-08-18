@@ -72201,3 +72201,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?getNumRemoteIPs@LANPreferences@@QAEHXZ,0x0003E464,PopulateRemoteIPComboBox direct-call ILT thunk to getNumRemoteIPs
 ?getRemoteIPEntry@LANPreferences@@QAE?AVUnicodeString@@H@Z,0x0002B62A,PopulateRemoteIPComboBox direct-call ILT thunk to getRemoteIPEntry
 ?GadgetComboBoxAddEntryPopulateRemoteIPComboBox@@YAHPAVGameWindow@@VPopulateRemoteIPComboBoxEntry@@H@Z,0x0002F338,ABI-compatible call alias required for BFME VC7.1 argument scheduling
+?winGetFont@GameWindow@@QAEPAVGameFont@@XZ,0x0002DB7D,derived from the REL32 displacement at 0x004C50F0
