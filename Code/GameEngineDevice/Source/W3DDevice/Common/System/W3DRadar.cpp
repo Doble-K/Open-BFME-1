@@ -1215,23 +1215,10 @@ void W3DRadar::buildTerrainTexture( TerrainLogic *terrain )
 
 // ------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?clearShroud@W3DRadar@@UAEXXZ present-unmatched
 void W3DRadar::clearShroud()
 {
-#if defined(_DEBUG) || defined(_INTERNAL)
-	if (!TheGlobalData->m_shroudOn)
-		return;
-#endif
-
-	SurfaceClass *surface = m_shroudTexture->Get_Surface_Level();
-	
-	// fill to clear, shroud will make black.  Don't want to make something black that logic can't clear
-	unsigned int color = GameMakeColor( 0, 0, 0, 0 );
-	for( Int y = 0; y < m_textureHeight; y++ )
-	{
-		surface->DrawHLine(y, 0, m_textureWidth-1, color);
-	}
-	REF_PTR_RELEASE(surface);
+	reinterpret_cast<W3DRadarResetTexture *>(reinterpret_cast<char *>(this) + 0x14a0)
+		->getSurfaceLevel().clear(0);
 }
 
 // ------------------------------------------------------------------------------------------------
