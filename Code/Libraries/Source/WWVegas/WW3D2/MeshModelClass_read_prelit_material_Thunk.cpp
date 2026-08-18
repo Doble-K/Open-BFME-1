@@ -1,267 +1,76 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-enum WW3DErrorType {};
-class ChunkLoadClass;
-class MeshLoadContextClass;
+class ChunkLoadClass
+{
+public:
+	unsigned long Cur_Chunk_ID();
+	bool Open_Chunk();
+	bool Close_Chunk();
+	unsigned long Read(void *buffer, unsigned long bytes);
+};
+
+class MeshLoadContextClass
+{
+public:
+	unsigned char m_padding[0x78];
+	unsigned char m_materialInfo[0x10];
+	unsigned long m_prelitChunkID;
+};
+
 class MeshModelClass
 {
 protected:
-	WW3DErrorType read_prelit_material(ChunkLoadClass &, MeshLoadContextClass *);
+	bool read_prelit_material(ChunkLoadClass &cload, MeshLoadContextClass *context);
+	bool read_vertex_materials(ChunkLoadClass &cload, MeshLoadContextClass *context);
+	bool read_shaders(ChunkLoadClass &cload, MeshLoadContextClass *context);
+	bool read_textures(ChunkLoadClass &cload, MeshLoadContextClass *context);
+	bool read_material_pass(ChunkLoadClass &cload, MeshLoadContextClass *context);
+
+private:
+	unsigned char m_padding[0x9c];
+	unsigned long *m_materialInfo;
 };
 
-// ?read_prelit_material@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z
-__declspec(naked) WW3DErrorType MeshModelClass::read_prelit_material(ChunkLoadClass &, MeshLoadContextClass *)
+bool MeshModelClass::read_prelit_material(ChunkLoadClass &cload, MeshLoadContextClass *context)
 {
-	__asm {
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x10
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xff
-        __emit 0x17
-        __emit 0x07
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x3b
-        __emit 0x85
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x0f
-        __emit 0x85
-        __emit 0x99
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x28
-        __emit 0x17
-        __emit 0x07
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x8a
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xb3
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xd7
-        __emit 0x17
-        __emit 0x07
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc0
-        __emit 0xd8
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x10
-        __emit 0x77
-        __emit 0x5e
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x80
-        __emit 0x14
-        __emit 0xfd
-        __emit 0xd6
-        __emit 0x00
-        __emit 0xff
-        __emit 0x24
-        __emit 0x85
-        __emit 0xfc
-        __emit 0xfc
-        __emit 0xd6
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x5d
-        __emit 0x78
-        __emit 0x53
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x34
-        __emit 0x19
-        __emit 0x07
-        __emit 0x00
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x10
-        __emit 0x74
-        __emit 0x04
-        __emit 0x32
-        __emit 0xdb
-        __emit 0xeb
-        __emit 0x3a
-        __emit 0x8b
-        __emit 0x13
-        __emit 0x8b
-        __emit 0x8f
-        __emit 0x9c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x11
-        __emit 0xb3
-        __emit 0x01
-        __emit 0xeb
-        __emit 0x2c
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x84
-        __emit 0xee
-        __emit 0xff
-        __emit 0xff
-        __emit 0xeb
-        __emit 0x1f
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xa9
-        __emit 0xed
-        __emit 0xff
-        __emit 0xff
-        __emit 0xeb
-        __emit 0x14
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x7e
-        __emit 0xef
-        __emit 0xff
-        __emit 0xff
-        __emit 0xeb
-        __emit 0x09
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x93
-        __emit 0xfe
-        __emit 0xff
-        __emit 0xff
-        __emit 0x8a
-        __emit 0xd8
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x0a
-        __emit 0x17
-        __emit 0x07
-        __emit 0x00
-        __emit 0x80
-        __emit 0xfb
-        __emit 0x01
-        __emit 0x75
-        __emit 0x18
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x9e
-        __emit 0x16
-        __emit 0x07
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x85
-        __emit 0x76
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x8a
-        __emit 0xc3
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x7f
-        __emit 0xfc
-        __emit 0xd6
-        __emit 0x00
-        __emit 0xae
-        __emit 0xfc
-        __emit 0xd6
-        __emit 0x00
-        __emit 0xa3
-        __emit 0xfc
-        __emit 0xd6
-        __emit 0x00
-        __emit 0xb9
-        __emit 0xfc
-        __emit 0xd6
-        __emit 0x00
-        __emit 0xc4
-        __emit 0xfc
-        __emit 0xd6
-        __emit 0x00
-        __emit 0xcf
-        __emit 0xfc
-        __emit 0xd6
-        __emit 0x00
-        __emit 0x00
-        __emit 0x01
-        __emit 0x02
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x03
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x05
-        __emit 0x04
-        __emit 0xcc
-        __emit 0xcc
-        __emit 0xcc
-        __emit 0xcc
+	if (cload.Cur_Chunk_ID() == context->m_prelitChunkID)
+	{
+		while (cload.Open_Chunk())
+		{
+			unsigned char error = 1;
+			switch (cload.Cur_Chunk_ID())
+			{
+			case 0x28:
+				if (cload.Read(context->m_materialInfo, sizeof(context->m_materialInfo)) != sizeof(context->m_materialInfo))
+				{
+					error = false;
+				}
+				else
+				{
+					*m_materialInfo = *reinterpret_cast<unsigned long *>(context->m_materialInfo);
+					error = true;
+				}
+				break;
+			case 0x29:
+				error = read_shaders(cload, context);
+				break;
+			case 0x2a:
+				error = read_vertex_materials(cload, context);
+				break;
+			case 0x30:
+				error = read_textures(cload, context);
+				break;
+			case 0x38:
+				error = read_material_pass(cload, context);
+				break;
+			}
+
+			cload.Close_Chunk();
+			if (error != 1)
+				// BFME keeps this normalized status byte live through the return.
+				return *reinterpret_cast<bool *>(&error);
+		}
 	}
+
+	return true;
 }

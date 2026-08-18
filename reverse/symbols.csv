@@ -67924,6 +67924,10 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?read_dcg@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096D500,rel32 pin for read_material_pass
 ?read_dig@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096D810,rel32 pin for read_material_pass
 ?read_shader_ids@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096D3C0,rel32 pin for read_material_pass
+?read_material_pass@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096FB60,BFME bool-returning material pass loader called by read_prelit_material
+?read_shaders@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096EB30,BFME bool-returning shader loader called by read_prelit_material
+?read_textures@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096EC40,BFME bool-returning texture loader called by read_prelit_material
+?read_vertex_materials@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096EA60,BFME bool-returning vertex-material loader called by read_prelit_material
 ?read_texture_ids@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096DB40,decoded from read_texture_stage call site
 ?read_texture_stage@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096ED60,rel32 pin for read_material_pass
 ?read_vertex_material_ids@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096D300,rel32 pin for read_material_pass
