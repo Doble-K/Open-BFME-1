@@ -157,7 +157,7 @@ def test_a_pin_inside_a_proven_body_is_named_as_such(scanner):
 
 def test_one_pin_per_name_is_never_a_violation(scanner):
     """A single address cannot disagree with itself -- the guard costs nothing
-    for the 70,077 symbols that pin one."""
+    for the 70,144 symbols that pin one."""
     assert scanner.inspect("?whatever@@YAXXZ", [0x00014867]) is None
 
 
@@ -169,7 +169,7 @@ def _violation(symbol, bodies, kind="divergent-bodies", evidence="e"):
 def test_a_new_violation_fails_the_gate(tmp_path):
     baseline = tmp_path / "baseline.csv"
     known = _violation("?known@@YAXXZ", [0x1000, 0x2000])
-    pin_consistency.write_baseline([known], baseline)
+    pin_consistency.write_baseline([known], baseline, seed=True)
     fresh = _violation("?fresh@@YAXXZ", [0x3000, 0x4000])
     new, stale = pin_consistency.check([known, fresh], baseline)
     assert [v["symbol"] for v in new] == ["?fresh@@YAXXZ"]
@@ -184,7 +184,7 @@ def test_a_new_address_on_a_baselined_symbol_fails(tmp_path):
     """
     baseline = tmp_path / "baseline.csv"
     pin_consistency.write_baseline(
-        [_violation("?known@@YAXXZ", [0x1000, 0x2000])], baseline)
+        [_violation("?known@@YAXXZ", [0x1000, 0x2000])], baseline, seed=True)
     grown = _violation("?known@@YAXXZ", [0x1000, 0x2000, 0x5000])
     new, _stale = pin_consistency.check([grown], baseline)
     assert [v["symbol"] for v in new] == ["?known@@YAXXZ"]
@@ -194,7 +194,7 @@ def test_a_fixed_symbol_leaves_a_stale_line_that_fails(tmp_path):
     """Shrinking is the only direction: the fix and the deletion are one commit."""
     baseline = tmp_path / "baseline.csv"
     pin_consistency.write_baseline(
-        [_violation("?known@@YAXXZ", [0x1000, 0x2000])], baseline)
+        [_violation("?known@@YAXXZ", [0x1000, 0x2000])], baseline, seed=True)
     new, stale = pin_consistency.check([], baseline)
     assert new == []
     assert [row["symbol"] for row in stale] == ["?known@@YAXXZ"]
@@ -212,7 +212,7 @@ def test_the_baseline_round_trips_its_evidence(tmp_path):
     baseline = tmp_path / "baseline.csv"
     written = _violation("?known@@YAXXZ", [0x2000, 0x1000],
                          evidence="size=46; first divergence at +0x16")
-    pin_consistency.write_baseline([written], baseline)
+    pin_consistency.write_baseline([written], baseline, seed=True)
     entries = pin_consistency.read_baseline(baseline)
     key = pin_consistency.key_of("?known@@YAXXZ", [0x1000, 0x2000])
     assert entries[key]["evidence"] == "size=46; first divergence at +0x16"
@@ -224,3 +224,78 @@ def test_the_committed_baseline_matches_the_ledger():
     violations, _stats = pin_consistency.Scanner().scan()
     new, stale = pin_consistency.check(violations)
     assert (new, stale) == ([], [])
+
+
+def test_write_baseline_refuses_to_grow(tmp_path):
+    """The prose said "only allowed to shrink" and nothing enforced it, which
+    left --write-baseline as a one-command way to turn any red green -- the same
+    move verify_dir32_consistency's self-bootstrap made, and the reason 18
+    unreviewed whitelist entries exist. Regeneration may only DROP lines."""
+    baseline = tmp_path / "baseline.csv"
+    known = _violation("?known@@YAXXZ", [0x1000, 0x2000])
+    pin_consistency.write_baseline([known], baseline, seed=True)
+
+    fresh = _violation("?fresh@@YAXXZ", [0x3000, 0x4000])
+    with pytest.raises(SystemExit) as excinfo:
+        pin_consistency.write_baseline([known, fresh], baseline)
+    assert "SHRINK-ONLY" in str(excinfo.value)
+    assert "?fresh@@YAXXZ" in str(excinfo.value)
+
+    # ...and dropping one is still allowed, or adjudication could never land.
+    pin_consistency.write_baseline([], baseline)
+    assert pin_consistency.read_baseline(baseline) == {}
+
+
+def test_seeding_cannot_overwrite_and_writing_cannot_seed(tmp_path):
+    """Delete-then-regenerate must not be a way to launder a red into a green.
+    Growth therefore costs two loud, separately-named acts on a tracked file."""
+    baseline = tmp_path / "baseline.csv"
+    pin_consistency.write_baseline([_violation("?a@@YAXXZ", [0x1000, 0x2000])],
+                                   baseline, seed=True)
+    with pytest.raises(SystemExit) as seeding:
+        pin_consistency.write_baseline([], baseline, seed=True)
+    assert "refuses to overwrite" in str(seeding.value)
+
+    baseline.unlink()
+    with pytest.raises(SystemExit) as writing:
+        pin_consistency.write_baseline([_violation("?b@@YAXXZ", [0x7000, 0x8000])],
+                                       baseline)
+    assert "does NOT seed itself" in str(writing.value)
+
+
+def test_shrink_only_is_keyed_not_counted(tmp_path, monkeypatch):
+    """A hand-typed line is the same anti-pattern the tool refuses, so the
+    committed file is judged against git history too. Keys, not line counts:
+    trading one adjudicated line for one new violation keeps the count flat and
+    must still fail."""
+    baseline = tmp_path / "baseline.csv"
+    monkeypatch.setattr(pin_consistency, "ROOT", tmp_path)
+
+    def fake_blob(ref, path):
+        assert ref == "HEAD"
+        return ("symbol,bodies,kind,evidence\n"
+                "?old@@YAXXZ,0x00001000 0x00002000,divergent-bodies,e\n")
+
+    monkeypatch.setattr(pin_consistency, "_blob_at", fake_blob)
+
+    baseline.write_text("symbol,bodies,kind,evidence\n"
+                        "?new@@YAXXZ,0x00003000 0x00004000,divergent-bodies,e\n",
+                        encoding="utf-8")
+    with pytest.raises(SystemExit):
+        pin_consistency.assert_shrink_only("HEAD", path=baseline)
+
+    baseline.write_text("symbol,bodies,kind,evidence\n", encoding="utf-8")
+    pin_consistency.assert_shrink_only("HEAD", path=baseline)
+
+
+def test_the_guard_reads_only_half_the_resolvers_candidate_list():
+    """load_symbol_map seeds a name from its functions.csv rows and THEN appends
+    its symbols.csv pins, so the additive list the REL32 resolver walks is the
+    union. scan() reads the pins alone, which means `len(pins) < 2` skips a name
+    whose single pin disagrees with its own ledger row -- the same hazard, one
+    source over. Documented and reported by --candidates, not gated."""
+    lists = pin_consistency.candidate_lists()
+    pins = pin_consistency.load_pins()
+    wider = [name for name, addresses in lists.items()
+             if len(addresses) > 1 and len(pins.get(name, ())) < 2]
+    assert wider, "expected names the pin-only view cannot compare"

@@ -20,6 +20,30 @@ THE INVARIANT: every address pinned to one name must, after following the
 incremental-link thunk chain, land on a body byte-equal to every other body the
 same name pins. One name, one function.
 
+WHAT THIS DOES NOT CATCH -- read this before trusting a green line
+-----------------------------------------------------------------
+The invariant is ONE NAME, MANY ADDRESSES. Two neighbouring hazards are shaped
+the other way round and are outside it. Neither is a bug in the check; both are
+uncovered ground, and saying so here is the point.
+
+1. ONE ADDRESS, MANY NAMES. The 0x14867 incident above is really this shape.
+   Three of its four names are flagged only incidentally, because they happen to
+   carry other pins too; ?winSetEnabledBorderColor@GameWindow@@QAEHHH@Z pins
+   0x14867 and nothing else and is completely invisible here. 70,144 of 70,633
+   symbols pin exactly one address and are never compared to anything. A blanket
+   check is not the answer -- 6,601 bodies legitimately carry several names, one
+   of them 453 folded destructors -- but nothing checks the illegitimate ones.
+
+2. THE OTHER HALF OF THE CANDIDATE LIST. load_symbol_map seeds each name from
+   its functions.csv rows and THEN appends its symbols.csv pins, so the additive
+   list the resolver actually walks is the union of both. This guard reads only
+   the pins. A name with one pin and one ledger row pointing at a different body
+   is a two-candidate list -- the exact hazard -- and `len(pins) < 2` skips it.
+   `--candidates` applies the same invariant to the real list and currently
+   finds 114 violations on top of the gated 410. It reports; it does not gate,
+   because gating it would mean baselining 114 new lines and this file is only
+   allowed to shrink. Drain them, do not record them.
+
 HOW TEMPLATES ARE HANDLED (explicitly, not by exclusion)
 --------------------------------------------------------
 A template instantiated in K translation units leaves up to K byte-identical
@@ -365,7 +389,37 @@ class Scanner:
         }
 
     def clear_cut(self, violation):
-        """The pins a byte-verified ledger row already settles, or None.
+        """CANDIDATE pins a byte-verified ledger row refutes, or None.
+
+        These are candidates, not verdicts. A previous session landed all 47 of
+        them and the full gate turned 111 byte-matched rows RED; 110 of those
+        failures resolved to a pin it had just dropped. Only 21 of 47 survived
+        three gate rounds -- a ~55% false-verdict rate on output once labelled
+        "settled by the ledger". The lesson is one rule:
+
+            A BYTE-VERIFIED CALLER OUTRANKS A BYTE-VERIFIED IDENTITY ROW.
+
+        A ledger row says what a body IS. A retail call site says what the
+        resolver NEEDS. When they disagree the call site wins, because dropping
+        that pin removes the only candidate that reproduces the caller's
+        displacement and the gate goes red. The row has to move before the pin
+        can follow it.
+
+        THIS FUNCTION CANNOT APPLY THAT RULE, AND THE OBVIOUS FIX IS WRONG.
+        Screening out pins retail calls was implemented and measured before
+        being removed: 36 of the 39 pins that DID land clean in 0d42eb8f4 are
+        themselves retail call targets, so the screen suppresses 92% of the good
+        answers while catching 25 of 26 bad ones. It does not separate them, it
+        just says "no". Obvious in hindsight -- a callee pin IS an address
+        retail calls, so "is it called" is true of nearly all of them.
+
+        Deciding it properly means knowing which SYMBOL each call site
+        references, and that lives in the object files' relocations, not in the
+        image. This module deliberately reads neither compile output nor cached
+        artifacts -- 1.6s on the image and the ledgers is what lets the hooks
+        afford it. So the contract is honest instead: these are CANDIDATES.
+        Confirm each with a full ./build.sh, and expect about half to be
+        refuted.
 
         Cheap to adjudicate means BOTH ends are already proven: exactly one
         pinned body carries a matched, identity-naming row for this very
@@ -418,6 +472,55 @@ class Scanner:
         return violations, {"names": len(pins), "multi_pinned": multi}
 
 
+def candidate_lists():
+    """name -> every address build.py's REL32 resolver may try, both sources.
+
+    load_symbol_map seeds each name from its functions.csv rows AND then
+    appends its symbols.csv pins, so the additive candidate list the resolver
+    walks is the UNION. The guard reads only the symbols.csv half, which means a
+    name with one pin and one ledger row at a different body is a two-candidate
+    list the invariant never sees. That is the same hazard, one source over.
+    """
+    lists = collections.defaultdict(list)
+    for row in build.load_all_function_rows():
+        rva = int(row["target_rva"], 16)
+        if rva not in lists[row["name"]]:
+            lists[row["name"]].append(rva)
+    for name, addresses in load_pins().items():
+        for address in addresses:
+            if address not in lists[name]:
+                lists[name].append(address)
+    return lists
+
+
+def report_candidates(scanner, pin_violations):
+    """The invariant over the resolver's real candidate list, as a report.
+
+    Reporting, not gating, and deliberately so: turning this on in the gate
+    would need every newly-exposed violation baselined, and growing that file
+    is the one move this guard exists to prevent. The next agent extends
+    coverage by DRAINING these, not by recording them.
+    """
+    known = {v["symbol"] for v in pin_violations}
+    extra = []
+    for name, addresses in candidate_lists().items():
+        if len(addresses) < 2 or name in known:
+            continue
+        found = scanner.inspect(name, addresses)
+        if found:
+            extra.append(found)
+    extra.sort(key=lambda v: (v["kind"], v["symbol"]))
+    counts = collections.Counter(v["kind"] for v in extra)
+    print(f"{len(pin_violations)} inconsistent on symbols.csv pins alone (the gated surface)")
+    print(f"{len(extra)} MORE inconsistent once functions.csv rows join the candidate list "
+          "(ungated blind spot)")
+    for kind, count in counts.most_common():
+        print(f"    {kind}: {count}")
+    for violation in extra:
+        print(f"{violation['symbol']}\n    {violation['kind']}: {violation['evidence']}")
+    return extra
+
+
 def shown(path):
     """A repo-relative path for messages; a test's tmp_path prints in full."""
     return path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
@@ -437,44 +540,180 @@ def format_row(violation):
 
 
 BASELINE_PREAMBLE = """\
-# Pin-consistency backlog -- reverse/symbols.csv pins that resolve to bodies
-# which are NOT the same function. Written by tools/pin_consistency.py; read by
-# the full gate (tools/build.py). Each line is a KNOWN-BAD pin set awaiting
-# adjudication, never a permission slip.
+# PIN-CONSISTENCY BACKLOG -- a to-do list of known-wrong identities.
+# Written by tools/pin_consistency.py; read by the full gate (tools/build.py).
+# Generated file: do not reformat it, and see tools/pin_consistency.py for the
+# full argument. THE GOAL IS AN EMPTY FILE.
 #
+# WHAT EACH LINE MEANS
+# --------------------
+# reverse/symbols.csv is an ADDITIVE candidate list: build.py's REL32 resolver
+# walks a name's addresses and keeps the first displacement that reproduces
+# retail. Give one name enough addresses and something matches, so a green gate
+# proves the caller's BYTES and says nothing about WHICH function the callee is.
+# Every line here is one name whose pinned addresses follow their thunk chains
+# to bodies that are NOT the same function. At most one of them is that name.
+# The rest are somebody else's function wearing its label, and each one is a
+# misidentification waiting to be written up as an exact match -- which is
+# exactly how the ControlBar and GameWindow families got 16 rows placed one body
+# early before anyone noticed.
+#
+# WHY THEY ARE STILL HERE
+# -----------------------
+# Not because they are acceptable. The guard landed against a pre-existing
+# backlog, and failing the gate on all of it would have blocked every agent
+# from every unrelated commit. So the backlog is recorded WITH its evidence and
+# the gate fails on anything NEW. A line here is a debt, never a permission slip.
+#
+# HOW TO RESOLVE ONE (this is the work; each line is a self-contained task)
+# ------------------------------------------------------------------------
+#   1. python3 tools/pin_consistency.py --symbol <name>
+#        prints every pin, its thunk chain, each body's proven extent, and which
+#        functions.csv rows already claim those bodies.
+#   2. Decide WHICH body is the name. Evidence that settles it, strongest first:
+#        a byte-verified functions.csv row naming this symbol at that body;
+#        a ghidra xref/vtable slot; a decoded store offset (the GameWindow family
+#        fell out of `lea eax,[eax+eax*2+d]` alone). Decompiled C is not proof.
+#   3. Delete the losing pin rows from reverse/symbols.csv -- splice in place,
+#        every surviving line byte-identical, terminators unchanged (uniform
+#        CRLF), and verify the census before/after. Deleting is a rewrite.
+#   4. Delete this line, in the SAME commit. A fixed symbol leaves a stale line
+#        that fails too, on purpose: the fix and the removal are one change.
+#   5. Run the FULL ./build.sh. Not the scoped one -- see the warning below.
+#
+# THE TRAP THAT CAUGHT THE LAST TWO SESSIONS
+# ------------------------------------------
+# A BYTE-VERIFIED CALLER OUTRANKS A BYTE-VERIFIED IDENTITY ROW. A session landed
+# all 47 --clear-cut verdicts and the gate turned 111 byte-matched rows RED; 110
+# of them resolved to a pin it had just deleted -- retail callers reaching the
+# very body the ledger says belongs to somebody else. Only 21 of 47 survived.
+# --clear-cut is a CANDIDATE list, not a verdict list: it reads the ledger and
+# the image, never the object relocations that say which symbol a call site
+# means, so it cannot see this coming. Screening out pins retail calls does NOT
+# fix it -- that was measured, and it suppresses 36 of the 39 pins that landed
+# clean. Confirm every retraction with a full ./build.sh; expect half to fail.
+# When the ledger row and the call site disagree, the row moves first.
+#
+# THIS FILE IS ONLY ALLOWED TO SHRINK
+# -----------------------------------
+# Adding a line to make a build green is the exact anti-pattern this guard
+# exists to stop -- fix the pin instead. Enforced, not merely requested:
+# --write-baseline refuses to emit a key the file does not already carry, and
+# `--assert-shrink-only` (run by .githooks/pre-commit) fails on any key added
+# vs HEAD, so a hand-edited line is caught too. If you believe a line must be
+# added, you have found a NEW misidentification: fix it.
+#
+# KEY AND COLUMNS
+# ---------------
 # key = symbol + its sorted body RVAs. A new address on a baselined symbol
-# changes the key and FAILS; adjudicating a symbol leaves a stale line that also
-# FAILS, so the retraction and the line removal land in one commit.
-#
-# THIS FILE IS ONLY ALLOWED TO SHRINK. Adding a line to make a build green is
-# the exact anti-pattern this guard exists to stop -- fix the pin instead.
-#
-# Where to start draining it:
-#   python3 tools/pin_consistency.py --clear-cut
-#     the subset whose answer a byte-verified functions.csv row already gives
-#   python3 tools/pin_consistency.py --symbol <name>
-#     one symbol's chains, extents and owners, for the rest
+# changes the key and FAILS, so a baselined line cannot quietly absorb one more
+# bad pin.
 #
 # kinds:
 #   divergent-bodies  same extent, bytes are not the same function even after
 #                     rel32 rebasing -- at most one pin names this symbol
-#   size-disagreement the pinned bodies have different proven extents
+#   size-disagreement the pinned bodies have different proven extents. 307 of
+#                     these are matched-vs-matched: two byte-verified bodies of
+#                     different proven lengths cannot be one function.
 #   no-boundary       a pinned body has no proven extent, so nothing can verify it
 #   non-text-pin      a pin resolves outside .text and cannot be a code body
 #
 # evidence: <kind detail> :: <body><-<pins> owned-by:<other functions.csv names>
+#           INTERIOR-OF:<fn>+0x<n> means the pin is not even an entry point --
+#           it points inside a byte-verified body, so it cannot be any function.
+#
+# NOT COVERED HERE: single-pinned names, and the functions.csv half of the
+# resolver's candidate list. `--candidates` reports the second (114 more).
 """
 
 
-def write_baseline(violations, path=BASELINE):
+def write_baseline(violations, path=BASELINE, seed=False):
+    """Regenerate the baseline. SHRINK-ONLY unless explicitly seeding.
+
+    "Only allowed to shrink" was prose in the preamble and nothing enforced it,
+    which left `--write-baseline` as a one-command way to turn any red green --
+    the exact move verify_dir32_consistency's self-bootstrap made, and the
+    reason 18 unreviewed whitelist entries exist. So the tool now refuses to
+    emit a key the committed file does not already carry: regeneration may drop
+    lines and never add one.
+
+    Seeding a baseline for a NEW surface is a real (rare) need, so it gets its
+    own flag that only works when there is no file to overwrite. Growth by
+    deleting the file and re-running is therefore two loud, separately-named
+    acts on a tracked file, not a silent side effect of one.
+    """
+    ordered = sorted(violations, key=lambda v: (v["kind"], v["symbol"]))
+    if seed:
+        if path.exists():
+            raise SystemExit(
+                f"pin_consistency: --seed-baseline refuses to overwrite existing "
+                f"{shown(path)}. Seeding is for a surface that has no baseline yet; "
+                "to regenerate this one after adjudicating, use --write-baseline "
+                "(which may only drop lines).")
+    else:
+        known = read_baseline(path)
+        added = [v for v in ordered if key_of(v["symbol"], v["bodies"]) not in known]
+        if added:
+            raise SystemExit(
+                f"pin_consistency: --write-baseline is SHRINK-ONLY and refuses to add "
+                f"{len(added)} line(s) that {shown(path)} does not already carry. A new "
+                "violation means a pin got worse, not that the baseline got shorter — fix "
+                "the pin in reverse/symbols.csv instead. New key(s):\n"
+                + "".join(f"    {v['symbol']} [{v['kind']}] "
+                          + " ".join(f"0x{b:08X}" for b in sorted(v["bodies"])) + "\n"
+                          for v in added[:12]))
     lines = [BASELINE_PREAMBLE, ",".join(BASELINE_FIELDS) + "\n"]
     buffer = []
-    for violation in sorted(violations, key=lambda v: (v["kind"], v["symbol"])):
+    for violation in ordered:
         row = format_row(violation)
         buffer.append([row[field] for field in BASELINE_FIELDS])
     out = io.StringIO()
     csv.writer(out, lineterminator="\n").writerows(buffer)
     path.write_text("".join(lines) + out.getvalue(), encoding="utf-8", newline="")
+
+
+def _blob_at(ref, path):
+    import subprocess
+    blob = subprocess.run(["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+                          capture_output=True, text=True, cwd=ROOT)
+    if blob.returncode:
+        raise SystemExit(f"pin_consistency: cannot read {shown(path)} at {ref}: "
+                         f"{blob.stderr.strip()}")
+    return blob.stdout
+
+
+def assert_shrink_only(ref="HEAD", at=None, path=BASELINE):
+    """Fail if the baseline at `at` adds a key the one at `ref` lacks.
+
+    write_baseline's refusal only covers the tool. A hand-edited line is the
+    same anti-pattern typed by hand, and the committed file is where it does
+    the damage, so the invariant is enforced against git history too — this is
+    what the hooks call. Comparing KEYS, not line counts: swapping one
+    adjudicated line for one new violation keeps the count flat.
+
+    `at` defaults to the working tree (the commit hook's question, "is what I am
+    about to commit bigger?"); the push hook passes the outgoing head so the
+    whole range is judged, since --no-verify skips the commit hook entirely.
+    """
+    previous = set(_baseline_keys(_blob_at(ref, path)))
+    current = set(_baseline_keys(_blob_at(at, path) if at
+                                 else path.read_text(encoding="utf-8")))
+    added = sorted(current - previous)
+    if added:
+        print(f"Pin baseline: FAIL {len(added)} line(s) ADDED vs {ref} — this file is only "
+              "allowed to shrink; a new violation means a pin got worse")
+        for key in added[:12]:
+            print(f"    {key}")
+        raise SystemExit(1)
+    print(f"Pin baseline: OK ({len(current)} entries, {len(previous - current)} removed "
+          f"vs {ref}, 0 added)")
+
+
+def _baseline_keys(text):
+    body = "".join(line for line in text.splitlines(keepends=True)
+                   if not line.startswith("#"))
+    for row in csv.DictReader(body.splitlines()):
+        yield key_of(row["symbol"], [int(b, 16) for b in row["bodies"].split()])
 
 
 def read_baseline(path=BASELINE):
@@ -531,11 +770,24 @@ def main(argv=None):
     parser.add_argument("--check", action="store_true",
                         help="gate mode: fail on any violation not in the baseline")
     parser.add_argument("--write-baseline", action="store_true",
-                        help="regenerate reverse/pin_consistency_baseline.csv")
+                        help="regenerate reverse/pin_consistency_baseline.csv (may only DROP lines)")
+    parser.add_argument("--seed-baseline", action="store_true",
+                        help="create a baseline for a surface that has none (refuses to overwrite)")
+    parser.add_argument("--assert-shrink-only", metavar="REF", nargs="?", const="HEAD",
+                        help="fail if the baseline adds any key vs REF (default HEAD); the hooks' check")
+    parser.add_argument("--at", metavar="REF",
+                        help="with --assert-shrink-only: judge the baseline at REF instead of the working tree")
     parser.add_argument("--symbol", help="report one symbol in full and exit")
+    parser.add_argument("--candidates", action="store_true",
+                        help="apply the invariant to the resolver's REAL candidate list "
+                             "(functions.csv rows + symbols.csv pins), not the pins alone")
     parser.add_argument("--clear-cut", action="store_true",
-                        help="list only the violations a byte-verified ledger row already settles")
+                        help="candidates a byte-verified ledger row settles — each still needs caller confirmation")
     args = parser.parse_args(argv)
+
+    if args.assert_shrink_only:
+        assert_shrink_only(args.assert_shrink_only, args.at)
+        return 0
 
     if args.symbol:
         scanner = Scanner()
@@ -572,12 +824,20 @@ def main(argv=None):
                 for pin in violation["pins"][body]:
                     print(f"    retract pin 0x{pin:08X} -> 0x{body:08X}, "
                           f"which is {others[0]}")
-        print(f"{settled} of {len(violations)} violations are settled by the ledger")
+        print(f"{settled} of {len(violations)} violations have a ledger row CONTRADICTING "
+              "the extra pins — candidates, not verdicts.")
+        print("A byte-verified caller outranks a byte-verified identity row: the last "
+              "session landed all 47 of these and 111 byte-matched rows went RED, 110 of "
+              "them reaching a pin it had just deleted. Retract in small batches and run a "
+              "FULL ./build.sh after each; expect about half to be refuted.")
         return 0
-    if args.write_baseline:
-        write_baseline(violations)
+    if args.write_baseline or args.seed_baseline:
+        write_baseline(violations, seed=args.seed_baseline)
         print(f"pin_consistency: wrote {shown(BASELINE)} with "
               f"{len(violations)} violation(s) — READ IT before committing")
+        return 0
+    if args.candidates:
+        report_candidates(scanner, violations)
         return 0
 
     counts = collections.Counter(v["kind"] for v in violations)
