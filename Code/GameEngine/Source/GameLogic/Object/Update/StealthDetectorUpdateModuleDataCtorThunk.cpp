@@ -1,264 +1,90 @@
 // cl: /DNDEBUG /MD /EHsc
+// stlport
 
-class StealthDetectorUpdateModuleData
+#include <bitset>
+
+class AsciiString
 {
 public:
-    StealthDetectorUpdateModuleData();
+	__forceinline AsciiString() : m_text(0) {}
+	~AsciiString();
+
+private:
+	char *m_text;
+};
+
+class AudioEventRTS
+{
+private:
+	unsigned char m_data[0x6c];
+
+public:
+	AudioEventRTS(void *allocator = (void *)0x01336e50, int zero = 0);
+	virtual ~AudioEventRTS();
+};
+
+template <unsigned int BitCount>
+class BitFlags
+{
+public:
+	BitFlags() {}
+
+	void clear()
+	{
+		m_bits.reset();
+	}
+
+private:
+	std::bitset<BitCount> m_bits;
+};
+
+typedef BitFlags<192> KindOfMaskType;
+
+class UpdateModuleData
+{
+public:
+	virtual ~UpdateModuleData() {}
+
+private:
+	unsigned int m_moduleTagNameKey;
+};
+
+class StealthDetectorUpdateModuleData : public UpdateModuleData
+{
+public:
+	StealthDetectorUpdateModuleData();
+
+private:
+	unsigned int m_updateRate;
+	float m_detectionRange;
+	bool m_initiallyDisabled;
+	AudioEventRTS m_pingSound;
+	AudioEventRTS m_loudPingSound;
+	const void *m_IRBeaconParticleSysTmpl;
+	const void *m_IRParticleSysTmpl;
+	const void *m_IRBrightParticleSysTmpl;
+	const void *m_IRGridParticleSysTmpl;
+	AsciiString m_IRParticleSysBone;
+	KindOfMaskType m_extraDetectKindof;
+	KindOfMaskType m_extraDetectKindofNot;
+	bool m_canDetectWhileGarrisoned;
+	bool m_canDetectWhileTransported;
+	bool m_canDetectWhileContained;
 };
 
 // ??0StealthDetectorUpdateModuleData@@QAE@XZ
-__declspec(naked) StealthDetectorUpdateModuleData::StealthDetectorUpdateModuleData()
+StealthDetectorUpdateModuleData::StealthDetectorUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xd3;
-        __emit 0x19;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x53;
-        __emit 0x68;
-        __emit 0x50;
-        __emit 0x6e;
-        __emit 0x33;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x48;
-        __emit 0xea;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xdd;
-        __emit 0xe8;
-        __emit 0xef;
-        __emit 0xff;
-        __emit 0x53;
-        __emit 0x68;
-        __emit 0x50;
-        __emit 0x6e;
-        __emit 0x33;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x84;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xc7;
-        __emit 0xe8;
-        __emit 0xef;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x86;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x8b;
-        __emit 0xd0;
-        __emit 0x89;
-        __emit 0x0a;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x14;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x20;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xd2;
-        __emit 0x8b;
-        __emit 0xf9;
-        __emit 0x89;
-        __emit 0x17;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x0c;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0xf4;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0xf8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0xfc;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x14;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x14;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x88;
-        __emit 0x9e;
-        __emit 0x38;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x9e;
-        __emit 0x39;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x9e;
-        __emit 0x3a;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_updateRate = 1;
+	m_detectionRange = 0.0f;
+	m_initiallyDisabled = false;
+	m_IRBeaconParticleSysTmpl = 0;
+	m_IRParticleSysTmpl = 0;
+	m_IRBrightParticleSysTmpl = 0;
+	m_IRGridParticleSysTmpl = 0;
+	m_extraDetectKindof.clear();
+	m_extraDetectKindofNot.clear();
+	m_canDetectWhileGarrisoned = false;
+	m_canDetectWhileTransported = false;
+	m_canDetectWhileContained = false;
 }
