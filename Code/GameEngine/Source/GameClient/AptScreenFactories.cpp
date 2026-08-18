@@ -257,3 +257,43 @@ void * __stdcall createAptScreenQuickMatchMenu( void *context )
 {
 	return new BfmeAptScreenQuickMatchMenu( context );
 }
+
+// WOLQuickMatchMenu, retail 0x00506040, object 0x28 bytes. The odd one out: its
+// constructor is inlined rather than called, so the factory runs the base
+// constructor at 0x00470620, stores its own vtable, zeroes the member at +0x24,
+// and then clears the singleton at 0x012F4820 before returning. Only the base
+// class is polymorphic-and-separate here; everything else is this one call site.
+class BfmeQuickMatchScreenBase
+{
+public:
+	BfmeQuickMatchScreenBase( void *context );
+	virtual void slot0();
+
+private:
+	char m_unmodelled[ 0x20 ];
+};
+
+class BfmeQuickMatchScreen : public BfmeQuickMatchScreenBase
+{
+public:
+	BfmeQuickMatchScreen( void *context );
+	virtual void slot0();
+
+private:
+	int m_fieldAt24;
+};
+
+extern void *TheBfmeQuickMatchScreenSlot;   // 0x012F4820
+
+inline BfmeQuickMatchScreen::BfmeQuickMatchScreen( void *context )
+	: BfmeQuickMatchScreenBase( context )
+{
+	m_fieldAt24 = 0;
+	TheBfmeQuickMatchScreenSlot = 0;
+}
+
+// ?createAptScreenWOLQuickMatchMenu@@YGPAXPAX@Z
+void * __stdcall createAptScreenWOLQuickMatchMenu( void *context )
+{
+	return new BfmeQuickMatchScreen( context );
+}

@@ -72296,3 +72296,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?parseBlock@BfmePlayerAITypeSet@@QAEXPAVINI@@@Z,0x000DEEC0,the PlayerAITypeSet member the block parser hands its INI to; unnamed in the image
 ?addActionTemplate@BfmeScriptEngineTemplates@@QAEXPAVTemplate@@@Z,0x0001A672,derived from the REL32 displacement at 0x00340A40
 ?addConditionTemplate@BfmeScriptEngineTemplates@@QAEXPAVTemplate@@@Z,0x00040B8D,ILT thunk to the body at 0x0033D790
+??0BfmeQuickMatchScreenBase@@QAE@PAX@Z,0x00025D7E,ILT thunk to the base screen constructor at 0x00470620
