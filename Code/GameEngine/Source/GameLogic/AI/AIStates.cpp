@@ -1185,7 +1185,6 @@ void AIStateMachine::setGoalAIGroup( const AIGroup *group )
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?getGoalSquad@AIStateMachine@@QAEPAVSquad@@XZ present-unmatched
 Squad *AIStateMachine::getGoalSquad( void )
 {
 	return m_goalSquad;

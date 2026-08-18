@@ -675,7 +675,6 @@ Bool GameSpyPeerMessageQueue::getResponse( PeerResponse& resp )
 	return true;
 }
 
-// ?getThread@GameSpyPeerMessageQueue@@ present-unmatched
 PeerThreadClass* GameSpyPeerMessageQueue::getThread( void )
 {
 	return m_thread;

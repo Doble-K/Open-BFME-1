@@ -145,7 +145,6 @@ void FrameDataManager::reset() {
 /**
  * update function. Does nothing at this time.
  */
-// ?update@FrameDataManager@@ present-unmatched
 void FrameDataManager::update() {
 }
 

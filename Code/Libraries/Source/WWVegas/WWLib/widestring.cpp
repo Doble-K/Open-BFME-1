@@ -313,7 +313,6 @@ WideStringClass::Format (const WCHAR *format, ...)
 //
 ///////////////////////////////////////////////////////////////////
 void
-// ?Release_Resources@WideStringClass@@SAXXZ present-unmatched
 WideStringClass::Release_Resources (void)
 {
 	return ;

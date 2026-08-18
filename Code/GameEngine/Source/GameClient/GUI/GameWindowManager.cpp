@@ -883,7 +883,6 @@ GameWindow *GameWindowManager::winGetWindowFromId( GameWindow *window, Int id )
 //-------------------------------------------------------------------------------------------------
 /** Gets the Window List Pointer */
 //-------------------------------------------------------------------------------------------------
-// ?winGetWindowList@GameWindowManager@@UAEPAVGameWindow@@XZ present-unmatched
 GameWindow *GameWindowManager::winGetWindowList( void )
 {
 

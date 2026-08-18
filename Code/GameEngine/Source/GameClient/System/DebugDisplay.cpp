@@ -139,7 +139,6 @@ void	DebugDisplay::setCursorPos( Int x, Int y )
 // DebugDisplay::getCursorXPos
 //============================================================================
 
-// ?getCursorXPos@DebugDisplay@@ present-unmatched
 Int		DebugDisplay::getCursorXPos( void )
 {
 	return m_xPos;
@@ -149,7 +148,6 @@ Int		DebugDisplay::getCursorXPos( void )
 // DebugDisplay::getCursorYPos
 //============================================================================
 
-// ?getCursorYPos@DebugDisplay@@ present-unmatched
 Int		DebugDisplay::getCursorYPos( void )
 {
 	return m_yPos;

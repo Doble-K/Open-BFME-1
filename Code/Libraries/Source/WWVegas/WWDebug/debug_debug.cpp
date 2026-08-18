@@ -1020,7 +1020,6 @@ static void LocalSETranslator(unsigned, struct _EXCEPTION_POINTERS *pExPtrs)
   DebugExceptionhandler::ExceptionFilter(pExPtrs);
 }
 
-// ?InstallExceptionHandler@Debug@@SAXXZ present-unmatched
 void Debug::InstallExceptionHandler(void)
 {
   _set_se_translator(LocalSETranslator);
@@ -1353,7 +1352,7 @@ Debug& Debug::CrashBegin(const char *file, int line)
   return Instance;
 }
 
-// ?CrashDone@Debug@@QAE_N_N@Z matched 1353 bytes (Open-BFME5)
+// NOTE ?CrashDone@Debug@@QAE_N_N@Z matched 1353 bytes (Open-BFME5)
 __declspec(naked) bool Debug::CrashDone(bool)
 {
   __asm

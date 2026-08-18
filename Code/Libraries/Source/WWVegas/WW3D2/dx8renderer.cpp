@@ -2095,12 +2095,11 @@ void DX8MeshRendererClass::Unregister_Mesh_Type(MeshModelClass* mmc)
 }
 
 
-// ?Register_Mesh_Type@DX8MeshRendererClass@@QAEXPAVMeshModelClass@@@Z
+// NOTE ?Register_Mesh_Type@DX8MeshRendererClass@@QAEXPAVMeshModelClass@@@Z
 // Body in dx8renderer_Register_Mesh_Type.asm (exact 528B retail).
 
 static unsigned statistics_requested=0;
 
-// ?Request_Log_Statistics@DX8MeshRendererClass@@SAXXZ present-unmatched
 void DX8MeshRendererClass::Request_Log_Statistics()
 {
 	statistics_requested=WW3D::Get_Frame_Count();

@@ -971,7 +971,6 @@ MiscAudio *AudioManager::friend_getMiscAudio( void )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getFieldParseTable@AudioManager@@ present-unmatched
 const FieldParse *AudioManager::getFieldParseTable( void ) const
 {
 	return audioSettingsFieldParseTable;

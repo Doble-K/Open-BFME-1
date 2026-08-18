@@ -656,7 +656,6 @@ Bool GameSpyPSMessageQueue::getResponse( PSResponse& resp )
 	return true;
 }
 
-// ?getThread@GameSpyPSMessageQueue@@ present-unmatched
 PSThreadClass* GameSpyPSMessageQueue::getThread( void )
 {
 	return m_thread;
