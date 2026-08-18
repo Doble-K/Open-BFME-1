@@ -491,3 +491,9 @@ _buttonMapStartPosition
 _buttonDisconnect
 _buttonDisconnectID
 _buttonLobby
+
+# One more of the same: `buttonBackKey` is a file static in both PopupReplay.cpp
+# (0x12F404C) and PopupSaveLoad.cpp (0x12F4080), one variable in each object.
+# Surfaced when SaveLoadMenuInit and SaveLoadMenuFullScreenInit landed; before
+# that only PopupReplayInput referenced the name.
+_buttonBackKey
