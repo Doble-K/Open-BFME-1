@@ -78,6 +78,14 @@ include `t=<minutes>` and your model.
 - Prefer TU-scoped shims over shared-header edits.
 - Progress = `matched` `reverse/functions.csv` rows backed by real source and
   byte verification. Markers and prose are not progress.
+- **Landing a `reverse/symbols.csv` pin?** It is an ADDITIVE candidate list —
+  the resolver keeps the first pinned address that reproduces retail, so a pin
+  naming the *wrong* function still byte-matches and a green gate proves
+  nothing about it. `tools/pin_consistency.py --symbol <name>` before you pin,
+  `--check` (1.6s) after; both hooks and the full gate run it.
+  `reverse/pin_consistency_baseline.csv` is the known-bad backlog and may only
+  shrink — never add a line to get green. See `docs/lessons.md`, "A
+  `pinharvest` row in symbols.csv is a candidate, not an address".
 - No fallback paths; they conceal mismatches.
 - Never load `reverse/functions.csv`, `ghidra_functions.csv`, or `exports.csv`
   wholesale; use `rg` or narrow Python filters.

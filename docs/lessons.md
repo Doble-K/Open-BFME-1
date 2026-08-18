@@ -486,6 +486,36 @@ land until one of them is proven. **Before spending a name on the strength of a
 callee, resolve the thunk and check it against the ledger's own body** — and if
 they disagree, say so rather than picking the convenient one.
 
+### The guard that checks this for you
+
+`tools/pin_consistency.py` enforces one name, one function: every address pinned
+to a name must follow its thunk chain to a body byte-equal to every other body
+that name pins (templates handled by rebasing rel32 slots, not by excluding
+them). Landing a pin:
+
+    python3 tools/pin_consistency.py --symbol <mangled>   # chains, extents, owners
+    python3 tools/pin_consistency.py --check              # what the hooks run, 1.6s
+
+It runs in the commit hook whenever `symbols.csv` or `functions.csv` is staged,
+in the push hook on every push, and in the full gate. Both hooks used to run
+only *scoped* builds and the full gate exited before ever reaching it, so until
+2026-08-18 a wrong pin could reach origin without any check looking at it.
+
+`reverse/pin_consistency_baseline.csv` is the backlog of 410 known-bad pin sets,
+each with its evidence, and **it is only allowed to shrink** — that is enforced
+now, not merely requested. Its preamble explains what a line means and how to
+resolve one; start there rather than here.
+
+Two things it does *not* cover, both real: names that pin a single address
+(70,144 of 70,633 — the 0x14867 "one address, four names" shape is invisible to
+it), and the `functions.csv` half of the resolver's candidate list, which
+`--candidates` reports and which currently holds **114 more violations**.
+
+Finally, the trap: a session landed all 47 `--clear-cut` verdicts and the gate
+turned 111 byte-matched rows red, 110 reaching a pin it had just deleted. **A
+byte-verified caller outranks a byte-verified identity row.** `--clear-cut`
+emits candidates, not verdicts; retract in small batches, full-gate each one.
+
 
 ## Retail's string payload is at m_data+8, and this tree inlines m_data+4
 
