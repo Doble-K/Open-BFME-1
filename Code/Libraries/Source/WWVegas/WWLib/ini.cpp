@@ -2175,7 +2175,6 @@ void INIClass::DuplicateCRCError(const char *message, const char *section, const
 }
 
 
-// ?Keep_Blank_Entries@INIClass@@SAX_N@Z absent-from-retail
 void	INIClass::Keep_Blank_Entries (bool keep_blanks)
 {
 	KeepBlankEntries = keep_blanks;

@@ -109,7 +109,6 @@ CPUDetectClass::RiseProcessorType CPUDetectClass::RiseProcessor;
 char CPUDetectClass::VendorID[20];
 char CPUDetectClass::ProcessorString[48];
 
-// ?Get_Processor_Manufacturer_Name@CPUDetectClass@@ present-unmatched
 const char* CPUDetectClass::Get_Processor_Manufacturer_Name()
 {
 	static const char* ManufacturerNames[] = {

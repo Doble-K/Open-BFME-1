@@ -336,7 +336,6 @@ void LightEnvironmentClass::Set_Lighting_LOD_Cutoff(float inten)
 	_LightingLODCutoff2 = _LightingLODCutoff * _LightingLODCutoff;
 }
 
-// ?Get_Lighting_LOD_Cutoff@LightEnvironmentClass@@SAMXZ present-unmatched
 float LightEnvironmentClass::Get_Lighting_LOD_Cutoff(void)
 {
 	return _LightingLODCutoff;

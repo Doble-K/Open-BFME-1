@@ -162,7 +162,6 @@ Int CachedFileInputStream::read(void *pData, Int numBytes)
 	return 0;
 }
 
-// ?tell@CachedFileInputStream@@UAEIXZ present-unmatched
 UnsignedInt CachedFileInputStream::tell(void)
 {
 	return m_pos;
