@@ -129,6 +129,16 @@ public:
 	void populateSaveGameListbox( GameWindow *listbox, SaveLoadLayoutType layoutType );
 };
 
+// The same GameWindow field WOLStatusMenuInit clears: retail stores zero at
+// +0x1F4 of the menu parent right after looking it up. Only the offset is
+// recoverable from the call site.
+class BfmeGameWindowFields
+{
+public:
+	char m_pad[0x1F4];
+	void *m_fieldAt1F4;
+};
+
 class BfmeGameLogicPause
 {
 public:
@@ -200,6 +210,7 @@ void SaveLoadMenuInit( WindowLayout *layout, void *userData )
 	//set keyboard focus to main parent and set modal
 	NameKeyType parentID = TheNameKeyGenerator->nameToKey("PopupSaveLoad.wnd:SaveLoadMenu");
 	parent = TheWindowManager->winGetWindowFromId( NULL, parentID );
+	((BfmeGameWindowFields *)parent)->m_fieldAt1F4 = NULL;
 	TheWindowManager->winSetFocus( parent );
 	TheWindowManager->winSetModal( parent );
 
@@ -225,6 +236,10 @@ void SaveLoadMenuInit( WindowLayout *layout, void *userData )
 
 	// update the availability of the menu buttons
 	updateMenuActions();
+
+	// BFME pauses the game behind the menu here too
+	wasGamePausedOnEntry = ((BfmeGameLogicPause *)TheGameLogic)->isGamePaused();
+	((BfmeGameLogicPause *)TheGameLogic)->setGamePaused( TRUE, 0, TRUE );
 
 }  // end SaveLoadMenuInit
 
