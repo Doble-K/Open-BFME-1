@@ -72365,3 +72365,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?updateSubObjectsFromShroud@W3DModelDraw@@AAEXXZ,0x00762500,Open-BFME5 the zero-argument member setFullyObscuredByShroud ends with; unnamed in the image and named here for what the call site does with it
 ?updateState@Team@@QAEXXZ,0x000F71C0,Open-BFME5 the zero-argument Team member Player::updateTeamStates calls for each team; unnamed in the image and named here for what that loop does
 ?replaceModelConditionState@Drawable@@QAEXABVModelConditionFlags@@II@Z,0x0041CCD0,Open-BFME5 the Drawable member Object::notifyModelConditionChanged pushes its condition flags at +0x110 into; unnamed in the image
+?clearAndSetModelConditionFlags@Object@@QAEXABVModelConditionFlags@@PBV2@@Z,0x001C7370,Open-BFME5 the member clearModelConditionState forwards its one-bit mask to with a null set-mask; unnamed in the image
