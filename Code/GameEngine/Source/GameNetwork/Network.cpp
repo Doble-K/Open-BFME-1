@@ -78,6 +78,7 @@ public:
 	virtual void initTransport();
 
 	virtual void setSawCRCMismatch(void);
+	virtual void _bfme_clearSawCRCMismatch(void);	// slot 42, no Zero Hour counterpart
 	virtual Bool sawCRCMismatch(void) { return m_sawCRCMismatch; }
 	virtual Bool isPlayerConnected(Int playerID);
 
@@ -193,4 +194,12 @@ Network::~Network()
 void Network::setSawCRCMismatch(void)
 {
 	m_sawCRCMismatch = TRUE;
+}
+
+// Vtable slot 42, wedged between setSawCRCMismatch and isPlayerConnected with
+// no Zero Hour counterpart. Named for what it does, not recovered: it clears
+// the same byte slot 41 sets and slot 40 reads.
+void Network::_bfme_clearSawCRCMismatch(void)
+{
+	m_sawCRCMismatch = FALSE;
 }
