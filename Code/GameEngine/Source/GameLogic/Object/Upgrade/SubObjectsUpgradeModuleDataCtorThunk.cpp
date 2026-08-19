@@ -1,208 +1,116 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class SubObjectsUpgradeModuleData
+class SpawnBehaviorModuleDataMemberAFirst
 {
 public:
-    SubObjectsUpgradeModuleData();
+	SpawnBehaviorModuleDataMemberAFirst()
+	{
+		m_begin = 0;
+		m_end = 0;
+	}
+
+	unsigned int *m_begin;
+	unsigned int *m_end;
+};
+
+class SpawnBehaviorModuleDataMemberAEnd
+{
+public:
+	SpawnBehaviorModuleDataMemberAEnd()
+		: m_capacity(0)
+	{
+	}
+
+private:
+	unsigned int *m_capacity;
+};
+
+class SpawnBehaviorModuleDataMemberA
+{
+public:
+	SpawnBehaviorModuleDataMemberA()
+	{
+	}
+
+	~SpawnBehaviorModuleDataMemberA();
+
+	void clear()
+	{
+		erase(m_first.m_begin, m_first.m_end);
+	}
+
+	void erase(unsigned int *first, unsigned int *last);
+
+private:
+	SpawnBehaviorModuleDataMemberAFirst m_first;
+	SpawnBehaviorModuleDataMemberAEnd m_end;
+};
+
+class UpgradeModuleDataSub
+{
+public:
+	UpgradeModuleDataSub();
+	~UpgradeModuleDataSub();
+
+private:
+	unsigned char m_pad[0x68];
+};
+
+class SubObjectsUpgradeModuleDataMemberD
+{
+public:
+	SubObjectsUpgradeModuleDataMemberD()
+		: m_begin(0), m_end(0), m_capacity(0)
+	{
+	}
+
+	~SubObjectsUpgradeModuleDataMemberD();
+
+private:
+	void **m_begin;
+	void **m_end;
+	void **m_capacity;
+};
+
+class __declspec(novtable) SubObjectsUpgradeModuleDataBase
+{
+public:
+	SubObjectsUpgradeModuleDataBase()
+	{
+	}
+
+	virtual ~SubObjectsUpgradeModuleDataBase();
+
+private:
+	unsigned int m_moduleData;
+	UpgradeModuleDataSub m_upgradeData;
+};
+
+class SubObjectsUpgradeModuleData : public SubObjectsUpgradeModuleDataBase
+{
+public:
+	SubObjectsUpgradeModuleData();
+	virtual ~SubObjectsUpgradeModuleData();
+
+private:
+	SpawnBehaviorModuleDataMemberA m_showSubObjectNames;
+	SpawnBehaviorModuleDataMemberA m_hideSubObjectNames;
+	SpawnBehaviorModuleDataMemberA m_upgradeSubObjectNames;
+	SubObjectsUpgradeModuleDataMemberD m_replacementModels;
+	unsigned int m_defaultConditionState;
+	unsigned int m_defaultAnimationState;
+	unsigned char m_showOnlySelected;
+	unsigned char m_hideOnlySelected;
 };
 
 // ??0SubObjectsUpgradeModuleData@@QAE@XZ
-__declspec(naked) SubObjectsUpgradeModuleData::SubObjectsUpgradeModuleData()
+SubObjectsUpgradeModuleData::SubObjectsUpgradeModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xea;
-        __emit 0x24;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0xbf;
-        __emit 0x39;
-        __emit 0xee;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x70;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x48;
-        __emit 0xf5;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x08;
-        __emit 0x8d;
-        __emit 0x7e;
-        __emit 0x7c;
-        __emit 0x89;
-        __emit 0x07;
-        __emit 0x89;
-        __emit 0x47;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x47;
-        __emit 0x08;
-        __emit 0x8d;
-        __emit 0x9e;
-        __emit 0x88;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x03;
-        __emit 0x89;
-        __emit 0x43;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x43;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x94;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x98;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x9c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0xa0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0xa4;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x86;
-        __emit 0xa8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x86;
-        __emit 0xa9;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x41;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x11;
-        __emit 0x50;
-        __emit 0x52;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0x04;
-        __emit 0xe8;
-        __emit 0xc5;
-        __emit 0x94;
-        __emit 0xef;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x47;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x0f;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0xb7;
-        __emit 0x94;
-        __emit 0xef;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x53;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x03;
-        __emit 0x52;
-        __emit 0x50;
-        __emit 0x8b;
-        __emit 0xcb;
-        __emit 0xe8;
-        __emit 0xa9;
-        __emit 0x94;
-        __emit 0xef;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_defaultConditionState = 0;
+	m_defaultAnimationState = 0;
+	m_showOnlySelected = 0;
+	m_hideOnlySelected = 0;
+	m_showSubObjectNames.clear();
+	m_hideSubObjectNames.clear();
+	m_upgradeSubObjectNames.clear();
 }
