@@ -22042,3 +22042,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0025ac90@@YAXXZ,0x0025AC90,"gen-dump placeholder superseded by the real identity of these bytes: ??0DominateEnemySpecialPowerModuleData@@QAE@XZ, byte-verified 38/38."
 ?d_00265a80@@YAXXZ,0x00265A80,"gen-dump placeholder superseded by the real identity of these bytes: ??0ScavengerSpecialPowerModuleData@@QAE@XZ, byte-verified 28/28."
 ?d_007516c0@@YAXXZ,0x007516C0,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DFloorDrawModuleData@@QAE@XZ, byte-verified 32/32."
+?d_00212c10@@YAXXZ,0x00212C10,"gen-dump placeholder superseded by the real identity of these bytes: ??0BaikonurLaunchPowerModuleData@@QAE@XZ, byte-verified 37/37."
