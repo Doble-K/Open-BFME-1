@@ -72316,3 +72316,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?addCampaign@BfmeLivingWorldCampaignManager@@QAEXPAVLivingWorldCampaign@@@Z,0x003B7030,Open-BFME5 the manager call ParseLivingWorldCampaignBlock ends with
 ??0ExperienceScalarTable@@QAE@ABVAsciiString@@@Z,0x0037EF50,Open-BFME5 REL32 target of parseExperienceScalarTable's new
 ?_M_insert_overflow@?$vector@PAVExperienceScalarTable@@V?$allocator@PAVExperienceScalarTable@@@_STL@@@_STL@@IAEXPAPAVExperienceScalarTable@@ABQAV3@ABU__true_type@2@I_N@Z,0x0037F7D0,Open-BFME5 grow path of the vector at TheExperienceLevelSystem+0x20
+??0LargeGroupAudio@@QAE@XZ,0x003CEF00,Open-BFME5 on-demand constructor of the subsystem at 0x012F1044
+??0LargeGroupAudioUnusedKnownKeys@@QAE@ABV0@@Z,0x003CD590,Open-BFME5 clone constructor the override path news up
