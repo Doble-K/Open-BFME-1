@@ -72382,3 +72382,8 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0HordeGarrisonContainModuleDataBase@@QAE@XZ,0x0003D055,Open-BFME5 the incremental-link thunk that constructor encodes
 ??0SiegeAIUpdateModuleDataBase@@QAE@XZ,0x0027EAE0,Open-BFME5 base of SiegeAIUpdateModuleData; folded with another body so the address cannot name the class
 ??0SiegeAIUpdateModuleDataBase@@QAE@XZ,0x00048A3B,Open-BFME5 the incremental-link thunk that constructor encodes
+?releaseInto@MixFileInfoBuffer@@QAEXPAX@Z,0x003F6E10,Open-BFME5 the one-argument member FileInfoStruct's destructor calls on its first member; unnamed in the image
+??0W3DSupplyDrawModuleDataBase@@QAE@XZ,0x0077CDE0,Open-BFME5 base of W3DSupplyDrawModuleData; unnamed in the image
+??0W3DSupplyDrawModuleDataBase@@QAE@XZ,0x0000289C,Open-BFME5 the incremental-link thunk that constructor encodes
+?hasUpgradeMask@Object@@QBE_NI@Z,0x001C59C0,Open-BFME5 the mask test Object::hasUpgrade tail-jumps to; unnamed in the image
+?doRepopulateBuildTooltipLayout@ControlBar@@QAEXXZ,0x004C1320,Open-BFME5 the zero-argument member repopulateBuildTooltipLayout tail-jumps to; unnamed in the image
