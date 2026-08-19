@@ -22116,3 +22116,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_00783d90@@YAXXZ,0x00783D90,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DAnimationInfo@@QAE@ABV0@@Z, byte-verified 46/46."
 ?d_001be7d0@@YAXXZ,0x001BE7D0,"gen-dump placeholder superseded by the real identity of these bytes: ?setReceivingDifficultyBonus@Object@@QAEX_N@Z, byte-verified 61/61."
 ?d_000c9890@@YAXXZ,0x000C9890,"gen-dump placeholder superseded by the real identity of these bytes: ?_bfme_allowsSpecialPower@Player@@QAEEPBVSpecialPowerTemplate@@@Z, byte-verified 36/36."
+?d_00411e50@@YAXXZ,0x00411E50,"gen-dump placeholder superseded by the real identity of these bytes: ?updateDrawableSupplyStatus@Drawable@@QAEXHH@Z, byte-verified 60/60."
