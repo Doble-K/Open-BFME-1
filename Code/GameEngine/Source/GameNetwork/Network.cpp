@@ -22,6 +22,7 @@ class Network : public NetworkInterface
 {
 public:
 	Network();
+	~Network();
 
 	virtual void init(void);
 	virtual void reset(void);
@@ -30,8 +31,8 @@ public:
 	Bool deinit(void);
 
 	virtual void setLocalAddress(UnsignedInt ip, UnsignedInt port);
-	virtual UnsignedInt getRunAhead(void) { return m_runAhead; }
-	virtual UnsignedInt getFrameRate(void) { return m_frameRate; }
+	virtual UnsignedInt getRunAhead(void);		// body needs an offset this TU has not recovered
+	virtual UnsignedInt getFrameRate(void);		// likewise
 	virtual UnsignedInt getPacketArrivalCushion(void);
 	virtual Bool isFrameDataReady(void);
 	virtual void parseUserList(const GameInfo *game);
@@ -102,26 +103,25 @@ protected:
 	void endOfGameCheck(void);
 	Bool timeForNewFrame(void);
 
-	ConnectionManager *m_conMgr;
-	UnsignedInt m_lastFrame;
-	NetLocalStatus m_localStatus;
-	Int m_runAhead;
-	Int m_frameRate;
-	Int m_lastExecutionFrame;
-	Int m_lastFrameCompleted;
-	Bool m_didSelfSlug;
-	__int64 m_perfCountFreq;
-	__int64 m_nextFrameTime;
-	Bool m_frameDataReady;
-	Bool m_checkCRCsThisFrame;
-	Bool m_sawCRCMismatch;
-	std::vector<UnsignedInt> m_CRC[MAX_SLOTS];
-	std::list<Int> m_playersToDisconnect;
-	GameWindow *m_messageWindow;
-
-#if defined(_DEBUG) || defined(_INTERNAL)
-	Bool m_networkOn;
-#endif
+	// BFME's layout, not Zero Hour's. Four things fix what is here:
+	//   - ~Network (0x006823B0) destroys m_conMgr and nothing else, so the
+	//     std::vector<UnsignedInt> m_CRC[MAX_SLOTS] and std::list<Int>
+	//     m_playersToDisconnect Zero Hour carries are not members here: their
+	//     destructors would have to run.
+	//   - init (0x00681E40) hands this+0x10 to QueryPerformanceFrequency and
+	//     this+0x18 to QueryPerformanceCounter, and zeroes this+0x0C.
+	//   - quitGame (0x006822E0) and isPlayerConnected (0x00681F30) write and
+	//     test this+0x0C as the local status.
+	//   - vtable slots 40/41/42 read, set and clear the byte at this+0x35.
+	// NetworkInterface::createNetwork allocates 0xA8, which is what the two
+	// unidentified spans hold the object to.
+	ConnectionManager *m_conMgr;				// +0x08
+	NetLocalStatus m_localStatus;				// +0x0C
+	__int64 m_perfCountFreq;					// +0x10
+	__int64 m_nextFrameTime;					// +0x18
+	UnsignedByte m_bfmeUnidentifiedA[0x35 - 0x20];		// +0x20, not yet named
+	Bool m_sawCRCMismatch;					// +0x35
+	UnsignedByte m_bfmeUnidentifiedB[0xA8 - 0x36];		// +0x36, not yet named
 };
 
 NetworkInterface *NetworkInterface::createNetwork()
@@ -179,4 +179,13 @@ void Network::updateLoadProgress(Int percent)
 UnicodeString Network::getPlayerName(Int playerNum)
 {
 	return m_conMgr != NULL ? m_conMgr->getPlayerName(playerNum) : UnicodeString::TheEmptyString;
+}
+
+// Retail 0x006823B0. Writes Network's vtable (0x0111A968), releases the
+// connection manager, then restores NetworkInterface's (0x0111A850) on the way
+// into ??1SubsystemInterface@@UAE@XZ -- the pair of vptr stores that identifies
+// both tables.
+Network::~Network()
+{
+	delete m_conMgr;
 }
