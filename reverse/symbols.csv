@@ -2222,6 +2222,8 @@ name,address,notes
 ??1AudioEventRTS@@UAE@XZ,0x0002671F
 ??1AudioEventRTS@@UAE@XZ,0x00026F35,SpecialAbilityUpdate audio member destructor call target
 ??1AudioEventRTS@@UAE@XZ,0x009409F0,pinharvest x1 (body)
+??1DozerAudioEventRTS@@UAE@XZ,0x00026F35,DozerAIUpdate building-sound member destructor
+??1DozerDockPointInfo@DozerAIUpdate@@QAE@XZ,0x0002EA0F,DozerAIUpdate dock-point array destructor thunk
 ??1AutoPickUpUpdateModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1AutoPickUpUpdateModuleDataMemberB@@QAE@XZ,0x00045016,Open-BFME5 pin
 ??1BFMEPlayerTemplateAsciiString@@QAE@XZ,0x00887940,PlayerTemplate time-change retail AsciiString release owner

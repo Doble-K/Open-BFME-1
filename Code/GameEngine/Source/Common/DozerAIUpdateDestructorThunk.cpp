@@ -1,230 +1,84 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) DozerAIUpdate
+class DozerRootBase
+{
+public:
+	virtual ~DozerRootBase();
+
+private:
+	unsigned char m_pad[8];
+};
+
+class DozerIface1 { public: virtual void vslot(); };
+class DozerIface2 { public: virtual void vslot(); private: unsigned char m_pad[0xC]; };
+class DozerIface3 { public: virtual void vslot(); };
+class DozerIface4 { public: virtual void vslot(); };
+
+class AIUpdateInterface : public DozerRootBase, public DozerIface1, public DozerIface2,
+	public DozerIface3, public DozerIface4
+{
+public:
+	virtual ~AIUpdateInterface();
+
+private:
+	unsigned char m_pad[0x318];
+};
+
+class DozerAIInterface { public: virtual void vslot(); };
+
+class DozerPrimaryStateMachine
+{
+public:
+	virtual ~DozerPrimaryStateMachine();
+};
+
+class DozerAudioEventRTS
+{
+public:
+	virtual ~DozerAudioEventRTS();
+
+private:
+	unsigned char m_pad[0x6C];
+};
+
+class DozerAIUpdate : public AIUpdateInterface, public DozerAIInterface
 {
 protected:
 	virtual ~DozerAIUpdate();
+
+private:
+	struct DozerTaskInfo
+	{
+		unsigned int m_targetObjectID;
+		unsigned int m_taskOrderFrame;
+	};
+
+	struct DozerDockPointInfo
+	{
+		~DozerDockPointInfo();
+
+		unsigned int m_valid;
+		float m_location[3];
+	};
+
+	DozerTaskInfo m_task[3];
+	DozerPrimaryStateMachine *m_dozerMachine;
+	unsigned int m_currentTask;
+	DozerAudioEventRTS m_buildingSound;
+	unsigned int m_isRebuild;
+	DozerDockPointInfo m_dockPoint[3][3];
+	unsigned int m_buildSubTask;
 };
 
 // ??1DozerAIUpdate@@MAE@XZ
-__declspec(naked) DozerAIUpdate::~DozerAIUpdate()
+DozerAIUpdate::~DozerAIUpdate()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x0e
-		__emit 0x33
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x53
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x90
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x0c
-		__emit 0xc8
-		__emit 0x69
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x10
-		__emit 0xb8
-		__emit 0x69
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x20
-		__emit 0xb4
-		__emit 0x69
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x24
-		__emit 0x98
-		__emit 0x69
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x86
-		__emit 0x40
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x20
-		__emit 0x69
-		__emit 0x0c
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0x5c
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x33
-		__emit 0xdb
-		__emit 0x3b
-		__emit 0xcb
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x06
-		__emit 0x8b
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x01
-		__emit 0xff
-		__emit 0x10
-		__emit 0x68
-		__emit 0x0f
-		__emit 0xea
-		__emit 0x42
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x5c
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x09
-		__emit 0x6a
-		__emit 0x10
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xd8
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x44
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x48
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x4c
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x50
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x54
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x58
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x24
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x8e
-		__emit 0x06
-		__emit 0x74
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x64
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x14
-		__emit 0xe8
-		__emit 0x3e
-		__emit 0x08
-		__emit 0xd7
-		__emit 0xff
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x6e
-		__emit 0x60
-		__emit 0xd6
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
+	delete m_dozerMachine;
+	m_dozerMachine = 0;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		m_task[i].m_targetObjectID = 0;
+		m_task[i].m_taskOrderFrame = 0;
 	}
 }
