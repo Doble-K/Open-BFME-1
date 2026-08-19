@@ -438,42 +438,31 @@ Int GameWindow::winActivate( void )
 // GameWindow::winSetPosition moved to GameWindowFields.cpp (needs the true BFME
 // field offsets and m_bfmeAnchor).
 
-// WinGetPosition =============================================================
+// WinGetPosition ============================================================
 /** Get the window's postion */
+//
+// Retail 0x00478140, `ret 8'. This name used to sit on 0x000C9D10, which takes
+// no stack arguments at all and so cannot be a two-pointer __thiscall - it
+// reads two flag bytes at +0x296 and +0x680 and returns a Bool. That body has
+// been released back to the pool; nothing here names it.
+//
+// The origin is read through a cast rather than through m_region: BFME keeps
+// the window's screen position at +0x14/+0x18, and this tree's GameWindow lays
+// its members out elsewhere. Same idiom winGetText below already uses.
 //=============================================================================
-__declspec(naked) Int GameWindow::winGetPosition( Int *x, Int *y )
+Int GameWindow::winGetPosition( Int *x, Int *y )
 {
-	__asm {
-		_emit 08Ah
-		_emit 081h
-		_emit 096h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 084h
-		_emit 0C0h
-		_emit 075h
-		_emit 010h
-		_emit 08Ah
-		_emit 081h
-		_emit 080h
-		_emit 006h
-		_emit 000h
-		_emit 000h
-		_emit 084h
-		_emit 0C0h
-		_emit 075h
-		_emit 006h
-		_emit 0B8h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 0C3h
-		_emit 033h
-		_emit 0C0h
-		_emit 0C3h
-	}
+	if( x == NULL || y == NULL )
+		return WIN_ERR_INVALID_PARAMETER;
+
+	struct BFMEGameWindowOrigin { char pad[ 0x14 ]; Int x; Int y; };
+	const BFMEGameWindowOrigin *self = (const BFMEGameWindowOrigin *)this;
+
+	*x = self->x;
+	*y = self->y;
+
+	return WIN_ERR_OK;
+
 }  // end WinGetPosition
 
 // WinSetCursorPosition =============================================================
