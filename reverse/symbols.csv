@@ -72368,3 +72368,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?clearAndSetModelConditionFlags@Object@@QAEXABVModelConditionFlags@@PBV2@@Z,0x001C7370,Open-BFME5 the member clearModelConditionState forwards its one-bit mask to with a null set-mask; unnamed in the image
 ??0TerrainLogicBase@@QAE@XZ,0x001ADB80,Open-BFME5 the base constructor TerrainLogic forwards to; unnamed in the image and not SubsystemInterface which is 0x009A1A30
 ??0TerrainLogicBase@@QAE@XZ,0x0004629F,Open-BFME5 the incremental-link thunk TerrainLogic encodes for that base
+??0W3DTerrainVisualBase@@QAE@XZ,0x00602C70,Open-BFME5 the base constructor W3DTerrainVisual forwards to; unnamed in the image
+??0W3DTerrainVisualBase@@QAE@XZ,0x0001693C,Open-BFME5 the incremental-link thunk that constructor encodes
