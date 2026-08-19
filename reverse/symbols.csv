@@ -68303,6 +68303,7 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?winClearStatus@GameWindow@@QAEII@Z,0x00027B24
 ?winEnable@GameWindow@@QAEH_N@Z,0x0004A1FB
 ?winGetChild@GameWindow@@QAEPAV1@XZ,0x00017DF5
+?winDrawBorder@GameWindow@@QAEXXZ,0x00028E16,GameWindowManager drawWindow ILT thunk
 ?winGetEnabledTextBorderColor@GameWindow@@QAEHXZ,0x0002D7EA
 ?winGetInstanceData@GameWindow@@QAEPAVWinInstanceData@@XZ,0x00034991
 ?winGetLayout@GameWindow@@QAEPAVWindowLayout@@XZ,0x000402F5

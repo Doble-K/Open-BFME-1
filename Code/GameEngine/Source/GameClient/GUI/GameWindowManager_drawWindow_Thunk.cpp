@@ -1,209 +1,92 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+typedef int Int;
+typedef unsigned int UnsignedInt;
+
+enum
+{
+	WIN_ERR_OK = 0,
+	WIN_ERR_INVALID_WINDOW = -2,
+	WIN_STATUS_HIDDEN = 0x10,
+	WIN_STATUS_BORDER = 0x1000,
+	WIN_STATUS_SEE_THRU = 0x10000,
+	GWS_SCROLL_LISTBOX = 0x20
+};
 
 class GameWindow;
+
+class GameWindowDraw
+{
+public:
+	virtual void slot0();
+	virtual void draw(GameWindow *window, void *instanceData);
+};
+
+class GameWindow
+{
+public:
+	virtual void slot0();
+	virtual void slot4();
+	virtual void slot8();
+	virtual Int draw(void *instanceData);
+
+	UnsignedInt winGetStyle();
+	void winDrawBorder();
+
+private:
+	friend class GameWindowManager;
+
+	GameWindowDraw *m_draw;
+	UnsignedInt m_status;
+	unsigned char m_pad0c[0x24];
+	unsigned char m_instData[0x1c8];
+	GameWindow *m_next;
+	GameWindow *m_previous;
+	GameWindow *m_parent;
+	GameWindow *m_child;
+};
+
 class GameWindowManager
 {
 protected:
-	int drawWindow(GameWindow *);
+	Int drawWindow(GameWindow *window);
 };
 
 // ?drawWindow@GameWindowManager@@IAEHPAVGameWindow@@@Z
-__declspec(naked) int GameWindowManager::drawWindow(GameWindow *)
+Int GameWindowManager::drawWindow(GameWindow *window)
 {
-	__asm {
-        __emit 0x53
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xd9
-        __emit 0x75
-        __emit 0x0a
-        __emit 0x5f
-        __emit 0xb8
-        __emit 0xfe
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x08
-        __emit 0xa8
-        __emit 0x10
-        __emit 0x0f
-        __emit 0x85
-        __emit 0x99
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xa9
-        __emit 0x00
-        __emit 0x00
-        __emit 0x01
-        __emit 0x00
-        __emit 0x56
-        __emit 0x75
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x07
-        __emit 0x8d
-        __emit 0x77
-        __emit 0x30
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x01
-        __emit 0x74
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x09
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x56
-        __emit 0x57
-        __emit 0xff
-        __emit 0x52
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x22
-        __emit 0xbf
-        __emit 0xb8
-        __emit 0xff
-        __emit 0xa8
-        __emit 0x20
-        __emit 0x74
-        __emit 0x16
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x08
-        __emit 0xf6
-        __emit 0xc4
-        __emit 0x10
-        __emit 0x74
-        __emit 0x0e
-        __emit 0xa9
-        __emit 0x00
-        __emit 0x00
-        __emit 0x01
-        __emit 0x00
-        __emit 0x75
-        __emit 0x07
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xcc
-        __emit 0xc1
-        __emit 0xba
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xb7
-        __emit 0x04
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x86
-        __emit 0xf8
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x75
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x12
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcb
-        __emit 0xe8
-        __emit 0x9b
-        __emit 0x23
-        __emit 0xbb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xb6
-        __emit 0xfc
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x75
-        __emit 0xee
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xd3
-        __emit 0xbe
-        __emit 0xb8
-        __emit 0xff
-        __emit 0xa8
-        __emit 0x20
-        __emit 0x5e
-        __emit 0x75
-        __emit 0x16
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x08
-        __emit 0xf6
-        __emit 0xc4
-        __emit 0x10
-        __emit 0x74
-        __emit 0x0e
-        __emit 0xa9
-        __emit 0x00
-        __emit 0x00
-        __emit 0x01
-        __emit 0x00
-        __emit 0x75
-        __emit 0x07
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x7c
-        __emit 0xc1
-        __emit 0xba
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	if (!window)
+		return WIN_ERR_INVALID_WINDOW;
+
+	if (!(window->m_status & WIN_STATUS_HIDDEN))
+	{
+		if (!(window->m_status & WIN_STATUS_SEE_THRU))
+		{
+			if (window->draw(window->m_instData) != 1 && window->m_draw)
+				window->m_draw->draw(window, window->m_instData);
+		}
+
+		if (window->winGetStyle() & GWS_SCROLL_LISTBOX)
+		{
+			if ((window->m_status & WIN_STATUS_BORDER) &&
+				!(window->m_status & WIN_STATUS_SEE_THRU))
+				window->winDrawBorder();
+		}
+
+		GameWindow *child = window->m_child;
+		while (child && child->m_next)
+			child = child->m_next;
+
+		for (; child; child = child->m_previous)
+			drawWindow(child);
+
+		if (!(window->winGetStyle() & GWS_SCROLL_LISTBOX))
+		{
+			if ((window->m_status & WIN_STATUS_BORDER) &&
+				!(window->m_status & WIN_STATUS_SEE_THRU))
+				window->winDrawBorder();
+		}
 	}
+
+	return WIN_ERR_OK;
 }
