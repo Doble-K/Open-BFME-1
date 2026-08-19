@@ -22103,3 +22103,5 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_006030c0@@YAXXZ,0x006030C0,"gen-dump placeholder superseded by the real identity of these bytes: ??0BeaconClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 51/51."
 ?d_00250740@@YAXXZ,0x00250740,"gen-dump placeholder superseded by the real identity of these bytes: ??0BoneFXDamage@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 60/60."
 ?d_00216ba0@@YAXXZ,0x00216BA0,"gen-dump placeholder superseded by the real identity of these bytes: ??0SquishCollide@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 60/60."
+?parseObjectCreationList@INI@@SAXPAV1@PAX1PBX@Z,0x0007C370,"wrong body: 0x0007C370 is fourteen bytes aliased to GameLODManager::getStaticGameLODLevelName. A field parser that calls getNextToken and then a store lookup is not fourteen bytes. The real one is 0x000B8F10."
+?d_000b8f10@@YAXXZ,0x000B8F10,"gen-dump placeholder superseded by the real identity of these bytes: ?parseObjectCreationList@INI@@SAXPAV1@PAX1PBX@Z, byte-verified 30/30."
