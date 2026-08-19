@@ -72392,3 +72392,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?_bfme_allows@BfmeSpecialPowerAllowanceStore@@QAEEPAVBfmePlayerSpecialPowerState@@PBVSpecialPowerTemplate@@@Z,0x00024E33,Open-BFME5 shape-only pin: the thunk Player _bfme_allowsSpecialPower calls; thiscall on the global at 0x012F0FF8 with the player subobject and the template
 ?countBuildings@Team@@QAEHXZ,0x00015294,Open-BFME5 the thunk TeamPrototype countBuildings calls once per team; Zero Hour names the same call
 ?_bfme_nextInInstanceList@Team@@QAEPAV1@XZ,0x00022A70,Open-BFME5 shape-only pin: the thunk the team instance list walk advances through; thiscall on the team with the next team back
+?isMobile@Object@@QBE_NXZ,0x00017607,Open-BFME5 the thunk AIUpdateInterface privateDock tests before docking; Zero Hour names the same call
