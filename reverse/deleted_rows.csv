@@ -22059,3 +22059,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?buildFieldParse@BroadcastStealthUpdateModuleData@@SAXAAVMultiIniFieldParse@@@Z,0x000094F3,"wrong body: 0x000094F3 is the five-byte incremental-link thunk, not the method. The method is 0x00289800 and is now claimed from real C++."
 ?d_00289800@@YAXXZ,0x00289800,"gen-dump placeholder superseded by the real identity of these bytes: ?buildFieldParse@BroadcastStealthUpdateModuleData@@SAXAAVMultiIniFieldParse@@@Z, byte-verified 35/35."
 ?d_001bfe40@@YAXXZ,0x001BFE40,"gen-dump placeholder superseded by the real identity of these bytes: ?getInterface@RvaC4390First@@QAEPAURvaC4390Interface@@XZ, byte-verified 45/45."
+?d_00982870@@YAXXZ,0x00982870,"gen-dump placeholder superseded by the real identity of these bytes: ?Single_Anim_Progress@Animatable3DObjClass@@IAEXXZ, byte-verified 51/51."
