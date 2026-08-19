@@ -72363,3 +72363,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0BaikonurLaunchPowerModuleDataBase@@QAE@XZ,0x0003C556,Open-BFME5 the incremental-link thunk that constructor encodes
 ?Draw@DX8Wrapper@@CAXHGGGGH@Z,0x00906B40,Open-BFME5 the shared primitive-draw helper Draw_Triangles and Draw_Strip forward to; only the leading mode constant differs
 ?updateSubObjectsFromShroud@W3DModelDraw@@AAEXXZ,0x00762500,Open-BFME5 the zero-argument member setFullyObscuredByShroud ends with; unnamed in the image and named here for what the call site does with it
+?updateState@Team@@QAEXXZ,0x000F71C0,Open-BFME5 the zero-argument Team member Player::updateTeamStates calls for each team; unnamed in the image and named here for what that loop does
