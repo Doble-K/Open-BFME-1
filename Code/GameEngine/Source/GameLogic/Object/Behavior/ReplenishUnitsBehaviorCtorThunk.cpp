@@ -1,270 +1,131 @@
 // cl: /DNDEBUG /MD /EHsc
 
+typedef unsigned int UnsignedInt;
+
 class Thing;
 class ModuleData;
+class Object;
 
-class ReplenishUnitsBehavior
+enum UpdateSleepTime
+{
+	UPDATE_SLEEP_FOREVER = 0x3fffffff
+};
+
+int largeGroupRandom(int low, int high, const char *file, int line);
+
+class ObjectModule
 {
 public:
-    ReplenishUnitsBehavior(Thing *, const ModuleData *);
+	ObjectModule(Thing *thing, const ModuleData *moduleData);
+	virtual ~ObjectModule();
+
+protected:
+	const ModuleData *m_moduleData;
+	Object *m_object;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void behaviorModuleInterface() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterface() = 0;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	BehaviorModule(Thing *thing, const ModuleData *moduleData)
+		: ObjectModule(thing, moduleData)
+	{
+	}
+
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+public:
+	UpdateModule(Thing *thing, const ModuleData *moduleData)
+		: BehaviorModule(thing, moduleData),
+		  m_nextCallFrameAndPhase(0),
+		  m_indexInLogic(-1),
+		  m_updateState(-1)
+	{
+	}
+
+	virtual ~UpdateModule() {}
+
+protected:
+	void setWakeFrame(Object *object, UnsignedInt sleepTime);
+
+	UnsignedInt m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	UnsignedInt m_updateState;
+};
+
+class SpawnBehaviorFourthBase
+{
+public:
+	SpawnBehaviorFourthBase();
+
+	virtual void slot00();
+	virtual void slot04();
+	virtual void slot08();
+	virtual void slot0c();
+	virtual void slot10();
+	virtual void slot14();
+	virtual void slot18();
+	virtual void slot1c();
+	virtual void setReplenishing(bool enabled);
+	virtual void slot24();
+	virtual void slot28();
+	virtual void slot2c();
+	virtual void slot30();
+	virtual void slot34();
+};
+
+struct ReplenishUnitsBehaviorModuleDataView
+{
+	unsigned char m_pad00[0x88];
+	int m_replenishDelay;
+	bool m_primeSpawnBehavior;
+};
+
+class ReplenishUnitsBehavior : public UpdateModule, public SpawnBehaviorFourthBase
+{
+public:
+	ReplenishUnitsBehavior(Thing *thing, const ModuleData *moduleData);
+	virtual ~ReplenishUnitsBehavior() {}
 };
 
 // ??0ReplenishUnitsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) ReplenishUnitsBehavior::ReplenishUnitsBehavior(Thing *, const ModuleData *)
+ReplenishUnitsBehavior::ReplenishUnitsBehavior(Thing *thing, const ModuleData *moduleData)
+	: UpdateModule(thing, moduleData)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x88;
-        __emit 0xbb;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x55;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xe8;
-        __emit 0xd4;
-        __emit 0x2b;
-        __emit 0xe1;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc8;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x94;
-        __emit 0xcd;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xcc;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xac;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x1c;
-        __emit 0x8d;
-        __emit 0x7e;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0xfa;
-        __emit 0x8c;
-        __emit 0xe3;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x6e;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x44;
-        __emit 0x5c;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x80;
-        __emit 0x5b;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x74;
-        __emit 0x5b;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x07;
-        __emit 0xc0;
-        __emit 0x5a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x8a;
-        __emit 0x82;
-        __emit 0x8c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x84;
-        __emit 0xc0;
-        __emit 0x74;
-        __emit 0x3c;
-        __emit 0x8b;
-        __emit 0x07;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xff;
-        __emit 0x50;
-        __emit 0x2c;
-        __emit 0x8b;
-        __emit 0x17;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xff;
-        __emit 0x52;
-        __emit 0x34;
-        __emit 0x8b;
-        __emit 0x07;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xff;
-        __emit 0x50;
-        __emit 0x24;
-        __emit 0x8b;
-        __emit 0x17;
-        __emit 0x6a;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xff;
-        __emit 0x52;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x80;
-        __emit 0x88;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0x74;
-        __emit 0x68;
-        __emit 0x10;
-        __emit 0x5b;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x50;
-        __emit 0x6a;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xfa;
-        __emit 0xd5;
-        __emit 0xdf;
-        __emit 0xff;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0x50;
-        __emit 0xeb;
-        __emit 0x05;
-        __emit 0x68;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x3f;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x55;
-        __emit 0xe8;
-        __emit 0x13;
-        __emit 0x12;
-        __emit 0xe1;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5d;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+	Object *object = m_object;
+	const ReplenishUnitsBehaviorModuleDataView *data =
+		reinterpret_cast<const ReplenishUnitsBehaviorModuleDataView *>(m_moduleData);
+
+	if (data->m_primeSpawnBehavior)
+	{
+		SpawnBehaviorFourthBase *spawn = this;
+		spawn->slot2c();
+		spawn->slot34();
+		spawn->slot24();
+		spawn->setReplenishing(true);
+		int replenishDelay =
+			reinterpret_cast<const ReplenishUnitsBehaviorModuleDataView *>(m_moduleData)->m_replenishDelay;
+		setWakeFrame(object, largeGroupRandom(
+			1, replenishDelay,
+			"F:\\bfme\\Code\\gameengine\\Source\\GameLogic\\Object\\Behavior\\ReplenishUnitsBehavior.cpp", 116));
+	}
+	else
+	{
+		setWakeFrame(object, UPDATE_SLEEP_FOREVER);
+	}
 }
