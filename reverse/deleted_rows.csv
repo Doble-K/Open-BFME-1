@@ -22066,3 +22066,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0008a600@@YAXXZ,0x0008A600,"gen-dump placeholder superseded by the real identity of these bytes: ??0MessageStream@@QAE@XZ, byte-verified 39/39."
 ?d_00905ac0@@YAXXZ,0x00905AC0,"gen-dump placeholder superseded by the real identity of these bytes: ?BoxSetTexture@@YAXIAAPAVTextureBaseClass@@@Z, byte-verified 74/74."
 ?d_006fbe10@@YAXXZ,0x006FBE10,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DInGameUI@@QAE@XZ, byte-verified 61/61."
+?d_0091b4f0@@YAXXZ,0x0091B4F0,"gen-dump placeholder superseded by the real identity of these bytes: ?supportTextureFormat@W3DRadarFormatCaps@@QAE_NW4WW3DFormat@@@Z, byte-verified 110/110."
