@@ -21986,3 +21986,8 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_002d5280@@YAXXZ,0x002D5280,"gen-dump placeholder superseded by the real identity of these bytes: ??0ActiveShroudUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 53/53."
 ?d_002d66d0@@YAXXZ,0x002D66D0,"gen-dump placeholder superseded by the real identity of these bytes: ??0ModelConditionUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 53/53."
 ?d_002d7dd0@@YAXXZ,0x002D7DD0,"gen-dump placeholder superseded by the real identity of these bytes: ??0StatusBitsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 53/53."
+?d_00258250@@YAXXZ,0x00258250,"gen-dump placeholder superseded by the real identity of these bytes: ??0CashHackSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
+?d_00259f50@@YAXXZ,0x00259F50,"gen-dump placeholder superseded by the real identity of these bytes: ??0DefectorSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
+?d_002628e0@@YAXXZ,0x002628E0,"gen-dump placeholder superseded by the real identity of these bytes: ??0OCLSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
+?d_002658b0@@YAXXZ,0x002658B0,"gen-dump placeholder superseded by the real identity of these bytes: ??0ScavengerSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
+?d_0026b650@@YAXXZ,0x0026B650,"gen-dump placeholder superseded by the real identity of these bytes: ??0TaintSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
