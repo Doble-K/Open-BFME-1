@@ -48,7 +48,6 @@ FUNCTIONS = ROOT / "reverse" / "functions.csv"
 SYMBOLS = ROOT / "reverse" / "symbols.csv"
 CODE = ROOT / "Code"
 
-IMAGE_BASE = 0x400000
 
 # Generator output and vendored/reference trees. Hits here are reported but never
 # counted as a located source.
@@ -136,7 +135,15 @@ def load_ledger():
 
 
 def load_real_pins():
-    """address(VA) -> [names], placeholders excluded."""
+    """address(RVA) -> [names], placeholders excluded.
+
+    symbols.csv addresses are RVAs, in the SAME space as functions.csv. This
+    was originally written as VA and the pool was built at `IMAGE_BASE + rva`,
+    which silently paired every candidate with a DIFFERENT function's pin and
+    voided a whole 70-candidate work queue. Verified after the fact: of matched
+    functions.csv rows whose name also appears in symbols.csv, 743 agree on the
+    address exactly and ZERO agree at +0x400000.
+    """
     pins = defaultdict(list)
     raw = SYMBOLS.read_bytes().decode("utf-8")
     for i, r in enumerate(csv.reader(io.StringIO(raw)), start=1):
@@ -167,7 +174,7 @@ def build_pool():
         size = int(size_s or 0)
         if size <= 0:
             continue
-        lo = IMAGE_BASE + rva
+        lo = rva
         hi = lo + size
         i = bisect.bisect_left(addrs, lo)
         hits = []
@@ -178,6 +185,94 @@ def build_pool():
             out.append({"row": name, "rva": rva, "size": size,
                         "source": source, "pin": hits[0]})
     return out
+
+
+NEWLINE = chr(10)
+
+
+def strip_comments(text):
+    """Blank out // and /* */ comments, preserving length and line structure.
+
+    Without this the index reports commented-out code as a definition:
+    dx8renderer.cpp contains only `//DX8Wrapper::Set_DX8_ZBias(zbias);`, which
+    was confidently reported as that symbol's defining file while the real
+    definition sits in dx8wrapper.cpp. Offsets are preserved (replaced in place,
+    newlines kept) so is_definition() can still index into the result.
+    """
+    out = list(text)
+    i, n = 0, len(text)
+    while i < n:
+        c = text[i]
+        if c in "\"'":
+            q = c
+            i += 1
+            while i < n and text[i] != q:
+                if text[i] == "\\":
+                    i += 1
+                i += 1
+            i += 1
+        elif text.startswith("//", i):
+            while i < n and text[i] != NEWLINE:
+                out[i] = " "
+                i += 1
+        elif text.startswith("/*", i):
+            while i < n and not text.startswith("*/", i):
+                if text[i] != NEWLINE:
+                    out[i] = " "
+                i += 1
+            for j in range(i, min(i + 2, n)):
+                out[j] = " "
+            i += 2
+        else:
+            i += 1
+    return "".join(out)
+
+
+def is_definition(text, open_paren):
+    """True if the `(` at open_paren starts a DEFINITION's parameter list.
+
+    A call site (`Shim::run();`) is textually identical to a definition header
+    under DEF_RE, and treating one as the other is how this tool first reported
+    four declaration-only pin-scaffold TUs as the located source for shims they
+    only declare and call. The discriminator is what follows the closing paren:
+    a definition opens a body, everything else terminates. Constructors may
+    carry an initialiser list, so `:` counts as a definition too -- but `::`
+    does not, since that is a qualified name in a trailing return or default
+    argument, not an init list.
+    """
+    depth = 0
+    i = open_paren
+    n = len(text)
+    while i < n:
+        c = text[i]
+        if c == "(":
+            depth += 1
+        elif c == ")":
+            depth -= 1
+            if depth == 0:
+                break
+        elif c in ";{}":
+            return False  # ran off the end of a sane parameter list
+        i += 1
+    else:
+        return False
+    i += 1
+    # skip cv-qualifiers, exception specs and whitespace between `)` and the body
+    while i < n:
+        if text[i].isspace():
+            i += 1
+            continue
+        for kw in ("const", "throw", "volatile"):
+            if text.startswith(kw, i) and not (text[i + len(kw):i + len(kw) + 1] or " ").isalnum():
+                i += len(kw)
+                break
+        else:
+            break
+    if i >= n:
+        return False
+    if text[i] == "{":
+        return True
+    return text[i] == ":" and not text.startswith("::", i)
 
 
 def index_definitions():
@@ -194,10 +289,11 @@ def index_definitions():
         except OSError:
             continue
         scanned += 1
+        text = strip_comments(text)
         seen = set()
         for m in DEF_RE.finditer(text):
             key = f"{m.group(1)}::{m.group(2)}"
-            if key in seen:
+            if key in seen or not is_definition(text, m.end() - 1):
                 continue
             seen.add(key)
             idx[key][bucket].append(rel)

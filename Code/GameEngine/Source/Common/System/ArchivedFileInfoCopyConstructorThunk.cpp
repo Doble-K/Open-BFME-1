@@ -12,6 +12,7 @@ public:
     UnsignedInt m_offset;
     UnsignedInt m_size;
 
+    ArchivedFileInfo();
     ArchivedFileInfo(const ArchivedFileInfo &that);
 };
 
@@ -22,4 +23,13 @@ ArchivedFileInfo::ArchivedFileInfo(const ArchivedFileInfo &that) :
 {
     m_offset = that.m_offset;
     m_size = that.m_size;
+}
+
+// ??0ArchivedFileInfo@@QAE@XZ
+ArchivedFileInfo::ArchivedFileInfo()
+{
+    m_filename.clear();
+    m_archiveFilename.clear();
+    m_offset = 0;
+    m_size = 0;
 }
