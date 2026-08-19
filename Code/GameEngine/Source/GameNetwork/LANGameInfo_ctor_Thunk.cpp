@@ -1,190 +1,130 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class LANGameInfo {
+typedef int Int;
+typedef unsigned int UnsignedInt;
+typedef bool Bool;
+
+struct LANAddress {
+	UnsignedInt m_address;
+	UnsignedInt m_port;
+};
+
+class GameSlot {
+protected:
+	unsigned char m_storage[0x68];
+};
+
+class LANGameSlot : public GameSlot {
+public:
+	LANGameSlot();
+	~LANGameSlot();
+};
+
+class GameInfo {
+public:
+	GameInfo();
+	virtual ~GameInfo();
+	virtual Int getLocalSlotNum() const;
+
+	void setSlotPointer(Int index, GameSlot *slot);
+
+protected:
+	unsigned char m_gap04[0x30];
+	LANAddress m_localAddress;
+	unsigned char m_gap3c[0x1c];
+};
+
+class UnicodeString {
+public:
+	__forceinline UnicodeString() : m_data(0) {}
+	~UnicodeString();
+
+private:
+	void *m_data;
+};
+
+class LANInterface {
+public:
+	virtual void slot00() = 0;
+	virtual void slot01() = 0;
+	virtual void slot02() = 0;
+	virtual void slot03() = 0;
+	virtual void slot04() = 0;
+	virtual void slot05() = 0;
+	virtual void slot06() = 0;
+	virtual void slot07() = 0;
+	virtual void slot08() = 0;
+	virtual void slot09() = 0;
+	virtual void slot0A() = 0;
+	virtual void slot0B() = 0;
+	virtual void slot0C() = 0;
+	virtual void slot0D() = 0;
+	virtual void slot0E() = 0;
+	virtual void slot0F() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual void slot17() = 0;
+	virtual void slot18() = 0;
+	virtual void slot19() = 0;
+	virtual void slot1A() = 0;
+	virtual void slot1B() = 0;
+	virtual void slot1C() = 0;
+	virtual void slot1D() = 0;
+	virtual void slot1E() = 0;
+	virtual void slot1F() = 0;
+	virtual void slot20() = 0;
+	virtual void slot21() = 0;
+	virtual void slot22() = 0;
+	virtual void slot23() = 0;
+	virtual void slot24() = 0;
+	virtual void slot25() = 0;
+	virtual void slot26() = 0;
+	virtual void slot27() = 0;
+	virtual void slot28() = 0;
+	virtual void slot29() = 0;
+	virtual void slot2A() = 0;
+	virtual void slot2B() = 0;
+	virtual void slot2C() = 0;
+	virtual void slot2D() = 0;
+	virtual void slot2E() = 0;
+	virtual void slot2F() = 0;
+	virtual void slot30() = 0;
+	virtual void slot31() = 0;
+	virtual void slot32() = 0;
+	virtual void slot33() = 0;
+	virtual void slot34() = 0;
+	virtual void slot35() = 0;
+	virtual void slot36() = 0;
+	virtual const LANAddress &getLocalAddress() = 0;
+};
+
+extern LANInterface *TheLAN;
+
+class LANGameInfo : public GameInfo {
 public:
 	LANGameInfo();
+	virtual ~LANGameInfo();
+	virtual Int getLocalSlotNum() const;
+
+private:
+	LANGameSlot m_slots[8];
+	LANGameInfo *m_next;
+	UnsignedInt m_lastHeard;
+	UnicodeString m_gameName;
+	Bool m_isDirectConnect;
 };
 
 // ??0LANGameInfo@@QAE@XZ
-__declspec(naked) LANGameInfo::LANGameInfo()
+LANGameInfo::LANGameInfo()
+	: m_next(0), m_lastHeard(0), m_isDirectConnect(false)
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x9c
-		__emit 0x6d
-		__emit 0x04
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x53
-		__emit 0x55
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x10
-		__emit 0xe8
-		__emit 0x1a
-		__emit 0xec
-		__emit 0x99
-		__emit 0xff
-		__emit 0x68
-		__emit 0x69
-		__emit 0x9a
-		__emit 0x42
-		__emit 0x00
-		__emit 0x68
-		__emit 0x8a
-		__emit 0xde
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x08
-		__emit 0x6a
-		__emit 0x68
-		__emit 0x8d
-		__emit 0x6e
-		__emit 0x58
-		__emit 0x33
-		__emit 0xdb
-		__emit 0x55
-		__emit 0x89
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x30
-		__emit 0xc7
-		__emit 0x06
-		__emit 0xac
-		__emit 0xb8
-		__emit 0x11
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x1c
-		__emit 0x85
-		__emit 0x36
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x98
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x9c
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xa0
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0xa4
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x02
-		__emit 0x33
-		__emit 0xff
-		__emit 0x8b
-		__emit 0xdd
-		__emit 0x8d
-		__emit 0xa4
-		__emit 0x24
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x53
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x5c
-		__emit 0xfa
-		__emit 0x9a
-		__emit 0xff
-		__emit 0x47
-		__emit 0x83
-		__emit 0xc3
-		__emit 0x68
-		__emit 0x83
-		__emit 0xff
-		__emit 0x08
-		__emit 0x72
-		__emit 0xee
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x30
-		__emit 0x77
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x01
-		__emit 0xff
-		__emit 0x90
-		__emit 0xdc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x08
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x34
-		__emit 0x8b
-		__emit 0x50
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x14
-		__emit 0x5f
-		__emit 0x89
-		__emit 0x56
-		__emit 0x38
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
+	for (UnsignedInt i = 0; i < 8; ++i)
+		setSlotPointer(i, &m_slots[i]);
+
+	m_localAddress = TheLAN->getLocalAddress();
 }
