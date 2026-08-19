@@ -72387,3 +72387,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0W3DSupplyDrawModuleDataBase@@QAE@XZ,0x0000289C,Open-BFME5 the incremental-link thunk that constructor encodes
 ?hasUpgradeMask@Object@@QBE_NI@Z,0x001C59C0,Open-BFME5 the mask test Object::hasUpgrade tail-jumps to; unnamed in the image
 ?doRepopulateBuildTooltipLayout@ControlBar@@QAEXXZ,0x004C1320,Open-BFME5 the zero-argument member repopulateBuildTooltipLayout tail-jumps to; unnamed in the image
+??0CompositeRenderObjClass@@QAE@ABV0@@Z,0x00005E93,Open-BFME5 the incremental-link thunk DistLODClass copy constructor forwards to; DistLODClass derives from it in the vendored WW3D2 header
