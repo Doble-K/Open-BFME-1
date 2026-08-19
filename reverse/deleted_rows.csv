@@ -22009,3 +22009,8 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0077f1c0@@YAXXZ,0x0077F1C0,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DTreeDraw@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 36/36."
 ?d_00759730@@YAXXZ,0x00759730,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DQuadrupedDraw@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 39/39."
 ?d_0077db70@@YAXXZ,0x0077DB70,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DSupplyDraw@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 59/59."
+??0RepairDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001E8D0,"wrong body: 0x0001E8D0 is the five-byte incremental-link thunk, not the constructor. The constructor is 0x002CED20 and is now claimed from real C++; the lift is gone."
+??0SupplyWarehouseDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001E902,"wrong body: 0x0001E902 is the five-byte incremental-link thunk, not the constructor. The constructor is 0x002CF800 and is now claimed from real C++; the lift is gone."
+?d_00212810@@YAXXZ,0x00212810,"gen-dump placeholder superseded by the real identity of these bytes: ??0DelayedDeathBody@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 60/60."
+?d_002ced20@@YAXXZ,0x002CED20,"gen-dump placeholder superseded by the real identity of these bytes: ??0RepairDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 67/67."
+?d_002cf800@@YAXXZ,0x002CF800,"gen-dump placeholder superseded by the real identity of these bytes: ??0SupplyWarehouseDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 65/65."
