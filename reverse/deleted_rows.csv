@@ -22053,3 +22053,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_007628c0@@YAXXZ,0x007628C0,"gen-dump placeholder superseded by the real identity of these bytes: ?setFullyObscuredByShroud@W3DModelDraw@@UAEX_N@Z, byte-verified 43/43."
 ?d_000ce140@@YAXXZ,0x000CE140,"gen-dump placeholder superseded by the real identity of these bytes: ?updateTeamStates@Player@@QAEXXZ, byte-verified 37/37."
 ?d_001be1c0@@YAXXZ,0x001BE1C0,"gen-dump placeholder superseded by the real identity of these bytes: ?notifyModelConditionChanged@Object@@QAEXXZ, byte-verified 46/46."
+?d_00106bc0@@YAXXZ,0x00106BC0,"gen-dump placeholder superseded by the real identity of these bytes: ?deleteFromList@Radar@@IAE_NPAVObject@@PAPAVRadarObject@@@Z, byte-verified 76/76."
