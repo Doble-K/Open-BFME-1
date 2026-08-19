@@ -72355,3 +72355,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?groupDoCommandButtonAtObject@AIGroup@@QAEXPBVCommandButton@@PAVObject@@W4CommandSourceType@@@Z,0x0001C0D0,doTeamUseCommandButtonOnNamed BFME AIGroup ILT
 ??0W3DFloorDrawBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x007592C0,Open-BFME5 base constructor W3DFloorDraw forwards to; byte-identical to and folded with W3DPropDraw so the address cannot name the class
 ??0W3DFloorDrawBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00039770,Open-BFME5 the incremental-link thunk W3DFloorDraw encodes for that base
+??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00268120,Open-BFME5 base constructor every SpecialPower module data forwards to; runs to +0x210. Byte-identical to and folded with RiderChangeContainModuleData so the address cannot name the class
+??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00015C44,Open-BFME5 the incremental-link thunk those constructors encode
