@@ -822,7 +822,6 @@ void AudioManager::setListenerPosition( const Coord3D *newListenerPos, const Coo
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getListenerPosition@AudioManager@@ present-unmatched
 const Coord3D *AudioManager::getListenerPosition( void ) const
 {
 	return &m_listenerPosition;
