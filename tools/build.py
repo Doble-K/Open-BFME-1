@@ -1032,45 +1032,77 @@ def compile_function(row, symbol_map, output):
     # them can be resolved the way a compiled TU's are. Mask them all instead
     # and compare only the bytes in between; `concrete` reports how many that
     # leaves, because a comparison over too few bytes is not evidence.
-    masked = (ROOT / row["source"]).suffix.lower() == LIB_SUFFIX
-    resolved = bytearray(compiled[:target_size])
-    unresolved = []
-    covered = bytearray(target_size)
-    for offset, rtype, sym_name in relocs:
-        if offset >= target_size:
-            continue  # reloc belongs to a later function sharing the COMDAT section
-        if masked:
-            width = min(RELOC_WIDTH.get(rtype, 4), target_size - offset)
-            resolved[offset : offset + width] = target[offset : offset + width]
-            covered[offset : offset + width] = b"\1" * width
-        elif rtype == 0x0006:  # IMAGE_REL_I386_DIR32
-            resolved[offset : offset + 4] = target[offset : offset + 4]
-        elif rtype == 0x0014:  # IMAGE_REL_I386_REL32
-            # `resolved` is a bytearray, so assigning four bytes at
-            # target_size-1..-3 EXTENDS it instead of failing: the row compiles
-            # longer than it claims, clobbers its own last bytes on the way, and
-            # surfaces as two hex dumps of different lengths naming neither the
-            # extent nor this site. A call displacement cannot end after the
-            # function does, so what is wrong here is the boundary, not the
-            # write -- clipping would only make a wrong boundary compare equal.
-            if offset + 4 > target_size:
-                raise SystemExit(
-                    f"{row['name']} ({row['source']}): REL32 site at offset {offset} "
-                    f"(0x{offset:x}) for {sym_name} needs {offset + 4} bytes but the row "
-                    f"claims target_size {target_size}. The row's extent is wrong: raise "
-                    "it to the real end of the function. This displacement is part of "
-                    "this body, not of whatever follows it.")
-            if sym_name in symbol_map:
-                next_address = target_rva + offset + 4
-                candidates = symbol_map[sym_name]
-                displacement = struct.pack("<i", candidates[0] - next_address)
-                for target_address in candidates[1:]:
-                    if target[offset : offset + 4] == displacement:
-                        break
-                    displacement = struct.pack("<i", target_address - next_address)
-                resolved[offset : offset + 4] = displacement
-            else:
-                unresolved.append(sym_name)
+    #
+    # A gen-alias row (the ICF-twin dup_ convention: same body claimed at a
+    # second address under an alias name) needs the same masking, but only as a
+    # FALLBACK, never as a mode. Its object code is the original claim's
+    # compiled TU, so every relocation site's symbol is known -- but the
+    # candidate list load_symbol_map builds for that symbol covers only the
+    # original claim's address and ITS thunks, not a sibling ICF fold of the
+    # callee that this second address's own thunk chain routes through. Which
+    # fold the twin encodes is exactly the position-dependent fact a twin's
+    # rel32 legitimately differs on, so strict resolution cannot see it.
+    #
+    # Masking gen-alias rows UNCONDITIONALLY is wrong, and measurably so: it
+    # drags them under the MIN_LIB_CONCRETE floor, and the 4-to-7-byte alias
+    # rows that make up most of the 9600 already in the ledger have fewer than
+    # eight non-relocation bytes by construction. Doing that failed 528 of
+    # GameAudio.cpp's 3279 rows, a file that gates 3278/3278 without it. So try
+    # strict first and keep it when it proves the row; fall back to masking only
+    # for a row strict cannot prove. An ordinary conversion never takes the
+    # fallback, and keeps full strictness.
+    lib_member = (ROOT / row["source"]).suffix.lower() == LIB_SUFFIX
+    gen_alias = "gen-alias" in (row.get("notes") or "")
+
+    def resolve(masked):
+        resolved = bytearray(compiled[:target_size])
+        unresolved = []
+        covered = bytearray(target_size)
+        for offset, rtype, sym_name in relocs:
+            if offset >= target_size:
+                continue  # reloc belongs to a later function sharing the COMDAT section
+            if masked:
+                width = min(RELOC_WIDTH.get(rtype, 4), target_size - offset)
+                resolved[offset : offset + width] = target[offset : offset + width]
+                covered[offset : offset + width] = b"\1" * width
+            elif rtype == 0x0006:  # IMAGE_REL_I386_DIR32
+                resolved[offset : offset + 4] = target[offset : offset + 4]
+            elif rtype == 0x0014:  # IMAGE_REL_I386_REL32
+                # `resolved` is a bytearray, so assigning four bytes at
+                # target_size-1..-3 EXTENDS it instead of failing: the row compiles
+                # longer than it claims, clobbers its own last bytes on the way, and
+                # surfaces as two hex dumps of different lengths naming neither the
+                # extent nor this site. A call displacement cannot end after the
+                # function does, so what is wrong here is the boundary, not the
+                # write -- clipping would only make a wrong boundary compare equal.
+                if offset + 4 > target_size:
+                    raise SystemExit(
+                        f"{row['name']} ({row['source']}): REL32 site at offset {offset} "
+                        f"(0x{offset:x}) for {sym_name} needs {offset + 4} bytes but the row "
+                        f"claims target_size {target_size}. The row's extent is wrong: raise "
+                        "it to the real end of the function. This displacement is part of "
+                        "this body, not of whatever follows it.")
+                if sym_name in symbol_map:
+                    next_address = target_rva + offset + 4
+                    candidates = symbol_map[sym_name]
+                    displacement = struct.pack("<i", candidates[0] - next_address)
+                    for target_address in candidates[1:]:
+                        if target[offset : offset + 4] == displacement:
+                            break
+                        displacement = struct.pack("<i", target_address - next_address)
+                    resolved[offset : offset + 4] = displacement
+                else:
+                    unresolved.append(sym_name)
+
+        return resolved, unresolved, covered
+
+    resolved, unresolved, covered = resolve(lib_member)
+    masked = lib_member
+    if gen_alias and not lib_member and bytes(resolved) != target:
+        alt_resolved, alt_unresolved, alt_covered = resolve(True)
+        if bytes(alt_resolved) == target:
+            resolved, unresolved, covered = alt_resolved, alt_unresolved, alt_covered
+            masked = True
 
     return {
         "name": row["name"],
