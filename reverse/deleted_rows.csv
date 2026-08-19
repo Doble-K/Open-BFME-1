@@ -22031,3 +22031,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_001be270@@YAXXZ,0x001BE270,"gen-dump placeholder superseded by the real identity of these bytes: ?find@AssistedTargetingObjectShim@@QAEPAXH@Z, byte-verified 47/47."
 ?d_0018b520@@YAXXZ,0x0018B520,"gen-dump placeholder superseded by the real identity of these bytes: ?isOnSquad@Squad@@QBE_NPBVObject@@@Z, byte-verified 38/38."
 ?d_007517a0@@YAXXZ,0x007517A0,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DFloorDraw@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 50/50."
+?d_00215c50@@YAXXZ,0x00215C50,"gen-dump placeholder superseded by the real identity of these bytes: ??0AODCrushCollide@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 97/97."
