@@ -22107,3 +22107,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_000b8f10@@YAXXZ,0x000B8F10,"gen-dump placeholder superseded by the real identity of these bytes: ?parseObjectCreationList@INI@@SAXPAV1@PAX1PBX@Z, byte-verified 30/30."
 ??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0036CDD0,"wrong body: 0x0036CDD0 takes no arguments and lays down module-data defaults (0xFFFFFFFE x4 then 11, 12, 10). The real two-argument constructor is 0x0036CEA0, eighty-four bytes."
 ?d_0036cea0@@YAXXZ,0x0036CEA0,"gen-dump placeholder superseded by the real identity of these bytes: ??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 84/84."
+??0GrantUpgradeCreateModuleData@@QAE@XZ,0x00852130,"wrong body: 0x00852130 is INI::initFromINIMultiProc. reloc_names puts this constructor on 0x0024FA80, ninety-nine bytes with an AsciiString member and an exception frame."
