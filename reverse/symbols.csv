@@ -72318,3 +72318,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?_M_insert_overflow@?$vector@PAVExperienceScalarTable@@V?$allocator@PAVExperienceScalarTable@@@_STL@@@_STL@@IAEXPAPAVExperienceScalarTable@@ABQAV3@ABU__true_type@2@I_N@Z,0x0037F7D0,Open-BFME5 grow path of the vector at TheExperienceLevelSystem+0x20
 ??0LargeGroupAudio@@QAE@XZ,0x003CEF00,Open-BFME5 on-demand constructor of the subsystem at 0x012F1044
 ??0LargeGroupAudioUnusedKnownKeys@@QAE@ABV0@@Z,0x003CD590,Open-BFME5 clone constructor the override path news up
+?setTooltipText@WinInstanceData@@QAEXVUnicodeString@@@Z,0x00499CC0,Open-BFME5 REL32 target of parseTooltip; takes its UnicodeString by value
