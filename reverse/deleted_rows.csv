@@ -22016,3 +22016,5 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_002cf800@@YAXXZ,0x002CF800,"gen-dump placeholder superseded by the real identity of these bytes: ??0SupplyWarehouseDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 65/65."
 ?d_00213390@@YAXXZ,0x00213390,"gen-dump placeholder superseded by the real identity of these bytes: ??0FreeLifeBody@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 93/93."
 ?d_00751cf0@@YAXXZ,0x00751CF0,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DHordeModelDraw@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 65/65."
+??0PropagandaTowerBehaviorModuleData@@QAE@XZ,0x00010B2C,"wrong body: 0x00010B2C is the five-byte incremental-link thunk, not the constructor. The constructor is 0x0028DC60 and is now claimed from real C++; the lift is gone."
+?d_0028dc60@@YAXXZ,0x0028DC60,"gen-dump placeholder superseded by the real identity of these bytes: ??0PropagandaTowerBehaviorModuleData@@QAE@XZ, byte-verified 38/38."
