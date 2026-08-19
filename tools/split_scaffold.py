@@ -27,10 +27,17 @@ are applied in address order, producing len(cuts)+1 adjacent scaffold rows.
 The FIRST piece keeps the original row's name (same start RVA); later pieces
 mint new `?d_<rva>@@YAXXZ` names the normal gen-dump way.
 
-The old row is dropped (content-matched, not by line number) and tombstoned
-in reverse/deleted_rows.csv -- the same mechanism gen_dump.py's own --retract
-uses to undo a wave, applied here to exactly one row. The new rows are
-appended, binary, CRLF, exactly like every other add_match/gen_dump append.
+A split does not RETIRE the head row: nothing about the piece starting at
+old_rva is deleted, so nothing is tombstoned in reverse/deleted_rows.csv (left
+untouched) and the row is never dropped. Its ledger line is rewritten IN
+PLACE, byte-identical except the size field narrows to the head piece's own
+width -- same name (`?d_<old_rva>@@YAXXZ`), same rva, same source/status, and
+notes preserved VERBATIM. Every later piece (tail, and a middle piece too, if
+the twin lands inside the scaffold rather than at either edge) is a brand new
+row, appended binary/CRLF, named `?d_<piece_rva>@@YAXXZ` from ITS OWN address
+the normal gen-dump way, with plain `gen-dump;ghidra=<name>` notes -- exactly
+what gen_dump.py itself would have written had it dumped that address as its
+own row to begin with.
 
 This does not verify anything itself. Run tools/build.py on the touched .asm
 file afterward -- compile-and-byte-verify is the only real judge.
@@ -49,7 +56,6 @@ from portable_lock import lock
 
 ROOT = gen_dump.ROOT
 FUNCTIONS = gen_dump.FUNCTIONS
-DELETED = ROOT / "reverse" / "deleted_rows.csv"
 
 
 def parse_rows(raw):
@@ -143,21 +149,21 @@ def main():
         rendered = gen_dump.ASM_PROC.format(
             ghidra=ghidra_name, rva=piece_start, size=piece_size,
             db=gen_dump.asm_db(body))
+        # Every piece, including the head, uses gen_dump's own naming rule --
+        # named from its OWN start address. For the head that is old_name
+        # itself (asserted below), so nothing here needs suffixing to dodge a
+        # collision: the head's ledger row is narrowed in place, never
+        # dropped, so there is no tombstoned occurrence for a live row to
+        # collide with.
         piece_name = f"?d_{piece_start:08x}@@YAXXZ"
-        if piece_start == old_rva:
-            # This piece keeps the OLD start address, so gen_dump's own naming
-            # template would mint the exact same name we are about to drop and
-            # tombstone below -- check_csv's tombstone rule treats a (name, rva)
-            # pair reappearing as a resurrected-bad-row and refuses it, even
-            # though this occurrence is legitimately smaller (a shrunk survivor,
-            # not the deleted claim). Suffix it so the tombstoned pair truly has
-            # no live successor and the retired name is retired for good.
-            suffixed = f"?d_{piece_start:08x}s@@YAXXZ"
-            rendered = rendered.replace(piece_name, suffixed)
-            piece_name = suffixed
         piece_bytes = rendered.encode("ascii").replace(b"\n", nl)
         new_block_parts.append(piece_bytes)
         new_rows.append((piece_name, piece_start, piece_size))
+
+    head_name, head_rva, head_size = new_rows[0]
+    if head_name != old_name:
+        raise SystemExit(f"head piece minted {head_name!r} but the row being narrowed is "
+                         f"{old_name!r} -- naming mismatch, refusing to write")
 
     new_block = b"".join(new_block_parts)
     while new_block.startswith(nl):
@@ -170,31 +176,50 @@ def main():
     if new_raw_asm.count(ghidra_marker) != raw_asm.count(ghidra_marker) - 1 + len(pieces):
         raise SystemExit("block-count sanity check failed -- refusing to write")
 
-    # Ledger: drop the old row by content, tombstone it, append the new rows.
-    def keep(fields):
-        if len(fields) < 4:
-            return True
-        return not (fields[0] == old_name and fields[2] == f"0x{old_rva:08X}")
-
-    kept, dropped = ledger_io.rewrite(raw, keep)
-    if dropped != 1:
-        raise SystemExit(f"expected to drop exactly 1 row, dropped {dropped} -- aborting, "
+    # Ledger: narrow the head row IN PLACE (byte-identical apart from the size
+    # field -- same name/rva/source/status, notes untouched verbatim), then
+    # append the later pieces as brand-new plain gen-dump rows. Nothing is
+    # dropped, so reverse/deleted_rows.csv is never touched.
+    old_rva_field = f"0x{old_rva:08X}".encode("ascii")
+    old_name_b = old_name.encode("ascii")
+    new_size_field = str(head_size).encode("ascii")
+    rewritten, matched = [], 0
+    for payload, term in ledger_io.split_records(raw):
+        # 7 fields, comma-joined; notes (the last field) is the only one that
+        # could in principle contain a literal comma, but the earlier len==7
+        # csv-parse check already proved it doesn't for this row, so a plain
+        # bytes split-on-comma round-trips every untouched field exactly.
+        parts = payload.split(b",", 6)
+        if (len(parts) == 7 and parts[0] == old_name_b and parts[2] == old_rva_field):
+            parts[3] = new_size_field
+            payload = b",".join(parts)
+            matched += 1
+        rewritten.append(payload + term)
+    if matched != 1:
+        raise SystemExit(f"expected to narrow exactly 1 row, matched {matched} -- aborting, "
                          "no files written")
+    narrowed = b"".join(rewritten)
 
+    # Later pieces carry the SPLIT ROW'S OWN NOTES VERBATIM, exactly as the
+    # narrowed head does. Synthesising `gen-dump;ghidra=<name>` from the .asm's
+    # "; ghidra:" comment instead is wrong, and was caught corrupting provenance:
+    # a scaffold whose notes read `gen-dump;bounds=high` has a comment reading
+    # "; ghidra: bounds-high", so the synthesised form emitted
+    # `gen-dump;ghidra=bounds-high` -- asserting that Ghidra named a function
+    # "bounds-high" when it had named nothing at all. 62 rows were minted that
+    # way in a single run. A split changes an EXTENT, never provenance: every
+    # piece came out of the same dump and inherits the same claim about where it
+    # came from.
     new_ledger_rows = "".join(
         f"{name},{row['export_rva']},0x{rva:08X},{size},{row['source']},matched,"
-        f"gen-dump;split-of={old_name};{row['notes']}\r\n"
-        for name, rva, size in new_rows
+        f"{row['notes']}\r\n"
+        for name, rva, size in new_rows[1:]
     ).encode("ascii")
 
-    # Write .asm first (cheap to redo), then the ledger (kept+appended, atomic
-    # per file), then the tombstone -- same order retract() uses.
+    # Write .asm first (cheap to redo), then the ledger (narrowed+appended,
+    # atomic per file). No tombstone -- nothing was deleted.
     asm_path.write_bytes(new_raw_asm)
-    FUNCTIONS.write_bytes(kept + new_ledger_rows)
-    piece_addrs = " ".join("0x%08X" % rva for _, rva, _ in new_rows)
-    with DELETED.open("a", encoding="utf-8", newline="") as handle:
-        handle.write(f"{old_name},0x{old_rva:08X},"
-                     f"split by tools/split_scaffold.py into {piece_addrs}\n")
+    FUNCTIONS.write_bytes(narrowed + new_ledger_rows)
 
     print(f"split {old_name} @ 0x{old_rva:08X} size {row['size']} into {len(pieces)} piece(s):")
     for name, rva, size in new_rows:

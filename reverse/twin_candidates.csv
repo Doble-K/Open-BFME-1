@@ -6,7 +6,6 @@ twin_rva,size,source,object_symbol,slot_state
 0x0006E8D8,8,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,?Clear_Render_List@DX8TextureCategoryClass@@QAEXXZ,scaffold
 0x0007B5BC,10,Code/GameEngine/Source/Common/ConditionalPointerStoreThunk.cpp,?assignSecond@ConditionalPointerStoreThunk@@QAEXPAX@Z,scaffold
 0x000970B4,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,?init@W3DShadowGeometry@@QAEHPAVRenderObjClass@@@Z,scaffold
-0x000A00A4,8,Code/GameEngine/Source/GameNetwork/udp.cpp,?ClearStatus@UDP@@QAEXXZ,scaffold
 0x000C3D93,17,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,?getCurrentStateID@StateMachine@@QBEIXZ,scaffold
 0x000C8998,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,?setPlayingHandle@AudioEventRTS@@QAEXI@Z,scaffold
 0x000EC241,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,?init@W3DShadowGeometry@@QAEHPAVRenderObjClass@@@Z,scaffold
