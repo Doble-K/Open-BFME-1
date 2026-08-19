@@ -835,7 +835,7 @@ public ?d_006dac40@@YAXXZ
     db 01h, 0C2h, 04h, 00h, 32h, 0C0h, 0C2h, 04h, 00h
 ?d_006dac40@@YAXXZ ENDP
 
-; ghidra: FUN_00adac80  retail @ 0x006DAC80 size 103
+; ghidra: FUN_00adac80  retail @ 0x006DAC80 size 87
 public ?d_006dac80@@YAXXZ
 ?d_006dac80@@YAXXZ PROC
     db 8Bh, 41h, 08h, 83h, 0F8h, 03h, 77h, 56h, 0FFh, 24h, 85h, 0E8h, 0ACh, 0ADh, 00h, 0D9h
@@ -843,9 +843,20 @@ public ?d_006dac80@@YAXXZ
     db 01h, 0DFh, 0E0h, 0F6h, 0C4h, 01h, 75h, 36h, 0C7h, 41h, 0Ch, 00h, 00h, 80h, 3Fh, 0C7h
     db 41h, 08h, 01h, 00h, 00h, 00h, 0C3h, 0D9h, 41h, 0Ch, 0D8h, 25h, 50h, 0E1h, 11h, 01h
     db 0D9h, 51h, 0Ch, 0D8h, 1Dh, 50h, 53h, 07h, 01h, 0DFh, 0E0h, 0F6h, 0C4h, 41h, 7Ah, 0Eh
-    db 0C7h, 41h, 08h, 03h, 00h, 00h, 00h, 0C7h, 41h, 0Ch, 00h, 00h, 00h, 00h, 0C3h, 0C7h
-    db 41h, 0Ch, 00h, 00h, 80h, 3Fh, 0C3h
+    db 0C7h, 41h, 08h, 03h, 00h, 00h, 00h
 ?d_006dac80@@YAXXZ ENDP
+
+; ghidra: FUN_00adac80  retail @ 0x006DACD7 size 8
+public ?d_006dacd7@@YAXXZ
+?d_006dacd7@@YAXXZ PROC
+    db 0C7h, 41h, 0Ch, 00h, 00h, 00h, 00h, 0C3h
+?d_006dacd7@@YAXXZ ENDP
+
+; ghidra: FUN_00adac80  retail @ 0x006DACDF size 8
+public ?d_006dacdf@@YAXXZ
+?d_006dacdf@@YAXXZ PROC
+    db 0C7h, 41h, 0Ch, 00h, 00h, 80h, 3Fh, 0C3h
+?d_006dacdf@@YAXXZ ENDP
 
 ; ghidra: FUN_00adad30  retail @ 0x006DAD30 size 49
 public ?d_006dad30@@YAXXZ

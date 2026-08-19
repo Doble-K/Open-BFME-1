@@ -682,21 +682,33 @@ public ?d_00355680@@YAXXZ
     db 00h
 ?d_00355680@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x003558F0 size 45
+; ghidra: bounds-high  retail @ 0x003558F0 size 37
 public ?d_003558f0@@YAXXZ
 ?d_003558f0@@YAXXZ PROC
     db 8Bh, 54h, 24h, 04h, 8Bh, 42h, 04h, 8Bh, 49h, 18h, 8Dh, 04h, 80h, 8Dh, 04h, 81h
     db 0Fh, 0BFh, 48h, 0Eh, 3Bh, 4Ah, 08h, 75h, 0Ch, 8Ah, 48h, 0Ch, 84h, 0C9h, 75h, 05h
-    db 33h, 0C0h, 0C2h, 04h, 00h, 0B8h, 01h, 00h, 00h, 00h, 0C2h, 04h, 00h
+    db 33h, 0C0h, 0C2h, 04h, 00h
 ?d_003558f0@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x00355980 size 45
+; ghidra: bounds-high  retail @ 0x00355915 size 8
+public ?d_00355915@@YAXXZ
+?d_00355915@@YAXXZ PROC
+    db 0B8h, 01h, 00h, 00h, 00h, 0C2h, 04h, 00h
+?d_00355915@@YAXXZ ENDP
+
+; ghidra: bounds-high  retail @ 0x00355980 size 37
 public ?d_00355980@@YAXXZ
 ?d_00355980@@YAXXZ PROC
     db 8Bh, 54h, 24h, 04h, 8Bh, 42h, 04h, 8Bh, 49h, 38h, 8Dh, 04h, 80h, 8Dh, 04h, 81h
     db 0Fh, 0BFh, 48h, 0Eh, 3Bh, 4Ah, 08h, 75h, 0Ch, 8Ah, 48h, 0Ch, 84h, 0C9h, 75h, 05h
-    db 33h, 0C0h, 0C2h, 04h, 00h, 0B8h, 01h, 00h, 00h, 00h, 0C2h, 04h, 00h
+    db 33h, 0C0h, 0C2h, 04h, 00h
 ?d_00355980@@YAXXZ ENDP
+
+; ghidra: bounds-high  retail @ 0x003559A5 size 8
+public ?d_003559a5@@YAXXZ
+?d_003559a5@@YAXXZ PROC
+    db 0B8h, 01h, 00h, 00h, 00h, 0C2h, 04h, 00h
+?d_003559a5@@YAXXZ ENDP
 
 ; ghidra: bounds-high  retail @ 0x003565F0 size 15
 public ?d_003565f0@@YAXXZ
@@ -1450,13 +1462,24 @@ public ?d_00360860@@YAXXZ
     db 0Eh, 01h, 0FFh, 90h, 90h, 00h, 00h, 00h, 0C3h
 ?d_00360860@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x00360880 size 34
+; ghidra: bounds-high  retail @ 0x00360880 size 21
 public ?d_00360880@@YAXXZ
 ?d_00360880@@YAXXZ PROC
     db 8Bh, 44h, 24h, 04h, 0D9h, 40h, 08h, 8Bh, 4Ch, 24h, 08h, 0D8h, 59h, 08h, 0DFh, 0E0h
-    db 0F6h, 0C4h, 41h, 75h, 08h, 0B8h, 01h, 00h, 00h, 00h, 0C2h, 08h, 00h, 33h, 0C0h, 0C2h
-    db 08h, 00h
+    db 0F6h, 0C4h, 41h, 75h, 08h
 ?d_00360880@@YAXXZ ENDP
+
+; ghidra: bounds-high  retail @ 0x00360895 size 8
+public ?d_00360895@@YAXXZ
+?d_00360895@@YAXXZ PROC
+    db 0B8h, 01h, 00h, 00h, 00h, 0C2h, 08h, 00h
+?d_00360895@@YAXXZ ENDP
+
+; ghidra: bounds-high  retail @ 0x0036089D size 5
+public ?d_0036089d@@YAXXZ
+?d_0036089d@@YAXXZ PROC
+    db 33h, 0C0h, 0C2h, 08h, 00h
+?d_0036089d@@YAXXZ ENDP
 
 ; ghidra: bounds-high  retail @ 0x003608B0 size 40
 public ?d_003608b0@@YAXXZ

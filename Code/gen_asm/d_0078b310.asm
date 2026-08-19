@@ -950,12 +950,17 @@ public ?d_007901f0@@YAXXZ
     db 0C7h, 8Bh, 0CBh, 0E8h, 18h, 0FBh, 0FFh, 0FFh, 5Fh, 5Eh, 5Bh, 83h, 0C4h, 10h, 0C3h
 ?d_007901f0@@YAXXZ ENDP
 
-; ghidra: FUN_00b90330  retail @ 0x00790330 size 22
+; ghidra: FUN_00b90330  retail @ 0x00790330 size 14
 public ?d_00790330@@YAXXZ
 ?d_00790330@@YAXXZ PROC
-    db 8Bh, 44h, 24h, 04h, 50h, 51h, 0E8h, 69h, 0Eh, 87h, 0FFh, 83h, 0C4h, 08h, 0B8h, 01h
-    db 00h, 00h, 00h, 0C2h, 04h, 00h
+    db 8Bh, 44h, 24h, 04h, 50h, 51h, 0E8h, 69h, 0Eh, 87h, 0FFh, 83h, 0C4h, 08h
 ?d_00790330@@YAXXZ ENDP
+
+; ghidra: FUN_00b90330  retail @ 0x0079033E size 8
+public ?d_0079033e@@YAXXZ
+?d_0079033e@@YAXXZ PROC
+    db 0B8h, 01h, 00h, 00h, 00h, 0C2h, 04h, 00h
+?d_0079033e@@YAXXZ ENDP
 
 ; ghidra: FUN_00b903f0  retail @ 0x007903F0 size 25
 public ?d_007903f0@@YAXXZ
@@ -1412,12 +1417,17 @@ public ?d_00792ce0@@YAXXZ
     db 0E8h, 7Bh, 0F4h, 0FFh, 0FFh, 83h, 0C4h, 18h, 5Fh, 5Eh, 5Dh, 5Bh, 83h, 0C4h, 2Ch, 0C3h
 ?d_00792ce0@@YAXXZ ENDP
 
-; ghidra: FUN_00b92f80  retail @ 0x00792F80 size 22
+; ghidra: FUN_00b92f80  retail @ 0x00792F80 size 14
 public ?d_00792f80@@YAXXZ
 ?d_00792f80@@YAXXZ PROC
-    db 8Bh, 44h, 24h, 04h, 50h, 51h, 0E8h, 8Ah, 8Bh, 8Ah, 0FFh, 83h, 0C4h, 08h, 0B8h, 01h
-    db 00h, 00h, 00h, 0C2h, 04h, 00h
+    db 8Bh, 44h, 24h, 04h, 50h, 51h, 0E8h, 8Ah, 8Bh, 8Ah, 0FFh, 83h, 0C4h, 08h
 ?d_00792f80@@YAXXZ ENDP
+
+; ghidra: FUN_00b92f80  retail @ 0x00792F8E size 8
+public ?d_00792f8e@@YAXXZ
+?d_00792f8e@@YAXXZ PROC
+    db 0B8h, 01h, 00h, 00h, 00h, 0C2h, 04h, 00h
+?d_00792f8e@@YAXXZ ENDP
 
 ; ghidra: FUN_00b93150  retail @ 0x00793150 size 25
 public ?d_00793150@@YAXXZ
