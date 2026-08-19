@@ -1,270 +1,207 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
 
-struct LANMessage;
+typedef bool Bool;
+typedef unsigned int UnsignedInt;
+typedef unsigned short WideChar;
+
+extern "C" __declspec(dllimport) WideChar * __cdecl wcsncpy(WideChar *, const WideChar *, unsigned int);
+
+enum { g_lanGameNameLength = 16, g_lanMaxOptionsLength = 406 };
+
+class UnicodeStringData
+{
+public:
+	unsigned char m_unreconstructed_00[8];
+	WideChar m_stringdata[1];
+};
+
+class UnicodeString
+{
+public:
+	~UnicodeString() { releaseBuffer(); }
+
+	const WideChar *str() const
+	{
+		return m_data ? m_data->m_stringdata : L"";
+	}
+
+protected:
+	void releaseBuffer();
+
+private:
+	UnicodeStringData *m_data;
+};
+
+#pragma pack(push, 1)
+struct LANAddress
+{
+	UnsignedInt m_ip;
+	unsigned short m_port;
+};
+#pragma pack(pop)
+
+class LANGameInfo
+{
+public:
+	UnicodeString getName();
+
+	unsigned char m_unreconstructed_00[0x0D];
+	Bool m_inProgress;
+	unsigned char m_unreconstructed_0e[0x88 - 0x0E];
+	LANAddress m_hostAddress;
+	unsigned char m_unreconstructed_8e[0x3A4 - 0x8E];
+	Bool m_isDirectConnect;
+};
+
+class NetworkInterface
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot01() = 0;
+	virtual void slot02() = 0;
+	virtual void slot03() = 0;
+	virtual void slot04() = 0;
+	virtual void slot05() = 0;
+	virtual void slot06() = 0;
+	virtual void slot07() = 0;
+	virtual void slot08() = 0;
+	virtual void slot09() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual void slot17() = 0;
+	virtual void slot18() = 0;
+	virtual void slot19() = 0;
+	virtual void slot20() = 0;
+	virtual void slot21() = 0;
+	virtual void slot22() = 0;
+	virtual void slot23() = 0;
+	virtual void slot24() = 0;
+	virtual void slot25() = 0;
+	virtual void slot26() = 0;
+	virtual void slot27() = 0;
+	virtual void slot28() = 0;
+	virtual void slot29() = 0;
+	virtual void slot30() = 0;
+	virtual void slot31() = 0;
+	virtual void slot32() = 0;
+	virtual void slot33() = 0;
+	virtual void slot34() = 0;
+	virtual Bool isPacketRouter() = 0;
+};
+
+extern NetworkInterface *TheNetwork;
+
+struct LANMessage
+{
+	enum { MSG_GAME_ANNOUNCE = 1 };
+
+	UnsignedInt m_type;
+	unsigned char m_unreconstructed_04[0x22 - 0x04];
+	struct
+	{
+		WideChar m_gameName[g_lanGameNameLength + 1];
+		Bool m_inProgress;
+		Bool m_isDirectConnect;
+		char m_options[g_lanMaxOptionsLength];
+	} m_gameInfo;
+};
+
+void __cdecl writeLANGameInfo(const LANGameInfo *, char *, unsigned int);
+
 class LANAPI
 {
+public:
+	virtual void slot00() = 0;
+	virtual void slot01() = 0;
+	virtual void slot02() = 0;
+	virtual void slot03() = 0;
+	virtual void slot04() = 0;
+	virtual void slot05() = 0;
+	virtual void slot06() = 0;
+	virtual void slot07() = 0;
+	virtual void slot08() = 0;
+	virtual void slot09() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual void slot17() = 0;
+	virtual void slot18() = 0;
+	virtual void slot19() = 0;
+	virtual void slot20() = 0;
+	virtual void slot21() = 0;
+	virtual void slot22() = 0;
+	virtual void slot23() = 0;
+	virtual void slot24() = 0;
+	virtual void slot25() = 0;
+	virtual void slot26() = 0;
+	virtual void slot27() = 0;
+	virtual void slot28() = 0;
+	virtual void slot29() = 0;
+	virtual void slot30() = 0;
+	virtual void slot31() = 0;
+	virtual void slot32() = 0;
+	virtual void slot33() = 0;
+	virtual void slot34() = 0;
+	virtual void slot35() = 0;
+	virtual void slot36() = 0;
+	virtual void slot37() = 0;
+	virtual void slot38() = 0;
+	virtual void slot39() = 0;
+	virtual void slot40() = 0;
+	virtual void slot41() = 0;
+	virtual void slot42() = 0;
+	virtual void slot43() = 0;
+	virtual void slot44() = 0;
+	virtual void slot45() = 0;
+	virtual void slot46() = 0;
+	virtual void slot47() = 0;
+	virtual void slot48() = 0;
+	virtual void fillInLANMessage(LANMessage *) = 0;
+	virtual void slot50() = 0;
+	virtual void slot51() = 0;
+	virtual void slot52() = 0;
+	virtual void slot53() = 0;
+	virtual void slot54() = 0;
+	virtual const LANAddress *getLocalAddress() = 0;
+
 protected:
-	void handleRequestGameInfo(LANMessage *, unsigned int);
+	void handleRequestGameInfo(LANMessage *, UnsignedInt);
+	void sendMessage(LANMessage *, UnsignedInt);
+
+private:
+	unsigned char m_unreconstructed_04[0x40 - 0x04];
+	LANGameInfo *m_currentGame;
 };
 
 // ?handleRequestGameInfo@LANAPI@@IAEXPAULANMessage@@I@Z
-__declspec(naked) void LANAPI::handleRequestGameInfo(LANMessage *, unsigned int)
+void LANAPI::handleRequestGameInfo(LANMessage *, UnsignedInt senderIP)
 {
-	__asm {
-        __emit 0x81
-        __emit 0xec
-        __emit 0xe0
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x40
-        __emit 0x85
-        __emit 0xff
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xde
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x06
-        __emit 0xff
-        __emit 0x90
-        __emit 0xdc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x8f
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0x08
-        __emit 0x75
-        __emit 0x0d
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x97
-        __emit 0x8c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x66
-        __emit 0x3b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x74
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x40
-        __emit 0x8a
-        __emit 0x48
-        __emit 0x0d
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xb1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x14
-        __emit 0x77
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xa3
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x92
-        __emit 0x8c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x93
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x90
-        __emit 0xc4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x40
-        __emit 0x68
-        __emit 0x96
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x56
-        __emit 0x52
-        __emit 0x50
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x6f
-        __emit 0x61
-        __emit 0x9b
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x40
-        __emit 0xe8
-        __emit 0xaf
-        __emit 0x6b
-        __emit 0x9b
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x05
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x05
-        __emit 0xb8
-        __emit 0x8c
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x36
-        __emit 0x52
-        __emit 0xff
-        __emit 0x15
-        __emit 0x28
-        __emit 0x95
-        __emit 0x35
-        __emit 0x01
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x8c
-        __emit 0xcd
-        __emit 0x1f
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x40
-        __emit 0x66
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x4e
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x48
-        __emit 0x0d
-        __emit 0x88
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x50
-        __emit 0x8a
-        __emit 0x90
-        __emit 0xa4
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x84
-        __emit 0x24
-        __emit 0xf0
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0x88
-        __emit 0x54
-        __emit 0x24
-        __emit 0x59
-        __emit 0xe8
-        __emit 0x26
-        __emit 0x01
-        __emit 0x9a
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x81
-        __emit 0xc4
-        __emit 0xe0
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	LANGameInfo *game = m_currentGame;
+	if (game)
+	{
+		const LANAddress *localAddress = getLocalAddress();
+		if ((game->m_hostAddress.m_ip == localAddress->m_ip &&
+			game->m_hostAddress.m_port == localAddress->m_port) ||
+			(m_currentGame->m_inProgress && TheNetwork && TheNetwork->isPacketRouter()))
+		{
+			LANMessage reply;
+			fillInLANMessage(&reply);
+			reply.m_type = LANMessage::MSG_GAME_ANNOUNCE;
+			writeLANGameInfo(m_currentGame, reply.m_gameInfo.m_options, g_lanMaxOptionsLength);
+			wcsncpy(reply.m_gameInfo.m_gameName, m_currentGame->getName().str(), g_lanGameNameLength);
+			reply.m_gameInfo.m_gameName[g_lanGameNameLength] = 0;
+			reply.m_gameInfo.m_inProgress = m_currentGame->m_inProgress;
+			reply.m_gameInfo.m_isDirectConnect = m_currentGame->m_isDirectConnect;
+			sendMessage(&reply, senderIP);
+		}
 	}
 }
