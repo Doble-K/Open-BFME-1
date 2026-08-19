@@ -22035,3 +22035,5 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ??0LifetimeUpdateModuleData@@QAE@XZ,0x00410240,"wrong body: 0x00410240 calls ??0SubsystemInterface@@QAE@XZ, which a module-data class does not have as a base. Those bytes stay claimed by ??0DisplayStringManager@@QAE@XZ, which is what they are. The real LifetimeUpdateModuleData constructor is 0x00297E90."
 ?d_00297e90@@YAXXZ,0x00297E90,"gen-dump placeholder superseded by the real identity of these bytes: ??0LifetimeUpdateModuleData@@QAE@XZ, byte-verified 26/26."
 ?d_002516d0@@YAXXZ,0x002516D0,"gen-dump placeholder superseded by the real identity of these bytes: ??0ReflectDamageModuleData@@QAE@XZ, byte-verified 20/20."
+?d_0077d450@@YAXXZ,0x0077D450,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DStreakDrawModuleData@@QAE@XZ, byte-verified 51/51."
+?d_00758780@@YAXXZ,0x00758780,"gen-dump placeholder superseded by the real identity of these bytes: ??0W3DLightDrawModuleData@@QAE@XZ, byte-verified 67/67."
