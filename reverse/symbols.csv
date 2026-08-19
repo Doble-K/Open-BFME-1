@@ -72326,3 +72326,6 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0DockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x002CD4B0,Open-BFME5 base constructor RepairDockUpdate and SupplyWarehouseDockUpdate forward to; reloc_names carries the same address as SupplyCenterDockUpdateBase which is the ICF twin
 ?increaseAIPriorityForSuccess@TeamPrototype@@QBEXXZ,0x0000ADBC,ScriptActions retail call; ILT body 0x000EC8A0 adds +0x1CC into +0x1C8
 ?getPerUnitSound@ThingTemplate@@QBEPBVAudioEventRTS@@ABVAsciiString@@@Z,0x0000FD44,TurretAI startRotOrPitchSound retail call target
+??0SpyVisionUpgradeMux@@QAE@XZ,0x0003D24E,SpyVisionUpdate UpgradeMux constructor ILT
+?spyVisionRandom@@YAHHHPBDH@Z,0x00001BAE,SpyVisionUpdate random-delay ILT
+?g_spyVisionSourceFile@@3DB,0x010A1C70,SpyVisionUpdate retail source-file literal
