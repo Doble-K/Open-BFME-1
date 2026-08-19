@@ -22069,3 +22069,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0091b4f0@@YAXXZ,0x0091B4F0,"gen-dump placeholder superseded by the real identity of these bytes: ?supportTextureFormat@W3DRadarFormatCaps@@QAE_NW4WW3DFormat@@@Z, byte-verified 110/110."
 ?d_0077d380@@YAXXZ,0x0077D380,"gen-dump placeholder superseded by the real identity of these bytes: ?buildFieldParse@SpecialPowerModuleData@@SAXAAVMultiIniFieldParse@@@Z, byte-verified 17/17."
 ?d_0049c380@@YAXXZ,0x0049C380,"gen-dump placeholder superseded by the real identity of these bytes: ?setButtonImage@BFMERetailCommandButton@@QAEXPBVImage@@@Z, byte-verified 88/88."
+?d_00426100@@YAXXZ,0x00426100,"gen-dump placeholder superseded by the real identity of these bytes: ?resize@EvaCheckVec@@QAEXH@Z, byte-verified 41/41."

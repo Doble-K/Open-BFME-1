@@ -72371,3 +72371,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0W3DTerrainVisualBase@@QAE@XZ,0x00602C70,Open-BFME5 the base constructor W3DTerrainVisual forwards to; unnamed in the image
 ??0W3DTerrainVisualBase@@QAE@XZ,0x0001693C,Open-BFME5 the incremental-link thunk that constructor encodes
 ?_M_insert_overflow@?$vector@PBVImage@@V?$allocator@PBVImage@@@_STL@@@_STL@@IAEXPAPBVImage@@ABQBV3@ABU__true_type@2@I_N@Z,0x004715B0,Open-BFME5 grow path of the image vector at BFMERetailCommandButton+0x138
+?resize@EvaCheckVecBase@@QAEXHUEvaCheck@@@Z,0x00425E40,Open-BFME5 the two-argument resize EvaCheckVec::resize forwards to with a default-constructed element; unnamed in the image
