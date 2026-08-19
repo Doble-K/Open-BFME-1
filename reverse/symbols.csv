@@ -72396,3 +72396,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?_bfme_recordPointsEarned@BfmeAcademyPointRecorder@@QAEXH@Z,0x0001B969,Open-BFME5 shape-only pin: the thunk Player addSciencePurchasePoints calls for points earned; thiscall on the subobject at player+0x348 with the delta
 ?onPlayerSciencePurchasePointsChanged@ControlBar@@QAEXPAVPlayer@@@Z,0x000439D7,Open-BFME5 the thunk Player addSciencePurchasePoints notifies; Zero Hour names the same call
 ??0DamageInfo@@QAE@XZ,0x0002C9D5,Open-BFME5 the thunk Object kill constructs its DamageInfo through; Zero Hour names the same constructor
+?startProneEffects@ProneUpdate@@AAEXXZ,0x00042884,Open-BFME5 the thunk ProneUpdate goProne calls on the transition into prone; Zero Hour names the same call
