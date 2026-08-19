@@ -72373,3 +72373,6 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?_M_insert_overflow@?$vector@PBVImage@@V?$allocator@PBVImage@@@_STL@@@_STL@@IAEXPAPBVImage@@ABQBV3@ABU__true_type@2@I_N@Z,0x004715B0,Open-BFME5 grow path of the image vector at BFMERetailCommandButton+0x138
 ?resize@EvaCheckVecBase@@QAEXHUEvaCheck@@@Z,0x00425E40,Open-BFME5 the two-argument resize EvaCheckVec::resize forwards to with a default-constructed element; unnamed in the image
 ?findObjectByID@GameLogic@@QAEPAVObject@@H@Z,0x0009A510,Open-BFME5 the lookup StateMachine::getGoalObject forwards to; reloc_names carries the same address
+?populateLadderList@BfmeQuickMatchLadderPanel@@QAEXXZ,0x00508C80,Open-BFME5 the zero-argument member PopulateQMLadderComboBox tail-jumps to on the global at 0x012F4820; unnamed in the image
+?initDevice@Win32Mouse@@QAEXXZ,0x005A4A40,Open-BFME5 the base init Win32Mouse::init calls before setting its own flag; unnamed in the image
+??0TwiddlerClassBase@@QAE@XZ,0x00483760,Open-BFME5 the base constructor TwiddlerClass forwards to; unnamed in the image
