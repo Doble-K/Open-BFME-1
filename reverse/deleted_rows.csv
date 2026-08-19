@@ -22110,3 +22110,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ??0W3DTruckDrawModuleData@@QAE@XZ,0x00852130,"wrong body: 0x00852130 is INI::initFromINIMultiProc. reloc_names puts this constructor on 0x0077F830, one hundred and eighty-one bytes that call the same base as W3DSupplyDrawModuleData."
 ?d_00458370@@YAXXZ,0x00458370,"gen-dump placeholder superseded by the real identity of these bytes: ?setOpacity@RadiusDecal@@QAEXM@Z, byte-verified 35/35."
 ?d_004583a0@@YAXXZ,0x004583A0,"gen-dump placeholder superseded by the real identity of these bytes: ?setPosition@RadiusDecal@@QAEXABUCoord3D@@@Z, byte-verified 33/33."
+?d_00458830@@YAXXZ,0x00458830,"gen-dump placeholder superseded by the real identity of these bytes: ??0RadiusDecalTemplate@@QAE@XZ, byte-verified 122/122."
