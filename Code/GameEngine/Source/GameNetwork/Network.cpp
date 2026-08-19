@@ -138,3 +138,22 @@ void Network::sendDisconnectChat(UnicodeString text)
 {
 	m_conMgr->sendDisconnectChat(text);
 }
+
+// BFME inlines ConnectionManager's bandwidth getters into their Network
+// forwarders; retail reaches the Transport pointer at +0x12024 of the
+// connection manager, which is not where the Zero Hour header puts it.
+static Transport *conMgrTransport(ConnectionManager *conMgr)
+{
+	return *(Transport **)((char *)conMgr + 0x12024);
+}
+
+Real Network::getIncomingPacketsPerSecond(void)
+{
+	if (m_conMgr)
+	{
+		Transport *transport = conMgrTransport(m_conMgr);
+		if (transport)
+			return transport->getIncomingPacketsPerSecond();
+	}
+	return 0.0f;
+}
