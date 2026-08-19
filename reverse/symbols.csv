@@ -72347,3 +72347,9 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?reset@W3DShroud@@QAEXXZ,0x0000AA4C,BFME adjustTerrainLOD shroud call; ILT body 0x0071B4B0
 ?_M_insert_overflow@?$vector@PAVEmotion@@V?$allocator@PAVEmotion@@@_STL@@@_STL@@IAEXPAPAVEmotion@@ABQAV3@ABU__true_type@2@I_N@Z,0x00022E4E,EmotionTrackerUpdate vector overflow ILT
 ?createEmotion@EmotionSystem@@QAEPAVEmotion@@PAVEmotionTrackerUpdateEntry@@PAVObject@@@Z,0x0002AE37,EmotionTrackerUpdate call through TheEmotionSystem; callee allocates 0x34-byte Emotion from entry and Object
+?friend_getFinalOverride@Overridable@@QBEPBV1@XZ,0x00048C61,doTeamUseCommandButtonOnNamed BFME override-chain ILT
+?findCommandButton@ControlBar@@QAEPBVCommandButton@@ABVAsciiString@@@Z,0x0003B59D,doTeamUseCommandButtonOnNamed BFME ControlBar ILT
+?getSpecialPowerSourceObject@AIGroup@@QAEPAVObject@@I@Z,0x00018F16,doTeamUseCommandButtonOnNamed BFME AIGroup ILT
+?getCommandButtonSourceObject@AIGroup@@QAEPAVObject@@W4GUICommandType@@@Z,0x0003CCCC,doTeamUseCommandButtonOnNamed BFME AIGroup ILT
+?isValidToUseOn@CommandButton@@QBE_NPBVObject@@0PBUCoord3D@@W4CommandSourceType@@@Z,0x00005C4A,doTeamUseCommandButtonOnNamed BFME CommandButton ILT
+?groupDoCommandButtonAtObject@AIGroup@@QAEXPBVCommandButton@@PAVObject@@W4CommandSourceType@@@Z,0x0001C0D0,doTeamUseCommandButtonOnNamed BFME AIGroup ILT

@@ -1,220 +1,207 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class AsciiString;
+typedef bool Bool;
+typedef int Int;
+typedef unsigned int UnsignedInt;
+
+class AIGroup;
+class Object;
+class Team;
+struct Coord3D;
+
+template <class T> class StringBase
+{
+	friend class AsciiString;
+
+private:
+	StringBase(const StringBase &);
+	~StringBase();
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const AsciiString &that)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(
+			*(const StringBase<char> *)&that);
+	}
+	~AsciiString();
+
+private:
+	char *m_text;
+};
+
+enum CommandSourceType
+{
+	CMD_FROM_PLAYER = 0,
+	CMD_FROM_SCRIPT = 1
+};
+
+enum GUICommandType
+{
+	GUI_COMMAND_NONE = 0
+};
+
+class Overridable
+{
+public:
+	Overridable *friend_getFinalOverride()
+	{
+		if (m_nextOverride) {
+			return m_nextOverride->friend_getFinalOverride();
+		}
+		return this;
+	}
+	const Overridable *friend_getFinalOverride() const
+	{
+		if (m_nextOverride) {
+			return m_nextOverride->friend_getFinalOverride();
+		}
+		return this;
+	}
+
+private:
+	void *m_memoryPoolVTable;
+	Overridable *m_nextOverride;
+	Bool m_isOverride;
+};
+
+class SpecialPowerTemplate : public Overridable
+{
+public:
+	UnsignedInt getID() const
+	{
+		return getFinalOverride()->m_id;
+	}
+
+private:
+	const SpecialPowerTemplate *getFinalOverride() const
+	{
+		return (const SpecialPowerTemplate *)friend_getFinalOverride();
+	}
+	AsciiString m_name;
+	UnsignedInt m_id;
+};
+
+class CommandButton
+{
+public:
+	GUICommandType getCommandType() const { return m_command; }
+	const SpecialPowerTemplate *getSpecialPowerTemplate() const { return m_specialPower; }
+	Bool isValidToUseOn(const Object *, const Object *, const Coord3D *, CommandSourceType) const;
+
+private:
+	unsigned char m_beforeCommand[0x10];
+	GUICommandType m_command;
+	unsigned char m_beforeSpecialPower[0x20];
+	const SpecialPowerTemplate *m_specialPower;
+};
+
+class ScriptEngine
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot01() = 0;
+	virtual void slot02() = 0;
+	virtual void slot03() = 0;
+	virtual void slot04() = 0;
+	virtual void slot05() = 0;
+	virtual void slot06() = 0;
+	virtual void slot07() = 0;
+	virtual void slot08() = 0;
+	virtual void slot09() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual Team *getTeamNamed(AsciiString, Bool) = 0;
+	virtual void slot18() = 0;
+	virtual void slot19() = 0;
+	virtual void slot20() = 0;
+	virtual void slot21() = 0;
+	virtual void slot22() = 0;
+	virtual void slot23() = 0;
+	virtual void slot24() = 0;
+	virtual void slot25() = 0;
+	virtual Object *getUnitNamed(const AsciiString &) = 0;
+};
+
+class AI
+{
+public:
+	AIGroup *createGroup();
+};
+
+class Team
+{
+public:
+	void getTeamAsAIGroup(AIGroup *);
+};
+
+class AIGroup
+{
+public:
+	void groupDoCommandButtonAtObject(const CommandButton *, Object *, CommandSourceType);
+	Object *getSpecialPowerSourceObject(UnsignedInt);
+	Object *getCommandButtonSourceObject(GUICommandType);
+};
+
+class ControlBar
+{
+public:
+	const CommandButton *findCommandButton(const AsciiString &);
+};
+
+extern AI *TheAI;
+extern ControlBar *TheControlBar;
+extern ScriptEngine *TheScriptEngine;
+
 class ScriptActions
 {
 protected:
-	void doTeamUseCommandButtonOnNamed(const AsciiString &, const AsciiString &, const AsciiString &);
+	void doTeamUseCommandButtonOnNamed(
+		const AsciiString &, const AsciiString &, const AsciiString &);
 };
 
 // ?doTeamUseCommandButtonOnNamed@ScriptActions@@IAEXABVAsciiString@@00@Z
-__declspec(naked) void ScriptActions::doTeamUseCommandButtonOnNamed(const AsciiString &, const AsciiString &, const AsciiString &)
+void ScriptActions::doTeamUseCommandButtonOnNamed(
+	const AsciiString &teamName, const AsciiString &commandAbility, const AsciiString &unitName)
 {
-	__asm {
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x88
-        __emit 0x26
-        __emit 0x59
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x44
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x97
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x14
-        __emit 0xf2
-        __emit 0x2e
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x78
-        __emit 0x60
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xe8
-        __emit 0x55
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xbf
-        __emit 0xd9
-        __emit 0xd2
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xf8
-        __emit 0x33
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x8b
-        __emit 0x60
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xd8
-        __emit 0x85
-        __emit 0xdb
-        __emit 0x74
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x4b
-        __emit 0x34
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x22
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0e
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x05
-        __emit 0xe8
-        __emit 0x2f
-        __emit 0x37
-        __emit 0xd5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0xd7
-        __emit 0x39
-        __emit 0xd2
-        __emit 0xff
-        __emit 0xeb
-        __emit 0x0b
-        __emit 0x8b
-        __emit 0x43
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x80
-        __emit 0x77
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x32
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x50
-        __emit 0xff
-        __emit 0x52
-        __emit 0x68
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x1c
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xcb
-        __emit 0xe8
-        __emit 0xd5
-        __emit 0x06
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x56
-        __emit 0x53
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x4c
-        __emit 0x6b
-        __emit 0xd2
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
+	Team *team = TheScriptEngine->getTeamNamed(teamName, false);
+	if (!team) {
+		return;
+	}
+
+	AIGroup *theGroup = TheAI->createGroup();
+	team->getTeamAsAIGroup(theGroup);
+
+	const CommandButton *commandButton = TheControlBar->findCommandButton(commandAbility);
+	if (!commandButton) {
+		return;
+	}
+
+	Object *srcObj = 0;
+	if (commandButton->getSpecialPowerTemplate()) {
+		srcObj = theGroup->getSpecialPowerSourceObject(
+			commandButton->getSpecialPowerTemplate()->getID());
+	} else {
+		srcObj = theGroup->getCommandButtonSourceObject(commandButton->getCommandType());
+	}
+
+	if (!srcObj) {
+		return;
+	}
+
+	Object *obj = TheScriptEngine->getUnitNamed(unitName);
+	if (!obj) {
+		return;
+	}
+
+	if (commandButton->isValidToUseOn(srcObj, obj, 0, CMD_FROM_SCRIPT)) {
+		theGroup->groupDoCommandButtonAtObject(commandButton, obj, CMD_FROM_SCRIPT);
 	}
 }
