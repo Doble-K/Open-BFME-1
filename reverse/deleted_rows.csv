@@ -22121,3 +22121,5 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_002a6320@@YAXXZ,0x002A6320,"gen-dump placeholder superseded by the real identity of these bytes: ?getSpecialPowerType@SpecialAbilityUpdate@@QBE?AW4SpecialPowerType@@XZ, byte-verified 45/45."
 ?d_000f6f90@@YAXXZ,0x000F6F90,"gen-dump placeholder superseded by the real identity of these bytes: ?countBuildings@TeamPrototype@@QAEHXZ, byte-verified 47/47."
 ?d_00271760@@YAXXZ,0x00271760,"gen-dump placeholder superseded by the real identity of these bytes: ?privateDock@AIUpdateInterface@@MAEXPAVObject@@W4CommandSourceType@@@Z, byte-verified 57/57."
+?d_000c9960@@YAXXZ,0x000C9960,"gen-dump placeholder superseded by the real identity of these bytes: ?addSciencePurchasePoints@Player@@QAEXH@Z, byte-verified 82/82."
+?d_001c30f0@@YAXXZ,0x001C30F0,"gen-dump placeholder superseded by the real identity of these bytes: ?kill@Object@@QAEXW4DamageType@@W4DeathType@@@Z, byte-verified 78/78."

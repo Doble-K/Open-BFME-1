@@ -72393,3 +72393,6 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?countBuildings@Team@@QAEHXZ,0x00015294,Open-BFME5 the thunk TeamPrototype countBuildings calls once per team; Zero Hour names the same call
 ?_bfme_nextInInstanceList@Team@@QAEPAV1@XZ,0x00022A70,Open-BFME5 shape-only pin: the thunk the team instance list walk advances through; thiscall on the team with the next team back
 ?isMobile@Object@@QBE_NXZ,0x00017607,Open-BFME5 the thunk AIUpdateInterface privateDock tests before docking; Zero Hour names the same call
+?_bfme_recordPointsEarned@BfmeAcademyPointRecorder@@QAEXH@Z,0x0001B969,Open-BFME5 shape-only pin: the thunk Player addSciencePurchasePoints calls for points earned; thiscall on the subobject at player+0x348 with the delta
+?onPlayerSciencePurchasePointsChanged@ControlBar@@QAEXPAVPlayer@@@Z,0x000439D7,Open-BFME5 the thunk Player addSciencePurchasePoints notifies; Zero Hour names the same call
+??0DamageInfo@@QAE@XZ,0x0002C9D5,Open-BFME5 the thunk Object kill constructs its DamageInfo through; Zero Hour names the same constructor
