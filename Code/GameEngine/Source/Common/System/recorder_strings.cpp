@@ -99,11 +99,16 @@ class GameMessage {
 public:
     enum Type {
         MSG_CLEAR_GAME_DATA = 0x1d,
-        MSG_BEGIN_NETWORK_MESSAGES = 0x3e8
+        MSG_BEGIN_NETWORK_MESSAGES = 0x3e8,
+        MSG_LOGIC_CRC = 0x449,
+        MSG_END_NETWORK_MESSAGES = 0x7cf
     };
 
     GameMessage(Type type);
     virtual ~GameMessage();
+
+    GameMessage *next() { return m_next; }
+    Type getType() { return m_type; }
 
     void appendIntegerArgument(int arg);
     void appendRealArgument(float arg);
@@ -141,9 +146,27 @@ public:
     virtual void v7();
     virtual void v8();
     virtual void appendMessage(GameMessage *msg);
+
+    GameMessage *getFirstMessage() { return m_firstMessage; }
+
+private:
+    void *m_name;
+    GameMessage *m_firstMessage;
+    GameMessage *m_lastMessage;
 };
 
 extern CommandList *TheCommandList;
+
+class GameLogic {
+public:
+    unsigned int getFrame() { return m_frame; }
+
+private:
+    char m_padding[0x3c];
+    unsigned int m_frame;
+};
+
+extern GameLogic *TheGameLogic;
 
 class GameMessageParserArgumentType {
 public:
@@ -179,6 +202,8 @@ protected:
     void readNextFrame();
     void appendNextCommand();
     void readArgument(GameMessageArgumentDataType type, GameMessage *msg);
+    void cullBadCommands();
+    void updatePlayback();
 
 private:
     int m_padding0;
@@ -357,4 +382,44 @@ void RecorderClass::appendNextCommand()
     }
 
     delete parser;
+}
+
+void RecorderClass::cullBadCommands()
+{
+    if (m_doingAnalysis) {
+        return;
+    }
+
+    GameMessage *msg = TheCommandList->getFirstMessage();
+    GameMessage *next = 0;
+
+    while (msg != 0) {
+        next = msg->next();
+        if (msg->getType() > GameMessage::MSG_BEGIN_NETWORK_MESSAGES
+                && msg->getType() < GameMessage::MSG_END_NETWORK_MESSAGES
+                && msg->getType() != GameMessage::MSG_LOGIC_CRC) {
+            delete msg;
+        }
+
+        msg = next;
+    }
+}
+
+void RecorderClass::updatePlayback()
+{
+    unsigned int curFrame = TheGameLogic->getFrame();
+
+    cullBadCommands();
+
+    if (m_nextFrame == -1) {
+        return;
+    }
+    if (m_doingAnalysis) {
+        curFrame = m_nextFrame;
+    }
+
+    while ((unsigned int)m_nextFrame == curFrame) {
+        appendNextCommand();
+        readNextFrame();
+    }
 }
