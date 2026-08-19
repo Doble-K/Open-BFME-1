@@ -72376,3 +72376,9 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?populateLadderList@BfmeQuickMatchLadderPanel@@QAEXXZ,0x00508C80,Open-BFME5 the zero-argument member PopulateQMLadderComboBox tail-jumps to on the global at 0x012F4820; unnamed in the image
 ?initDevice@Win32Mouse@@QAEXXZ,0x005A4A40,Open-BFME5 the base init Win32Mouse::init calls before setting its own flag; unnamed in the image
 ??0TwiddlerClassBase@@QAE@XZ,0x00483760,Open-BFME5 the base constructor TwiddlerClass forwards to; unnamed in the image
+??0DeflectSpecialPowerModuleDataBase@@QAE@XZ,0x0026A820,Open-BFME5 base of DeflectSpecialPowerModuleData; byte-identical to and folded with a destructor so the address cannot name the class
+??0DeflectSpecialPowerModuleDataBase@@QAE@XZ,0x00023FE7,Open-BFME5 the incremental-link thunk that constructor encodes
+??0HordeGarrisonContainModuleDataBase@@QAE@XZ,0x0022E820,Open-BFME5 base of HordeGarrisonContainModuleData; folded with another body so the address cannot name the class
+??0HordeGarrisonContainModuleDataBase@@QAE@XZ,0x0003D055,Open-BFME5 the incremental-link thunk that constructor encodes
+??0SiegeAIUpdateModuleDataBase@@QAE@XZ,0x0027EAE0,Open-BFME5 base of SiegeAIUpdateModuleData; folded with another body so the address cannot name the class
+??0SiegeAIUpdateModuleDataBase@@QAE@XZ,0x00048A3B,Open-BFME5 the incremental-link thunk that constructor encodes
