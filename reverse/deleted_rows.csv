@@ -22027,3 +22027,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_004583a0@@YAXXZ,0x004583A0,"gen-dump placeholder superseded by the real identity of these bytes: ?setPosition@RadiusDecal@@QAEXABUCoord3D@@@Z, byte-verified 33/33."
 ?isCliffMappedTexture@WorldHeightMap@@QAE_NHH@Z,0x00022034,"wrong body: 0x00022034 is the five-byte incremental-link thunk, not the method. The method is 0x00728250 and is now claimed from real C++ that reads the layout instead of forwarding through a shim."
 ?d_00728250@@YAXXZ,0x00728250,"gen-dump placeholder superseded by the real identity of these bytes: ?isCliffMappedTexture@WorldHeightMap@@QAE_NHH@Z, byte-verified 61/61."
+?d_00409140@@YAXXZ,0x00409140,"gen-dump placeholder superseded by the real identity of these bytes: ?unregister@AnimationSoundClientBehaviorGlobal@@QAEXPAVAnimationSoundClientBehavior@@@Z, byte-verified 96/96."
