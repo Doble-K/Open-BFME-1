@@ -75,6 +75,8 @@ RiderChangeContainModuleData::RiderChangeContainModuleData()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
+extern const char *TheBfmeWeaponSetFlagNames[];		// 0x012AD6B0
+
 void RiderChangeContainModuleData::parseRiderInfo( INI* ini, void *instance, void *store, const void* /*userData*/ )
 {
 	RiderInfo* rider = (RiderInfo*)store;
@@ -90,7 +92,13 @@ void RiderChangeContainModuleData::parseRiderInfo( INI* ini, void *instance, voi
 	rider->m_modelConditionFlagType = (ModelConditionFlagType)INI::scanIndexList( ini->getNextToken(), ModelConditionFlags::getBitNames() );
 
 	//Weaponset
-	rider->m_weaponSetFlag = (WeaponSetType)INI::scanIndexList( ini->getNextToken(), WeaponSetFlags::getBitNames() );
+	// Not WeaponSetFlags::getBitNames(). BFME reads this list at 0x012AD6B0,
+	// where the BitFlags<17> name list Object.cpp reaches lives at 0x012AA068 -
+	// two different arrays. The vendored headers make WeaponSetFlags and that
+	// other flag set the same BitFlags<17> instantiation, so spelling this
+	// through the class would claim one static at two addresses. Reached by its
+	// own name until BFME's real bit counts are recovered.
+	rider->m_weaponSetFlag = (WeaponSetType)INI::scanIndexList( ini->getNextToken(), TheBfmeWeaponSetFlagNames );
 
 	//Object status
 	rider->m_objectStatusType = (ObjectStatusType)INI::scanIndexList( ini->getNextToken(), ObjectStatusMaskType::getBitNames() );

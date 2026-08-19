@@ -76,7 +76,7 @@ struct CloudEffect
 	static const FieldParse m_fieldParseTable[];
 };
 
-class CloudSystem
+class CloudEffectSystem
 {
 public:
 	virtual void _bfme_pad_0() = 0;
@@ -93,7 +93,10 @@ public:
 
 extern CloudEffect TheCloudEffectSaved;			// 0x012F1108
 extern CloudEffect TheCloudEffectActive;		// 0x012F1198
-extern CloudSystem *TheCloudSystem;				// 0x012F1104
+// A different pointer from the one CloudBreakEffect.cpp reaches at 0x012F10F0:
+// this block pokes 0x012F1104. Spelled apart rather than sharing that name,
+// which would claim one global at two addresses.
+extern CloudEffectSystem *TheCloudEffectSystem;	// 0x012F1104
 
 // ?parseCloudEffect@@YAXPAVINI@@@Z
 void parseCloudEffect( INI *ini )
@@ -105,6 +108,6 @@ void parseCloudEffect( INI *ini )
 	if( loadType != INI_LOAD_CREATE_OVERRIDES && loadType != INI_LOAD_BFME_TYPE_4 )
 		TheCloudEffectSaved = TheCloudEffectActive;
 
-	if( TheCloudSystem )
-		TheCloudSystem->settingsChanged();
+	if( TheCloudEffectSystem )
+		TheCloudEffectSystem->settingsChanged();
 }
