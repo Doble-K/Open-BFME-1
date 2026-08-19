@@ -22019,3 +22019,7 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ??0PropagandaTowerBehaviorModuleData@@QAE@XZ,0x00010B2C,"wrong body: 0x00010B2C is the five-byte incremental-link thunk, not the constructor. The constructor is 0x0028DC60 and is now claimed from real C++; the lift is gone."
 ?d_0028dc60@@YAXXZ,0x0028DC60,"gen-dump placeholder superseded by the real identity of these bytes: ??0PropagandaTowerBehaviorModuleData@@QAE@XZ, byte-verified 38/38."
 ?d_001be230@@YAXXZ,0x001BE230,"gen-dump placeholder superseded by the real identity of these bytes: ?getCurrentWeapon@Object@@QAEPAVWeapon@@PAW4WeaponSlotType@@@Z, byte-verified 47/47."
+?d_001ca4b0@@YAXXZ,0x001CA4B0,"gen-dump placeholder superseded by the real identity of these bytes: ?getShroudClearingRange@Object@@QBEMXZ, byte-verified 25/25."
+?d_002b2020@@YAXXZ,0x002B2020,"gen-dump placeholder superseded by the real identity of these bytes: ?getWakeFrame@UpdateModule@@IBE?AW4UpdateSleepTime@@XZ, byte-verified 24/24."
+?d_00411c50@@YAXXZ,0x00411C50,"gen-dump placeholder superseded by the real identity of these bytes: ?prependToList@Drawable@@QAEXPAPAV1@@Z, byte-verified 39/39."
+?d_000a0880@@YAXXZ,0x000A0880,"gen-dump placeholder superseded by the real identity of these bytes: ?setGoalPosition@StateMachine@@QAEXPBUCoord3D@@@Z, byte-verified 37/37."
