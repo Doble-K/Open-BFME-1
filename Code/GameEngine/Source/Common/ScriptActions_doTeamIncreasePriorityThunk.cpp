@@ -1,7 +1,102 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump ScriptActions::doTeamIncreasePriority to C++ thunk.
 
-class AsciiString;
+typedef bool Bool;
+typedef int Int;
+
+struct AsciiStringData
+{
+	unsigned char m_header[8];
+	char m_text[1];
+};
+
+template <class T> class StringBase
+{
+	friend class AsciiString;
+
+private:
+	StringBase(const StringBase &);
+	StringBase(const char *);
+};
+
+class AsciiString
+{
+public:
+	AsciiString() : m_data(0) {}
+	AsciiString(const AsciiString &that)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(
+			*(const StringBase<char> *)&that);
+	}
+	AsciiString(const char *text)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(text);
+	}
+	~AsciiString();
+
+	void __cdecl format(AsciiString format, ...);
+	const char *str() const
+	{
+		static const char TheNullChr = 0;
+		return m_data ? m_data->m_text : &TheNullChr;
+	}
+
+private:
+	AsciiStringData *m_data;
+};
+
+struct TeamTemplateInfo
+{
+	Int m_productionPriority;
+};
+
+class TeamPrototype
+{
+public:
+	void increaseAIPriorityForSuccess() const;
+	const TeamTemplateInfo *getTemplateInfo() const { return &m_teamTemplate; }
+
+private:
+	unsigned char m_unreconstructed[0x1C8];
+	TeamTemplateInfo m_teamTemplate;
+};
+
+class Team
+{
+public:
+	virtual ~Team();
+	const TeamPrototype *getPrototype() const { return m_proto; }
+
+private:
+	TeamPrototype *m_proto;
+};
+
+class ScriptEngine
+{
+public:
+	virtual void _slot00() = 0;
+	virtual void _slot01() = 0;
+	virtual void _slot02() = 0;
+	virtual void _slot03() = 0;
+	virtual void _slot04() = 0;
+	virtual void _slot05() = 0;
+	virtual void _slot06() = 0;
+	virtual void _slot07() = 0;
+	virtual void _slot08() = 0;
+	virtual void _slot09() = 0;
+	virtual void _slot10() = 0;
+	virtual void _slot11() = 0;
+	virtual void _slot12() = 0;
+	virtual void _slot13() = 0;
+	virtual void _slot14() = 0;
+	virtual void _slot15() = 0;
+	virtual void _slot16() = 0;
+	virtual Team *getTeamNamed(AsciiString, Bool = false) = 0;
+
+	void AppendDebugMessage(const AsciiString &, Bool);
+};
+
+extern ScriptEngine *TheScriptEngine;
+
 class ScriptActions
 {
 protected:
@@ -9,205 +104,20 @@ protected:
 };
 
 // ?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z
-__declspec(naked) void ScriptActions::doTeamIncreasePriority(const AsciiString &)
+void ScriptActions::doTeamIncreasePriority(const AsciiString &teamName)
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x98
-		__emit 0x5f
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0x7c
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x51
-		__emit 0x89
-		__emit 0x64
-		__emit 0x24
-		__emit 0x10
-		__emit 0x8b
-		__emit 0xcc
-		__emit 0x57
-		__emit 0xe8
-		__emit 0xd5
-		__emit 0x41
-		__emit 0x59
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x6c
-		__emit 0x07
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x01
-		__emit 0xff
-		__emit 0x50
-		__emit 0x44
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x77
-		__emit 0x8b
-		__emit 0x70
-		__emit 0x04
-		__emit 0x85
-		__emit 0xf6
-		__emit 0x74
-		__emit 0x70
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x14
-		__emit 0x74
-		__emit 0xd1
-		__emit 0xff
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x07
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0xc8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x50
-		__emit 0x51
-		__emit 0x89
-		__emit 0x64
-		__emit 0x24
-		__emit 0x14
-		__emit 0x8b
-		__emit 0xcc
-		__emit 0x68
-		__emit 0xf4
-		__emit 0x00
-		__emit 0x0d
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xdf
-		__emit 0x51
-		__emit 0x59
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x54
-		__emit 0x24
-		__emit 0x28
-		__emit 0x52
-		__emit 0xe8
-		__emit 0x05
-		__emit 0x56
-		__emit 0x59
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x6c
-		__emit 0x07
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xe0
-		__emit 0x52
-		__emit 0xd3
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x1c
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x2f
-		__emit 0x3f
-		__emit 0x59
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x5f
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5e
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-	}
-}
+	Team *team = TheScriptEngine->getTeamNamed(teamName);
+	if (!team)
+		return;
 
+	const TeamPrototype *teamPrototype = team->getPrototype();
+	if (!teamPrototype)
+		return;
+
+	teamPrototype->increaseAIPriorityForSuccess();
+
+	AsciiString message;
+	message.format("Team '%s' priority increased to %d for success.", teamName.str(),
+		teamPrototype->getTemplateInfo()->m_productionPriority);
+	TheScriptEngine->AppendDebugMessage(message, false);
+}

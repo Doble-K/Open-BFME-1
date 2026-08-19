@@ -72324,3 +72324,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00113C60,Open-BFME5 base constructor the Collide and Damage module constructors forward to
 ??0W3DScriptedModelDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00773360,Open-BFME5 base constructor W3DQuadrupedDraw and W3DSupplyDraw forward to
 ??0DockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x002CD4B0,Open-BFME5 base constructor RepairDockUpdate and SupplyWarehouseDockUpdate forward to; reloc_names carries the same address as SupplyCenterDockUpdateBase which is the ICF twin
+?increaseAIPriorityForSuccess@TeamPrototype@@QBEXXZ,0x0000ADBC,ScriptActions retail call; ILT body 0x000EC8A0 adds +0x1CC into +0x1C8
