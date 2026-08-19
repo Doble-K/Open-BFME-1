@@ -72338,3 +72338,7 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?findClosestFreeGarrisonPointIndex@GarrisonContain@@IAEHHPBUCoord3D@@@Z,0x0002130F,GarrisonContain closest free point ILT
 ?removeObjectFromGarrisonPoint@GarrisonContain@@IAEXPAVObject@@H@Z,0x0003F675,GarrisonContain remove point ILT
 ?putObjectAtGarrisonPoint@GarrisonContain@@IAEXPAVObject@@W4ObjectID@@HH@Z,0x00028CEA,GarrisonContain place point ILT
+?winGetSize@GameWindow@@QAEXPAH0@Z,0x00036EBC,small scale transition window size ILT
+?winGetScreenPosition@GameWindow@@QAEXPAH0@Z,0x0002F94B,small scale transition screen position ILT
+?winGetInstanceData@GameWindow@@QAEPAUGameWindowInstanceData@@XZ,0x00034991,small scale transition instance data ILT
+?winSetEnabledImage@GameWindow@@QAEXHPBVImage@@@Z,0x00035E09,small scale transition enabled image ILT
