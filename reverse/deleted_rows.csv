@@ -22062,3 +22062,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_00982870@@YAXXZ,0x00982870,"gen-dump placeholder superseded by the real identity of these bytes: ?Single_Anim_Progress@Animatable3DObjClass@@IAEXXZ, byte-verified 51/51."
 ?d_001c39a0@@YAXXZ,0x001C39A0,"gen-dump placeholder superseded by the real identity of these bytes: ?getCommandSetString@Object@@QBEABVAsciiString@@XZ, byte-verified 75/75."
 ?d_001330e0@@YAXXZ,0x001330E0,"gen-dump placeholder superseded by the real identity of these bytes: ?newDrawable@BFMEThingFactory@@QAEPAVDrawable@@PBVThingTemplate@@W4DrawableStatus@@H@Z, byte-verified 38/38."
+?d_00637ce0@@YAXXZ,0x00637CE0,"gen-dump placeholder superseded by the real identity of these bytes: ?cleanUpSlotPointers@GameSpyStagingRoom@@QAEXXZ, byte-verified 38/38."
