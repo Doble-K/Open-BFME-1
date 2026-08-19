@@ -72353,3 +72353,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?getCommandButtonSourceObject@AIGroup@@QAEPAVObject@@W4GUICommandType@@@Z,0x0003CCCC,doTeamUseCommandButtonOnNamed BFME AIGroup ILT
 ?isValidToUseOn@CommandButton@@QBE_NPBVObject@@0PBUCoord3D@@W4CommandSourceType@@@Z,0x00005C4A,doTeamUseCommandButtonOnNamed BFME CommandButton ILT
 ?groupDoCommandButtonAtObject@AIGroup@@QAEXPBVCommandButton@@PAVObject@@W4CommandSourceType@@@Z,0x0001C0D0,doTeamUseCommandButtonOnNamed BFME AIGroup ILT
+??0W3DFloorDrawBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x007592C0,Open-BFME5 base constructor W3DFloorDraw forwards to; byte-identical to and folded with W3DPropDraw so the address cannot name the class
+??0W3DFloorDrawBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00039770,Open-BFME5 the incremental-link thunk W3DFloorDraw encodes for that base
