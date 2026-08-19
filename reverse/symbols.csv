@@ -72321,3 +72321,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?setTooltipText@WinInstanceData@@QAEXVUnicodeString@@@Z,0x00499CC0,Open-BFME5 REL32 target of parseTooltip; takes its UnicodeString by value
 ??0CreateModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x0024F450,Open-BFME5 base constructor every *Create module ctor forwards to
 ??0BodyModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00211A50,Open-BFME5 base constructor every *Body module ctor forwards to
+??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00113C60,Open-BFME5 base constructor the Collide and Damage module constructors forward to

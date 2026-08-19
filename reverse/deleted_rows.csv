@@ -21999,3 +21999,6 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_002137b0@@YAXXZ,0x002137B0,"gen-dump placeholder superseded by the real identity of these bytes: ??0HighlanderBody@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
 ?d_00213990@@YAXXZ,0x00213990,"gen-dump placeholder superseded by the real identity of these bytes: ??0ImmortalBody@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
 ?d_00213f30@@YAXXZ,0x00213F30,"gen-dump placeholder superseded by the real identity of these bytes: ??0OathbreakerBody@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 46/46."
+?d_002167a0@@YAXXZ,0x002167A0,"gen-dump placeholder superseded by the real identity of these bytes: ??0HordeMemberCollide@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 60/60."
+?d_002516f0@@YAXXZ,0x002516F0,"gen-dump placeholder superseded by the real identity of these bytes: ??0ReflectDamage@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 60/60."
+?d_00217660@@YAXXZ,0x00217660,"gen-dump placeholder superseded by the real identity of these bytes: ??0CrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z, byte-verified 64/64."
