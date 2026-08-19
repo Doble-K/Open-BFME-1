@@ -72343,3 +72343,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?winGetScreenPosition@GameWindow@@QAEXPAH0@Z,0x0002F94B,small scale transition screen position ILT
 ?winGetInstanceData@GameWindow@@QAEPAUGameWindowInstanceData@@XZ,0x00034991,small scale transition instance data ILT
 ?winSetEnabledImage@GameWindow@@QAEXHPBVImage@@@Z,0x00035E09,small scale transition enabled image ILT
+??0HeightMapRenderObjClass@@QAE@H@Z,0x00045304,BFME adjustTerrainLOD ILT; body 0x006D1C80 reads Bool argument and returns 4
+?reset@W3DShroud@@QAEXXZ,0x0000AA4C,BFME adjustTerrainLOD shroud call; ILT body 0x0071B4B0
