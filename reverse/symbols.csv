@@ -72361,3 +72361,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0W3DFloorDrawModuleDataBase@@QAE@XZ,0x0001E736,Open-BFME5 the incremental-link thunk that constructor encodes
 ??0BaikonurLaunchPowerModuleDataBase@@QAE@XZ,0x002149D0,Open-BFME5 base constructor BaikonurLaunchPowerModuleData forwards to; byte-identical to and folded with RespawnBodyModuleData so the address cannot name the class
 ??0BaikonurLaunchPowerModuleDataBase@@QAE@XZ,0x0003C556,Open-BFME5 the incremental-link thunk that constructor encodes
+?Draw@DX8Wrapper@@CAXHGGGGH@Z,0x00906B40,Open-BFME5 the shared primitive-draw helper Draw_Triangles and Draw_Strip forward to; only the leading mode constant differs

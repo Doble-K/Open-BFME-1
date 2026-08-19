@@ -22047,3 +22047,5 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_00458310@@YAXXZ,0x00458310,"gen-dump placeholder superseded by the real identity of these bytes: ?clear@RadiusDecal@@QAEXXZ, byte-verified 34/34."
 ?d_00458340@@YAXXZ,0x00458340,"gen-dump placeholder superseded by the real identity of these bytes: ??1RadiusDecal@@QAE@XZ, byte-verified 34/34."
 ?d_0026f1a0@@YAXXZ,0x0026F1A0,"gen-dump placeholder superseded by the real identity of these bytes: ?friend_setGoalObject@AIUpdateInterface@@QAEXPAVObject@@@Z, byte-verified 43/43."
+?d_00906df0@@YAXXZ,0x00906DF0,"gen-dump placeholder superseded by the real identity of these bytes: ?Draw_Triangles@DX8Wrapper@@SAXGGGG@Z, byte-verified 33/33."
+?d_00906e40@@YAXXZ,0x00906E40,"gen-dump placeholder superseded by the real identity of these bytes: ?Draw_Strip@DX8Wrapper@@SAXGGGG@Z, byte-verified 33/33."
