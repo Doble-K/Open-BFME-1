@@ -72389,3 +72389,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?doRepopulateBuildTooltipLayout@ControlBar@@QAEXXZ,0x004C1320,Open-BFME5 the zero-argument member repopulateBuildTooltipLayout tail-jumps to; unnamed in the image
 ??0CompositeRenderObjClass@@QAE@ABV0@@Z,0x00005E93,Open-BFME5 the incremental-link thunk DistLODClass copy constructor forwards to; DistLODClass derives from it in the vendored WW3D2 header
 ?friend_applyDifficultyBonusesForObject@Player@@QAEXPAVObject@@_N@Z,0x0002278C,Open-BFME5 the incremental-link thunk Object setReceivingDifficultyBonus calls; Zero Hour names the same call
+?_bfme_allows@BfmeSpecialPowerAllowanceStore@@QAEEPAVBfmePlayerSpecialPowerState@@PBVSpecialPowerTemplate@@@Z,0x00024E33,Open-BFME5 shape-only pin: the thunk Player _bfme_allowsSpecialPower calls; thiscall on the global at 0x012F0FF8 with the player subobject and the template
