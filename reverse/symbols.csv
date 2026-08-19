@@ -72401,3 +72401,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?reset@LANAPI@@UAEXXZ,0x000068AC,ILT thunk to 0x00688430; the devirtualized first call in ~LANAPI at 0x00688680
 ??1Transport@@QAE@XZ,0x0003A48B,ILT thunk to 0x00683450 which ICF-folds with ?reset@Transport@@QAEXXZ; the delete m_transport call in ~LANAPI at 0x00688680
 ?getFileTransferProgress@ConnectionManager@@QAEHHVAsciiString@@@Z,0x00038113,ILT thunk to 0x00669A00; the address Network::getFileTransferProgress at 0x00682640 encodes
+?ResolveIP@@YAIVAsciiString@@@Z,0x0003DC08,ILT thunk to 0x00682EF0; the address LANAPI::SetLocalIP(AsciiString) at 0x00686C10 encodes
