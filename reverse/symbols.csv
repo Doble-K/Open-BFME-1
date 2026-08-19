@@ -72400,3 +72400,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??1ConnectionManager@@QAE@XZ,0x00019E25,ILT thunk to 0x00668D90; the address Network::~Network at 0x006823B0 encodes before operator delete
 ?reset@LANAPI@@UAEXXZ,0x000068AC,ILT thunk to 0x00688430; the devirtualized first call in ~LANAPI at 0x00688680
 ??1Transport@@QAE@XZ,0x0003A48B,ILT thunk to 0x00683450 which ICF-folds with ?reset@Transport@@QAEXXZ; the delete m_transport call in ~LANAPI at 0x00688680
+?getFileTransferProgress@ConnectionManager@@QAEHHVAsciiString@@@Z,0x00038113,ILT thunk to 0x00669A00; the address Network::getFileTransferProgress at 0x00682640 encodes
