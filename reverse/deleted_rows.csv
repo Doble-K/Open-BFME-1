@@ -22070,3 +22070,7 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0077d380@@YAXXZ,0x0077D380,"gen-dump placeholder superseded by the real identity of these bytes: ?buildFieldParse@SpecialPowerModuleData@@SAXAAVMultiIniFieldParse@@@Z, byte-verified 17/17."
 ?d_0049c380@@YAXXZ,0x0049C380,"gen-dump placeholder superseded by the real identity of these bytes: ?setButtonImage@BFMERetailCommandButton@@QAEXPBVImage@@@Z, byte-verified 88/88."
 ?d_00426100@@YAXXZ,0x00426100,"gen-dump placeholder superseded by the real identity of these bytes: ?resize@EvaCheckVec@@QAEXH@Z, byte-verified 41/41."
+?d_000a1490@@YAXXZ,0x000A1490,"gen-dump placeholder superseded by the real identity of these bytes: ?getGoalObject@StateMachine@@QAEPAVObject@@XZ, byte-verified 16/16."
+?d_004582f0@@YAXXZ,0x004582F0,"gen-dump placeholder superseded by the real identity of these bytes: ??0RadiusDecal@@QAE@XZ, byte-verified 17/17."
+?d_001bfe20@@YAXXZ,0x001BFE20,"gen-dump placeholder superseded by the real identity of these bytes: ?unidentified_001BFE20@Object@@QBEPAVPlayer@@XZ, byte-verified 18/18."
+?d_00478e70@@YAXXZ,0x00478E70,"gen-dump placeholder superseded by the real identity of these bytes: ?winSetInputFunc@GameWindow@@QAEHP6A?AW4WindowMsgHandledType@@PAV1@III@Z@Z, byte-verified 19/19."
