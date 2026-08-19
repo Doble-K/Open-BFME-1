@@ -72310,3 +72310,7 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??A?$hash_map@VAsciiString@@PAVSkyboxTextureSet@@U?$hash@VAsciiString@@@rts@@U?$equal_to@VAsciiString@@@4@V?$allocator@U?$pair@$$CBVAsciiString@@PAVSkyboxTextureSet@@@_STL@@@_STL@@@_STL@@QAEAAPAVSkyboxTextureSet@@ABVAsciiString@@@Z,0x000B8BD0,Open-BFME5 REL32 target of both parseSkyboxTextureSet operator[] call sites; find-then-insert returning the mapped slot
 ?findOrCreate@BannerTypeStore@@QAEPAVBannerType@@ABVAsciiString@@@Z,0x00583CD0,"Open-BFME5 REL32 target of parseBannerType; find-then-insert on the member at TheBannerUI+8"
 ?findAnimObject@BfmeLivingWorldManagerIcons@@QAEPAVBfmeLivingWorldAnimObject@@ABVAsciiString@@@Z,0x00614620,Open-BFME5 REL32 target of parseLivingWorldAnimObject; the LivingWorldAnimObject lookup on TheLivingWorldManager
+??0LivingWorldCampaign@@QAE@ABVAsciiString@@@Z,0x003AA750,Open-BFME5 REL32 target of ParseLivingWorldCampaignBlock; builds the campaign record from the block name
+??1LivingWorldCampaign@@QAE@XZ,0x003AA7F0,Open-BFME5 destructor unwound at the end of ParseLivingWorldCampaignBlock
+?indexMissions@LivingWorldCampaign@@QAEXXZ,0x003A73C0,Open-BFME5 post-parse pass; stores the element count of the vector at +0xC/+0x10 less one into +0x18 - name is descriptive of the call site not from the image
+?addCampaign@BfmeLivingWorldCampaignManager@@QAEXPAVLivingWorldCampaign@@@Z,0x003B7030,Open-BFME5 the manager call ParseLivingWorldCampaignBlock ends with
