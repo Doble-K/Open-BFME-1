@@ -157,3 +157,17 @@ Real Network::getIncomingPacketsPerSecond(void)
 	}
 	return 0.0f;
 }
+
+// Retail reaches BFME-native helpers on the connection manager that the Zero
+// Hour header does not declare; these carry their own retail symbol names.
+class BFMEConnectionManager
+{
+public:
+	void sendProgressCommand(Int percent);
+};
+
+void Network::updateLoadProgress(Int percent)
+{
+	if (m_conMgr != NULL)
+		((BFMEConnectionManager *)m_conMgr)->sendProgressCommand(percent);
+}
