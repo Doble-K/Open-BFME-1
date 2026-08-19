@@ -231,12 +231,13 @@ void RadiusDecal::update()
 
 
 
-// ?setOpacity@RadiusDecal@@ present-unmatched
 void RadiusDecal::setOpacity( Real o )
 {
 	if (m_decal)
 	{
-		m_decal->setOpacity(REAL_TO_INT(255.0f * o));
+		// BFME truncates rather than rounds here: retail is fld / fmul 255.0f /
+		// __ftol2, which is a plain cast, not REAL_TO_INT.
+		m_decal->setOpacity((Int)(o * 255.0f));
 	}
 }
 

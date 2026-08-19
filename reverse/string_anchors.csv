@@ -1,0 +1,163 @@
+target_rva,size,literal,reference_source,candidate_function,port
+0x004C1C30,4289,TOOLTIP:Cost,GameEngine/Source/GameClient/GUI/GUICallbacks/ControlBarPopupDescription.cpp,ControlBar::populateBuildTooltipLayout,
+0x004F5D10,2352,GameSpyGameOptionsMenu.wnd:ButtonCommunicator,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,StartPressed,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
+0x00346D60,1950,Advancing SeqScript ',GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,ScriptEngine::evaluateAndProgressAllSequentialScripts,
+0x005091F0,1890,WOLQuickMatchMenu.wnd:ButtonBuddies,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,WOLQuickMatchMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
+0x0050C160,1867,WOLWelcomeMenu.wnd:WOLWelcomeMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp,UpdateLocalPlayerStats,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp
+0x004550C0,1814,MapCache.ini,GameEngine/Source/GameClient/MapUtil.cpp,WaypointMap::update,Code/GameEngine/Source/GameClient/MapUtil.cpp
+0x005A8A10,1790,VoiceCrush,GameEngine/Source/GameClient/MessageStream/CommandXlat.cpp,pickAndPlayUnitVoiceResponse,
+0x004E3D40,1714,ScoreScreen.wnd:StaticTextPlayer%d,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,populatePlayerInfo,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+0x005A92D0,1661,VoiceBombard,GameEngine/Source/GameClient/MessageStream/CommandXlat.cpp,pickAndPlayUnitVoiceResponse,
+0x004E8DC0,1422,ScoreScreen.wnd:ParentScoreScreen,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,ScoreScreenInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+0x004D2700,1330,NetworkDirectConnect.wnd:ButtonBack,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/NetworkDirectConnect.cpp,NetworkDirectConnectInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/NetworkDirectConnect.cpp
+0x004E3720,1251,ScoreScreen.wnd:StaticTextPlayer%d,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,populatePlayerInfo,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+0x004E0A70,1248,GUI:PleaseSelectAFile,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,reallyLoadReplay,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+0x004D7E60,1202,GUI:LadderNameAndSize,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupLadderSelect.cpp,updateLadderDetails,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupLadderSelect.cpp
+0x004E3150,1186,ScoreScreen.wnd:StaticTextPlayer%d,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,populatePlayerInfo,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+0x004E5420,1170,ScoreScreenShow,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,ScoreScreenInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+0x00550AD0,1130,lastName,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,GameSpyLoginPreferences::write,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
+0x00503FA0,1100,WOLMapSelectMenu.wnd:WOLMapSelectMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp,WOLMapSelectMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp
+0x00405E80,1075,Ran out of pathfind zones.  SERIOUS ERROR! jba.,GameEngine/Source/GameLogic/AI/AIPathfind.cpp,PathfindZoneManager::calculateZones,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp
+0x0079A980,1068,PowerPointY,GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,W3DPowerDraw,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp
+0x0068A3E0,1041,GUI:ErrorStartingGame,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,startPressed,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp
+0x002289F0,1040,ExitEnd,GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp,OpenContain::exitObjectViaDoor,Code/GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp
+0x002284D0,1039,ExitEnd,GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp,OpenContain::exitObjectViaDoor,Code/GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp
+0x004C8B40,1026,GameinfoRANDOM,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp,RefreshGameInfoWindow,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp
+0x004D0230,1010,LanMapSelectMenu.wnd:LanMapSelectMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp,LanMapSelectMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp
+0x004C9C60,991,GUI:NULL,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/KeyboardOptionsMenu.cpp,KeyboardOptionsMenuUpdate,
+0x004E4790,989,GUI:EndCampaign,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,finishSinglePlayerInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+0x004C3DE0,962,Diplomacy.wnd:RadioButtonInGame,GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,ShowDiplomacy,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp
+0x004A5950,959,ControlBar.wnd:ButtonQueue01,GameEngine/Source/GameClient/GUI/ControlBar/ControlBarCommand.cpp,ControlBar::updateContextCommand,
+0x002B5800,941,Undeploy,GameEngine/Source/GameLogic/Object/Update/AIUpdate/DeployStyleAIUpdate.cpp,DeployStyleAIUpdate::setMyState,
+0x00958200,874,%s%d.AVI,Libraries/Source/WWVegas/WW3D2/FramGrab.cpp,FrameGrabClass,
+0x004D1370,868,MapSelectMenu.wnd:MapSelectMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MapSelectMenu.cpp,SetDifficultyRadioButton,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MapSelectMenu.cpp
+0x0088D430,845,Unknown exception code 0x%08x,Libraries/Source/debug/debug_except.cpp,DebugExceptionhandler::GetExceptionType,
+0x003928E0,839,TitleScreen,GameEngine/Source/GameClient/GUI/LoadScreen.cpp,ShellGameLoadScreen::init,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp
+0x004DF520,837,SaveLoad.wnd:ButtonSave,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,SaveLoadMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp
+0x0034F160,829,***Referencing multiple team by unspecific instance:***,GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,ScriptEngine::getTeamNamed,
+0x004DDD10,823,PopupPlayerInfo.wnd:PopupParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp,GameSpyPlayerInfoOverlayInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp
+0x004E1D00,808,ReplayMenu.wnd:ParentReplayMenu,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,ReplayMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+0x004DF130,803,PopupSaveLoad.wnd:ButtonSave,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,SaveLoadMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp
+0x00111DB0,798,GUI:NewSaveGame,GameEngine/Source/Common/System/SaveGame/GameState.cpp,GameState::populateSaveGameListbox,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp
+0x004EFAF0,784,Menus/RCBuddyRequestMenu.wnd,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp,InitBuddyControls,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp
+0x004CAA90,781,KeyboardOptionsMenu.wnd:ParentKeyboardOptionsMenu,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/KeyboardOptionsMenu.cpp,KeyboardOptionsMenuInit,
+0x004E1090,760,GUI:PleaseSelectAFile,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,reallyLoadReplay,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+0x00788460,755,%d->%d,GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,ProcessAnimateWindowSlideFromBottomTimed::initReverseAnimateWindow,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp
+0x006A9910,747,Dolby Surround,GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,MilesAudioManager::selectProvider,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp
+0x0062EA60,741,GUI:CannotConnectToServserv,GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp,startOnline,Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp
+0x0038A9F0,737,Player_%d_Rally,GameEngine/Source/GameLogic/System/GameLogic.cpp,placeNetworkBuildingsForPlayer,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp
+0x004C50F0,730,InGamePopupMessage.wnd:InGamePopupMessageParent,GameEngine/Source/GameClient/GUI/GUICallbacks/InGamePopupMessage.cpp,InGamePopupMessageInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/InGamePopupMessage.cpp
+0x003433F0,727,***Attempting to call script that is not a subroutine:***,GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,ScriptEngine::runScript,
+0x0078D810,723,BorderCornerUL,GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp,initBorders,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp
+0x00168ED0,716, acquiring target enemy player: ,GameEngine/Source/GameLogic/AI/AISkirmishPlayer.cpp,AISkirmishPlayer::acquireEnemy,
+0x004C3480,714,Diplomacy.wnd:StaticTextPlayer%d,GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,grabWindowPointers,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp
+0x0033E040,703,***Attempting to set attack priority on an invalid thing:***,GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,ScriptEngine::setPriorityThing,
+0x00694230,654,Missing Audio File: ',GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,AudioFileCache::openFile,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp
+0x000B1030,648,DefaultSoundEffect,GameEngine/Source/Common/INI/INIAudioEventInfo.cpp,INI::parseAudioEventDefinition,
+0x004AF6A0,627,Command_CancelConstruction,GameEngine/Source/GameClient/GUI/ControlBar/ControlBarUnderConstruction.cpp,ControlBar::populateUnderConstruction,
+0x004E2100,623,GUI:PleaseSelectAFile,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,reallyLoadReplay,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+0x00343780,617,***Attempting to call script that is not a subroutine:***,GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,ScriptEngine::runScript,
+0x004D8440,607,RCGameDetailsMenu.wnd:ButtonLadderDetails,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupLadderSelect.cpp,RCGameDetailsMenuSystem,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupLadderSelect.cpp
+0x004FFB80,593,%02.2d,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,isAgeOkay,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
+0x0048D9C0,581,IMECandidateWindow.wnd,GameEngine/Source/GameClient/GUI/IMEManager.cpp,IMEManager::init,
+0x00505830,573,WOLQuickMatchMenu.wnd:ParentOptions,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,hideOptionsGadgets,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
+0x004E8050,568,MutiPlayer_ScoreScreen,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,grabMultiPlayerInfo,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+0x004FF030,548,PopupLocaleSelect.wnd:ParentLocaleSelect,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLocaleSelectPopup.cpp,WOLLocaleSelectInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLocaleSelectPopup.cpp
+0x005268F0,544,Team:0,GameEngine/Source/GameNetwork/GUIUtil.cpp,PopulateTeamComboBox,
+0x00624C80,543,127.0.0.1,GameEngine/Source/GameNetwork/NetworkUtil.cpp,ResolveIP,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp
+0x004B4010,539,GUIComboBoxClick,GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,doAudioFeedback,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp
+0x00627FA0,535,GUI:GPNoProfile,GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,GameSpyOpenOverlay,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp
+0x0009E130,534,SkirmishStats.ini,GameEngine/Source/Common/SkirmishBattleHonors.cpp,SkirmishBattleHonors,
+0x004CE980,510,LanLobbyFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanLobbyMenu.cpp,LanLobbyMenuShutdown,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanLobbyMenu.cpp
+0x00623BC0,502,%s:%s%d,GameEngine/Source/GameNetwork/GUIUtil.cpp,AreSlotListUpdatesEnabled,
+0x0050AA52,489,WOLQuickMatchMenu.wnd:WOLQuickMatchMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,WOLQuickMatchMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
+0x004E9590,471,SinglePlayerMenu.wnd:SinglePlayerMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,SinglePlayerMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp
+0x004D1120,471,MapSelectMenu.wnd:MapSelectMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MapSelectMenu.cpp,SetDifficultyRadioButton,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MapSelectMenu.cpp
+0x008659C0,469,b_flags,GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,roomKeyChangedCallback,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp
+0x00511CC0,450,Chat:Everyone,GameEngine/Source/GameClient/GUI/GUICallbacks/InGameChat.cpp,SetInGameChatType,
+0x002CEA90,446,DOCKWAITING07,GameEngine/Source/GameLogic/Object/Update/DockUpdate/RailedTransportDockUpdate.cpp,RailedTransportDockUpdate::doPushOutDocking,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RailedTransportDockUpdate.cpp
+0x004E98E0,443,SinglePlayerMenu.wnd:ButtonNew,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp,SinglePlayerMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp
+0x000B1360,442,DefaultDialog,GameEngine/Source/Common/INI/INIAudioEventInfo.cpp,INI::parseDialogDefinition,
+0x006032F0,438,BeaconSmoke%6.6X,GameEngine/Source/GameClient/Drawable/Update/BeaconClientUpdate.cpp,createParticleSystem,Code/GameEngine/Source/GameClient/Drawable/Update/BeaconClientUpdate.cpp
+0x000B1B70,438,DefaultMusicTrack,GameEngine/Source/Common/INI/INIAudioEventInfo.cpp,INI::parseMusicTrackDefinition,
+0x004A3830,416,ControlBar.wnd:StaticTextBeaconLabel,GameEngine/Source/GameClient/GUI/ControlBar/ControlBarBeacon.cpp,ControlBar::populateBeacon,
+0x0052D8F0,413,addIgnore,GameEngine/Source/GameNetwork/GameSpyChat.cpp,handleSlashCommands,
+0x0064AA70,401,b_locale,GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,GameSpyPeerMessageQueueInterface::createNewMessageQueue,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp
+0x006239C0,400,Team:0,GameEngine/Source/GameNetwork/GUIUtil.cpp,PopulateTeamComboBox,
+0x00397350,390,RallyPointSet,GameEngine/Source/GameLogic/System/GameLogicDispatch.cpp,doSetRallyPoint,Code/GameEngine/Source/GameLogic/System/GameLogicDispatch.cpp
+0x0050AE10,389,WOLStatusMenu.wnd:WOLStatusMenuParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLStatusMenu.cpp,WOLStatusMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLStatusMenu.cpp
+0x006718A0,388,PORT%d %d %08X,GameEngine/Source/GameNetwork/NAT.cpp,NAT::sendMangledPortNumberToTarget,Code/GameEngine/Source/GameNetwork/nat.cpp
+0x005351C0,384,GUI:LobbyJoined,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,WOLLobbyMenuUpdate,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp
+0x004605F0,381,_frame=,Libraries/Source/WWVegas/WW3D2/mapper.cpp,GridTextureMapperClass::update_temporal_state,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp
+0x00671100,374,PROBED%d,GameEngine/Source/GameNetwork/NAT.cpp,NAT::notifyTargetOfProbe,Code/GameEngine/Source/GameNetwork/nat.cpp
+0x005050C0,372,WOLQMScoreScreen.wnd:WOLQMScoreScreenParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp,WOLQMScoreScreenInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp
+0x004F0520,372,WOLCustomScoreScreen.wnd:WOLCustomScoreScreenParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp,WOLCustomScoreScreenInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp
+0x000A29E0,368,_%b%d_%I%M%p,GameEngine/Source/Common/StatsCollector.cpp,StatsCollector::createFileName,
+0x005531D0,360,lastEmail,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,GameSpyLoginPreferences::write,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
+0x0033E9A0,360,Run script - ,GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,_appendMessage,
+0x003A0DA0,356,Rank not found in map.ini,GameEngine/Source/GameLogic/System/RankInfo.cpp,RankInfoStore::friend_parseRankDefinition,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp
+0x004C4630,346,Diplomacy.wnd:ListboxSolo,GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,UpdateDiplomacyBriefingText,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp
+0x006B1B40,332,Mono Delay Time,GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,MilesAudioManager::initFilters,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp
+0x008D30D0,326,onPress,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,processLoadButtonPress,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp
+0x004CFF40,324,LanLobbyFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanLobbyMenu.cpp,LanLobbyMenuShutdown,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanLobbyMenu.cpp
+0x004E08D0,323,GUI:PleaseSelectAFile,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,reallyLoadReplay,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+0x00846F10,315,%H:%M:%S,GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp,W3DClockDraw,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DMainMenu.cpp
+0x006B0630,299,Dolby Surround,GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,MilesAudioManager::selectProvider,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp
+0x004DF9C0,297,SaveLoadMenuFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,SaveLoadMenuShutdown,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp
+0x004577C0,288,MapCache.ini,GameEngine/Source/GameClient/MapUtil.cpp,WaypointMap::update,Code/GameEngine/Source/GameClient/MapUtil.cpp
+0x0040CC40,279,<BLANK>,GameEngine/Source/GameClient/Credits.cpp,CreditsManager::getUnicodeString,Code/GameEngine/Source/GameClient/Credits.cpp
+0x004E2410,277,ReplayMenuFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,ReplayMenuShutdown,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+0x00504E10,272,WOLMessageWindow.wnd:WOLMessageWindowParent,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp,WOLMessageWindowInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp
+0x00340B80,272,DebugWindow.dll,GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,ScriptEngine::init,
+0x001901F0,262,Noise0000.tga,GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,WaterRenderObjClass::init,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp
+0x005588E0,259,GUI:PlayersVersusPlayers,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,WOLQuickMatchMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
+0x001431D0,259,RemoveModule %s was not found for %s.,GameEngine/Source/Common/Thing/ThingTemplate.cpp,ThingTemplate::parseRemoveModule,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp
+0x004EA5F0,249,Buddy:MultipleOnlineNotification,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp,showNotificationBox,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp
+0x00689910,243,LAN:ErrorUnknown,GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,LANAPIInterface::getErrorStringFromReturnType,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp
+0x0058EED0,227,NonCommand_Options,GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,ControlBar::init,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp
+0x00689050,222,LAN:GameStartTimerSingular,GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,LANAPI::OnGameStartTimer,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp
+0x006304A0,218,GUI:CheckingForPatches,GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp,StartPatchCheck,Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp
+0x004D3D20,216,PopupCommunicator.wnd:PopupCommunicator,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupCommunicator.cpp,PopupCommunicatorInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupCommunicator.cpp
+0x004C9390,205,KEYBOARD:Shift+,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/KeyboardOptionsMenu.cpp,setKeyDown,
+0x002227E0,201,ExitEnd,GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp,OpenContain::exitObjectViaDoor,Code/GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp
+0x00686B10,199,127.0.0.1,GameEngine/Source/GameNetwork/NetworkUtil.cpp,ResolveIP,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp
+0x00517450,199,GUI:HostLeft,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,WOLGameSetupMenuUpdate,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
+0x00504500,199,WOLMapSelectMenu.wnd:ButtonBack,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp,WOLMapSelectMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp
+0x004D0720,199,LanMapSelectMenu.wnd:ButtonBack,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp,LanMapSelectMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp
+0x004C9290,199,KeyboardOptionsMenu.wnd:ButtonBack,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/KeyboardOptionsMenu.cpp,KeyboardOptionsMenuInit,
+0x00183AF0,198,AIAttackMoveMachine,GameEngine/Source/GameLogic/AI/AIStates.cpp,AIAttackMoveToState,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp
+0x0051E9B0,197,00000000.sav,GameEngine/Source/Common/System/SaveGame/GameState.cpp,findHighFileNumber,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp
+0x004C8660,195,Menus/EstablishConnectionsScreen.wnd,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp,ShowEstablishConnectionsWindow,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp
+0x000AFFF0,186,Bad pitch shift values for audio event %s,GameEngine/Source/Common/INI/INIAudioEventInfo.cpp,parsePitchShift,
+0x004F0E70,184,GameSpyGameOptionsMenuFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,WOLGameSetupMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
+0x002BF6D0,183,AIAttackMoveMachine,GameEngine/Source/GameLogic/AI/AIStates.cpp,AIAttackMoveToState,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp
+0x004507A0,180,MapCache.ini,GameEngine/Source/GameClient/MapUtil.cpp,WaypointMap::update,Code/GameEngine/Source/GameClient/MapUtil.cpp
+0x00885680,178,127.0.0.1,GameEngine/Source/GameNetwork/NetworkUtil.cpp,ResolveIP,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp
+0x004C8830,176,Menus/GameInfoWindow.wnd,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp,CreateLANGameInfoWindow,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp
+0x00927230,171,MeshGeometryClass::VertexNorm,Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,MeshGeometryClass::Reset_Geometry,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp
+0x0009F560,164,SkirmishStats.ini,GameEngine/Source/Common/SkirmishBattleHonors.cpp,SkirmishBattleHonors,
+0x009C4B70,160,GenuineIntel,Libraries/Source/WWVegas/WWLib/cpudetect.cpp,CPUDetectClass::Init_Processor_Manufacturer,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp
+0x00287A50,154,BoneFXUpdate requires BoneFXDamage,GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,BoneFXUpdate::onObjectCreated,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp
+0x00664680,153,%d(%d),GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,MilesAudioManager::audioDebugDisplay,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp
+0x004CBAF0,144,LanGameOptionsFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanGameOptionsMenu.cpp,LanGameOptionsMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanGameOptionsMenu.cpp
+0x004AAC50,144,controlBarHidden.wnd,GameEngine/Source/GameClient/GUI/ControlBar/ControlBarPrintPositions.cpp,PrintOffsetsFromControlBarParent,
+0x003395A0,140,Script Engine Profiling disabled.,GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp,ScriptEngine::getStats,
+0x00924FA0,138,MeshGeometryClass::PlaneEq,Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,MeshGeometryClass::get_planes,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp
+0x004C85B0,137,EstablishConnectionsScreen.wnd:ButtonQuit,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp,InitEstablishConnectionsDialog,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp
+0x000AFF40,128,Bad delay values for audio event %s,GameEngine/Source/Common/INI/INIAudioEventInfo.cpp,parseDelay,
+0x0009CB50,128,LossStreak,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp,PopulatePlayerInfoWindows,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp
+0x0009CAB0,126,LossStreak,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp,PopulatePlayerInfoWindows,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp
+0x0006BCB9,122,Uncaught Exception in GameEngine::update,GameEngine/Source/Common/GameEngine.cpp,GameEngine::execute,Code/GameEngine/Source/Common/GameEngine.cpp
+0x0050B9B0,109,WOLWelcomeMenuFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp,WOLWelcomeMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp
+0x00090FB0,102,ShowProps,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,OptionsMenuInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp
+0x006583F0,99,%d/%d/%d,GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,PSThreadClass::Thread_Function,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp
+0x004DF940,99,SaveLoadMenuFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,SaveLoadMenuShutdown,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp
+0x00090880,95,UseCameraInReplays,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,OptionPreferences::useCameraInReplays,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp
+0x004D2680,94,NetworkDirectConnectFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/NetworkDirectConnect.cpp,NetworkDirectConnectInit,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/NetworkDirectConnect.cpp
+0x008648B0,93,numplayers,GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,GameSpyStagingRoom::generateGameSpyGameResultsPacket,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp
+0x000904E0,92,Options.ini,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,OptionPreferences,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp
+0x0042ED50,87,EALogoMovie,GameEngine/Source/GameClient/GameClient.cpp,GameClient::update,Code/GameEngine/Source/GameClient/GameClient.cpp
+0x00107340,78,ControlBar.wnd:LeftHUD,GameEngine/Source/Common/System/Radar.cpp,Radar::newMap,Code/GameEngine/Source/Common/System/Radar.cpp
+0x004E06E0,75,ReplayMenuFade,GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,ReplayMenuShutdown,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+0x00861E90,56,127.0.0.1,GameEngine/Source/GameNetwork/NetworkUtil.cpp,ResolveIP,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp
+0x0051D9D0,51,00000000.sav,GameEngine/Source/Common/System/SaveGame/GameState.cpp,findHighFileNumber,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp
