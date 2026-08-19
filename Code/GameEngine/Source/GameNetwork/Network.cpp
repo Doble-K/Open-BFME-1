@@ -171,3 +171,12 @@ void Network::updateLoadProgress(Int percent)
 	if (m_conMgr != NULL)
 		((BFMEConnectionManager *)m_conMgr)->sendProgressCommand(percent);
 }
+
+// A ternary, not Zero Hour's if/return: with two return statements MSVC builds
+// each result straight into the caller's buffer, and the temporary with its own
+// unwind state -- which retail has, tracked in bl and released at 0x008881D0 --
+// never appears.
+UnicodeString Network::getPlayerName(Int playerNum)
+{
+	return m_conMgr != NULL ? m_conMgr->getPlayerName(playerNum) : UnicodeString::TheEmptyString;
+}
