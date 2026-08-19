@@ -189,3 +189,8 @@ Network::~Network()
 {
 	delete m_conMgr;
 }
+
+void Network::setSawCRCMismatch(void)
+{
+	m_sawCRCMismatch = TRUE;
+}
