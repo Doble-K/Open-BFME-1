@@ -359,9 +359,40 @@ def is_definition(text, open_paren):
     return text[i] == ":" and not text.startswith("::", i)
 
 
+# Free functions (`?name@@YA...`) carry no scope, so DEF_RE's `Scope::member(`
+# never matches them and they fell into UNPARSEABLE. They are a small but real
+# slice of the pool -- BFME globals like GetGameLogicRandomValue, adjustDisplay,
+# GadgetListBoxSetBottomVisibleEntry -- and the search string for them is just
+# the bare name at file scope.
+#
+# This is deliberately stricter than the scoped search. A bare name matches far
+# more text than a qualified one (a member function of the same name, a local, a
+# macro), so a hit only counts when is_definition() confirms a body follows AND
+# the name is not preceded by `::`, `.` or `->`. Where the scoped index reports
+# the single obvious answer, this one will more often report AMBIGUOUS, which is
+# the correct outcome: pointing a compile at the wrong same-named function wastes
+# exactly as much as not locating it at all.
+FREE_DEF_RE = re.compile(r"(?<![:.>\w])([A-Za-z_]\w*)\s*\(")
+
+
+def parse_free(mangled):
+    """`?name@@YA...` -> 'name' for a free function, else None."""
+    if not mangled.startswith("?") or mangled.startswith("??") or "?$" in mangled:
+        return None
+    at = mangled.find("@@")
+    if at == -1:
+        return None
+    name = mangled[1:at]
+    if not re.fullmatch(r"[A-Za-z_]\w*", name):
+        return None
+    # `@@YA` / `@@YG` etc marks a free function; a member would carry a scope.
+    return name if mangled[at + 2:at + 3] == "Y" else None
+
+
 def index_definitions():
     """'Scope::member' -> {answerable: [paths], excluded: [paths]}."""
     idx = defaultdict(lambda: {"answerable": [], "excluded": []})
+    free = defaultdict(lambda: {"answerable": [], "excluded": []})
     scanned = 0
     for path in CODE.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in SRC_SUFFIXES:
@@ -382,7 +413,15 @@ def index_definitions():
             seen.add(key)
             line_start = text.rfind(NEWLINE, 0, m.start()) + 1
             idx[key][bucket].append((rel, text[line_start:m.start()].strip()))
-    return idx, scanned
+        seen_free = set()
+        for m in FREE_DEF_RE.finditer(text):
+            name = m.group(1)
+            if name in seen_free or not is_definition(text, m.end() - 1):
+                continue
+            seen_free.add(name)
+            line_start = text.rfind(NEWLINE, 0, m.start()) + 1
+            free[name][bucket].append((rel, text[line_start:m.start()].strip()))
+    return idx, free, scanned
 
 
 def main():
@@ -398,7 +437,7 @@ def main():
     if not args.pool and not args.name:
         raise SystemExit(__doc__)
 
-    idx, scanned = index_definitions()
+    idx, free, scanned = index_definitions()
     print(f"indexed {len(idx)} distinct Scope::member definition sites "
           f"across {scanned} files", file=sys.stderr)
 
@@ -413,12 +452,13 @@ def main():
     counts = defaultdict(int)
     for c in pool:
         parsed = parse_scope(c["pin"])
-        if parsed is None:
+        free_name = None if parsed else parse_free(c["pin"])
+        if parsed is None and free_name is None:
             counts["unparseable"] += 1
             verdict, files = "UNPARSEABLE", []
         else:
-            key = f"{parsed[0]}::{parsed[1]}"
-            hit = idx.get(key)
+            key = f"{parsed[0]}::{parsed[1]}" if parsed else free_name
+            hit = (idx if parsed else free).get(key)
             if hit and hit["answerable"]:
                 n = len(hit["answerable"])
                 files = [f for f, _ in hit["answerable"]]
