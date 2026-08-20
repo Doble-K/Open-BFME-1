@@ -485,7 +485,6 @@ void DisconnectManager::resetPlayerTimeouts(ConnectionManager *conMgr) {
 	}
 }
 
-// ?resetPlayerTimeout@DisconnectManager@@IAEXH@Z present-unmatched
 void DisconnectManager::resetPlayerTimeout(Int slot) {
 	m_playerTimeouts[slot] = timeGetTime();
 }
