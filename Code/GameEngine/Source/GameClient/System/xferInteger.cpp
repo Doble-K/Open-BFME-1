@@ -58,3 +58,11 @@ void xferInteger( Xfer &xfer, Int &value )
 {
 	xfer.xferUser( "ParticleType", &value, 4 );
 }
+
+// This copy is emitted by the particle-system TU for the enum field with its
+// own retail name.  It has the same call shape as xferInteger, but the string
+// literal is part of the byte-true identity.
+void xferIntegerParticlePriority( Xfer &xfer, Int &value )
+{
+	xfer.xferUser( "ParticlePriorityType", &value, 4 );
+}
