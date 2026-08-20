@@ -155,6 +155,29 @@ private:
 typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) == 0xc4 ? 1 : -1 ];
 
 //-------------------------------------------------------------------------------------------------
+VictoryConditionsInterface * createVictoryConditions( void )
+{
+	// only one created, so no MemoryPool usage
+	return new VictoryConditions;
+}
+
+//-------------------------------------------------------------------------------------------------
+VictoryConditions::VictoryConditions()
+: m_endGameShowing(false), m_endGameShowTime(0)
+{
+	reset();
+}
+
+//-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::isLocalDefeat( void )
+{
+	if (m_isObserver)
+		return FALSE;
+
+	return (m_localPlayerDefeated);
+}
+
+//-------------------------------------------------------------------------------------------------
 Bool VictoryConditions::amIObserver( void )
 {
 	return m_isObserver;
