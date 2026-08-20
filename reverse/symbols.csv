@@ -72459,3 +72459,4 @@ _read_number,0x009A00D0,per-TU llex.c static read_number; both retail luaX_lex R
 ?objectEnteringInfluence@Energy@@QAEXPAVObject@@@Z,0x0000F402,Open-BFME5 retail Energy entering-influence ILT
 ?objectLeavingInfluence@Energy@@QAEXPAVObject@@@Z,0x00029D20,Open-BFME5 retail Energy leaving-influence ILT
 ?findOrInsert@ControlBarOverrideMapABI@@QAEAAPBVCommandButton@@ABVAsciiString@@@Z,0x00008170,Open-BFME5 control-bar override hash-map subscript ILT
+?loadPostProcess@DockUpdate@@MAEXXZ,0x0003C55B,Open-BFME5 DockUpdate loadPostProcess retail ILT callee

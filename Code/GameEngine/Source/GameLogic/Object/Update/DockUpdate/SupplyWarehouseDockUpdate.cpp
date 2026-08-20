@@ -229,18 +229,41 @@ void SupplyWarehouseDockUpdate::xfer( Xfer *xfer )
 // ------------------------------------------------------------------------------------------------
 /** Load post process */
 // ------------------------------------------------------------------------------------------------
-// ?loadPostProcess@SupplyWarehouseDockUpdate@@MAEXXZ present-unmatched
+class SupplyWarehouseDockUpdateRetailModuleData
+{
+public:
+	unsigned char m_unmodelled00[ 0x10 ];
+	Int m_startingBoxesData;
+};
+
+class SupplyWarehouseDockUpdateRetailObject
+{
+public:
+	virtual void _pad00( void ) = 0;
+	virtual void _pad04( void ) = 0;
+	virtual void _pad08( void ) = 0;
+	virtual void _pad0c( void ) = 0;
+	virtual void _pad10( void ) = 0;
+	virtual void _pad14( void ) = 0;
+	virtual void _pad18( void ) = 0;
+	virtual void _pad1c( void ) = 0;
+	virtual void _pad20( void ) = 0;
+	virtual void _pad24( void ) = 0;
+	virtual Drawable *getDrawable( void ) = 0;
+};
+
 void SupplyWarehouseDockUpdate::loadPostProcess( void )
 {
-
 	// extend base class
 	DockUpdate::loadPostProcess();
 
 	// update the drawable supply status
-	const SupplyWarehouseDockUpdateModuleData *modData = getSupplyWarehouseDockUpdateModuleData();
-	Object *us = getObject();
-	Drawable *draw = us->getDrawable();
+	char *rawThis = reinterpret_cast<char *>( this );
+	const SupplyWarehouseDockUpdateRetailModuleData *modData =
+		*reinterpret_cast<const SupplyWarehouseDockUpdateRetailModuleData **>( rawThis + 8 );
+	Object *object = *reinterpret_cast<Object **>( rawThis + 12 );
+	Drawable *draw = reinterpret_cast<SupplyWarehouseDockUpdateRetailObject *>( object )->getDrawable();
 	if( draw )
-		draw->updateDrawableSupplyStatus( modData->m_startingBoxesData, m_boxesStored );
-
-}  // end loadPostProcess
+		draw->updateDrawableSupplyStatus( modData->m_startingBoxesData,
+			*reinterpret_cast<Int *>( rawThis + 0x8c ) );
+}
