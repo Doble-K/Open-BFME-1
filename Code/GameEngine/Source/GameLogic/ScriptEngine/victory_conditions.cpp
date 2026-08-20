@@ -131,12 +131,12 @@ public:
 	virtual Bool isLocalAlliedVictory( void );
 	virtual Bool isLocalAlliedDefeat( void );
 	virtual Bool isLocalDefeat( void );
-	virtual Bool amIObserver( void ) { return m_isObserver; }
-	virtual UnsignedInt getEndFrame( void ) { return m_endFrame; }
+	virtual Bool amIObserver( void );
+	virtual UnsignedInt getEndFrame( void );
 
 	virtual void showEndGame(void *a, void *b, void *c, void *d);
 	virtual void hideEndGame( void );
-	virtual Bool isPlayerDefeated(Int index) { return m_isDefeated[index]; }
+	virtual Bool isPlayerDefeated(Int index);
 	virtual void updateEndGame( void );
 
 private:
@@ -153,6 +153,30 @@ private:
 };
 
 typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) == 0xc4 ? 1 : -1 ];
+
+//-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::amIObserver( void )
+{
+	return m_isObserver;
+}
+
+//-------------------------------------------------------------------------------------------------
+UnsignedInt VictoryConditions::getEndFrame( void )
+{
+	return m_endFrame;
+}
+
+//-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::isPlayerDefeated(Int index)
+{
+	return m_isDefeated[index];
+}
+
+//-------------------------------------------------------------------------------------------------
+void VictoryConditions::init( void )
+{
+	reset();
+}
 
 //-------------------------------------------------------------------------------------------------
 void VictoryConditions::reset( void )
