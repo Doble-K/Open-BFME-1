@@ -72,7 +72,8 @@ extern GameWindowTransitionsHandler *TheTransitionHandler;
 static Bool isShuttingDown;
 static Bool loggedInOK;
 static GameSpyLoginPreferences *loginPref;
-static char *nextScreen;
+// COFF names file-scope statics alike; this must not alias WOLWelcomeMenu's state.
+static char *loginNextScreen;
 
 // Retail spells this `static void shutdownComplete(WindowLayout *)`, but that
 // name is file-scoped and ~30 menu TUs each define their own. symbols.csv is a
@@ -84,9 +85,9 @@ static __declspec(noinline) void shutdownCompleteWOLLoginMenu(WindowLayout *layo
 {
     isShuttingDown = false;
     layout->hide(true);
-    TheShell->shutdownComplete(layout, nextScreen != 0);
+    TheShell->shutdownComplete(layout, loginNextScreen != 0);
 
-    if (nextScreen != 0)
+    if (loginNextScreen != 0)
     {
         if (loginPref != 0)
         {
@@ -94,7 +95,7 @@ static __declspec(noinline) void shutdownCompleteWOLLoginMenu(WindowLayout *layo
             delete loginPref;
             loginPref = 0;
         }
-        TheShell->push(nextScreen);
+        TheShell->push(loginNextScreen);
     }
     else if (loginPref != 0)
     {
@@ -103,7 +104,7 @@ static __declspec(noinline) void shutdownCompleteWOLLoginMenu(WindowLayout *layo
         loginPref = 0;
     }
 
-    nextScreen = 0;
+    loginNextScreen = 0;
 }
 
 // ?WOLLoginMenuShutdown@@YAXPAVWindowLayout@@PAX@Z

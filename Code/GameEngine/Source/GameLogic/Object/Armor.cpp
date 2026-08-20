@@ -50,10 +50,18 @@ enum DamageType
 
 extern const char *TheDamageNames[];		// 0x012ACC70
 
+struct DamageInfoInput
+{
+	char pad[12];
+	DamageType m_damageType;
+};
+
 class ArmorTemplate
 {
 public:
+	ArmorTemplate();
 	void clear();
+	Real getDamageCoefficient(const DamageInfoInput &damageInfo) const;
 	static void parseArmorCoefficients( INI* ini, void *instance, void *store, const void* userData );
 	static void parseDamageScalar( INI* ini, void *instance, void *store, const void* userData );
 private:
@@ -61,6 +69,16 @@ private:
 	Real m_damageScalar;							// +0x5C
 	friend class ArmorStore;
 };
+
+Real ArmorTemplate::getDamageCoefficient(const DamageInfoInput &damageInfo) const
+{
+	return m_damageCoefficient[damageInfo.m_damageType];
+}
+
+ArmorTemplate::ArmorTemplate()
+{
+	clear();
+}
 
 // Retail always inlines this, so there is no standalone body to claim. It is
 // here because parseArmorDefinition carries it, and it is what proves

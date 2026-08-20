@@ -1222,5 +1222,22 @@ Quaternion AdaptiveDeltaMotionChannelClass::Get_QuatVector(float32 frame)
 
 
 
+int TimeCodedMotionChannelClass::Get_Channel_Memory_Usage(void)
+{
+	return NumTimeCodes * PacketSize * 4 + sizeof(TimeCodedMotionChannelClass);
+}
+
+
+int AdaptiveDeltaMotionChannelClass::Get_Channel_Memory_Usage(void)
+{
+	return *(int *)&_bfme_adm_scale2 + VectorLen * 8 + sizeof(AdaptiveDeltaMotionChannelClass);
+}
+
+
+int TimeCodedBitChannelClass::Get_Channel_Memory_Usage(void)
+{
+	return NumTimeCodes * 4 + sizeof(TimeCodedBitChannelClass);
+}
+
 
 // EOF - motchan.cpp
