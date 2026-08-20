@@ -66,7 +66,6 @@ SmudgeManager::~SmudgeManager()
 	}
 }
 
-// ?init@SmudgeManager@@UAEXXZ present-unmatched
 void SmudgeManager::init(void)
 {
 
