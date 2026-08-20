@@ -72458,3 +72458,4 @@ _read_number,0x009A00D0,per-TU llex.c static read_number; both retail luaX_lex R
 ?updateMouseData@Mouse@@IAEXXZ,0x0002B805,Open-BFME5 Mouse::update tail-call ILT identified from retail REL32 at 0x005A44E6
 ?objectEnteringInfluence@Energy@@QAEXPAVObject@@@Z,0x0000F402,Open-BFME5 retail Energy entering-influence ILT
 ?objectLeavingInfluence@Energy@@QAEXPAVObject@@@Z,0x00029D20,Open-BFME5 retail Energy leaving-influence ILT
+?findOrInsert@ControlBarOverrideMapABI@@QAEAAPBVCommandButton@@ABVAsciiString@@@Z,0x00008170,Open-BFME5 control-bar override hash-map subscript ILT
