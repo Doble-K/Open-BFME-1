@@ -234,10 +234,6 @@ void SBEngineCleanup(SBQueryEngine *engine)
 
 void SBQueryEngineUpdateServer(SBQueryEngine *engine, SBServer server, int addfront, int querytype)
 {
-	//NOTE: the server must not be in the pending or update list currently!
-	if((server->state & (STATE_PENDINGBASICQUERY|STATE_PENDINGFULLQUERY|STATE_QUERYFAILED)))
-		return;
-	
 	server->state &= (unsigned char)~(STATE_PENDINGBASICQUERY|STATE_PENDINGFULLQUERY|STATE_QUERYFAILED); //clear out these flags
 	if (querytype == QTYPE_BASIC)
 		server->state |= STATE_PENDINGBASICQUERY;
