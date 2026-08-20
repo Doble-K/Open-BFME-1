@@ -284,7 +284,6 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ?radarToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,0x00106C60,152,Code/GameEngine/Source/Common/System/Radar.cpp,reloc-derived;call-sites=1;identity=real
 ?localPixelToRadar@Radar@@QAE_NPBUICoord2D@@PAU2@@Z,0x00107AB0,327,Code/GameEngine/Source/Common/System/Radar.cpp,reloc-derived;call-sites=2;identity=real
 ?createEvent@Radar@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,0x00108140,251,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,reloc-derived;call-sites=2;identity=real
-?getStringFromRegistry@@YA_NPAXVAsciiString@@1AAV1@@Z,0x00108E80,336,Code/GameEngine/Source/Common/System/RegistryGetStringPublic.cpp,reloc-derived;call-sites=2;identity=real
 ??4UpgradeTemplate@@QAEAAV0@ABV0@@Z,0x0010A9E0,219,Code/GameEngine/Source/Common/UpgradeCenter_newUpgrade_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 ??0UpgradeTemplate@@QAE@XZ,0x0010ABD0,175,Code/GameEngine/Source/Common/UpgradeCenter_newUpgrade_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_0010bd60@@UAE@XZ,0x0010BC80,176,Code/gen_small/dtors_000.cpp,reloc-derived;call-sites=1;identity=generated
@@ -1324,6 +1323,7 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ??1Gen_dtor_004b1970@@UAE@XZ,0x004B1670,133,Code/gen_small/dtors_005.cpp,reloc-derived;call-sites=1;identity=generated
 ?GadgetListBoxSetColors@@YAXPAVGameWindow@@HHHHHHHHHHHH@Z,0x004B6D40,885,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetComboBox.cpp,reloc-derived;call-sites=1;identity=real
 ?adjustDisplay@@YAXPAVGameWindow@@_N@Z,0x004B7B20,299,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,reloc-derived;call-sites=1;identity=real
+?adjustDisplay@@YAXPAVGameWindow@@H_N@Z,0x004B7CA0,135,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBoxSetBottomVisibleEntry.cpp,reloc-derived;call-sites=2;identity=real
 ??1Gen_dtor_004bc870@@UAE@XZ,0x004BC6D0,8,Code/gen_small/dtors_005.cpp,reloc-derived;call-sites=1;identity=generated
 ?HideControlBar@@YAX_N@Z,0x004C0C80,320,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,reloc-derived;call-sites=1;identity=real
 ?ShowControlBar@@YAX_N@Z,0x004C0E10,439,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,reloc-derived;call-sites=1;identity=real
@@ -1350,7 +1350,6 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ??0GameSpyStagingRoom@@QAE@ABV0@@Z,0x004FA490,395,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,reloc-derived;call-sites=1;identity=real
 ??0?$pair@$$CBUGen_t_004fc4b0_k4@@UGen_t_004fc4b0_p12cd@@@_STL@@QAE@ABU01@@Z,0x004FB2E0,426,Code/gen_small/tgrid_117.cpp,reloc-derived;call-sites=1;identity=generated
 ?PopulateLobbyPlayerListbox@@YAXXZ,0x004FB500,1398,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,reloc-derived;call-sites=1;identity=real
-?shutdownCompleteWOLLoginMenu@@YAXPAVWindowLayout@@@Z,0x004FFA40,166,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenuShutdownThunk.cpp,reloc-derived;call-sites=1;identity=real
 ??0BfmeAptScreenQuickMatchMenu@@QAE@PAX@Z,0x00505830,573,Code/GameEngine/Source/GameClient/AptScreenFactories.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_0050e1a0@@UAE@XZ,0x0050DBD0,159,Code/gen_small/dtors_006.cpp,reloc-derived;call-sites=1;identity=generated
 ??0BfmeAptScreenCampaignReview@@QAE@PAX@Z,0x0050E320,495,Code/GameEngine/Source/GameClient/AptScreenFactories.cpp,reloc-derived;call-sites=1;identity=real
@@ -1789,12 +1788,10 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ??1Gen_dtor_00674380@@UAE@XZ,0x006736B0,95,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00676210@@UAE@XZ,0x00675E60,86,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
 ?ConstructNetCommandMsgFromRawData@NetPacket@@SAPAVNetCommandRef@@PAEG@Z,0x0067EE40,937,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList_getReadyCommands.cpp,reloc-derived;call-sites=1;identity=real
-??1Gen_dtor_00681880@@UAE@XZ,0x00681860,11,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
-??1Gen_dtor_00682770@@UAE@XZ,0x006823B0,105,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
+?ResolveIP@@YAIVAsciiString@@@Z,0x00682EF0,203,Code/GameEngine/Source/GameNetwork/LANAPI_SetLocalIP.cpp,reloc-derived;call-sites=1;identity=real
 ??1UDP@@QAE@XZ,0x00684560,75,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,reloc-derived;call-sites=7;identity=real
-??1Gen_dtor_00684ca0@@UAE@XZ,0x00684C90,11,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
 ?sendMessage@LANAPI@@IAEXPAULANMessage@@I@Z,0x00684CF0,221,Code/GameEngine/Source/GameNetwork/LANAPI_RequestAccept_Thunk.cpp,reloc-derived;call-sites=4;identity=real
-??1Gen_dtor_00688740@@UAE@XZ,0x00688680,149,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
+?reset@LANAPI@@UAEXXZ,0x00688430,185,Code/GameEngine/Source/GameNetwork/LANAPI_dtor.cpp,reloc-derived;call-sites=1;identity=real
 ?writeLANGameInfo@@YAXPBVLANGameInfo@@PADI@Z,0x0068E090,1037,Code/GameEngine/Source/GameNetwork/LANAPI_handleRequestGameInfo_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 ??0BinkVideoPlayer@@QAE@XZ,0x00691230,90,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_00695260@@UAE@XZ,0x006912A0,105,Code/gen_small/dtors_008.cpp,reloc-derived;call-sites=1;identity=generated
@@ -2209,8 +2206,8 @@ _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/Game
 ??1Gen_dtor_00924070@@UAE@XZ,0x00924090,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_009240f0@@UAE@XZ,0x00924110,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00924130@@UAE@XZ,0x00924150,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
+??4MeshGeometryClass@@QAEAAV0@ABV0@@Z,0x00924930,760,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryClass_CopyCtor_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_00926610@@UAE@XZ,0x00926630,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
-??0MeshGeometryClass@@QAE@ABV0@@Z,0x009267E0,221,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_00927f10@@UAE@XZ,0x00927880,101,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??0?$ShareBufferClass@PAVVertexMaterialClass@@@@QAE@ABV0@@Z,0x00929D40,174,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_0092a140@@UAE@XZ,0x00929E80,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
@@ -2225,10 +2222,14 @@ _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/Game
 ??1Gen_dtor_0092e490@@UAE@XZ,0x0092D990,126,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ?Render_Material_Pass@MeshClass@@QAEXPAVMaterialPassClass@@PAVIndexBufferClass@@@Z,0x0092E890,1315,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtorv_0092ff30@@UAE@XZ,0x0092F190,84,Code/gen_small/dtorsv_000.cpp,reloc-derived;call-sites=1;identity=generated
+?Remap_Mesh@MaterialRemapperClass@@QAEXPBVMeshMatDescClass@@PAV2@@Z,0x0092F2C0,493,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,reloc-derived;call-sites=1;identity=real
 ?construct@TextureVectorBaseCtorShim@@QAEXHH@Z,0x0092FBA0,191,Code/Libraries/Source/WWVegas/WW3D2/MaterialCollectorClass_ctor_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_009305b0@@UAE@XZ,0x0092FD10,45,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
+??0MaterialRemapperClass@@QAE@PAVMaterialInfoClass@@0@Z,0x0092FD60,453,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,reloc-derived;call-sites=1;identity=real
+??1MaterialRemapperClass@@QAE@XZ,0x0092FF90,171,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_00930d30@@UAE@XZ,0x00930040,45,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00931200@@UAE@XZ,0x00930DB0,67,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
+??0MaterialInfoClass@@QAE@ABV0@@Z,0x00930E00,352,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_009312b0@@UAE@XZ,0x00930F60,175,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ?Cull_Box@BFMECameraCullBox@@QBE_NABVAABoxClass@@@Z,0x009330C0,193,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainBackground.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_00933570@@UAE@XZ,0x00933420,111,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
@@ -2253,7 +2254,6 @@ _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/Game
 ??1Gen_dtor_00947d10@@UAE@XZ,0x00946540,171,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00948b40@@UAE@XZ,0x009471E0,11,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00902100@@UAE@XZ,0x00949D00,164,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
-?Add_Fill_Light@LightEnvironmentClass@@QAEXXZ,0x0094ACB0,207,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,reloc-derived;call-sites=1;identity=real
 ?_M_insert@?$_Rb_tree@IU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Select1st@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@2@0@Z,0x0094C9E0,176,Code/gen_small/fam_006.cpp,reloc-derived;call-sites=9;identity=generated
 ?insert_unique@?$_Rb_tree@IU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Select1st@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@2@@Z,0x0094CCF0,145,Code/gen_small/fam_006.cpp,reloc-derived;call-sites=4;identity=generated
 ??1Gen_dtor_0094f0c0@@UAE@XZ,0x0094EA80,45,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
@@ -2267,7 +2267,6 @@ _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/Game
 ?RenderStreak@StreakRendererClass@@QAEXAAVRenderInfoClass@@ABVMatrix3D@@IPAVVector3@@PAVVector4@@PAMABVSphereClass@@PAI@Z,0x0095CE80,12206,Code/Libraries/Source/WWVegas/WW3D2/StreakLineRender.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_0096aca0@@UAE@XZ,0x0096A920,73,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ?Update_Min_Max@AABTreeClass@@AAEXHAAVVector3@@0@Z,0x0096AFC0,180,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,reloc-derived;call-sites=1;identity=real
-?clone_materials@MeshModelClass@@IAEXABV1@@Z,0x0096DDC0,203,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_0096ea40@@UAE@XZ,0x0096E900,45,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ?read_shaders@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096EB30,272,Code/Libraries/Source/WWVegas/WW3D2/MeshModelClass_read_prelit_material_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 ?read_textures@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096EC40,283,Code/Libraries/Source/WWVegas/WW3D2/MeshModelClass_read_prelit_material_Thunk.cpp,reloc-derived;call-sites=1;identity=real
