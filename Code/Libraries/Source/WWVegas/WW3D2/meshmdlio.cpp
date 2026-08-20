@@ -3497,14 +3497,21 @@ void MeshModelClass::install_materials(MeshLoadContextClass * context)
 }
 
 
-// ?clone_materials@MeshModelClass@@IAEXABV1@@Z present-unmatched
 void MeshModelClass::clone_materials(const MeshModelClass & srcmesh)
 {
 	/*
 	** Copy the material info and the materials within
 	*/
-	REF_PTR_RELEASE(MatInfo);
-	MatInfo = NEW_REF( MaterialInfoClass,(*(srcmesh.MatInfo)));
+	// BFME does not route this allocation through W3DMPO's pooled operator new:
+	// retail pushes 0x38 and calls the global ??2@YAPAXI@Z at 0x881F30 with a
+	// single argument, so ::new is what reproduces it.  The release is spelled
+	// out rather than using REF_PTR_RELEASE because retail keeps the NULL store
+	// inside the taken branch.
+	if (MatInfo != NULL) {
+		MatInfo->Release_Ref();
+		MatInfo = NULL;
+	}
+	MatInfo = ::new MaterialInfoClass(*(srcmesh.MatInfo));
 
 	/*
 	** remap!

@@ -72410,3 +72410,10 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??1Transport@@QAE@XZ,0x0003A48B,ILT thunk to 0x00683450 which ICF-folds with ?reset@Transport@@QAEXXZ; the delete m_transport call in ~LANAPI at 0x00688680
 ?getFileTransferProgress@ConnectionManager@@QAEHHVAsciiString@@@Z,0x00038113,ILT thunk to 0x00669A00; the address Network::getFileTransferProgress at 0x00682640 encodes
 ?ResolveIP@@YAIVAsciiString@@@Z,0x0003DC08,ILT thunk to 0x00682EF0; the address LANAPI::SetLocalIP(AsciiString) at 0x00686C10 encodes
+?adjustDisplay@@YAXPAVGameWindow@@H_N@Z,0x004B7CA0,general 3-arg overload; 3 pushes + add esp 0xc at the GadgetListBoxSetBottomVisibleEntry call site 0x004B857A
+?getListboxBottomEntry@@YIHPAU_ListboxData@@@Z,0x004B6BA0,__fastcall spelling of the same body as the YA pin; call site 0x004B8586 is mov ecx,eax + call with no stack cleanup
+??4MeshGeometryClass@@QAEAAV0@ABV0@@Z,0x00924930,sole call from the byte-proven copy ctor 0x9267E0 where ZH has *this = that; exactly two callers exe-wide (copy ctor + the 0x94DA40 gap that is MeshModelClass::operator=)
+??0MaterialInfoClass@@QAE@ABV0@@Z,0x00930E00,callee of the byte-proven clone_materials 0x96DDC0; ecx=freshly newed 0x38-byte object and the pushed arg is srcmesh.MatInfo
+??0MaterialRemapperClass@@QAE@PAVMaterialInfoClass@@0@Z,0x0092FD60,callee of the byte-proven clone_materials 0x96DDC0; ecx=stack temp and args are (srcmesh.MatInfo this->MatInfo) with EH state 0
+?Remap_Mesh@MaterialRemapperClass@@QAEXPBVMeshMatDescClass@@PAV2@@Z,0x0092F2C0,callee of the byte-proven clone_materials 0x96DDC0; same stack temp as ecx and args are the two CurMatDesc slots at +0x9c
+??1MaterialRemapperClass@@QAE@XZ,0x0092FF90,callee of the byte-proven clone_materials 0x96DDC0; same stack temp as ecx under EH state -1

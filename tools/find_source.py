@@ -187,6 +187,76 @@ def build_pool():
     return out
 
 
+# --- custom calling convention pre-filter ----------------------------------
+#
+# MSVC 7.1 is free to give an INTERNAL-LINKAGE function a private register
+# calling convention, and it does. A file-static free function can take its
+# first parameter in eax (`mov ebx, eax` as the opening instruction), which no
+# C++ spelling can reproduce -- the row is unmatchable no matter how good the
+# body reconstruction is. Three of five failures in one free-function run were
+# this single blocker, each discovered only after real analysis.
+#
+# Member functions structurally cannot have this problem: __thiscall is fixed by
+# the ABI, so `ecx` there is `this`, not a custom convention. The filter is
+# therefore applied ONLY to free functions, where reading a parameter register
+# before any stack-parameter load is anomalous by construction.
+#
+# The rule is a small dataflow one rather than a pattern match: flag only if an
+# instruction READS eax/ecx/edx that nothing earlier in the prologue WROTE, and
+# no [esp+N]/[ebp+N] parameter load has happened yet. That keeps `xor eax,eax`
+# and other write-first idioms from tripping it, and it stays silent when the
+# bytes cannot be read or disassembled -- a missed filter costs one compile, a
+# false one buries a landable row.
+ARG_REGS = {"eax", "ecx", "edx"}
+
+
+def custom_convention(rva, size, max_insns=8):
+    """Reason this free function looks to use a private register convention."""
+    try:
+        import capstone
+        import build as _build
+    except Exception:
+        return None
+    try:
+        code = _build.read_target_bytes(rva, min(size, 32))
+    except Exception:
+        return None
+    if not code:
+        return None
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    md.detail = True
+    written = set()
+    try:
+        for i, insn in enumerate(md.disasm(bytes(code), rva)):
+            if i >= max_insns:
+                break
+            # A stack-relative load means normal argument passing reached first.
+            if "[esp" in insn.op_str or "[ebp" in insn.op_str:
+                return None
+            # `push ecx` / `push eax` at entry is MSVC's 4-byte stack-allocation
+            # idiom (and `push ebx/esi/edi` is callee-save); the pushed value is
+            # not being consumed as a parameter. Counting it as a read produced a
+            # FALSE POSITIVE on shutdownCompleteWOLLoginMenu, a row that landed
+            # byte-exact -- which is the failure mode that matters here, since a
+            # wrong flag buries a landable row while a missed one costs a compile.
+            if insn.mnemonic == "push":
+                continue
+            try:
+                regs_read, regs_write = insn.regs_access()
+            except Exception:
+                return None
+            names_read = {insn.reg_name(r) for r in regs_read}
+            names_write = {insn.reg_name(r) for r in regs_write}
+            live = (names_read & ARG_REGS) - written
+            if live:
+                return (f"reads {'/'.join(sorted(live))} before any stack "
+                        f"argument load ({insn.mnemonic} {insn.op_str})")
+            written |= (names_write & ARG_REGS)
+    except Exception:
+        return None
+    return None
+
+
 # --- signature cross-check -------------------------------------------------
 #
 # find_source.py trusts the PIN's decorated name to say what the function is,
@@ -465,6 +535,16 @@ def main():
                 why = None
                 if n == 1:
                     why = return_conflict(c["pin"], hit["answerable"][0][1])
+                if not why and free_name and c["size"]:
+                    conv = custom_convention(c["rva"], c["size"])
+                    if conv:
+                        why = "custom calling convention: " + conv
+                        verdict = "CUSTOM-CONVENTION"
+                        counts["custom_convention"] += 1
+                        conflicts.append((c, why))
+                        results.append({**c, "verdict": verdict,
+                                        "files": ";".join(files[:4])})
+                        continue
                 if why:
                     verdict = "SIGNATURE-CONFLICT"
                     counts["signature_conflict"] += 1
@@ -482,14 +562,14 @@ def main():
 
     total = len(pool)
     print(f"\npool: {total} candidate(s)")
-    for k in ("located", "ambiguous", "signature_conflict", "reference_only",
-              "no_definition", "unparseable"):
+    for k in ("located", "ambiguous", "signature_conflict", "custom_convention",
+              "reference_only", "no_definition", "unparseable"):
         v = counts[k]
         pct = (100.0 * v / total) if total else 0.0
         print(f"  {k:<16} {v:>5}  {pct:5.1f}%")
 
     if conflicts:
-        print("\nsignature conflicts (pin contradicts the located declaration):")
+        print("\nrows refuted before any compile:")
         for c, why in conflicts[:40]:
             print(f"  0x{c['rva']:08X} {c['pin'][:64]}\n      {why}")
 

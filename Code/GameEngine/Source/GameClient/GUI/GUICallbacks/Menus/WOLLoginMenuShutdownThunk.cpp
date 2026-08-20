@@ -38,14 +38,25 @@ class Shell
 {
 public:
     void shutdownComplete(WindowLayout *layout, Bool impendingPush);
-    void push(char *screen);
+    // Retail pushes FALSE for the second argument before constructing the
+    // AsciiString temp (0x004FFA9C: `push ebx` with ebx == 0), and the pinned
+    // callee is ?push@Shell@@QAEXVAsciiString@@_N@Z at 0x00580080 -- a
+    // by-value AsciiString plus a defaulted Bool, not a char *.
+    void push(AsciiString screen, Bool shelldown = false);
     void reverseAnimatewindow();
 };
 
+// write() is reached through vtable slot 0x0c and the delete through the
+// scalar-deleting destructor at slot 0x00 (0x004FFA7D: `mov edx,[ecx]` /
+// `call [edx+0xc]`; 0x004FFA8C: `push 1` / `call [eax]`), so this is a
+// polymorphic preferences object, not the plain struct spelled here before.
 class GameSpyLoginPreferences
 {
 public:
-    void write();
+    virtual ~GameSpyLoginPreferences();
+    virtual void unused04();
+    virtual void unused08();
+    virtual void write();
 };
 
 class GameWindowTransitionsHandler
