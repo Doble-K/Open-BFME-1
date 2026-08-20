@@ -259,16 +259,16 @@ class ParticleEmitterDefClass
 		virtual WW3DErrorType	Save_User_Data (ChunkSaveClass &chunk_save);
 		virtual WW3DErrorType	Save_Info (ChunkSaveClass &chunk_save);
 		virtual WW3DErrorType	Save_InfoV2 (ChunkSaveClass &chunk_save);
-		virtual WW3DErrorType	Save_Props (ChunkSaveClass &chunk_save);
+		virtual bool				Save_Props (ChunkSaveClass &chunk_save);
 		virtual WW3DErrorType	Save_Line_Properties (ChunkSaveClass &chunk_save);
 		virtual WW3DErrorType	Save_Frame_Keyframes (ChunkSaveClass & chunk_save);
 		virtual WW3DErrorType	Save_Rotation_Keyframes (ChunkSaveClass & chunk_save);
 		virtual WW3DErrorType	Save_Blur_Time_Keyframes (ChunkSaveClass & chunk_save);
-		virtual WW3DErrorType	Save_Extra_Info (ChunkSaveClass & chunk_save);
+		virtual bool				Save_Extra_Info (ChunkSaveClass & chunk_save);
 
-		virtual WW3DErrorType	Save_Color_Keyframes (ChunkSaveClass &chunk_save);
-		virtual WW3DErrorType	Save_Opacity_Keyframes (ChunkSaveClass &chunk_save);
-		virtual WW3DErrorType	Save_Size_Keyframes (ChunkSaveClass &chunk_save);
+		virtual bool				Save_Color_Keyframes (ChunkSaveClass &chunk_save);
+		virtual bool				Save_Opacity_Keyframes (ChunkSaveClass &chunk_save);
+		virtual bool				Save_Size_Keyframes (ChunkSaveClass &chunk_save);
 
 		virtual Vector3Randomizer *Create_Randomizer (W3dVolumeRandomizerStruct &info);
 		virtual void				Initialize_Randomizer_Struct (const Vector3Randomizer &randomizer, W3dVolumeRandomizerStruct &info);
