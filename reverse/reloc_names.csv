@@ -207,7 +207,7 @@ name,target_rva,target_size,source,notes
 ?_M_insert@?$hashtable@U?$pair@$$CBHPAX@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHPAX@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHPAX@_STL@@@2@@_STL@@QAEAAU?$pair@$$CBHPAX@2@ABU32@@Z,0x000D3600,111,Code/gen_small/fam_008.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_000d7480@@UAE@XZ,0x000D3FA0,89,Code/gen_small/dtors_000.cpp,reloc-derived;call-sites=1;identity=generated
 ?addScience@Player@@AAE_NW4ScienceType@@@Z,0x000D5380,438,Code/GameEngine/Source/Common/RTS/Player.cpp,reloc-derived;call-sites=2;identity=real
-?localApplyBattlePlanBonusesToObject@@YAXPAVObject@@PAX@Z,0x000D5A40,352,Code/GameEngine/Source/GameLogic/Player_becomingTeamMember_Thunk.cpp,reloc-derived;call-sites=1;identity=real
+?localApplyBattlePlanBonusesToObject@@YAXPAVObject@@PAX@Z,0x000D5A40,352,Code/GameEngine/Source/GameLogic/Player_becomingTeamMember_Thunk.cpp,reloc-derived;call-sites=2;identity=real
 ?removeBattlePlanBonusesForObject@Player@@QBEXPAVObject@@@Z,0x000D5C20,196,Code/GameEngine/Source/GameLogic/Player_becomingTeamMember_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 ?erase@?$hashtable@U?$pair@$$CBHUGen_t_000d81e0_p12cd@@@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHUGen_t_000d81e0_p12cd@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHUGen_t_000d81e0_p12cd@@@_STL@@@2@@_STL@@QAEXABU?$_Ht_iterator@U?$pair@$$CBHUGen_t_000d81e0_p12cd@@@_STL@@U?$_Const_traits@U?$pair@$$CBHUGen_t_000d81e0_p12cd@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHUGen_t_000d81e0_p12cd@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHUGen_t_000d81e0_p12cd@@@_STL@@@2@@2@@Z,0x000D64A0,154,Code/gen_small/tgrid_127.cpp,reloc-derived;call-sites=1;identity=generated
 ?aiMoveToPosition@AICommandInterface@@QAEXPBUCoord3D@@W4CommandSourceType@@@Z,0x000D86C0,219,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContain.cpp,reloc-derived;call-sites=1;identity=real
@@ -1232,7 +1232,7 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ??0?$pair@$$CBUGen_t_004697d0_k4@@UGen_t_004697d0_p12cd@@@_STL@@QAE@ABU01@@Z,0x00467D60,87,Code/gen_small/tgrid_116.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0046e820@@UAE@XZ,0x0046D8E0,317,Code/gen_small/dtors_005.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_004705f0@@UAE@XZ,0x00470360,109,Code/gen_small/dtors_005.cpp,reloc-derived;call-sites=1;identity=generated
-??0BfmeQuickMatchScreenBase@@QAE@PAX@Z,0x00470620,86,Code/GameEngine/Source/GameClient/AptScreenFactories.cpp,reloc-derived;call-sites=1;identity=real
+??0BfmeQuickMatchScreenBase@@QAE@PAX@Z,0x00470620,86,Code/GameEngine/Source/GameClient/AptScreenFactories.cpp,reloc-derived;call-sites=2;identity=real
 ??0Locomotor@@IAE@PBVLocomotorTemplate@@@Z,0x00470720,199,Code/GameEngine/Source/GameLogic/Object/LocomotorStoreNewLocomotorThunk.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_00471850@@UAE@XZ,0x00471480,233,Code/gen_small/dtors_005.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_004724d0@@UAE@XZ,0x00471F80,98,Code/gen_small/dtors_005.cpp,reloc-derived;call-sites=1;identity=generated
@@ -1690,7 +1690,7 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ??1Gen_dtor_006235b0@@UAE@XZ,0x00623530,45,Code/gen_small/dtors_007.cpp,reloc-derived;call-sites=1;identity=generated
 ?EnableSlotListUpdates@@YAX_N@Z,0x006237A0,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanGameOptionsMenu.cpp,reloc-derived;call-sites=1;identity=real
 ?ShowUnderlyingGUIElements@@YAX_NPBD1PAPBD2@Z,0x00623BC0,502,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp,reloc-derived;call-sites=2;identity=real
-?insert_unique@?$_Rb_tree@PAVGameWindow@@PAV1@U?$_Identity@PAVGameWindow@@@_STL@@U?$less@PAVGameWindow@@@3@V?$allocator@PAVGameWindow@@@3@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@PAVGameWindow@@U?$_Nonconst_traits@PAVGameWindow@@@_STL@@@_STL@@_N@2@ABQAVGameWindow@@@Z,0x00625940,145,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefsRegisterTextWindow.cpp,reloc-derived;call-sites=1;identity=real
+?insert_unique@?$_Rb_tree@PAVGameWindow@@PAV1@U?$_Identity@PAVGameWindow@@@_STL@@U?$less@PAVGameWindow@@@3@V?$allocator@PAVGameWindow@@@3@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@PAVGameWindow@@U?$_Nonconst_traits@PAVGameWindow@@@_STL@@@_STL@@_N@2@ABQAVGameWindow@@@Z,0x00625940,145,Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp,reloc-derived;call-sites=2;identity=real
 ??0?$pair@$$CBUGen_t_006271a0_k4@@UGen_t_006271a0_p12cd@@@_STL@@QAE@ABU01@@Z,0x006270C0,155,Code/gen_small/tgrid_119.cpp,reloc-derived;call-sites=1;identity=generated
 ?clear@?$_List_base@VQueuedDownload@@V?$allocator@VQueuedDownload@@@_STL@@@_STL@@QAEXXZ,0x00627270,58,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,reloc-derived;call-sites=1;identity=real
 ?downloadNextQueuedFile@DownloadManager@@QAEJXZ,0x00627370,340,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,reloc-derived;call-sites=1;identity=real
@@ -2089,7 +2089,6 @@ _qr2_parse_queryA,0x00855F70,590,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 _qr2_init_socketA,0x00856290,629,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/qr2.c,reloc-derived;call-sites=2;identity=real
 ??8@YA_NABUGen_t_00642f90_m12cd@@0@Z,0x008574E0,15,Code/gen_small/fam_015.cpp,reloc-derived;call-sites=1;identity=generated
 ?dispatchIndexedValue@@YAXPAXH0HPAH1@Z,0x00858070,66,Code/GameEngine/Source/Common/DualIndexedDispatchThunk.cpp,reloc-derived;call-sites=4;identity=real
-_SBQueryEngineUpdateServer,0x00869930,128,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_queryengine.c,reloc-derived;call-sites=2;identity=real
 _ghiDoConnecting,0x0087B840,380,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpMain.c,reloc-derived;call-sites=1;identity=real
 ?getMaxHeightAbovePosition@GeometryInfo@@QBEMXZ,0x0087E000,101,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,reloc-derived;call-sites=1;identity=real
 ?_M_insert_overflow@?$vector@VMoney@@V?$allocator@VMoney@@@_STL@@@_STL@@IAEXPAVMoney@@ABV3@ABU__false_type@2@I_N@Z,0x0087FBE0,237,Code/GameEngine/Source/Common/MoneyVectorPushBack.cpp,reloc-derived;call-sites=1;identity=real
@@ -2268,8 +2267,7 @@ _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/Game
 ??1Gen_dtor_00984630@@UAE@XZ,0x009845A0,70,Code/gen_small/dtors_010.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0098ed10@@UAE@XZ,0x0098EA20,212,Code/gen_small/dtors_010.cpp,reloc-derived;call-sites=1;identity=generated
 _luaV_execute,0x00997C80,2924,Code/Libraries/Source/Lua/ldo.c,reloc-derived;call-sites=1;identity=real
-_simpleexp,0x0099C810,292,Code/Libraries/Source/Lua/lparser.c,reloc-derived;call-sites=1;identity=real
-_luaX_lex,0x009A0B60,1134,Code/Libraries/Source/Lua/lparser.c,reloc-derived;call-sites=27;identity=real
+_codepushbool,0x0099EF70,151,Code/Libraries/Source/Lua/lparser.c,reloc-derived;call-sites=2;identity=real
 ?_M_insert_overflow@?$vector@U?$pair@PAVSubsystemInterface@@PAX@_STL@@V?$allocator@U?$pair@PAVSubsystemInterface@@PAX@_STL@@@2@@_STL@@IAEXPAU?$pair@PAVSubsystemInterface@@PAX@2@ABU32@ABU__false_type@2@I_N@Z,0x009A1E50,302,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_0006b630@@UAE@XZ,0x009A2030,125,Code/gen_small/dtors_000.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_009a2920@@UAE@XZ,0x009A2390,133,Code/gen_small/dtors_010.cpp,reloc-derived;call-sites=1;identity=generated
