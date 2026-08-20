@@ -29,7 +29,27 @@ typedef bool Bool;
 #define TRUE true
 #define FALSE false
 
-class Player;
+// Player as far as this TU touches it. Methods resolve out-of-line through
+// reverse/symbols.csv; the two members model the retail offsets areAllies and
+// cachePlayerPtrs read inline (getPlayerTemplate at +0x04, getDefaultTeam at
+// +0x230).
+class Team;
+class PlayerTemplate;
+
+class Player
+{
+public:
+	const PlayerTemplate *getPlayerTemplate() const { return m_playerTemplate; }
+	Team *getDefaultTeam() const { return m_defaultTeam; }
+	Bool isPlayerObserver() const;
+	Bool isLocalPlayer() const;
+
+private:
+	void					*m_vptrPad;								// +0x00 retail vptr
+	PlayerTemplate *m_playerTemplate;				// +0x04
+	char					 m_pad[ 0x230 - 8 ];
+	Team					*m_defaultTeam;						// +0x230
+};
 
 // Four-byte stand-in for the AsciiString SubsystemInterface embeds at +4; no
 // body here ever touches m_name.
@@ -159,6 +179,20 @@ typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) =
 // MSVC only emits while their callees (reset, hideEndGame) stay undefined in
 // the calling TU -- defined here, they are provably nothrow and the frame
 // vanishes.
+
+//-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::hasBeenDefeated(Player *player)
+{
+	if (!player)
+		return false;
+	if (player->isPlayerObserver())
+		return false;
+
+	if (m_singleAllianceRemaining && m_defeatCount > 0 && !hasAchievedVictory(player))
+		return true;
+
+	return false;
+}
 
 //-------------------------------------------------------------------------------------------------
 Bool VictoryConditions::isLocalAlliedDefeat( void )
