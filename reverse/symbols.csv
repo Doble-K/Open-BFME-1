@@ -72419,3 +72419,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??1MaterialRemapperClass@@QAE@XZ,0x0092FF90,callee of the byte-proven clone_materials 0x96DDC0; same stack temp as ecx under EH state -1
 ??0Rva899F00Base@@QAE@PBDH@Z,0x00899F00
 ??0StateMachine@@QAE@PAVObject@@VAsciiString@@_N@Z,0x000A1BD0,Open-BFME5 corrected signature: retail ret 0xc and a byte read at entry+12 stored to this+0x42 prove a third _N parameter the two-parameter pin omits (same shape as TeamPrototype)
+??A?$map@HPAU_SBServer@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHPAU_SBServer@@@_STL@@@3@@_STL@@QAEAAPAU_SBServer@@ABH@Z,0x006473A0,Open-BFME5 second image copy of this instantiation; PeerThread call sites encode its incremental-link thunk 0x0001AA50
+?_M_erase@?$_Rb_tree@HU?$pair@$$CBHVBuddyInfo@@@_STL@@U?$_Select1st@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@@Z,0x004EB5C0,Open-BFME5 BuddyInfoMap clear helper; GameSpyInfo::reset encodes its incremental-link thunk 0x000114AA
