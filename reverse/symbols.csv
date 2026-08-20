@@ -72397,3 +72397,4 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?onPlayerSciencePurchasePointsChanged@ControlBar@@QAEXPAVPlayer@@@Z,0x000439D7,Open-BFME5 the thunk Player addSciencePurchasePoints notifies; Zero Hour names the same call
 ??0DamageInfo@@QAE@XZ,0x0002C9D5,Open-BFME5 the thunk Object kill constructs its DamageInfo through; Zero Hour names the same constructor
 ?startProneEffects@ProneUpdate@@AAEXXZ,0x00042884,Open-BFME5 the thunk ProneUpdate goProne calls on the transition into prone; Zero Hour names the same call
+??0?$_STLP_alloc_proxy@PAU?$_List_node@PAVShellMenuSchemeImage@@@_STL@@U12@V?$allocator@U?$_List_node@PAVShellMenuSchemeImage@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_List_node@PAVShellMenuSchemeImage@@@_STL@@@1@PAU?$_List_node@PAVShellMenuSchemeImage@@@1@@Z,0x0002244E,ILT; alloc_proxy ctor reached from the _List_base ctor at 0x0059FE90
