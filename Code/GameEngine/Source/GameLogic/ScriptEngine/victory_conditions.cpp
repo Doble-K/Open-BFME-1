@@ -160,6 +160,68 @@ public:
 
 extern GameInfo *TheGameInfo;				///< retail [0x012F708C]
 
+enum NameKeyType
+{
+	NAMEKEY_INVALID = 0,
+};
+
+class NameKeyGenerator
+{
+public:
+	NameKeyType nameToKey( const char* keyName );
+};
+
+extern NameKeyGenerator *TheNameKeyGenerator;	///< retail [0x012ED600]
+
+#define NAMEKEY(x) TheNameKeyGenerator->nameToKey(x)
+
+class PlayerTemplateStore
+{
+public:
+	const PlayerTemplate *findPlayerTemplate( NameKeyType nameKey ) const;
+};
+
+extern PlayerTemplateStore *ThePlayerTemplateStore;	///< retail [0x012ED750]
+
+// PlayerList as far as cachePlayerPtrs needs it: getNthPlayer resolves
+// out-of-line, getNeutralPlayer inlines to the +0x14 member read retail shows.
+class PlayerList
+{
+public:
+	Player *getNeutralPlayer() { return m_neutralPlayer; }
+	Player *getNthPlayer( Int i );
+
+private:
+	void		*m_vptrPad;					// +0x00 retail vptr
+	char		 m_pad[ 0x10 ];
+	Player	*m_neutralPlayer;		// +0x14
+};
+
+extern PlayerList *ThePlayerList;			///< retail [0x012ED748]
+
+class RecorderClass
+{
+public:
+	Bool isMultiplayer( void );
+};
+
+extern RecorderClass *TheRecorder;		///< retail [0x012ED62C]
+
+// Radar as far as cachePlayerPtrs needs it: forceOn inlines to the +0x0D byte
+// store retail shows.
+class Radar
+{
+public:
+	void forceOn( Bool force ) { m_radarForceOn = force; }
+
+private:
+	void	*m_vptrPad;							// +0x00 retail vptr
+	char	 m_pad[ 9 ];
+	Bool	 m_radarForceOn;				// +0x0D
+};
+
+extern Radar *TheRadar;								///< retail [0x012EF0E4]
+
 // hasSinglePlayerBeenDefeated seeds its result from a Player byte getter at
 // +0x680 (ILT 0x00012EEA -> body 0x000C9D00), a BFME-only pre-check with no ZH
 // counterpart. Address-derived shim name, identity open.
@@ -306,6 +368,38 @@ Bool VictoryConditions::hasAchievedVictory(Player *player)
 	}
 
 	return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+void VictoryConditions::cachePlayerPtrs( void )
+{
+	if (!TheRecorder->isMultiplayer())
+		return;
+
+	Int playerCount = 0;
+	const PlayerTemplate *civTemplate = ThePlayerTemplateStore->findPlayerTemplate( NAMEKEY("FactionCivilian") );
+	for (Int i=0; i<MAX_PLAYER_COUNT; ++i)
+	{
+		Player *player = ThePlayerList->getNthPlayer(i);
+		if (player && player != ThePlayerList->getNeutralPlayer() && player->getPlayerTemplate() && player->getPlayerTemplate() != civTemplate && !player->isPlayerObserver())
+		{
+			m_players[playerCount] = player;
+			if (m_players[playerCount]->isLocalPlayer())
+				m_localSlotNum = playerCount;
+			++playerCount;
+		}
+	}
+	while (playerCount < MAX_PLAYER_COUNT)
+	{
+		m_players[playerCount++] = NULL;
+	}
+
+	if (m_localSlotNum < 0)
+	{
+		m_localPlayerDefeated = true;	// if we have no local player, don't check for defeat
+		TheRadar->forceOn(TRUE);
+		m_isObserver = true;
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
