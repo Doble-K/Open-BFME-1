@@ -121,8 +121,23 @@ def find_defined_functions(text: str):
     namespace_stack = []
     brace_depth = 0
 
+    in_macro = False
     for line in text.splitlines():
         stripped = line.strip()
+        # A function definition written inside a #define body is not a
+        # definition -- it is macro text, and the identifiers in it are
+        # parameters. FunctorBindConstructors.cpp generates 82 constructors from
+        # one macro whose body reads `NAME::NAME( ... )`, and this checker read
+        # that literally and failed the commit for a class called NAME. Track
+        # backslash continuations and skip the whole macro body; the functions
+        # the macro EXPANDS to are declared in the ledger under their real names.
+        was_macro = in_macro
+        if stripped.startswith("#define"):
+            in_macro = line.rstrip().endswith("\\")
+        elif in_macro:
+            in_macro = line.rstrip().endswith("\\")
+        if was_macro or stripped.startswith("#define"):
+            continue
         if stripped.startswith("// ?"):
             # Only a real ANNOTATION may bind to the next definition. Two forms
             # exist in this tree: a bare mangled name (3305 of them), and a name

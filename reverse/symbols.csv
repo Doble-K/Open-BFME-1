@@ -68043,7 +68043,7 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?run@DieMuxDataGetFieldParseShim@@SAPBUFieldParse@@XZ,0x00255140,DieMuxData getFieldParse incremental-link thunk target through a TU-local forwarding shim
 ?run@DrawableClearAndSetModelConditionStateShim@@QAEXW4ModelConditionFlagType@@0@Z,0x00526660,Drawable clearAndSetModelConditionState incremental-link thunk target through a TU-local forwarding shim
 ?run@FXListAtBonePosDoFxAtBonesShim@@QBEXPBVObject@@H@Z,0x0042D8E0,FXListAtBonePosFXNugget doFxAtBones incremental-link thunk target through a TU-local forwarding shim
-?run@FXListDoFXPosShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x001D6770,FXList doFXPos incremental-link thunk target through a TU-local forwarding shim
+?run@FXListDoFXPosShim@@QBEXPBUCoord3D@@PBVMatrix3D@@MRBU2@M@Z,0x001D6770,FXList doFXPos incremental-link thunk target through a TU-local forwarding shim; volatile 4th param is the enregistration-exclusion device that reproduces retail register placement
 ?run@GadgetListBoxSetColorsShim@@SAXPAVGameWindow@@HHHHHHHHHHHH@Z,0x004B6D40,GadgetListBoxSetColors incremental-link thunk target through a TU-local forwarding shim
 ?run@GetGameLogicRandomValueRealShim@@SAMMMPADH@Z,0x00096DD0,GetGameLogicRandomValueReal incremental-link thunk target through a TU-local forwarding shim
 ?run@HideInGameChatShim@@SAXXZ,0x00512670,HideInGameChat incremental-link thunk target through a TU-local forwarding shim
