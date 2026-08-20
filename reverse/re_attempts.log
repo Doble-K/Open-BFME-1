@@ -4286,3 +4286,5 @@ three-same-length-different-bytes-traps	0x000D00C0	12	converted	THREE TELLS THAT
 ?noPatchBeforeOnlineCallback@@YAXXZ	0x0062F760	42	no-match	t=11m model=gpt-5.6-sol; source body compiles 42B but target starts with a1 global load/push ebx and has unresolved calls absent from current shape; target bytes do not identify the callback implementation, so no row claimed.
 ?d_0010a9e0@@YAXXZ	0x0010A9E0	219	converted	Open-BFME5 exact 219/219 UpgradeTemplate copy assignment C++ body with eight resolved calls
 ?_M_push_back_aux_v@?$deque@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@IAEXABVGameResultsRequest@@@Z	0x006420E0	188	no-match	Open-BFME5 real body identity; GameResultsThread emits frame-pointer EH shape while retail omits EBP and has different cleanup state numbering; requires focused template TU/codegen flags
+?copyFromQueueNode@BFMENetworkQueueItem@@QAEXPAX@Z	0x00658CE0	244	mapped	Open-BFME5 reloc-derived name refuted by return-this codegen; exact body is BFMENetworkQueueItem copy assignment
+?d_00658ce0@@YAXXZ	0x00658CE0	244	converted	Open-BFME5 exact 244/244 BFMENetworkQueueItem copy assignment C++ body
