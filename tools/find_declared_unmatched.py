@@ -124,7 +124,24 @@ def find_defined_functions(text: str):
     for line in text.splitlines():
         stripped = line.strip()
         if stripped.startswith("// ?"):
-            symbol_comment = stripped[3:].strip()
+            # Only a real ANNOTATION may bind to the next definition. Two forms
+            # exist in this tree: a bare mangled name (3305 of them), and a name
+            # followed by present-unmatched / absent-from-retail (11104). A third
+            # thing also starts with "// ?" -- ordinary PROSE that happens to open
+            # with a mangled name, 109 of those, e.g.
+            #   // ??_GCrateTemplate 0x0037A2F0 -> 0x0002FC70 -> 0x00379EC0.
+            # Binding prose to the following definition made this checker report
+            # CrateTemplate::~CrateTemplate as undeclared when its row exists and
+            # matches, failing a commit for a correctly declared destructor. Prose
+            # is now ignored rather than captured, and the pending annotation is
+            # cleared so a stale one cannot leak past it.
+            candidate = stripped[3:].strip()
+            parts = candidate.split()
+            if len(parts) == 1 or (len(parts) >= 2 and parts[1] in
+                                   ("present-unmatched", "absent-from-retail")):
+                symbol_comment = candidate
+            else:
+                symbol_comment = None
             continue
         is_namespace_line = stripped.startswith("namespace ") or stripped.startswith("namespace\t") or stripped.startswith("namespace {")
 
