@@ -4,13 +4,14 @@
 // parseFX (0x002016E0), which lives in the same file and is the same four lines
 // over a different store and a different vector.
 //
-// It is parseOCL and not parseWeapon because it appends to the vector at module
-// data +0x4C, and the three twelve-byte vectors of
-// InstantDeathBehaviorModuleData sit in declaration order m_fx +0x40,
-// m_ocls +0x4C, m_weapons +0x58.
+// The +0x4C append identifies the callback's vector slot. Retail then loads
+// 0x012EF738, which GameEngine::init names TheWeaponStore, and calls the
+// WeaponStore::findWeaponTemplate ILT at 0x0000D3FA. The target therefore has
+// a WeaponStore lookup even though the callback remains address-derived as
+// parseOCL; keep the observed pointer store and vector slot byte-for-byte.
 //
 // The BFME-vs-reference difference is the signature: BFME's
-// findObjectCreationList takes an AsciiString BY VALUE where the reference
+// findWeaponTemplate takes a BFMERetailAsciiString BY VALUE where the reference
 // takes a const char *, so retail builds one from the token in the argument
 // slot and never destroys it -- MSVC has the callee destroy by-value class
 // parameters. Written the reference way the body is twelve bytes short with the
@@ -37,10 +38,11 @@
 #include <vector>
 
 class ObjectCreationList;
+class WeaponTemplate;
 
 template <typename T> class StringBase
 {
-friend class AsciiString;
+friend class BFMERetailAsciiString;
 
 private:
 	StringBase( void );
@@ -51,14 +53,14 @@ private:
 public:
 };
 
-class AsciiString
+class BFMERetailAsciiString
 {
 public:
-	AsciiString( const char *text )
+	BFMERetailAsciiString( const char *text )
 	{
 		((StringBase<char> *)this)->StringBase<char>::StringBase( text );
 	}
-	~AsciiString( void );
+	~BFMERetailAsciiString( void );
 
 private:
 	void *m_data;
@@ -71,13 +73,13 @@ public:
 	const char *getNextTokenOrNull( const char *seps = 0 );
 };
 
-class ObjectCreationListStore
+class WeaponStore
 {
 public:
-	const ObjectCreationList *findObjectCreationList( AsciiString name ) const;
+	const WeaponTemplate *findWeaponTemplate( BFMERetailAsciiString name ) const;
 };
 
-extern ObjectCreationListStore *TheObjectCreationListStore;
+extern WeaponStore *TheWeaponStore;
 
 class InstantDeathBehaviorModuleData
 {
@@ -93,7 +95,7 @@ void parseOCL( INI* ini, void *instance, void * /*store*/, const void* /*userDat
 	InstantDeathBehaviorModuleData* self = (InstantDeathBehaviorModuleData*)instance;
 	for (const char* token = ini->getNextToken(); token != NULL; token = ini->getNextTokenOrNull())
 	{
-		const ObjectCreationList *ocl = TheObjectCreationListStore->findObjectCreationList(token);	// could be null! this is OK!
-		self->m_ocls.push_back(ocl);
+		const WeaponTemplate *weapon = TheWeaponStore->findWeaponTemplate(token);	// could be null! this is OK!
+		self->m_ocls.push_back(reinterpret_cast<const ObjectCreationList *>(weapon));
 	}
 }
