@@ -1,19 +1,24 @@
 class Locomotor;
 class LocomotorTemplate;
 
+class Locomotor
+{
+    friend class LocomotorStore;
+
+protected:
+    Locomotor(const LocomotorTemplate *);
+
+private:
+    char m_storage[44];
+};
+
 class LocomotorStore
 {
 public:
     Locomotor *newLocomotor(const LocomotorTemplate *) const;
 };
 
-class LocomotorStoreNewLocomotorShim
-{
-public:
-    Locomotor *create(const LocomotorTemplate *tmpl) const;
-};
-
 Locomotor *LocomotorStore::newLocomotor(const LocomotorTemplate *tmpl) const
 {
-    return ((const LocomotorStoreNewLocomotorShim *)this)->create(tmpl);
+    return new Locomotor(tmpl);
 }
