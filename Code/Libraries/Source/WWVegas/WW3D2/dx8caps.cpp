@@ -505,19 +505,52 @@ void DX8Caps::Shutdown(void)
 //
 // ----------------------------------------------------------------------------
 
-// ?Init_Caps@DX8Caps@@AAEXPAUIDirect3DDevice8@@@Z present-unmatched
+// BFME's device interface is IDirect3DDevice9, not IDirect3DDevice8, so the
+// software-vertex-processing switch is the dedicated method at vtable slot 77
+// (+0x134) rather than the D3DRS_SOFTWAREVERTEXPROCESSING render state ZH sets
+// through SetRenderState. Three independent slots confirm the D3D9 numbering
+// against retail: SetRenderState +0xe4 (D3D9 index 57), SetVertexShaderConstantF
+// +0x178 (94) and SetPixelShaderConstantF +0x1b4 (109) -- exactly the offsets
+// reference/shims/d3d8_shim_validated.h was padded to reproduce. That shim
+// still models the intervening slots with DX8 names, so slot 77 is spelled here
+// as a direct dispatch rather than renamed out from under every other WW3D2
+// source in the tree.
+typedef HRESULT (__stdcall *SetSoftwareVertexProcessingProc)(IDirect3DDevice8 *device, BOOL software);
+
+static void Set_Software_Vertex_Processing(IDirect3DDevice8 *device, BOOL software)
+{
+	(*(SetSoftwareVertexProcessingProc **)device)[0x134 / 4](device, software);
+}
+
+// Same overlay trick as BFME_DX8Caps_CheckBumpmapFields and
+// BFME_DX8Caps_CheckShaderFields: SupportTnL sits at 0x138 in BFME's DX8Caps
+// where ours puts it at 0xdc, exactly four bytes ahead of the 0x13c
+// SupportBumpEnvmap the bumpmap overlay already uses -- the two agree, which is
+// what says this is one layout and not two guesses. The 92-byte gap is
+// sizeof(D3DCAPS9) - sizeof(D3DCAPS8): BFME's Caps member is the D3D9 struct,
+// which is the same D3D9 device interface the slot-77 dispatch above needs.
+// Caps itself still starts at 0x08, so &Caps and Caps.DevCaps at 0x24 are
+// already at their retail offsets and need no overlay.
+struct BFME_DX8Caps_InitCapsFields
+{
+	char pad[0x138];
+	bool supportTnL;						// 0x138
+};
+
 void DX8Caps::Init_Caps(IDirect3DDevice8* D3DDevice)
 {
-	D3DDevice->SetRenderState(D3DRS_SOFTWAREVERTEXPROCESSING,TRUE);
+	BFME_DX8Caps_InitCapsFields *retail = (BFME_DX8Caps_InitCapsFields *)this;
+
+	Set_Software_Vertex_Processing(D3DDevice,TRUE);
 	DX8CALL(GetDeviceCaps(&Caps));
 
 	if ((Caps.DevCaps&D3DDEVCAPS_HWTRANSFORMANDLIGHT)==D3DDEVCAPS_HWTRANSFORMANDLIGHT) {
-		SupportTnL=true;
+		retail->supportTnL=true;
 
-		D3DDevice->SetRenderState(D3DRS_SOFTWAREVERTEXPROCESSING,FALSE);
+		Set_Software_Vertex_Processing(D3DDevice,FALSE);
 		DX8CALL(GetDeviceCaps(&Caps));	
 	} else {
-		SupportTnL=false;			
+		retail->supportTnL=false;			
 	}
 }
 
