@@ -91,8 +91,6 @@ _buttonPushed
 ??_7?$VectorClass@PAVRenderObjClass@@@@6B@
 ??_7?$VectorClass@PAVTextureClass@@@@6B@
 ??_7?$VectorClass@PAVVertexMaterialClass@@@@6B@
-??_7?$VectorClass@UAddInfoStruct@MixFileFactoryClass@@@@6B@
-??_7?$VectorClass@UFileOffsetStruct@@@@6B@
 ??_7?$VectorClass@UWeightInfoStruct@NamedPivotMapClass@@@@6B@
 ??_7?$VectorClass@VVector2@@@@6B@
 ??_7?$VectorClass@VVector4@@@@6B@
@@ -124,7 +122,6 @@ _buttonOk
 
 # Constructor/destructor vptr stores resolve to different points in the
 # retail base chain, the same documented phenomenon as the FX vtables above.
-??_7StreamingArchiveFile@@6B@
 
 # Same decorated globals are materialized separately by different TUs or
 # template instantiations; each reference is from a byte-matched function.
@@ -134,9 +131,7 @@ _theGameLogicSeed
 
 # Texture-filter lookup arrays use element-address relocations. Subtracting
 # the object addend leaves one apparent base per referenced array element.
-?_MagTextureFilters@@3PAY03IA
 ?_MinTextureFilters@@3PAY03IA
-?_MipMapFilters@@3PAY03IA
 
 # ceil is imported through two IAT slots in retail, matching the existing
 # memmove/closesocket double-import cases.
@@ -221,9 +216,7 @@ _W3DFilters
 # passes a GameWindow* to something that takes a const char*. Its real name is
 # not recoverable from the image, which is why nothing is repointed here.
 ?TheFXListStore@@3PAVFXListStore@@A
-?TheNameKeyGenerator@@3PAVNameKeyGenerator@@A
 ?TheNullChr@?1??str@UnicodeString@@QBEPBGXZ@4GB
-__PresentParameters
 _m_boundaries
 #
 # __real@3c8efa35 is pi/180, and BFME compiles INI in two translation units:
@@ -298,12 +291,9 @@ _LOGICFRAMES_PER_MSEC_REAL
 # retail (two import descriptors), exactly like memmove/closesocket above:
 # mutex.cpp and wwmemlog.cpp resolve 0x1358D18 (0x1358E74 for Leave) while
 # GameMemory.cpp resolves 0x1358E5C. All referencing rows byte-verify.
-__imp__EnterCriticalSection@4
-__imp__LeaveCriticalSection@4
 # DebugIOFlat's ctor installs 0x113517C while its dtor thunk references
 # 0x1135C9C: the same base-chain-dtor vptr family as the ??_7 ctor-vs-dtor
 # entries at the top of this file.
-??_7DebugIOFlat@@6B@
 
 # libpng 1.0.5 is linked TWICE in retail, the same class as realcrc.cpp's
 # ?_Table@CRC@@0PAKA above. Two facts establish it rather than a wrong claim:
@@ -450,9 +440,6 @@ _png_PLTE
 # FXParticleSystem siblings are already listed; this one only became visible when
 # that thunk landed.
 ??_7RenderObjectUpdateModuleInfo@FXParticleSystem@@6B@
-??_7TeamFactory@@6BSnapshot@@@
-??_7TeamFactory@@6BSubsystemInterface@@@
-??_7UpdateModule@@6B@
 
 # `static Bool isShuttingDown` is declared independently by every shell-menu TU
 # (SinglePlayerMenu.cpp line 61, WOLLoginMenu.cpp line 84, and the ZH reference
@@ -527,7 +514,6 @@ _buttonBackKey
 # 0x448CA2/0x4300A3), confirming they are parallel vtables of two classes under
 # one base rather than two copies of one vtable. Latent for the same reason: the
 # DIR32 is masked with retail bytes and every referencing row byte-verifies.
-??_7UpdateModule@@6BPB_DeepBase@@@
 
 # ---------------------------------------------------------------------------
 # Two more of the constructor-only interface-vtable family in the "UNRESOLVED --
@@ -556,5 +542,3 @@ _buttonBackKey
 # (??_7HordeMemberCollide@@6BCollideModuleInterface@@@ and friends) plus
 # re-verification, not a whitelist entry.
 # ---------------------------------------------------------------------------
-??_7CollideModuleInterface@@6B@
-??_7DamageModuleInterface@@6B@
