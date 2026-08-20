@@ -72430,3 +72430,10 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?format@UnicodeString@@QAAXVUnicodeString@@ZZ,0x00889190,BFME UnicodeString::format takes the format string BY VALUE as a UnicodeString not as a const WCHAR*
 ?showChat@DisconnectMenu@@QAEXVUnicodeString@@@Z,0x00023E1B,ILT thunk; the DisconnectMenu chat sink ConnectionManager::processDisconnectChat ends on
 ?TheDisconnectMenu@@3PAVDisconnectMenu@@A,0x012F4964,DisconnectMenu* global null-checked at the top of ConnectionManager::processDisconnectChat
+?TheGameText@@3PAVGameTextInterface@@A,0x012F147C,GameTextInterface* global read by LANAPI::OnGameStartTimer
+?findObjectCreationList@ObjectCreationListStore@@QBEPBVObjectCreationList@@VAsciiString@@@Z,0x0000D3FA,call displacement in InstantDeathBehavior parseOCL @0x00201770 (incremental-link thunk); BFME takes the name by value
+?TheObjectCreationListStore@@3PAVObjectCreationListStore@@A,0x012EF738,ObjectCreationListStore* global read by InstantDeathBehavior parseOCL
+?_M_insert_overflow@?$vector@PBVObjectCreationList@@V?$allocator@PBVObjectCreationList@@@_STL@@@_STL@@IAEXPAPBVObjectCreationList@@ABQBV3@ABU__true_type@2@I_N@Z,0x0002E65E,call displacement in InstantDeathBehavior parseOCL @0x00201770 (incremental-link thunk)
+?applyRva1C7370@Object@@QAEXABVModelConditionFlags@@_N@Z,0x000307E7,Open-BFME6 RVA 162CD0 flag-apply helper call pin
+_bfmeRetailCritterDesyncLog,0x0003A17A,Open-BFME6 BFME desync trace logger (cdecl sink+message) reached from AIDockMoveToDockState onEnter
+??0Rva4048AString@@QAE@XZ,0x0004048A,Open-BFME6 string default ctor ILT called by 0x00844520

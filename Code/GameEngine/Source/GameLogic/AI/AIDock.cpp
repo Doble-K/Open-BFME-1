@@ -220,6 +220,25 @@ static AIUpdateInterface *bfmeRetailAIUpdate( const Object *obj )
 	return *(AIUpdateInterface **)((char *)obj + 0x204);
 }
 
+// BFME wraps setAdjustsDestination(FALSE) in a desync trace: a byte flag, a
+// sink pointer, and a cdecl two-argument logger, all reached only when the
+// passthrough branch is taken. The flag it finally writes is the
+// m_adjustDestinations byte, which retail keeps at state+0x4c.
+extern "C" unsigned char bfmeRetailCritterDesyncFlag;			///< 0x012F0239
+extern "C" void *bfmeRetailCritterDesyncSink;					///< 0x012ED4FC
+extern "C" void bfmeRetailCritterDesyncLog( void *sink, const char *msg );
+
+static void bfmeRetailSetAdjustsDestinationFalse( State *state )
+{
+	if( bfmeRetailCritterDesyncFlag )
+	{
+		if( bfmeRetailCritterDesyncSink )
+			bfmeRetailCritterDesyncLog( bfmeRetailCritterDesyncSink, "CritterDesync: setAdjustDestination(FALSE) 2" );
+	}
+
+	*((char *)state + 0x4C) = 0;
+}
+
 
 //----------------------------------------------------------------------------------------------------------
 /**
@@ -693,7 +712,9 @@ void AIDockMoveToEntryState::onExit( StateExitType status )
 /**
  * Move to the dock's docking position.
  */
-// ?onEnter@AIDockMoveToDockState@@ present-unmatched
+// Retail carries neither ZH's isDockOpen guard nor the machine lock: the two
+// null tests share one failure epilogue, and the passthrough branch ends in the
+// desync-traced setAdjustsDestination(FALSE) rather than a plain field write.
 StateReturnType AIDockMoveToDockState::onEnter( void )
 {
 	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
@@ -706,13 +727,6 @@ StateReturnType AIDockMoveToDockState::onEnter( void )
 	if (dock == NULL)
 		return STATE_FAILURE;
 
-	// fail if the dock is closed
-	if( dock->isDockOpen() == FALSE )
-	{
-		dock->cancelDock( bfmeRetailMachineOwner( this ) );
-		return STATE_FAILURE;
-	}
-
 	// get the docking position
 	((BFMERetailDockVTable *)dock)->getDockPosition( bfmeRetailMachineOwner( this ), &m_goalPosition );
 
@@ -720,11 +734,8 @@ StateReturnType AIDockMoveToDockState::onEnter( void )
 	if( ai  &&  ((BFMERetailDockVTable *)dock)->isAllowPassthroughType() ) 
 	{
 		ai->ignoreObstacle( bfmeRetailMachine( this )->getGoalObject() );
-		setAdjustsDestination(false);
+		bfmeRetailSetAdjustsDestinationFalse( this );
 	}
-
-	// since we are moving inside the dock, disallow interruptions
-	getMachine()->lock("AIDockMoveToDockState::onEnter");
 
 	// this behavior is an extention of basic MoveTo
 	return AIInternalMoveToState::onEnter();
