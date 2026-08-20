@@ -166,18 +166,45 @@ void PropagandaTowerBehavior::onObjectCreated( void )
 
 }  // end onObjectCreated
 
+// The BFME module layout keeps the owning Object at +0x08 and the
+// removeAllInfluence virtual at vtable slot +0x2c.  The shared ZH headers add
+// one virtual before that slot and place the Object at +0x0c, so model only the
+// retail prefix here instead of letting those unrelated header differences
+// leak into this method's ABI.
+class PropagandaTowerBehaviorRetailLayout
+{
+public:
+	virtual void _pad00( void ) = 0;
+	virtual void _pad04( void ) = 0;
+	virtual void _pad08( void ) = 0;
+	virtual void _pad0c( void ) = 0;
+	virtual void _pad10( void ) = 0;
+	virtual void _pad14( void ) = 0;
+	virtual void _pad18( void ) = 0;
+	virtual void _pad1c( void ) = 0;
+	virtual void _pad20( void ) = 0;
+	virtual void _pad24( void ) = 0;
+	virtual void _pad28( void ) = 0;
+	virtual void removeAllInfluence( void ) = 0;
+
+	unsigned char m_unmodelled04[ 4 ];
+	Object *m_object;
+};
+
 // ------------------------------------------------------------------------------------------------
-// ?onCapture@PropagandaTowerBehavior@@ present-unmatched
 void PropagandaTowerBehavior::onCapture( Player *oldOwner, Player *newOwner )
 {
+	PropagandaTowerBehaviorRetailLayout *retail =
+		reinterpret_cast<PropagandaTowerBehaviorRetailLayout *>( this );
+
 	// We don't function for the neutral player.  
 	if( newOwner == ThePlayerList->getNeutralPlayer() )
 	{
-		removeAllInfluence();
-		setWakeFrame( getObject(), UPDATE_SLEEP_FOREVER );
+		retail->removeAllInfluence();
+		setWakeFrame( retail->m_object, UPDATE_SLEEP_FOREVER );
 	}
 	else
-		setWakeFrame( getObject(), UPDATE_SLEEP_NONE );
+		setWakeFrame( retail->m_object, UPDATE_SLEEP_NONE );
 }
 
 // ------------------------------------------------------------------------------------------------
