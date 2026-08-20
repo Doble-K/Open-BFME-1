@@ -36,11 +36,19 @@ typedef bool Bool;
 class Team;
 class PlayerTemplate;
 
+enum Relationship
+{
+	ENEMIES = 0,
+	NEUTRAL,
+	ALLIES,
+};
+
 class Player
 {
 public:
 	const PlayerTemplate *getPlayerTemplate() const { return m_playerTemplate; }
 	Team *getDefaultTeam() const { return m_defaultTeam; }
+	Relationship getRelationship( const Team *that ) const;
 	Bool isPlayerObserver() const;
 	Bool isLocalPlayer() const;
 
@@ -154,6 +162,17 @@ public:
 
 extern GameInfo *TheGameInfo;				///< retail [0x012F708C]
 
+// hasAchievedVictory reports the winning player index to TheGameLogic through
+// the ILT thunk at 0x0000F5FB; the 35-byte body (0x00383C30) bounds the index
+// to [0,8) and stamps TheGameLogic's frame counter (+0x3C) into the 0x1C-byte
+// per-slot records at +0x1BC. Address-derived shim name, identity open.
+class GameLogicShim
+{
+public:
+	void unidentified_0000f5fb(Int playerIndex);
+};
+
+
 class VictoryConditions : public VictoryConditionsInterface
 {
 public:
@@ -201,6 +220,43 @@ typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) =
 // MSVC only emits while their callees (reset, hideEndGame) stay undefined in
 // the calling TU -- defined here, they are provably nothrow and the frame
 // vanishes.
+
+//-------------------------------------------------------------------------------------------------
+// Compiles as a TU-local helper with MSVC's custom register convention
+// (p1 in eax, p2 in caller's esi), exactly the 53-byte body at 0x0035F150.
+inline static Bool areAllies(const Player *p1, const Player *p2)
+{
+	if (p1 != p2 &&
+		p1->getRelationship(p2->getDefaultTeam()) == ALLIES &&
+		p2->getRelationship(p1->getDefaultTeam()) == ALLIES)
+		return true;
+
+	return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::hasAchievedVictory(Player *player)
+{
+	if (!player)
+		return false;
+	if (player->isPlayerObserver())
+		return false;
+
+	if (m_singleAllianceRemaining && m_defeatCount > 0)
+	{
+		for (Int i=0; i<MAX_PLAYER_COUNT; ++i)
+		{
+			if ( m_players[i] && !hasSinglePlayerBeenDefeated(m_players[i]) &&
+				(player == m_players[i] || areAllies(m_players[i], player)) )
+			{
+				((GameLogicShim *)TheGameLogic)->unidentified_0000f5fb(i);
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
 
 //-------------------------------------------------------------------------------------------------
 Bool VictoryConditions::isLocalAlliedVictory( void )
