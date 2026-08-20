@@ -38,16 +38,16 @@ __forceinline long fast_float2long_round( float f )
 
 #define REAL_TO_INT_FLOOR(x)	(fast_float2long_round((Real)floor((double)(x))))
 
-class Display
+class GlobalData
 {
 public:
-	// read as a member, not through a getter: a getter spills the width to a
-	// stack slot instead of fild-ing it in place
+	// Read as a member, not through a getter: a getter spills the resolution to
+	// a stack slot instead of fild-ing it in place.
 	unsigned char m_unreconstructed_00[ 0x2C ];
-	Int m_width;										///< retail this+0x2C
+	Int m_xResolution;									///< retail this+0x2C
 };
 
-extern Display *TheDisplay;								///< retail [0x012ED5C8]
+extern GlobalData *TheGlobalData;								///< retail [0x012ED5C8]
 
 class GlobalLanguageData
 {
@@ -57,7 +57,7 @@ public:
 
 Int GlobalLanguageData::adjustFontSize( Int theFontSize )
 {
-	Real ratio = TheDisplay->m_width / 1024.0f;
+	Real ratio = TheGlobalData->m_xResolution / 1024.0f;
 	Real size = theFontSize;
 	return REAL_TO_INT_FLOOR( size * ratio );
 }
