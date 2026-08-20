@@ -22,9 +22,34 @@
 #ifndef __REFREAD
 #define __REFREAD 1
 
+/* TU-scoped shim: retail's refdecode object holds an out-of-line copy of the
+   static gimex.h ggetm at 0x00822030, and that copy is an if/else chain tested
+   in the order 1, 2, 4, 3 -- no jump table. Rename the header's switch-shaped
+   copy away and define the retail-shaped one locally rather than reshaping the
+   shared header, which also serves constant-folded inline call sites. */
+#define ggetm gimex_h_ggetm_unused
 #include <string.h>
 #include "codex.h"
 #include "refcodex.h"
+#undef ggetm
+
+extern "C" {
+static unsigned long ggetm(const void *memptr, int numbytes)
+{
+	const unsigned char *p = (const unsigned char *)memptr;
+
+	if (numbytes == 1)
+		return (unsigned long)p[0];
+	if (numbytes == 2)
+		return ((unsigned long)p[0] << 8) | p[1];
+	if (numbytes == 4)
+		return ((((((unsigned long)p[0] << 8) | p[1]) << 8) | p[2]) << 8) | p[3];
+	if (numbytes == 3)
+		return ((((unsigned long)p[0] << 8) | p[1]) << 8) | p[2];
+
+	return 0;
+}
+}
 
 /****************************************************************/
 /*  Information Functions                                       */

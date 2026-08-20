@@ -1,0 +1,39 @@
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// Open-BFME5: the real out-of-line body of
+// __uninitialized_copy<const ProductionPrerequisite *, ProductionPrerequisite *>.
+// The sibling *UninitializedCopy*.cpp claims the 5-byte incremental-link thunk
+// at 0x0001FFEB that reaches it; this TU carries the body it jumps to. The
+// per-element _Construct is DECLARED WITHOUT A BODY so it stays out of line,
+// exactly as retail calls it.
+
+class ProductionPrerequisite
+{
+public:
+	int m_raw[6];
+};
+
+namespace _STL
+{
+struct __false_type
+{
+};
+
+template <class T1, class T2>
+void _Construct(T1 *destination, const T2 &value);
+
+template <class In, class Out>
+Out __uninitialized_copy(In first, In last, Out result, const __false_type &)
+{
+	Out current = result;
+	while (first != last)
+	{
+		_Construct(current, *first);
+		++first;
+		++current;
+	}
+	return current;
+}
+
+template ProductionPrerequisite *__uninitialized_copy<const ProductionPrerequisite *, ProductionPrerequisite *>(
+    const ProductionPrerequisite *, const ProductionPrerequisite *, ProductionPrerequisite *, const __false_type &);
+}

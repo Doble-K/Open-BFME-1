@@ -72439,3 +72439,7 @@ _bfmeRetailCritterDesyncLog,0x0003A17A,Open-BFME6 BFME desync trace logger (cdec
 ??0Rva4048AString@@QAE@XZ,0x0004048A,Open-BFME6 string default ctor ILT called by 0x00844520
 ??0?$_STLP_alloc_proxy@PAU?$_List_node@PAVShellMenuSchemeImage@@@_STL@@U12@V?$allocator@U?$_List_node@PAVShellMenuSchemeImage@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_List_node@PAVShellMenuSchemeImage@@@_STL@@@1@PAU?$_List_node@PAVShellMenuSchemeImage@@@1@@Z,0x0002244E,ILT; alloc_proxy ctor reached from the _List_base ctor at 0x0059FE90
 ??A?$hash_map@HHU?$hash@H@_STL@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHH@_STL@@@2@@_STL@@QAEAAHABH@Z,0x000D6280,int/int hash_map operator[] matched as Gen_hashraw_000d6280; called through its ILT by Player::setTeamRelationship
+??0Gen_t_003a9110_s4@@QAE@ABU0@@Z,0x00887B60,4-byte member copy ctor called by _Construct @0x3A9110; retail target is the StringBase<char> copy ctor
+??0Gen_t_003a93f0_s4@@QAE@ABU0@@Z,0x00887B60,4-byte member copy ctor called by _Construct @0x3A93F0; retail target is the StringBase<char> copy ctor
+??0Gen_t_003abad0_m24@@QAE@ABU0@@Z,0x00029F6E,24-byte member copy ctor called by _Construct @0x3ABAD0; retail call goes through this incremental-link thunk to 0x003AB520
+?rva571c40@@YAXPAVRva572670Record@@HHV1@H@Z,0x0000CE0A,incremental-link thunk to 0x00571C40; callee of the 0x00572670 wrapper
