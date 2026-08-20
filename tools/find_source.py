@@ -519,6 +519,7 @@ def main():
 
     results = []
     conflicts = []
+    warnings = []
     counts = defaultdict(int)
     for c in pool:
         parsed = parse_scope(c["pin"])
@@ -538,13 +539,20 @@ def main():
                 if not why and free_name and c["size"]:
                     conv = custom_convention(c["rva"], c["size"])
                     if conv:
-                        why = "custom calling convention: " + conv
-                        verdict = "CUSTOM-CONVENTION"
+                        # NOT a refutation. The premise "no C++ spelling puts a
+                        # parameter in eax" is true of a DECLARATION and false of
+                        # a DEFINITION: MSVC 7.1 assigns the private convention
+                        # itself once every call site is visible, so the body
+                        # compiles byte-exact when it is reconstructed in the
+                        # SAME TU as its callers. Refusing it before compile cost
+                        # real rows -- drawStaticTextText compiles with a
+                        # byte-exact prologue and byte-exact call sites, and
+                        # reconstructing it is what landed two caller rows.
+                        # Report the requirement; do not decide the row.
+                        warnings.append((c, "custom calling convention (" + conv
+                                         + ") -- matchable ONLY if reconstructed "
+                                           "in the same TU as its callers"))
                         counts["custom_convention"] += 1
-                        conflicts.append((c, why))
-                        results.append({**c, "verdict": verdict,
-                                        "files": ";".join(files[:4])})
-                        continue
                 if why:
                     verdict = "SIGNATURE-CONFLICT"
                     counts["signature_conflict"] += 1

@@ -2305,7 +2305,6 @@ Bool NetPacket::addDisconnectScreenOffCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-// ?isRoomForDisconnectScreenOffMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForDisconnectScreenOffMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;
@@ -2418,7 +2417,6 @@ Bool NetPacket::addDisconnectFrameCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-// ?isRoomForDisconnectFrameMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForDisconnectFrameMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;
@@ -2740,7 +2738,6 @@ Bool NetPacket::addFileProgressCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-// ?isRoomForFileProgressMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForFileProgressMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;
@@ -2874,7 +2871,6 @@ Bool NetPacket::addWrapperCommand(NetCommandRef *msg) {
 	return FALSE;
 }
 
-// ?isRoomForWrapperMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForWrapperMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;
@@ -3274,7 +3270,6 @@ Bool NetPacket::addDisconnectVoteCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this player disconnect command in this packet.
  */
-// ?isRoomForDisconnectVoteMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForDisconnectVoteMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;
@@ -3778,7 +3773,6 @@ Bool NetPacket::addDisconnectPlayerCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this player disconnect command in this packet.
  */
-// ?isRoomForDisconnectPlayerMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForDisconnectPlayerMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;
@@ -3868,7 +3862,6 @@ Bool NetPacket::addDisconnectKeepAliveCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room in the packet for this command.
  */
-// ?isRoomForDisconnectKeepAliveMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForDisconnectKeepAliveMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetDisconnectKeepAliveCommandMsg *cmdMsg = (NetDisconnectKeepAliveCommandMsg *)(msg->getCommand());
@@ -3950,7 +3943,6 @@ Bool NetPacket::addKeepAliveCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room in the packet for this command.
  */
-// ?isRoomForKeepAliveMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForKeepAliveMessage(NetCommandRef *msg) {
 	Int len = 0;
 	NetKeepAliveCommandMsg *cmdMsg = (NetKeepAliveCommandMsg *)(msg->getCommand());
@@ -4191,7 +4183,6 @@ Bool NetPacket::addDestroyPlayerCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is room for this DestroyPlayer command in this packet.
  */
-// ?isRoomForDestroyPlayerMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForDestroyPlayerMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;
@@ -4569,7 +4560,6 @@ Bool NetPacket::addFrameCommand(NetCommandRef *msg) {
 /**
  * Returns true if there is enough room in this packet for this frame message.
  */
-// ?isRoomForFrameMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
 Bool NetPacket::isRoomForFrameMessage(NetCommandRef *msg) {
 	Int len = 0;
 	Bool needNewCommandID = FALSE;

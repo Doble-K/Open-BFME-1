@@ -72421,3 +72421,12 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0StateMachine@@QAE@PAVObject@@VAsciiString@@_N@Z,0x000A1BD0,Open-BFME5 corrected signature: retail ret 0xc and a byte read at entry+12 stored to this+0x42 prove a third _N parameter the two-parameter pin omits (same shape as TeamPrototype)
 ??A?$map@HPAU_SBServer@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHPAU_SBServer@@@_STL@@@3@@_STL@@QAEAAPAU_SBServer@@ABH@Z,0x006473A0,Open-BFME5 second image copy of this instantiation; PeerThread call sites encode its incremental-link thunk 0x0001AA50
 ?_M_erase@?$_Rb_tree@HU?$pair@$$CBHVBuddyInfo@@@_STL@@U?$_Select1st@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@@Z,0x004EB5C0,Open-BFME5 BuddyInfoMap clear helper; GameSpyInfo::reset encodes its incremental-link thunk 0x000114AA
+?assign@EvaMessageVector@@QAEXABV1@@Z,0x00031DBD,TU-local BFME ABI declaration for Eva::init message-table assign (ILT thunk)
+?destroy@EvaSideSoundVector@@QAEXXZ,0x00037BF0,TU-local BFME ABI declaration for Eva::init side-sound table destroy (ILT thunk)
+?assign@EvaSideSoundVector@@QAEXABV1@@Z,0x00033E1A,TU-local BFME ABI declaration for Eva::init side-sound table assign (ILT thunk)
+?resize@EvaCheckVector@@QAEXHUEvaCheck@@@Z,0x000247DA,TU-local BFME ABI declaration for Eva::init check-vector resize (ILT thunk)
+?drawStaticTextText@@YAXPAVGameWindow@@HH@Z,0x00796BA0,file-static reached by the byte-proven call at 0x00796FAF
+?getText@NetDisconnectChatCommandMsg@@QAE?AVUnicodeString@@XZ,0x00015901,ILT thunk; the by-value UnicodeString getter ConnectionManager::processDisconnectChat calls on its message
+?format@UnicodeString@@QAAXVUnicodeString@@ZZ,0x00889190,BFME UnicodeString::format takes the format string BY VALUE as a UnicodeString not as a const WCHAR*
+?showChat@DisconnectMenu@@QAEXVUnicodeString@@@Z,0x00023E1B,ILT thunk; the DisconnectMenu chat sink ConnectionManager::processDisconnectChat ends on
+?TheDisconnectMenu@@3PAVDisconnectMenu@@A,0x012F4964,DisconnectMenu* global null-checked at the top of ConnectionManager::processDisconnectChat
