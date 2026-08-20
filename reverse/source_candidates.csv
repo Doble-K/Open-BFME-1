@@ -112,7 +112,6 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_001041f0@@YAXXZ,0x001041F0,216,Code/gen_asm/d_000fb610.asm,?open@DataChunkOutputOpenDataChunkShim@@QAEXPADG@Z,NO-DEFINITION,
 ?d_00106a90@@YAXXZ,0x00106A90,130,Code/gen_asm/d_00104e40.asm,?clear@RadarDeleteListResourcesShim@@QAEXXZ,NO-DEFINITION,
 ?d_00107ab0@@YAXXZ,0x00107AB0,327,Code/gen_asm/d_00104e40.asm,?localPixelToRadar@RadarLocalPixelToRadarShim@@QAE_NPBUICoord2D@@PAU2@@Z,NO-DEFINITION,
-?d_00108e80@@YAXXZ,0x00108E80,336,Code/gen_asm/d_00104e40.asm,?getStringFromRegistry@@YA_NPAXVAsciiString@@1AAV1@@Z,LOCATED,Code/GameEngine/Source/Common/System/RegistryGetUnicodeString.cpp
 ?d_0010c4d0@@YAXXZ,0x0010C4D0,177,Code/gen_asm/d_00104e40.asm,?run@XferRandomVariableShim@@SAXAAVXfer@@AAVGameClientRandomVariable@@@Z,NO-DEFINITION,
 ?d_0010d700@@YAXXZ,0x0010D700,128,Code/gen_asm/d_00104e40.asm,??1Gen_t_0010dae0_p12cd@@QAE@XZ,NO-DEFINITION,
 ?d_0010db50@@YAXXZ,0x0010DB50,8,Code/gen_asm/d_00104e40.asm,??1Gen_t_0010ed30_p8cd@@QAE@XZ,NO-DEFINITION,
@@ -436,7 +435,7 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_004b0c80@@YAXXZ,0x004B0C80,145,Code/gen_asm/d_004a32e0.asm,?insert_unique@?$_Rb_tree@IU?$pair@$$CBIUGen_t_004b1370_m12pod@@@_STL@@U?$_Select1st@U?$pair@$$CBIUGen_t_004b1370_m12pod@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIUGen_t_004b1370_m12pod@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIUGen_t_004b1370_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIUGen_t_004b1370_m12pod@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIUGen_t_004b1370_m12pod@@@2@@Z,UNPARSEABLE,
 ?d_004b6d40@@YAXXZ,0x004B6D40,885,Code/gen_asm/d_004b2470.asm,?run@GadgetListBoxSetColorsShim@@SAXPAVGameWindow@@HHHHHHHHHHHH@Z,NO-DEFINITION,
 ?d_004b7b20@@YAXXZ,0x004B7B20,299,Code/gen_asm/d_004b2470.asm,?adjustDisplay@@YAXPAVGameWindow@@_N@Z,LOCATED,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp
-?d_004b8550@@YAXXZ,0x004B8550,80,Code/gen_asm/d_004b2470.asm,?GadgetListBoxSetBottomVisibleEntry@@YAXPAVGameWindow@@H@Z,LOCATED,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp
+?d_004b7ca0@@YAXXZ,0x004B7CA0,135,Code/gen_asm/d_004b2470.asm,?adjustDisplay@@YAXPAVGameWindow@@H_N@Z,LOCATED,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp
 ?d_004c1320@@YAXXZ,0x004C1320,235,Code/gen_asm/d_004b2470.asm,?doRepopulateBuildTooltipLayout@ControlBar@@QAEXXZ,NO-DEFINITION,
 ?d_004c6730@@YAXXZ,0x004C6730,259,Code/gen_asm/d_004c3de0.asm,?run@MessageBoxOkShim@@SAPAVGameWindow@@VUnicodeString@@0P6AXXZ@Z,NO-DEFINITION,
 ?d_004d56e0@@YAXXZ,0x004D56E0,171,Code/gen_asm/d_004d3970.asm,?_M_copy@?$_Rb_tree@HU?$pair@$$CBHUGen_t_004d57f0_p16cd@@@_STL@@U?$_Select1st@U?$pair@$$CBHUGen_t_004d57f0_p16cd@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHUGen_t_004d57f0_p16cd@@@_STL@@@2@@_STL@@AAEPAU?$_Rb_tree_node@U?$pair@$$CBHUGen_t_004d57f0_p16cd@@@_STL@@@2@PAU32@0@Z,UNPARSEABLE,
@@ -445,7 +444,6 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_004f1120@@YAXXZ,0x004F1120,158,Code/gen_asm/d_004e5420.asm,??0Gen_t_00631eb0_p12cd@@QAE@ABU0@@Z,NO-DEFINITION,
 ?d_004f2260@@YAXXZ,0x004F2260,338,Code/gen_asm/d_004e5420.asm,??$append@PAG@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@AAEAAV01@PAG0ABUforward_iterator_tag@1@@Z,UNPARSEABLE,
 ?d_004fb2e0@@YAXXZ,0x004FB2E0,426,Code/gen_asm/d_004f49e0.asm,??0?$pair@$$CBUGen_t_004fc4b0_k4@@UGen_t_004fc4b0_p12cd@@@_STL@@QAE@ABU01@@Z,UNPARSEABLE,
-?d_004ffa40@@YAXXZ,0x004FFA40,166,Code/gen_asm/d_004f49e0.asm,?shutdownCompleteWOLLoginMenu@@YAXPAVWindowLayout@@@Z,LOCATED,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenuShutdownThunk.cpp
 ?d_00508c80@@YAXXZ,0x00508C80,1063,Code/gen_asm/d_004f49e0.asm,?populateLadderList@BfmeQuickMatchLadderPanel@@QAEXXZ,NO-DEFINITION,
 ?d_00512670@@YAXXZ,0x00512670,242,Code/gen_asm/d_005091f0.asm,?run@HideInGameChatShim@@SAXXZ,NO-DEFINITION,
 ?d_00522740@@YAXXZ,0x00522740,187,Code/gen_asm/d_0051b7e0.asm,?run@ReleaseWindowLayoutShim@@SAXPAVWindowLayout@@@Z,NO-DEFINITION,
@@ -639,8 +637,8 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_0077cde0@@YAXXZ,0x0077CDE0,697,Code/gen_asm/d_004507a0.asm,??0W3DSupplyDrawModuleDataBase@@QAE@XZ,NO-DEFINITION,
 ?d_00786bd0@@YAXXZ,0x00786BD0,70,Code/gen_asm/d_00781660.asm,?run@BitFlagsCountInverseIntersectionShim@@QBEHABV1@@Z,NO-DEFINITION,
 ?d_00787140@@YAXXZ,0x00787140,111,Code/gen_asm/d_00781660.asm,?insert@RelationshipHashtableInsertShim@_STL@@QAEAAU?$pair@$$CBHW4Relationship@@@2@ABU32@@Z,UNPARSEABLE,
-?d_0078fde0@@YAXXZ,0x0078FDE0,274,Code/gen_asm/d_0078b310.asm,?drawCheckBoxText@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,LOCATED,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp
-?d_00796ba0@@YAXXZ,0x00796BA0,346,Code/gen_asm/d_00793520.asm,?drawStaticTextText@@YAXPAVGameWindow@@PAVWinInstanceData@@HH@Z,LOCATED,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp
+?d_0078fde0@@YAXXZ,0x0078FDE0,274,Code/gen_asm/d_0078b310.asm,?drawCheckBoxText@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,CUSTOM-CONVENTION,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DCheckBox.cpp
+?d_00796ba0@@YAXXZ,0x00796BA0,346,Code/gen_asm/d_00793520.asm,?drawStaticTextText@@YAXPAVGameWindow@@PAVWinInstanceData@@HH@Z,CUSTOM-CONVENTION,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DStaticText.cpp
 ?d_007a1410@@YAXXZ,0x007A1410,31,Code/gen_asm/d_0079d530.asm,?enableWaterGrid@WaterRenderObjClassEnableWaterGridShim@@QAEX_N@Z,NO-DEFINITION,
 ?d_007ac7e0@@YAXXZ,0x007AC7E0,805,Code/gen_asm/d_007a4d40.asm,?loadTracks@WaterTracksRenderSystemLoadTracksShim@@QAEXXZ,NO-DEFINITION,
 ?d_007afd10@@YAXXZ,0x007AFD10,396,Code/gen_asm/d_007a4d40.asm,?getTexture@BFMEShadowManagerLayoutGetTextureShim@@QAEPAVW3DShadowTexture@@PBD@Z,NO-DEFINITION,
@@ -793,6 +791,7 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_009125e0@@YAXXZ,0x009125E0,193,Code/gen_asm/d_0090e910.asm,??1Gen_dtor_00913ad0@@UAE@XZ,NO-DEFINITION,
 ?d_0091a0d0@@YAXXZ,0x0091A0D0,327,Code/gen_asm/d_0090e910.asm,??1Gen_dtor_0091a0b0@@UAE@XZ,NO-DEFINITION,
 ?d_0091d020@@YAXXZ,0x0091D020,121,Code/gen_asm/d_0091cbf0.asm,??1Gen_uw_0091d020@@QAE@XZ,NO-DEFINITION,
+?d_0091d0a0@@YAXXZ,0x0091D0A0,330,Code/gen_asm/d_0091cbf0.asm,??0DX8IndexBufferClass@@QAE@IW4UsageType@0@@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp
 ?d_0091d1f0@@YAXXZ,0x0091D1F0,128,Code/gen_asm/d_0091cbf0.asm,??1Gen_dtor_0091d910@@UAE@XZ,NO-DEFINITION,
 ?d_0091d300@@YAXXZ,0x0091D300,74,Code/gen_asm/d_0091cbf0.asm,??1Gen_dtor_0091d930@@UAE@XZ,NO-DEFINITION,
 ?d_0091d410@@YAXXZ,0x0091D410,208,Code/gen_asm/d_0091cbf0.asm,??0WriteLockClass@DynamicIBAccessClass@@QAE@PAV1@@Z,AMBIGUOUS(3),Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp;Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp;Code/Libraries/Source/WWVegas/WW3D2/VertexBufferWriteLockConstructorThunk.cpp
@@ -809,8 +808,8 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_00924090@@YAXXZ,0x00924090,29,Code/gen_asm/d_0091cbf0.asm,??1Gen_dtor_00924070@@UAE@XZ,NO-DEFINITION,
 ?d_00924110@@YAXXZ,0x00924110,29,Code/gen_asm/d_0091cbf0.asm,??1Gen_dtor_009240f0@@UAE@XZ,NO-DEFINITION,
 ?d_00924150@@YAXXZ,0x00924150,29,Code/gen_asm/d_0091cbf0.asm,??1Gen_dtor_00924130@@UAE@XZ,NO-DEFINITION,
+?d_00924930@@YAXXZ,0x00924930,760,Code/gen_asm/d_0091cbf0.asm,??4MeshGeometryClass@@QAEAAV0@ABV0@@Z,UNPARSEABLE,
 ?d_00926630@@YAXXZ,0x00926630,29,Code/gen_asm/d_0091cbf0.asm,??1Gen_dtor_00926610@@UAE@XZ,NO-DEFINITION,
-?d_009267e0@@YAXXZ,0x009267E0,221,Code/gen_asm/d_0091cbf0.asm,??0MeshGeometryClass@@QAE@ABV0@@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp
 ?d_00929d40@@YAXXZ,0x00929D40,174,Code/gen_asm/d_00927c30.asm,??0?$ShareBufferClass@PAVVertexMaterialClass@@@@QAE@ABV0@@Z,UNPARSEABLE,
 ?d_00929fc0@@YAXXZ,0x00929FC0,193,Code/gen_asm/d_00927c30.asm,??0ShareBufferClassBase@@QAE@HPBDH@Z,NO-DEFINITION,
 ?d_0092a220@@YAXXZ,0x0092A220,131,Code/gen_asm/d_00927c30.asm,??1Gen_dtor_0092ba40@@UAE@XZ,NO-DEFINITION,
@@ -822,7 +821,9 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_0092d990@@YAXXZ,0x0092D990,126,Code/gen_asm/d_00927c30.asm,??1Gen_dtor_0092e490@@UAE@XZ,NO-DEFINITION,
 ?d_0092e890@@YAXXZ,0x0092E890,1315,Code/gen_asm/d_00927c30.asm,?Render_Material_Pass@MeshClass@@QAEXPAVMaterialPassClass@@PAVIndexBufferClass@@@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp
 ?d_0092f190@@YAXXZ,0x0092F190,84,Code/gen_asm/d_00927c30.asm,??1Gen_dtorv_0092ff30@@UAE@XZ,NO-DEFINITION,
-?d_0092ff90@@YAXXZ,0x0092FF90,171,Code/gen_asm/d_00927c30.asm,??1Gen_uw_0092ff90@@QAE@XZ,NO-DEFINITION,
+?d_0092f2c0@@YAXXZ,0x0092F2C0,493,Code/gen_asm/d_00927c30.asm,?Remap_Mesh@MaterialRemapperClass@@QAEXPBVMeshMatDescClass@@PAV2@@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp
+?d_0092fd60@@YAXXZ,0x0092FD60,453,Code/gen_asm/d_00927c30.asm,??0MaterialRemapperClass@@QAE@PAVMaterialInfoClass@@0@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp
+?d_00930e00@@YAXXZ,0x00930E00,352,Code/gen_asm/d_00930e00.asm,??0MaterialInfoClass@@QAE@ABV0@@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp
 ?d_00930f60@@YAXXZ,0x00930F60,175,Code/gen_asm/d_00930e00.asm,??1Gen_dtor_009312b0@@UAE@XZ,NO-DEFINITION,
 ?d_009330c0@@YAXXZ,0x009330C0,193,Code/gen_asm/d_00930e00.asm,?Cull_Box@BFMECameraCullBox@@QBE_NABVAABoxClass@@@Z,NO-DEFINITION,
 ?d_00933880@@YAXXZ,0x00933880,11,Code/gen_asm/d_00930e00.asm,??1Gen_uwm_00933880@@QAE@XZ,NO-DEFINITION,
@@ -843,7 +844,6 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_00946540@@YAXXZ,0x00946540,171,Code/gen_asm/d_00945e00.asm,??1Gen_dtor_00947d10@@UAE@XZ,NO-DEFINITION,
 ?d_009471e0@@YAXXZ,0x009471E0,11,Code/gen_asm/d_00945e00.asm,??1Gen_dtor_00948b40@@UAE@XZ,NO-DEFINITION,
 ?d_00949d00@@YAXXZ,0x00949D00,164,Code/gen_asm/d_00945e00.asm,??1Gen_dtor_00902100@@UAE@XZ,NO-DEFINITION,
-?d_0094acb0@@YAXXZ,0x0094ACB0,207,Code/gen_asm/d_00945e00.asm,?Add_Fill_Light@LightEnvironmentClass@@QAEXXZ,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp
 ?d_0094bfa0@@YAXXZ,0x0094BFA0,13,Code/gen_asm/d_00945e00.asm,??1Gen_uw_0094bfa0@@QAE@XZ,NO-DEFINITION,
 ?d_0094c9e0@@YAXXZ,0x0094C9E0,176,Code/gen_asm/d_00945e00.asm,?_M_insert@?$_Rb_tree@IU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Select1st@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@2@0@Z,UNPARSEABLE,
 ?d_0094ccf0@@YAXXZ,0x0094CCF0,145,Code/gen_asm/d_00945e00.asm,?insert_unique@?$_Rb_tree@IU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Select1st@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@2@@Z,UNPARSEABLE,
@@ -856,7 +856,6 @@ row,target_rva,target_size,scaffold_source,pin,verdict,files
 ?d_0095c860@@YAXXZ,0x0095C860,140,Code/gen_asm/d_009531a0.asm,??4StreakRendererClass@@QAEAAV0@ABV0@@Z,UNPARSEABLE,
 ?d_0096a920@@YAXXZ,0x0096A920,73,Code/gen_asm/d_00960a30.asm,??1Gen_dtor_0096aca0@@UAE@XZ,NO-DEFINITION,
 ?d_0096afc0@@YAXXZ,0x0096AFC0,180,Code/gen_asm/d_00960a30.asm,?Update_Min_Max@AABTreeClass@@AAEXHAAVVector3@@0@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp
-?d_0096ddc0@@YAXXZ,0x0096DDC0,203,Code/gen_asm/d_00960a30.asm,?clone_materials@MeshModelClass@@IAEXABV1@@Z,LOCATED,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp
 ?d_0096eb30@@YAXXZ,0x0096EB30,272,Code/gen_asm/d_0096e3e0.asm,?read_shaders@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,SIGNATURE-CONFLICT,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp
 ?d_0096ec40@@YAXXZ,0x0096EC40,283,Code/gen_asm/d_0096e3e0.asm,?read_textures@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,SIGNATURE-CONFLICT,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp
 ?d_00970770@@YAXXZ,0x00970770,112,Code/gen_asm/d_0096e3e0.asm,??1Gen_dtor_00970920@@UAE@XZ,NO-DEFINITION,
