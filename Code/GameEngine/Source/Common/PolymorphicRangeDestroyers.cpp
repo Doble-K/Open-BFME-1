@@ -26,7 +26,7 @@
 // `mov edi,edi` that pads the loop head to a 16-byte boundary; that padding is
 // the compiler's own loop alignment and needs nothing from the source.
 //
-// SEPARATE FUNCTIONS, NOT ALIASES.  Three different strides cannot be one
+// SEPARATE FUNCTIONS, NOT ALIASES.  Four different strides cannot be one
 // COMDAT, and within a stride the copies are separate instantiations over
 // different element types that merely compile identically.  They are written
 // here as distinct bodies for that reason.
@@ -76,3 +76,11 @@ BFME_RANGE_DESTROYER( Rva003A84B0Destroy, 4 )
 BFME_RANGE_DESTROYER( Rva003A8590Destroy, 4 )
 BFME_RANGE_DESTROYER( Rva003A8F70Destroy, 4 )
 BFME_RANGE_DESTROYER( Rva003A9040Destroy, 4 )
+
+// Stride 0x10 -- vftable pointer plus three dwords.
+BFME_RANGE_DESTROYER( Rva003A7260Destroy, 3 )
+BFME_RANGE_DESTROYER( Rva003A7290Destroy, 3 )
+BFME_RANGE_DESTROYER( Rva003A8610Destroy, 3 )
+BFME_RANGE_DESTROYER( Rva003A8640Destroy, 3 )
+BFME_RANGE_DESTROYER( Rva003A90B0Destroy, 3 )
+BFME_RANGE_DESTROYER( Rva003A90E0Destroy, 3 )
