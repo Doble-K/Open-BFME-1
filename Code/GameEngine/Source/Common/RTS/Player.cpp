@@ -691,22 +691,23 @@ void Player::setTeamRelationship(const Team *that, Relationship r)
 }
 
 // ------------------------------------------------------------------------
-// ?removeTeamRelationship@Player@@QAE_NPBVTeam@@@Z present-unmatched
 Bool Player::removeTeamRelationship(const Team *that)
 {
-	if (!m_teamRelations->m_map.empty())
+	// The same two BFME offsets getRelationship above casts for: m_teamRelations
+	// at Player+0x290, and its m_map at +0x04 of that.
+	if (!teamRelationsOf(this)->m_map.empty())
 	{
 		if (that == NULL)
 		{
-			m_teamRelations->m_map.clear();
+			teamRelationsOf(this)->m_map.clear();
 			return true;
 		}
 		else
 		{
-			TeamRelationMapType::iterator it = m_teamRelations->m_map.find(that->getID());
-			if (it != m_teamRelations->m_map.end())
+			TeamRelationMapType::iterator it = teamRelationsOf(this)->m_map.find(getRetailTeamID(that));
+			if (it != teamRelationsOf(this)->m_map.end())
 			{
-				m_teamRelations->m_map.erase(it);
+				teamRelationsOf(this)->m_map.erase(it);
 				return true;
 			}
 		}

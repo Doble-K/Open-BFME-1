@@ -187,6 +187,90 @@ def build_pool():
     return out
 
 
+# --- signature cross-check -------------------------------------------------
+#
+# find_source.py trusts the PIN's decorated name to say what the function is,
+# and the text index to say where it lives. Those two can disagree, and when
+# they do the row is dead before any compile: a run reported four LOCATED rows
+# whose pinned mangled name contradicted the very declaration the search had
+# found (read_shaders/read_textures pinned `_N` against a WW3DErrorType-
+# returning declaration; Get_Char_Data pinned public-QAE against a private
+# member). Each cost a full compile to discover.
+#
+# This is NOT a re-mangler -- deriving a full MSVC signature from source text is
+# a much larger job than the payoff justifies. It checks the two fields that are
+# cheap to read off both sides and that actually produced the observed failures,
+# and it flags ONLY on a confident conflict. Ambiguity means silence: a false
+# CONFLICT would bury a real candidate, which is worse than the compile it saves.
+
+ACCESS_CODE = {"Q": "public", "I": "protected", "A": "private"}
+
+# Return-type codes that map to an unambiguous source spelling.
+RETURN_CODE = {
+    "X": ("void",),
+    "_N": ("bool", "Bool", "BOOL"),
+    "H": ("int", "Int"),
+    "M": ("float", "Real"),
+    "D": ("char",),
+}
+
+
+def pin_return_and_access(mangled):
+    """(return_code, access) from a `?name@Scope@@<access><cv><cc><ret>` pin.
+
+    Returns (None, None) for anything whose shape is not the plain member-
+    function form -- templates, special names, free functions.
+    """
+    if not mangled.startswith("?") or mangled.startswith("??") or "?$" in mangled:
+        return None, None
+    at = mangled.find("@@")
+    if at == -1:
+        return None, None
+    rest = mangled[at + 2:]
+    # <access><cv><callconv><return...>  e.g. QAE X ..., ABE ?AW4Foo@@ ...
+    m = re.match(r"^([QIA])([AB])([A-Z])(.*)$", rest)
+    if not m:
+        return None, None
+    access, _cv, _cc, tail = m.groups()
+    if tail.startswith("_N"):
+        ret = "_N"
+    elif tail[:1] in ("X", "H", "M", "D"):
+        ret = tail[0]
+    elif tail.startswith("?AW4"):
+        ret = "enum:" + tail[4:].split("@", 1)[0]
+    elif tail[:3] in ("PAV", "PBV", "AAV", "ABV"):
+        ret = "class:" + tail[3:].split("@", 1)[0]
+    elif tail[:3] in ("PAU", "PBU", "AAU", "ABU"):
+        ret = "struct:" + tail[3:].split("@", 1)[0]
+    else:
+        ret = None
+    return ret, ACCESS_CODE.get(access)
+
+
+def return_conflict(pin, decl_return):
+    """A one-line reason the pin and the located declaration disagree, or None.
+
+    decl_return is the raw source text preceding `Scope::member(`.
+    """
+    ret, _access = pin_return_and_access(pin)
+    if ret is None or not decl_return:
+        return None
+    words = re.findall(r"[A-Za-z_]\w*", decl_return)
+    words = [w for w in words if w not in
+             ("static", "virtual", "inline", "const", "WWINLINE", "extern")]
+    if not words:
+        return None
+    if ret in RETURN_CODE:
+        if not any(w in RETURN_CODE[ret] for w in words):
+            return f"pin returns {RETURN_CODE[ret][0]}, declaration returns {' '.join(words)}"
+        return None
+    kind, _, name = ret.partition(":")
+    if kind in ("enum", "class", "struct"):
+        if name and name not in words:
+            return f"pin returns {kind} {name}, declaration returns {' '.join(words)}"
+    return None
+
+
 NEWLINE = chr(10)
 
 
@@ -296,7 +380,8 @@ def index_definitions():
             if key in seen or not is_definition(text, m.end() - 1):
                 continue
             seen.add(key)
-            idx[key][bucket].append(rel)
+            line_start = text.rfind(NEWLINE, 0, m.start()) + 1
+            idx[key][bucket].append((rel, text[line_start:m.start()].strip()))
     return idx, scanned
 
 
@@ -324,6 +409,7 @@ def main():
                 for n in args.name]
 
     results = []
+    conflicts = []
     counts = defaultdict(int)
     for c in pool:
         parsed = parse_scope(c["pin"])
@@ -335,11 +421,19 @@ def main():
             hit = idx.get(key)
             if hit and hit["answerable"]:
                 n = len(hit["answerable"])
-                verdict = "LOCATED" if n == 1 else f"AMBIGUOUS({n})"
-                counts["located" if n == 1 else "ambiguous"] += 1
-                files = hit["answerable"]
+                files = [f for f, _ in hit["answerable"]]
+                why = None
+                if n == 1:
+                    why = return_conflict(c["pin"], hit["answerable"][0][1])
+                if why:
+                    verdict = "SIGNATURE-CONFLICT"
+                    counts["signature_conflict"] += 1
+                    conflicts.append((c, why))
+                else:
+                    verdict = "LOCATED" if n == 1 else f"AMBIGUOUS({n})"
+                    counts["located" if n == 1 else "ambiguous"] += 1
             elif hit and hit["excluded"]:
-                verdict, files = "REFERENCE-ONLY", hit["excluded"]
+                verdict, files = "REFERENCE-ONLY", [f for f, _ in hit["excluded"]]
                 counts["reference_only"] += 1
             else:
                 verdict, files = "NO-DEFINITION", []
@@ -348,10 +442,16 @@ def main():
 
     total = len(pool)
     print(f"\npool: {total} candidate(s)")
-    for k in ("located", "ambiguous", "reference_only", "no_definition", "unparseable"):
+    for k in ("located", "ambiguous", "signature_conflict", "reference_only",
+              "no_definition", "unparseable"):
         v = counts[k]
         pct = (100.0 * v / total) if total else 0.0
         print(f"  {k:<16} {v:>5}  {pct:5.1f}%")
+
+    if conflicts:
+        print("\nsignature conflicts (pin contradicts the located declaration):")
+        for c, why in conflicts[:40]:
+            print(f"  0x{c['rva']:08X} {c['pin'][:64]}\n      {why}")
 
     if not args.stats:
         for r in results:

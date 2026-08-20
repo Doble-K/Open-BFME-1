@@ -72397,3 +72397,9 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?onPlayerSciencePurchasePointsChanged@ControlBar@@QAEXPAVPlayer@@@Z,0x000439D7,Open-BFME5 the thunk Player addSciencePurchasePoints notifies; Zero Hour names the same call
 ??0DamageInfo@@QAE@XZ,0x0002C9D5,Open-BFME5 the thunk Object kill constructs its DamageInfo through; Zero Hour names the same constructor
 ?startProneEffects@ProneUpdate@@AAEXXZ,0x00042884,Open-BFME5 the thunk ProneUpdate goProne calls on the transition into prone; Zero Hour names the same call
+??0MeshGeometryClass@@QAE@ABV0@@Z,0x009267E0,base copy ctor; REL32 target of MeshModelClass copy ctor at 0x0094EC44
+??0MeshMatDescClass@@QAE@ABV0@@Z,0x0092C0D0,REL32 target of MeshModelClass copy ctor at 0x0094ECE0 and 0x0094ED1F
+?clear@?$hashtable@U?$pair@$$CBIW4Relationship@@@_STL@@IU?$hash@I@2@U?$_Select1st@U?$pair@$$CBIW4Relationship@@@_STL@@@2@U?$equal_to@I@2@V?$allocator@U?$pair@$$CBIW4Relationship@@@_STL@@@2@@_STL@@QAEXXZ,0x00005B73,pinharvest x1 (thunk)
+?clone_materials@MeshModelClass@@IAEXABV1@@Z,0x0096DDC0,REL32 target of MeshModelClass copy ctor at 0x0094ED42
+?findControlBarScheme@ControlBarSchemeManager@@QAEPAVControlBarScheme@@VAsciiString@@@Z,0x0000442B,Open-BFME5 ILT thunk to 0x004AD740; REL32 target of setControlBarScheme at 0x004AD8B5
+?insert_unique@?$_Rb_tree@IU?$pair@$$CBIPAVState@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVState@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIPAVState@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIPAVState@@@2@@Z,0x0002D420,ILT thunk; REL32 target of StateMachine::defineState at 0x000A2057

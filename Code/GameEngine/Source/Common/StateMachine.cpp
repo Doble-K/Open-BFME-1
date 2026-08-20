@@ -496,30 +496,49 @@ StateReturnType StateMachine::updateStateMachine()
  * retains the id mapping.
  * These state id's are used to change the machine's state via setState().
  */
-// ?defineState@StateMachine@@ present-unmatched
+// BFME's StateMachine and State each carry ONE base vtable pointer where
+// MemoryPoolObject plus Snapshot give them two here, so every member sits four
+// bytes earlier than this tree puts it -- the same single-vptr layout the
+// destructor's MASM note records.  Rebasing the pointer by -4 folds into the
+// constant part of each member access, so the base register still holds the
+// unadjusted object exactly as retail encodes it and the vendored header stays
+// untouched.
+static StateMachine *retailLayout( StateMachine *p ) { return (StateMachine *)((char *)p - 4); }
+static State *retailLayout( State *p ) { return (State *)((char *)p - 4); }
+
 void StateMachine::defineState( StateID id, State *state, StateID successID, StateID failureID, const StateConditionInfo* conditions )
 {
 #ifdef STATE_MACHINE_DEBUG
-	DEBUG_ASSERTCRASH(m_stateMap.find( id ) == m_stateMap.end(), ("duplicate state ID in statemachine %s\n",m_name.str()));
+	DEBUG_ASSERTCRASH(retailLayout(this)->m_stateMap.find( id ) == retailLayout(this)->m_stateMap.end(), ("duplicate state ID in statemachine %s\n",m_name.str()));
 #endif
 
 	// map the ID to the state
-	m_stateMap.insert( std::map<StateID, State *>::value_type( id, state ) );
+	retailLayout(this)->m_stateMap.insert( std::map<StateID, State *>::value_type( id, state ) );
+
+	// Read out of line ahead of the three id stores: retail tests the pointer
+	// before it loads successID.
+	const StateConditionInfo* c = conditions;
 
 	// store the ID in the state itself, as well
-	state->friend_setID( id );
+	retailLayout(state)->friend_setID( id );
 
-	state->friend_onSuccess(successID);
-	state->friend_onFailure(failureID);
+	retailLayout(state)->friend_onSuccess(successID);
+	retailLayout(state)->friend_onFailure(failureID);
 	
-	while (conditions && conditions->test != NULL)
+	while (c && c->test != NULL)
 	{
-		state->friend_onCondition(conditions->test, conditions->toStateID, conditions->userData);
-		++conditions;
+		retailLayout(state)->friend_onCondition(c->test, c->toStateID, c->userData);
+		++c;
 	}
 
-	if (m_defaultStateID == INVALID_STATE_ID)
-		m_defaultStateID = id;
+	if (retailLayout(this)->m_defaultStateID == INVALID_STATE_ID)
+		retailLayout(this)->m_defaultStateID = id;
+
+	// BFME only: a state naming itself for BOTH outcomes is terminal, and the flag
+	// lives in a State field this tree's class does not have (retail +0x20, just
+	// past m_machine).
+	if (id == successID && id == failureID)
+		*((Bool *)((char *)state + 0x20)) = TRUE;
 }
 
 //-----------------------------------------------------------------------------

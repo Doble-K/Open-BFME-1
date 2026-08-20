@@ -90,16 +90,18 @@ MeshModelClass::MeshModelClass(void) :
 	return ;
 }
 
-// ?MeshModelClass::MeshModelClass present-unmatched
 MeshModelClass::MeshModelClass(const MeshModelClass & that) :
 	MeshGeometryClass(that),
 	DefMatDesc(NULL),
 	AlternateMatDesc(NULL),
 	CurMatDesc(NULL),
 	MatInfo(NULL),
-	GapFiller(NULL),
-	HasBeenInUse(false)
+	GapFiller(NULL)
 {
+	// BFME carries one member more than this class does at +0xC0, cleared from the
+	// same zero register, which puts HasBeenInUse at +0xC4 rather than +0xC0.
+	*((void **)((char *)this + 0xC0)) = NULL;
+	*((bool *)((char *)this + 0xC4)) = false;
 	DefMatDesc = W3DNEW MeshMatDescClass(*(that.DefMatDesc));
 	if (that.AlternateMatDesc != NULL) {
 		AlternateMatDesc = W3DNEW MeshMatDescClass(*(that.AlternateMatDesc));
