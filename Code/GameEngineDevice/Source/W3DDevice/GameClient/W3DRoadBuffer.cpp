@@ -2759,9 +2759,11 @@ Int W3DRoadBuffer::findCrossTypeJoinVector(Vector2 loc, Vector2 *joinVector, Int
 //=============================================================================
 /** Adjusts the stacking order. */
 //=============================================================================
-// ?adjustStacking@W3DRoadBuffer@@IAEXHH@Z present-unmatched
 void W3DRoadBuffer::adjustStacking(Int topUniqueID, Int bottomUniqueID)
 {
+	if (!*(Bool *)((char *)this + 0x0C))
+		return;
+
 	Int i, j;
 	for (i=0; i<m_maxRoadTypes; i++) {
 		if (m_roadTypes[i].getUniqueID() == topUniqueID) break;
