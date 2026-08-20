@@ -63,9 +63,32 @@ class BfmeScriptEngineTemplates
 public:
 	void addActionTemplate( Template *tmpl );
 	void addConditionTemplate( Template *tmpl );
+
+private:
+	// The template tables are the only part of ScriptEngine needed here.  The
+	// action table starts at +0x1C; the condition table follows it at +0x10720.
+	// Keep the uninterpreted prefix explicit so the member offsets are the
+	// retail offsets used by addConditionTemplate.
+	unsigned char m_unreconstructed_00[0x10720];
+	Template m_conditionTemplates[184];
 };
 
 extern BfmeScriptEngineTemplates *TheScriptEngine;		// 0x012F076C
+
+// ?addConditionTemplate@BfmeScriptEngineTemplates@@QAEXPAVTemplate@@@Z
+void BfmeScriptEngineTemplates::addConditionTemplate( Template *tmpl )
+{
+	for( int i = 0; i < 184; ++i )
+	{
+		if( m_conditionTemplates[i].m_internalName.compare( tmpl->m_internalName ) == 0 )
+		{
+			m_conditionTemplates[i].m_uiName = tmpl->m_uiName;
+			m_conditionTemplates[i].m_uiName2 = tmpl->m_uiName2;
+			m_conditionTemplates[i].m_helpText = tmpl->m_helpText;
+			return;
+		}
+	}
+}
 
 // ?parseScriptAction@@YAXPAVINI@@@Z
 void parseScriptAction( INI *ini )
