@@ -19,6 +19,7 @@
 #define _STLP_USE_NEWALLOC 1
 #define _STLP_NO_EXCEPTIONS 1
 #include <list>
+#include <algorithm>
 
 // ?m@Gen_004ae7a0@@QAEXPAX@Z  -- 0x004AE7A0, 53 bytes, list at this+0x170
 struct Gen_004ae7a0
@@ -105,4 +106,26 @@ void Gen_000d2240::m(void *x)
 			return;
 
 	m_list.push_back(x);
+}
+
+// ?m@Gen_002e0dd0@@QAEXPAX@Z  -- 0x002E0DD0, 71 bytes, list at this+0x08.
+// The other add-if-absent, and the counterpart of Gen_000d2240 above: this one
+// really is _STL::find, which is what the redundant post-find re-test against
+// end() and the `cmp mem,reg` element test name.  The find result must be
+// held in a NAMED iterator and compared afterwards -- folding the call into
+// the `if` condition makes MSVC reuse the entry-loaded sentinel for the
+// re-test and reload for the insert, which is retail's two loads in the
+// opposite order.
+struct Gen_002e0dd0
+{
+	void m(void *x);
+	char m_slice_pad[0x08];
+	_STL::list<void *> m_list;
+};
+
+void Gen_002e0dd0::m(void *x)
+{
+	_STL::list<void *>::iterator it = _STL::find(m_list.begin(), m_list.end(), x);
+	if (it == m_list.end())
+		m_list.push_back(x);
 }
