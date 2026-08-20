@@ -1154,13 +1154,12 @@ static RadarColorLookup radarColorLookupTable[] =
 	{ RADAR_EVENT_STEALTH_DISCOVERED,		{   0, 255,   0, 255 },	 {    0, 128,   0, 255 } },
 	{ RADAR_EVENT_STEALTH_NEUTRALIZED,	{   0, 255,   0, 255 },	 {    0, 128,   0, 255 } },
 	{ RADAR_EVENT_FAKE,									{   0,	 0,   0,	 0 },	 {    0,	 0,   0,   0 } },
-	{ RADAR_EVENT_INVALID,							{   0,   0,   0,   0 },  {    0,   0,   0,   0 } }
+	{ (RadarEventType)11,							{   0,   0,   0,   0 },  {    0,   0,   0,   0 } }
 };
 
 //-------------------------------------------------------------------------------------------------
 /** Create a new radar event */
 //-------------------------------------------------------------------------------------------------
-// ?createEvent@Radar@@ present-unmatched
 void Radar::createEvent( const Coord3D *world, RadarEventType type, Real secondsToLive )
 {
 		
@@ -1170,7 +1169,7 @@ void Radar::createEvent( const Coord3D *world, RadarEventType type, Real seconds
 
 	// lookup the colors we are to used based on the event 
 	RGBAColorInt color[ 2 ];
-	for( Int i = 0; radarColorLookupTable[ i ].event != RADAR_EVENT_INVALID; ++i )
+	for( Int i = 0; radarColorLookupTable[ i ].event != (RadarEventType)11; ++i )
 	{
 
 		if( radarColorLookupTable[ i ].event == type )
@@ -1185,7 +1184,7 @@ void Radar::createEvent( const Coord3D *world, RadarEventType type, Real seconds
 	}  // end while
 
 	// check for no match found in color table
-	if( radarColorLookupTable[ i ].event == RADAR_EVENT_INVALID )
+	if( radarColorLookupTable[ i ].event == (RadarEventType)11 )
 	{
 		static RGBAColorInt color1 = { 255, 255, 255, 255 };
 		static RGBAColorInt color2 = { 255, 255, 255, 255 };
