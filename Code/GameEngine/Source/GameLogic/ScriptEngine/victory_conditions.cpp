@@ -1,4 +1,5 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
+// stlport
 // victory_conditions.cpp -- BFME's VictoryConditions subsystem as clean C++.
 //
 // Retail keeps the whole family in one TU around 0x0035F150-0x0035FED0 with the
@@ -22,12 +23,23 @@
 //    mode 6 keeps ZH's NOBUILDINGS|NOUNITS, everything else NOBUILDINGS only.
 // sizeof(VictoryConditions) == 0xC4, asserted below.
 
-typedef int Int;
-typedef unsigned int UnsignedInt;
-typedef bool Bool;
-#define NULL 0
-#define TRUE true
-#define FALSE false
+// Real ZH type stack: BitFlags + STLTypedefs bring AsciiString, Bool/Int and
+// the Relationship enum this file needs.
+#include "Common/BitFlags.h"
+
+// BFME plays 32 slots; ZH's GameCommon enumerator says 16. Shadow the
+// enumerator for the rest of this TU (every retail loop here runs to 0x20).
+#define MAX_PLAYER_COUNT 32
+
+// KindOfMaskType, width-only: BFME's KINDOF_COUNT sits in (160,192] so the
+// mask is six 32-bit words (KindOfMaskCountThunk.cpp pins the STLport
+// _Base_bitset Nw=6 helpers); 192 follows the CrateSystem.cpp precedent.
+// Retail's one use here sets bit 175 -- the check ZH spells
+// mask.set(KINDOF_MP_COUNT_FOR_VICTORY) -- so that index gets ZH's name;
+// every other BFME enumerator stays unmodeled.
+enum { KINDOF_COUNT = 192 };
+enum { KINDOF_MP_COUNT_FOR_VICTORY = 175 };
+typedef BitFlags<KINDOF_COUNT> KindOfMaskType;
 
 // Player as far as this TU touches it. Methods resolve out-of-line through
 // reverse/symbols.csv; the two members model the retail offsets areAllies and
@@ -35,13 +47,6 @@ typedef bool Bool;
 // +0x230).
 class Team;
 class PlayerTemplate;
-
-enum Relationship
-{
-	ENEMIES = 0,
-	NEUTRAL,
-	ALLIES,
-};
 
 class Player
 {
@@ -51,20 +56,15 @@ public:
 	Relationship getRelationship( const Team *that ) const;
 	Bool isPlayerObserver() const;
 	Bool isLocalPlayer() const;
+	Bool hasAnyUnits() const;
+	Bool hasAnyObjects(Bool b) const;
+	Bool hasAnyBuildings(KindOfMaskType kindOf, Bool b) const;
 
 private:
 	void					*m_vptrPad;								// +0x00 retail vptr
 	PlayerTemplate *m_playerTemplate;				// +0x04
 	char					 m_pad[ 0x230 - 8 ];
 	Team					*m_defaultTeam;						// +0x230
-};
-
-// Four-byte stand-in for the AsciiString SubsystemInterface embeds at +4; no
-// body here ever touches m_name.
-class AsciiString
-{
-public:
-	char *m_data;
 };
 
 // BFME's nine-slot subsystem base -- the retail truth this TU dispatches
@@ -125,8 +125,6 @@ protected:
 	Int m_victoryConditions;	// +0x08
 };
 
-enum { MAX_PLAYER_COUNT = 32 };
-
 // TheGameLogic as far as reset() needs it: the game-mode word retail keeps at
 // +0x10C (the same field the matched update body compares against 1/2/5/6).
 class GameLogic
@@ -161,6 +159,17 @@ public:
 };
 
 extern GameInfo *TheGameInfo;				///< retail [0x012F708C]
+
+// hasSinglePlayerBeenDefeated seeds its result from a Player byte getter at
+// +0x680 (ILT 0x00012EEA -> body 0x000C9D00), a BFME-only pre-check with no ZH
+// counterpart. Address-derived shim name, identity open.
+class PlayerShim
+{
+public:
+	Bool unidentified_00012eea() const;
+};
+
+#define ISSET(x) (m_victoryConditions & VICTORY_##x)
 
 // hasAchievedVictory reports the winning player index to TheGameLogic through
 // the ILT thunk at 0x0000F5FB; the 35-byte body (0x00383C30) bounds the index
@@ -220,6 +229,47 @@ typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) =
 // MSVC only emits while their callees (reset, hideEndGame) stay undefined in
 // the calling TU -- defined here, they are provably nothrow and the frame
 // vanishes.
+
+//-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::hasSinglePlayerBeenDefeated(Player *player)
+{
+	if (!player)
+		return false;
+	if (player->isPlayerObserver())
+		return false;
+
+	Bool defeated = ((const PlayerShim *)player)->unidentified_00012eea();
+
+	KindOfMaskType mask;
+	mask.set(KINDOF_MP_COUNT_FOR_VICTORY);
+
+	if ( ISSET(NOUNITS) && ISSET(NOBUILDINGS) )
+	{
+		if ( !player->hasAnyObjects(false) )
+		{
+			defeated = true;
+		}
+	}
+	else if ( ISSET(NOUNITS) )
+	{
+		if ( !player->hasAnyUnits() )
+		{
+			defeated = true;
+		}
+	}
+	else if ( ISSET(NOBUILDINGS) )
+	{
+		if ( !player->hasAnyBuildings(mask, false) )
+		{
+			defeated = true;
+		}
+	}
+
+	if (defeated)
+		++m_defeatCount;
+
+	return defeated;
+}
 
 //-------------------------------------------------------------------------------------------------
 // Compiles as a TU-local helper with MSVC's custom register convention

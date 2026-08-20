@@ -77570,3 +77570,7 @@ _read_number,0x009A00D0,per-TU llex.c static read_number; both retail luaX_lex R
 ?updateMouseData@Mouse@@IAEXXZ,0x0002B805,Open-BFME5 Mouse::update tail-call ILT identified from retail REL32 at 0x005A44E6
 ?isPlayerObserver@Player@@QBE_NXZ,0x00020D01,ILT thunk -> body 0x000C9CF0 (byte getter +0x296); sits at ZH's isPlayerObserver call sites in cachePlayerPtrs and the has*Defeated bodies
 ?unidentified_0000f5fb@GameLogicShim@@QAEXH@Z,0x0000F5FB,ILT thunk -> body 0x00383C30: bounds index to [0-8) and stamps TheGameLogic frame (+0x3C) into the 0x1C-byte slot records at +0x1BC; called by hasAchievedVictory with the winning player index; address-derived shim name
+?hasAnyUnits@Player@@QBE_NXZ,0x000146FF,ILT thunk -> body 0x000CE070; sits at ZH's hasAnyUnits site in hasSinglePlayerBeenDefeated
+?hasAnyObjects@Player@@QBE_N_N@Z,0x0002BB8E,ILT thunk -> body 0x000CE0B0; ZH hasAnyObjects grew one arg in BFME (call site pushes 0); arg type unproven
+?hasAnyBuildings@Player@@QBE_NV?$BitFlags@$0MA@@@_N@Z,0x00030D19,ILT thunk -> body 0x000CDF70; ZH hasAnyBuildings(KindOfMaskType) grew one arg in BFME (call site pushes 0); KindOfMaskType = width-only BitFlags<192> - see victory_conditions.cpp
+?unidentified_00012eea@PlayerShim@@QBE_NXZ,0x00012EEA,ILT thunk -> body 0x000C9D00 (byte getter +0x680); BFME-only pre-check seeding hasSinglePlayerBeenDefeated; address-derived shim name
