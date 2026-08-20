@@ -98,3 +98,98 @@ BFME_BACKPOINTER_GUARDED_DISPATCH( Rva0025B8E0 )
 BFME_BACKPOINTER_GUARDED_DISPATCH( Rva0025D830 )
 BFME_BACKPOINTER_GUARDED_DISPATCH( Rva00262D60 )
 BFME_BACKPOINTER_GUARDED_DISPATCH( Rva0026B7E0 )
+
+// ---------------------------------------------------------------------------
+// The five byte-identical 57-byte guarded dispatchers at 0x00259250,
+// 0x00259E60, 0x0025B920, 0x0025D870 and 0x0026B820 -- each one sits 0x40 bytes
+// past a member of the family above, in the same drawers, and repeats its
+// opening verbatim.  Retail:
+//
+//     mov eax,[ecx-8] / mov edx,[eax+0x1A4] / sub esp,0xC
+//     test edx,edx / jne done
+//     mov edx,[eax+0x38] / mov [esp],edx
+//     mov edx,[eax+0x3C] / mov [esp+4],edx
+//     mov eax,[eax+0x40] / mov edx,[ecx] / mov [esp+8],eax
+//     mov eax,[esp+0x10] / push eax / lea eax,[esp+4] / push eax
+//     call dword ptr [edx+0x34] / add esp,0xC
+//     done: ret 4
+//
+// Same owner back-reference at [ecx-8], same gate at owner+0x1A4, same vftable
+// slot 0x34 on `this`, and the same two-argument call whose first argument is
+// an address and whose second is the one incoming stack argument.  What differs
+// is where that address comes from: instead of a member of an argument, it is a
+// TWELVE-BYTE STACK TEMPORARY -- `sub esp,0xC` builds it, `lea eax,[esp+4]`
+// takes its address (esp having just moved by the `push`), and `add esp,0xC`
+// releases it.  There is no argument null check here because there is no
+// argument pointer to check.
+//
+// THE THREE FIELDS ARE COPIED ONE AT A TIME, and that is source evidence, not
+// scheduling.  Copying a three-dword SUBOBJECT -- `Triple t = owner->m_trip;`
+// -- makes MSVC 7.1 compute the subobject's address once (`add eax,0x38`) and
+// then read `[eax]`, `[eax+4]`, `[eax+8]`: a 59-byte body, two bytes long and
+// wrong in five places.  Retail reads `[eax+0x38]`, `[eax+0x3C]`, `[eax+0x40]`
+// directly off the owner, which is what three separate member-to-member
+// assignments produce.  So the owner holds three scalars there, not a nested
+// struct, and the source names each of them.  (The same distinction settled the
+// container-of accessors in ContainerOfGuardedAccessors.cpp: naming the
+// composite once lets the optimiser fold, and retail did not fold.)
+//
+// `mov edx,[ecx]` landing BETWEEN the second and third store is scheduling and
+// needs nothing from the source; the matching spelling reproduces it.  Writing
+// the guard as `if (gate == 0) { ... }` instead of an early return reorders the
+// three stores and fails.
+//
+// SEPARATE FUNCTIONS, NOT ALIASES; IDENTITY IS NOT RECOVERED.  As above: five
+// addresses, five instantiations, nothing in the image naming any of them.
+
+#define BFME_BACKPOINTER_GUARDED_TRIPLE_DISPATCH( NAME )                      \
+	class NAME##Owner                                                         \
+	{                                                                         \
+	public:                                                                   \
+		char m_leading[ 0x38 ];                                               \
+		int m_first;                                                          \
+		int m_second;                                                         \
+		int m_third;                                                          \
+		char m_trailing[ 0x1A4 - 0x44 ];                                      \
+		int m_gate;                                                           \
+	};                                                                        \
+	class NAME##Triple                                                        \
+	{                                                                         \
+	public:                                                                   \
+		int m_first;                                                          \
+		int m_second;                                                         \
+		int m_third;                                                          \
+	};                                                                        \
+	class NAME##Context;                                                      \
+	class NAME##Dispatcher                                                    \
+	{                                                                         \
+	public:                                                                   \
+		virtual void slot00(); virtual void slot04();                         \
+		virtual void slot08(); virtual void slot0C();                         \
+		virtual void slot10(); virtual void slot14();                         \
+		virtual void slot18(); virtual void slot1C();                         \
+		virtual void slot20(); virtual void slot24();                         \
+		virtual void slot28(); virtual void slot2C();                         \
+		virtual void slot30();                                                \
+		virtual void apply( NAME##Triple *triple, NAME##Context *context );   \
+		void run( NAME##Context *context );                                   \
+	};                                                                        \
+	void NAME##Dispatcher::run( NAME##Context *context )                      \
+	{                                                                         \
+		NAME##Owner *owner = *(NAME##Owner **)( (char *)this - 8 );           \
+		if ( owner->m_gate != 0 )                                             \
+		{                                                                     \
+			return;                                                           \
+		}                                                                     \
+		NAME##Triple triple;                                                  \
+		triple.m_first = owner->m_first;                                      \
+		triple.m_second = owner->m_second;                                    \
+		triple.m_third = owner->m_third;                                      \
+		apply( &triple, context );                                            \
+	}
+
+BFME_BACKPOINTER_GUARDED_TRIPLE_DISPATCH( Rva00259250 )
+BFME_BACKPOINTER_GUARDED_TRIPLE_DISPATCH( Rva00259E60 )
+BFME_BACKPOINTER_GUARDED_TRIPLE_DISPATCH( Rva0025B920 )
+BFME_BACKPOINTER_GUARDED_TRIPLE_DISPATCH( Rva0025D870 )
+BFME_BACKPOINTER_GUARDED_TRIPLE_DISPATCH( Rva0026B820 )
