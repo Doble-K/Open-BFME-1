@@ -7,27 +7,31 @@
 // same pin ScavengerSpecialPowerModuleData uses. Only the four fields from
 // +0x210 to +0x21C belong to this class: three zeros and 10.0f at +0x214.
 //
-// Retail writes the vftable pointer FIRST, immediately after the base
-// constructor returns and before the three zeroed fields; the compiler's own
-// vptr initialization sinks past them instead, landing next to the 10.0f store,
-// because this backend canonicalises a constructor's stores into a
-// register-store group followed by an immediate-store group and files the vptr
-// store at the head of the immediate group. Source statement order does not
-// reach that decision -- every ordering of the four assignments, member-init
-// list or body, chained or separate, compiles to the same sunk shape -- and
-// neither does volatile on the members, nor __declspec(novtable) with the
-// vftable written by hand as an ordinary store.
+// WHERE THE VFTABLE STORE SITS IS NOT A SPELLING SWITCH, IT IS A BARRIER
+// QUESTION. MSVC 7.1 sinks a constructor's vptr store forward until something
+// stops it, and absent a barrier it sinks all the way to the head of the
+// immediate-store group -- which is why every ordering of four plain scalar
+// assignments, body or member-init list, chained or separate, ascending or
+// descending, emits the vftable store next to the 10.0f store instead of at
+// the top. Statement order does not reach it; nine such orderings were probed
+// and all nine produced the same sunk shape.
 //
-// What does reach it is writing every store through a volatile-qualified
-// lvalue, which forces the emitted order to be the written order. So the
-// vftable pointer is suppressed with __declspec(novtable) and stored explicitly
-// as the first statement, exactly the shape ElvenWoodSpecialPowerModuleData's
-// constructor needed at 0x0025CA40 for the same residue.
+// The two things that DO stop the sink are a store the compiler cannot prove
+// stays inside the object (a global assignment -- what W3DTerrainVisual's
+// constructor at 0x007304E0 uses) and the construction of a member sub-object.
+// Retail has no spare global store here and no spare instruction to spend on
+// one, so the barrier is the sub-object: the field at +0x210 is a small class
+// with its own inline default constructor, and because member sub-objects are
+// constructed AFTER the vptr is installed, the vftable store lands at the top
+// exactly as retail has it. The remaining three fields are ordinary body
+// assignments in retail's write order.
 //
-// Sibling constructors whose retail order already agrees with the backend --
-// Devastate at 0x0025AC10, SiegeDeploy at 0x00266450 -- need none of this and
-// are written as plain assignments; the volatile spelling is only for the ones
-// where retail keeps the vftable store ahead of the register-store group.
+// This replaces an earlier spelling that used __declspec(novtable), an
+// extern "C" vftable byte stored by hand, and volatile lvalues on every member.
+// That reproduced the same bytes but for the wrong reason; volatile does not in
+// fact pin the vptr store (it orders only the volatile accesses among
+// themselves), so the whole construct only worked because novtable had removed
+// the compiler's own vptr store from the problem. Nothing contrived is needed.
 
 class BfmeSpecialPowerModuleDataBase
 {
@@ -40,16 +44,23 @@ private:
 	unsigned char m_unmodelled_04[ 0x210 - 4 ];
 };
 
-extern "C" char TaintSpecialPowerModuleData_vtbl;
+// The width and the zero initialiser are what the bytes show; the real type
+// name is not recovered.  What IS recovered is that +0x210 is written by a
+// sub-object constructor rather than by a statement in the body.
+struct BfmeZeroedWord
+{
+	unsigned int m_value;
 
-class __declspec(novtable) TaintSpecialPowerModuleData
-	: public BfmeSpecialPowerModuleDataBase
+	BfmeZeroedWord() { m_value = 0; }
+};
+
+class TaintSpecialPowerModuleData : public BfmeSpecialPowerModuleDataBase
 {
 public:
 	TaintSpecialPowerModuleData();
 
 private:
-	unsigned int m_unmodelled_210;				// +0x210
+	BfmeZeroedWord m_unmodelled_210;			// +0x210
 	float m_unmodelled_214;						// +0x214
 	unsigned int m_unmodelled_218;				// +0x218
 	unsigned int m_unmodelled_21C;				// +0x21C
@@ -58,10 +69,7 @@ private:
 // ??0TaintSpecialPowerModuleData@@QAE@XZ
 TaintSpecialPowerModuleData::TaintSpecialPowerModuleData()
 {
-	*reinterpret_cast<char *volatile *>(this) =
-		&TaintSpecialPowerModuleData_vtbl;
-	*reinterpret_cast<unsigned int volatile *>(&m_unmodelled_210) = 0;
-	*reinterpret_cast<unsigned int volatile *>(&m_unmodelled_218) = 0;
-	*reinterpret_cast<unsigned int volatile *>(&m_unmodelled_21C) = 0;
-	*reinterpret_cast<unsigned int volatile *>(&m_unmodelled_214) = 0x41200000u; // 10.0f
+	m_unmodelled_218 = 0;
+	m_unmodelled_21C = 0;
+	m_unmodelled_214 = 10.0f;
 }
