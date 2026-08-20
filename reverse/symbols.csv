@@ -72447,3 +72447,4 @@ _bfmeRetailCritterDesyncLog,0x0003A17A,Open-BFME6 BFME desync trace logger (cdec
 ?clear@CrateTemplateCrateList@@QAEXXZ,0x000331AE,Open-BFME5 incremental-link thunk to the node-list clear body at 0x00379940 that CrateTemplate::~CrateTemplate calls twice
 ?rva379ec0SmallDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 small-block deallocator reached by the CrateTemplate node-list destructor
 ?groupDoCommandButtonAtPosition@AIGroup@@QAEXPBVCommandButton@@PBUCoord3D@@W4CommandSourceType@@@Z,0x000478B1,doTeamUseCommandButtonAbilityAtWaypoint BFME AIGroup ILT
+?insert_unique@?$_Rb_tree@PAVGameWindow@@PAV1@U?$_Identity@PAVGameWindow@@@_STL@@U?$less@PAVGameWindow@@@3@V?$allocator@PAVGameWindow@@@3@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@PAVGameWindow@@U?$_Nonconst_traits@PAVGameWindow@@@_STL@@@_STL@@_N@2@ABQAVGameWindow@@@Z,0x00625940,Open-BFME5 set<GameWindow*> insert_unique; the call at 0x00626073 through link thunk 0x0001F0C3 resolves here

@@ -173,6 +173,39 @@ void Network::updateLoadProgress(Int percent)
 		((BFMEConnectionManager *)m_conMgr)->sendProgressCommand(percent);
 }
 
+// BFME inlines ConnectionManager::getSlotAverageFPS into this forwarder. The
+// per-slot frame metrics live in an array at +0x24 of the connection manager
+// with a 0x2000 stride, and the accessor on the element stays out of line at
+// 0x006630F0 -- unnamed in the image, so it carries an address-derived
+// placeholder rather than a guessed FrameMetrics name.
+//
+// The residue this row was closed on before -- "retail lea ecx,[eax+ecx+0x24]
+// encodes a different SIB base/index order than MSVC emits" -- was a
+// misreading: retail is 8d 4c 08 24 and every one of eight indexing spellings
+// probed here emits 8d 4c 08 24 too. The real discriminator is the null guard's
+// SHAPE: Zero Hour's `if (m_conMgr != NULL) { ... } return -1;` nesting puts
+// the fallthrough return at the END of the body, which is where retail's
+// `xor eax,eax; ret 4` sits. Spelling it as an early `if (m_conMgr == NULL)
+// return 0;` hoists that return to the top and moves five bytes.
+class Gen_006630f0
+{
+public:
+	Int m(void);
+private:
+	char m_retailData[0x2000];
+};
+
+Int Network::getSlotAverageFPS(Int slot)
+{
+	if (m_conMgr != NULL)
+	{
+		if (slot < 0 || slot >= 9)
+			return -1;
+		return ((Gen_006630f0 *)((char *)m_conMgr + 0x24))[slot].m();
+	}
+	return 0;
+}
+
 // A ternary, not Zero Hour's if/return: with two return statements MSVC builds
 // each result straight into the caller's buffer, and the temporary with its own
 // unwind state -- which retail has, tracked in bl and released at 0x008881D0 --
