@@ -132,6 +132,28 @@ private:
 
 extern GameLogic *TheGameLogic;			///< retail [0x012F0898]
 
+// TheGameInfo as far as isLocalAlliedVictory needs it: retail queries virtual
+// slot 12 ([vptr+0x30]) as a Bool predicate before trusting the local slot.
+class GameInfo
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot01() = 0;
+	virtual void slot02() = 0;
+	virtual void slot03() = 0;
+	virtual void slot04() = 0;
+	virtual void slot05() = 0;
+	virtual void slot06() = 0;
+	virtual void slot07() = 0;
+	virtual void slot08() = 0;
+	virtual void slot09() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual Bool unidentifiedSlot12() = 0;
+};
+
+extern GameInfo *TheGameInfo;				///< retail [0x012F708C]
+
 class VictoryConditions : public VictoryConditionsInterface
 {
 public:
@@ -179,6 +201,19 @@ typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) =
 // MSVC only emits while their callees (reset, hideEndGame) stay undefined in
 // the calling TU -- defined here, they are provably nothrow and the frame
 // vanishes.
+
+//-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::isLocalAlliedVictory( void )
+{
+	if (!m_isObserver)
+	{
+		GameInfo *info = TheGameInfo;
+		if (!info || !info->unidentifiedSlot12())
+			return (hasAchievedVictory(m_players[m_localSlotNum]));
+	}
+
+	return false;
+}
 
 //-------------------------------------------------------------------------------------------------
 Bool VictoryConditions::hasBeenDefeated(Player *player)
