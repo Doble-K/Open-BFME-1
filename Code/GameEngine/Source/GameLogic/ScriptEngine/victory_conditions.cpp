@@ -154,19 +154,11 @@ private:
 
 typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) == 0xc4 ? 1 : -1 ];
 
-//-------------------------------------------------------------------------------------------------
-VictoryConditionsInterface * createVictoryConditions( void )
-{
-	// only one created, so no MemoryPool usage
-	return new VictoryConditions;
-}
-
-//-------------------------------------------------------------------------------------------------
-VictoryConditions::VictoryConditions()
-: m_endGameShowing(false), m_endGameShowTime(0)
-{
-	reset();
-}
+// The constructor, destructor and createVictoryConditions live in
+// victory_conditions_create.cpp: their retail bodies carry EH frames, which
+// MSVC only emits while their callees (reset, hideEndGame) stay undefined in
+// the calling TU -- defined here, they are provably nothrow and the frame
+// vanishes.
 
 //-------------------------------------------------------------------------------------------------
 Bool VictoryConditions::isLocalDefeat( void )
