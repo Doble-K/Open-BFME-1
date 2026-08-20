@@ -72456,3 +72456,5 @@ _codepushbool,0x0099EF70,retail _simpleexp calls the paired lcode.c codepushbool
 _read_number,0x009A00D0,per-TU llex.c static read_number; both retail luaX_lex REL32 sites target this body
 ?_M_erase@?$_Rb_tree@W4NameKeyType@@U?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@@3@U?$less@W4NameKeyType@@@3@V?$allocator@U?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@@3@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@@2@@Z,0x00042FDC
 ?updateMouseData@Mouse@@IAEXXZ,0x0002B805,Open-BFME5 Mouse::update tail-call ILT identified from retail REL32 at 0x005A44E6
+?objectEnteringInfluence@Energy@@QAEXPAVObject@@@Z,0x0000F402,Open-BFME5 retail Energy entering-influence ILT
+?objectLeavingInfluence@Energy@@QAEXPAVObject@@@Z,0x00029D20,Open-BFME5 retail Energy leaving-influence ILT
