@@ -48,14 +48,14 @@ public:
 	CompositeRenderObjClass( const CompositeRenderObjClass &that );
 };
 
-class DistLODClass : public CompositeRenderObjClass
+class BFMEDistLODClass : public CompositeRenderObjClass
 {
 public:
-	DistLODClass( const DistLODClass &that );
+	BFMEDistLODClass( const BFMEDistLODClass &that );
 };
 
 // ??0DistLODClass@@QAE@ABV0@@Z
-DistLODClass::DistLODClass( const DistLODClass &that )
+BFMEDistLODClass::BFMEDistLODClass( const BFMEDistLODClass &that )
 	: CompositeRenderObjClass( that )
 {
 }

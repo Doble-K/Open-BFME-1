@@ -174,6 +174,10 @@ public:
 	};
 
 	DX8IndexBufferClass(unsigned short index_count,UsageType usage=USAGE_DEFAULT);
+#ifdef BFME_DYNAMIC_IB_UINT_CTOR_ABI
+	// BFME zero-extends the shared count before pushing the same four-byte x86 argument slot.
+	DX8IndexBufferClass(unsigned index_count,UsageType usage);
+#endif
 	~DX8IndexBufferClass();
 
 	void Copy(unsigned int* indices,unsigned start_index,unsigned index_count);
@@ -207,4 +211,3 @@ protected:
 extern int IndexBufferExceptionFunc(void);
 
 #endif //DX8INDEXBUFFER_H
-

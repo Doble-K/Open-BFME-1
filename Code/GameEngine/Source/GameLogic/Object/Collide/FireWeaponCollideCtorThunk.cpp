@@ -55,13 +55,13 @@ public:
 	}
 };
 
-class CollideModuleInterface
+class FireWeaponCollideModuleInterface
 {
 public:
 	virtual void collideModuleInterfaceAnchor() = 0;
 };
 
-class CollideModule : public BehaviorModule, public CollideModuleInterface
+class CollideModule : public BehaviorModule, public FireWeaponCollideModuleInterface
 {
 public:
 	CollideModule(Thing *thing, const ModuleData *moduleData) : BehaviorModule(thing, moduleData)

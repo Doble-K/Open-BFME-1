@@ -41,6 +41,7 @@
 
 //#define INDEX_BUFFER_LOG
 
+#define BFME_DYNAMIC_IB_UINT_CTOR_ABI
 #include "dx8indexbuffer.h"
 #include "dx8wrapper.h"
 #include "dx8caps.h"
@@ -499,7 +500,6 @@ DynamicIBAccessClass::WriteLockClass::~WriteLockClass()
 //
 // ----------------------------------------------------------------------------
 
-// ?Allocate_DX8_Dynamic_Buffer@DynamicIBAccessClass@@QAEXXZ present-unmatched
 void DynamicIBAccessClass::Allocate_DX8_Dynamic_Buffer()
 {
 	WWMEMLOG(MEM_RENDERER);
@@ -517,13 +517,15 @@ void DynamicIBAccessClass::Allocate_DX8_Dynamic_Buffer()
 	// Create a new vb if one doesn't exist currently
 	if (!_DynamicDX8IndexBuffer) {
 		unsigned usage=DX8IndexBufferClass::USAGE_DYNAMIC;
-		if (DX8Wrapper::Get_Current_Caps()->Support_NPatches()) {
+		// The ZH caps layout puts this flag at +0xdf; BFME reads it at +0x13b.
+		if (*(const bool *)((const char *)DX8Wrapper::Get_Current_Caps()+0x13b)) {
 			usage|=DX8IndexBufferClass::USAGE_NPATCHES;
 		}
 
-		_DynamicDX8IndexBuffer=NEW_REF(DX8IndexBufferClass,(
-			_DynamicDX8IndexBufferSize,
-			(DX8IndexBufferClass::UsageType)usage));
+		// BFME allocates this wrapper globally; the reconstructed header adds a class pool.
+		_DynamicDX8IndexBuffer=::new DX8IndexBufferClass(
+			(unsigned)_DynamicDX8IndexBufferSize,
+			(DX8IndexBufferClass::UsageType)usage);
 		_DynamicDX8IndexBufferOffset=0;
 	}
 

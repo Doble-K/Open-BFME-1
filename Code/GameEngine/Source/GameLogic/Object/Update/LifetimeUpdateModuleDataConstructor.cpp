@@ -5,21 +5,16 @@
 // word at +0x04 alone, which is what an implicit base constructor looks like.
 // Everything from +0x08 is this class's own.
 
-class LifetimeUpdateModuleDataBase
-{
-public:
-	virtual void moduleDataAnchor();
+extern const char BFME_LifetimeUpdateModuleDataVtable;
 
-private:
-	unsigned char m_unmodelled_04[4];
-};
-
-class LifetimeUpdateModuleData : public LifetimeUpdateModuleDataBase
+class LifetimeUpdateModuleData
 {
 public:
 	LifetimeUpdateModuleData();
 
 private:
+	const char *m_vtable;
+	int m_unmodelled_04;
 	int m_unmodelled_08;					// +0x08
 	int m_unmodelled_0C;					// +0x0C
 	bool m_unmodelled_10;					// +0x10
@@ -28,7 +23,8 @@ private:
 };
 
 LifetimeUpdateModuleData::LifetimeUpdateModuleData()
-	: m_unmodelled_08( 0 ),
+	: m_vtable( &BFME_LifetimeUpdateModuleDataVtable ),
+	  m_unmodelled_08( 0 ),
 	  m_unmodelled_0C( 0 ),
 	  m_unmodelled_10( false ),
 	  m_unmodelled_11( false ),
