@@ -70,6 +70,16 @@ def parse_ledger(raw):
     return rows
 
 
+def ledger_key(fields):
+    """Return the semantic identity used when rewriting one ledger row."""
+    if len(fields) < 3:
+        return None
+    try:
+        return fields[0], int(fields[2], 16)
+    except ValueError:
+        return None
+
+
 def strip_marker(source_path, name):
     """Remove the `// <token> present-unmatched` line whose token is the full
     mangled name or a prefix of it (markers are often truncated at a @@, e.g.
@@ -262,9 +272,9 @@ def main():
         # Drop it through ledger_io, which keeps each record's own terminator:
         # the ledger mixes \r\r\n, \r\n and bare \n, so splitting on \r\n glues a
         # bare-\n row onto its neighbour and deletes both.
-        key = (replaced["name"], f"0x{replaced['rva']:08X}")
+        key = (replaced["name"], replaced["rva"])
         new_raw, dropped = ledger_io.rewrite(
-            raw, lambda f: len(f) < 3 or (f[0], f[2]) != key)
+            raw, lambda f: ledger_key(f) != key)
         if dropped != 1:
             fail(f"internal error: {dropped} ledger rows match {key} — "
                  "expected exactly one")

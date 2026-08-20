@@ -40,6 +40,7 @@ def _load(name):
 check_csv = _load("check_csv")
 dedup_csv = _load("dedup_csv")
 ledger_io = _load("ledger_io")
+add_match = _load("add_match")
 
 
 def symbols(*lines, eol="\r\n"):
@@ -167,6 +168,13 @@ def test_dedup_functions_still_refuses_a_two_source_tie(tmp_path):
         dedup_csv.dedup_functions(path)
     assert exc.value.code == 1
     assert path.read_bytes() == before
+
+
+def test_add_match_rewrite_key_accepts_lowercase_csv_hex():
+    """CSV hex spelling must not make --replace-existing leave its row behind."""
+    fields = ["?assign@Thing@@QAEAAV1@ABV1@@Z", "", "0x005d5ae0", "60",
+              SRC, "matched", ""]
+    assert add_match.ledger_key(fields) == (fields[0], 0x005D5AE0)
 
 
 # --------------------------------------------------------------------------
