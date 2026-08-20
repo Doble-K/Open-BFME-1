@@ -239,6 +239,8 @@ public:
 
 	Quaternion Get_QuatVector(float32 frame);
 
+	int		Get_Channel_Memory_Usage(void);
+
 private:
 
 	uint32	PivotIdx;			// what pivot is this channel applied to
@@ -366,6 +368,8 @@ public:
 
 	Quaternion Get_QuatVector(float32 frame);
 
+	int		Get_Channel_Memory_Usage(void);
+
 private:
 
 	uint32	PivotIdx;			// what pivot is this channel applied to
@@ -420,6 +424,8 @@ public:
 	int	Get_Type(void) { return Type; }
 	int	Get_Pivot(void) { return PivotIdx; }
 	int	Get_Bit(int frame);
+
+	int		Get_Channel_Memory_Usage(void);
 
 private:
 

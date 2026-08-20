@@ -110,6 +110,8 @@ struct NodeCompressedMotionStruct
 	// extra one is a fade channel inside the union at +0x14 -- the slot-13 getter
 	// at 0x0095B260 switches on Flavor and reads [eax+0x14] in both arms.
 	TimeCodedBitChannelClass *			Vis;
+
+	int Get_Channel_Memory_Usage(void);
 };
 
 /***********************************************************************************************
@@ -176,6 +178,31 @@ NodeCompressedMotionStruct::~NodeCompressedMotionStruct()
 	if (Vis) delete Vis;
 
 }  // ~NodeCompressedMotionStruct
+
+
+int NodeCompressedMotionStruct::Get_Channel_Memory_Usage(void)
+{
+	int size = sizeof(NodeCompressedMotionStruct);
+
+	switch (Flavor) {
+		case ANIM_FLAVOR_TIMECODED:
+			if (tc.X) size += tc.X->Get_Channel_Memory_Usage();
+			if (tc.Y) size += tc.Y->Get_Channel_Memory_Usage();
+			if (tc.Z) size += tc.Z->Get_Channel_Memory_Usage();
+			if (tc.Q) size += tc.Q->Get_Channel_Memory_Usage();
+			break;
+		case ANIM_FLAVOR_ADAPTIVE_DELTA:
+			if (ad.X) size += ad.X->Get_Channel_Memory_Usage();
+			if (ad.Y) size += ad.Y->Get_Channel_Memory_Usage();
+			if (ad.Z) size += ad.Z->Get_Channel_Memory_Usage();
+			if (ad.Q) size += ad.Q->Get_Channel_Memory_Usage();
+			break;
+	}
+
+	if (Vis) size += Vis->Get_Channel_Memory_Usage();
+
+	return size;
+}
 
 
 /*********************************************************************************************** 
