@@ -878,7 +878,6 @@ void AdaptiveDeltaMotionChannelClass::Free(void)
  * HISTORY:                                                                                    * 
  *   02/18/2000 JGA : Created.                                                                 * 
  *=============================================================================================*/
-// ?AdaptiveDeltaMotionChannelClass::Load_W3D present-unmatched
 bool AdaptiveDeltaMotionChannelClass::Load_W3D(ChunkLoadClass & cload)
 {
 	int size = cload.Cur_Chunk_Length();
@@ -899,6 +898,12 @@ bool AdaptiveDeltaMotionChannelClass::Load_W3D(ChunkLoadClass & cload)
 	CacheData   = MSGW3DNEWARRAY("AdaptiveDeltaMotionChannelClass::CacheData") float[VectorLen * 2]; // cacheframe & cachedframe+1 by VectorLen
 
 	Data = MSGW3DNEWARRAY("AdaptiveDeltaMotionChannelClass::Data") uint32[numInts];
+	// BFME stores the byte size of the Data allocation in the dword that this
+	// header spells _bfme_adm_scale2 (this+0x10): retail reuses the very
+	// register it just passed to operator new[] and stores it here at
+	// 0x00977D3E, between the Data assignment and the Data[0] copy.  Written
+	// through a pun so no header change is required.
+	*(uint32 *)&_bfme_adm_scale2 = numInts * sizeof(uint32);
 	Data[0] = chan.Data[0];
 	
 	if (cload.Read(&(Data[1]), datasize) != datasize) {

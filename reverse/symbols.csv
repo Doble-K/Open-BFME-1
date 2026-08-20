@@ -72417,3 +72417,5 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ??0MaterialRemapperClass@@QAE@PAVMaterialInfoClass@@0@Z,0x0092FD60,callee of the byte-proven clone_materials 0x96DDC0; ecx=stack temp and args are (srcmesh.MatInfo this->MatInfo) with EH state 0
 ?Remap_Mesh@MaterialRemapperClass@@QAEXPBVMeshMatDescClass@@PAV2@@Z,0x0092F2C0,callee of the byte-proven clone_materials 0x96DDC0; same stack temp as ecx and args are the two CurMatDesc slots at +0x9c
 ??1MaterialRemapperClass@@QAE@XZ,0x0092FF90,callee of the byte-proven clone_materials 0x96DDC0; same stack temp as ecx under EH state -1
+??0Rva899F00Base@@QAE@PBDH@Z,0x00899F00
+??0StateMachine@@QAE@PAVObject@@VAsciiString@@_N@Z,0x000A1BD0,Open-BFME5 corrected signature: retail ret 0xc and a byte read at entry+12 stored to this+0x42 prove a third _N parameter the two-parameter pin omits (same shape as TeamPrototype)
