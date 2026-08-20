@@ -497,3 +497,64 @@ _buttonLobby
 # Surfaced when SaveLoadMenuInit and SaveLoadMenuFullScreenInit landed; before
 # that only PopupReplayInput referenced the name.
 _buttonBackKey
+
+# dx8renderer.cpp is linked twice in retail, the same doubly-linked-TU class as
+# the five MultiListClass instantiations already listed above. One copy's code is
+# at 0x6D1xxx: ??0/??1?$MultiListClass@VDX8PolygonRendererClass@@ (0x6D12A0 /
+# 0x6D17A0) both do `mov [eax],0x111DC54`, and that vtable's single slot thunks
+# to 0x6D1840 in the same region. The other copy is at 0x946xxx: its vtable
+# 0x113CFF4 holds 0x946240, which the ledger already names
+# ??_G?$MultiListClass@VDX8FVFCategoryContainer@@@@UAEPAXI@Z out of
+# dx8renderer.cpp -- the folded MultiListClass<T> scalar deleting dtor of that
+# copy (all instantiations share one body, so the linker folds them). meshmdl.cpp's
+# ??0MeshModelClass@@QAE@ABV0@@Z (0x94EC20) inlines the member's ctor at object
+# offset +0xA4 and therefore references the 0x946xxx copy. Each vtable points at
+# its own copy's functions -- the hanim.cpp signature, not a hidden bug. It is
+# also the immediate neighbour of the already-listed
+# ??_7?$RefMultiListClass@VRenderObjClass@@@@6B@ copy at 0x113CFFC.
+??_7?$MultiListClass@VDX8PolygonRendererClass@@@@6B@
+
+# Eleventh member of the ctor-vs-dtor family this file's header describes, one
+# level below the already-listed ??_7UpdateModule@@6B@. ??1SlaveWatcherBehavior
+# (0x207580) first stamps its own three vtables (0x10A64DC at +0x00, 0x10A6418 at
+# +0x0C, 0x10A6408 at +0x10) and then the inlined base-chain dtor re-stamps the
+# BASE UpdateModule set: `mov [esi+0x10],0x109CBAC`, `mov [esi],0x109CB5C`,
+# `mov [esi+0x0C],0x109CA98`. ??0SpyVisionUpdate (0x1EE950) is the ctor side of
+# the same store: its second round writes its own `mov [esi],0x109CD94` next to
+# the identical shared `mov [esi+0x10],0x109CBAC`. Dtor names the base-most
+# vtable, ctor names the class's own -- exactly the header's phenomenon, and the
+# two vtables share their inherited tail slots (0x44465C/0x43B3AE/0x441821/
+# 0x448CA2/0x4300A3), confirming they are parallel vtables of two classes under
+# one base rather than two copies of one vtable. Latent for the same reason: the
+# DIR32 is masked with retail bytes and every referencing row byte-verifies.
+??_7UpdateModule@@6BPB_DeepBase@@@
+
+# ---------------------------------------------------------------------------
+# Two more of the constructor-only interface-vtable family in the "UNRESOLVED --
+# listed to unblock the gate" block above (DieModuleInterface / ModuleInterface /
+# UpdateModuleInterface are its existing members). Listed on exactly the same
+# terms: NOT vouched for as legitimate. Latent only because build.py masks the
+# DIR32 with retail bytes, so every referencing row is byte-identical.
+#
+# Every reference is a CONSTRUCTOR and every one of them opens with the same
+# two-store round after the base call: HordeMemberCollide (0x2167A0),
+# CrateCollide (0x217660), AODCrushCollide (0x215C50), SquishCollide (0x216BA0),
+# DamageModule (0x20E4A0), ReflectDamage (0x2516F0) and BoneFXDamage (0x250740)
+# all do `mov [esi+0x0C],0x109C9D0` and then `mov [esi+0x10],<their own>`. The
+# split is purely over which of those two slots each TU-local hierarchy gives the
+# interface name to. HordeMemberCollideConstructor.cpp models BehaviorModule +
+# CollideModuleInterface + ModuleInterface and puts CollideModuleInterface on
+# +0x0C (0x109C9D0); FireWeaponCollideCtorThunk.cpp models the BFME layout with
+# no Snapshot base and puts it on +0x10 (0x10A1DE4). Same split for damage:
+# DamageModule's own ctor names +0x10 (0x10A7348) while its ReflectDamage /
+# BoneFXDamage subclasses name +0x0C (0x109C9D0).
+#
+# 0x109C9D0 sits inside a long run of _purecall (0x00C8C500) pointers that every
+# all-pure interface sub-object vtable folds onto, which is why so many rows
+# agree on it -- folded identical data, not a correct name. The fix is the
+# derived-qualified rename the six symbols above already need
+# (??_7HordeMemberCollide@@6BCollideModuleInterface@@@ and friends) plus
+# re-verification, not a whitelist entry.
+# ---------------------------------------------------------------------------
+??_7CollideModuleInterface@@6B@
+??_7DamageModuleInterface@@6B@
