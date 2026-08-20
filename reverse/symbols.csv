@@ -72405,3 +72405,8 @@ _ghiThrottleSettings,0x0087C9C0,tail-call target of ghttpThrottleSettings; body 
 ?insert_unique@?$_Rb_tree@IU?$pair@$$CBIPAVState@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVState@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIPAVState@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIPAVState@@@2@@Z,0x0002D420,ILT thunk; REL32 target of StateMachine::defineState at 0x000A2057
 ?getName@GameSlot@@QBE?AVUnicodeString@@XZ,0x0003A20B,Open-BFME5 ILT thunk (jmp 0x003879C0) read from the isUser call displacement at 0x0068E8FE; 0x003879C0 already carries object-symbol=?getName@GameSlot@@QBE?AVUnicodeString@@XZ
 ??0DX8IndexBufferClass@@QAE@IW4UsageType@0@@Z,0x0091D0A0,BFME DynamicIB uint-width call-site ABI alias for the unsigned-short constructor
+??1ConnectionManager@@QAE@XZ,0x00019E25,ILT thunk to 0x00668D90; the address Network::~Network at 0x006823B0 encodes before operator delete
+?reset@LANAPI@@UAEXXZ,0x000068AC,ILT thunk to 0x00688430; the devirtualized first call in ~LANAPI at 0x00688680
+??1Transport@@QAE@XZ,0x0003A48B,ILT thunk to 0x00683450 which ICF-folds with ?reset@Transport@@QAEXXZ; the delete m_transport call in ~LANAPI at 0x00688680
+?getFileTransferProgress@ConnectionManager@@QAEHHVAsciiString@@@Z,0x00038113,ILT thunk to 0x00669A00; the address Network::getFileTransferProgress at 0x00682640 encodes
+?ResolveIP@@YAIVAsciiString@@@Z,0x0003DC08,ILT thunk to 0x00682EF0; the address LANAPI::SetLocalIP(AsciiString) at 0x00686C10 encodes
