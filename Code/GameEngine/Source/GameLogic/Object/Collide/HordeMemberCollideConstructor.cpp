@@ -24,7 +24,7 @@ private:
 	unsigned char m_data[8];
 };
 
-class CollideModuleInterface
+class InlineCollideModuleInterface
 {
 public:
 	virtual void collideModuleInterfaceAnchor();
@@ -37,7 +37,7 @@ public:
 };
 
 class CollideModule : public BehaviorModule,
-	public CollideModuleInterface,
+	public InlineCollideModuleInterface,
 	public ModuleInterface
 {
 public:

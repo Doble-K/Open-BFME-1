@@ -24,7 +24,7 @@ private:
 	unsigned char m_data[8];
 };
 
-class DamageModuleInterface
+class InlineDamageModuleInterface
 {
 public:
 	virtual void damageModuleInterfaceAnchor();
@@ -37,7 +37,7 @@ public:
 };
 
 class DamageModule : public BehaviorModule,
-	public DamageModuleInterface,
+	public InlineDamageModuleInterface,
 	public ModuleInterface
 {
 public:

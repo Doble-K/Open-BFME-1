@@ -50,13 +50,13 @@ public:
 	virtual void slot() = 0;
 };
 
-class UpdateModule : public PB_DeepBase, public SlaveWatcherBehaviorIface1
+class SlaveWatcherUpdateModuleBase : public PB_DeepBase, public SlaveWatcherBehaviorIface1
 {
 public:
-	virtual ~UpdateModule() {}
+	virtual ~SlaveWatcherUpdateModuleBase() {}
 };
 
-class SlaveWatcherUpdateModule : public UpdateModule, public SlaveWatcherBehaviorIface2
+class SlaveWatcherUpdateModule : public SlaveWatcherUpdateModuleBase, public SlaveWatcherBehaviorIface2
 {
 public:
 	virtual ~SlaveWatcherUpdateModule() {}
