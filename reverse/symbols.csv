@@ -2018,6 +2018,7 @@ name,address,notes
 ??0W3DTankDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x0004549E,pinharvest x1 (thunk)
 ??0W3DTankDrawModuleData@@QAE@XZ,0x00018322,pinharvest x1 (thunk)
 ??0W3DTankDrawModuleData@@QAE@XZ,0x0003B14C,pinharvest x1 (thunk)
+??0W3DOverlordTruckModuleDataBase@@QAE@XZ,0x000426E0,TU-local ABI name for the 225-byte retail base called at 0x00429460
 ??0W3DTerrainVisual@@QAE@XZ,0x00024DC0
 ??0W3DTracerDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00004D36,pinharvest x1 (thunk)
 ??0W3DTracerDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000C199,pinharvest x1 (thunk)
