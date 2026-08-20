@@ -1,4 +1,6 @@
 name,address,notes
+?bfme_loadRoadsAndBridges@@YAXPAX_N@Z,0x00021B7A,TU-local name for road-loader call made by W3DTerrainLogic::newMap at 0x00491550
+?newMap@TerrainLogic@@UAEX_N@Z,0x00003FE4,base call made by W3DTerrainLogic::newMap at 0x00491550
 ??_7VirtualZeroDerivedThirdThunk@@6B@,0x010F6F74,Open-BFME5 third virtual zero derived vftable
 ??_7VirtualZeroDerivedAlternateThunk@@6B@,0x010F6F68,Open-BFME5 alternate virtual zero derived vftable
 ??_7VirtualZeroDerivedThunk@@6B@,0x010F6F5C,Open-BFME5 virtual zero derived vftable
