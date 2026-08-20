@@ -72443,3 +72443,6 @@ _bfmeRetailCritterDesyncLog,0x0003A17A,Open-BFME6 BFME desync trace logger (cdec
 ??0Gen_t_003a93f0_s4@@QAE@ABU0@@Z,0x00887B60,4-byte member copy ctor called by _Construct @0x3A93F0; retail target is the StringBase<char> copy ctor
 ??0Gen_t_003abad0_m24@@QAE@ABU0@@Z,0x00029F6E,24-byte member copy ctor called by _Construct @0x3ABAD0; retail call goes through this incremental-link thunk to 0x003AB520
 ?rva571c40@@YAXPAVRva572670Record@@HHV1@H@Z,0x0000CE0A,incremental-link thunk to 0x00571C40; callee of the 0x00572670 wrapper
+??0W3DTankDrawModuleDataBase@@QAE@XZ,0x0000289C,Open-BFME5 address-derived base whose constructor W3DTankDrawModuleData reaches through the incremental-link thunk at 0x0000289C
+?clear@CrateTemplateCrateList@@QAEXXZ,0x000331AE,Open-BFME5 incremental-link thunk to the node-list clear body at 0x00379940 that CrateTemplate::~CrateTemplate calls twice
+?rva379ec0SmallDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 small-block deallocator reached by the CrateTemplate node-list destructor
