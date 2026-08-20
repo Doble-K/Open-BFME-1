@@ -44,9 +44,9 @@ inline TYPE
 clamp(TYPE val, TYPE min = TYPE(0), TYPE max = TYPE(1))
 {
 	if (val < min) {
-		val = min;
+		return min;
 	} else if (val > max) {
-		val = max;
+		return max;
 	}
 	return val;
 }
@@ -78,7 +78,6 @@ ParabolicEase::setEaseTimes(Real easeInTime, Real easeOutTime)
 
 // ----------------------------------------------------------------------------
 Real
-// ??RParabolicEase@@ present-unmatched
 ParabolicEase::operator ()(Real param) const
 {
 	if (param < 0.0f || param > 1.0f) {
