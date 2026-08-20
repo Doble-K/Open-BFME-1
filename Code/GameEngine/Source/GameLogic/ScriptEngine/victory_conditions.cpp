@@ -161,6 +161,19 @@ typedef char BFMERetailVictoryConditionsSizeCheck[ sizeof( VictoryConditions ) =
 // vanishes.
 
 //-------------------------------------------------------------------------------------------------
+Bool VictoryConditions::isLocalAlliedDefeat( void )
+{
+	if (m_isObserver)
+	{
+		if (m_defeatCount > 0)
+			return m_singleAllianceRemaining;
+		return false;
+	}
+
+	return (hasBeenDefeated(m_players[m_localSlotNum]));
+}
+
+//-------------------------------------------------------------------------------------------------
 Bool VictoryConditions::isLocalDefeat( void )
 {
 	if (m_isObserver)
