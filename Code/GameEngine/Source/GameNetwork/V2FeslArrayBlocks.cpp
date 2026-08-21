@@ -1,7 +1,10 @@
+// cl: /GX-
 // EA FESL client SDK ("jabba") -- allocator-backed element blocks.
 //
 // Same translation-unit cluster as V2FeslTxnRequests.cpp; see that file's head
 // comment for how the span was identified.
+// `/GX-` is required because retail calls both nontrivial member constructors
+// without installing a constructor-unwind frame.
 //
 // WHAT THE BYTES SHOW.  Every row here reaches its storage through the same
 // __cdecl getter at RVA 0x007EFFC0 that Code/GameEngine/Source/Common/
@@ -68,16 +71,39 @@ struct Gen_dtor_007f6d20
 	int m_pad;
 };
 
+struct V2ZeroInt
+{
+	__forceinline V2ZeroInt() : m_value(0) {}
+	int m_value;
+};
+
 struct Rva00802E70Element
 {
-	Rva00802E70Element();                                             // 0x00802E70
-	char m_pad[ 0x1C ];
+	__declspec(noinline) Rva00802E70Element();                        // 0x00802E70
+	virtual void slot();
+	int m_value04;
+	V2ZeroInt m_value08;
+	Gen_dtor_007f6d20 m_value0c;
+	Gen_dtor_007f6d20 m_value14;
 };
 
 struct Rva00802D00Element
 {
-	Rva00802D00Element();                                             // 0x00802D00
-	char m_pad[ 0x40 ];
+	__declspec(noinline) Rva00802D00Element();                        // 0x00802D00
+	virtual void slot();
+	int m_value04;
+	V2ZeroInt m_value08;
+	Gen_dtor_007f6d20 m_value0c;
+	Gen_dtor_007f6d20 m_value14;
+	int m_value1c;
+	int m_value20;
+	int m_value24;
+	int m_value28;
+	int m_value2c;
+	int m_value30;
+	int m_value34;
+	int m_value38;
+	int m_value3c;
 };
 
 inline void *operator new( unsigned int, void *where ) { return where; }
@@ -241,4 +267,22 @@ void Rva007F9610Holder::release()
 	m_b = 0;
 	m_a = 0;
 	m_block = 0;
+}
+
+Rva00802E70Element::Rva00802E70Element()
+{
+	m_value04 = 0;
+}
+
+Rva00802D00Element::Rva00802D00Element()
+{
+	m_value1c = 0;
+	m_value20 = 0;
+	m_value04 = 0;
+	m_value24 = 0;
+	m_value2c = 0;
+	m_value30 = 0;
+	m_value34 = 0;
+	m_value38 = 0;
+	m_value3c = 0;
 }
