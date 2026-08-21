@@ -74368,3 +74368,5 @@ _Gen00881EF0,0x00881EF0,address-derived callee of a guarded cdecl release-and-cl
 ?take0046DE10@S4Holder0046DBB0@@QAEXABVAsciiString@@@Z,0x0046DE10,S4 holder method of the string-vector drain family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
 ?take0046DEF0@S4Holder0046DBB0@@QAEXABVAsciiString@@@Z,0x0046DEF0,S4 holder method of the string-vector drain family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
 ?invoke@S4Sink004135C0@@QAEXABVAsciiString@@HHHH@Z,0x004135C0,S4 sink method of the Lua string-command family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?getPortableFilename@NetFileCommandMsg@@QAE?AV?$StringBase@D@@XZ,0x00044323,ILT thunk to 0x0067D250; NetPacket::GetFileCommandSize at 0x0067D410 calls it beside the ledgered getFileLength on the same class
+?getPortableFilename@NetFileAnnounceCommandMsg@@QAE?AV?$StringBase@D@@XZ,0x0003D50F,ILT thunk to 0x0067D2E0; NetPacket::GetFileAnnounceCommandSize at 0x0067D460 calls it where Zero Hour calls getPortableFilename
