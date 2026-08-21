@@ -84,7 +84,6 @@ UnsignedInt NetPacket::GetRequestGameSpyStatsAuthKeyCommandSize(NetCommandMsg *m
 	return msglen;
 }
 
-// ?GetGameSpyStatsAuthKeyCommandSize@NetPacket@@KAIPAVNetCommandMsg@@@Z present-unmatched
 UnsignedInt NetPacket::GetGameSpyStatsAuthKeyCommandSize(NetCommandMsg *msg)
 {
 	BFMENetGameSpyStatsAuthKeyCommandMsg *authMsg = (BFMENetGameSpyStatsAuthKeyCommandMsg *)msg;
