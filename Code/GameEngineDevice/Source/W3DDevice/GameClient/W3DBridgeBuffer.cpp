@@ -3447,14 +3447,14 @@ void W3DBridge::getIndicesNVertices(UnsignedShort *destination_ib, VertexFormatX
 //=============================================================================
 /** Gets the index values for a particular mesh section of the bridge.  */
 //=============================================================================
-// ?getModelIndices@W3DBridge@@IAEHPAGHHPAVMeshClass@@@Z present-unmatched
 Int W3DBridge::getModelIndices(UnsignedShort *destination_ib, Int curIndex, Int vertexOffset, MeshClass *pMesh)
 {
 	if (pMesh == NULL) 
 		return(0);
 	Int numPoly = pMesh->Peek_Model()->Get_Polygon_Count();
 	const TriIndex *pPoly =pMesh->Peek_Model()->Get_Polygon_Array();
-	if (curIndex+3*numPoly+6 >= W3DBridgeBuffer::MAX_BRIDGE_INDEX) {
+	const Int maxBridgeIndex = 16000;
+	if (curIndex+3*numPoly+6 >= maxBridgeIndex) {
 		return(0);
 	}
 	UnsignedShort *curIb = destination_ib+curIndex;
