@@ -43,6 +43,13 @@
 #include "Common/StackDump.h"
 #include "Common/SubsystemInterface.h"
 
+namespace _STL
+{
+template <>
+void deque<GameResultsResponse, allocator<GameResultsResponse> >::_M_push_back_aux_v(
+	const GameResultsResponse &response);
+}
+
 //-------------------------------------------------------------------------
 
 static const Int NumWorkerThreads = 1;
@@ -402,3 +409,19 @@ Int GameResultsThreadClass::sendGameResults( UnsignedInt IP, UnsignedShort port,
 
 
 //-------------------------------------------------------------------------
+
+#pragma optimize("gty", on)
+namespace _STL
+{
+template <>
+void deque<GameResultsResponse, allocator<GameResultsResponse> >::_M_push_back_aux_v(
+	const GameResultsResponse &response)
+{
+	GameResultsResponse responseCopy = response;
+	_M_reserve_map_at_back();
+	*(this->_M_finish._M_node + 1) = this->_M_map_size.allocate(this->buffer_size());
+	_Construct(this->_M_finish._M_cur, responseCopy);
+	this->_M_finish._M_set_node(this->_M_finish._M_node + 1);
+	this->_M_finish._M_cur = this->_M_finish._M_first;
+}
+}

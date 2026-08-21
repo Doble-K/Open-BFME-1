@@ -74628,3 +74628,4 @@ _disconnectMenuLayout,0x012F4960,BFME DisconnectWindow retail DIR32 layout point
 ?getBridgeBehaviorInterfaceFromObject@BridgeBehavior@@SAPAVBridgeBehaviorInterface@@PAVObject@@@Z,0x00010424,Bridge::updateDamageState calls the existing ILT thunk before the scaffold check
 ??4MeshMatDescClass@@QAEAAV0@ABV0@@Z,0x0092BB00,MeshMatDesc copy constructor direct same-TU call target
 ??0DamageInfoInput@@QAE@XZ,0x0002C3A9,DamageInfo constructor retail call ILT reaches the input constructor body at 0x000ED2D0
+?_M_reallocate_map@?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@IAEXI_N@Z,0x00025B21,GameResultsResponse deque growth calls the existing incremental-link thunk for the matched reallocation body
