@@ -655,9 +655,10 @@ void DockUpdate::xfer( Xfer *xfer )
 // ------------------------------------------------------------------------------------------------
 /** Load post process */
 // ------------------------------------------------------------------------------------------------
-// ?loadPostProcess@DockUpdate@@MAEXXZ present-unmatched
 void DockUpdate::loadPostProcess( void )
 {
+	if (m_positionsLoaded)
+		loadDockPositions();
 
 	// call base class
 	UpdateModule::loadPostProcess();
