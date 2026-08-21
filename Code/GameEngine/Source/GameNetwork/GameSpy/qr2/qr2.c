@@ -1031,7 +1031,7 @@ void qr2_parse_queryA(qr2_t qrec, char *query, int len, struct sockaddr *sender)
 		break;
 	case PACKET_CHALLENGE:
 		//calculate the challenge
-		if(qrec->pa_callback && (len >= (PUBLIC_ADDR_LEN + 1)))
+		if((len >= (PUBLIC_ADDR_LEN + 1)) && qrec->pa_callback)
 			handle_public_address(qrec, pos + len - (PUBLIC_ADDR_LEN + 1));
 		compute_challenge_response(qrec, &buf, pos, len);
 		break;
