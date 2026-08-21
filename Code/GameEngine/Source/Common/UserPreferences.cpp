@@ -69,6 +69,20 @@
 // PRIVATE TYPES //////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
 
+class BfmeGameSpyInfoLocalProfileView
+{
+public:
+	// BFME added seven slots before this method, so the inherited ZH view calls +0x54 instead of retail's +0x70.
+	virtual void unused00() = 0, unused01() = 0, unused02() = 0, unused03() = 0;
+	virtual void unused04() = 0, unused05() = 0, unused06() = 0, unused07() = 0;
+	virtual void unused08() = 0, unused09() = 0, unused10() = 0, unused11() = 0;
+	virtual void unused12() = 0, unused13() = 0, unused14() = 0, unused15() = 0;
+	virtual void unused16() = 0, unused17() = 0, unused18() = 0, unused19() = 0;
+	virtual void unused20() = 0, unused21() = 0, unused22() = 0, unused23() = 0;
+	virtual void unused24() = 0, unused25() = 0, unused26() = 0, unused27() = 0;
+	virtual Int getLocalProfileID() = 0;
+};
+
 //-----------------------------------------------------------------------------
 // PRIVATE DATA ///////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
@@ -241,12 +255,11 @@ void UserPreferences::setAsciiString(AsciiString key, AsciiString val)
 // QuickMatchPreferences base class 
 //-----------------------------------------------------------------------------
 
-// ??0QuickMatchPreferences@@QAE@XZ present-unmatched
 QuickMatchPreferences::QuickMatchPreferences()
 {
 	AsciiString userPrefFilename;
-	Int localProfile = TheGameSpyInfo->getLocalProfileID();
-	userPrefFilename.format("GeneralsOnline\\QMPref%d.ini", localProfile);
+	Int localProfile = reinterpret_cast<BfmeGameSpyInfoLocalProfileView *>(TheGameSpyInfo)->getLocalProfileID();
+	userPrefFilename.format("LoTRB4MEOnline\\QMPref%d.ini", localProfile);
 	load(userPrefFilename);
 }
 
