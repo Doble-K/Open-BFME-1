@@ -4849,3 +4849,5 @@ span-tightness-predicts-coherence-but-not-perfectly	0x003B8450	41	converted	CALI
 ?d_00662790@@YAXXZ	0x00662790	5	converted	t=2min exact clean C++ unsigned-short field at this+0x10 returned as unsigned int; 0F B7 41 10 C3 matched via Rva00662790WordGetter.cpp; identity remains address-derived
 ?d_0081ae10@@YAXXZ	0x0081AE10	5	attempted	t=1min claimed fresh scaffold-only empty void body; retail=55 8B EC 5D C3; identity remains address-derived
 ?d_0081ae10@@YAXXZ	0x0081AE10	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva0081AE10Empty.cpp; identity remains address-derived
+?d_00817230@@YAXXZ	0x00817230	5	attempted	t=1min claimed fresh scaffold-only empty void body; retail=55 8B EC 5D C3; identity remains address-derived
+?d_00817230@@YAXXZ	0x00817230	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva00817230Empty.cpp; identity remains address-derived
