@@ -74707,3 +74707,7 @@ _ciSocketInit,0x0085A7C0,gamespy-chat: third init call in chatConnectDoit - take
 _ciSocketConnect,0x0085A870,gamespy-chat: fourth init call in chatConnectDoit - takes the socket the address and the port
 _ciSocketDisconnect,0x0085A990,gamespy-chat: teardown on the connect failure path of chatConnectDoit
 ?xfer@W3DRopeDrawDrawModule@@MAEXPAVXfer@@@Z,0x0002FD88,
+?_M_erase@?$_Rb_tree@HU?$pair@$$CBHPAU_SBServer@@@_STL@@U?$_Select1st@U?$pair@$$CBHPAU_SBServer@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHPAU_SBServer@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHPAU_SBServer@@@_STL@@@2@@Z,0x0004412A,Open-BFME5 ILT used by PeerThreadClass::clearServers
+?extraAfterFmod@W3DSnowManager@@QAEXXZ,0x00008F2B,Open-BFME5 ILT 0x00008F2B used by W3DSnowManager::update
+?extraTail@W3DSnowManager@@QAEXXZ,0x000092AF,Open-BFME5 ILT 0x000092AF used by W3DSnowManager::update
+?helper_006f4660@@YGXHHHH@Z,0x0093EB50,Open-BFME5 pin for 0x006F4660 four-arg wrapper
