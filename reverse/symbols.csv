@@ -73596,3 +73596,10 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+?handle@Gen00012B70@@QAEXXZ,0x00012B70,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
+?handle@Gen0003CAC4@@QAEXXZ,0x0003CAC4,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
+?handle@Gen0000C5CC@@QAEXXZ,0x0000C5CC,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
+?handle@Gen00015D84@@QAEXXZ,0x00015D84,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
+?handle@Gen000404D0@@QAEXXZ,0x000404D0,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
+?handle@Gen00047280@@QAEXXZ,0x00047280,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
+?handle@Gen0094F300@@QAEXXZ,0x0094F300,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
