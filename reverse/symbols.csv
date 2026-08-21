@@ -74599,3 +74599,4 @@ _sprintf,0x009F6DE2,V2 lane: sprintf import thunk (reverse/functions.csv gen-imp
 ?set@BFMEZBiasSetter@@SAXM@Z,0x00905990,float-ABI shim for BFME's older DX8 Z-bias body called by BaseHeightMapScorchSetZBias
 ??0BfmeLivingWorldAnimObject@@QAE@ABVAsciiString@@@Z,0x000089E0,LivingWorld animation object constructor ILT decoded from findAnimObject retail callsite
 ?_M_insert_overflow@?$vector@PAVBfmeLivingWorldAnimObject@@V?$allocator@PAVBfmeLivingWorldAnimObject@@@_STL@@@_STL@@IAEXPAPAVBfmeLivingWorldAnimObject@@ABQAV3@ABU__true_type@2@I_N@Z,0x000094D5,STL vector overflow helper ILT decoded from findAnimObject retail callsite
+?calcPitches@GeometryInfo@@QBEXABUCoord3D@@ABV1@0AAM2@Z,0x0087EC20,GeometryInfo pitch calculation body decoded from Weapon::isWithinTargetPitch retail callsite

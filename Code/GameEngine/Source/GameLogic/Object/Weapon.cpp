@@ -2857,30 +2857,36 @@ WeaponStatus Weapon::getStatus() const
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?isWithinTargetPitch@Weapon@@QBE_NPBVObject@@0@Z present-unmatched
 Bool Weapon::isWithinTargetPitch(const Object *source, const Object *victim) const
 {
-	if (isContactWeapon() || !isPitchLimited())
-		return true;
+	// The vendored class layout differs from BFME, which stores the combined pitch-check flag at +0x4c.
+	if (*reinterpret_cast<const Bool *>(reinterpret_cast<const char *>(this) + 0x4c))
+	{
+		const Coord3D* src = source->getPosition();
+		const Coord3D* dst = victim->getPosition();
 
-	const Coord3D* src = source->getPosition();
-	const Coord3D* dst = victim->getPosition();
+		const Real ACCCEPTABLE_DZ = 10.0f;
+		if (fabs(dst->z - src->z) < ACCCEPTABLE_DZ)
+			return true;	// always good enough if dz is small, regardless of pitch
 
-	const Real ACCCEPTABLE_DZ = 10.0f;
-	if (fabs(dst->z - src->z) < ACCCEPTABLE_DZ)
-		return true;	// always good enough if dz is small, regardless of pitch
+		Real minPitch, maxPitch;
+		const GeometryInfo &sourceGeometry = *reinterpret_cast<const GeometryInfo *>(reinterpret_cast<const char *>(source) + 0xac);
+		const GeometryInfo &victimGeometry = *reinterpret_cast<const GeometryInfo *>(reinterpret_cast<const char *>(victim) + 0xac);
+		sourceGeometry.calcPitches(*src, victimGeometry, *dst, minPitch, maxPitch);
 
-	Real minPitch, maxPitch;
-	source->getGeometryInfo().calcPitches(*src, victim->getGeometryInfo(), *dst, minPitch, maxPitch);
+		const char *weaponTemplate = *reinterpret_cast<const char * const *>(reinterpret_cast<const char *>(this) + 4);
 
-	// if there's any intersection between the the two pitch ranges, we're good to go.
-	if ((minPitch >= m_template->getMinTargetPitch() && minPitch <= m_template->getMaxTargetPitch()) ||
-			(maxPitch >= m_template->getMinTargetPitch() && maxPitch <= m_template->getMaxTargetPitch()) ||
-			(minPitch <= m_template->getMinTargetPitch() && maxPitch >= m_template->getMaxTargetPitch()))
-		return true;
+		// if there's any intersection between the the two pitch ranges, we're good to go.
+		if ((minPitch >= *reinterpret_cast<const Real *>(weaponTemplate + 0x78) && minPitch <= *reinterpret_cast<const Real *>(weaponTemplate + 0x7c)) ||
+				(maxPitch >= *reinterpret_cast<const Real *>(weaponTemplate + 0x78) && maxPitch <= *reinterpret_cast<const Real *>(weaponTemplate + 0x7c)) ||
+				(minPitch <= *reinterpret_cast<const Real *>(weaponTemplate + 0x78) && maxPitch >= *reinterpret_cast<const Real *>(weaponTemplate + 0x7c)))
+			return true;
 
-	//DEBUG_LOG(("pitch %f-%f is out of range\n",rad2deg(minPitch),rad2deg(maxPitch),rad2deg(m_template->getMinTargetPitch()),rad2deg(m_template->getMaxTargetPitch())));
-	return false;
+		//DEBUG_LOG(("pitch %f-%f is out of range\n",rad2deg(minPitch),rad2deg(maxPitch),rad2deg(m_template->getMinTargetPitch()),rad2deg(m_template->getMaxTargetPitch())));
+		return false;
+	}
+
+	return true;
 }
 
 //-------------------------------------------------------------------------------------------------
