@@ -28,7 +28,10 @@ public:
 	static const FieldParse m_fieldParseTable[];		// 0x010EA91C
 
 private:
-	char m_unmodelled[ 0x10 ];
+	unsigned m_unmodelled_00;
+	unsigned m_unmodelled_04;
+	AsciiString m_unmodelled_08;
+	AsciiString m_name;
 };
 
 class BfmeExperienceLevelSystem
@@ -63,4 +66,11 @@ void parseExperienceScalarTable( INI *ini )
 	ini->initFromINI( table, ExperienceScalarTable::m_fieldParseTable );
 
 	TheExperienceLevelSystem->addScalarTable( table );
+}
+
+__declspec(noinline) ExperienceScalarTable::ExperienceScalarTable( const AsciiString &name ) :
+	m_unmodelled_00( 0 ),
+	m_unmodelled_04( 0 ),
+	m_name( name )
+{
 }
