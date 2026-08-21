@@ -74617,3 +74617,4 @@ _W3RbDecrement,0x0082B8E0,alias pin for the red-black tree node decrement helper
 ??0BFMELANPreferenceKey@@QAE@PBD@Z,0x00888BC0,LANPreferences retail key construction call reaches the established AsciiString const-char constructor
 ??1BFMELANPreferenceKey@@QAE@XZ,0x00887940,LANPreferences retail key destruction call reaches the established AsciiString release body
 ?find@BFMELANPreferenceMap@@QAEPAXABVBFMELANPreferenceKey@@@Z,0x0000AEAC,LANPreferences retail map lookup ILT reaches the matched STL tree find at 0x00080600
+?value@Rva003608F0FloatElement@@QAEMXZ,0x0002CC5F,address-derived float element callee; target read directly from RVA 0x00361420 rel32 call

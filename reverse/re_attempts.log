@@ -4933,3 +4933,4 @@ concurrent-lanes-make-a-mid-write-read-lie		4	tooling	A CONCURRENCY HAZARD ONE S
 ?d_000ec430@@YAXXZ	0x000EC430	7	attempted	t=1min model=grok-4.6 claimed fresh 7-byte dword getter; retail=8B 81 74 02 00 00 C3; target ownership audited as gen-dump scaffold only
 ?d_000ec430@@YAXXZ	0x000EC430	7	converted	t=2min model=grok-4.6 exact clean C++ dword getter; 8B 81 74 02 00 00 C3 matched via Rva000EC430DwordGetter.cpp; add_match and two focused build.py runs passed; identity remains address-derived
 ?d_00537a30@@YAXXZ	0x00537A30	13	converted	t=4min model=grok-4.6 exact clean C++ dword setter; C7 81 88 01 00 00 07 00 00 00 C2 04 00 matched via Rva00537A30DwordSetter.cpp; add_match and two focused build.py runs passed; identity remains address-derived
+?d_00361420@@YAXXZ	0x00361420	67	converted	exact clean C++ bounded 0x58-byte range accessor; rel32 target 0x0002CC5F pinned from retail call; t=18min model=gpt-5.6-sol
