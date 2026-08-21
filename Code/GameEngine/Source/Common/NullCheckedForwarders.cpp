@@ -116,3 +116,74 @@ BFME_NULL_CHECKED_FORWARD_2( Rva005C0640Forward )
 BFME_NULL_CHECKED_FORWARD_2( Rva005C06C0Forward )
 BFME_NULL_CHECKED_FORWARD_2( Rva005C0740Forward )
 BFME_NULL_CHECKED_FORWARD_2( Rva005C07C0Forward )
+
+// ---------------------------------------------------------------------------
+// THE THIRD ARITY, AND A DIFFERENT SLOT.  Interleaved through the same drawer
+// -- 0x005BFF60 sits sixteen bytes before 0x005BFF70, 0x005C01D0 before
+// 0x005C01E0, 0x005C03E0 before 0x005C03F0, 0x005C0580 before 0x005C0590 --
+// and continuing past its end into 0x005C2450-0x005C2710, there are thirteen
+// more copies of a twelve-byte body that is the same shape with two of its
+// three parameters different:
+//
+//     mov ecx,[ecx] / test ecx,ecx / je end / mov eax,[ecx]
+//     jmp dword ptr [eax+4] / end: ret
+//
+// A bare `ret` and no argument bytes: this arity takes NO arguments beyond
+// `this`, which is why the tail jump needs no stack adjustment at all and the
+// callee's own `ret` balances an already-balanced frame.  And the dispatch is
+// through displacement 4, not 0xC -- slot 1 of the target's vftable rather than
+// slot 3.  Everything else is byte-for-byte the shape documented above: same
+// first-member pointer, same null check, same fall-through to a value-less
+// return, same __thiscall convention.
+//
+// The pairing is what makes the slot reading solid rather than a guess.  Four
+// of the thirteen sit immediately in front of a `ret 4` / slot-3 member of the
+// family above, at a sixteen-byte stride -- the layout of a class that holds
+// one interface pointer and wraps two of its methods, emitted in declaration
+// order.  Two different displacements from two adjacent members of one class is
+// exactly what "one wrapper per forwarded method" predicts.
+//
+// SEPARATE FUNCTIONS, NOT ALIASES, for the same reason as above: thirteen
+// distinct addresses, thirteen distinct instantiations that coincide in bytes
+// because slot index and argument count coincide.  The macro keeps them
+// thirteen.  And because the forwarded method is at slot 1 here and slot 3
+// there, it gets its own interface with the method declared second -- spelling
+// a different slot against the existing interface would put the jump at the
+// wrong displacement, which is the failure this file's earlier note records.
+
+class ForwardTargetZero
+{
+public:
+	virtual void forwardPad0();
+	virtual void forwardZero();
+};
+
+#define BFME_NULL_CHECKED_FORWARD_0( NAME )                                   \
+	class NAME                                                                \
+	{                                                                         \
+	public:                                                                   \
+		void forward( void );                                                 \
+                                                                              \
+		ForwardTargetZero *m_target;                                          \
+	};                                                                        \
+	void NAME::forward( void )                                                \
+	{                                                                         \
+		if ( m_target )                                                       \
+		{                                                                     \
+			m_target->forwardZero();                                          \
+		}                                                                     \
+	}
+
+BFME_NULL_CHECKED_FORWARD_0( Rva005BFF60Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C01D0Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C03E0Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C0580Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C0790Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2450Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2570Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2600Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2620Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2630Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2640Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2650Forward )
+BFME_NULL_CHECKED_FORWARD_0( Rva005C2710Forward )

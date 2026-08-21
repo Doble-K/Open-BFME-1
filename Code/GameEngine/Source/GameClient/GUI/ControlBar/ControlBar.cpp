@@ -594,6 +594,18 @@ const FieldParse CommandSet::m_commandSetFieldParseTable[] =
 //-------------------------------------------------------------------------------------------------
 Bool CommandButton::isContextCommand() const
 {
+	// BFME treats these command types as context commands even when their
+	// option mask does not carry CONTEXTMODE_COMMAND.  The select-all command
+	// is 0x24 in the retail command table; the ZH header's enum is two entries
+	// shorter, so keep that BFME value local to this TU.
+	if( m_command == GUI_COMMAND_HACK_INTERNET ||
+			m_command == GUI_COMMAND_SPECIAL_POWER_FROM_SHORTCUT ||
+			m_command == (GUICommandType)0x24 ||
+			m_command == GUI_COMMAND_PURCHASE_SCIENCE )
+	{
+		return TRUE;
+	}
+
 	return BitTest( m_options, CONTEXTMODE_COMMAND );
 }
 

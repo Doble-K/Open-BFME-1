@@ -983,10 +983,20 @@ Script *TeamPrototype::getGenericScript(Int scriptToRetrieve)
 
 // ------------------------------------------------------------------------
 // Make a team more likely to be selected by the ai for building due to success.
-// ?increaseAIPriorityForSuccess@TeamPrototype@@QBEXXZ present-unmatched
 void TeamPrototype::increaseAIPriorityForSuccess(void) const
 {
-	m_teamTemplate.m_productionPriority += m_teamTemplate.m_productionPrioritySuccessIncrease;
+	// BFME's TeamTemplateInfo starts at +0x1c8 in TeamPrototype.  The shared
+	// Generals header has a smaller template layout, so spell the two fields at
+	// their retail offsets here rather than changing the shared class ABI.
+	struct BfmeTeamTemplateInfo
+	{
+		mutable Int m_productionPriority;
+		Int m_productionPrioritySuccessIncrease;
+	};
+
+	const BfmeTeamTemplateInfo *teamTemplate = reinterpret_cast<const BfmeTeamTemplateInfo *>(
+		reinterpret_cast<const char *>(this) + 0x1c8);
+	teamTemplate->m_productionPriority += teamTemplate->m_productionPrioritySuccessIncrease;
 }
 
 // ------------------------------------------------------------------------

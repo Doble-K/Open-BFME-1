@@ -1176,12 +1176,12 @@ ParticleEmitterDefClass::Save_W3D (ChunkSaveClass &chunk_save)
 			 (Save_User_Data (chunk_save) == WW3D_ERROR_OK) &&
 			 (Save_Info (chunk_save) == WW3D_ERROR_OK) &&
 			 (Save_InfoV2 (chunk_save) == WW3D_ERROR_OK) &&			 
-			 (Save_Props (chunk_save) == WW3D_ERROR_OK) &&
+			 (Save_Props (chunk_save) == TRUE) &&
 			 (Save_Line_Properties (chunk_save) == WW3D_ERROR_OK) &&
 			 (Save_Rotation_Keyframes (chunk_save) == WW3D_ERROR_OK) &&
 			 (Save_Frame_Keyframes (chunk_save) == WW3D_ERROR_OK) &&
 			 (Save_Blur_Time_Keyframes (chunk_save) == WW3D_ERROR_OK) &&
-			 (Save_Extra_Info (chunk_save) == WW3D_ERROR_OK)
+			 (Save_Extra_Info (chunk_save) == TRUE)
 			)
 		{
 			// Success!
@@ -1345,12 +1345,11 @@ ParticleEmitterDefClass::Save_InfoV2 (ChunkSaveClass &chunk_save)
 //
 //	Save_Props
 //
-WW3DErrorType
-// ?ParticleEmitterDefClass::Save_Props present-unmatched
+bool
 ParticleEmitterDefClass::Save_Props (ChunkSaveClass &chunk_save)
 {
-	// Assume error
-	WW3DErrorType ret_val = WW3D_ERROR_SAVE_FAILED;
+	// BFME returns a byte here, not WW3DErrorType.
+	bool ret_val = false;
 
 	// Begin a chunk that identifies the generic emitter settings
 	if (chunk_save.Begin_Chunk (W3D_CHUNK_EMITTER_PROPS) == TRUE) {
@@ -1374,12 +1373,12 @@ ParticleEmitterDefClass::Save_Props (ChunkSaveClass &chunk_save)
 			//
 			//	Save the keyframes
 			//
-			if ((Save_Color_Keyframes (chunk_save) == WW3D_ERROR_OK) &&
-				 (Save_Opacity_Keyframes (chunk_save) == WW3D_ERROR_OK) &&
-				 (Save_Size_Keyframes (chunk_save) == WW3D_ERROR_OK)) {
+			if ((Save_Color_Keyframes (chunk_save) == TRUE) &&
+				 (Save_Opacity_Keyframes (chunk_save) == TRUE) &&
+				 (Save_Size_Keyframes (chunk_save) == TRUE)) {
 
 				// Success!
-				ret_val = WW3D_ERROR_OK;			
+				ret_val = true;
 			}
 		}
 
@@ -1387,7 +1386,7 @@ ParticleEmitterDefClass::Save_Props (ChunkSaveClass &chunk_save)
 		chunk_save.End_Chunk ();
 	}
 
-	// Return the WW3DErrorType return code
+	// Return the success status
 	return ret_val;
 }
 
@@ -1396,12 +1395,12 @@ ParticleEmitterDefClass::Save_Props (ChunkSaveClass &chunk_save)
 //
 //	Save_Color_Keyframes
 //
-WW3DErrorType
+bool
 // ?ParticleEmitterDefClass::Save_Color_Keyframes present-unmatched
 ParticleEmitterDefClass::Save_Color_Keyframes (ChunkSaveClass &chunk_save)
 {
 	// Assume error
-	WW3DErrorType ret_val = WW3D_ERROR_SAVE_FAILED;
+	bool ret_val = false;
 
 	W3dEmitterColorKeyframeStruct info = { 0 };
 	info.Time = 0;
@@ -1423,10 +1422,10 @@ ParticleEmitterDefClass::Save_Color_Keyframes (ChunkSaveClass &chunk_save)
 			success = (chunk_save.Write (&info, sizeof (info)) == sizeof (info));
 		}
 
-		ret_val = success ? WW3D_ERROR_OK : WW3D_ERROR_SAVE_FAILED;
+		ret_val = success;
 	}
 
-	// Return the WW3DErrorType return code
+	// Return the success status
 	return ret_val;
 }
 
@@ -1435,12 +1434,12 @@ ParticleEmitterDefClass::Save_Color_Keyframes (ChunkSaveClass &chunk_save)
 //
 //	Save_Opacity_Keyframes
 //
-WW3DErrorType
+bool
 // ?ParticleEmitterDefClass::Save_Opacity_Keyframes present-unmatched
 ParticleEmitterDefClass::Save_Opacity_Keyframes (ChunkSaveClass &chunk_save)
 {
 	// Assume error
-	WW3DErrorType ret_val = WW3D_ERROR_SAVE_FAILED;
+	bool ret_val = false;
 
 	W3dEmitterOpacityKeyframeStruct info = { 0 };
 	info.Time = 0;
@@ -1462,10 +1461,10 @@ ParticleEmitterDefClass::Save_Opacity_Keyframes (ChunkSaveClass &chunk_save)
 			success = (chunk_save.Write (&info, sizeof (info)) == sizeof (info));
 		}
 
-		ret_val = success ? WW3D_ERROR_OK : WW3D_ERROR_SAVE_FAILED;
+		ret_val = success;
 	}
 
-	// Return the WW3DErrorType return code
+	// Return the success status
 	return ret_val;
 }
 
@@ -1474,12 +1473,12 @@ ParticleEmitterDefClass::Save_Opacity_Keyframes (ChunkSaveClass &chunk_save)
 //
 //	Save_Size_Keyframes
 //
-WW3DErrorType
+bool
 // ?ParticleEmitterDefClass::Save_Size_Keyframes present-unmatched
 ParticleEmitterDefClass::Save_Size_Keyframes (ChunkSaveClass &chunk_save)
 {
 	// Assume error
-	WW3DErrorType ret_val = WW3D_ERROR_SAVE_FAILED;
+	bool ret_val = false;
 
 	W3dEmitterSizeKeyframeStruct info = { 0 };
 	info.Time = 0;
@@ -1501,10 +1500,10 @@ ParticleEmitterDefClass::Save_Size_Keyframes (ChunkSaveClass &chunk_save)
 			success = (chunk_save.Write (&info, sizeof (info)) == sizeof (info));
 		}
 
-		ret_val = success ? WW3D_ERROR_OK : WW3D_ERROR_SAVE_FAILED;
+		ret_val = success;
 	}
 
-	// Return the WW3DErrorType return code
+	// Return the success status
 	return ret_val;
 }
 
@@ -1679,12 +1678,12 @@ ParticleEmitterDefClass::Save_Blur_Time_Keyframes (ChunkSaveClass & chunk_save)
 	return ret_val;
 }
 
-WW3DErrorType
+bool
 // ?ParticleEmitterDefClass::Save_Extra_Info present-unmatched
 ParticleEmitterDefClass::Save_Extra_Info (ChunkSaveClass & chunk_save)
 {
 	// Assume error
-	WW3DErrorType ret_val = WW3D_ERROR_SAVE_FAILED;
+	bool ret_val = false;
 
 	// Begin a chunk that identifies the extra info
 	if (chunk_save.Begin_Chunk (W3D_CHUNK_EMITTER_EXTRA_INFO) == TRUE) {
@@ -1694,7 +1693,7 @@ ParticleEmitterDefClass::Save_Extra_Info (ChunkSaveClass & chunk_save)
 		memset(&data, 0, sizeof(data));
 		data.FutureStartTime = Get_Future_Start_Time();
 		bool success = (chunk_save.Write (&data, sizeof (data)) == sizeof (data));		
-		ret_val = success ? WW3D_ERROR_OK : WW3D_ERROR_SAVE_FAILED;
+		ret_val = success;
 		
 		chunk_save.End_Chunk ();
 	}

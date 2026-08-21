@@ -87,3 +87,57 @@ void *rva61b20( void )
 
 	return framePtr;
 }
+
+// ---------------------------------------------------------------------------
+// THE FOURTH HELPER OF THE SAME SET.  The trio documented above is not a trio:
+// at the same 0x20 stride, a fourth 21-byte one-liner sits between them.  At
+// 0x0054B740 it falls exactly between the `mov [esp],esp` body at 0x0054B720
+// and the cycle counter at 0x0054B760, and the same interleaving holds at
+// 0x0006DDB0/0x0006DE30/0x0006DEB0/0x0006DF30, at 0x00384B40/0x00384BC0, at
+// 0x003C6D70/0x003C6DF0, and so on -- 22 identical copies corpus-wide, one per
+// translation unit that includes the header, for the same reason as the other
+// three: the body contains inline assembly, so MSVC 7.1 will not inline it.
+//
+//     51                push ecx                 ; the local's slot
+//     c7 04 24 00000000 mov dword ptr [esp],0    ; its zero-initialiser
+//     50                push eax
+//     9c                pushfd
+//     58                pop eax
+//     89 44 24 04       mov dword ptr [esp+4],eax
+//     58                pop eax
+//     8b 04 24          mov eax,dword ptr [esp]
+//     59                pop ecx
+//     c3                ret
+//
+// `pushfd` reads EFLAGS and has no C++ spelling at all -- there is no VC7.1
+// intrinsic for it -- so, exactly as with `rdtsc` and the ebp read, inline
+// assembly is the only thing the original could have been, and there is no lift
+// question to answer.  The `push eax` / `pop eax` pair inside the block is the
+// caller-visible register being preserved by hand; note that the store to the
+// local is spelled `[esp+4]` and not `[esp]`, which is MSVC adjusting the
+// local's displacement for the `push eax` that precedes it inside the same asm
+// block -- the source names the variable, not a displacement.  The dead
+// `mov [esp],0` in front is the same artefact this file documents twice above.
+//
+// Reproduces on the first spelling; unsigned int, unsigned long and int return
+// types all assemble to the identical bytes.
+//
+// IDENTITY IS NOT RECOVERED.  No named caller reaches it and no string or RTTI
+// descriptor in the image names it, so the name is address-derived exactly like
+// the other three.
+
+unsigned int rva61b40( void )
+{
+	unsigned int flags = 0;
+
+	__asm
+	{
+		push eax
+		pushfd
+		pop eax
+		mov flags, eax
+		pop eax
+	}
+
+	return flags;
+}
