@@ -161,6 +161,7 @@ public:
 	W3DIndexBufferSlot *getSlot(Int size);
 	void releaseSlot(W3DVertexBufferSlot *vbSlot);
 	void releaseSlot(W3DIndexBufferSlot *ibSlot);
+	void freeAllSlots(void);
 
 protected:
 
@@ -181,6 +182,51 @@ protected:
 	W3DVertexBufferSlot *allocateSlotStorage(VBM_FVF_TYPES fvfType, Int size);
 	W3DIndexBufferSlot *allocateSlotStorage(Int size);
 };
+
+// ?freeAllSlots@W3DBufferManager@@QAEXXZ
+void W3DBufferManager::freeAllSlots(void)
+{
+	Int i,j;
+
+	for (i=0; i<MAX_FVF; i++)
+	{
+		for (j=0; j<MAX_VB_SIZES; j++)
+		{
+			W3DVertexBufferSlot *vbSlot = m_W3DVertexBufferSlots[i][j];
+			while (vbSlot)
+			{
+				if (vbSlot->m_prevSameVB)
+					vbSlot->m_prevSameVB->m_nextSameVB=vbSlot->m_nextSameVB;
+				else
+					vbSlot->m_VB->m_usedSlots=NULL;
+
+				if (vbSlot->m_nextSameVB)
+					vbSlot->m_nextSameVB->m_prevSameVB=vbSlot->m_prevSameVB;
+				vbSlot=vbSlot->m_nextSameSize;
+				m_numEmptySlotsAllocated--;
+			}
+			m_W3DVertexBufferSlots[i][j]=NULL;
+		}
+	}
+
+	for (j=0; j<MAX_IB_SIZES; j++)
+	{
+		W3DIndexBufferSlot *ibSlot = m_W3DIndexBufferSlots[j];
+		while (ibSlot)
+		{
+			if (ibSlot->m_prevSameIB)
+				ibSlot->m_prevSameIB->m_nextSameIB=ibSlot->m_nextSameIB;
+			else
+				ibSlot->m_IB->m_usedSlots=NULL;
+
+			if (ibSlot->m_nextSameIB)
+				ibSlot->m_nextSameIB->m_prevSameIB=ibSlot->m_prevSameIB;
+			ibSlot=ibSlot->m_nextSameSize;
+			m_numEmptyIndexSlotsAllocated--;
+		}
+		m_W3DIndexBufferSlots[j]=NULL;
+	}
+}
 
 /**Reserves space inside a vertex buffer.  If no space is available,
    creates a new slot and adds it to the pool.
