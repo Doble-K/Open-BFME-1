@@ -4779,3 +4779,5 @@ span-tightness-predicts-coherence-but-not-perfectly	0x003B8450	41	converted	CALI
 ?d_00516600@@YAXXZ	0x00516600	5	converted	t=2min model=gpt-5 exact clean C++ byte-field setter; C6 41 13 01 C3 matched via TinyByteFieldSetters.cpp; add_match and build.sh passed; identity remains address-derived
 ?d_004708f0@@YAXXZ	0x004708F0	5	attempted	t=1min model=gpt-5 agent10 claimed fresh scaffold-only 5-byte unsigned-word getter; retail=66 8B 41 12 C3; exact clean C++ feasibility audit; address-derived identity
 ?d_004708f0@@YAXXZ	0x004708F0	5	converted	t=3min model=gpt-5 exact clean C++ unsigned-word getter; 66 8B 41 12 C3 matched via Rva004708F0WordGetter.cpp; add_match and targeted build.sh passed; identity remains address-derived
+?d_00402210@@YAXXZ	0x00402210	5	attempted	t=1min model=gpt-5.6-luna agent8 claimed fresh scaffold-only 16-bit getter; retail=66 8B 41 30 C3; origin ownership audited as gen-dump scaffold only
+?d_00402210@@YAXXZ	0x00402210	5	converted	t=2min model=gpt-5.6-luna exact clean C++ unsigned-short getter; 66 8B 41 30 C3 matched via Rva00402210WordGetter.cpp; add_match and targeted build.sh passed; identity remains address-derived
