@@ -59,14 +59,86 @@ public:
 	_STL::list<void *> m_list;
 };
 
-#define Q4_MAKE_AND_LINK( T, SIZE, MADE )                                 	class MADE                                                            	{                                                                     	public:                                                               		MADE();                                                           		char m_gap0[ 0x34 ];                                              		Q4Owner001E5A20 *m_owner;                                         		char m_gap1[ 0x54 - 0x38 ];                                       		char m_flag;                                                      		char m_tail[ SIZE - 0x55 ];                                       	};                                                                    	void q4Notify##T( void *a, MADE *m, int c, int d );                   	void Rva##T( void *a, Q4Owner001E5A20 *b )                            	{                                                                     		MADE *m = new MADE;                                               		m->m_owner = b;                                                   		q4Notify##T( a, m, 0, 0 );                                        		m->m_flag = b->m_flag;                                            		b->m_list.push_back( m );                                         	}
+class GenBase002DF2B0
+{
+public:
+	GenBase002DF2B0();
+	virtual void slot();
+
+	char m_gap04[ 0x34 - 4 ];
+	Q4Owner001E5A20 *m_owner;
+	char m_gap38[ 0x54 - 0x38 ];
+	char m_flag;
+	char m_tail55[ 3 ];
+};
+
+#define Q4_MAKE_AND_LINK( T, SIZE, MADE )                                 	class MADE : public GenBase002DF2B0                                   	{                                                                     	public:                                                               		__declspec(noinline) MADE();                                      		virtual void slot();                                               		char m_tail[ SIZE - 0x58 ];                                       	};                                                                    	void q4Notify##T( void *a, MADE *m, int c, int d );                   	void Rva##T( void *a, Q4Owner001E5A20 *b )                            	{                                                                     		MADE *m = new MADE;                                               		m->m_owner = b;                                                   		q4Notify##T( a, m, 0, 0 );                                        		m->m_flag = b->m_flag;                                            		b->m_list.push_back( m );                                         	}
+
+#define Q4_MAKE_AND_LINK_TAIL( T, MADE, TAIL )                            	class MADE : public GenBase002DF2B0                                   	{                                                                     	public:                                                               		__declspec(noinline) MADE();                                      		virtual void slot();                                               	private:                                                              		TAIL m_tail;                                                       	};                                                                    	void q4Notify##T( void *a, MADE *m, int c, int d );                   	void Rva##T( void *a, Q4Owner001E5A20 *b )                            	{                                                                     		MADE *m = new MADE;                                               		m->m_owner = b;                                                   		q4Notify##T( a, m, 0, 0 );                                        		m->m_flag = b->m_flag;                                            		b->m_list.push_back( m );                                         	}
+
+// These are members so MSVC keeps the derived vptr store ahead of their
+// initialization, matching the constructor order retail records.
+struct Tail001E5E30
+{
+	__forceinline Tail001E5E30() { m_60 = 0; m_64 = 0; m_58 = 0; m_5c = 0; }
+	int m_58, m_5c, m_60, m_64;
+};
+
+struct Tail001E6240
+{
+	__forceinline Tail001E6240()
+	{
+		m_58 = 0; m_5c = 0; m_60 = 0; m_61 = 0; m_62 = 0;
+	}
+	int m_58, m_5c;
+	char m_60, m_61, m_62, m_pad63;
+};
 
 Q4_MAKE_AND_LINK( 001E5A20, 0x68, Made001E5A20 )
 Q4_MAKE_AND_LINK( 001E5AF0, 0x68, Made001E5AF0 )
 Q4_MAKE_AND_LINK( 001E5BC0, 0x68, Made001E5BC0 )
-Q4_MAKE_AND_LINK( 001E5D60, 0x60, Made001E5D60 )
-Q4_MAKE_AND_LINK( 001E5E30, 0x68, Made001E5E30 )
+Q4_MAKE_AND_LINK_TAIL( 001E5E30, Made001E5E30, Tail001E5E30 )
 Q4_MAKE_AND_LINK( 001E5F00, 0x7c, Made001E5F00 )
 Q4_MAKE_AND_LINK( 001E60A0, 0x58, Made001E60A0 )
 Q4_MAKE_AND_LINK( 001E6170, 0x6c, Made001E6170 )
-Q4_MAKE_AND_LINK( 001E6240, 0x64, Made001E6240 )
+Q4_MAKE_AND_LINK_TAIL( 001E6240, Made001E6240, Tail001E6240 )
+
+class Made001E5D60 : public GenBase002DF2B0
+{
+public:
+	__declspec(noinline) Made001E5D60();
+	virtual void slot();
+
+private:
+	class Tail
+	{
+	public:
+		__forceinline Tail() { m_second = 0; m_first = 0; }
+	private:
+		int m_first;
+		int m_second;
+	} m_tail;
+};
+
+void q4Notify001E5D60( void *a, Made001E5D60 *m, int c, int d );
+
+void Rva001E5D60( void *a, Q4Owner001E5A20 *b )
+{
+	Made001E5D60 *m = new Made001E5D60;
+	m->m_owner = b;
+	q4Notify001E5D60( a, m, 0, 0 );
+	m->m_flag = b->m_flag;
+	b->m_list.push_back( m );
+}
+
+Made001E5D60::Made001E5D60()
+{
+}
+
+Made001E5E30::Made001E5E30()
+{
+}
+
+Made001E6240::Made001E6240()
+{
+}
