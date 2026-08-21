@@ -4856,3 +4856,4 @@ span-tightness-predicts-coherence-but-not-perfectly	0x003B8450	41	converted	CALI
 ?d_00815780@@YAXXZ	0x00815780	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva00815780Empty.cpp; identity remains address-derived
 ?d_008062c0@@YAXXZ	0x008062C0	5	attempted	t=1min claimed fresh scaffold-only empty void body; retail=55 8B EC 5D C3; identity remains address-derived
 ?d_008062c0@@YAXXZ	0x008062C0	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva008062C0Empty.cpp; identity remains address-derived
+?d_00651760@@YAXXZ	0x00651760	5	converted	t=3min model=grok-4.6 exact clean C++ byte-field setter; C6 41 58 01 C3 matched via Rva00651760ByteSetter.cpp; add_match and two focused build.py runs passed; identity remains address-derived
