@@ -132,6 +132,11 @@ UnsignedByte NetAckStage1CommandMsg::getOriginalPlayerID()
 	return m_originalPlayerID;
 }
 
+Int NetAckStage1CommandMsg::getSortNumber()
+{
+	return m_commandID;
+}
+
 UnsignedShort NetAckStage2CommandMsg::getCommandID()
 {
 	return m_commandID;
