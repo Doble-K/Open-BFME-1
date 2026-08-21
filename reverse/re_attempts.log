@@ -4859,3 +4859,5 @@ span-tightness-predicts-coherence-but-not-perfectly	0x003B8450	41	converted	CALI
 ?d_00651760@@YAXXZ	0x00651760	5	converted	t=3min model=grok-4.6 exact clean C++ byte-field setter; C6 41 58 01 C3 matched via Rva00651760ByteSetter.cpp; add_match and two focused build.py runs passed; identity remains address-derived
 ?d_000b2170@@YAXXZ	0x000B2170	7	attempted	t=8min model=grok-4.6 claimed fresh scaffold-only byte getter; retail=8A 81 43 01 00 00 C3; identity remains address-derived
 ?get@Rva000B2170Holder@@QBEDXZ	0x000B2170	7	converted	t=8min model=grok-4.6 exact clean C++ byte getter at this+0x143; 8A 81 43 01 00 00 C3 matched via Rva000B2170ByteGetter.cpp; identity remains address-derived
+?d_000c3ec0@@YAXXZ	0x000C3EC0	7	attempted	t=3min model=grok-4.6 claimed fresh scaffold-only byte getter; retail=8A 81 CA 04 00 00 C3; identity remains address-derived
+?get@Rva000C3EC0Holder@@QBEDXZ	0x000C3EC0	7	converted	t=3min model=grok-4.6 exact clean C++ byte getter at this+0x4CA; 8A 81 CA 04 00 00 C3 matched via Rva000C3EC0ByteGetter.cpp; identity remains address-derived
