@@ -57,10 +57,21 @@ struct Gen_00489270
 	void m( int a );
 };
 
+class Rva00489210
+{
+public:
+	Rva00489210();
+	int *volatile m_00;
+	int m_04;
+	char m_08, m_09, m_0A;
+	volatile int m_0C;
+};
+
 #define S4_PARSE_THEN_REGISTER( NAME, DWORDS )                                 \
-	struct S4Parsed##NAME                                                      \
+	extern int g_s4Head##NAME;                                                 \
+	struct S4Parsed##NAME : public Rva00489210                                 \
 	{                                                                          \
-		int m_storage[ DWORDS ];                                               \
+		volatile int m_storage[ DWORDS - 4 ];                                  \
 		S4Parsed##NAME();                                                      \
 	};                                                                         \
 	extern const FieldParse s4Table##NAME;                                     \
@@ -68,7 +79,7 @@ struct Gen_00489270
 	{                                                                          \
 		S4Parsed##NAME *t = new S4Parsed##NAME;                                \
 		ini->initFromINI( t, &s4Table##NAME );                                 \
-		t->m_storage[ 1 ] = t->m_storage[ 5 ];                                 \
+		t->m_04 = t->m_storage[ 1 ];                                           \
 		sink->m( (int)t );                                                     \
 	}
 
@@ -76,3 +87,69 @@ S4_PARSE_THEN_REGISTER( 0059BDE0, 16 )
 S4_PARSE_THEN_REGISTER( 0059E290, 18 )
 S4_PARSE_THEN_REGISTER( 0059E860, 20 )
 S4_PARSE_THEN_REGISTER( 0059F980, 16 )
+
+S4Parsed0059BDE0::S4Parsed0059BDE0()
+{
+	m_storage[ 0 ] = 0;
+	m_storage[ 1 ] = 30;
+	m_00 = &g_s4Head0059BDE0;
+	m_storage[ 2 ] = 0;
+	m_storage[ 3 ] = 0;
+	m_storage[ 4 ] = 0;
+	m_storage[ 5 ] = 0;
+	m_storage[ 6 ] = -1;
+	m_storage[ 7 ] = 0;
+	m_storage[ 8 ] = 0;
+	m_04 = m_storage[ 1 ];
+	m_storage[ 9 ] = 0;
+	m_storage[ 10 ] = 0;
+	m_storage[ 11 ] = 0;
+	m_0C = 0;
+	m_09 = 1;
+}
+
+S4Parsed0059E290::S4Parsed0059E290()
+{
+	m_storage[ 0 ] = 0;
+	m_storage[ 1 ] = 3;
+	m_00 = &g_s4Head0059E290;
+	m_storage[ 2 ] = 0;
+	m_storage[ 3 ] = 0;
+	m_storage[ 4 ] = 0;
+	m_storage[ 5 ] = 0;
+	m_storage[ 6 ] = -1;
+	m_storage[ 7 ] = 0;
+	m_storage[ 8 ] = 0;
+	m_storage[ 9 ] = 0;
+	m_storage[ 10 ] = 0;
+	m_storage[ 11 ] = 0;
+	m_storage[ 12 ] = 0;
+	m_04 = m_storage[ 1 ];
+	m_storage[ 13 ] = 0;
+	m_0C = 0;
+	m_09 = 1;
+}
+
+S4Parsed0059E860::S4Parsed0059E860()
+{
+	m_storage[ 0 ] = 0;
+	m_storage[ 1 ] = 5;
+	m_00 = &g_s4Head0059E860;
+	m_storage[ 2 ] = 0;
+	m_storage[ 3 ] = 0;
+	m_storage[ 4 ] = 0;
+	m_storage[ 5 ] = 0;
+	m_storage[ 6 ] = -1;
+	m_storage[ 7 ] = 0;
+	m_storage[ 8 ] = 0;
+	m_storage[ 9 ] = 0;
+	m_storage[ 10 ] = 0;
+	m_storage[ 11 ] = 0;
+	m_storage[ 12 ] = 0;
+	m_storage[ 13 ] = 0;
+	m_storage[ 14 ] = 0;
+	m_04 = m_storage[ 1 ];
+	m_storage[ 15 ] = 0;
+	m_0C = 0;
+	m_09 = 1;
+}
