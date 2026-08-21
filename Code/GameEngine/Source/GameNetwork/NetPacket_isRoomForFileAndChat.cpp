@@ -1,15 +1,15 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
 
-// Three more of NetPacket's isRoomFor family, retail 0x0067DBB0, 0x0067DC80 and
-// 0x0067DD40. Same shape as the four already in
+// Four more of NetPacket's isRoomFor family, retail 0x0067DBB0, 0x0067DC80,
+// 0x0067DD40 and 0x0067DDE0. Same shape as the four already in
 // NetPacket_isRoomForFrameFamily.cpp -- count only the headers that would have
 // to be written, add the payload, compare against MAX_PACKET_SIZE -- and the
 // payload arithmetic is the same each FillBufferWith body writes and each
 // GetXxxCommandSize helper counts.
 //
-// Named by their getters, all three already ledgered:
-// getPortableFilename@NetFileCommandMsg, getPortableFilename@NetFileAnnounceCommandMsg
-// and getText@NetDisconnectChatCommandMsg.
+// Named by their getters, all four already ledgered:
+// getPortableFilename@NetFileCommandMsg, getPortableFilename@NetFileAnnounceCommandMsg,
+// getText@NetDisconnectChatCommandMsg and getText@NetChatCommandMsg.
 
 typedef int Int;
 typedef unsigned int UnsignedInt;
@@ -67,6 +67,7 @@ protected:
 	Bool isRoomForFileMessage(NetCommandRef *msg);
 	Bool isRoomForFileAnnounceMessage(NetCommandRef *msg);
 	Bool isRoomForDisconnectChatMessage(NetCommandRef *msg);
+	Bool isRoomForChatMessage(NetCommandRef *msg);
 
 public:
 
@@ -124,6 +125,12 @@ class NetDisconnectChatCommandMsg : public NetCommandMsg
 {
 public:
 	StringBase<WideChar> getText(void);		// ILT thunk 0x00015901
+};
+
+class NetChatCommandMsg : public NetCommandMsg
+{
+public:
+	StringBase<WideChar> getText(void);		// ILT thunk 0x00025338
 };
 
 Bool NetPacket::isRoomForFileMessage(NetCommandRef *msg) {
@@ -205,6 +212,40 @@ Bool NetPacket::isRoomForDisconnectChatMessage(NetCommandRef *msg) {
 	len += sizeof(UnsignedByte); // string length
 	UnsignedByte textLen = cmdMsg->getText().getLength();
 	len += textLen * sizeof(UnsignedShort);
+	if ((len + m_packetLen) > MAX_PACKET_SIZE) {
+		return false;
+	}
+	return true;
+}
+
+Bool NetPacket::isRoomForChatMessage(NetCommandRef *msg) {
+	Bool needNewCommandID = false;
+	Int len = 0;
+	NetChatCommandMsg *cmdMsg = (NetChatCommandMsg *)(msg->getCommand());
+	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
+		++len;
+		len += sizeof(UnsignedByte);
+	}
+	if (m_lastFrame != cmdMsg->getExecutionFrame()) {
+		len += sizeof(UnsignedInt) + sizeof(UnsignedByte);
+	}
+	if (m_lastRelay != msg->getRelay()) {
+		len += sizeof(UnsignedByte) + sizeof(UnsignedByte);
+	}
+	if (m_lastPlayerID != cmdMsg->getPlayerID()) {
+		++len;
+		len += sizeof(UnsignedByte);
+		needNewCommandID = true;
+	}
+	if (((m_lastCommandID + 1) != (UnsignedShort)(cmdMsg->getID())) || (needNewCommandID == true)) {
+		len += sizeof(UnsignedShort) + sizeof(UnsignedByte);
+	}
+
+	++len; // the 'D'
+	len += sizeof(UnsignedByte); // string length
+	UnsignedByte textLen = cmdMsg->getText().getLength();
+	len += textLen * sizeof(UnsignedShort);
+	len += sizeof(Int); // playerMask
 	if ((len + m_packetLen) > MAX_PACKET_SIZE) {
 		return false;
 	}
