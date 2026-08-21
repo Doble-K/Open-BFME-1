@@ -17,6 +17,8 @@ public:
 	AsciiString(const AsciiString &that);
 	~AsciiString();
 
+	static AsciiString TheEmptyString;
+
 private:
 	void *m_data;
 };
@@ -41,4 +43,9 @@ private:
 AsciiString Weapon::getName(void) const
 {
 	return m_template->getName();
+}
+
+AsciiString WeaponTemplate::getName(void) const
+{
+	return AsciiString::TheEmptyString;
 }

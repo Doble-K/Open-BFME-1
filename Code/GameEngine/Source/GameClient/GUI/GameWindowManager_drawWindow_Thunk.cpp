@@ -18,7 +18,7 @@ class GameWindow;
 class GameWindowDraw
 {
 public:
-	virtual void slot0();
+	virtual void drawBorder(GameWindow *window);
 	virtual void draw(GameWindow *window, void *instanceData);
 };
 
@@ -31,7 +31,7 @@ public:
 	virtual Int draw(void *instanceData);
 
 	UnsignedInt winGetStyle();
-	void winDrawBorder();
+	__declspec(noinline) void winDrawBorder();
 
 private:
 	friend class GameWindowManager;
@@ -51,6 +51,12 @@ class GameWindowManager
 protected:
 	Int drawWindow(GameWindow *window);
 };
+
+void GameWindow::winDrawBorder()
+{
+	if (m_draw)
+		m_draw->drawBorder(this);
+}
 
 // ?drawWindow@GameWindowManager@@IAEHPAVGameWindow@@@Z
 Int GameWindowManager::drawWindow(GameWindow *window)
