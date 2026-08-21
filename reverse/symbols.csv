@@ -74706,3 +74706,4 @@ _ciCleanupCallbacks,0x008702F0,gamespy-chat: its paired teardown on the chatConn
 _ciSocketInit,0x0085A7C0,gamespy-chat: third init call in chatConnectDoit - takes the socket and the login nick
 _ciSocketConnect,0x0085A870,gamespy-chat: fourth init call in chatConnectDoit - takes the socket the address and the port
 _ciSocketDisconnect,0x0085A990,gamespy-chat: teardown on the connect failure path of chatConnectDoit
+?xfer@W3DRopeDrawDrawModule@@MAEXPAVXfer@@@Z,0x0002FD88,
