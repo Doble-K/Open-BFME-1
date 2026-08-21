@@ -901,29 +901,29 @@ struct DroneInfo
 {
 	Object *owner;
 	Object *drone;
-	Bool found;
 };
 
 void findDrone( Object *obj, void *droneInfo )
 {
 	DroneInfo *dInfo = (DroneInfo*)droneInfo;
 	
-	if( !dInfo->found && obj )
+	if( !dInfo->drone && obj )
 	{
 		if( obj->isKindOf( KINDOF_DRONE ) && obj->getProducerID() == dInfo->owner->getID() )
 		{
-			dInfo->found = TRUE;
 			dInfo->drone = obj;
 		}
 	}
 }
 
 //----------------------------------------------------------------------------------------------
-// ?findMyDrone@AIDockProcessDockState@@ present-unmatched
 Object* AIDockProcessDockState::findMyDrone()
 {
 	//First do the fast cached check.
+	// BFME calls the out-of-line lookup through its ILT here.
+	#pragma inline_depth(0)
 	Object *drone = TheGameLogic->findObjectByID( m_droneID );
+	#pragma inline_depth(255)
 	if( drone )
 	{
 		return drone;
@@ -933,7 +933,6 @@ Object* AIDockProcessDockState::findMyDrone()
 	Object *self = bfmeRetailMachineOwner( this );
 	Player *player = self->getControllingPlayer();
 	DroneInfo dInfo;
-	dInfo.found = FALSE;
 	dInfo.drone = NULL;
 	dInfo.owner = self;
 
@@ -1086,5 +1085,3 @@ void AIDockMoveToRallyState::onExit( StateExitType status )
 	// this behavior is an extention of basic MoveTo
 	AIInternalMoveToState::onExit( status );
 }
-
-
