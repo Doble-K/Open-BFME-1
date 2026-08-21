@@ -72460,3 +72460,7 @@ _read_number,0x009A00D0,per-TU llex.c static read_number; both retail luaX_lex R
 ?objectLeavingInfluence@Energy@@QAEXPAVObject@@@Z,0x00029D20,Open-BFME5 retail Energy leaving-influence ILT
 ?findOrInsert@ControlBarOverrideMapABI@@QAEAAPBVCommandButton@@ABVAsciiString@@@Z,0x00008170,Open-BFME5 control-bar override hash-map subscript ILT
 ?loadPostProcess@DockUpdate@@MAEXXZ,0x0003C55B,Open-BFME5 DockUpdate loadPostProcess retail ILT callee
+?m@Gen_00409040Registry@@QAEXPAX@Z,0x00409040,Open-BFME5 address-derived name; call target of 0x00604BE0 via ILT 0x000281C8; identity not asserted
+?tail@Gen_00417cb0@@QAEXPAX@Z,0x00417A70,Open-BFME5 address-derived name; tail-jmp target of 0x00417CB0 via ILT 0x000294B5; identity not asserted
+?alt@Gen_00417cb0@@QAEXXZ,0x00411BE0,Open-BFME5 address-derived name; call target of 0x00417CB0 via ILT 0x0003D13B; identity not asserted
+?g_00861ed0@@YAXHHHHHHHHHHHHHHHHHHHHH@Z,0x00861ED0,Open-BFME5 address-derived name; direct call target of 0x00862460; 21 dword args; identity not asserted
