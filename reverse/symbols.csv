@@ -74596,3 +74596,4 @@ _sprintf,0x009F6DE2,V2 lane: sprintf import thunk (reverse/functions.csv gen-imp
 ?findObjectByID@GameLogic@@QAEPAVObject@@W4ObjectID@@@Z,0x0001F253,enum ABI spelling used by AIDockProcessDockState::findMyDrone; same matched ILT as the int-decorated overload
 ?hasAnyUnits@TeamPrototype@@QBE_NXZ,0x0001188D,source-backed Team.cpp identity; ILT target used by Player::hasAnyUnits at 0x000CE070
 ?friend_getTurretTarget@BFMETurretTargetAccessor@@QBE?AW4TurretTargetType@@AAPAVObject@@AAUCoord3D@@@Z,0x0002C746,layout shim for BFME's source-backed two-argument TurretAI target accessor; ILT jumps to 0x0018C7D0
+?set@BFMEZBiasSetter@@SAXM@Z,0x00905990,float-ABI shim for BFME's older DX8 Z-bias body called by BaseHeightMapScorchSetZBias

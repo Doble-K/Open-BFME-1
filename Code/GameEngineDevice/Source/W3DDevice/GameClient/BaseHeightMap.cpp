@@ -129,7 +129,17 @@ public:
 };
 
 void __cdecl BaseHeightMapScorchSetShader(const ShaderClass &shader);
-void __cdecl BaseHeightMapScorchSetZBias(Int bias);
+// Retail's x87 conversion proves this terrain path used the older float Z-bias ABI.
+class BFMEZBiasSetter
+{
+public:
+	static void set(Real bias);
+};
+
+__declspec(noinline) void __cdecl BaseHeightMapScorchSetZBias(Int bias)
+{
+	BFMEZBiasSetter::set(static_cast<Real>(bias));
+}
 void __cdecl BoxSetTexture(unsigned stage, TextureBaseClass *&texture);
 extern UnsignedInt BaseHeightMapScorchStageChanges;
 
