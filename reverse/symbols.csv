@@ -74146,3 +74146,75 @@ __RTC_CheckEsp,0x009F7502,MSVC 7.1 /GZ stack-pointer check helper; address read 
 ??0Made001E6240@@QAE@XZ,0x002DD190,ctor of the object allocated by the 157-byte make-notify-and-link family (Q4MakeNotifyLink.cpp); address-derived name; identity not recovered
 ?q4Notify001E6240@@YAXPAXPAVMade001E6240@@HH@Z,0x002DCF10,four-argument __cdecl callee of the 157-byte make-notify-and-link family (Q4MakeNotifyLink.cpp); address-derived name; identity not recovered
 ?addPlayer@LANAPI@@IAEXPAVLANPlayer@@@Z,0x00045363,ILT thunk to 0x00686FD0; called by LANAPI::RequestSetName at 0x00688220 beside removePlayer
+?handle@Gen003C7570@@QAEXXZ,0x003C7570,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen0060CF20@@QAEXXZ,0x0060CF20,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen0060CBB0@@QAEXXZ,0x0060CBB0,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen00663230@@QAEXXZ,0x00663230,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen006BA220@@QAEXXZ,0x006BA220,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen006DEB70@@QAEXXZ,0x006DEB70,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen00489410@@QAEXXZ,0x00489410,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen005847F0@@QAEXXZ,0x005847F0,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen0072F080@@QAEXXZ,0x0072F080,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?handle@Gen00754850@@QAEXXZ,0x00754850,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?h005143D0@Glo00EF4988@@QAEXXZ,0x005143D0,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+?h00514560@Glo00EF4988@@QAEXXZ,0x00514560,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
+??0Gen00193760@@QAE@ABU0@@Z,0x00193760,offset-0 subobject copy ctor of the _Construct placement-copy family (R4ConstructPlacementCopy.cpp); already in the ledger as an _STL::pair copy ctor; address-derived name
+??0Gen00887B60@@QAE@ABU0@@Z,0x00887B60,offset-0 subobject copy ctor of the _Construct placement-copy family (R4ConstructPlacementCopy.cpp); already in the ledger as StringBase<char>; address-derived name
+??1Gen002BC7A0@@QAE@XZ,0x002BC7A0,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen003CDE30@@QAE@XZ,0x003CDE30,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen00425060@@QAE@XZ,0x00425060,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen00606F70@@QAE@XZ,0x00606F70,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen00695630@@QAE@XZ,0x00695630,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen006EDEA0@@QAE@XZ,0x006EDEA0,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen00762250@@QAE@XZ,0x00762250,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen0013C3F0@@QAE@XZ,0x0013C3F0,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen00774D40@@QAE@XZ,0x00774D40,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen000C3410@@QAE@XZ,0x000C3410,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+?Gen008A3EE0@@YAHPBDI@Z,0x008A3EE0,gperf hash function called by the in_word_set lookup family (R4PerfectHashWordSets.cpp); address-derived name; identity not recovered
+?Gen008AB970@@YAHPBDI@Z,0x008AB970,gperf hash function called by the in_word_set lookup family (R4PerfectHashWordSets.cpp); address-derived name; identity not recovered
+?Gen008B5050@@YAHPBDI@Z,0x008B5050,gperf hash function called by the in_word_set lookup family (R4PerfectHashWordSets.cpp); address-derived name; identity not recovered
+?Gen008B8510@@YAHPBDI@Z,0x008B8510,gperf hash function called by the in_word_set lookup family (R4PerfectHashWordSets.cpp); address-derived name; identity not recovered
+?Gen008D42C0@@YAHPBDI@Z,0x008D42C0,gperf hash function called by the in_word_set lookup family (R4PerfectHashWordSets.cpp); address-derived name; identity not recovered
+?Gen008D4980@@YAHPBDI@Z,0x008D4980,gperf hash function called by the in_word_set lookup family (R4PerfectHashWordSets.cpp); address-derived name; identity not recovered
+?Gen008D57B0@@YAHPBDI@Z,0x008D57B0,gperf hash function called by the in_word_set lookup family (R4PerfectHashWordSets.cpp); address-derived name; identity not recovered
+??1Gen000A1B30@@UAE@XZ,0x000A1B30,base class destructor tail-called by the guarded-delete destructor family (R4OwnedPointerDestructors.cpp); address-derived name; identity not recovered
+??1Gen00172430@@UAE@XZ,0x00172430,base class destructor tail-called by the guarded-delete destructor family (R4OwnedPointerDestructors.cpp); address-derived name; identity not recovered
+?h00489410@Glo00EF3330@@QAEXXZ,0x00489410,address-derived __thiscall callee of a small forward-to-stored-object body; target read from the REL32 at its call site
+?h004893E0@Glo00EF3330@@QAEXXZ,0x004893E0,address-derived __thiscall callee of a small forward-to-stored-object body; target read from the REL32 at its call site
+?handle@Gen00958BF0@@QAEXXZ,0x00958BF0,address-derived __thiscall callee of a small forward-to-stored-object body; target read from the REL32 at its call site
+?h000EF060@Glo00EED810@@QAEXH@Z,0x000EF060,address-derived __thiscall callee of a small forward-to-stored-object body; target read from the REL32 at its call site
+?h0046B2B0@Glo00EF19E8@@QAEXH@Z,0x0046B2B0,address-derived __thiscall callee of a small forward-to-stored-object body; target read from the REL32 at its call site
+?handle@Gen0021CE60@@QAEXH@Z,0x0021CE60,address-derived __thiscall callee of a small forward-to-stored-object body; target read from the REL32 at its call site
+?handle@Gen001C9AC0@@QAEXH@Z,0x001C9AC0,address-derived __thiscall callee of a small forward-to-stored-object body; target read from the REL32 at its call site
+??1Gen008881D0@@QAE@XZ,0x008881D0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen00887940@@QAE@XZ,0x00887940,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen00196F30@@QAE@XZ,0x00196F30,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen002237F0@@QAE@XZ,0x002237F0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen0037B4D0@@QAE@XZ,0x0037B4D0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen002360C0@@QAE@XZ,0x002360C0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen000FF700@@QAE@XZ,0x000FF700,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen000FF7D0@@QAE@XZ,0x000FF7D0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen000658A0@@QAE@XZ,0x000658A0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen00129C80@@QAE@XZ,0x00129C80,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+?handle@Gen0003C542@@QAE_NXZ,0x0003C542,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen00046AA6@@QAEHXZ,0x00046AA6,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen0002162A@@QAEHXZ,0x0002162A,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen000374B1@@QAEHXZ,0x000374B1,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen00049FDA@@QAE_NXZ,0x00049FDA,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen009794F0@@QAEHXZ,0x009794F0,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen0092C4B0@@QAEHXZ,0x0092C4B0,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen00980B60@@QAEHXZ,0x00980B60,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen00010CF3@@QAEXXZ,0x00010CF3,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen0001D697@@QAEXXZ,0x0001D697,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Rva00417240@@QAEXXZ,0x00034DB5,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+?handle@Gen0003AC38@@QAEXPAX@Z,0x0003AC38,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
+_Gen00881EF0,0x00881EF0,address-derived callee of a guarded cdecl release-and-clear; one pointer argument popped by the caller; the ledger also names this address operator delete[] but the call site does not prove which
+?check@Gen00842870@@QAEHXZ,0x00842870,address-derived REL32 callee of the node-flag updaters; thiscall on a sub-object; result compared against zero
+?check@Gen00842A00@@QAEHXZ,0x00842A00,address-derived REL32 callee of the node-flag updaters; thiscall on a sub-object; result compared against zero
+?handle@Gen0083E8F0@@QAEXXZ,0x0083E8F0,address-derived tail-jump target of the node-flag updaters; thiscall on the node with no stack arguments
+??1Gen0053AC40@@QAE@XZ,0x0053AC40,member destroyed by the virtual-base destructor family (R4VirtualBaseDestructors.cpp); address-derived name; identity not recovered
+??1Gen008427F0@@QAE@XZ,0x008427F0,member destroyed by the virtual-base destructor family (R4VirtualBaseDestructors.cpp); address-derived name; identity not recovered
+??1Gen00842970@@QAE@XZ,0x00842970,member destroyed by the virtual-base destructor family (R4VirtualBaseDestructors.cpp); address-derived name; identity not recovered
+?GenAdjust00260D80@@YAXPAUGen8ByteElement@@HHU1@P6A_NABU1@2@Z@Z,0x00260D80,address-derived REL32 callee of a heap-pop helper reached through the ILT thunk at 0x000075D6; cdecl with six pushed dwords
+?GenAdjust004379B0@@YAXPAUGen8ByteElement@@HHU1@P6A_NABU1@2@Z@Z,0x004379B0,address-derived REL32 callee of a heap-pop helper reached through the ILT thunk at 0x00028501; cdecl with six pushed dwords
+?GenAdjust005757E0@@YAXPAUGen8ByteElement@@HHU1@P6A_NABU1@2@Z@Z,0x005757E0,address-derived REL32 callee of a heap-pop helper reached through the ILT thunk at 0x00027138; cdecl with six pushed dwords
