@@ -150,7 +150,6 @@ void NetPacket::FillBufferWithRequestGameSpyStatsAuthKeyCommand(UnsignedByte *bu
 	buffer[offset] = 0;
 }
 
-// ?FillBufferWithGameSpyStatsAuthKeyCommand@NetPacket@@KAXPAEPAVNetCommandRef@@@Z present-unmatched
 void NetPacket::FillBufferWithGameSpyStatsAuthKeyCommand(UnsignedByte *buffer, NetCommandRef *msg)
 {
 	BFMENetGameSpyStatsAuthKeyCommandMsg *cmdMsg =
