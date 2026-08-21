@@ -222,3 +222,44 @@ BFME_FLAG_PAIR_THEN_CALL( Rva00759880Caller, Gen00776AC0 )
 BFME_FLAG_PAIR_THEN_CALL( Rva0077D3F0Caller, Gen001139A0 )
 BFME_FLAG_PAIR_THEN_CALL( Rva0077E160Caller, Gen00776AC0 )
 BFME_FLAG_PAIR_THEN_CALL( Rva0077F280Caller, Gen001139A0 )
+
+
+// THE SAME TWO CALLS IN THE OPPOSITE ORDER -- eighteen 37-byte bodies:
+//
+//     push esi / mov esi,[esp+8] / push esi / call <REL32> / mov al,1
+//     lea ecx,[esp+8] / mov [esp+8],al / mov [esp+9],al / mov eax,[esi]
+//     push ecx / mov ecx,esi / call dword ptr [eax+0x28] / pop esi / ret 4
+//
+// Same entry (`ret 4`, `this` from ecx), same flag pair, same virtual slot
+// 0x28, same non-virtual callee taking the target pointer -- but the direct
+// call runs FIRST and the flag pair is built afterwards.  Eight bytes shorter
+// because the flag pair is written into the INCOMING ARGUMENT'S OWN STACK SLOT
+// (`lea ecx,[esp+8]` with esp four below entry is [entry+4], the argument)
+// rather than into a slot opened by a leading `push ecx`: the argument is dead
+// once it has been copied into esi, so the local reuses it.  That reuse is a
+// consequence of the statement order, not a separate source construct.
+//
+// Both callees these eighteen reach -- 0x000A1510 and 0x00113E70 -- are already
+// callees of the 115-body family above, which is why this family lives in this
+// file and adds NO new pin.
+
+#define BFME_CALL_THEN_FLAG_PAIR( NAME, CALLEE )                              	class NAME : public CALLEE                                                 	{                                                                          	public:                                                                    		void invoke( FlagPairTarget *target );                                   	};                                                                         	void NAME::invoke( FlagPairTarget *target )                                	{                                                                          		handle( target );                                                        		FlagPair flags;                                                          		flags.m_first = true;                                                    		flags.m_second = true;                                                   		target->applyFlags( flags );                                             	}
+
+BFME_CALL_THEN_FLAG_PAIR( Rva001139A0CallThenFlagPair, Gen00113E70 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0015FA90CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016AAD0CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016AB20CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016AB70CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016ABC0CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016AC10CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016AC80CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016ACB0CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016B200CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva0016CB30CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva002B6440CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva002BBA90CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva002C5A00CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva002C8140CallThenFlagPair, Gen000A1510 )
+BFME_CALL_THEN_FLAG_PAIR( Rva00604F40CallThenFlagPair, Gen00113E70 )
+BFME_CALL_THEN_FLAG_PAIR( Rva006069A0CallThenFlagPair, Gen00113E70 )
+BFME_CALL_THEN_FLAG_PAIR( Rva00607F10CallThenFlagPair, Gen00113E70 )

@@ -1134,7 +1134,15 @@ CLONE_LOCAL_RE = re.compile(r"\?A0x[0-9A-Fa-f]{8}")
 # that only looks like one. Every generator that mints a name has to be listed
 # here: the Gen_uw* family was invisible to this pattern for one phase and 15 of
 # its pins were published as recovered identity.
-GEN_PLACEHOLDER_RE = re.compile(r"Gen_(?:t|dtorv?)_[0-9a-f]{8}|Gen_uw[a-z]*\d*_")
+GEN_PLACEHOLDER_RE = re.compile(
+    r"Gen_(?:t|dtorv?)_[0-9a-f]{8}|Gen_uw[a-z]*\d*_"
+    # The conversion lanes also mint ADDRESS-DERIVED names whose whole point
+    # is to DISCLAIM identity: Gen<RVA>, gen<RVA>, Gen_<rva>, Rva<RVA>Thing.
+    # Without this arm 2061 such names were being written into
+    # reverse/reloc_names.csv as identity=real -- the precise opposite of
+    # what the naming convention asserts. Eight hex digits with no ninth
+    # keeps it from matching an ordinary identifier that merely starts "Gen".
+    r"|(?:Gen|gen|Rva|rva)_?[0-9A-Fa-f]{8}(?![0-9A-Fa-f])")
 # tools/zh_sweep.py names a row ?dup_<rva>@@YAXXZ when the bytes are proven by a
 # Zero Hour twin but the identity is not: the twin is one member of an ICF fold
 # and the reference TU's COMDAT it compiled is recorded in object-symbol= only

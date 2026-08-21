@@ -72640,3 +72640,289 @@ _read_number,0x009A00D0,per-TU llex.c static read_number; both retail luaX_lex R
 ?gen009D73D0@@YAXPAX0@Z,0x009D73D0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
 ?evaluate@Gen009D76F0@@QAEPAXPAX@Z,0x009D76F0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
 ?gen009ED790@@YAXPAX0@Z,0x009ED790,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000772C0@@YAXPAX0@Z,0x000772C0,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen000952A0@@YAXPAUElem8@@PBU1@@Z,0x000952A0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000953E0@@YAXPAUElem8@@PBU1@@Z,0x000953E0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0009B4B0@@YAXPAX0@Z,0x0009B4B0,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen000A7980@@YAXPAUElem8@@PBU1@@Z,0x000A7980,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000B0360@@YAXPAUElem8@@PBU1@@Z,0x000B0360,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000BC360@@YAXPAUElem12@@PBU1@@Z,0x000BC360,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000E5170@@YAXPAUElem12@@PBU1@@Z,0x000E5170,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00195180@@YAXPAUElem8@@PBU1@@Z,0x00195180,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00195B60@@YAXPAUElem12@@PBU1@@Z,0x00195B60,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001D7000@@YAXPAUElem12@@PBU1@@Z,0x001D7000,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001E21F0@@YAXPAUElem8@@PBU1@@Z,0x001E21F0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001E3BD0@@YAXPAUElem12@@PBU1@@Z,0x001E3BD0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001F95D0@@YAXPAUElem12@@PBU1@@Z,0x001F95D0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0025BE10@@YAXPAUElem8@@PBU1@@Z,0x0025BE10,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00261140@@YAXPAX00HH@Z,0x00261140,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00261920@@YAXPAX00H0@Z,0x00261920,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00293640@@YAXPAUElem8@@PBU1@@Z,0x00293640,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0029C660@@YAXPAUElem8@@PBU1@@Z,0x0029C660,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen002E0560@@YAXPAUElem12@@PBU1@@Z,0x002E0560,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen002E0730@@YAXPAX0H0@Z,0x002E0730,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen002E0CD0@@YAXPAX00HH@Z,0x002E0CD0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen002E0D70@@YAXPAX0H0@Z,0x002E0D70,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen002E1520@@YAXPAUElem12@@PBU1@@Z,0x002E1520,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen002E1710@@YAXPAX00H0@Z,0x002E1710,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen002EA750@@YAXPAX0H0@Z,0x002EA750,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen002EACD0@@YAXPAX00HH@Z,0x002EACD0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen002EADF0@@YAXPAX0H0@Z,0x002EADF0,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen002EB330@@YAXPAX00H0@Z,0x002EB330,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen0033B900@@YAXPAUElem8@@PBU1@@Z,0x0033B900,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00342CE0@@YAXPAX0H0@Z,0x00342CE0,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00344A60@@YAXPAX00HH@Z,0x00344A60,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen0034B8D0@@YAXPAX00H0@Z,0x0034B8D0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00363B80@@YAXPAX0H0@Z,0x00363B80,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen003648E0@@YAXPAX00HH@Z,0x003648E0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00364980@@YAXPAX0H0@Z,0x00364980,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen003667E0@@YAXPAX00H0@Z,0x003667E0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen0036D490@@YAXPAUElem8@@PBU1@@Z,0x0036D490,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0036D500@@YAXPAUElem12@@PBU1@@Z,0x0036D500,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0037E4A0@@YAXPAUElem8@@PBU1@@Z,0x0037E4A0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00385CC0@@YAXPAUElem8@@PBU1@@Z,0x00385CC0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00389840@@YAXPAX0@Z,0x00389840,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen003A9110@@YAXPAUElem8@@PBU1@@Z,0x003A9110,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A92A0@@YAXPAUElem12@@PBU1@@Z,0x003A92A0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A94D0@@YAXPAUElem12@@PBU1@@Z,0x003A94D0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003AB630@@YAXPAUElem12@@PBU1@@Z,0x003AB630,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003C92A0@@YAXPAX0@Z,0x003C92A0,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen003CDC60@@YAXPAX0H0@Z,0x003CDC60,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen003CE510@@YAXPAX00HH@Z,0x003CE510,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen003D00E0@@YAXPAX00H0@Z,0x003D00E0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00434E40@@YAXPAUElem8@@PBU1@@Z,0x00434E40,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00437D80@@YAXPAX00HH@Z,0x00437D80,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen004384D0@@YAXPAX00H0@Z,0x004384D0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00453090@@YAXPAX0H0@Z,0x00453090,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00453180@@YAXPAX0H0@Z,0x00453180,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00453BB0@@YAXPAX00HH@Z,0x00453BB0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00453C20@@YAXPAX00HH@Z,0x00453C20,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00455E20@@YAXPAX00H0@Z,0x00455E20,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00455EC0@@YAXPAX00H0@Z,0x00455EC0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen004742C0@@YAXPAX0H0@Z,0x004742C0,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen004749F0@@YAXPAX00HH@Z,0x004749F0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00474A90@@YAXPAX0H0@Z,0x00474A90,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen004768F0@@YAXPAX00H0@Z,0x004768F0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen0047E480@@YAXPAX0H0@Z,0x0047E480,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00483480@@YAXPAX00HH@Z,0x00483480,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00483E00@@YAXPAX00H0@Z,0x00483E00,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00511B90@@YAXPAX0H0@Z,0x00511B90,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen005125C0@@YAXPAX00HH@Z,0x005125C0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00513A70@@YAXPAX00H0@Z,0x00513A70,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00513B40@@YAXPAX00HH@Z,0x00513B40,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00515550@@YAXPAX00H0@Z,0x00515550,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen005278B0@@YAXPAX0@Z,0x005278B0,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen0052EBB0@@YAXPAUElem12@@PBU1@@Z,0x0052EBB0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0052FF20@@YAXPAX0H0@Z,0x0052FF20,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00530050@@YAXPAX0H0@Z,0x00530050,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00531B20@@YAXPAX00HH@Z,0x00531B20,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00531BE0@@YAXPAX00HH@Z,0x00531BE0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00531C50@@YAXPAX00HH@Z,0x00531C50,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00531D80@@YAXPAX0H0@Z,0x00531D80,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00532CC0@@YAXPAX00H0@Z,0x00532CC0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00532DF0@@YAXPAX00H0@Z,0x00532DF0,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00532F40@@YAXPAX00H0@Z,0x00532F40,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen0054E9E0@@YAXPAX0@Z,0x0054E9E0,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen0056DFC0@@YAXPAX0@Z,0x0056DFC0,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen005719B0@@YAXPAX0H0@Z,0x005719B0,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00571AB0@@YAXPAX0H0@Z,0x00571AB0,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen005721B0@@YAXPAUElem8@@PBU1@@Z,0x005721B0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen005726F0@@YAXPAX00HH@Z,0x005726F0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen005727E0@@YAXPAX00HH@Z,0x005727E0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00574330@@YAXPAX00H0@Z,0x00574330,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00574410@@YAXPAX00H0@Z,0x00574410,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00575750@@YAXPAX0H0@Z,0x00575750,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00575AA0@@YAXPAX00HH@Z,0x00575AA0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00577690@@YAXPAX00H0@Z,0x00577690,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00582750@@YAXPAUElem12@@PBU1@@Z,0x00582750,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen005930E0@@YAXPAX0@Z,0x005930E0,address-derived callee of the 14-byte one-field-twice forwarder family; target read from the REL32 at its call sites
+?gen005C2930@@YAXPAUElem12@@PBU1@@Z,0x005C2930,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0069C300@@YAXPAUElem8@@PBU1@@Z,0x0069C300,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen007537C0@@YAXPAX0H0@Z,0x007537C0,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?gen00753DD0@@YAXPAX00HH@Z,0x00753DD0,address-derived callee of the 28-byte zero-tail forwarder family; target read from the REL32 at its call sites
+?gen00754B20@@YAXPAUElem12@@PBU1@@Z,0x00754B20,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00754C60@@YAXPAX00H0@Z,0x00754C60,address-derived callee of the 31-byte zero-fourth forwarder family; target read from the REL32 at its call sites
+?gen00768C40@@YAXPAUElem8@@PBU1@@Z,0x00768C40,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00768CB0@@YAXPAUElem8@@PBU1@@Z,0x00768CB0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen008CBDF0@@YAXPAX0H0@Z,0x008CBDF0,address-derived callee of the 26-byte zero-third forwarder family; target read from the REL32 at its call sites
+?handle@Gen000EFCF0@@QAEXPAXH@Z,0x000EFCF0,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen000FAF90@@QAEXPAX0@Z,0x000FAF90,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen00134B70@@QAEXPAXH@Z,0x00134B70,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00142350@@QAEXPAX0@Z,0x00142350,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen00147180@@QAEXPAX0@Z,0x00147180,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen00147EB0@@QAEXPAX0@Z,0x00147EB0,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen00197120@@QAEXPAX0@Z,0x00197120,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen00252E70@@QAEXPAX0@Z,0x00252E70,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen002EB190@@QAEXPAX0@Z,0x002EB190,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen00363820@@QAEXPAX0@Z,0x00363820,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen003668E0@@QAEXPAX0@Z,0x003668E0,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen0039EB70@@QAEXPAX0@Z,0x0039EB70,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen003A3280@@QAEXPAX0@Z,0x003A3280,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen003A5370@@QAEXPAX0@Z,0x003A5370,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen003AF7A0@@QAEXPAX0@Z,0x003AF7A0,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen003B2540@@QAEXPAX0@Z,0x003B2540,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen003B2830@@QAEXPAX0@Z,0x003B2830,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen003B6FD0@@QAEXPAX0@Z,0x003B6FD0,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen0045F510@@QAEXPAXH@Z,0x0045F510,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen0045F5C0@@QAEXPAXH@Z,0x0045F5C0,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen0045F600@@QAEXPAXH@Z,0x0045F600,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00467A00@@QAEXPAXH@Z,0x00467A00,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00467A40@@QAEXPAXH@Z,0x00467A40,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00467A80@@QAEXPAXH@Z,0x00467A80,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00467AC0@@QAEXPAXH@Z,0x00467AC0,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00467B00@@QAEXPAXH@Z,0x00467B00,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00467B40@@QAEXPAXH@Z,0x00467B40,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00467B80@@QAEXPAXH@Z,0x00467B80,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00582840@@QAEXPAXH@Z,0x00582840,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00611CA0@@QAEXPAXH@Z,0x00611CA0,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen00692440@@QAEXPAXH@Z,0x00692440,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen006A10A0@@QAEXPAXH@Z,0x006A10A0,address-derived callee of the 25-byte span-count forwarder family; target read from the REL32 at its call sites
+?handle@Gen006A3F30@@QAEXPAX0@Z,0x006A3F30,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen006F2A10@@QAEXPAX0@Z,0x006F2A10,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen007716A0@@QAEXPAX0@Z,0x007716A0,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?handle@Gen00777EE0@@QAEXPAX0@Z,0x00777EE0,address-derived callee of the 13-byte field-pair forwarder family; target read from the REL32 at its call sites
+?gen000620B0@@YAXPAUElem4@@PBU1@@Z,0x000620B0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000699F0@@YAXPAUElem16@@PBU1@@Z,0x000699F0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00087C30@Gen00087C30_00088480@@QAEXXZ,0x00087C30,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00088480@Gen00087C30_00088480@@QAEXXZ,0x00088480,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen000889A0@Gen000889A0_00089450@@QAEXXZ,0x000889A0,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00089450@Gen000889A0_00089450@@QAEXXZ,0x00089450,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0009EF50@@YAXPAUElem4@@PBU1@@Z,0x0009EF50,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000B95B0@@YAXPAUElem112@@PBU1@@Z,0x000B95B0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000BA5B0@@YAXPAUElem4@@PBU1@@Z,0x000BA5B0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000DE4F0@@YAXPAUElem16@@PBU1@@Z,0x000DE4F0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000FA390@@YAXPAUElem96@@PBU1@@Z,0x000FA390,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000FD5F0@@YAXPAUElem36@@PBU1@@Z,0x000FD5F0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen000FD650@@YAXPAUElem16@@PBU1@@Z,0x000FD650,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00134F70@@YAXPAUElem20@@PBU1@@Z,0x00134F70,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00138860@@YAXPAUElem92@@PBU1@@Z,0x00138860,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001388C0@@YAXPAUElem36@@PBU1@@Z,0x001388C0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0013A820@Gen0013AE00_0013A820@@QAEXXZ,0x0013A820,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0013AE00@Gen0013AE00_0013A820@@QAEXXZ,0x0013AE00,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00195010@@YAXPAUElem16@@PBU1@@Z,0x00195010,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001A6D80@@YAXPAUElem48@@PBU1@@Z,0x001A6D80,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001C3E00@@YAXPAUElem92@@PBU1@@Z,0x001C3E00,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen001DE970@@YAXPAUElem24@@PBU1@@Z,0x001DE970,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00206CB0@Gen00206CB0_002B2070@@QAEXXZ,0x00206CB0,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00233490@@YAXPAUElem16@@PBU1@@Z,0x00233490,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00234780@@YAXPAUElem28@@PBU1@@Z,0x00234780,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0023B3F0@@YAXPAUElem4@@PBU1@@Z,0x0023B3F0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00252AB0@@YAXPAUElem44@@PBU1@@Z,0x00252AB0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00261530@@YAXPAUElem16@@PBU1@@Z,0x00261530,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00299BB0@Gen002B2070_00299BB0@@QAEXXZ,0x00299BB0,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen002B2070@Gen00206CB0_002B2070@@QAEXXZ,0x002B2070,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen002B2070@Gen002B2070_00299BB0@@QAEXXZ,0x002B2070,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen002EA020@@YAXPAUElem20@@PBU1@@Z,0x002EA020,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0033B980@@YAXPAUElem16@@PBU1@@Z,0x0033B980,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00355050@@YAXPAUElem20@@PBU1@@Z,0x00355050,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003550F0@@YAXPAUElem20@@PBU1@@Z,0x003550F0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003661E0@@YAXPAUElem88@@PBU1@@Z,0x003661E0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003685C0@@YAXPAUElem16@@PBU1@@Z,0x003685C0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A4670@@YAXPAUElem20@@PBU1@@Z,0x003A4670,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A84E0@@YAXPAUElem32@@PBU1@@Z,0x003A84E0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A85C0@@YAXPAUElem16@@PBU1@@Z,0x003A85C0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A9180@@YAXPAUElem40@@PBU1@@Z,0x003A9180,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A91E0@@YAXPAUElem48@@PBU1@@Z,0x003A91E0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A9240@@YAXPAUElem32@@PBU1@@Z,0x003A9240,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A9310@@YAXPAUElem20@@PBU1@@Z,0x003A9310,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A9370@@YAXPAUElem20@@PBU1@@Z,0x003A9370,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003A93F0@@YAXPAUElem16@@PBU1@@Z,0x003A93F0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003AB7E0@@YAXPAUElem36@@PBU1@@Z,0x003AB7E0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003ABAD0@@YAXPAUElem24@@PBU1@@Z,0x003ABAD0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003B6C90@@YAXPAUElem32@@PBU1@@Z,0x003B6C90,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003BA380@@YAXPAUElem20@@PBU1@@Z,0x003BA380,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen003CD920@@YAXPAUElem60@@PBU1@@Z,0x003CD920,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00422F80@@YAXPAUElem24@@PBU1@@Z,0x00422F80,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00425EC0@@YAXPAUElem28@@PBU1@@Z,0x00425EC0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0045A970@Gen0045A970_00723FB0@@QAEXXZ,0x0045A970,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00466610@Gen00783F60_00466610@@QAEXXZ,0x00466610,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0046C5F0@Gen00789440_0046C5F0@@QAEXXZ,0x0046C5F0,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00474090@@YAXPAUElem16@@PBU1@@Z,0x00474090,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen004B2F30@@YAXPAX000@Z,0x004B2F30,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004B3250@@YAXPAX000@Z,0x004B3250,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004B4010@@YAXPAX000@Z,0x004B4010,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004B42F0@@YAXPAX000@Z,0x004B42F0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004B5530@@YAXPAX000@Z,0x004B5530,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004B9A50@@YAXPAX000@Z,0x004B9A50,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004B9F10@@YAXPAX000@Z,0x004B9F10,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BBCB0@@YAXPAX000@Z,0x004BBCB0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BBFC0@@YAXPAX000@Z,0x004BBFC0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BC7E0@@YAXPAX000@Z,0x004BC7E0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BCBB0@@YAXPAX000@Z,0x004BCBB0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BCFD0@@YAXPAX000@Z,0x004BCFD0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BD2A0@@YAXPAX000@Z,0x004BD2A0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BD480@@YAXPAX000@Z,0x004BD480,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BD660@@YAXPAX000@Z,0x004BD660,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BDC70@@YAXPAX000@Z,0x004BDC70,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BDDA0@@YAXPAX000@Z,0x004BDDA0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BE340@@YAXPAX000@Z,0x004BE340,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BF660@@YAXPAX000@Z,0x004BF660,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen004BFBE0@@YAXPAX000@Z,0x004BFBE0,address-derived callee of the 27-byte explicit-this forwarder family; target read from the REL32 at its call sites
+?gen005A3160@Gen005A3160_006BB540@@QAEXXZ,0x005A3160,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen005A3FD0@Gen005A40E0_005A3FD0@@QAEXXZ,0x005A3FD0,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen005A40E0@Gen005A40E0_005A3FD0@@QAEXXZ,0x005A40E0,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0060BC50@Gen0060BC50_0061D140@@QAEXXZ,0x0060BC50,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0060BD30@Gen0060BD30_0061D150@@QAEXXZ,0x0060BD30,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0060BF50@Gen0060BF50_0061D140@@QAEXXZ,0x0060BF50,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0060C030@Gen0060C030_0061D150@@QAEXXZ,0x0060C030,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00610930@@YAXPAUElem16@@PBU1@@Z,0x00610930,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0061ABC0@@YAXPAUElem36@@PBU1@@Z,0x0061ABC0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0061D140@Gen0060BC50_0061D140@@QAEXXZ,0x0061D140,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0061D140@Gen0060BF50_0061D140@@QAEXXZ,0x0061D140,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0061D150@Gen0060BD30_0061D150@@QAEXXZ,0x0061D150,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0061D150@Gen0060C030_0061D150@@QAEXXZ,0x0061D150,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0069C370@@YAXPAUElem4@@PBU1@@Z,0x0069C370,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0069C3A0@@YAXPAUElem120@@PBU1@@Z,0x0069C3A0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen006BB540@Gen005A3160_006BB540@@QAEXXZ,0x006BB540,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen006EF760@@YAXPAUElem56@@PBU1@@Z,0x006EF760,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00723FB0@Gen0045A970_00723FB0@@QAEXXZ,0x00723FB0,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen007416E0@@YAXPAUElem24@@PBU1@@Z,0x007416E0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00756D90@@YAXPAUElem4@@PBU1@@Z,0x00756D90,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0075C940@Gen0075C940_0077FD80@@QAEXXZ,0x0075C940,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00761370@@YAXPAUElem60@@PBU1@@Z,0x00761370,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00764E30@@YAXPAUElem56@@PBU1@@Z,0x00764E30,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00768AE0@@YAXPAUElem20@@PBU1@@Z,0x00768AE0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00768B60@@YAXPAUElem20@@PBU1@@Z,0x00768B60,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00768D20@@YAXPAUElem24@@PBU1@@Z,0x00768D20,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00770A90@@YAXPAUElem44@@PBU1@@Z,0x00770A90,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00770B20@@YAXPAUElem32@@PBU1@@Z,0x00770B20,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen007720D0@@YAXPAUElem108@@PBU1@@Z,0x007720D0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00772160@@YAXPAUElem20@@PBU1@@Z,0x00772160,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen0077FD80@Gen0075C940_0077FD80@@QAEXXZ,0x0077FD80,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00783F60@Gen00783F60_00466610@@QAEXXZ,0x00783F60,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen00784DD0@@YAXPAUElem16@@PBU1@@Z,0x00784DD0,address-derived callee of the element-stride walk family; target read from the REL32 at its call sites
+?gen00789440@Gen00789440_0046C5F0@@QAEXXZ,0x00789440,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen0081C330@Gen009A4D60_0081C330@@QAEXXZ,0x0081C330,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?gen009A4D60@Gen009A4D60_0081C330@@QAEXXZ,0x009A4D60,address-derived callee of the 16-byte call-then-tail-call pair family; target read from the REL32 at its call sites
+?handle@Gen000657E0@@QAEXPAD@Z,0x000657E0,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen000BB6A0@@QAEXPAD@Z,0x000BB6A0,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen000C3410@@QAEXXZ,0x000C3410,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen000CFFB0@@QAEXPAD@Z,0x000CFFB0,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen000D1690@@QAEXXZ,0x000D1690,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen000FD010@@QAEXXZ,0x000FD010,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen000FD720@@QAEXPAD@Z,0x000FD720,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00110D40@@QAEXPAD@Z,0x00110D40,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00127440@@QAEXPAD@Z,0x00127440,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen0013B8E0@@QAEXXZ,0x0013B8E0,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen00201170@@QAEXPAD@Z,0x00201170,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00252A40@@QAEXXZ,0x00252A40,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen002E9E10@@QAEXXZ,0x002E9E10,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen00343C70@@QAEXPAD@Z,0x00343C70,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00351970@@QAEXXZ,0x00351970,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen00351980@@QAEXXZ,0x00351980,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen0037E8F0@@QAEXPAD@Z,0x0037E8F0,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00387F90@@QAEXPAD@Z,0x00387F90,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen003B9270@@QAEXXZ,0x003B9270,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen003CDE30@@QAEXXZ,0x003CDE30,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen00425060@@QAEXXZ,0x00425060,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen004ADA00@@QAEXPAD@Z,0x004ADA00,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen006922A0@@QAEXPAD@Z,0x006922A0,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00695630@@QAEXXZ,0x00695630,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen0069FC40@@QAEXPAD@Z,0x0069FC40,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen006EDEA0@@QAEXXZ,0x006EDEA0,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen006FA400@@QAEXPAD@Z,0x006FA400,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00753E80@@QAEXXZ,0x00753E80,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen00762250@@QAEXXZ,0x00762250,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
+?handle@Gen007683D0@@QAEXPAD@Z,0x007683D0,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00768590@@QAEXPAD@Z,0x00768590,address-derived callee of the 13-byte byte-out forwarder family; target read from the REL32 at its call sites
+?handle@Gen00770F40@@QAEXXZ,0x00770F40,address-derived callee of the per-element member walk family; target read from the REL32 at its call sites
