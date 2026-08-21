@@ -74145,3 +74145,4 @@ __RTC_CheckEsp,0x009F7502,MSVC 7.1 /GZ stack-pointer check helper; address read 
 ?q4Notify001E6170@@YAXPAXPAVMade001E6170@@HH@Z,0x002DE890,four-argument __cdecl callee of the 157-byte make-notify-and-link family (Q4MakeNotifyLink.cpp); address-derived name; identity not recovered
 ??0Made001E6240@@QAE@XZ,0x002DD190,ctor of the object allocated by the 157-byte make-notify-and-link family (Q4MakeNotifyLink.cpp); address-derived name; identity not recovered
 ?q4Notify001E6240@@YAXPAXPAVMade001E6240@@HH@Z,0x002DCF10,four-argument __cdecl callee of the 157-byte make-notify-and-link family (Q4MakeNotifyLink.cpp); address-derived name; identity not recovered
+?addPlayer@LANAPI@@IAEXPAVLANPlayer@@@Z,0x00045363,ILT thunk to 0x00686FD0; called by LANAPI::RequestSetName at 0x00688220 beside removePlayer
