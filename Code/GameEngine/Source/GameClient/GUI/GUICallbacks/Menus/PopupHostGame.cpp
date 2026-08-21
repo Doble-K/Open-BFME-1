@@ -76,6 +76,61 @@
 #include "Common/CustomMatchPreferences.h"
 #include "Common/LadderPreferences.h"
 
+namespace _STL
+{
+template <class Node, class NodeAllocator, class Value>
+__forceinline Node *bfmeCreateLadderNode(NodeAllocator &allocator, const Value &value)
+{
+  Node *node = allocator.allocate(1);
+  _Construct(&node->_M_value_field, value);
+  return node;
+}
+
+template <>
+_Rb_tree<const LadderInfo *, const LadderInfo *, _Identity<const LadderInfo *>,
+         less<const LadderInfo *>, allocator<const LadderInfo *> >::iterator
+_Rb_tree<const LadderInfo *, const LadderInfo *, _Identity<const LadderInfo *>,
+         less<const LadderInfo *>, allocator<const LadderInfo *> >::_M_insert(
+    _Rb_tree_node_base *__x_, _Rb_tree_node_base *__y_,
+    const LadderInfo *const &__v, _Rb_tree_node_base *__w_)
+{
+  _Link_type __w = (_Link_type)__w_;
+  _Link_type __x = (_Link_type)__x_;
+  _Link_type __y = (_Link_type)__y_;
+  _Link_type __z;
+
+  if (__y == this->_M_header._M_data ||
+      (__w == 0 && (__x != 0 || _M_key_compare(_Identity<const LadderInfo *>()(__v), _S_key(__y))))) {
+    __z = bfmeCreateLadderNode<_Node>(this->_M_header, __v);
+    _S_left(__y) = __z;
+    if (__y == this->_M_header._M_data) {
+      _M_root() = __z;
+      _M_rightmost() = __z;
+    } else if (__y == _M_leftmost()) {
+      _M_leftmost() = __z;
+    }
+  } else {
+    __z = bfmeCreateLadderNode<_Node>(this->_M_header, __v);
+    _S_right(__y) = __z;
+    if (__y == _M_rightmost()) {
+      _M_rightmost() = __z;
+    }
+  }
+  _S_parent(__z) = __y;
+  _S_left(__z) = 0;
+  _S_right(__z) = 0;
+  _Rb_global_inst::_Rebalance(__z, this->_M_header._M_data->_M_parent);
+  ++_M_node_count;
+  return iterator(__z);
+}
+
+template _Rb_tree<const LadderInfo *, const LadderInfo *, _Identity<const LadderInfo *>,
+                  less<const LadderInfo *>, allocator<const LadderInfo *> >::_Link_type
+_Rb_tree<const LadderInfo *, const LadderInfo *, _Identity<const LadderInfo *>,
+         less<const LadderInfo *>, allocator<const LadderInfo *> >::_M_create_node(
+    const LadderInfo *const &);
+}
+
 //-----------------------------------------------------------------------------
 // DEFINES ////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
