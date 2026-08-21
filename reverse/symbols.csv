@@ -74624,3 +74624,5 @@ _disconnectMenuLayout,0x012F4960,BFME DisconnectWindow retail DIR32 layout point
 ??2Upgrade@@SAPAXI@Z,0x00881F30,Player::addUpgrade retail class allocator call
 ?onUpgradeCompleted@Player@@QAEXPBVUpgradeTemplate@@@Z,0x0002F856,Player::addUpgrade retail completion callback call ILT
 ??1SubObjectArrayClass@HLodDefClass@@QAE@XZ,0x00978A10,HLodDefClass destructor calls the SubObjectArray destructor body folded with its matched Reset implementation
+?changeBridgeState@Pathfinder@@QAEXW4PathfindLayerEnum@@_N@Z,0x0002847F,Bridge::updateDamageState calls the existing ILT thunk for both closed and open transitions
+?getBridgeBehaviorInterfaceFromObject@BridgeBehavior@@SAPAVBridgeBehaviorInterface@@PAVObject@@@Z,0x00010424,Bridge::updateDamageState calls the existing ILT thunk before the scaffold check
