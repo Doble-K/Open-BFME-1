@@ -4543,3 +4543,5 @@ local-static-tus-collide-by-construct-not-by-shape	0x005D9B50	6	blocked	THE THIR
 ?d_00673940@@YAXXZ	0x00673940	5	converted	t=3min model=gpt-5 exact NetAckStage1CommandMsg::getSortNumber identity recovered; all 5 retail bytes and all 52 source functions matched in NetCommandMsg.cpp
 ?d_005b4220@@YAXXZ	0x005B4220	5	attempted	t=1min model=gpt-5 root claimed fresh 5-byte byte clear; retail=C6 41 1C 00 C3; origin ownership audited as gen-dump scaffold only
 ?d_005b4220@@YAXXZ	0x005B4220	5	converted	t=2min model=gpt-5 exact clean C++ byte clear; C6 41 1C 00 C3 matched via Rva005B4220ByteClear.cpp; add_match and build.sh passed; identity remains address-derived
+?d_005b4210@@YAXXZ	0x005B4210	10	attempted	t=1min model=gpt-5 root claimed fresh 10-byte byte setter; retail=8A 44 24 04 88 41 0B C2 04 00; origin ownership audited as gen-dump scaffold only
+?d_005b4210@@YAXXZ	0x005B4210	10	converted	t=2min model=gpt-5 exact clean C++ byte argument setter; all 10 retail bytes matched via Rva005B4210ByteSetter.cpp; add_match and build.sh passed; identity remains address-derived
