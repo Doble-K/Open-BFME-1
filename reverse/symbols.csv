@@ -74638,3 +74638,4 @@ __real@40490fdb,0x00C87B14,Weapon constructor positive-pi comparison operand; re
 ??0CommandButton@@QAE@XZ,0x00016F18,ControlBar newCommandButton retail constructor-call ILT
 ?getFileID@NetFileProgressCommandMsg@@QAEGXZ,0x00012C15,ILT thunk; NetPacket::addFileProgressCommand at 0x0067A700 calls it where Zero Hour calls getFileID
 ?getProgress@NetFileProgressCommandMsg@@QAEHXZ,0x00033668,ILT thunk; NetPacket::addFileProgressCommand at 0x0067A700 calls it where Zero Hour calls getProgress
+?_M_insert@?$hashtable@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@@2@U?$equal_to@VAsciiString@@@5@V?$allocator@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@@2@@_STL@@QAEAAU?$pair@$$CBVAsciiString@@W4BuildableStatus@@@2@ABU32@@Z,0x0001AA64,operator[] retail _M_insert ILT; jumps to body 0x0038ED80
