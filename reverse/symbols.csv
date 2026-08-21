@@ -74711,3 +74711,5 @@ _ciSocketDisconnect,0x0085A990,gamespy-chat: teardown on the connect failure pat
 ?extraAfterFmod@W3DSnowManager@@QAEXXZ,0x00008F2B,Open-BFME5 ILT 0x00008F2B used by W3DSnowManager::update
 ?extraTail@W3DSnowManager@@QAEXXZ,0x000092AF,Open-BFME5 ILT 0x000092AF used by W3DSnowManager::update
 ?helper_006f4660@@YGXHHHH@Z,0x0093EB50,Open-BFME5 pin for 0x006F4660 four-arg wrapper
+?constructGameMessage@NetGameCommandMsg@@QAEPAVGameMessage@@XZ,0x00675ED0,the first call NetPacket::addGameCommand (0x0067CA00 - addCommand's jump-table arm for command type 4) makes on msg->getCommand(); the reference opens that body with cmdMsg->constructGameMessage() and nothing else reaches it
+?isRoomForGameMessage@NetPacket@@IAE_NPAVNetCommandRef@@PAVGameMessage@@@Z,0x006785A0,the two-argument guard NetPacket::addGameCommand (0x0067CA00) calls on itself with (msg gmsg); the reference declares exactly that pair and the add* family always opens with its own isRoomFor
