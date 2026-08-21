@@ -4509,3 +4509,5 @@ local-static-tus-collide-by-construct-not-by-shape	0x005D9B50	6	blocked	THE THIR
 ?d_000c8c60@@YAXXZ	0x000C8C60	7	converted	t=3min model=gpt-5.6-sol exact 7/7 clean C++ reference getter; lea eax,[ecx+0x8C]; ret; second retail copy
 ?d_000c8d70@@YAXXZ	0x000C8D70	7	attempted	t=1min model=gpt-5 agent10 claimed fresh outside reserved range 7-byte byte getter; retail=8A 81 BE 12 00 00 C3; target ownership audited as gen-dump scaffold only
 ?d_000c8d70@@YAXXZ	0x000C8D70	7	converted	t=2min model=gpt-5 exact clean C++ byte getter; 8A 81 BE 12 00 00 C3 matched via Rva000C8D70ByteAccessor.cpp; add_match and build.sh passed; identity remains address-derived
+?d_00848130@@YAXXZ	0x00848130	5	attempted	t=1min model=gpt-5 root claimed fresh 5-byte 16-bit constant return; retail=66 B8 20 00 C3; origin ownership audited as gen-dump scaffold only
+?d_00848130@@YAXXZ	0x00848130	5	converted	t=2min model=gpt-5 exact clean C++ 16-bit constant return; 66 B8 20 00 C3 matched via Rva848130ConstantThirtyTwo.cpp; add_match and build.sh passed; identity remains address-derived
