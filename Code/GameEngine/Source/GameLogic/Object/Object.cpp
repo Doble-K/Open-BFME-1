@@ -729,11 +729,41 @@ void Object::onRemovedFrom( Object *removedFrom )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?getTransportSlotCount@Object@@QBEHXZ present-unmatched
+// BFME: m_contain sits at +0x1fc, ThingTemplate's transport-slot count is a
+// signed byte at +0x491, and ContainModuleInterface's vtable puts
+// isSpecialZeroSlotContainer at +0x0c and getContainedItemsList at +0x104.
+// BFME also inlines Thing::getTemplate at the call site (one inlined level of
+// Overridable::getFinalOverride).
+class BFMEContainSlotShim
+{
+public:
+	virtual void bfmeSlot00() = 0; virtual void bfmeSlot01() = 0; virtual void bfmeSlot02() = 0;
+	virtual Bool isSpecialZeroSlotContainer() = 0;
+	virtual void bfmeSlot04() = 0; virtual void bfmeSlot05() = 0; virtual void bfmeSlot06() = 0; virtual void bfmeSlot07() = 0; virtual void bfmeSlot08() = 0; virtual void bfmeSlot09() = 0;
+	virtual void bfmeSlot10() = 0; virtual void bfmeSlot11() = 0; virtual void bfmeSlot12() = 0; virtual void bfmeSlot13() = 0; virtual void bfmeSlot14() = 0; virtual void bfmeSlot15() = 0;
+	virtual void bfmeSlot16() = 0; virtual void bfmeSlot17() = 0; virtual void bfmeSlot18() = 0; virtual void bfmeSlot19() = 0; virtual void bfmeSlot20() = 0; virtual void bfmeSlot21() = 0;
+	virtual void bfmeSlot22() = 0; virtual void bfmeSlot23() = 0; virtual void bfmeSlot24() = 0; virtual void bfmeSlot25() = 0; virtual void bfmeSlot26() = 0; virtual void bfmeSlot27() = 0;
+	virtual void bfmeSlot28() = 0; virtual void bfmeSlot29() = 0; virtual void bfmeSlot30() = 0; virtual void bfmeSlot31() = 0; virtual void bfmeSlot32() = 0; virtual void bfmeSlot33() = 0;
+	virtual void bfmeSlot34() = 0; virtual void bfmeSlot35() = 0; virtual void bfmeSlot36() = 0; virtual void bfmeSlot37() = 0; virtual void bfmeSlot38() = 0; virtual void bfmeSlot39() = 0;
+	virtual void bfmeSlot40() = 0; virtual void bfmeSlot41() = 0; virtual void bfmeSlot42() = 0; virtual void bfmeSlot43() = 0; virtual void bfmeSlot44() = 0; virtual void bfmeSlot45() = 0;
+	virtual void bfmeSlot46() = 0; virtual void bfmeSlot47() = 0; virtual void bfmeSlot48() = 0; virtual void bfmeSlot49() = 0; virtual void bfmeSlot50() = 0; virtual void bfmeSlot51() = 0;
+	virtual void bfmeSlot52() = 0; virtual void bfmeSlot53() = 0; virtual void bfmeSlot54() = 0; virtual void bfmeSlot55() = 0; virtual void bfmeSlot56() = 0; virtual void bfmeSlot57() = 0;
+	virtual void bfmeSlot58() = 0; virtual void bfmeSlot59() = 0; virtual void bfmeSlot60() = 0; virtual void bfmeSlot61() = 0; virtual void bfmeSlot62() = 0; virtual void bfmeSlot63() = 0;
+	virtual void bfmeSlot64() = 0;
+	virtual const ContainedItemsList *getContainedItemsList() = 0;
+};
+
 Int Object::getTransportSlotCount() const
 {
-	Int count = getTemplate()->getRawTransportSlotCount();
-	ContainModuleInterface* contain = getContain();
+	const Overridable *tmpl = *reinterpret_cast<const Overridable *const *>(
+		reinterpret_cast<const char *>(this) + 4 );
+	if (tmpl)
+		tmpl = tmpl->getFinalOverride();
+	Int count = *reinterpret_cast<const signed char *>(
+		reinterpret_cast<const char *>(tmpl) + 0x491 );
+
+	BFMEContainSlotShim *contain = *reinterpret_cast<BFMEContainSlotShim *const *>(
+		reinterpret_cast<const char *>(this) + 0x1fc );
 	if ( contain && contain->isSpecialZeroSlotContainer() )
 	{
 		count = 0;
@@ -1301,12 +1331,14 @@ Bool Object::hasWeaponToDealDamageType(DamageType typeToDeal) const
 }
 
 //=============================================================================
-// ?getLargestWeaponRange@Object@@QBEMXZ present-unmatched
+// BFME: m_weaponSet lives at +0x264, and BFME carries FOUR weapon slots
+// (retail compares against 4, not ZH's WEAPONSLOT_COUNT == 3).
 Real Object::getLargestWeaponRange() const
 {
 	Real retVal = -1;
-	for (Int i = PRIMARY_WEAPON; i < WEAPONSLOT_COUNT; ++i) {
-		Weapon* weapon = m_weaponSet.getWeaponInWeaponSlot((WeaponSlotType)i);
+	for (Int i = PRIMARY_WEAPON; i < 4; ++i) {
+		Weapon* weapon = reinterpret_cast<const WeaponSet *>(
+			reinterpret_cast<const char *>(this) + 0x264 )->getWeaponInWeaponSlot((WeaponSlotType)i);
 		if (!weapon) {
 			continue;
 		}
@@ -1893,14 +1925,24 @@ void Object::reactToTransformChange(const Matrix3D* oldMtx, const Coord3D* oldPo
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getShroudedStatus@Object@@QBE?AW4ObjectShroudStatus@@H@Z present-unmatched
+// BFME inlines Thing::getTemplate at the call site (one inlined level of
+// Overridable::getFinalOverride), keeps ThingTemplate's KindOf word at +0xcc
+// with KINDOF_ALWAYS_VISIBLE at bit 20, and Object::m_partitionData at +0x3b0.
 ObjectShroudStatus Object::getShroudedStatus(Int playerIndex) const 
 {
-	if (getTemplate()->isKindOf( KINDOF_ALWAYS_VISIBLE ))
+	const Overridable *tmpl = *reinterpret_cast<const Overridable *const *>(
+		reinterpret_cast<const char *>(this) + 4 );
+	if (tmpl)
+		tmpl = tmpl->getFinalOverride();
+
+	if (*reinterpret_cast<const UnsignedInt *>(
+			reinterpret_cast<const char *>(tmpl) + 0xcc ) & 0x100000)
 		return OBJECTSHROUD_CLEAR;
 
-	if (m_partitionData)
-		return m_partitionData->getShroudedStatus(playerIndex); 
+	PartitionData *partitionData = *reinterpret_cast<PartitionData *const *>(
+		reinterpret_cast<const char *>(this) + 0x3b0 );
+	if (partitionData)
+		return partitionData->getShroudedStatus(playerIndex); 
 
 	// This can happen for objects removed from the partition system (e.g.,
 	// for soldiers that are garrisoned inside a building). 
@@ -2848,21 +2890,21 @@ void Object::prependToList(Object **pListHead)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
+// BFME: m_layer lives at +0x314, and BFME compiles the bridge-layer
+// interaction check unconditionally (ZH keeps it behind SET_LAYER_INTENSE_DEBUG).
 // ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z present-unmatched
 void Object::setLayer(PathfindLayerEnum layer)
 {
-	if (layer!=m_layer) {
-#define no_SET_LAYER_INTENSE_DEBUG
-#ifdef SET_LAYER_INTENSE_DEBUG
-		DEBUG_LOG(("Changing layer from %d to %d\n", m_layer, layer));
-		if (m_layer != LAYER_GROUND) {
-			if (TheTerrainLogic->objectInteractsWithBridgeLayer(this, m_layer)) {
+	PathfindLayerEnum *layerField = reinterpret_cast<PathfindLayerEnum *>(
+		reinterpret_cast<char *>(this) + 0x314 );
+	if (layer!=*layerField) {
+		if (*layerField != LAYER_GROUND) {
+			if (TheTerrainLogic->objectInteractsWithBridgeLayer(this, *layerField)) {
 				DEBUG_CRASH(("Probably shouldn't be chaging layer. jba."));
 			}
 		}
-#endif
 		TheAI->pathfinder()->removePos(this);
-		m_layer = layer;
+		*layerField = layer;
 		TheAI->pathfinder()->updatePos(this, getPosition());
 	}
 }
@@ -2882,7 +2924,7 @@ void Object::setDestinationLayer(PathfindLayerEnum layer)
 // ------------------------------------------------------------------------------------------------
 /** Set unique ID */
 // ------------------------------------------------------------------------------------------------
-// ?setID@Object@@IAEXW4ObjectID@@@Z present-unmatched
+// BFME guards both lookup-table calls against INVALID_ID; m_id stays at +0x74.
 void Object::setID( ObjectID id )
 {
 
@@ -2894,13 +2936,15 @@ void Object::setID( ObjectID id )
 		return;
 			
 	// remove this objects previous id from the lookup table
-	TheGameLogic->removeObjectFromLookupTable( this );
+	if( m_id != INVALID_ID )
+		TheGameLogic->removeObjectFromLookupTable( this );
 
 	// assign new id
 	m_id = id;
 
 	// add new id to lookup table
-	TheGameLogic->addObjectToLookupTable( this );
+	if( id != INVALID_ID )
+		TheGameLogic->addObjectToLookupTable( this );
 
 }  // end setID
 
@@ -2973,22 +3017,31 @@ void Object::friend_prepareForMapBoundaryAdjust(void)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
+// BFME: m_privateStatus lives at +0x344. BFME's version drops the radar
+// registration and the partition-cell maintenance pass, and calls
+// Pathfinder::addObjectToPathfindMap OUT OF LINE (0x003D57F0, which forwards to
+// classifyObjectFootprint with a third argument) where ZH inlines it -- so the
+// call site goes through a TU-local shim to emit the REL32.
+class BFMEPathfinderMapShim
+{
+public:
+	void addObjectToPathfindMap( Object *obj );
+};
+
 // ?friend_notifyOfNewMapBoundary@Object@@QAEXXZ present-unmatched
 void Object::friend_notifyOfNewMapBoundary(void)
 {
 	ThePartitionManager->registerObject(this);
-	TheRadar->addObject(this);
-	TheAI->pathfinder()->addObjectToPathfindMap( this );
-
-	// Now that the PartitionManager has finished its reset, we need to relook
-	handlePartitionCellMaintenance();
+	reinterpret_cast<BFMEPathfinderMapShim *>( TheAI->pathfinder() )->addObjectToPathfindMap( this );
 
 	Region3D mapExtent;
 	TheTerrainLogic->getExtent(&mapExtent);
+	UnsignedByte &privateStatus =
+		*reinterpret_cast<UnsignedByte *>( reinterpret_cast<char *>(this) + 0x344 );
 	if (mapExtent.isInRegionNoZ(getPosition()))
-		m_privateStatus &= ~OFF_MAP;
+		privateStatus &= ~OFF_MAP;
 	else
-		m_privateStatus |= OFF_MAP;
+		privateStatus |= OFF_MAP;
 }
 
 

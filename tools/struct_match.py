@@ -15,22 +15,35 @@ mnemonic plus its operand form with every displacement and immediate erased:
     mov ecx,[ecx+0x0C]    ->   mov r,[r+K]
     mov ecx,[ecx+0x188]   ->   mov r,[r+K]        <- same shape, different length
 
-Two bodies match when their whole normalised sequences are equal. That finds the
-already-written body whose only defect is the layout constants, which is exactly
-the situation in a file like Object.cpp where the source is present and correct
-apart from the offsets.
+By default two bodies match when their whole normalised sequences are EQUAL.
+That finds the already-written body whose only defect is the layout constants,
+which is the situation in a file like Object.cpp where the source is present and
+correct apart from the offsets.
+
+But exact equality is all-or-nothing, and that is its main limitation. In
+practice a BFME body often differs from its ZH counterpart by ONE added guard,
+ONE extra call, or ONE inlined callee -- and exact mode misses every one of
+those. A lane landing six rows found that five of them were invisible to it and
+had to be located by hand. `--near 0.85` relaxes equality to a similarity ratio
+over the same shapes and recovers them: on that range it offered 21 distinct
+rows as candidates where exact mode offered 1.
 
 WHAT THIS DOES NOT DO. A shape match is a CANDIDATE, never a claim: erasing the
 constants erases real distinctions, so two genuinely different methods over the
-same layout can share a shape. The byte gate still decides. Its output is a
-worklist ranked by how few constants have to move.
+same layout can share a shape -- and --near widens that gap deliberately. The
+byte gate still decides. Expect ICF twins in the output (they are labelled), and
+expect the trap that a perfect shape match can still be the WRONG FUNCTION: on
+this range one such match was a module finder keyed on a different NAMEKEY
+literal, which is the "green is not a data model" case in miniature.
 
 Usage:
-  python3 struct_match.py <source.cpp> <lo_rva> <hi_rva> [--max-diff N]
+  python3 struct_match.py <source.cpp> <lo_rva> <hi_rva>
+                          [--min-size N] [--max-diff N] [--near RATIO]
 """
 import argparse
 import collections
 import csv
+import difflib
 import io
 import re
 import sys
@@ -109,6 +122,14 @@ def main():
     # object, and an 8-byte getter matches every getter. Only bodies long enough
     # for the shape itself to be rare are worth a human's time.
     ap.add_argument("--min-size", type=int, default=24)
+    # --near RATIO relaxes whole-sequence equality to a similarity ratio over the
+    # same normalised shapes. Exact matching only finds a body whose instruction
+    # sequence is unchanged; in practice a BFME body often differs from its ZH
+    # counterpart by one added guard, one extra call, or one inlined callee, and
+    # exact mode misses every one of those. 0.85 was the threshold that surfaced
+    # five such landings a lane had to find by hand.
+    ap.add_argument("--near", type=float, default=None,
+                    help="accept shapes at least this similar (e.g. 0.85)")
     args = ap.parse_args()
 
     compiled = object_bodies(args.source)
@@ -145,19 +166,37 @@ def main():
         sig, ok = shape(body)
         if not ok:
             continue
-        for name, cbody in by_shape.get(sig, []):
+        if args.near is None:
+            candidates = [(1.0, name, cbody) for name, cbody in by_shape.get(sig, [])]
+        else:
+            # NEAR MODE. Exact whole-sequence equality is all-or-nothing, and
+            # that is its main weakness: a lane's six landings each differed from
+            # the ZH body by ONE added guard, ONE extra call, or ONE inlined
+            # callee, so exact matching found none of the five it should have.
+            # A similarity ratio over the same normalised shapes recovers them.
+            # Length-gate first -- comparing every row against every compiled
+            # body is quadratic, and a body half the length is never the answer.
+            candidates = []
+            for csig, entries in by_shape.items():
+                if not (0.5 <= len(csig) / max(1, len(sig)) <= 2.0):
+                    continue
+                ratio = difflib.SequenceMatcher(None, sig, csig).ratio()
+                if ratio >= args.near:
+                    candidates.extend((ratio, name, cbody) for name, cbody in entries)
+        for ratio, name, cbody in candidates:
             rc, cc = constants(body), constants(cbody)
             moved = sum(1 for a, b in zip(rc, cc) if a != b)
             if moved <= args.max_diff:
                 diffs = [(b, a) for a, b in zip(rc, cc) if a != b]
-                found.append((size, -moved, rva, name, moved, len(rc), diffs))
+                found.append((size, -moved, rva, name, moved, len(rc), diffs, ratio))
 
     # Rank by body length first, then by how few constants have to move. A long
     # shape with one moved constant is close to a certainty; a short one with
     # several is noise. The reader should work down this list, not across it.
     found.sort(reverse=True)
-    for size, _, rva, name, moved, total, diffs in found:
-        print("0x%08X %4dB  <-  %s" % (rva, size, name[:78]))
+    for size, _, rva, name, moved, total, diffs, ratio in found:
+        near = "" if ratio >= 1.0 else "  [shape %.0f%%]" % (100 * ratio)
+        print("0x%08X %4dB  <-  %s%s" % (rva, size, name[:70], near))
         detail = (";  " + ", ".join("0x%X->0x%X" % d for d in diffs))[:150] \
             if moved else " -- BYTE-SHAPE IDENTICAL (an ICF twin, not a discovery)"
         print("           %d of %d constants differ%s" % (moved, total, detail))

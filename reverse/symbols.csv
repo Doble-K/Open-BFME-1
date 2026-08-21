@@ -74639,3 +74639,70 @@ __real@40490fdb,0x00C87B14,Weapon constructor positive-pi comparison operand; re
 ?getFileID@NetFileProgressCommandMsg@@QAEGXZ,0x00012C15,ILT thunk; NetPacket::addFileProgressCommand at 0x0067A700 calls it where Zero Hour calls getFileID
 ?getProgress@NetFileProgressCommandMsg@@QAEHXZ,0x00033668,ILT thunk; NetPacket::addFileProgressCommand at 0x0067A700 calls it where Zero Hour calls getProgress
 ?_M_insert@?$hashtable@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@@2@U?$equal_to@VAsciiString@@@5@V?$allocator@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@@2@@_STL@@QAEAAU?$pair@$$CBVAsciiString@@W4BuildableStatus@@@2@ABU32@@Z,0x0001AA64,operator[] retail _M_insert ILT; jumps to body 0x0038ED80
+?getAttackRange@Weapon@@QBEMPBVObject@@@Z,0x001E2B50,Open-BFME5 callee of ?getLargestWeaponRange@Object@@QBEMXZ at 0x001BE160 via ILT 0x0002E631; whole 76-byte caller body byte-matches with this pin
+?removeObjectFromLookupTable@GameLogic@@QAEXPAVObject@@@Z,0x00388A90,Open-BFME5 callee of ?setID@Object@@IAEXW4ObjectID@@@Z at 0x001BEC70 via ILT 0x00031656; body erases the m_id key from the GameLogic+0xb0 lookup map
+?addObjectToLookupTable@GameLogic@@QAEXPAVObject@@@Z,0x0038E490,Open-BFME5 callee of ?setID@Object@@IAEXW4ObjectID@@@Z at 0x001BEC70 via ILT 0x00033FCD; body stores the Object* into the GameLogic+0xb0 lookup map
+?updatePos@Pathfinder@@QAEXPAVObject@@PBUCoord3D@@@Z,0x003E9D80,Open-BFME5 callee of ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 via ILT 0x00013647
+?getShroudedStatus@PartitionData@@QAE?AW4ObjectShroudStatus@@H@Z,0x008F8110,Open-BFME5 tail-jmp callee of ?getShroudedStatus@Object@@QBE?AW4ObjectShroudStatus@@H@Z at 0x001C7B30; body range-checks the player index against 16 and indexes a per-player array at this+0x24
+??0_Filebuf_base@_STL@@QAE@XZ,0x00849F40,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+??0locale@_STL@@QAE@XZ,0x00832120,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+??1?$basic_streambuf@DV?$char_traits@D@_STL@@@_STL@@UAE@XZ,0x0083FB50,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+??1locale@_STL@@QAE@XZ,0x00832170,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_allocate_buffers@?$basic_filebuf@DV?$char_traits@D@_STL@@@_STL@@AAE_NPADH@Z,0x008416C0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_allocate_buffers@?$basic_filebuf@GV?$char_traits@G@_STL@@@_STL@@AAE_NPAGH@Z,0x008420B0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_close@_Filebuf_base@_STL@@QAE_NXZ,0x0084A1B0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_switch_to_input_mode@?$basic_filebuf@GV?$char_traits@G@_STL@@@_STL@@AAE_NXZ,0x00843680,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_switch_to_output_mode@?$basic_filebuf@GV?$char_traits@G@_STL@@@_STL@@AAE_NXZ,0x00843590,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_underflow_aux@?$basic_filebuf@GV?$char_traits@G@_STL@@@_STL@@AAEGXZ,0x008436E0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_unmap@_Filebuf_base@_STL@@QAEXPAXJ@Z,0x0084A3C0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_unshift@?$basic_filebuf@DV?$char_traits@D@_STL@@@_STL@@AAE_NXZ,0x00841CC0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_unshift@?$basic_filebuf@GV?$char_traits@G@_STL@@@_STL@@AAE_NXZ,0x00842670,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_use_facet@locale@_STL@@QBEPAVfacet@12@ABVid@12@@Z,0x008321D0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+?_M_write@_Filebuf_base@_STL@@QAE_NPADH@Z,0x0084A7B0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Filebuf.cpp
+??0ios_base@_STL@@IAE@XZ,0x0083F6B0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Streams.cpp
+?init@?$basic_ios@GV?$char_traits@G@_STL@@@_STL@@IAEXPAV?$basic_streambuf@GV?$char_traits@G@_STL@@@2@@Z,0x0083F9B0,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4Streams.cpp
+??0_Time_Info@_STL@@QAE@XZ,0x00836220,STLport 4.5.3 library-internal callee; address read from the retail REL32 displacement in Code/stlport/X4TimeFacets.cpp
+_ciSocketSend,0x0085AC90,gamespy-chat: sole callee of the buffer-only send in ciSendGetKey/ciSendGetChannelKey/chatSetChannelKeys - takes a socket and a finished buffer
+_ciSocketSendf,0x0085AD70,gamespy-chat: varargs send - the NICK and USER sends at 0x00861E20 and 0x00860280 both reach it
+_ciAddCallback_,0x00870350,gamespy-chat: 8-arg deferred-callback enqueue; 0x00861DA0 calls it with type 25 (CALLBACK_NICK_ERROR) and sizeof-params 16
+?registerObject@PartitionManager@@QAEXPAVObject@@@Z,0x001086C0,Open-BFME5 callee of ?friend_notifyOfNewMapBoundary@Object@@QAEXXZ at 0x001BED80 via ILT 0x00001F5A
+?addObjectToPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,0x003D57F0,Open-BFME5 real out-of-line body (forwards to classifyObjectFootprint with a THIRD argument); called by ?friend_notifyOfNewMapBoundary@Object@@QAEXXZ at 0x001BED80 via ILT 0x0000B81B
+?addObjectToPathfindMap@BFMEPathfinderMapShim@@QAEXPAVObject@@@Z,0x003D57F0,Open-BFME5 TU-local shim in Object.cpp used to emit the out-of-line call ZH's AIPathfind.h inlines away; same body as ?addObjectToPathfindMap@Pathfinder@@QAEXPAVObject@@@Z
+_ciSocketThink,0x0085AC70,gamespy-chat: first callee of ciThink at 0x008601F0 - takes &connection->chatSocket
+_ciSocketRecv,0x0085B670,gamespy-chat: the message-pump callee of ciThink at 0x008601F0 - called twice around the receive loop
+_ciHandleDisconnect,0x008601A0,gamespy-chat: ciThink calls it with the Disconnected literal at 0x01130F8C when connectState goes to ciDisconnected
+_ciFilterThink,0x0086C2D0,gamespy-chat: penultimate callee of ciThink at 0x008601F0
+_ciCallCallbacks,0x008714F0,gamespy-chat: final callee of ciThink at 0x008601F0 - takes the chat handle and an ID
+_ciCheckFiltersForID,0x0086C340,gamespy-chat: first arm of the short-circuit or in ciCheckForID at 0x00860170
+_ciCheckCallbacksForID,0x00871630,gamespy-chat: second arm of the short-circuit or in ciCheckForID at 0x00860170
+_ciAddGETKEYFilter,0x0086C7E0,gamespy-chat: 7-arg filter registered by chatGetGlobalKeys at 0x00861940
+_ciAddGETCKEYFilter,0x0086C8F0,gamespy-chat: 8-arg filter registered by chatGetChannelKeys at 0x00861C60 on the per-user branch
+_ciAddGETCHANKEYFilter,0x0086CA10,gamespy-chat: 7-arg filter registered by chatGetChannelKeys at 0x00861C60 on the whole-room branch
+_piGetPlayer,0x00863350,gamespy-peer: looks a piPlayer up by nick in connection->players; sole player-lookup callee of peerKeys.c cache maps
+_piRoomToType,0x00863BB0,gamespy-peer: maps a channel name to a RoomType; called by piGetRoomKeysCallbackA at 0x00865DB0
+_piSetPlayerIPAndProfileID,0x00863480,gamespy-peer: called by piKeyChanged at 0x008659C0 on the demangled username key
+_piSetPlayerRoomFlags,0x008635E0,gamespy-peer: called by piKeyChanged at 0x008659C0 on the b_flags key
+_piPingInitPlayer,0x00862E10,gamespy-peer: called by piAddPlayer at 0x008637E0 when initialising a new piPlayer
+_piPingPlayerJoinedRoom,0x00862E90,gamespy-peer: called by piPlayerJoinedRoom at 0x008638D0
+_piPingPlayerLeftRoom,0x00862FA0,gamespy-peer: called by piPlayerLeftRoom at 0x00863970
+_piSendChannelUTM,0x00857EB0,gamespy-peer: called by piXpingPlayer at 0x00862B80 with the PNG command literal
+_pingerInit,0x00872CB0,gamespy-pinger: sole callee of piPingInit at 0x00862780 that takes the got-ping and set-data callbacks
+_pingerShutdown,0x00872DD0,gamespy-pinger: called by piPingCleanup at 0x00862820
+_pingerThink,0x00873340,gamespy-pinger: called by piPingThink at 0x00862D30
+_pingerPing,0x00873370,gamespy-pinger: called by piPingPlayer at 0x00862910 with the player IP and port
+_chatLeaveChannel,0x008609B0,gamespy-chat: called by piLeaveRoom at 0x00863EE0 with the room name and a reason
+_piCancelJoinOperation,0x0085F0A0,gamespy-peer: called by piLeaveRoom at 0x00863EE0 while the room is still being entered
+_piSBFreeHostServer,0x00864FB0,gamespy-peer: called by piLeaveRoom at 0x00863EE0 when leaving the staging room
+_piStopReporting,0x00866770,gamespy-peer: called by piLeaveRoom at 0x00863EE0 and piStopHosting at 0x00865450; NOTE 0x00866770 currently also carries an address-derived C++ name from Common/R3GuardedReleaseAndClear.cpp
+_piStopHosting,0x00865450,gamespy-peer: called by piLeaveRoom at 0x00863EE0 when the staging room is left
+_chatDisconnect,0x008603F0,gamespy-chat: called by chatConnectDoit at 0x00861ED0 when a blocking connect fails
+_ciAddWHOFilter,0x0086C650,gamespy-chat: registered by chatGetBasicUserInfo at 0x00861370 right after the WHO send
+_ciGetNextID,0x0086C310,gamespy-chat: called by chatGetBasicUserInfo at 0x00861370 on the already-cached path
+_ciGetUserBasicInfo,0x00872810,gamespy-chat: the cache probe chatGetBasicUserInfo at 0x00861370 makes before sending WHO
+_ciInitChannels,0x008717B0,gamespy-chat: first of the four init calls in chatConnectDoit at 0x00861ED0
+_ciCleanupChannels,0x00871820,gamespy-chat: its paired teardown on the chatConnectDoit failure paths
+_ciInitCallbacks,0x008702C0,gamespy-chat: second of the four init calls in chatConnectDoit at 0x00861ED0
+_ciCleanupCallbacks,0x008702F0,gamespy-chat: its paired teardown on the chatConnectDoit failure paths
+_ciSocketInit,0x0085A7C0,gamespy-chat: third init call in chatConnectDoit - takes the socket and the login nick
+_ciSocketConnect,0x0085A870,gamespy-chat: fourth init call in chatConnectDoit - takes the socket the address and the port
+_ciSocketDisconnect,0x0085A990,gamespy-chat: teardown on the connect failure path of chatConnectDoit
