@@ -74370,3 +74370,56 @@ _Gen00881EF0,0x00881EF0,address-derived callee of a guarded cdecl release-and-cl
 ?invoke@S4Sink004135C0@@QAEXABVAsciiString@@HHHH@Z,0x004135C0,S4 sink method of the Lua string-command family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
 ?getPortableFilename@NetFileCommandMsg@@QAE?AV?$StringBase@D@@XZ,0x00044323,ILT thunk to 0x0067D250; NetPacket::GetFileCommandSize at 0x0067D410 calls it beside the ledgered getFileLength on the same class
 ?getPortableFilename@NetFileAnnounceCommandMsg@@QAE?AV?$StringBase@D@@XZ,0x0003D50F,ILT thunk to 0x0067D2E0; NetPacket::GetFileAnnounceCommandSize at 0x0067D460 calls it where Zero Hour calls getPortableFilename
+??0?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAE@ABV01@@Z,0x0003050D,T2 lane: ILT thunk to 0x004FB220 (unsigned-short basic_string copy ctor); paired with the char ctor thunk 0x0001CB11 -> 0x004FB1B0
+_GdipGetImageWidth@8,0x009F6BCE,gdiplus.dll import stub (direct REL32 call site; see T3GdiplusImageMembers.cpp)
+_GdipGetImageHeight@8,0x009F6BD4,gdiplus.dll import stub (direct REL32 call site; see T3GdiplusImageMembers.cpp)
+_GdipGetImagePixelFormat@8,0x009F6BDA,gdiplus.dll import stub (direct REL32 call site; see T3GdiplusImageMembers.cpp)
+_GdipGetImagePaletteSize@8,0x009F6BE0,gdiplus.dll import stub (direct REL32 call site; see T3GdiplusImageMembers.cpp)
+_GdipGetImagePalette@12,0x009F6BE6,gdiplus.dll import stub (direct REL32 call site; see T3GdiplusImageMembers.cpp)
+_GdipBitmapLockBits@20,0x009F6BFE,gdiplus.dll import stub (direct REL32 call site; see T3GdiplusImageMembers.cpp)
+_GdipBitmapUnlockBits@8,0x009F6C04,gdiplus.dll import stub (direct REL32 call site; see T3GdiplusImageMembers.cpp)
+??0T1Base_005E3950@@QAE@PAX0@Z,0x005E3950,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E3A20@@QAE@PAX0@Z,0x005E3A20,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E3B90@@QAE@PAX0@Z,0x005E3B90,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E3C90@@QAE@PAX0@Z,0x005E3C90,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005F2D20@@QAE@PAX0@Z,0x005F2D20,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005F3750@@QAE@PAX0@Z,0x005F3750,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005F4E90@@QAE@PAX0@Z,0x005F4E90,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005F6530@@QAE@PAX0@Z,0x005F6530,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005F7820@@QAE@PAX0@Z,0x005F7820,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005F84E0@@QAE@PAX0@Z,0x005F84E0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E3390@@QAE@PAX0@Z,0x005E3390,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E3480@@QAE@PAX0@Z,0x005E3480,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E35B0@@QAE@PAX0@Z,0x005E35B0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E36C0@@QAE@PAX0@Z,0x005E36C0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E37C0@@QAE@PAX0@Z,0x005E37C0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005EEBC0@@QAE@PAX0@Z,0x005EEBC0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005EFD60@@QAE@PAX0@Z,0x005EFD60,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005FBBE0@@QAE@PAX0@Z,0x005FBBE0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005FDE80@@QAE@PAX0@Z,0x005FDE80,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005FEAD0@@QAE@PAX0@Z,0x005FEAD0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005FFDB0@@QAE@PAX0@Z,0x005FFDB0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_00600BE0@@QAE@PAX0@Z,0x00600BE0,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005FC920@@QAE@PAX0@Z,0x005FC920,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005FD550@@QAE@PAX0@Z,0x005FD550,base constructor forwarded to by the two-argument base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??0T1A1_005DD290@@QAE@PAX0@Z,0x005DD290,first base constructor of the two-base arity of the base-forwarding constructor family (T1BaseForwardingCtors.cpp); address-derived name; identity not recovered
+??1T2VBaseA@@UAE@XZ,0x000414BB,T2 lane: virtual base destructor reached by the 0xBC/0xB8 vbase stubs (ILT thunk)
+??1T2VBaseB@@UAE@XZ,0x0083F810,T2 lane: virtual base destructor reached by the 0x94/0x90 vbase stubs
+??1T2Vb0084B3A0@@UAE@XZ,0x0084B3A0,T2 lane: same body as ??1Rva0084B3A0 in R4VirtualBaseDestructors.cpp
+??1T2Vb0084B410@@UAE@XZ,0x0084B410,T2 lane: same body as ??1Rva0084B410 in R4VirtualBaseDestructors.cpp
+??1T2Vb0084B510@@UAE@XZ,0x0084B510,T2 lane: same body as ??1Rva0084B510 in R4VirtualBaseDestructors.cpp
+??1T2Vb0084B580@@UAE@XZ,0x0084B580,T2 lane: same body as ??1Rva0084B580 in R4VirtualBaseDestructors.cpp
+??1T2Vb0084A620@@UAE@XZ,0x0084A620,T2 lane: vbase-entered class dtor called by the ??_G at 0x0084AB20
+??0T4B005E9800@@QAE@ABV0@@Z,0x005E9800,T4 lane: second base copy ctor called by the ctor at 0x005E97B0; address-derived name; identity not recovered
+??0T4B005E9C70@@QAE@ABV0@@Z,0x005E9C70,T4 lane: second base copy ctor called by the ctor at 0x005E9C20; address-derived name; identity not recovered
+??0T4B005EA0D0@@QAE@ABV0@@Z,0x005EA0D0,T4 lane: second base copy ctor called by the ctor at 0x005EA080; address-derived name; identity not recovered
+??0T4B005EA240@@QAE@ABV0@@Z,0x005EA240,T4 lane: second base copy ctor called by the ctor at 0x005EA1F0; address-derived name; identity not recovered
+??0T1Base_005E9430@@QAE@PAX@Z,0x005E9430,base constructor forwarded to by the one-argument chained vtable constructors (T1ChainedVtableCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E9670@@QAE@PAX@Z,0x005E9670,base constructor forwarded to by the one-argument chained vtable constructors (T1ChainedVtableCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E9340@@QAE@PAX@Z,0x005E9340,base constructor forwarded to by the one-argument chained vtable constructors (T1ChainedVtableCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E9570@@QAE@PAX@Z,0x005E9570,base constructor forwarded to by the one-argument chained vtable constructors (T1ChainedVtableCtors.cpp); address-derived name; identity not recovered
+??0T1Base_005E97B0@@QAE@PAX@Z,0x005E97B0,base constructor forwarded to by the one-argument chained vtable constructors (T1ChainedVtableCtors.cpp); address-derived name; identity not recovered
+?apply@T1Recv_005C49D0@@QAEXPAVT1Arg_005C49D0@@@Z,0x005C49D0,member called on the first argument by the 21-byte receiver-returning helper at 0x005C5DB0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
+?apply@T1Recv_005C47D0@@QAEXPAVT1Arg_005C47D0@@@Z,0x005C47D0,member called on the first argument by the 21-byte receiver-returning helper at 0x005C5DD0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
+?accept@T1Sink_005C8D40@@QAEPAXPAX0@Z,0x005C8D40,callee of the 18-byte receiver-swapping forwarders at 0x005C98A0 and 0x005CACC0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
+?accept@T1Sink_005C8E90@@QAEPAXPAX0@Z,0x005C8E90,callee of the 18-byte receiver-swapping forwarders at 0x005C98C0 and 0x005CACE0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
