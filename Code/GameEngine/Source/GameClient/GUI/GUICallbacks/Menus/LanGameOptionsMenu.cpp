@@ -123,6 +123,19 @@ extern Bool LANisShuttingDown;
 extern Bool LANbuttonPushed;
 extern void MapSelectorTooltip(GameWindow *window, WinInstanceData *instData,	UnsignedInt mouse);
 extern void gameAcceptTooltip(GameWindow *window, WinInstanceData *instData, UnsignedInt mouse);
+
+static Bool winInitialized = FALSE;
+
+__declspec(noinline) void EnableSlotListUpdates(Bool val)
+{
+	winInitialized = val;
+}
+
+__declspec(noinline) Bool AreSlotListUpdatesEnabled()
+{
+	return winInitialized;
+}
+
 Color white = GameMakeColor( 255, 255, 255, 255 );
 static bool s_isIniting = FALSE;
 // window ids ------------------------------------------------------------------------------
