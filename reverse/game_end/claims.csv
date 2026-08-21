@@ -1839,3 +1839,19 @@ insn,0x00638B4B,"cmp dword ptr [edi + 0x440], 1",ladder type compare 1 = 1v1
 string,0x01118B40,win,result literal in 0x006386F0
 string,0x01118B54,loss,result literal in 0x006386F0
 string,0x01101D6C,USA,America->USA side rename in 0x006386F0
+global,0x012F71C4,0x0007B454,"TheGameResultsQueue read in the GameEngine shutdown path, followed by slot +0x28 endThreads; with 0x004E6EAF (addRequest +0x30) and 0x00641F1A (getRequest +0x34) these are the only loads of the global in .text, so nothing calls slot +0x40 areGameResultsBeingSent 0x0063FD50"
+global,0x012F4820,0x0050730D,TheLadderList read in the QM:MATCHED handler (WOLQuickMatchMenu band) that arms m_isQM / ladder IP / ladder port on TheGameSpyGame; the fallback is the localhost literal 0x010FFEB4
+insn,0x0053E19D,call 0x424d43,getLadderIP (ILT 0x00024D43 -> 0x004D7AC0) on the staging room being joined; the value is copied into TheGameSpyGame through 0x0053E1BA
+insn,0x0053EB2D,"mov si, word ptr [esi + 0x450]","ladder port read from the staging room being joined (GUI:JoinFailedUnknownLadder path), copied into TheGameSpyGame at 0x0053EB3D"
+insn,0x0066C583,"mov dword ptr [eax + 0x290], 0",DisconnectManager writes TheGameLogic+0x290 (disconnect blame) = 0 from the ping success ratio test; read by 0x002ED8F0 to pick APT:EndGameOver
+insn,0x0066C7A7,"mov dword ptr [edx + 0x290], 1",DisconnectManager writes TheGameLogic+0x290 (disconnect blame) = 1
+insn,0x0066CB0D,call dword ptr [eax + 0x78],BFMEDisconnectManager::update 0x0066C8D0 calls TheNetwork->quitGame() (vtable 0x0111A968 slot +0x78 -> 0x006822E0)
+bytes,0x0064B6B0,64a1000000006aff6818250401,"listingGamesCallback body start (SEH prologue with its handler VA; no ledger row, no Ghidra function): reads ladIP at 0x0064B9A0 and ladPort at 0x0064B9C5"
+bytes,0x0064DA00,64a1000000006aff68a1290401,QRServerKeyCallback body start (SEH prologue with its handler VA): emits ladIP at 0x0064DD7B and ladPort at 0x0064DDD8
+vslot,0x01118E70+0x00,0x0063E170,GameSpyBuddyMessageQueue vtable slot 0 = the deleting dtor the ledger names ??_GGameResultsQueue (wrong class; the GameResultsQueue one is 0x00642410 in vtable 0x01119380)
+global,0x012F4C38,0x00598F30,window global read first by 0x00598F30 (ledger hidePurchaseScience@ControlBar; HideQuitMenu-shaped body called from DisconnectMenu::showScreen); which APT screen owns it is open
+patch,0x00661F57,"81C130750000->81C1D0070000|add ecx, 0x7d0","Connection::doSend MaxQuitFlushTime 30 s -> 2 s (imm32 at 0x00661F59); measured candidate for the quit freeze, not shipped"
+patch,0x00662E4D,"B910270000->B9B80B0000|mov ecx, 0xbb8","hasLeaveRequestTimedOut 0x00662E30 10 s -> 3 s (imm32 at 0x00662E4E); measured candidate for the quit freeze, not shipped"
+insn,0x00576EE3,"cmp byte ptr [ecx + 0x43c], bl",BfmeAptScreenScoreScreen init: the internet (type 3) branch calls the online stats updater 0x000A5D40 only when TheGameSpyGame->m_isQM is set; no ladder POST on this path
+global,0x010879C4,0x005775DD,"_bfme_showScoreScreen 0x005774E0 pushes the ScoreScreen.apt literal: the APT screen replaced ZH TheShell->push(""Menus/ScoreScreen.wnd""); no Menus/ScoreScreen.wnd literal exists in the image"
+string,0x010879C4,ScoreScreen.apt,APT layout name the 1.03 score screen opens with (0x005775DD)

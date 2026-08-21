@@ -12,6 +12,7 @@ identity.
 import csv
 import importlib.util
 import re
+import shutil
 import struct
 import subprocess
 import sys
@@ -218,7 +219,10 @@ CLAIMS = ROOT / "reverse" / "game_end" / "claims.csv"
 # text; vslot 0xVTABLEVA+0xOFF/body RVA after the thunk chain; jt
 # 0xTABLEVA[idx]/the entry RVA; thunk ILT RVA/body RVA; global VA/RVA of an
 # instruction whose immediate or displacement carries that VA; string VA/the
-# exact C string NUL-terminated at that VA (the one kind compared case-sensitively).
+# exact C string NUL-terminated at that VA (the one kind compared case-sensitively);
+# patch 0xRVA/`<original hex>-><replacement hex>|<post-patch capstone text>`, a
+# byte-patch candidate: this test checks retail still holds the original bytes,
+# test_game_end_patch_rows_apply_to_a_copy applies the replacement to a copy.
 
 
 def _claim_observed(kind, address, expected, image, md):
@@ -271,6 +275,13 @@ def _claim_observed(kind, address, expected, image, md):
         chunk = data[start:start + len(expected) + 1]
         end = chunk.find(b"\0")
         return (chunk if end < 0 else chunk[:end]).decode("latin-1")
+    if kind == "patch":
+        original = expected.split("->", 1)[0]
+        start = offset(int(address, 16))
+        held = data[start:start + len(original) // 2].hex()
+        if held == original.lower():
+            return expected
+        return f"original bytes at 0x{int(address, 16):08X} are {held}"
     raise AssertionError(f"unknown claim kind {kind!r}")
 
 
@@ -300,3 +311,96 @@ def test_game_end_claims_hold_against_retail():
                          f"observed {observed}")
     assert not wrong, f"{len(wrong)} claim(s) do not hold against retail:\n" + "\n".join(wrong)
     print(f"PASS game-end claims: {len(rows)} rows hold against retail")
+
+
+FINDINGS = ROOT / "reverse" / "game_end" / "FINDINGS.md"
+# 6-8 hex digits: RVAs and VAs. Offsets (+0x484) and immediates (0x7530) are
+# shorter and are not addresses.
+ADDRESS_LITERAL = re.compile(r"\b0x([0-9A-Fa-f]{6,8})\b")
+
+
+def _ledgered_addresses():
+    """Every address some machine-checked file vouches for, as integers: a
+    claims.csv address or expected value, a functions.csv target/export RVA, or
+    a symbols.csv pin."""
+    known = set()
+    with CLAIMS.open("r", encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            for field in (row["address"], row["expected"]):
+                known.update(int(m.group(1), 16) for m in ADDRESS_LITERAL.finditer(field))
+    for path, columns in ((build.FUNCTIONS, ("target_rva", "export_rva")),
+                          (build.SYMBOLS, ("address",))):
+        with path.open("r", encoding="utf-8", newline="") as handle:
+            for row in csv.DictReader(handle):
+                for column in columns:
+                    if row[column].startswith("0x"):
+                        known.add(int(row[column], 16))
+    return known
+
+
+def test_game_end_findings_cite_only_ledgered_addresses():
+    text = FINDINGS.read_text(encoding="utf-8")
+    cited = {}
+    for match in ADDRESS_LITERAL.finditer(text):
+        cited.setdefault(int(match.group(1), 16), match.group(0))
+    assert cited, f"{FINDINGS}: no addresses at all"
+    known = _ledgered_addresses()
+    unknown = sorted(literal for value, literal in cited.items() if value not in known)
+    assert not unknown, (f"{len(unknown)} address(es) in {FINDINGS.name} have no claims/"
+                         f"functions/symbols row: " + ", ".join(unknown))
+    print(f"PASS game-end findings: {len(cited)} cited addresses are ledgered")
+
+
+PATCH_SCRATCH = build.PATCH_DIR / "lotrbfme.game_end_patch_check.exe"
+
+
+def test_game_end_patch_rows_apply_to_a_copy():
+    """Each `patch` claim is applied to a fresh copy of the baseline under
+    build/: the site must then decode to the expected instruction, the
+    instruction must span exactly the patched bytes, and the copy must differ
+    from the baseline nowhere else. The baseline is only ever read
+    (shutil.copyfile reads it; build.verify_baseline re-hashes it afterwards)."""
+    try:
+        import capstone
+    except ImportError:
+        raise SystemExit("capstone is missing (pip install capstone): a patch row cannot be "
+                         "proven to decode to its expected instruction without it")
+    with CLAIMS.open("r", encoding="utf-8", newline="") as handle:
+        rows = [row for row in csv.DictReader(handle) if row["kind"] == "patch"]
+    assert rows, "no patch rows in claims.csv: the quit-freeze candidates were lost"
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    baseline, sections = build.exe_image()
+    build.PATCH_DIR.mkdir(parents=True, exist_ok=True)
+    try:
+        for row in rows:
+            rva = int(row["address"], 16)
+            assert rva != 0, "a patch at RVA 0 is a typo: refusing to touch address zero"
+            spec, text = row["expected"].split("|", 1)
+            original, replacement = (bytes.fromhex(part) for part in spec.split("->", 1))
+            assert len(original) == len(replacement), f"{row['address']}: patch changes the length"
+            assert original != replacement, f"{row['address']}: the replacement equals the original"
+            start = build.rva_to_file_offset(sections, rva)
+            end = start + len(original)
+            assert baseline[start:end] == original, (
+                f"{row['address']}: retail holds {baseline[start:end].hex()}, not {original.hex()}")
+            shutil.copyfile(build.EXE, PATCH_SCRATCH)
+            with PATCH_SCRATCH.open("r+b") as handle:
+                handle.seek(start)
+                handle.write(replacement)
+            patched = PATCH_SCRATCH.read_bytes()
+            decoded = next(md.disasm(patched[start:start + 16], IMAGE_BASE + rva), None)
+            assert decoded is not None, f"{row['address']}: nothing decodes after the patch"
+            got = f"{decoded.mnemonic} {decoded.op_str}".strip()
+            assert got == text, f"{row['address']}: patched site decodes to {got!r}, expected {text!r}"
+            assert decoded.size == len(replacement), (
+                f"{row['address']}: the patched instruction is {decoded.size} B, "
+                f"the patch {len(replacement)} B")
+            assert patched[start:end] == replacement
+            assert len(patched) == len(baseline) and patched[:start] == baseline[:start] \
+                and patched[end:] == baseline[end:], (
+                f"{row['address']}: the copy differs from the baseline outside the patched bytes")
+    finally:
+        if PATCH_SCRATCH.exists():
+            PATCH_SCRATCH.unlink()
+    build.verify_baseline()
+    print(f"PASS game-end patches: {len(rows)} row(s) apply to a copy and decode as claimed")
