@@ -502,14 +502,29 @@ void TurretAI::notifyNewVictimChosen(Object* victim)
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?isTryingToAimAtTarget@TurretAI@@QBE_NPBVObject@@@Z present-unmatched
+// BFME predates the third clearDeadTargets argument in the shared ZH declaration.
+class BFMETurretTargetAccessor
+{
+public:
+	TurretTargetType friend_getTurretTarget(Object *&obj, Coord3D &pos) const;
+};
+
 Bool TurretAI::isTryingToAimAtTarget(const Object* victim) const
 {
-	StateID sid = m_turretStateMachine->getCurrentStateID();
+	// BFME's current-state pointer and StateID are four bytes earlier than ZH's.
+	struct BFMETurretStateMachine {
+		unsigned char pad[0x1c];
+		const State *currentState;
+	};
+	const BFMETurretStateMachine *machine = reinterpret_cast<const BFMETurretStateMachine *>(m_turretStateMachine);
+	StateID sid = machine->currentState ? *(const StateID *)((const char *)machine->currentState + 4) : INVALID_STATE_ID;
 
 	Object* obj;
 	Coord3D pos;
-	return (sid == TURRETAI_AIM && friend_getTurretTarget(obj, pos) == TARGET_OBJECT && obj == victim);
+	const BFMETurretTargetAccessor *accessor = reinterpret_cast<const BFMETurretTargetAccessor *>(this);
+	if (sid == TURRETAI_AIM && accessor->friend_getTurretTarget(obj, pos) == TARGET_OBJECT && obj == victim)
+		return true;
+	return false;
 }
 
 //----------------------------------------------------------------------------------------------------------
