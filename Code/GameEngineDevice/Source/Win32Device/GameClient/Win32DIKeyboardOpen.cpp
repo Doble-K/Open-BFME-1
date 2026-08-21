@@ -52,6 +52,22 @@ protected:
 	void closeKeyboard( void );
 };
 
+void DirectInputKeyboard::closeKeyboard( void )
+{
+	if( m_pKeyboardDevice )
+	{
+		m_pKeyboardDevice->Unacquire();
+		m_pKeyboardDevice->Release();
+		m_pKeyboardDevice = NULL;
+	}
+
+	if( m_pDirectInput )
+	{
+		m_pDirectInput->Release();
+		m_pDirectInput = NULL;
+	}
+}
+
 void DirectInputKeyboard::openKeyboard( void )
 {
   HRESULT hr;
