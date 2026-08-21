@@ -60,12 +60,26 @@ public:
 	virtual void notify( void *first, void *second );
 };
 
-#define U1_TAIL( TAG )                                                        \
-	class U1Tail_##TAG                                                        \
-	{                                                                         \
-	public:                                                                   \
-		void broadcast( void *first, void *second );                          \
-	};
+class U1Tail_005C4190
+{
+public:
+	__declspec(noinline) void broadcast( void *first, void *second );
+
+private:
+	U1Listener *m_head;
+	U1Listener **m_begin;
+	U1Listener **m_end;
+};
+
+class U1Tail_005C97A0
+{
+public:
+	__declspec(noinline) void broadcast( void *first, void *second );
+
+private:
+	U1Listener *m_heads[4];
+	U1Tail_005C4190 m_tail;
+};
 
 #define U1_CHAIN_1( ROW, TAIL )                                               \
 	class U1Chain_##ROW                                                       \
@@ -142,9 +156,6 @@ public:
 		m_tail.broadcast( first, second );                                    \
 	}
 
-U1_TAIL( 005C4190 )
-U1_TAIL( 005C97A0 )
-
 U1_CHAIN_1( 005C5980, U1Tail_005C4190 )
 U1_CHAIN_2( 005C6DD0, U1Tail_005C4190 )
 U1_CHAIN_3( 005C8760, U1Tail_005C4190 )
@@ -152,3 +163,30 @@ U1_CHAIN_3( 005C8760, U1Tail_005C4190 )
 U1_CHAIN_1( 005CABD0, U1Tail_005C97A0 )
 U1_CHAIN_2( 005CBA80, U1Tail_005C97A0 )
 U1_CHAIN_3( 005CC130, U1Tail_005C97A0 )
+
+void U1Tail_005C4190::broadcast( void *first, void *second )
+{
+	U1Listener *head = m_head;
+	if ( head )
+		head->notify( first, second );
+
+	for ( U1Listener **it = m_begin; it != m_end; ++it )
+		(*it)->notify( first, second );
+}
+
+void U1Tail_005C97A0::broadcast( void *first, void *second )
+{
+	U1Listener *head0 = m_heads[0];
+	if ( head0 )
+		head0->notify( first, second );
+	U1Listener *head1 = m_heads[1];
+	if ( head1 )
+		head1->notify( first, second );
+	U1Listener *head2 = m_heads[2];
+	if ( head2 )
+		head2->notify( first, second );
+	U1Listener *head3 = m_heads[3];
+	if ( head3 )
+		head3->notify( first, second );
+	m_tail.broadcast( first, second );
+}
