@@ -4861,3 +4861,7 @@ span-tightness-predicts-coherence-but-not-perfectly	0x003B8450	41	converted	CALI
 ?get@Rva000B2170Holder@@QBEDXZ	0x000B2170	7	converted	t=8min model=grok-4.6 exact clean C++ byte getter at this+0x143; 8A 81 43 01 00 00 C3 matched via Rva000B2170ByteGetter.cpp; identity remains address-derived
 ?d_000c3ec0@@YAXXZ	0x000C3EC0	7	attempted	t=3min model=grok-4.6 claimed fresh scaffold-only byte getter; retail=8A 81 CA 04 00 00 C3; identity remains address-derived
 ?get@Rva000C3EC0Holder@@QBEDXZ	0x000C3EC0	7	converted	t=3min model=grok-4.6 exact clean C++ byte getter at this+0x4CA; 8A 81 CA 04 00 00 C3 matched via Rva000C3EC0ByteGetter.cpp; identity remains address-derived
+?d_003cba80@@YAXXZ	0x003CBA80	8	converted	t=8min model=grok-4.6 exact clean C++ unsigned-short getter; 66 8B 81 94 00 00 00 C3 matched via TinyWordFieldGetters.cpp; add_match and two focused build.py runs passed; identity remains address-derived
+?d_0060d230@@YAXXZ	0x0060D230	5	converted	t=4min model=grok-4.6 exact clean C++ byte-field setter; C6 41 7C 01 C3 matched via Rva0060D230ByteSetter.cpp; add_match and two focused build.py runs passed; identity remains address-derived
+?d_0075b2b0@@YAXXZ	0x0075B2B0	7	attempted	t=1min model=grok-4.6 claimed fresh scaffold-only byte getter; retail=8A 81 8D 04 00 00 C3; origin ownership audited as gen-dump scaffold only
+?d_0075b2b0@@YAXXZ	0x0075B2B0	7	converted	t=8min model=grok-4.6 exact clean C++ byte getter; 8A 81 8D 04 00 00 C3 matched via TinyByteFieldGetters.cpp; add_match and targeted build.py passed twice; identity remains address-derived
