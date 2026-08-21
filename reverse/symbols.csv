@@ -74628,6 +74628,9 @@ _disconnectMenuLayout,0x012F4960,BFME DisconnectWindow retail DIR32 layout point
 ?getBridgeBehaviorInterfaceFromObject@BridgeBehavior@@SAPAVBridgeBehaviorInterface@@PAVObject@@@Z,0x00010424,Bridge::updateDamageState calls the existing ILT thunk before the scaffold check
 ??4MeshMatDescClass@@QAEAAV0@ABV0@@Z,0x0092BB00,MeshMatDesc copy constructor direct same-TU call target
 ??0DamageInfoInput@@QAE@XZ,0x0002C3A9,DamageInfo constructor retail call ILT reaches the input constructor body at 0x000ED2D0
+??_7Weapon@@6B@,0x00CA13F4,Weapon constructor writes the table whose slot 0 ILT 0x000112D4 reaches the known scalar deleting destructor at 0x001E6900
+__real@c0490fdb,0x00C87B0C,Weapon constructor negative-pi comparison operand; retail data is IEEE-754 -3.1415927410125732
+__real@40490fdb,0x00C87B14,Weapon constructor positive-pi comparison operand; retail data is IEEE-754 3.1415927410125732
 ?_M_reallocate_map@?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@IAEXI_N@Z,0x00025B21,GameResultsResponse deque growth calls the existing incremental-link thunk for the matched reallocation body
 ??0CommandSet@@QAE@ABVAsciiString@@@Z,0x000428CA,ControlBar newCommandSet retail constructor-call ILT
 ?friend_addToList@CommandSet@@QAEXPAPAV1@@Z,0x00037DDA,ControlBar newCommandSet retail list-link call ILT
