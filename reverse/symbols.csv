@@ -74620,3 +74620,6 @@ _W3RbDecrement,0x0082B8E0,alias pin for the red-black tree node decrement helper
 _disconnectMenuLayout,0x012F4960,BFME DisconnectWindow retail DIR32 layout pointer used by HideDisconnectWindow
 ?TheInGameUI@@3PAVInGameUI@@A,0x012F148C,BFME retail InGameUI global pointer used by HideDisconnectWindow
 ?value@Rva003608F0FloatElement@@QAEMXZ,0x0002CC5F,address-derived float element callee; target read directly from RVA 0x00361420 rel32 call
+??0Upgrade@@QAE@PBVUpgradeTemplate@@@Z,0x00005BB4,Player::addUpgrade retail constructor call ILT
+??2Upgrade@@SAPAXI@Z,0x00881F30,Player::addUpgrade retail class allocator call
+?onUpgradeCompleted@Player@@QAEXPBVUpgradeTemplate@@@Z,0x0002F856,Player::addUpgrade retail completion callback call ILT
