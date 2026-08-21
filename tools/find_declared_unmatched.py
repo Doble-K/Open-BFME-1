@@ -122,7 +122,15 @@ def find_defined_functions(text: str):
     brace_depth = 0
 
     in_macro = False
-    for line in text.splitlines():
+    # splitlines() breaks on a LONE carriage return as well as on CRLF, so a
+    # file written with doubled carriage returns (CR CR LF -- what a text-mode
+    # write over content that already ended in CRLF produces) yields a PHANTOM
+    # EMPTY LINE after every real one. An empty line does not end in a
+    # backslash, so it silently clears in_macro and the remainder of the macro
+    # body is then read as ordinary code. Fourteen such files made this checker
+    # report a class called NAME and fail a commit. Normalise first: the parse
+    # below cares about lines, not about how they were terminated.
+    for line in text.replace("\r\n", "\n").replace("\r", "\n").split("\n"):
         stripped = line.strip()
         # A function definition written inside a #define body is not a
         # definition -- it is macro text, and the identifiers in it are
