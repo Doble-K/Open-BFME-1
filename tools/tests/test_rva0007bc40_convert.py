@@ -32,7 +32,7 @@ def test_build_py_matches_retail():
     output = result.stdout + result.stderr
     print(output)
     assert result.returncode == 0, output
-    assert "Functions: OK 1/1 matched" in output, output
+    assert "Functions: OK 2/2 matched" in output, output
     print("PASS build.py matches retail 0x0007BC40")
 
 
