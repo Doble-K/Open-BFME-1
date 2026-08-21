@@ -7858,7 +7858,6 @@ StateReturnType AIExitState::update()
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?onExit@AIExitState@@UAEXW4StateExitType@@@Z present-unmatched
 void AIExitState::onExit( StateExitType status )
 {
 	Object* obj = getMachineOwner();
