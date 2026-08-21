@@ -231,16 +231,58 @@ public:
 	Bool unidentified_00012eea() const;
 };
 
+// WindowManager as far as the banner methods need it: the eight-dword
+// scripted-UI event dispatcher (ILT 0x00015235, body 0x004675F0) is a
+// __thiscall member -- retail loads [0x012F19E8] into ecx for the call --
+// invoked as (0xB, eventName, argCount, up to five args...). Address-derived
+// name, identity open.
+class WindowManager
+{
+public:
+	void unidentified_00015235(Int a, const char *eventName, Int argCount,
+		const void *p1, const void *p2, const void *p3, const void *p4, const void *p5);
+};
+
+extern WindowManager *g_theWindowManager;	///< retail [0x012F19E8]
+
+// Display as far as the banner methods need it: they flip a byte at +0x13C
+// (1 on hide, 0 on show). Member identity open.
+class Display
+{
+public:
+	void setUnidentified13c( Bool b ) { m_unidentified13c = b; }
+
+private:
+	char	m_pad[ 0x13c ];
+	Bool	m_unidentified13c;			// +0x13C
+};
+
+extern Display *TheDisplay;						///< retail [0x012F1270]
+
+class TransitionHandler
+{
+public:
+	void setGroup( AsciiString name, Int i );
+};
+
+extern TransitionHandler *TheTransitionHandler;	///< retail [0x012F3330]
+
+// timeGetTime through the import slot retail reads at [0x01359544].
+extern "C" __declspec(dllimport) unsigned long __stdcall timeGetTime(void);
+
 #define ISSET(x) (m_victoryConditions & VICTORY_##x)
 
 // hasAchievedVictory reports the winning player index to TheGameLogic through
 // the ILT thunk at 0x0000F5FB; the 35-byte body (0x00383C30) bounds the index
 // to [0,8) and stamps TheGameLogic's frame counter (+0x3C) into the 0x1C-byte
-// per-slot records at +0x1BC. Address-derived shim name, identity open.
+// per-slot records at +0x1BC. hideEndGame gates the score-screen fade on the
+// Bool at ILT 0x0001E0AB (body 0x00382C20: mode 1/2/5, or a replay of one).
+// Address-derived shim names, identities open.
 class GameLogicShim
 {
 public:
 	void unidentified_0000f5fb(Int playerIndex);
+	Bool unidentified_0001e0ab( void );
 };
 
 
@@ -368,6 +410,39 @@ Bool VictoryConditions::hasAchievedVictory(Player *player)
 	}
 
 	return false;
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?hideEndGame@VictoryConditions@@UAEXXZ present-unmatched
+// One instruction pair from the 119-byte retail body at 0x0035F770: retail
+// emits `mov [esp+0xC],esp` (the /EHsc byval-temp stash) BEFORE `mov ecx,esp`
+// at the setGroup AsciiString temp, this compiles them swapped. Every other
+// byte matches; ||/nested-if, implicit conversion, defaulted-arg and
+// /EHs//EHs-c- spellings all keep the swap.
+void VictoryConditions::hideEndGame( void )
+{
+	if (!g_theWindowManager || !m_endGameShowing)
+		return;
+
+	g_theWindowManager->unidentified_00015235(0xb, "HideEndGame", 0, 0, 0, 0, 0, 0);
+	m_endGameShowing = false;
+	TheDisplay->setUnidentified13c(true);
+
+	if (((GameLogicShim *)TheGameLogic)->unidentified_0001e0ab())
+	{
+		if (m_singleAllianceRemaining)
+			TheTransitionHandler->setGroup("MPorSkirmishFadeToScoreScreen", 0);
+	}
+}
+
+//-------------------------------------------------------------------------------------------------
+void VictoryConditions::updateEndGame( void )
+{
+	if (m_endGameShowing)
+	{
+		if (timeGetTime() - m_endGameShowTime > 7000)
+			hideEndGame();
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
