@@ -1984,11 +1984,17 @@ Bool Player::hasAnyBuildings(KindOfMaskType kindOf) const
 }
 
 //=============================================================================
-// ?hasAnyUnits@Player@@QBE_NXZ present-unmatched
 Bool Player::hasAnyUnits(void) const
 {
-	for (PlayerTeamList::const_iterator it = m_playerTeamPrototypes.begin(); 
-			 it != m_playerTeamPrototypes.end(); ++it)
+	// BFME places this list at +0x288; the shared ZH header places it earlier.
+	struct BFMEPlayerTeamListField {
+		unsigned char pad[0x288];
+		PlayerTeamList playerTeamPrototypes;
+	};
+	const BFMEPlayerTeamListField *self = reinterpret_cast<const BFMEPlayerTeamListField *>(this);
+
+	for (PlayerTeamList::const_iterator it = self->playerTeamPrototypes.begin();
+			 it != self->playerTeamPrototypes.end(); ++it)
 	{	
 		if ((*it)->hasAnyUnits()) {
 			return true;

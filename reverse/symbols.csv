@@ -74594,3 +74594,4 @@ _sprintf,0x009F6DE2,V2 lane: sprintf import thunk (reverse/functions.csv gen-imp
 ?consume@Gen003BF540Owner@@QAE_NPAVGen003BD8D0Built@@@Z,0x003CAE40,member called on the owner at +0x28 with the built result by 0x003BD8D0; address-derived name
 ?getPlayerMask@NetChatCommandMsg@@QAEHXZ,0x00002B1C,ILT thunk to the four-byte field read at 0x00673CB0 which ICF-folds with getDisconnectFrame; NetPacket::FillBufferWithChatCommand at 0x0067D620 calls it where Zero Hour calls getPlayerMask
 ?findObjectByID@GameLogic@@QAEPAVObject@@W4ObjectID@@@Z,0x0001F253,enum ABI spelling used by AIDockProcessDockState::findMyDrone; same matched ILT as the int-decorated overload
+?hasAnyUnits@TeamPrototype@@QBE_NXZ,0x0001188D,source-backed Team.cpp identity; ILT target used by Player::hasAnyUnits at 0x000CE070
