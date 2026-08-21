@@ -48,6 +48,7 @@ private:
 class UnicodeString : public StringBase<unsigned short>
 {
 public:
+	UnicodeString(const UnicodeString &that);
 	~UnicodeString() {}
 
 	int compareNoCase(const UnicodeString &that) const throw()
@@ -75,6 +76,8 @@ public:
 
 protected:
 	SlotState m_state;
+	char m_unrecovered[0x20];
+	UnicodeString m_name;
 };
 
 class LANGameSlot : public GameSlot
@@ -87,4 +90,9 @@ public:
 bool LANGameSlot::isUser(UnicodeString userName)
 {
 	return (m_state == SLOT_PLAYER && !userName.compareNoCase(getName()));
+}
+
+UnicodeString GameSlot::getName(void) const
+{
+	return m_name;
 }
