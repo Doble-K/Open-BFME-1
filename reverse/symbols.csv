@@ -73603,3 +73603,297 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?handle@Gen000404D0@@QAEXXZ,0x000404D0,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
 ?handle@Gen00047280@@QAEXXZ,0x00047280,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
 ?handle@Gen0094F300@@QAEXXZ,0x0094F300,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
+?add@WideMulti@@QAEXPBVWideFieldParse@@I@Z,0x00850920,MultiIniFieldParse::add-shaped bounded pair-of-arrays appender; address-derived name
+?buildFieldParse@Gen00004052@@SAXAAVWideMulti@@@Z,0x00004052,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00005245@@SAXAAVWideMulti@@@Z,0x00005245,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00005B46@@SAXAAVWideMulti@@@Z,0x00005B46,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen0000629E@@SAXAAVWideMulti@@@Z,0x0000629E,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00012355@@SAXAAVWideMulti@@@Z,0x00012355,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00012742@@SAXAAVWideMulti@@@Z,0x00012742,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00015654@@SAXAAVWideMulti@@@Z,0x00015654,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00019772@@SAXAAVWideMulti@@@Z,0x00019772,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00022584@@SAXAAVWideMulti@@@Z,0x00022584,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen0002AF8B@@SAXAAVWideMulti@@@Z,0x0002AF8B,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen00031A20@@SAXAAVWideMulti@@@Z,0x00031A20,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen000334F6@@SAXAAVWideMulti@@@Z,0x000334F6,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen0003572E@@SAXAAVWideMulti@@@Z,0x0003572E,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen0003B7F0@@SAXAAVWideMulti@@@Z,0x0003B7F0,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen0003BD86@@SAXAAVWideMulti@@@Z,0x0003BD86,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?buildFieldParse@Gen0004B650@@SAXAAVWideMulti@@@Z,0x0004B650,base-class buildFieldParse reached via incremental-link thunk; address-derived name
+?handle@Gen0001BFD1@@QAEXH@Z,0x0001BFD1,call target of the 8-byte push/call/ret index forwarders in TinyIndexedForwarders.cpp; address read from the retail REL32
+?handle@Gen0003415D@@QAEXH@Z,0x0003415D,call target of the 8-byte push/call/ret index forwarders in TinyIndexedForwarders.cpp; address read from the retail REL32
+?handle@Gen00038951@@QAEXH@Z,0x00038951,call target of the 8-byte push/call/ret index forwarders in TinyIndexedForwarders.cpp; address read from the retail REL32
+?handle@Gen000398C9@@QAEXH@Z,0x000398C9,call target of the 8-byte push/call/ret index forwarders in TinyIndexedForwarders.cpp; address read from the retail REL32
+?handle@Gen00039BD5@@QAEXH@Z,0x00039BD5,call target of the 8-byte push/call/ret index forwarders in TinyIndexedForwarders.cpp; address read from the retail REL32
+?handle@Gen0003D172@@QAEXH@Z,0x0003D172,call target of the 8-byte push/call/ret index forwarders in TinyIndexedForwarders.cpp; address read from the retail REL32
+?handle@Gen00044A62@@QAEXH@Z,0x00044A62,call target of the 8-byte push/call/ret index forwarders in TinyIndexedForwarders.cpp; address read from the retail REL32
+?handle@Gen00850920@@QAEXPBXH@Z,0x00850920,callee of the 102 17-byte table-register forwarders (MidTableRegisterForwarders.cpp); thiscall two-arg appender; ret 8
+??0GenBase00101D50@@QAE@XZ,0x00101D50,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase00101E20@@QAE@XZ,0x00101E20,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase00138960@@QAE@XZ,0x00138960,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase002DF2B0@@QAE@XZ,0x002DF2B0,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase003BB1E0@@QAE@XZ,0x003BB1E0,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase0046E5E0@@QAE@XZ,0x0046E5E0,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase00479230@@QAE@XZ,0x00479230,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase004B2C80@@QAE@XZ,0x004B2C80,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase008AD3F0@@QAE@XZ,0x008AD3F0,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase00944940@@QAE@XZ,0x00944940,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase009A1A30@@QAE@XZ,0x009A1A30,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase009CA9E0@@QAE@XZ,0x009CA9E0,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0GenBase009EB7D0@@QAE@XZ,0x009EB7D0,base constructor called by the 18-byte vptr-only derived constructors in MidVptrOnlyDerivedCtors.cpp
+??0Obf00062D90@@QAE@PAH0@Z,0x00062D90,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen00061F00@@YAHHH@Z,0x00061F00,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00076550@@QAE@PAH0@Z,0x00076550,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0006EF90@@YAHHH@Z,0x0006EF90,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00076630@@QAE@PAH0@Z,0x00076630,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0006F0D0@@YAHHH@Z,0x0006F0D0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00076710@@QAE@PAH0@Z,0x00076710,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0006F200@@YAHHH@Z,0x0006F200,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf000767F0@@QAE@PAH0@Z,0x000767F0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0006F330@@YAHHH@Z,0x0006F330,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0009A430@@QAE@PAH0@Z,0x0009A430,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen00098C80@@YAHHH@Z,0x00098C80,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf003881E0@@QAE@PAH0@Z,0x003881E0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen003859B0@@YAHHH@Z,0x003859B0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf003882C0@@QAE@PAH0@Z,0x003882C0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen00385AE0@@YAHHH@Z,0x00385AE0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf003C86C0@@QAE@PAH0@Z,0x003C86C0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen003C7780@@YAHHH@Z,0x003C7780,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf003C87A0@@QAE@PAH0@Z,0x003C87A0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen003C78B0@@YAHHH@Z,0x003C78B0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00526C80@@QAE@PAH0@Z,0x00526C80,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen00525450@@YAHHH@Z,0x00525450,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00526D60@@QAE@PAH0@Z,0x00526D60,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen00525590@@YAHHH@Z,0x00525590,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00526E40@@QAE@PAH0@Z,0x00526E40,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen005256D0@@YAHHH@Z,0x005256D0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00526F20@@QAE@PAH0@Z,0x00526F20,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen00525800@@YAHHH@Z,0x00525800,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054DBC0@@QAE@PAH0@Z,0x0054DBC0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054BCA0@@YAHHH@Z,0x0054BCA0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054DCA0@@QAE@PAH0@Z,0x0054DCA0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054BDD0@@YAHHH@Z,0x0054BDD0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054DD80@@QAE@PAH0@Z,0x0054DD80,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054BF00@@YAHHH@Z,0x0054BF00,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054DE60@@QAE@PAH0@Z,0x0054DE60,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054C030@@YAHHH@Z,0x0054C030,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054DF40@@QAE@PAH0@Z,0x0054DF40,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054C170@@YAHHH@Z,0x0054C170,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054E020@@QAE@PAH0@Z,0x0054E020,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054C2B0@@YAHHH@Z,0x0054C2B0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054E100@@QAE@PAH0@Z,0x0054E100,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054C3E0@@YAHHH@Z,0x0054C3E0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054E1E0@@QAE@PAH0@Z,0x0054E1E0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054C510@@YAHHH@Z,0x0054C510,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054E2C0@@QAE@PAH0@Z,0x0054E2C0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054C640@@YAHHH@Z,0x0054C640,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0054E3A0@@QAE@PAH0@Z,0x0054E3A0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0054C780@@YAHHH@Z,0x0054C780,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0056D5E0@@QAE@PAH0@Z,0x0056D5E0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0056C3F0@@YAHHH@Z,0x0056C3F0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0056D6C0@@QAE@PAH0@Z,0x0056D6C0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0056C530@@YAHHH@Z,0x0056C530,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0056D7A0@@QAE@PAH0@Z,0x0056D7A0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0056C670@@YAHHH@Z,0x0056C670,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf0056D880@@QAE@PAH0@Z,0x0056D880,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0056C7A0@@YAHHH@Z,0x0056C7A0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00590A70@@QAE@PAH0@Z,0x00590A70,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0058C6C0@@YAHHH@Z,0x0058C6C0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00590B50@@QAE@PAH0@Z,0x00590B50,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0058C7F0@@YAHHH@Z,0x0058C7F0,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00590C30@@QAE@PAH0@Z,0x00590C30,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen0058C920@@YAHHH@Z,0x0058C920,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+??0Obf00619E50@@QAE@PAH0@Z,0x00619E50,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?Gen00619540@@YAHHH@Z,0x00619540,per-member callee of the 100-byte obfuscated hook wrappers in BigObfHookWrappers.cpp
+?run@WideRunner@@QAEXPAVWideCall@@PBDHHHHHH@Z,0x00015235,incremental-link thunk to 0x004675F0; __thiscall with eight stack args (ret 0x20); address-derived name
+??1Mem00129C80@@QAE@XZ,0x00129C80,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+??1Mem0027E9C0@@QAE@XZ,0x0027E9C0,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+??1Mem0039D550@@QAE@XZ,0x0039D550,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+??1Mem003AB460@@QAE@XZ,0x003AB460,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+??1Mem004C5700@@QAE@XZ,0x004C5700,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+??1Mem004C57D0@@QAE@XZ,0x004C57D0,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+??1Mem00887940@@QAE@XZ,0x00887940,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+??1Mem008881D0@@QAE@XZ,0x008881D0,member destructor called by the 67-byte two-member destructors in BigTwoMemberDtors.cpp
+?Gen000078A1@@YAXXZ,0x000078A1,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen0000B686@@YAXXZ,0x0000B686,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen000101A9@@YAXXZ,0x000101A9,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00011B76@@YAXXZ,0x00011B76,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00011F1D@@YAXXZ,0x00011F1D,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen000124AE@@YAXXZ,0x000124AE,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen0001361F@@YAXXZ,0x0001361F,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00014088@@YAXXZ,0x00014088,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00015FB9@@YAXXZ,0x00015FB9,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00016595@@YAXXZ,0x00016595,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00026058@@YAXXZ,0x00026058,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen0002969F@@YAXXZ,0x0002969F,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00032867@@YAXXZ,0x00032867,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00033479@@YAXXZ,0x00033479,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen000340FE@@YAXXZ,0x000340FE,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00036458@@YAXXZ,0x00036458,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen0003D875@@YAXXZ,0x0003D875,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen00044BFC@@YAXXZ,0x00044BFC,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+?Gen0004B0F1@@YAXXZ,0x0004B0F1,inlined-constructor body reached via incremental-link thunk from a guarded local-static initializer; address-derived name
+??1Sub005C67C0@@QAE@XZ,0x005C67C0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005C6890@@QAE@XZ,0x005C6890,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005C6970@@QAE@XZ,0x005C6970,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005C6A40@@QAE@XZ,0x005C6A40,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005C91C0@@QAE@XZ,0x005C91C0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005C9240@@QAE@XZ,0x005C9240,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005C9E30@@QAE@XZ,0x005C9E30,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005C9EC0@@QAE@XZ,0x005C9EC0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CB030@@QAE@XZ,0x005CB030,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CB0C0@@QAE@XZ,0x005CB0C0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CBD40@@QAE@XZ,0x005CBD40,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CBDD0@@QAE@XZ,0x005CBDD0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CC980@@QAE@XZ,0x005CC980,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CD260@@QAE@XZ,0x005CD260,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CD540@@QAE@XZ,0x005CD540,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CD5E0@@QAE@XZ,0x005CD5E0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CD660@@QAE@XZ,0x005CD660,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CD700@@QAE@XZ,0x005CD700,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CDA10@@QAE@XZ,0x005CDA10,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CDAA0@@QAE@XZ,0x005CDAA0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CDB10@@QAE@XZ,0x005CDB10,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CDBB0@@QAE@XZ,0x005CDBB0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CDEF0@@QAE@XZ,0x005CDEF0,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Sub005CDF80@@QAE@XZ,0x005CDF80,second-base destructor called by the 89-byte multiple-inheritance destructors in BigChainBaseDtors.cpp
+??1Mem000658A0@@QAE@XZ,0x000658A0,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem00078B80@@QAE@XZ,0x00078B80,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem00128C50@@QAE@XZ,0x00128C50,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem00197BC0@@QAE@XZ,0x00197BC0,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem00197C60@@QAE@XZ,0x00197C60,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem002360C0@@QAE@XZ,0x002360C0,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem002DAB10@@QAE@XZ,0x002DAB10,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem002DBBF0@@QAE@XZ,0x002DBBF0,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem002E1260@@QAE@XZ,0x002E1260,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem00770380@@QAE@XZ,0x00770380,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem009A1A40@@QAE@XZ,0x009A1A40,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+?Gen00897300@@YAXPAX@Z,0x00897300,__cdecl list-link helper writing the returned block's [-8]/[-4] words and updating a global head; address-derived name
+?Cons0013A700@@YAXPAUElem00000128@@PBU1@@Z,0x0013A700,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons0013A760@@YAXPAUElem000000BC@@PBU1@@Z,0x0013A760,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons00195060@@YAXPAUElem0000008C@@PBU1@@Z,0x00195060,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons00363A60@@YAXPAUElem000000B4@@PBU1@@Z,0x00363A60,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons0039E0A0@@YAXPAUElem00000088@@PBU1@@Z,0x0039E0A0,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons003A2460@@YAXPAUElem000000B8@@PBU1@@Z,0x003A2460,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons003ABF20@@YAXPAUElem000000DC@@PBU1@@Z,0x003ABF20,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons00607280@@YAXPAUElem000001F0@@PBU1@@Z,0x00607280,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?Cons00608AF0@@YAXPAUElem00000210@@PBU1@@Z,0x00608AF0,per-element callee of the 51-byte strided copy walks in BigStridedCopyWalks.cpp
+?handle@Gen0000123F@@QAEXXZ,0x0000123F,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00002603@@QAEXXZ,0x00002603,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000386E@@QAEXXZ,0x0000386E,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000085B2@@QAEXXZ,0x000085B2,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00009E35@@QAEXXZ,0x00009E35,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000A380@@QAEXXZ,0x0000A380,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000B23A@@QAEXXZ,0x0000B23A,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000B99C@@QAEXXZ,0x0000B99C,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000D828@@QAEXXZ,0x0000D828,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000DBA7@@QAEXXZ,0x0000DBA7,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000EAFC@@QAEXXZ,0x0000EAFC,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0000F71D@@QAEXXZ,0x0000F71D,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00011D5B@@QAEXXZ,0x00011D5B,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000131A1@@QAEXXZ,0x000131A1,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00014475@@QAEXXZ,0x00014475,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00014538@@QAEXXZ,0x00014538,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000154F6@@QAEXXZ,0x000154F6,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0001642D@@QAEXXZ,0x0001642D,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00016F9A@@QAEXXZ,0x00016F9A,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000179E0@@QAEXXZ,0x000179E0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00018205@@QAEXXZ,0x00018205,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0001AA9B@@QAEXXZ,0x0001AA9B,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0001B7C5@@QAEXXZ,0x0001B7C5,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00020BA3@@QAEXXZ,0x00020BA3,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00020D9C@@QAEXXZ,0x00020D9C,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00020F36@@QAEXXZ,0x00020F36,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00021FC1@@QAEXXZ,0x00021FC1,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000238A3@@QAEXXZ,0x000238A3,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00023F92@@QAEXXZ,0x00023F92,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00024EBF@@QAEXXZ,0x00024EBF,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00026175@@QAEXXZ,0x00026175,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00026EEF@@QAEXXZ,0x00026EEF,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00026F35@@QAEXXZ,0x00026F35,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00026FC6@@QAEXXZ,0x00026FC6,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0002842F@@QAEXXZ,0x0002842F,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00028763@@QAEXXZ,0x00028763,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00028CE0@@QAEXXZ,0x00028CE0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00028ECA@@QAEXXZ,0x00028ECA,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000290D2@@QAEXXZ,0x000290D2,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00029109@@QAEXXZ,0x00029109,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00029532@@QAEXXZ,0x00029532,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0002B8C8@@QAEXXZ,0x0002B8C8,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0002DEA7@@QAEXXZ,0x0002DEA7,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0002E717@@QAEXXZ,0x0002E717,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0002EC85@@QAEXXZ,0x0002EC85,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00030652@@QAEXXZ,0x00030652,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00030832@@QAEXXZ,0x00030832,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00031D5E@@QAEXXZ,0x00031D5E,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00033875@@QAEXXZ,0x00033875,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003514D@@QAEXXZ,0x0003514D,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00035D46@@QAEXXZ,0x00035D46,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00036985@@QAEXXZ,0x00036985,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000390C7@@QAEXXZ,0x000390C7,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000398FB@@QAEXXZ,0x000398FB,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003A7B0@@QAEXXZ,0x0003A7B0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003A8E1@@QAEXXZ,0x0003A8E1,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003AC01@@QAEXXZ,0x0003AC01,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003B2B9@@QAEXXZ,0x0003B2B9,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003B304@@QAEXXZ,0x0003B304,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003BE17@@QAEXXZ,0x0003BE17,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003BFE3@@QAEXXZ,0x0003BFE3,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003C4CA@@QAEXXZ,0x0003C4CA,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003CBD2@@QAEXXZ,0x0003CBD2,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003CD49@@QAEXXZ,0x0003CD49,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003CDDA@@QAEXXZ,0x0003CDDA,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003F25B@@QAEXXZ,0x0003F25B,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003F76A@@QAEXXZ,0x0003F76A,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0003FC29@@QAEXXZ,0x0003FC29,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00040CAA@@QAEXXZ,0x00040CAA,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00041B5A@@QAEXXZ,0x00041B5A,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000422B7@@QAEXXZ,0x000422B7,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00044120@@QAEXXZ,0x00044120,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000442DD@@QAEXXZ,0x000442DD,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0004584A@@QAEXXZ,0x0004584A,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000459D5@@QAEXXZ,0x000459D5,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00045C91@@QAEXXZ,0x00045C91,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00045EC1@@QAEXXZ,0x00045EC1,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000461DC@@QAEXXZ,0x000461DC,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000464D4@@QAEXXZ,0x000464D4,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00046BD2@@QAEXXZ,0x00046BD2,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00046D1C@@QAEXXZ,0x00046D1C,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000491E3@@QAEXXZ,0x000491E3,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0004A7A5@@QAEXXZ,0x0004A7A5,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0004AA98@@QAEXXZ,0x0004AA98,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0004B227@@QAEXXZ,0x0004B227,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0081D040@@QAEXXZ,0x0081D040,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0082AE40@@QAEXXZ,0x0082AE40,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00832090@@QAEXXZ,0x00832090,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00832740@@QAEXXZ,0x00832740,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0083F730@@QAEXXZ,0x0083F730,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00843610@@QAEXXZ,0x00843610,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00848AC0@@QAEXXZ,0x00848AC0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00853580@@QAEXXZ,0x00853580,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen008B2DF0@@QAEXXZ,0x008B2DF0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen008C6020@@QAEXXZ,0x008C6020,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen008D5F70@@QAEXXZ,0x008D5F70,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen008F73F0@@QAEXXZ,0x008F73F0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen008FFF30@@QAEXXZ,0x008FFF30,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009035E0@@QAEXXZ,0x009035E0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0090B5F0@@QAEXXZ,0x0090B5F0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0090EA60@@QAEXXZ,0x0090EA60,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0092B6A0@@QAEXXZ,0x0092B6A0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0092C5E0@@QAEXXZ,0x0092C5E0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009380E0@@QAEXXZ,0x009380E0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00943E70@@QAEXXZ,0x00943E70,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00946B20@@QAEXXZ,0x00946B20,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0094EA80@@QAEXXZ,0x0094EA80,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0094EAB0@@QAEXXZ,0x0094EAB0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00960030@@QAEXXZ,0x00960030,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009A1A40@@QAEXXZ,0x009A1A40,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009D2400@@QAEXXZ,0x009D2400,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009DB350@@QAEXXZ,0x009DB350,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009DB450@@QAEXXZ,0x009DB450,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009DB7A0@@QAEXXZ,0x009DB7A0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009DB820@@QAEXXZ,0x009DB820,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009DD640@@QAEXXZ,0x009DD640,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen009EB810@@QAEXXZ,0x009EB810,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+??1Mem0090D090@@QAE@XZ,0x0090D090,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Mem009DB7A0@@QAE@XZ,0x009DB7A0,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
