@@ -4,7 +4,7 @@
 A family is a set of addresses whose bodies are the same function differing
 only in constants. Converting one member proves the shape; the rest land in a
 single add_match_batch pass. The whole question is what "the same" means, and
-this tool offers three progressively looser normal forms:
+this tool offers four progressively looser normal forms:
 
   --exact   raw bytes. Finds only families with no relocations and no varying
             field at all.
@@ -23,18 +23,29 @@ this tool offers three progressively looser normal forms:
             and --disp leaves each a singleton -- masking displacements does not
             mask IMMEDIATES.
 
-All three measured on the same ledger (7,183 bodies passing the filters below,
-at commit 31cb443bf), so the three rows are directly comparable:
+  --mnemonic  the mnemonic sequence alone; operands, REGISTERS and instruction
+            lengths all discarded. Merges families that --operand splits purely
+            on which register the allocator picked, which is a difference the
+            source usually does not contain.
+
+Measured at 31cb443bf over the 7,183 bodies then passing the filters below:
 
               mode        families    rows    remaining singletons
               --exact          162     348                   6,731
               --disp           384   1,017                   6,062
               --operand        727   3,280                   3,799
 
-Looser grouping trades precision for reach and WILL produce some false
-families, because an immediate can be load-bearing in the source: a 0 and a 1
-need different C++. That is acceptable and not a defect. This decides only what
-is worth LOOKING at; the byte gate still decides every member individually.
+and at 35930fea2, once --operand had been worked down to a flat queue whose
+largest family held 13 members, --mnemonic restored a workable head (60, 35,
+24, 23, 22 ...): 1,481 rows against 869 at --min-members 3.
+
+Looser grouping trades precision for reach and WILL produce false families. An
+immediate can be load-bearing in the source -- a 0 and a 1 need different C++ --
+and under --mnemonic two members may differ in source outright, since `mov/mov/
+ret` says almost nothing. That is acceptable and not a defect, but the looser
+the mode the less a proven member says about its siblings: treat a --mnemonic
+family as a HYPOTHESIS to look at, never as a claim. This decides only what is
+worth LOOKING at; the byte gate still decides every member individually.
 
 FILTERS, each of which exists because omitting it cost a run:
   * only unclaimed Code/gen_asm/ dump rows -- gen_small and gen_uw own theirs;
@@ -51,7 +62,7 @@ FILTERS, each of which exists because omitting it cost a run:
     two families of 6 and 7 when they were one family of 7.
 
 Usage:
-  python3 tools/family_scan.py [--exact|--disp|--operand] [--min-members 2]
+  python3 tools/family_scan.py [--exact|--disp|--operand|--mnemonic]
                               [--min-size 8] [--max-size 160] [--out FILE]
 """
 import argparse
@@ -101,6 +112,28 @@ def mask_operands(body, md):
     return bytes(out) if covered == len(body) else None
 
 
+def mask_mnemonics(body, md):
+    """The MNEMONIC SEQUENCE alone -- operands, registers and lengths discarded.
+
+    One step looser again than --operand. Two bodies share this form iff they
+    perform the same operations in the same order, whatever registers the
+    allocator happened to pick and whatever the constants were. It merges
+    families that --operand splits purely on register choice, which is a
+    difference the SOURCE usually does not contain.
+
+    This is the loosest form offered and by far the most false-positive prone:
+    `mov/mov/ret` says almost nothing. Treat a family found only here as a
+    HYPOTHESIS to look at, never as a claim -- and note that a proven member
+    gives less leverage over its siblings than in the tighter modes, because the
+    siblings may genuinely differ in source.
+    """
+    names, covered = [], 0
+    for insn in md.disasm(body, 0):
+        names.append(insn.mnemonic)
+        covered += insn.size
+    return ("\n".join(names)).encode("utf-8") if covered == len(body) else None
+
+
 def load_real_pins():
     pins = set()
     with io.open(ROOT / "reverse" / "symbols.csv", encoding="utf-8",
@@ -115,14 +148,37 @@ def load_real_pins():
     return pins
 
 
+DEAD_VERDICTS = ("refuted", "blocked")
+
+
 def load_attempted():
-    seen = set()
+    """Two sets, because a prior attempt means two different things.
+
+    `seen` is every address the log mentions. Dropping those members but KEEPING
+    the family is right after a `converted` verdict: the siblings that did not
+    land are still worth doing, and dropping the family instead would hide them.
+
+    `dead` is addresses whose row carried a `refuted` or `blocked` verdict. There
+    the whole family is finished, because a family is ONE function and a
+    refutation refutes the shape, not the address. Keeping it alive re-queues the
+    same shape under a NEW ANCHOR as soon as the logged members are skipped --
+    which is exactly what happened: three families totalling 36 rows resurfaced
+    at the top of the queue, one of them the local-static guard shape that had
+    already been backed out TWICE, and all three were confirmed byte-identical in
+    normal form to the shapes they re-anchored from.
+    """
+    seen, dead = set(), set()
     with io.open(ROOT / "reverse" / "re_attempts.log", encoding="utf-8",
                  errors="replace") as fh:
         for line in fh:
-            for m in re.finditer(r"0x([0-9A-Fa-f]{8})", line):
-                seen.add(int(m.group(1), 16))
-    return seen
+            fields = line.split("\t")
+            verdict = fields[3].strip().lower() if len(fields) > 3 else ""
+            addresses = {int(m.group(1), 16)
+                         for m in re.finditer(r"0x([0-9A-Fa-f]{8})", line)}
+            seen |= addresses
+            if verdict in DEAD_VERDICTS:
+                dead |= addresses
+    return seen, dead
 
 
 def candidates(min_size, max_size, real_pins):
@@ -148,6 +204,7 @@ def main():
     g.add_argument("--exact", action="store_const", dest="mode", const="exact")
     g.add_argument("--disp", action="store_const", dest="mode", const="disp")
     g.add_argument("--operand", action="store_const", dest="mode", const="operand")
+    g.add_argument("--mnemonic", action="store_const", dest="mode", const="mnemonic")
     ap.add_argument("--min-members", type=int, default=2)
     ap.add_argument("--min-size", type=int, default=8)
     ap.add_argument("--max-size", type=int, default=160)
@@ -157,13 +214,13 @@ def main():
     args = ap.parse_args()
 
     md = None
-    if args.mode == "operand":
+    if args.mode in ("operand", "mnemonic"):
         import capstone
         md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
         md.detail = True
 
     real_pins = load_real_pins()
-    attempted = load_attempted()
+    attempted, dead = load_attempted()
 
     groups = collections.defaultdict(list)
     scanned = undecoded = 0
@@ -182,16 +239,26 @@ def main():
             key = body
         elif args.mode == "disp":
             key = mask_disp(body)
-        else:
+        elif args.mode == "operand":
             key = mask_operands(body, md)
+            if key is None:
+                undecoded += 1
+                continue
+        else:
+            key = mask_mnemonics(body, md)
             if key is None:
                 undecoded += 1
                 continue
         groups[key].append((rva, size, name))
 
     families = []
+    refuted = 0
     for key, members in groups.items():
         if len(members) < args.min_members:
+            continue
+        # A refutation refutes the SHAPE, so one dead member kills the family.
+        if any(m[0] in dead for m in members):
+            refuted += 1
             continue
         fresh = [m for m in members if m[0] not in attempted]   # AFTER grouping
         if fresh:
@@ -206,6 +273,7 @@ def main():
     print("families >= %d with unattempted members: %d"
           % (args.min_members, len(families)))
     print("unattempted rows reachable: %d" % sum(f[1] for f in families))
+    print("families dropped as refuted/blocked shapes: %d" % refuted)
     print("unattempted singletons (regex-sweep territory): %d" % singletons)
 
     if args.out:
@@ -213,7 +281,9 @@ def main():
             for total, fresh_n, key, members, fresh in families:
                 out.write("=== %d members (%d unattempted), %dB, anchor 0x%08X\n"
                           "normal: %s\nmembers: %s\n\n"
-                          % (total, fresh_n, members[0][1], fresh[0][0], key.hex(),
+                          % (total, fresh_n, members[0][1], fresh[0][0],
+                             key.hex() if args.mode != "mnemonic"
+                             else key.decode("utf-8").replace(chr(10), " "),
                              " ".join("0x%08X" % a for a, _, _ in fresh)))
         print("written: %s" % args.out)
 
