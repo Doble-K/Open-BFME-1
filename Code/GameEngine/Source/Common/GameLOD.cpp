@@ -632,12 +632,33 @@ void INI::parseDynamicGameLODLevel( INI* ini, void * , void *store, const void*)
 }
 
 /**Convert LOD name to an index*/
-// ?getDynamicGameLODIndex@GameLODManager@@QAEHVAsciiString@@@Z present-unmatched
+struct RetailLODStringHeader
+{
+	Int references;
+	unsigned short length;
+	unsigned short capacity;
+	char data[1];
+};
+
+static __forceinline Int compareLODNameNoCase(const AsciiString &name, const char *lodName)
+{
+	static const char emptyString = 0;
+	Int lodNameLength = lodName ? strlen(lodName) : 0;
+	RetailLODStringHeader *header =
+		*reinterpret_cast<RetailLODStringHeader *const *>(&name);
+	Int nameLength = header ? header->length : 0;
+	const char *nameText = header ? header->data : &emptyString;
+	Int compareLength = nameLength < lodNameLength ? nameLength : lodNameLength;
+	Int result = _strnicmp(nameText, lodName, compareLength);
+	return result == 0 ? nameLength - lodNameLength : result;
+}
+
 Int GameLODManager::getDynamicGameLODIndex(AsciiString name)
 {
 	for (Int i=0; i<DYNAMIC_GAME_LOD_COUNT; ++i)
 	{
-		if (name.compareNoCase(DynamicGameLODNames[i]) == 0)
+		const char *lodName = DynamicGameLODNames[i];
+		if (compareLODNameNoCase(name, lodName) == 0)
 			return i;
 	}
 
@@ -754,4 +775,3 @@ static const FieldParse TheBFMEAudioLODFieldParseTable[] =
 		ini->initFromINI( lodInfo, TheBFMEAudioLODFieldParseTable );
 	}
 }
-
