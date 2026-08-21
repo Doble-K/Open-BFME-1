@@ -4001,10 +4001,9 @@ void Player::setUnitsVisionSpied( Bool setting, KindOfMaskType whichUnits, Playe
 }
 
 // ------------------------------------------------------------------------------------------------
-// ?isPlayerObserver@Player@@QBE_NXZ present-unmatched
 Bool Player::isPlayerObserver(void) const
 {
-	return m_observer;
+	return *reinterpret_cast<const Bool *>(reinterpret_cast<const char *>(this) + 0x296);
 }
 
 // ------------------------------------------------------------------------------------------------
