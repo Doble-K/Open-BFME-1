@@ -72464,3 +72464,179 @@ _read_number,0x009A00D0,per-TU llex.c static read_number; both retail luaX_lex R
 ?tail@Gen_00417cb0@@QAEXPAX@Z,0x00417A70,Open-BFME5 address-derived name; tail-jmp target of 0x00417CB0 via ILT 0x000294B5; identity not asserted
 ?alt@Gen_00417cb0@@QAEXXZ,0x00411BE0,Open-BFME5 address-derived name; call target of 0x00417CB0 via ILT 0x0003D13B; identity not asserted
 ?g_00861ed0@@YAXHHHHHHHHHHHHHHHHHHHHH@Z,0x00861ED0,Open-BFME5 address-derived name; direct call target of 0x00862460; 21 dword args; identity not asserted
+?gen00062900@@YAXPAX0@Z,0x00062900,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00072390@@YAXPAX0@Z,0x00072390,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000723B0@@YAXPAX0@Z,0x000723B0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0007CD50@@YAXPAX0@Z,0x0007CD50,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00080E00@@YAXPAX0@Z,0x00080E00,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0008F6D0@@YAXPAX0@Z,0x0008F6D0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000933C0@@YAXPAX0@Z,0x000933C0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000A0C20@@YAXPAX0@Z,0x000A0C20,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?handle@Gen000A1510@@QAEXPAVFlagPairTarget@@@Z,0x000A1510,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?gen000A36F0@@YAXPAX0@Z,0x000A36F0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000A9EA0@@YAXPAX0@Z,0x000A9EA0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000B86B0@@YAXPAX0@Z,0x000B86B0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000CD380@@YAXPAX0@Z,0x000CD380,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000CD3A0@@YAXPAX0@Z,0x000CD3A0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000CD4C0@@YAXPAX0@Z,0x000CD4C0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000CD4E0@@YAXPAX0@Z,0x000CD4E0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000D14F0@@YAXPAX0@Z,0x000D14F0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000D1570@@YAXPAX0@Z,0x000D1570,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen000D7180@@QAEPAXPAX@Z,0x000D7180,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen000D7250@@QAEPAXPAX@Z,0x000D7250,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen000E7140@@YAXPAX0@Z,0x000E7140,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000E91E0@@YAXPAX0@Z,0x000E91E0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen000EEFA0@@YAXPAX0@Z,0x000EEFA0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen000F2010@@QAEPAXPAX@Z,0x000F2010,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?handle@Gen001139A0@@QAEXPAVFlagPairTarget@@@Z,0x001139A0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00113D50@@QAEXPAVFlagPairTarget@@@Z,0x00113D50,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00113E70@@QAEXPAVFlagPairTarget@@@Z,0x00113E70,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?gen001344A0@@YAXPAX0@Z,0x001344A0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen001344C0@@YAXPAX0@Z,0x001344C0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen001344E0@@YAXPAX0@Z,0x001344E0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00134DF0@@YAXPAX0@Z,0x00134DF0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00135030@@YAXPAX0@Z,0x00135030,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen001366A0@@QAEPAXPAX@Z,0x001366A0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?handle@Gen0016B140@@QAEXPAVFlagPairTarget@@@Z,0x0016B140,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?gen001A6F30@@YAXPAX0@Z,0x001A6F30,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?handle@Gen001B0E20@@QAEXPAVFlagPairTarget@@@Z,0x001B0E20,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?gen001B6050@@YAXPAX0@Z,0x001B6050,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?handle@Gen001EF3D0@@QAEXPAVFlagPairTarget@@@Z,0x001EF3D0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen002077D0@@QAEXPAVFlagPairTarget@@@Z,0x002077D0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen0020F330@@QAEXPAVFlagPairTarget@@@Z,0x0020F330,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00216170@@QAEXPAVFlagPairTarget@@@Z,0x00216170,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00217810@@QAEXPAVFlagPairTarget@@@Z,0x00217810,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?gen00222520@@YAXPAX0@Z,0x00222520,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00222570@@YAXPAX0@Z,0x00222570,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00222590@@YAXPAX0@Z,0x00222590,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen002233E0@@YAXPAX0@Z,0x002233E0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?handle@Gen002298B0@@QAEXPAVFlagPairTarget@@@Z,0x002298B0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen002475A0@@QAEXPAVFlagPairTarget@@@Z,0x002475A0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen0024F500@@QAEXPAVFlagPairTarget@@@Z,0x0024F500,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00250A40@@QAEXPAVFlagPairTarget@@@Z,0x00250A40,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00255160@@QAEXPAVFlagPairTarget@@@Z,0x00255160,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00256C90@@QAEXPAVFlagPairTarget@@@Z,0x00256C90,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00268060@@QAEXPAVFlagPairTarget@@@Z,0x00268060,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen00271DB0@@QAEXPAVFlagPairTarget@@@Z,0x00271DB0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen002A7790@@QAEXPAVFlagPairTarget@@@Z,0x002A7790,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen002B2080@@QAEXPAVFlagPairTarget@@@Z,0x002B2080,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen002CD700@@QAEXPAVFlagPairTarget@@@Z,0x002CD700,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?handle@Gen002D9BD0@@QAEXPAVFlagPairTarget@@@Z,0x002D9BD0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?perform@Gen002DF780@@QAEXXZ,0x002DF780,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen00351260@@QAEXXZ,0x00351260,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?gen0037B0B0@@YAXPAX0@Z,0x0037B0B0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00381F80@@YAXPAX0@Z,0x00381F80,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00385E30@@YAXPAX0@Z,0x00385E30,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen003885B0@@YAXPAX0@Z,0x003885B0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00388630@@YAXPAX0@Z,0x00388630,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen0038BF10@@QAEPAXPAX@Z,0x0038BF10,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?perform@Gen003A0410@@QAEXXZ,0x003A0410,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?gen003B9090@@YAXPAX0@Z,0x003B9090,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen003DAB10@@YAXPAX0@Z,0x003DAB10,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen003DAB30@@YAXPAX0@Z,0x003DAB30,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen003FE700@@YAXPAX0@Z,0x003FE700,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen003FE720@@YAXPAX0@Z,0x003FE720,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0040A240@@YAXPAX0@Z,0x0040A240,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00423E00@@YAXPAX0@Z,0x00423E00,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00423E90@@YAXPAX0@Z,0x00423E90,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen004246F0@@QAEPAXPAX@Z,0x004246F0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen0042F520@@YAXPAX0@Z,0x0042F520,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00442C20@@YAXPAX0@Z,0x00442C20,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen004490E0@@YAXPAX0@Z,0x004490E0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0044D660@@YAXPAX0@Z,0x0044D660,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0045F740@@YAXPAX0@Z,0x0045F740,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0045F8F0@@YAXPAX0@Z,0x0045F8F0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen004603F0@@YAXPAX0@Z,0x004603F0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen00460B30@@QAEPAXPAX@Z,0x00460B30,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen00460C00@@QAEPAXPAX@Z,0x00460C00,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen00460CD0@@QAEPAXPAX@Z,0x00460CD0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen00467BC0@@YAXPAX0@Z,0x00467BC0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00467C40@@YAXPAX0@Z,0x00467C40,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00469840@@YAXPAX0@Z,0x00469840,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen0046A130@@QAEPAXPAX@Z,0x0046A130,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen0046A200@@QAEPAXPAX@Z,0x0046A200,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen0046A2D0@@QAEPAXPAX@Z,0x0046A2D0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen0046A3A0@@QAEPAXPAX@Z,0x0046A3A0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen0046A470@@QAEPAXPAX@Z,0x0046A470,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen0046A540@@QAEPAXPAX@Z,0x0046A540,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen0046A610@@QAEPAXPAX@Z,0x0046A610,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen0046A6E0@@YAXPAX0@Z,0x0046A6E0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0046A7F0@@YAXPAX0@Z,0x0046A7F0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00473B00@@YAXPAX0@Z,0x00473B00,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen004741D0@@YAXPAX0@Z,0x004741D0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00474240@@YAXPAX0@Z,0x00474240,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00489AF0@@YAXPAX0@Z,0x00489AF0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00494890@@YAXPAX0@Z,0x00494890,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen004980F0@@YAXPAX0@Z,0x004980F0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen004A6980@@YAXPAX0@Z,0x004A6980,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen004B05A0@@YAXPAX0@Z,0x004B05A0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen004E3130@@YAXPAX0@Z,0x004E3130,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0054D970@@YAXPAX0@Z,0x0054D970,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen00583580@@QAEPAXPAX@Z,0x00583580,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen00585BD0@@YAXPAX0@Z,0x00585BD0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0058D640@@YAXPAX0@Z,0x0058D640,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen005A7CD0@@YAXPAX0@Z,0x005A7CD0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen005B7670@@YAXPAX0@Z,0x005B7670,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen005C4B80@@YAXPAX0@Z,0x005C4B80,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen005D2240@@YAXPAX0@Z,0x005D2240,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?perform@Gen005DEEE0@@QAEXXZ,0x005DEEE0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005DEF70@@QAEXXZ,0x005DEF70,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005DF120@@QAEXXZ,0x005DF120,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005DF2D0@@QAEXXZ,0x005DF2D0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005DF480@@QAEXXZ,0x005DF480,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005DF510@@QAEXXZ,0x005DF510,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005DFD50@@QAEXXZ,0x005DFD50,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005DFFE0@@QAEXXZ,0x005DFFE0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0270@@QAEXXZ,0x005E0270,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0500@@QAEXXZ,0x005E0500,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0790@@QAEXXZ,0x005E0790,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0820@@QAEXXZ,0x005E0820,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E08B0@@QAEXXZ,0x005E08B0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0A70@@QAEXXZ,0x005E0A70,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0B00@@QAEXXZ,0x005E0B00,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0CB0@@QAEXXZ,0x005E0CB0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E0E60@@QAEXXZ,0x005E0E60,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E1010@@QAEXXZ,0x005E1010,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E11C0@@QAEXXZ,0x005E11C0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E1370@@QAEXXZ,0x005E1370,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E14F0@@QAEXXZ,0x005E14F0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E1690@@QAEXXZ,0x005E1690,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E1830@@QAEXXZ,0x005E1830,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E19B0@@QAEXXZ,0x005E19B0,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen005E1B50@@QAEXXZ,0x005E1B50,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?gen0060FD10@@YAXPAX0@Z,0x0060FD10,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0060FE30@@YAXPAX0@Z,0x0060FE30,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00610BC0@@YAXPAX0@Z,0x00610BC0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00610C40@@YAXPAX0@Z,0x00610C40,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen00613AE0@@QAEPAXPAX@Z,0x00613AE0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen00613BB0@@QAEPAXPAX@Z,0x00613BB0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen00631290@@YAXPAX0@Z,0x00631290,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00644760@@YAXPAX0@Z,0x00644760,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00652930@@YAXPAX0@Z,0x00652930,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00665260@@YAXPAX0@Z,0x00665260,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00666FF0@@YAXPAX0@Z,0x00666FF0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0068F900@@YAXPAX0@Z,0x0068F900,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00692480@@YAXPAX0@Z,0x00692480,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00692510@@YAXPAX0@Z,0x00692510,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen006931A0@@QAEPAXPAX@Z,0x006931A0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen0069CB60@@YAXPAX0@Z,0x0069CB60,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0069CB80@@YAXPAX0@Z,0x0069CB80,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen0069CBA0@@YAXPAX0@Z,0x0069CBA0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen0069CBC0@@QAEPAXPAX@Z,0x0069CBC0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen0069CD90@@YAXPAX0@Z,0x0069CD90,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen006A1550@@YAXPAX0@Z,0x006A1550,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen006A15D0@@YAXPAX0@Z,0x006A15D0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen006A7F80@@QAEPAXPAX@Z,0x006A7F80,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?evaluate@Gen006A8050@@QAEPAXPAX@Z,0x006A8050,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?perform@Gen00761E10@@QAEXXZ,0x00761E10,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?handle@Gen00776AC0@@QAEXPAVFlagPairTarget@@@Z,0x00776AC0,address-derived callee of the 45-byte flag-pair-then-direct-call family; target read from the REL32 at its call sites
+?gen007850E0@@YAXPAX0@Z,0x007850E0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00785100@@YAXPAX0@Z,0x00785100,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen00852240@@YAXPAX0@Z,0x00852240,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?perform@Gen0088C550@@QAEXXZ,0x0088C550,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?perform@Gen00903090@@QAEXXZ,0x00903090,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
+?gen0094C690@@YAXPAX0@Z,0x0094C690,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen009A3520@@YAXPAX0@Z,0x009A3520,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?gen009D73D0@@YAXPAX0@Z,0x009D73D0,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
+?evaluate@Gen009D76F0@@QAEPAXPAX@Z,0x009D76F0,address-derived callee of the 28-byte self-pair-returning family; target read from the REL32 at its call sites
+?gen009ED790@@YAXPAX0@Z,0x009ED790,address-derived subobject constructor of the allocating-factory family; target read from the REL32 at its call sites
