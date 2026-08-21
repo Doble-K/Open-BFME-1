@@ -28,9 +28,9 @@
 // the head at owner+0x98, zeroing prev and next when the owner is null.  Those
 // are the same two owner fields and the same three node fields that
 // Code/GameEngine/Source/Common/Gen_006fa270.cpp recovered from __copy and
-// __destroy_aux, so this is that node's copy constructor and it is pinned under
-// that file's name for the node.  0x005C2170 lies outside this file's range and
-// is not claimed here.
+// __destroy_aux, so this is that node's copy constructor.  Its body is defined
+// here because these nine callers independently prove both its identity and
+// its insertion semantics.
 //
 // TWO ROW SHAPES, ONE SOURCE SHAPE.  Six rows carry a third base at 0x18 and
 // three do not; nothing else differs.  Both extra bases are DEFAULT-constructed,
@@ -52,7 +52,14 @@
 // row claims it here.
 // ??1GenNode_006fa270@@QAE@XZ present-unmatched
 
-struct GenOwner_006fa270;
+struct GenNode_006fa270;
+
+struct GenOwner_006fa270
+{
+	char m_unreconstructed_00[ 0x98 ];
+	GenNode_006fa270 *m_head;
+	GenNode_006fa270 *m_tail;
+};
 
 struct GenNode_006fa270
 {
@@ -62,10 +69,32 @@ struct GenNode_006fa270
 
 	void unlink(void);
 
-	GenNode_006fa270( const GenNode_006fa270 & );
+	// Retail's nine head constructors call this COMDAT instead of absorbing it.
+	__declspec(noinline) GenNode_006fa270( const GenNode_006fa270 & );
 
 	~GenNode_006fa270(void) { unlink(); }
 };
+
+GenNode_006fa270::GenNode_006fa270( const GenNode_006fa270 &other )
+{
+	m_owner = other.m_owner;
+	if ( m_owner )
+	{
+		GenOwner_006fa270 *owner = m_owner;
+		m_prev = owner->m_tail;
+		m_next = 0;
+		owner->m_tail = this;
+		if ( m_prev )
+			m_prev->m_next = this;
+		else
+			m_owner->m_head = this;
+	}
+	else
+	{
+		m_next = 0;
+		m_prev = 0;
+	}
+}
 
 class V3NodeHead
 {
