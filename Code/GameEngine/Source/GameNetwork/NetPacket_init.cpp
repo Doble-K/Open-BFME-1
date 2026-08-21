@@ -106,8 +106,11 @@ public:
 	// pack(1) TransportAddress is wrong on that point.
 	NetPacketAddress m_dest;						// this+0x1E4 (ip), +0x1E8 (port)
 	Int m_numCommands;								// this+0x1EC
-	// A ref, not a message: the destructor deletes it through
-	// ??1NetCommandRef@@QAE@XZ.
+	// A ref, not a message: the destructor deletes it through the
+	// NetCommandRef destructor ??1NetCommandRef@@QAE@XZ. (Kept on one line:
+	// a comment line that OPENS with a mangled name binds to the next
+	// definition as an annotation, and this one sits directly above the
+	// default constructor.)
 	NetCommandRef *m_lastCommand;					// this+0x1F0
 	UnsignedInt m_lastFrame;						// this+0x1F4
 	UnsignedShort m_lastCommandID;					// this+0x1F8
@@ -121,7 +124,6 @@ public:
 // whole struct, so both shapes are in retail one after the other. The
 // field-wise half is NetPacketAddress's own constructor, which is why it sits
 // between the vptr store and anything this body writes.
-// ??0NetPacket@@QAE@XZ present-unmatched
 NetPacket::NetPacket() {
 	init();
 }
