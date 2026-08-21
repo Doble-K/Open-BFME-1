@@ -1,4 +1,4 @@
-// Thirteen bodies, 51 to 90 bytes, that copy one or more values OUT of a
+// Sixteen bodies, 51 to 99 bytes, that copy one or more values OUT of a
 // supplied object and into `this`, asking each one of a run of null-checked
 // pointer fields for it, and then hand the rest of the job to a second
 // object.  Retail, the single-field arity that merges its arms:
@@ -197,18 +197,64 @@ U1_COLLECT_A3( 005CE5D0, U1SupplierLow, m_f44, m_f48, m_f54, 8, U1FillTargetLow 
 
 // ------------------------------------------------------------- tail shape B
 
-#define U1_SUPPLIER_B( ROW, PAD )                                             \
-	class U1Supplier_##ROW                                                    \
-	{                                                                         \
-	public:                                                                   \
-		char m_pad[ PAD ];                                                    \
-		U1Slot2Field *m_field;                                                \
-	};                                                                        \
-	class U1Rest_##ROW                                                        \
-	{                                                                         \
-	public:                                                                   \
-		void collect( void *first, U1Supplier_##ROW *second );                \
-	};
+class U1Supplier_005CD8E0
+{
+public:
+	char m_pad[ 0xb0 ];
+	U1Slot2Field *m_field;
+	U1Slot2Field *m_fB4;
+	U1Slot2Field *m_fB8;
+	U1Slot2Field *m_fBC;
+};
+
+class U1Supplier_005CE640
+{
+public:
+	char m_pad[ 0xa8 ];
+	U1Slot2Field *m_field;
+	U1Slot2Field *m_fAC;
+	U1Slot2Field *m_fB0;
+};
+
+class U1Supplier_005CF1F0
+{
+public:
+	char m_pad[ 0xa0 ];
+	U1Slot2Field *m_field;
+	U1Slot2Field *m_fA4;
+	U1Slot2Field *m_fA8;
+};
+
+class U1Rest_005CD8E0
+{
+public:
+	void collect( void *first, U1Supplier_005CD8E0 *second );
+
+	void *m_v0;
+	void *m_v1;
+	void *m_v2;
+	U1FillTargetHigh m_rest;
+};
+
+class U1Rest_005CE640
+{
+public:
+	void collect( void *first, U1Supplier_005CE640 *second );
+
+	void *m_v0;
+	void *m_v1;
+	U1Rest_005CD8E0 m_rest;
+};
+
+class U1Rest_005CF1F0
+{
+public:
+	void collect( void *first, U1Supplier_005CF1F0 *second );
+
+	void *m_v0;
+	void *m_v1;
+	U1Rest_005CE640 m_rest;
+};
 
 #define U1_COLLECT_B1( ROW )                                                  \
 	class U1Chain_##ROW                                                       \
@@ -226,13 +272,38 @@ U1_COLLECT_A3( 005CE5D0, U1SupplierLow, m_f44, m_f48, m_f54, 8, U1FillTargetLow 
 		m_rest.collect( first, second );                                      \
 	}
 
-U1_SUPPLIER_B( 005CD8E0, 0xb0 )
-U1_SUPPLIER_B( 005CE640, 0xa8 )
-U1_SUPPLIER_B( 005CF1F0, 0xa0 )
-
 U1_COLLECT_B1( 005CD8E0 )
 U1_COLLECT_B1( 005CE640 )
 U1_COLLECT_B1( 005CF1F0 )
+
+void U1Rest_005CD8E0::collect( void *first, U1Supplier_005CD8E0 *second )
+{
+	U1Slot2Field *f0 = second->m_fB4;
+	m_v0 = f0 ? f0->get( first ) : 0;
+	U1Slot2Field *f1 = second->m_fB8;
+	m_v1 = f1 ? f1->get( first ) : 0;
+	U1Slot2Field *f2 = second->m_fBC;
+	m_v2 = f2 ? f2->get( first ) : 0;
+	reinterpret_cast<U1SupplierHigh *>( second )->fill( &m_rest, first );
+}
+
+void U1Rest_005CE640::collect( void *first, U1Supplier_005CE640 *second )
+{
+	U1Slot2Field *f0 = second->m_fAC;
+	m_v0 = f0 ? f0->get( first ) : 0;
+	U1Slot2Field *f1 = second->m_fB0;
+	m_v1 = f1 ? f1->get( first ) : 0;
+	m_rest.collect( first, reinterpret_cast<U1Supplier_005CD8E0 *>( second ) );
+}
+
+void U1Rest_005CF1F0::collect( void *first, U1Supplier_005CF1F0 *second )
+{
+	U1Slot2Field *f0 = second->m_fA4;
+	m_v0 = f0 ? f0->get( first ) : 0;
+	U1Slot2Field *f1 = second->m_fA8;
+	m_v1 = f1 ? f1->get( first ) : 0;
+	m_rest.collect( first, reinterpret_cast<U1Supplier_005CE640 *>( second ) );
+}
 
 // The two rows whose tail lands on 0x005CE5D0, a shape-A row above: the member
 // type and the supplier type are both forced by that signature.
