@@ -74607,3 +74607,6 @@ _W3AtlParseLocaleAcp@0,0x0001B770,ILT thunk to the locale-parsing code-page gett
 ?dlink_removeFrom_TeamMemberList@Object@@QAEXPAPAV1@@Z,0x001BD490,MAKE_DLINK unlink body; unlinks Object +0x25C/+0x260 and writes *pListHead
 ?release@Rva0005C6B0Holder@@QAEXXZ,0x0005C6B0,out-of-line release of the small-buffer conversion holder; reached from 0x0005E1E0 via ILT 0x0002F0AE
 _W3RbDecrement,0x0082B8E0,alias pin for the red-black tree node decrement helper at 0x0082B8E0 used by 0x00064880
+?testStatus@BFMEActionObject@@QBE_NH@Z,0x000016A4,BFME Object status helper ILT decoded from ActionManager::canGetHealedAt
+?isKindOf@BFMEActionThing@@QBE_NH@Z,0x0003251F,BFME Thing kind helper ILT decoded from ActionManager::canGetHealedAt
+?getShroudedStatus@Object@@QBE?AW4ObjectShroudStatus@@H@Z,0x0002B81E,Object shroud-status ILT decoded from isObjectShroudedForAction retail callsite

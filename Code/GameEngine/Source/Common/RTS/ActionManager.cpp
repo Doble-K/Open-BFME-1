@@ -98,11 +98,43 @@ static Bool appearsToContainFriendlies(const Object* obj, const Object* otherObj
 	return FALSE;
 }
 
+// BFME's out-of-line status helpers predate the ZH inline wrappers in the supplied headers.
+class BFMEActionObject
+{
+public:
+	Bool testStatus(Int status) const;
+};
+
+class BFMEActionThing
+{
+public:
+	Bool isKindOf(Int kind) const;
+};
+
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?isObjectShroudedForAction@@YA_NPBVObject@@0W4CommandSourceType@@@Z is emitted by
-// IsObjectShroudedForActionThunk.cpp.
-Bool isObjectShroudedForAction(const Object *source, const Object *target, CommandSourceType commandSource);
+static Bool isObjectShroudedForAction(const Object *source, const Object *target, CommandSourceType commandSource)
+{
+	if (target)
+	{
+		// BFME reserves this signed ObjectID range for non-world objects, which cannot be shrouded targets.
+		Int targetID = *reinterpret_cast<const Int *>(reinterpret_cast<const char *>(target) + 0x74);
+		if (targetID >= 0x05f5e0fc && targetID <= 0x05f5e0ff)
+			return FALSE;
+	}
+
+	if (source && target && source->getControllingPlayer())
+	{
+		if (*reinterpret_cast<const Int *>(reinterpret_cast<const char *>(source->getControllingPlayer()) + 0x2c) == PLAYER_HUMAN &&
+				commandSource != CMD_FROM_SCRIPT &&
+				target->getShroudedStatus(source->getControllingPlayer()->getPlayerIndex()) >= OBJECTSHROUD_FOGGED)
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -311,7 +343,6 @@ Bool ActionManager::canDockAt( const Object *obj, const Object *dockDest, Comman
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?canGetHealedAt@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z present-unmatched
 Bool ActionManager::canGetHealedAt( const Object *obj, const Object *healDest, CommandSourceType commandSource ) 
 {
 
@@ -326,31 +357,44 @@ Bool ActionManager::canGetHealedAt( const Object *obj, const Object *healDest, C
 		return FALSE;
 
 	// dead objects cannot be healed
-	if( healDest->isEffectivelyDead() )
+	// These fields moved in ZH; use the verified BFME Object layout used by the retail checks.
+	if (*reinterpret_cast<const UnsignedByte *>(reinterpret_cast<const char *>(healDest) + 0x344) & 1)
 		return FALSE;
 
 	// nothing can be done with things that are under construction
-	if( obj->getStatusBits().test( OBJECT_STATUS_UNDER_CONSTRUCTION ) ||
-			healDest->getStatusBits().test( OBJECT_STATUS_UNDER_CONSTRUCTION ) )
+	if (*reinterpret_cast<const UnsignedByte *>(reinterpret_cast<const char *>(obj) + 0x90) & 4)
+		return FALSE;
+	if (reinterpret_cast<const BFMEActionObject *>(healDest)->testStatus(2))
 		return FALSE;
 
 	// Can't get healed at something being sold
-	if( healDest->testStatus(OBJECT_STATUS_SOLD) )
+	if (reinterpret_cast<const BFMEActionObject *>(healDest)->testStatus(0x13))
 		return FALSE;
 	
 	// only infantry can go get "healed" somewhere (vehicles get "repaired")
-	if( obj->isKindOf( KINDOF_INFANTRY ) == FALSE )
+	if (reinterpret_cast<const BFMEActionThing *>(obj)->isKindOf(8) == FALSE)
 		return FALSE;
 
 	// infantry can only be healed at something that is designated as a heal pad
-	if( healDest->isKindOf( KINDOF_HEAL_PAD ) == FALSE )
+	if (reinterpret_cast<const BFMEActionThing *>(healDest)->isKindOf(0x20) == FALSE)
 		return FALSE;
 
 	// if the target is in the shroud, we can't do anything
 	if (isObjectShroudedForAction(obj, healDest, commandSource))
 		return FALSE;
 	
-	BodyModuleInterface *body = obj->getBodyModule();
+	class BFMEHealBody
+	{
+	public:
+		virtual void slot0() = 0;
+		virtual void slot1() = 0;
+		virtual void slot2() = 0;
+		virtual void slot3() = 0;
+		virtual Real getHealth() const = 0;
+		virtual void slot5() = 0;
+		virtual Real getMaxHealth() const = 0;
+	};
+	BFMEHealBody *body = *reinterpret_cast<BFMEHealBody * const *>(reinterpret_cast<const char *>(obj) + 0x200);
 	if( body && body->getHealth() == body->getMaxHealth() )
 	{
 		//No point in healing if you have full health!
