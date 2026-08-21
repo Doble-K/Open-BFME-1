@@ -124,6 +124,30 @@ public:
 	Int getNumGamesLoyal(void) const;
 };
 
+static AsciiString intAsStr(Int value)
+{
+	AsciiString result;
+	result.format("%d", value);
+	return result;
+}
+
+static AsciiString boolAsStr(Bool value)
+{
+	AsciiString result;
+	result.format("%d", value);
+	return result;
+}
+
+void UserPreferences::setBool(AsciiString key, Bool value)
+{
+	setAsciiString(key, boolAsStr(value));
+}
+
+void UserPreferences::setInt(AsciiString key, Int value)
+{
+	setAsciiString(key, intAsStr(value));
+}
+
 void SkirmishBattleHonors::setBuiltSCUD(void)
 {
 	setBool("SCUD", TRUE);
