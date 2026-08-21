@@ -74614,3 +74614,6 @@ _W3RbDecrement,0x0082B8E0,alias pin for the red-black tree node decrement helper
 ?loadPostProcess@UpdateModule@@MAEXXZ,0x00015E0B,DockUpdate retail base-call ILT chains through 0x002B2070 and 0x0004049E to the no-op UpdateModule body at 0x001EF410
 ?isFinished@TransitionGroup@@QAE_NXZ,0x0003B584,GameWindowTransitionsHandler retail call ILT reaches TransitionGroup::isFinished at 0x0048A0F0
 ?load@UserPreferences@@UAE_NVAsciiString@@@Z,0x00014308,QuickMatchPreferences retail constructor call ILT reaches UserPreferences::load at 0x000A9230
+??0BFMELANPreferenceKey@@QAE@PBD@Z,0x00888BC0,LANPreferences retail key construction call reaches the established AsciiString const-char constructor
+??1BFMELANPreferenceKey@@QAE@XZ,0x00887940,LANPreferences retail key destruction call reaches the established AsciiString release body
+?find@BFMELANPreferenceMap@@QAEPAXABVBFMELANPreferenceKey@@@Z,0x0000AEAC,LANPreferences retail map lookup ILT reaches the matched STL tree find at 0x00080600

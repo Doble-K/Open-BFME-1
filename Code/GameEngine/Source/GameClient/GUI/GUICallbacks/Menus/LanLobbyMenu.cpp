@@ -186,19 +186,38 @@ AsciiString LANPreferences::getPreferredMap(void)
 	return ret;
 }
 
-// ?getNumRemoteIPs@LANPreferences@@ present-unmatched
+class BFMELANPreferenceKey
+{
+public:
+	BFMELANPreferenceKey( const char *text );
+	~BFMELANPreferenceKey();
+
+private:
+	void *m_data;
+};
+
+class BFMELANPreferenceMap
+{
+public:
+	__declspec(nothrow) void *find( const BFMELANPreferenceKey &key );
+};
+
 Int LANPreferences::getNumRemoteIPs(void)
 {
-	Int ret;
-	LANPreferences::const_iterator it = find("NumRemoteIPs");
-	if (it == end())
+	BFMELANPreferenceMap *map;
+	void *node;
 	{
-		ret = 0;
-		return ret;
+		BFMELANPreferenceKey key( "NumRemoteIPs" );
+		map = reinterpret_cast<BFMELANPreferenceMap *>(
+			reinterpret_cast<unsigned char *>( this ) + 4 );
+		node = map->find( key );
 	}
+	if (node == *reinterpret_cast<void **>( map ))
+		return 0;
 
-	ret = atoi(it->second.str());
-	return ret;
+	void *data = *reinterpret_cast<void **>( reinterpret_cast<unsigned char *>( node ) + 0x14 );
+	const char *text = data ? reinterpret_cast<const char *>( data ) + 8 : "";
+	return atoi( text );
 }
 
 // ?getRemoteIPEntry@LANPreferences@@ present-unmatched
