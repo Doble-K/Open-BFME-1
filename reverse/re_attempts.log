@@ -4851,3 +4851,5 @@ span-tightness-predicts-coherence-but-not-perfectly	0x003B8450	41	converted	CALI
 ?d_0081ae10@@YAXXZ	0x0081AE10	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva0081AE10Empty.cpp; identity remains address-derived
 ?d_00817230@@YAXXZ	0x00817230	5	attempted	t=1min claimed fresh scaffold-only empty void body; retail=55 8B EC 5D C3; identity remains address-derived
 ?d_00817230@@YAXXZ	0x00817230	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva00817230Empty.cpp; identity remains address-derived
+?d_00815780@@YAXXZ	0x00815780	5	attempted	t=1min claimed fresh scaffold-only empty void body; retail=55 8B EC 5D C3; identity remains address-derived
+?d_00815780@@YAXXZ	0x00815780	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva00815780Empty.cpp; identity remains address-derived
