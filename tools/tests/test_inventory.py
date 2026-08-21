@@ -114,7 +114,8 @@ def test_call_derived_starts_stay_derivable():
 CLOSURE_SEEDS = "reverse/game_end/seeds.json"
 # `callers_of.py --closure` per (group, tier), regenerated for every cell in
 # Phase 2 when the E_leave vcall seed moved from 0x012F76F0 to the live
-# TheNetwork global 0x012F7714 (the old global matched no call site):
+# TheNetwork global 0x012F7714 (the old global matched no call site) and again
+# in Phase 3 when the A/B/C/D tier 0-1 identity pack landed:
 # (functions, bytes) in each ledger state and on each side of identity. The
 # regressing columns may only fall and the improving ones only rise, so landing
 # a conversion or a pin inside the game-end region is what moves a figure here,
@@ -122,37 +123,37 @@ CLOSURE_SEEDS = "reverse/game_end/seeds.json"
 CLOSURE_BASELINE = {
     ("A_victory", 0): {
         "UNCLAIMED": (0, 0), "ASM": (8, 2732), "SMALL": (0, 0), "LIB": (0, 0),
-        "CPP": (0, 0), "identified": (2, 1349), "anonymous": (6, 1383)},
+        "CPP": (0, 0), "identified": (8, 2732), "anonymous": (0, 0)},
     ("A_victory", 1): {
         "UNCLAIMED": (4, 5816), "ASM": (41, 14918), "SMALL": (4, 75), "LIB": (4, 119),
-        "CPP": (13, 1156), "identified": (30, 11694), "anonymous": (36, 10390)},
+        "CPP": (13, 1156), "identified": (65, 22079), "anonymous": (1, 5)},
     ("A_victory", 2): {
         "UNCLAIMED": (33, 21329), "ASM": (559, 149267), "SMALL": (43, 3520), "LIB": (15, 682),
-        "CPP": (146, 13112), "identified": (231, 51362), "anonymous": (565, 136548)},
+        "CPP": (146, 13112), "identified": (232, 51369), "anonymous": (564, 136541)},
     ("B_script", 0): {
         "UNCLAIMED": (0, 0), "ASM": (1, 290), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (4, 19630), "identified": (5, 19920), "anonymous": (0, 0)},
     ("B_script", 1): {
         "UNCLAIMED": (0, 0), "ASM": (5, 39960), "SMALL": (0, 0), "LIB": (1, 59),
-        "CPP": (0, 0), "identified": (2, 39659), "anonymous": (4, 360)},
+        "CPP": (0, 0), "identified": (5, 39853), "anonymous": (1, 166)},
     ("B_script", 2): {
         "UNCLAIMED": (0, 0), "ASM": (7, 569), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (4, 240), "identified": (3, 183), "anonymous": (8, 626)},
     ("C_results", 0): {
         "UNCLAIMED": (3, 10871), "ASM": (16, 16084), "SMALL": (0, 0), "LIB": (0, 0),
-        "CPP": (6, 6151), "identified": (9, 11974), "anonymous": (16, 21132)},
+        "CPP": (6, 6151), "identified": (25, 33106), "anonymous": (0, 0)},
     ("C_results", 1): {
         "UNCLAIMED": (3, 5314), "ASM": (100, 32295), "SMALL": (7, 483), "LIB": (9, 710),
-        "CPP": (54, 13330), "identified": (87, 27246), "anonymous": (86, 24886)},
+        "CPP": (54, 13330), "identified": (173, 52132), "anonymous": (0, 0)},
     ("C_results", 2): {
         "UNCLAIMED": (11, 16462), "ASM": (233, 67591), "SMALL": (36, 3830), "LIB": (8, 466),
-        "CPP": (101, 15499), "identified": (171, 43367), "anonymous": (218, 60481)},
+        "CPP": (101, 15499), "identified": (178, 44291), "anonymous": (211, 59557)},
     ("D_desync", 0): {
         "UNCLAIMED": (0, 0), "ASM": (2, 861), "SMALL": (0, 0), "LIB": (0, 0),
-        "CPP": (0, 0), "identified": (1, 501), "anonymous": (1, 360)},
+        "CPP": (0, 0), "identified": (2, 861), "anonymous": (0, 0)},
     ("D_desync", 1): {
         "UNCLAIMED": (0, 0), "ASM": (10, 2683), "SMALL": (1, 8), "LIB": (0, 0),
-        "CPP": (1, 13), "identified": (2, 1972), "anonymous": (10, 732)},
+        "CPP": (1, 13), "identified": (10, 2683), "anonymous": (2, 21)},
     ("D_desync", 2): {
         "UNCLAIMED": (0, 0), "ASM": (29, 2673), "SMALL": (10, 1074), "LIB": (0, 0),
         "CPP": (3, 362), "identified": (7, 949), "anonymous": (35, 3160)},
@@ -164,7 +165,7 @@ CLOSURE_BASELINE = {
         "CPP": (86, 6128), "identified": (203, 26406), "anonymous": (0, 0)},
     ("E_leave", 2): {
         "UNCLAIMED": (12, 8415), "ASM": (200, 59219), "SMALL": (28, 3312), "LIB": (6, 2774),
-        "CPP": (230, 18928), "identified": (323, 60525), "anonymous": (153, 32123)},
+        "CPP": (230, 18928), "identified": (324, 62269), "anonymous": (152, 30379)},
     ("F_engine_quit", 0): {
         "UNCLAIMED": (0, 0), "ASM": (6, 13470), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (0, 0), "identified": (3, 12059), "anonymous": (3, 1411)},
@@ -216,7 +217,8 @@ CLAIMS = ROOT / "reverse" / "game_end" / "claims.csv"
 # retail image. Address/expected per kind: bytes 0xRVA/hex; insn 0xRVA/capstone
 # text; vslot 0xVTABLEVA+0xOFF/body RVA after the thunk chain; jt
 # 0xTABLEVA[idx]/the entry RVA; thunk ILT RVA/body RVA; global VA/RVA of an
-# instruction whose immediate or displacement carries that VA.
+# instruction whose immediate or displacement carries that VA; string VA/the
+# exact C string NUL-terminated at that VA (the one kind compared case-sensitively).
 
 
 def _claim_observed(kind, address, expected, image, md):
@@ -263,6 +265,12 @@ def _claim_observed(kind, address, expected, image, md):
         if int(address, 16) in carried:
             return expected
         return f"0x{int(expected, 16):08X} carries " + ",".join(f"0x{v:08X}" for v in sorted(carried))
+    if kind == "string":
+        # one byte past the expected length: a longer retail string has no NUL there
+        start = offset(int(address, 16) - IMAGE_BASE)
+        chunk = data[start:start + len(expected) + 1]
+        end = chunk.find(b"\0")
+        return (chunk if end < 0 else chunk[:end]).decode("latin-1")
     raise AssertionError(f"unknown claim kind {kind!r}")
 
 
@@ -280,11 +288,14 @@ def test_game_end_claims_hold_against_retail():
     image = (data, sections, text["rva"], text["rva"] + text["size"])
     with CLAIMS.open("r", encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
-    assert len(rows) >= 40, f"{CLAIMS}: only {len(rows)} rows"
+    # 796 rows landed with Phase 2 and 1000+ with Phase 3: a count under the
+    # floor means rows were lost, not that the floor is wrong.
+    assert len(rows) >= 1800, f"{CLAIMS}: only {len(rows)} rows"
     wrong = []
     for row in rows:
         observed = _claim_observed(row["kind"], row["address"], row["expected"], image, md)
-        if observed.lower() != row["expected"].lower():
+        expected = row["expected"] if row["kind"] == "string" else row["expected"].lower()
+        if (observed if row["kind"] == "string" else observed.lower()) != expected:
             wrong.append(f"{row['kind']},{row['address']},{row['expected']} ({row['note']}): "
                          f"observed {observed}")
     assert not wrong, f"{len(wrong)} claim(s) do not hold against retail:\n" + "\n".join(wrong)
