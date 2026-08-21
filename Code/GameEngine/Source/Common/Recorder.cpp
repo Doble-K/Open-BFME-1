@@ -29,11 +29,32 @@ extern GameLogic *TheGameLogic;                            ///< retail [0x012F08
 union GameMessageArgumentType
 {
     Int integer;
-    unsigned char m_unreconstructed_00[16];
+    float real;
+    bool boolean;
+    UnsignedInt objectID;
+    UnsignedInt drawableID;
+    UnsignedInt teamID;
+    struct { float x, y, z; } location;
+    struct { Int x, y; } pixel;
+    struct { Int loX, loY, hiX, hiY; } pixelRegion;
+    UnsignedInt timestamp;
+    wchar_t wChar;
 };
 
 enum GameMessageArgumentDataType
 {
+    ARGUMENTDATATYPE_INTEGER,
+    ARGUMENTDATATYPE_REAL,
+    ARGUMENTDATATYPE_BOOLEAN,
+    ARGUMENTDATATYPE_OBJECTID,
+    ARGUMENTDATATYPE_DRAWABLEID,
+    ARGUMENTDATATYPE_TEAMID,
+    ARGUMENTDATATYPE_ASCIISTRING,
+    ARGUMENTDATATYPE_LOCATION,
+    ARGUMENTDATATYPE_PIXEL,
+    ARGUMENTDATATYPE_PIXELREGION,
+    ARGUMENTDATATYPE_TIMESTAMP,
+    ARGUMENTDATATYPE_WIDECHAR,
     ARGUMENTDATATYPE_UNKNOWN = 11
 };
 
@@ -200,4 +221,31 @@ void RecorderClass::writeToFile(GameMessage *msg)
     delete parser;
 
     fflush(m_file);
+}
+
+void RecorderClass::writeArgument(GameMessageArgumentDataType type, GameMessageArgumentType arg)
+{
+    if (type == ARGUMENTDATATYPE_INTEGER) {
+        fwrite(&arg.integer, sizeof(arg.integer), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_REAL) {
+        fwrite(&arg.real, sizeof(arg.real), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_BOOLEAN) {
+        fwrite(&arg.boolean, sizeof(arg.boolean), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_OBJECTID) {
+        fwrite(&arg.objectID, sizeof(arg.objectID), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_DRAWABLEID) {
+        fwrite(&arg.drawableID, sizeof(arg.drawableID), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_TEAMID) {
+        fwrite(&arg.teamID, sizeof(arg.teamID), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_LOCATION) {
+        fwrite(&arg.location, sizeof(arg.location), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_PIXEL) {
+        fwrite(&arg.pixel, sizeof(arg.pixel), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_PIXELREGION) {
+        fwrite(&arg.pixelRegion, sizeof(arg.pixelRegion), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_TIMESTAMP) {
+        fwrite(&arg.timestamp, sizeof(arg.timestamp), 1, m_file);
+    } else if (type == ARGUMENTDATATYPE_WIDECHAR) {
+        fwrite(&arg.wChar, sizeof(arg.wChar), 1, m_file);
+    }
 }
