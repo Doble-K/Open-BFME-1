@@ -2314,7 +2314,7 @@ name,address,notes
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,0x0003F382,pinharvest x1 (thunk)
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,0x00048329,pinharvest x1 (thunk)
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,0x00887B60,pinharvest x4 (body)
-??0MultiplayerColorDefinition@@QAE@XZ,0x0004048A,packet 00844520 pin
+??0MultiplayerColorDefinition@@QAE@XZ,0x00013C37,MultiplayerSettings retail ctor ILT reaches the 109-byte color-definition constructor at 0x0008E2C0
 ??0MultiplayerSettings@@QAE@XZ,0x0002B0BC,harvested from parseMultiplayerSettingsDefinition (thunk)
 ??0NetCommandMsg@@QAE@XZ,0x000132B4,hit-decoded x4 (thunk)
 ??0NetCommandWrapperListNode@@QAE@PAVNetWrapperCommandMsg@@@Z,0x0002D8C1,ILT thunk; real body 0xA76380
