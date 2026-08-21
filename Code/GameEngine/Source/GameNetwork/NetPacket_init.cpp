@@ -72,8 +72,19 @@ public:
 // constructor writes: both of them emit the vptr store, then ip = 0 and a word
 // port = 0, before anything of their own. That is member construction order,
 // and it is what puts the vptr first in each.
+//
+// Spelling it as a real constructor is what closes both NetPacket constructors.
+// With the pair zeroed in the constructor bodies instead, MSVC schedules the
+// inlined init()'s eight-byte stack temp to the top of the frame and sinks the
+// vptr store below the whole run of zero stores; retail does the opposite, and
+// member construction order is the only thing that pins it. init() keeps its
+// matched shape either way -- `NetPacketAddress dest;` and `= { 0, 0 }` compile
+// to the same word store plus dword reload, because the low half is constant
+// propagated and only the padded high half has to go through memory.
 struct NetPacketAddress
 {
+	NetPacketAddress() { ip = 0; port = 0; }
+
 	UnsignedInt ip;
 	UnsignedShort port;
 };
@@ -105,35 +116,31 @@ public:
 	UnsignedByte m_lastRelay;						// this+0x1FC
 };
 
-// The constructor zeroes the address pair field-wise -- dword at +0x1E4 then a
-// word at +0x1E8 -- and then inlines init(), which assigns the same pair as a
-// whole struct. Both shapes are in retail, one after the other.
-// 0x00679650, 103 bytes: retail's length and instructions, but retail
-// stores the vptr first and then the two field zeroes, where this source
-// hoists the inlined init()'s stack temp above them. Same schedule
-// tie-break as the Connection constructor and Transport::queueSend.
+// 0x00679650, 103 bytes. The address pair is zeroed field-wise -- dword at
+// +0x1E4 then a word at +0x1E8 -- before init() assigns the same pair as a
+// whole struct, so both shapes are in retail one after the other. The
+// field-wise half is NetPacketAddress's own constructor, which is why it sits
+// between the vptr store and anything this body writes.
 // ??0NetPacket@@QAE@XZ present-unmatched
 NetPacket::NetPacket() {
-	m_dest.ip = 0;
-	m_dest.port = 0;
 	init();
 }
 
-// 0x00679730, 174 bytes. Same prefix, same tie-break as the default constructor
-// above; everything after it -- the two address fields lifted out of the
-// transport message, the 476-byte payload copy and the -1 command count -- is
-// retail's. The message layout the offsets pin is the interesting part: BFME's
-// header is four bytes where the reference's carries a CRC and a magic number.
-// ??0NetPacket@@QAE@PAUTransportMessage@@@Z present-unmatched
+// 0x00679730, 174 bytes. Same prefix as the default constructor above; what
+// follows is the address pair lifted out of the transport message, the
+// 476-byte payload copy and the -1 command count. The reference runs those in
+// the other order -- length and copy first, address last -- and retail's
+// schedule is source order, so the assignments are written the way retail
+// emits them. The message layout the offsets pin is the interesting part:
+// BFME's header is four bytes where the reference's carries a CRC and a magic
+// number.
 NetPacket::NetPacket(TransportMessage *msg) {
-	m_dest.ip = 0;
-	m_dest.port = 0;
 	init();
+	m_dest.ip = msg->addr;
+	m_dest.port = msg->port;
 	m_packetLen = msg->length;
 	memcpy(m_packet, msg->data, sizeof(m_packet));
 	m_numCommands = -1;
-	m_dest.ip = msg->addr;
-	m_dest.port = msg->port;
 }
 
 NetPacket::~NetPacket() {
@@ -144,7 +151,7 @@ NetPacket::~NetPacket() {
 }
 
 void NetPacket::init() {
-	NetPacketAddress dest = { 0, 0 };
+	NetPacketAddress dest;
 	m_dest = dest;
 	m_numCommands = 0;
 	m_packetLen = 0;
