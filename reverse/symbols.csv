@@ -74627,3 +74627,4 @@ _disconnectMenuLayout,0x012F4960,BFME DisconnectWindow retail DIR32 layout point
 ?changeBridgeState@Pathfinder@@QAEXW4PathfindLayerEnum@@_N@Z,0x0002847F,Bridge::updateDamageState calls the existing ILT thunk for both closed and open transitions
 ?getBridgeBehaviorInterfaceFromObject@BridgeBehavior@@SAPAVBridgeBehaviorInterface@@PAVObject@@@Z,0x00010424,Bridge::updateDamageState calls the existing ILT thunk before the scaffold check
 ??4MeshMatDescClass@@QAEAAV0@ABV0@@Z,0x0092BB00,MeshMatDesc copy constructor direct same-TU call target
+??0DamageInfoInput@@QAE@XZ,0x0002C3A9,DamageInfo constructor retail call ILT reaches the input constructor body at 0x000ED2D0
