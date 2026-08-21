@@ -65,6 +65,15 @@
 // GLOBALS ////////////////////////////////////////////////////////////////////////////////////////
 Radar *TheRadar = NULL;  ///< the radar global singleton
 
+class BfmeTerrainHeightView
+{
+public:
+	// BFME inserts one slot before getGroundHeight, moving it from the inherited ZH view's +0x14 to +0x18.
+	virtual void unused0() = 0, unused1() = 0, unused2() = 0;
+	virtual void unused3() = 0, unused4() = 0, unused5() = 0;
+	virtual Real getGroundHeight( Real x, Real y, Coord3D *normal = NULL ) = 0;
+};
+
 // PRIVATE ////////////////////////////////////////////////////////////////////////////////////////
 #define RADAR_QUEUE_TERRAIN_REFRESH_DELAY (LOGICFRAMES_PER_SECOND * 3.0f)
 
@@ -779,14 +788,28 @@ Bool Radar::radarToWorld2D( const ICoord2D *radar, Coord3D *world )
 	* Return TRUE if the radar points translates to a valid world position
 	* Return FALSE if the radar point is not a valid world position */
 //-------------------------------------------------------------------------------------------------		
-// ?radarToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z present-unmatched
 Bool Radar::radarToWorld( const ICoord2D *radar, Coord3D *world )
 {
-  if (!radarToWorld2D(radar,world))
-    return FALSE;
+	if( radar == NULL || world == NULL )
+		return FALSE;
+
+	Int x = radar->x;
+	Int y = radar->y;
+	if( x < 0 )
+		x = 0;
+	if( x >= RADAR_CELL_WIDTH )
+		x = RADAR_CELL_WIDTH - 1;
+	if( y < 0 )
+		y = 0;
+	if( y >= RADAR_CELL_HEIGHT )
+		y = RADAR_CELL_HEIGHT - 1;
+
+	world->x = x * m_xSample;
+	world->y = y * m_ySample;
 
 	// find the terrain height here
-	world->z = TheTerrainLogic->getGroundHeight( world->x, world->y );
+	world->z = reinterpret_cast<BfmeTerrainHeightView *>(TheTerrainLogic)->getGroundHeight(
+		world->x, world->y );
 	
 	return TRUE;  // valid translation
 
