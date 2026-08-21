@@ -4839,3 +4839,5 @@ span-tightness-predicts-coherence-but-not-perfectly	0x003B8450	41	converted	CALI
 ?d_005165f0@@YAXXZ	0x005165F0	5	converted	t=4min model=gpt-5.6-sol exact clean C++ byte-field clear; C6 41 17 00 C3 matched via TinyByteFieldSetters.cpp; add_match and focused build passed; identity address-derived
 ?d_008143f0@@YAXXZ	0x008143F0	5	attempted	t=1min claimed fresh scaffold-only empty void body; retail=55 8B EC 5D C3; identity remains address-derived
 ?d_008143f0@@YAXXZ	0x008143F0	5	converted	t=2min exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva008143F0Empty.cpp; identity remains address-derived
+?d_008118e0@@YAXXZ	0x008118E0	5	attempted	t=1min model=grok-code exact empty cdecl 55 8B EC 5D C3; Ghidra=FUN_00c118e0; identity remains address-derived
+?d_008118e0@@YAXXZ	0x008118E0	5	converted	t=3min model=grok-code exact clean C++ empty void body under source-local /Od; 55 8B EC 5D C3 matched via Rva008118E0Empty.cpp; add_match and targeted build.py passed; identity remains address-derived
