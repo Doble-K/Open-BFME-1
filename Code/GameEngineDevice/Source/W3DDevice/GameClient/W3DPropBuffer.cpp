@@ -144,14 +144,24 @@ W3DPropBuffer::W3DPropBuffer(void)
 //=============================================================================
 /** Removes all props. */
 //=============================================================================
-// ?clearAllProps@W3DPropBuffer@@QAEXXZ present-unmatched
 void W3DPropBuffer::clearAllProps(void)
 {
-	m_numProps=0;
 	Int i;
+	for (i=0; i<m_numProps; i++) {
+		if (m_props[i].m_robj) {
+			m_props[i].m_robj->Release_Ref();
+			m_props[i].m_robj = NULL;
+		}
+	}
+	m_numProps=0;
 	for (i=0; i<MAX_TYPES; i++) {
-		REF_PTR_RELEASE(m_propTypes[i].m_robj);
+		if (m_propTypes[i].m_robj) {
+			m_propTypes[i].m_robj->Release_Ref();
+			m_propTypes[i].m_robj = NULL;
+		}
+		#pragma inline_depth(0)
 		m_propTypes[i].m_robjName.clear();
+		#pragma inline_depth(255)
 	}
 	m_numPropTypes = 0;
 }
