@@ -74635,3 +74635,5 @@ __real@40490fdb,0x00C87B14,Weapon constructor positive-pi comparison operand; re
 ??0CommandSet@@QAE@ABVAsciiString@@@Z,0x000428CA,ControlBar newCommandSet retail constructor-call ILT
 ?friend_addToList@CommandSet@@QAEXPAPAV1@@Z,0x00037DDA,ControlBar newCommandSet retail list-link call ILT
 ??0CommandButton@@QAE@XZ,0x00016F18,ControlBar newCommandButton retail constructor-call ILT
+?getFileID@NetFileProgressCommandMsg@@QAEGXZ,0x00012C15,ILT thunk; NetPacket::addFileProgressCommand at 0x0067A700 calls it where Zero Hour calls getFileID
+?getProgress@NetFileProgressCommandMsg@@QAEHXZ,0x00033668,ILT thunk; NetPacket::addFileProgressCommand at 0x0067A700 calls it where Zero Hour calls getProgress
