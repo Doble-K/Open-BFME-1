@@ -73,13 +73,25 @@ static int _VertexBufferCount;
 static int _VertexBufferTotalVertices;
 static int _VertexBufferTotalSize;
 
+// BFME's FVF record has one more dword than the Zero Hour class in dx8fvf.h.
+class BFMEVertexFVFInfo
+{
+public:
+	BFMEVertexFVFInfo(unsigned FVF, unsigned vertex_size);
+	unsigned Get_FVF_Size() const { return fvf_size; }
+
+private:
+	unsigned FVF;
+	unsigned fvf_size;
+	unsigned char m_layout[0x38];
+};
+
 // ----------------------------------------------------------------------------
 //
 //
 //
 // ----------------------------------------------------------------------------
 
-// ??0VertexBufferClass@@ present-unmatched
 VertexBufferClass::VertexBufferClass(unsigned type_, unsigned FVF, unsigned short vertex_count_, unsigned vertex_size)
 	:
 	VertexCount(vertex_count_),
@@ -90,11 +102,15 @@ VertexBufferClass::VertexBufferClass(unsigned type_, unsigned FVF, unsigned shor
 	WWASSERT(VertexCount);
 	WWASSERT(type==BUFFER_TYPE_DX8 || type==BUFFER_TYPE_SORTING);
 	WWASSERT((FVF!=0 && vertex_size==0) || (FVF==0 && vertex_size!=0));
-	fvf_info=W3DNEW FVFInfoClass(FVF,vertex_size);
+	*reinterpret_cast<bool *>(reinterpret_cast<unsigned char *>(this) + 0x18) = false;
+	BFMEVertexFVFInfo *retailFVFInfo = ::new BFMEVertexFVFInfo(FVF, vertex_size);
+	fvf_info = reinterpret_cast<FVFInfoClass *>(retailFVFInfo);
+	// BFME records whether the explicit vertex-size form constructed this buffer; ZH removed this field.
+	*reinterpret_cast<bool *>(reinterpret_cast<unsigned char *>(this) + 0x18) = vertex_size != 0;
 
 	_VertexBufferCount++;
 	_VertexBufferTotalVertices+=VertexCount;
-	_VertexBufferTotalSize+=VertexCount*fvf_info->Get_FVF_Size();
+	_VertexBufferTotalSize += VertexCount * retailFVFInfo->Get_FVF_Size();
 #ifdef VERTEX_BUFFER_LOG
 	WWDEBUG_SAY(("New VB, %d vertices, size %d bytes\n",VertexCount,VertexCount*fvf_info->Get_FVF_Size()));
 	WWDEBUG_SAY(("Total VB count: %d, total %d vertices, total size %d bytes\n",

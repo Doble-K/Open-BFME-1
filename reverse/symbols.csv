@@ -74610,3 +74610,4 @@ _W3RbDecrement,0x0082B8E0,alias pin for the red-black tree node decrement helper
 ?testStatus@BFMEActionObject@@QBE_NH@Z,0x000016A4,BFME Object status helper ILT decoded from ActionManager::canGetHealedAt
 ?isKindOf@BFMEActionThing@@QBE_NH@Z,0x0003251F,BFME Thing kind helper ILT decoded from ActionManager::canGetHealedAt
 ?getShroudedStatus@Object@@QBE?AW4ObjectShroudStatus@@H@Z,0x0002B81E,Object shroud-status ILT decoded from isObjectShroudedForAction retail callsite
+??0BFMEVertexFVFInfo@@QAE@II@Z,0x00964270,VertexBufferClass retail call targets the wrapper around the 0x40-byte FVF bit-layout initializer at 0x00964150
