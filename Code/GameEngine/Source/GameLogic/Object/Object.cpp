@@ -807,13 +807,15 @@ void Object::setGeometryInfoZ( Real newZ )
 }
 
 //=============================================================================
-// ?friend_setUndetectedDefector@Object@@QAEX_N@Z present-unmatched
+// BFME: m_privateStatus lives at +0x344.
 void Object::friend_setUndetectedDefector( Bool status )
 {
+	UnsignedByte &privateStatus =
+		*reinterpret_cast<UnsignedByte *>( reinterpret_cast<char *>(this) + 0x344 );
 	if (status)
-		m_privateStatus |= UNDETECTED_DEFECTOR;
+		privateStatus |= UNDETECTED_DEFECTOR;
 	else
-		m_privateStatus &= ~UNDETECTED_DEFECTOR;
+		privateStatus &= ~UNDETECTED_DEFECTOR;
 }
 
 //=============================================================================
@@ -1251,10 +1253,12 @@ Bool Object::testArmorSetFlag(ArmorSetType ast) const
 }
 
 //=============================================================================
-// ?reloadAllAmmo@Object@@QAEX_N@Z present-unmatched
+// BFME: m_weaponSet lives at +0x264.
 void Object::reloadAllAmmo(Bool now)
 {
-	m_weaponSet.reloadAllAmmo(this, now);
+	WeaponSet *weaponSet =
+		reinterpret_cast<WeaponSet *>( reinterpret_cast<char *>(this) + 0x264 );
+	weaponSet->reloadAllAmmo(this, now);
 }
 
 //=============================================================================
@@ -1489,7 +1493,6 @@ Bool Object::getAmmoPipShowingInfo(Int& numTotal, Int& numFull) const
 	where we already know that isAbleToAttack() == true. so you should always
 	call isAbleToAttack prior to calling this! (srj)
 */
-// ?getAbleToAttackSpecificObject@Object@@QBE?AW4CanAttackResult@@W4AbleToAttackType@@PBV1@W4CommandSourceType@@W4WeaponSlotType@@@Z present-unmatched
 CanAttackResult Object::getAbleToAttackSpecificObject( AbleToAttackType t, const Object* target, CommandSourceType commandSource, WeaponSlotType specificSlot ) const
 {
 	// NO! BAD! WRONG!
@@ -1497,8 +1500,10 @@ CanAttackResult Object::getAbleToAttackSpecificObject( AbleToAttackType t, const
 	//if (!isAbleToAttack())
 	//	return FALSE;
 
-	// Otherwise leave it up to our weapons.
-	return m_weaponSet.getAbleToAttackSpecificObject( t, this, target, commandSource, specificSlot );
+	// Otherwise leave it up to our weapons.  BFME: m_weaponSet lives at +0x264.
+	const WeaponSet *weaponSet =
+		reinterpret_cast<const WeaponSet *>( reinterpret_cast<const char *>(this) + 0x264 );
+	return weaponSet->getAbleToAttackSpecificObject( t, this, target, commandSource, specificSlot );
 }
 
 //=============================================================================
@@ -1511,10 +1516,12 @@ CanAttackResult Object::getAbleToUseWeaponAgainstTarget( AbleToAttackType attack
 
 
 //=============================================================================
-// ?chooseBestWeaponForTarget@Object@@QAE_NPBV1@W4WeaponChoiceCriteria@@W4CommandSourceType@@@Z present-unmatched
+// BFME: m_weaponSet lives at +0x264.
 Bool Object::chooseBestWeaponForTarget(const Object* target, WeaponChoiceCriteria criteria, CommandSourceType cmdSource )
 {
-	return m_weaponSet.chooseBestWeaponForTarget(this, target, criteria, cmdSource );
+	WeaponSet *weaponSet =
+		reinterpret_cast<WeaponSet *>( reinterpret_cast<char *>(this) + 0x264 );
+	return weaponSet->chooseBestWeaponForTarget(this, target, criteria, cmdSource );
 }
 
 //DECLARE_PERF_TIMER(fireCurrentWeapon)
@@ -1680,19 +1687,20 @@ void Object::setBuilder( const Object *obj )
 }
 
 //=============================================================================
-// ?setCustomIndicatorColor@Object@@QAEXH@Z present-unmatched
+// BFME: m_indicatorColor lives at +0x244.
 void Object::setCustomIndicatorColor(Color c) 
 { 
-	if (m_indicatorColor != c)
+	Color &indicatorColor =
+		*reinterpret_cast<Color *>( reinterpret_cast<char *>(this) + 0x244 );
+	if (indicatorColor != c)
 	{
-		m_indicatorColor = c;
+		indicatorColor = c;
 		if (m_drawable)
 			m_drawable->changedTeam();
 	}
 }
 
 //=============================================================================
-// ?removeCustomIndicatorColor@Object@@QAEXXZ present-unmatched
 void Object::removeCustomIndicatorColor() 
 { 
 	setCustomIndicatorColor(0); 
@@ -1702,49 +1710,56 @@ void Object::removeCustomIndicatorColor()
 // Object::getIndicatorColor
 //=============================================================================
 // ?getIndicatorColor@Object@@QBEHXZ present-unmatched
+// BFME: m_indicatorColor +0x244, m_team +0x23c, Player::m_color +0x1c4.
 Color Object::getIndicatorColor() const
 {
-	if (m_indicatorColor == 0)
+	const Color indicatorColor =
+		*reinterpret_cast<const Color *>( reinterpret_cast<const char *>(this) + 0x244 );
+	if (indicatorColor == 0)
 	{
-		const Team *myTeam = getTeam();
+		const Team *myTeam =
+			*reinterpret_cast<Team *const *>( reinterpret_cast<const char *>(this) + 0x23c );
 		if (myTeam)
 		{
 			const Player* p = myTeam->getControllingPlayer();
 			if (p)
 			{
-				return p->getPlayerColor();
+				return *reinterpret_cast<const Color *>( reinterpret_cast<const char *>(p) + 0x1c4 );
 			}
 		}
 		return GameMakeColor(0, 0, 0, 255);
 	}
 	else
 	{
-		return m_indicatorColor;
+		return indicatorColor;
 	}
 }
 
 //=============================================================================
 // Object::getNightIndicatorColor - used to make blue/purple easier to see on night models.
 //=============================================================================
-// ?getNightIndicatorColor@Object@@QBEHXZ present-unmatched
+// BFME: m_indicatorColor +0x244, m_team +0x23c, Player::m_nightColor +0x1c8.
 Color Object::getNightIndicatorColor() const
 {
-	if (m_indicatorColor == 0)
+	const Color indicatorColor =
+		*reinterpret_cast<const Color *>( reinterpret_cast<const char *>(this) + 0x244 );
+	if (indicatorColor == 0)
 	{
-		const Team *myTeam = getTeam();
+		const Team *myTeam =
+			*reinterpret_cast<Team *const *>( reinterpret_cast<const char *>(this) + 0x23c );
 		if (myTeam)
 		{
 			const Player* p = myTeam->getControllingPlayer();
 			if (p)
 			{
-				return p->getPlayerNightColor();
+				return *reinterpret_cast<const Color *>( reinterpret_cast<const char *>(p) + 0x1c8 );
 			}
 		}
 		return GameMakeColor(0, 0, 0, 255);
 	}
 	else
 	{
-		return m_indicatorColor;
+		return indicatorColor;
 	}
 }
 
@@ -1815,22 +1830,26 @@ inline Bool isAngleDifferent(Real a, Real b)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?reactToTurretChange@Object@@UAEXW4WhichTurretType@@MM@Z present-unmatched
+// BFME: m_ai lives at +0x204 and m_contain at +0x1fc.
 void Object::reactToTurretChange( WhichTurretType turret, Real oldRotation, Real oldPitch )
 {
+	AIUpdateInterface *ai =
+		*reinterpret_cast<AIUpdateInterface *const *>( reinterpret_cast<char *>(this) + 0x204 );
 	Real currentRotation = 0.0f;
 	Real currentPitch = 0.0f;
-	if( getAI() )
+	if( ai )
 	{
-		getAI()->getTurretRotAndPitch( turret, &currentRotation, &currentPitch );
+		ai->getTurretRotAndPitch( turret, &currentRotation, &currentPitch );
 	}
 	Bool rotationChange = (currentRotation != oldRotation);
 //	Bool pitchChange = (currentPitch != oldPitch);
 
 	if( rotationChange )
 	{
-		if (getContain())
-			getContain()->containReactToTransformChange();
+		ContainModuleInterface *contain =
+			*reinterpret_cast<ContainModuleInterface *const *>( reinterpret_cast<char *>(this) + 0x1fc );
+		if (contain)
+			contain->containReactToTransformChange();
 	}
 }
 
@@ -1972,14 +1991,14 @@ void Object::attemptHealing(Real amount, const Object* source)
 	}
 }
 
-// ?getSoleHealingBenefactor@Object@@QBE?AW4ObjectID@@XZ present-unmatched
+// BFME: m_soleHealingBenefactorID +0x2d0, m_soleHealingBenefactorExpirationFrame +0x2d4.
 ObjectID Object::getSoleHealingBenefactor( void ) const 
 {
 	UnsignedInt now = TheGameLogic->getFrame();
-	if( now > m_soleHealingBenefactorExpirationFrame )
+	if( now > *reinterpret_cast<const UnsignedInt *>( reinterpret_cast<const char *>(this) + 0x2d4 ) )
 		return INVALID_ID;
 
-	return	m_soleHealingBenefactorID; 
+	return	*reinterpret_cast<const ObjectID *>( reinterpret_cast<const char *>(this) + 0x2d0 ); 
 
 }
 
@@ -2450,12 +2469,51 @@ void Object::checkDisabledStatus()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?pauseAllSpecialPowers@Object@@QBEX_N@Z present-unmatched
+// BFME: m_behaviors sits at +0x1f0, each module carries a second (interface)
+// base at module+0xc, BehaviorModuleInterface::getSpecialPower is slot 7
+// (+0x1c) of that vtable and SpecialPowerModuleInterface::pauseCountdown is
+// slot 10 (+0x28).
 void Object::pauseAllSpecialPowers( const Bool disabling ) const
 { 
-	for (BehaviorModule** m = m_behaviors; *m; ++m)
+	struct BFMEObjectBehaviorsField
 	{
-		SpecialPowerModuleInterface* sp = (*m)->getSpecialPower();
+		unsigned char pad[0x1f0];
+		BehaviorModule *const *behaviors;
+	};
+	BehaviorModule *const *behaviors =
+		reinterpret_cast<const BFMEObjectBehaviorsField *>(this)->behaviors;
+
+	struct BFMESpecialPowerPauseShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual void bfmeSlot7() = 0;
+		virtual void bfmeSlot8() = 0;
+		virtual void bfmeSlot9() = 0;
+		virtual void pauseCountdown( Bool disabling ) = 0;
+	};
+	struct BFMEModuleSpecialPowerShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual BFMESpecialPowerPauseShim* getSpecialPower() = 0;
+	};
+
+	for (BehaviorModule *const *m = behaviors; *m; ++m)
+	{
+		char *adjusted = reinterpret_cast<char *>( const_cast<BehaviorModule *>( *m ) ) + 0xc;
+		BFMESpecialPowerPauseShim* sp =
+			reinterpret_cast<BFMEModuleSpecialPowerShim *>( adjusted )->getSpecialPower();
 		if (!sp)
 			continue;
 
@@ -2510,12 +2568,39 @@ void Object::onCollide( Object *other, const Coord3D *loc, const Coord3D *normal
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?isSalvageCrate@Object@@QBE_NXZ present-unmatched
+// BFME: BehaviorModuleInterface::getCollide is slot 1 (+0x04) of the interface
+// vtable at module+0xc; CollideModuleInterface::isSalvageCrateCollide is slot
+// 5 (+0x14).
 Bool Object::isSalvageCrate() const
 {
-	for( BehaviorModule** m = m_behaviors; *m; ++m )
+	struct BFMEObjectBehaviorsField
 	{
-		CollideModuleInterface* collide = (*m)->getCollide();
+		unsigned char pad[0x1f0];
+		BehaviorModule *const *behaviors;
+	};
+	BehaviorModule *const *behaviors =
+		reinterpret_cast<const BFMEObjectBehaviorsField *>(this)->behaviors;
+
+	struct BFMECollideSalvageShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual Bool isSalvageCrateCollide() = 0;
+	};
+	struct BFMEModuleCollideShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual BFMECollideSalvageShim* getCollide() = 0;
+	};
+
+	for( BehaviorModule *const *m = behaviors; *m; ++m )
+	{
+		char *adjusted = reinterpret_cast<char *>( const_cast<BehaviorModule *>( *m ) ) + 0xc;
+		BFMECollideSalvageShim* collide =
+			reinterpret_cast<BFMEModuleCollideShim *>( adjusted )->getCollide();
 		if( collide && collide->isSalvageCrateCollide() )
 		{
 			return true;
@@ -2568,12 +2653,47 @@ void Object::updateUpgradeModules()
 //stored in W3DDrawModule. When we revert back to the original bomb truck, we call this function to 
 //recalculate those upgraded subobjects.
 //-------------------------------------------------------------------------------------------------
-// ?forceRefreshSubObjectUpgradeStatus@Object@@QAEXXZ present-unmatched
+// BFME: BehaviorModuleInterface::getUpgrade is slot 9 (+0x24) of the interface
+// vtable at module+0xc; UpgradeModuleInterface::isSubObjectsUpgrade is slot 4
+// (+0x10) and forceRefreshUpgrade slot 5 (+0x14).
 void Object::forceRefreshSubObjectUpgradeStatus()
 {
-	for (BehaviorModule** module = m_behaviors; *module; ++module)
+	struct BFMEObjectBehaviorsField
 	{
-		UpgradeModuleInterface* upgrade = (*module)->getUpgrade();
+		unsigned char pad[0x1f0];
+		BehaviorModule *const *behaviors;
+	};
+	BehaviorModule *const *behaviors =
+		reinterpret_cast<const BFMEObjectBehaviorsField *>(this)->behaviors;
+
+	struct BFMEUpgradeRefreshShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual Bool isSubObjectsUpgrade() = 0;
+		virtual void forceRefreshUpgrade() = 0;
+	};
+	struct BFMEModuleUpgradeShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual void bfmeSlot7() = 0;
+		virtual void bfmeSlot8() = 0;
+		virtual BFMEUpgradeRefreshShim* getUpgrade() = 0;
+	};
+
+	for (BehaviorModule *const *module = behaviors; *module; ++module)
+	{
+		char *adjusted = reinterpret_cast<char *>( const_cast<BehaviorModule *>( *module ) ) + 0xc;
+		BFMEUpgradeRefreshShim* upgrade =
+			reinterpret_cast<BFMEModuleUpgradeShim *>( adjusted )->getUpgrade();
 		if (!upgrade)
 			continue;
 
@@ -2749,11 +2869,13 @@ void Object::setLayer(PathfindLayerEnum layer)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?setDestinationLayer@Object@@QAEXW4PathfindLayerEnum@@@Z present-unmatched
+// BFME: m_destinationLayer lives at +0x318.
 void Object::setDestinationLayer(PathfindLayerEnum layer)
 {
-	if (layer!=m_destinationLayer) {
-		m_destinationLayer = layer;
+	PathfindLayerEnum &destinationLayer =
+		*reinterpret_cast<PathfindLayerEnum *>( reinterpret_cast<char *>(this) + 0x318 );
+	if (layer!=destinationLayer) {
+		destinationLayer = layer;
 	}
 }
 
@@ -2784,10 +2906,27 @@ void Object::setID( ObjectID id )
 
 // ------------------------------------------------------------------------------------------------
 // ?calculateHeightAboveTerrain@Object@@MBEMXZ present-unmatched
+// BFME: m_layer lives at +0x314 and TerrainLogic::getLayerHeight is vtable
+// slot 7 (+0x1c), not the header's slot 6 (+0x18).
 Real Object::calculateHeightAboveTerrain(void) const 
 {
+	struct BFMETerrainLayerHeightShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual Real getLayerHeight( Real x, Real y, PathfindLayerEnum layer, Coord3D *pos, Bool clip ) = 0;
+	};
+
+	const PathfindLayerEnum layer =
+		*reinterpret_cast<const PathfindLayerEnum *>( reinterpret_cast<const char *>(this) + 0x314 );
 	const Coord3D* pos = getPosition();
-	Real terrainZ = TheTerrainLogic->getLayerHeight( pos->x, pos->y, m_layer );
+	Real terrainZ = reinterpret_cast<BFMETerrainLayerHeightShim *>( TheTerrainLogic )
+		->getLayerHeight( pos->x, pos->y, layer, NULL, true );
 	Real myZ = pos->z;
 	return myZ - terrainZ;
 }
@@ -3044,10 +3183,10 @@ void Object::friend_bindToDrawable( Drawable *draw )
 }	
 
 //-------------------------------------------------------------------------------------------------
-// ?setSelectable@Object@@QAEX_N@Z present-unmatched
+// BFME: m_isSelectable lives at +0x340.
 void Object::setSelectable(Bool selectable) 
 { 
-	m_isSelectable = selectable; 
+	*reinterpret_cast<Bool *>( reinterpret_cast<char *>(this) + 0x340 ) = selectable; 
 	if (m_drawable)
 	{
 		m_drawable->setSelectable(selectable);
@@ -5255,7 +5394,9 @@ void Object::notifySubdualDamage( Real amount )
 /** Given a special power template, find the module in the object that can implement it.
 	* There can be at most one */
 //-------------------------------------------------------------------------------------------------
-// ?getSpecialPowerModule@Object@@QBEPAVSpecialPowerModuleInterface@@PBVSpecialPowerTemplate@@@Z present-unmatched
+// BFME: SpecialPowerModuleInterface::isModuleForPower is slot 0 of its own
+// vtable; getSpecialPower is slot 7 (+0x1c) of the interface vtable at
+// module+0xc, and m_behaviors is at +0x1f0.
 SpecialPowerModuleInterface *Object::getSpecialPowerModule( const SpecialPowerTemplate *specialPowerTemplate ) const
 {
 
@@ -5263,15 +5404,41 @@ SpecialPowerModuleInterface *Object::getSpecialPowerModule( const SpecialPowerTe
 	if( specialPowerTemplate == NULL )
 		return NULL;
 
-	// search the modules for the one with the matching template
-	for( BehaviorModule** m = m_behaviors; *m; ++m )
+	struct BFMEObjectBehaviorsField
 	{
-		SpecialPowerModuleInterface* sp = (*m)->getSpecialPower();
+		unsigned char pad[0x1f0];
+		BehaviorModule *const *behaviors;
+	};
+	BehaviorModule *const *behaviors =
+		reinterpret_cast<const BFMEObjectBehaviorsField *>(this)->behaviors;
+
+	struct BFMESpecialPowerIsForShim
+	{
+		virtual Bool isModuleForPower( const SpecialPowerTemplate *t ) const = 0;
+	};
+	struct BFMEModuleSpecialPowerShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual BFMESpecialPowerIsForShim* getSpecialPower() = 0;
+	};
+
+	// search the modules for the one with the matching template
+	for( BehaviorModule *const *m = behaviors; *m; ++m )
+	{
+		char *adjusted = reinterpret_cast<char *>( const_cast<BehaviorModule *>( *m ) ) + 0xc;
+		BFMESpecialPowerIsForShim* sp =
+			reinterpret_cast<BFMEModuleSpecialPowerShim *>( adjusted )->getSpecialPower();
 		if (!sp)
 			continue;
 
 		if( sp->isModuleForPower( specialPowerTemplate ) )
-			return sp;
+			return (SpecialPowerModuleInterface *)sp;
 	}
 
 	return NULL;
@@ -5281,7 +5448,6 @@ SpecialPowerModuleInterface *Object::getSpecialPowerModule( const SpecialPowerTe
 //-------------------------------------------------------------------------------------------------
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
-// ?doSpecialPower@Object@@QAEXPBVSpecialPowerTemplate@@I_N@Z present-unmatched
 void Object::doSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, UnsignedInt commandOptions, Bool forced )
 {
 
@@ -5292,17 +5458,32 @@ void Object::doSpecialPower( const SpecialPowerTemplate *specialPowerTemplate, U
 	if( !forced && TheSpecialPowerStore->canUseSpecialPower( this, specialPowerTemplate ) == FALSE )
 		return;
 
+	struct BFMEDoSpecialPowerShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual void bfmeSlot7() = 0;
+		virtual void bfmeSlot8() = 0;
+		virtual void bfmeSlot9() = 0;
+		virtual void bfmeSlot10() = 0;
+		virtual void doSpecialPower( UnsignedInt commandOptions ) = 0;
+	};
+
 	// get the module and execute
 	SpecialPowerModuleInterface *mod = getSpecialPowerModule( specialPowerTemplate );
 	if( mod )
-		mod->doSpecialPower( commandOptions );
+		reinterpret_cast<BFMEDoSpecialPowerShim *>( mod )->doSpecialPower( commandOptions );
 
 }
 
 //-------------------------------------------------------------------------------------------------
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
-// ?doSpecialPowerAtObject@Object@@QAEXPBVSpecialPowerTemplate@@PAV1@I_N@Z present-unmatched
 void Object::doSpecialPowerAtObject( const SpecialPowerTemplate *specialPowerTemplate, Object *obj, UnsignedInt commandOptions, Bool forced )
 {
 
@@ -5313,16 +5494,32 @@ void Object::doSpecialPowerAtObject( const SpecialPowerTemplate *specialPowerTem
 	if( !forced && TheSpecialPowerStore->canUseSpecialPower( this, specialPowerTemplate ) == FALSE )
 		return;
 
+	struct BFMEDoSpecialPowerAtObjectShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual void bfmeSlot7() = 0;
+		virtual void bfmeSlot8() = 0;
+		virtual void bfmeSlot9() = 0;
+		virtual void bfmeSlot10() = 0;
+		virtual void bfmeSlot11() = 0;
+		virtual void doSpecialPowerAtObject( Object *obj, UnsignedInt commandOptions ) = 0;
+	};
+
 	// get the module and execute
 	SpecialPowerModuleInterface *mod = getSpecialPowerModule( specialPowerTemplate );
 	if( mod )
-		mod->doSpecialPowerAtObject( obj, commandOptions );
+		reinterpret_cast<BFMEDoSpecialPowerAtObjectShim *>( mod )->doSpecialPowerAtObject( obj, commandOptions );
 }
 
 //-------------------------------------------------------------------------------------------------
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
-// ?doSpecialPowerAtLocation@Object@@QAEXPBVSpecialPowerTemplate@@PBUCoord3D@@MI_N@Z present-unmatched
 void Object::doSpecialPowerAtLocation( const SpecialPowerTemplate *specialPowerTemplate, 
 																			 const Coord3D *loc, Real angle, UnsignedInt commandOptions, Bool forced )
 {
@@ -5334,10 +5531,29 @@ void Object::doSpecialPowerAtLocation( const SpecialPowerTemplate *specialPowerT
 	if( !forced && TheSpecialPowerStore->canUseSpecialPower( this, specialPowerTemplate ) == FALSE )
 		return;
 
+	struct BFMEDoSpecialPowerAtLocationShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual void bfmeSlot7() = 0;
+		virtual void bfmeSlot8() = 0;
+		virtual void bfmeSlot9() = 0;
+		virtual void bfmeSlot10() = 0;
+		virtual void bfmeSlot11() = 0;
+		virtual void bfmeSlot12() = 0;
+		virtual void bfmeSlot13() = 0;
+		virtual void doSpecialPowerAtLocation( const Coord3D *loc, Real angle, UnsignedInt commandOptions ) = 0;
+	};
+
 	// get the module and execute
 	SpecialPowerModuleInterface *mod = getSpecialPowerModule( specialPowerTemplate );
 	if( mod )
-		mod->doSpecialPowerAtLocation( loc, angle, commandOptions );
+		reinterpret_cast<BFMEDoSpecialPowerAtLocationShim *>( mod )->doSpecialPowerAtLocation( loc, angle, commandOptions );
 
 }  
 
@@ -5823,19 +6039,48 @@ DockUpdateInterface *Object::getDockUpdateInterface( void )
 // ------------------------------------------------------------------------------------------------
 // Search our special power modules for a specific one.
 // ------------------------------------------------------------------------------------------------
-// ?findSpecialPowerModuleInterface@Object@@QBEPAVSpecialPowerModuleInterface@@W4SpecialPowerType@@@Z present-unmatched
+// BFME: m_behaviors +0x1f0, interface base at module+0xc, getSpecialPower
+// slot 7 (+0x1c), SpecialPowerModuleInterface::getSpecialPowerTemplate slot 6
+// (+0x18).  Retail has NO `|| type == SPECIAL_INVALID` arm -- the loop simply
+// falls through when the template type does not match.
 SpecialPowerModuleInterface* Object::findSpecialPowerModuleInterface( SpecialPowerType type ) const
 {
-	for (BehaviorModule** m = m_behaviors; *m; ++m)
+	struct BFMESpecialPowerTemplateShim
 	{
-		SpecialPowerModuleInterface* sp = (*m)->getSpecialPower();
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual const SpecialPowerTemplate *getSpecialPowerTemplate() const = 0;
+	};
+	struct BFMEModuleSpecialPowerShim
+	{
+		virtual void bfmeSlot0() = 0;
+		virtual void bfmeSlot1() = 0;
+		virtual void bfmeSlot2() = 0;
+		virtual void bfmeSlot3() = 0;
+		virtual void bfmeSlot4() = 0;
+		virtual void bfmeSlot5() = 0;
+		virtual void bfmeSlot6() = 0;
+		virtual BFMESpecialPowerTemplateShim* getSpecialPower() = 0;
+	};
+
+	BehaviorModule *const *behaviors =
+		*reinterpret_cast<BehaviorModule *const *const *>( reinterpret_cast<const char *>(this) + 0x1f0 );
+	for (BehaviorModule *const *m = behaviors; *m; ++m)
+	{
+		char *adjusted = reinterpret_cast<char *>( const_cast<BehaviorModule *>( *m ) ) + 0xc;
+		BFMESpecialPowerTemplateShim* sp =
+			reinterpret_cast<BFMEModuleSpecialPowerShim *>( adjusted )->getSpecialPower();
 		if (!sp)
 			continue;
 
 		const SpecialPowerTemplate *spTemplate = sp->getSpecialPowerTemplate();
-		if (spTemplate && spTemplate->getSpecialPowerType() == type || type == SPECIAL_INVALID )
+		if (spTemplate && spTemplate->getSpecialPowerType() == type)
 		{
-			return sp; 
+			return (SpecialPowerModuleInterface *)sp; 
 		}
 	}
 	return NULL;
@@ -6296,15 +6541,18 @@ void Object::defect( Team* newTeam, UnsignedInt detectionTime )
 // Object::goInvulnerable
 //=============================================================================
 // ?goInvulnerable@Object@@QAEXI@Z present-unmatched
+// BFME: m_defectionHelper lives at +0x1e4.
 void Object::goInvulnerable( UnsignedInt time )
 {
 	const Bool WITHOUT_DEFECTOR_FX = FALSE;
 
+	ObjectDefectionHelper *defectionHelper =
+		*reinterpret_cast<ObjectDefectionHelper *const *>( reinterpret_cast<char *>(this) + 0x1e4 );
 
 	friend_setUndetectedDefector( time > 0 );
 
-	if (m_defectionHelper)
-		m_defectionHelper->startDefectionTimer(time, WITHOUT_DEFECTOR_FX);
+	if (defectionHelper)
+		defectionHelper->startDefectionTimer(time, WITHOUT_DEFECTOR_FX);
 
 }
 
@@ -6354,27 +6602,29 @@ RadarPriorityType Object::getRadarPriority( void ) const
 // ------------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------
-// ?enterGroup@Object@@QAEXPAVAIGroup@@@Z present-unmatched
+// BFME: m_group lives at +0x188.
 void Object::enterGroup( AIGroup *group )
 {
 //	DEBUG_LOG(("***AIGROUP %x involved in enterGroup on %x\n", group, this));
 	// if we are in another group, remove ourselves from it first
 	leaveGroup();
 
-	m_group = group;
+	*reinterpret_cast<AIGroup **>( reinterpret_cast<char *>(this) + 0x188 ) = group;
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?leaveGroup@Object@@QAEXXZ present-unmatched
+// BFME: m_group lives at +0x188.
 void Object::leaveGroup( void )
 {
 //	DEBUG_LOG(("***AIGROUP %x involved in leaveGroup on %x\n", m_group, this));
 	// if we are in a group, remove ourselves from it
-	if (m_group)
+	AIGroup *&groupField =
+		*reinterpret_cast<AIGroup **>( reinterpret_cast<char *>(this) + 0x188 );
+	if (groupField)
 	{
 		// to avoid recursion, set m_group to NULL before removing
-		AIGroup *group = m_group;
-		m_group = NULL;
+		AIGroup *group = groupField;
+		groupField = NULL;
 		group->remove( this );
 	}
 }

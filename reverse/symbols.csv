@@ -74501,3 +74501,94 @@ _GdiplusShutdown@4,0x009F6C10,gdiplus.dll import stub (direct REL32 call site; s
 ?u4Next005F5120@@YAXPAVINI@@PAX1PBX@Z,0x005F50B0,U4 lane: four-argument callee reached from 0x005F5120 and 0x005FF120; address-derived name
 ?u4Next005F8AE0@@YAXPAVINI@@PAX1PBX@Z,0x005C8AA0,U4 lane: four-argument callee tail-jumped to by 0x005F8AE0; address-derived name
 ?poke@U4Global006094C0@@QAEXXZ,0x006159C0,U4 lane: no-argument tail callee of the guarded jump at 0x006094C0; address-derived name
+?reset@Rva007E8810Message@@QAEXXZ,0x007E8AC0,V2 lane: FESL message reset(); same body the tree also names ?run@Rva007E8AC0@@QAEXXZ
+?addString@Rva007E8810Message@@QAEXPBD0@Z,0x007E8A10,V2 lane: FESL message append key/value string field
+?addInt@Rva007E8810Message@@QAEXPBDH@Z,0x007E88D0,V2 lane: FESL message append key/value int field
+?addInt64@Rva007E8810Message@@QAEXPBD_J@Z,0x007E8E90,V2 lane: FESL message append key/value __int64 field via %I64d
+?addBool@Rva007E8810Message@@QAEXPBD_N@Z,0x007E8980,V2 lane: FESL message append key/value bool field
+?setError@Rva007E8810Message@@QAEXH@Z,0x007E88C0,V2 lane: FESL message store error code; same body as ?m@Gen_007e88c0@@QAEXH@Z
+??1GenBase003BB1E0@@QAE@XZ,0x003BB260,base destructor tail-jumped by the vptr-only derived destructors in V4VptrDestructorTails.cpp; counterpart of the base constructor pinned at 0x003BB1E0
+?getInt@Rva007E8810Message@@QAEHPBDH@Z,0x007E8900,V2 lane: FESL message lookup int field by key with default
+?getString@Rva007E8810Message@@QAE_NPBDPADH@Z,0x007E8A80,V2 lane: FESL message lookup string field by key into a sized buffer
+?getInt64@Rva007E8810Message@@QAE_JPBD_J@Z,0x007E8930,V2 lane: FESL message lookup __int64 field by key with default
+??0Rva007FBC30GameKey@@QAE@PAVRva007E8810Message@@@Z,0x007FBC30,V2 lane: FESL Aries LID/GID base constructor; base of the three derived record ctors in V2FeslAriesRecords.cpp
+?find@Gen003C8A50@@QAEPAVGen003C8A50Result@@PBD@Z,0x003C8A50,owner lookup called by the guarded-lookup flag readers in V4GuardedLookupFieldReads.cpp; address-derived name
+??0Rva005EB7B0@@QAE@ABV0@@Z,0x005EB7B0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ED8B0@@QAE@ABV0@@Z,0x005ED8B0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EC1A0@@QAE@ABV0@@Z,0x005EC1A0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EC640@@QAE@ABV0@@Z,0x005EC640,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EC8B0@@QAE@ABV0@@Z,0x005EC8B0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ECAF0@@QAE@ABV0@@Z,0x005ECAF0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ECFA0@@QAE@ABV0@@Z,0x005ECFA0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ED810@@QAE@ABV0@@Z,0x005ED810,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ED9C0@@QAE@ABV0@@Z,0x005ED9C0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EDB50@@QAE@ABV0@@Z,0x005EDB50,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EDCC0@@QAE@ABV0@@Z,0x005EDCC0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EDE20@@QAE@ABV0@@Z,0x005EDE20,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EDFA0@@QAE@ABV0@@Z,0x005EDFA0,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ECD00@@QAE@ABV0@@Z,0x005ECD00,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ED110@@QAE@ABV0@@Z,0x005ED110,base copy constructor forwarded to by the 46-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+?getAbleToAttackSpecificObject@WeaponSet@@QBE?AW4CanAttackResult@@W4AbleToAttackType@@PBVObject@@1W4CommandSourceType@@W4WeaponSlotType@@@Z,0x001EBEB0,callee pin from Object.cpp REL32 site
+?chooseBestWeaponForTarget@WeaponSet@@QAE_NPBVObject@@0W4WeaponChoiceCriteria@@W4CommandSourceType@@@Z,0x001EC3F0,callee pin from Object.cpp REL32 site
+?changedTeam@Drawable@@QAEXXZ,0x00418830,callee pin from Object.cpp REL32 site
+?find@Rva003BAD00Owner@@QAEPAVGen003B9DC0Node@@H@Z,0x003B9DC0,container lookup called by the three virtual-notify members in V4LookupThenVirtualNotify.cpp; address-derived name
+_sprintf,0x009F6DE2,V2 lane: sprintf import thunk (reverse/functions.csv gen-import ?ji_009f6de2@@YAXXZ names the same address)
+@__security_check_cookie@4,0x009F74F4,V2 lane: MSVC 7.1 /GS cookie check helper called in ecx by every /GS epilogue
+??0Rva005EA430@@QAE@ABV0@@Z,0x005EA430,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EA6F0@@QAE@ABV0@@Z,0x005EA6F0,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EA9B0@@QAE@ABV0@@Z,0x005EA9B0,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EABB0@@QAE@ABV0@@Z,0x005EABB0,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EAE70@@QAE@ABV0@@Z,0x005EAE70,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EA310@@QAE@ABV0@@Z,0x005EA310,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EA590@@QAE@ABV0@@Z,0x005EA590,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EA850@@QAE@ABV0@@Z,0x005EA850,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EAAB0@@QAE@ABV0@@Z,0x005EAAB0,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EAD10@@QAE@ABV0@@Z,0x005EAD10,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EB1F0@@QAE@ABV0@@Z,0x005EB1F0,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EAF70@@QAE@ABV0@@Z,0x005EAF70,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EB320@@QAE@ABV0@@Z,0x005EB320,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005ED3E0@@QAE@ABV0@@Z,0x005ED3E0,base copy constructor forwarded to by the 32/39-byte copy-ctor family (V3CopyCtorForwarders.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+?remove@AIGroup@@QAE_NPAVObject@@@Z,0x00151800,callee pin from Object.cpp leaveGroup REL32 site
+?finish@Rva003BEED0@@QAEXXZ,0x003BEC30,niladic member tail-jumped by the two-call forwarder at 0x003BEED0; address-derived name
+?first@Rva003C0E40@@QAEHH@Z,0x003C0500,first half of the chained pair at 0x003C0E40; address-derived name
+?second@Rva003C0E40@@QAEXH@Z,0x003BEBA0,second half of the chained pair at 0x003C0E40; address-derived name
+?step@Gen003C75A0Owner@@QAEXXZ,0x003C75A0,niladic member called on the pointer at +0x28 by 0x003BCA30; address-derived name
+?step@Glo012F1024Type@@QAEXXZ,0x003B3900,niladic member called on the global at 0x012F1024; address-derived name
+?apply@Rva003BF540@@QAEX_N@Z,0x003BD960,boolean applier called by the mirrored-flag update at 0x003BF540; address-derived name
+?test@Rva003BF540@@QAE_NXZ,0x003BEAF0,niladic predicate read by the mirrored-flag update at 0x003BF540; address-derived name
+??0Rva00802E70Element@@QAE@XZ,0x00802E70,V2 lane: 28-byte element constructor placement-new'd by ?allocate@Rva007F77B0Block@@QAEXH@Z
+??0Rva00802D00Element@@QAE@XZ,0x00802D00,V2 lane: 64-byte element constructor placement-new'd by ?allocate@Rva007F7810Block@@QAEXH@Z
+??0GenNode_006fa270@@QAE@ABU0@@Z,0x005C2170,copy constructor of the twelve-byte intrusive list node GenNode_006fa270 (Gen_006fa270.cpp); splices this onto owner+0x98/+0x9C exactly as that file's setOwner does; target read from the REL32 at its call sites
+?hasError@Rva007E8810Message@@QAE_NXZ,0x007E88A0,V2 lane: FESL message error predicate over the word at +0x24; ICF-folded with ?valid@W3DVideoBuffer@@UAE_NXZ
+?getError@Rva007E8810Message@@QAEHXZ,0x007E88B0,V2 lane: FESL message error-code getter; same body as ?m@Gen_007e88b0@@QAEHXZ
+?set@Rva00802DF0Element@@QAEXPBVRva007F4E50Region@@PAVRva007F7980Browser@@@Z,0x00802DF0,V2 lane: 28-byte browser region element fill from a region record
+?set@Rva00802810Element@@QAEXPBVRva007F4EF0Lobby@@PAVRva007F7980Browser@@@Z,0x00802810,V2 lane: 64-byte browser lobby element fill from a lobby record
+?handle@Gen003C8C60@@QAEXHHHHHHHH@Z,0x003C8C60,tail-jump target of the guarded forwarder at 0x003BCA50; address-derived name
+?handle@Gen003C6340@@QAEXH@Z,0x003C6340,tail-jump target of the guarded forwarder at 0x003BCA70; address-derived name
+?find@Rva003BF540@@QAEPAVGen003BD7D0Node@@H@Z,0x003BD7D0,keyed lookup called by 0x003BEB50 and 0x003BD880; address-derived name
+?leave@Gen003BD7D0Node@@QAEXXZ,0x003A4AD0,called on the outgoing lookup result by 0x003BD880; address-derived name
+?enter@Gen003BD7D0Node@@QAEXXZ,0x003A4A40,called on the incoming lookup result by 0x003BD880; address-derived name
+?update@Rva00802CD0Element@@QAEXPBVRva007F4F90LobbyCounts@@H@Z,0x00802CD0,V2 lane: browser lobby element update from a four-int lobby-count record
+?Gen003C0110Lookup@@YGPAVGen003C0110Result@@PAX@Z,0x003C0110,__stdcall lookup called by the free forwarder at 0x003C0220; address-derived name
+?set@Gen003C0110Result@@QAEXH@Z,0x003A3E80,member called on the lookup result by the free forwarder at 0x003C0220; address-derived name
+?at@Gen_00064730@@QAEPAVGen003BBA00Element@@H@Z,0x00064800,indexed accessor of the sub-object at +0xC used by 0x003BBA00; address-derived name
+?test@Rva00383860@@QAE_NXZ,0x00382B50,niladic predicate called on the global at 0x012F0898 by 0x003BCC10; address-derived name
+??0Gen_dtor_007f6d20@@QAE@XZ,0x00800280,V2 lane: 8-byte element constructor placement-new'd by ?allocate@Rva007F78E0Block@@QAEXH@Z; same class the tree pins ??1Gen_dtor_007f6d20@@UAE@XZ at 0x00800290
+?attach@Gen_dtor_007f6d20@@QAEXPAX@Z,0x008002C0,V2 lane: one-pointer element setter called per element by the three list setters in V2FeslElementLists.cpp
+?Gen003BB8F0Free@@YAXPAVGenXferInterface@@PAX@Z,0x0010CAC0,__cdecl helper called by the transfer sequence at 0x003BB8F0; address-derived name
+?step@Gen003BBA40Member@@QAEXPAVGenXferInterface@@@Z,0x000650C0,member at +0xC handed the interface by the transfer sequence at 0x003BBA40; address-derived name
+?release@Mem00887940@@QAEXXZ,0x00887940,StringBase releaseBuffer body called from destructor BODIES at 0x003B8450 and 0x003B8710; same address as the destructor it folds with
+??0Rva005EE8A0@@QAE@PAXPAVV3HostRva005E7420@@@Z,0x005EE8A0,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005FFAC0@@QAE@PAXPAVV3HostRva005E76E0@@@Z,0x005FFAC0,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva006008D0@@QAE@PAXPAVV3HostRva005E7AD0@@@Z,0x006008D0,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005FE010@@QAE@PAXPAVV3HostRva005E8150@@@Z,0x005FE010,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005FED10@@QAE@PAXPAVV3HostRva005E82A0@@@Z,0x005FED10,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva005EBD40@@QAE@ABV0@@Z,0x005EBD40,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??1Mem003BB060@@QAE@XZ,0x003BB060,second subobject destructor of the base destructor at 0x003BB260; address-derived name
+?clear@GenBase003BB1E0@@QAEXXZ,0x003B9450,niladic member called from the BODY of the base destructor at 0x003BB260; address-derived name
+?drop@Gen003C8A50@@QAEXPAVGen003C8A50Result@@@Z,0x003CA9D0,called on the owner with the lookup result by 0x003BCA90; address-derived name
+?report@Glo012F4B98Type@@QAEXHM@Z,0x0058C240,called on the global at 0x012F4B98 with a count and 7.0f by 0x003BCA90; address-derived name
+?apply@Gen003C0110Result@@QAEXHHHHH@Z,0x003A58E0,five-argument member called on the lookup result by 0x003C0250; address-derived name
+?test@Glo012F7048Type@@QAE_NXZ,0x00609350,niladic predicate called on the global at 0x012F7048 by 0x003BED00; address-derived name
+?build@Gen003BD7D0Node@@QAEPAVGen003BD8D0Built@@PAVGen003BD8D0Arg@@HH@Z,0x003A3E90,three-argument member called on the lookup result by 0x003BD8D0; address-derived name
+?consume@Gen003BF540Owner@@QAE_NPAVGen003BD8D0Built@@@Z,0x003CAE40,member called on the owner at +0x28 with the built result by 0x003BD8D0; address-derived name
