@@ -4647,3 +4647,5 @@ lanes-sharing-a-scratchpad-overwrite-each-other		4	tooling	A COORDINATION FAILUR
 ?d_005bd500@@YAXXZ	0x005BD500	7	converted	t=2min model=gpt-5 exact clean C++ byte getter; 8A 81 A8 01 00 00 C3 matched via Rva005BD500ByteGetter.cpp; add_match and targeted build.sh passed; identity remains address-derived
 ?d_005bd520@@YAXXZ	0x005BD520	7	attempted	t=1min model=gpt-5 agent8 claimed fresh scaffold-only byte getter; retail=8A 81 AB 01 00 00 C3; origin ownership audited
 ?d_005bd520@@YAXXZ	0x005BD520	7	converted	t=2min model=gpt-5 exact clean C++ byte getter at offset 0x1AB; all 7 retail bytes matched via Rva005BD520ByteGetter.cpp; identity remains address-derived
+?d_005a73f0@@YAXXZ	0x005A73F0	7	attempted	t=1min model=gpt-5 root claimed fresh 7-byte dword getter; retail=8B 81 34 04 00 00 C3; origin ownership audited as gen-dump scaffold only
+?d_005a73f0@@YAXXZ	0x005A73F0	7	converted	t=2min model=gpt-5 exact clean C++ dword getter; all 7 retail bytes matched via Rva005A73F0DwordGetter.cpp; add_match and build.sh passed; identity remains address-derived
