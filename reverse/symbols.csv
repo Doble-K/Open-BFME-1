@@ -74423,3 +74423,81 @@ _GdipBitmapUnlockBits@8,0x009F6C04,gdiplus.dll import stub (direct REL32 call si
 ?apply@T1Recv_005C47D0@@QAEXPAVT1Arg_005C47D0@@@Z,0x005C47D0,member called on the first argument by the 21-byte receiver-returning helper at 0x005C5DD0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
 ?accept@T1Sink_005C8D40@@QAEPAXPAX0@Z,0x005C8D40,callee of the 18-byte receiver-swapping forwarders at 0x005C98A0 and 0x005CACC0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
 ?accept@T1Sink_005C8E90@@QAEPAXPAX0@Z,0x005C8E90,callee of the 18-byte receiver-swapping forwarders at 0x005C98C0 and 0x005CACE0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
+_GdipGetImageGraphicsContext@8,0x009F6C1C,gdiplus.dll import stub (direct REL32 call site; see U3GdiplusGraphicsMembers.cpp)
+_GdipDrawImageI@16,0x009F6C22,gdiplus.dll import stub (direct REL32 call site; see U3GdiplusGraphicsMembers.cpp)
+_GdipAlloc@4,0x009F6C28,gdiplus.dll import stub (direct REL32 call site; see U3GdiplusGraphicsMembers.cpp)
+_GdipCloneImage@8,0x009F6C2E,gdiplus.dll import stub (direct REL32 call site; see U3GdiplusGraphicsMembers.cpp)
+??1U2Vb0084B480@@UAE@XZ,0x0084B480,U2 lane: vbase-entered class dtor called by the ??_D at 0x0084B6C0 and the ??_G at 0x0084B7C0; unnamed dump elsewhere
+??1U2Vb0084B5F0@@UAE@XZ,0x0084B5F0,U2 lane: vbase-entered class dtor called by the ??_D at 0x0084B720 and the ??_G at 0x0084B880; unnamed dump elsewhere
+??0U4Base0061BF00@@QAE@I@Z,0x0061BF00,U4 lane: base ctor called by the forwarding ctor at 0x0060D640; address-derived name; identity not recovered
+??0U4Base00113DA0@@QAE@PAXPBX@Z,0x00113DA0,U4 lane: base ctor called by the forwarding ctor at 0x00602E80; address-derived name; retail folds two names onto this address
+?broadcast@U1Tail_005C4190@@QAEXPAX0@Z,0x005C4190,tail broadcast target of the optional-head chain rows; address-derived name
+?broadcast@U1Tail_005C97A0@@QAEXPAX0@Z,0x005C97A0,tail broadcast target of the optional-head chain rows; address-derived name
+?fill@U1SupplierLow@@QAEXPAVU1FillTargetLow@@PAX@Z,0x005C8D40,tail of the slot-2 field collectors reading the 0x3C-0x54 run; address-derived name
+?fill@U1SupplierHigh@@QAEXPAVU1FillTargetHigh@@PAX@Z,0x005C8E90,tail of the slot-2 field collectors reading the 0xB8-0xBC run; address-derived name
+?collect@U1Rest_005CD8E0@@QAEXPAXPAVU1Supplier_005CD8E0@@@Z,0x005CD410,member collect tail of 0x005CD8E0; address-derived name
+?collect@U1Rest_005CE640@@QAEXPAXPAVU1Supplier_005CE640@@@Z,0x005CDD80,member collect tail of 0x005CE640; address-derived name
+?collect@U1Rest_005CF1F0@@QAEXPAXPAVU1Supplier_005CF1F0@@@Z,0x005CEE90,member collect tail of 0x005CF1F0; address-derived name
+?grow@Rva0005CBD0Buffer@@IAEXI@Z,0x0005CBD0,out-of-line growth routine shared by the 0x0005E200 and 0x0005EEB0 reserve() twins (U3_arena_alloc.cpp)
+?U2Put00832830_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00832830,U2 lane: cdecl callee of the put forwarder at 0x00832830; unnamed dump elsewhere
+?U2Put00832DB0_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00832DB0,U2 lane: cdecl callee of the put forwarder at 0x00832DB0; unnamed dump elsewhere
+?U2Put00833170_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00833170,U2 lane: cdecl callee of the put forwarder at 0x00833170; unnamed dump elsewhere
+?U2Put00833430_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00833430,U2 lane: cdecl callee of the put forwarder at 0x00833430; unnamed dump elsewhere
+?U2Put008336F0_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x008336F0,U2 lane: cdecl callee of the put forwarder at 0x008336F0; unnamed dump elsewhere
+?U2Put00833C80_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00833C80,U2 lane: cdecl callee of the put forwarder at 0x00833C80; unnamed dump elsewhere
+?U2Put00834250_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00834250,U2 lane: cdecl callee of the put forwarder at 0x00834250; unnamed dump elsewhere
+?U2Put00834610_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00834610,U2 lane: cdecl callee of the put forwarder at 0x00834610; unnamed dump elsewhere
+?U2Put008348D0_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x008348D0,U2 lane: cdecl callee of the put forwarder at 0x008348D0; unnamed dump elsewhere
+?U2Put00834B90_do@@YA?AUU2PutIter@@ABU1@ABUU2PutFlags@@HPAX2H@Z,0x00834B90,U2 lane: cdecl callee of the put forwarder at 0x00834B90; unnamed dump elsewhere
+??$_M_find@UU4MapKey@@@?$_Rb_tree@UU4MapKey@@U?$pair@$$CBUU4MapKey@@UU4MapVal@@@_STL@@U?$_Select1st@U?$pair@$$CBUU4MapKey@@UU4MapVal@@@_STL@@@3@U?$less@UU4MapKey@@@3@V?$allocator@U?$pair@$$CBUU4MapKey@@UU4MapVal@@@_STL@@@3@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBUU4MapKey@@UU4MapVal@@@_STL@@@1@ABUU4MapKey@@@Z,0x00142FD0,U4 lane: STLport _Rb_tree::_M_find called by the two map lookups at 0x00607D40 and 0x00608370; address-derived instantiation
+?U2Put0083BB20_do@@YA?AUU2PutIter@@U1@PAX1N@Z,0x0083BB20,U2 lane: cdecl callee of the double-argument put forwarder 0x30 bytes before it; unnamed dump elsewhere
+?U2Put0083C100_do@@YA?AUU2PutIter@@U1@PAX1N@Z,0x0083C100,U2 lane: cdecl callee of the double-argument put forwarder 0x30 bytes before it; unnamed dump elsewhere
+?U2Put0083C590_do@@YA?AUU2PutIter@@U1@PAX1N@Z,0x0083C590,U2 lane: cdecl callee of the double-argument put forwarder 0x30 bytes before it; unnamed dump elsewhere
+?add@U1Sink@@QAEXPBD@Z,0x005C49D0,sink append target of the four inserter rows; address-derived name
+?u1Emit_005C7A10@@YAXPAVU1Sink@@PBD@Z,0x005C4D00,cdecl sink append target of 0x005C7A10; address-derived name
+??4U1Tail_005CD380@@QAEAAV0@ABV0@@Z,0x005CBEE0,member operator= tail of 0x005CD380; address-derived name
+??4U1Tail_005CDCD0@@QAEAAV0@ABV0@@Z,0x005CD820,member operator= tail of 0x005CDCD0; address-derived name
+??4U1Tail_005CEC60@@QAEAAV0@ABV0@@Z,0x005CE550,member operator= tail of 0x005CEC60; address-derived name
+?apply@U1Sub@@QAEXPAVU1CachedHolder@@@Z,0x005C21D0,member subobject method called by 0x005C3590 and 0x005C35E0; address-derived name
+?attach@Rva00061BB0Owner@@AAEXPAX@Z,0x00850670,one-argument __thiscall callee of the 0x00061BB0 constructor (U3_small_ctors.cpp); identity not recovered
+?attach@Rva00065C50Owner@@AAEXPAX@Z,0x009D6290,one-argument __thiscall callee of the 0x00065C50 constructor (U3_small_ctors.cpp); identity not recovered
+?Rva0084B210Run@@YAHPAURva00841540Owner@@@Z,0x0084B210,U2 lane: cdecl callee of the 10-byte member at 0x00841540; unnamed dump elsewhere
+?apply@Rva00841E10Owner@@QAEXH@Z,0x008412E0,U2 lane: tail-jump target of the three-flag guard at 0x00841E10; unnamed dump elsewhere
+?apply@Rva008427B0Owner@@QAEXH@Z,0x00841350,U2 lane: tail-jump target of the three-flag guard at 0x008427B0; unnamed dump elsewhere
+?refresh@Rva00845250Node@@QAEXXZ,0x00833D90,U2 lane: member called on both arguments of the comparison at 0x00845250; unnamed dump elsewhere
+?noteAssign@U4Notify@@QAEXPAVU4Assign006057C0@@@Z,0x00409040,U4 lane: notify entry called by the assignment operator at 0x006057C0; address-derived name
+?noteOwner@U4Notify@@QAEXPAVU4Owner00604C00@@@Z,0x004090C0,U4 lane: notify entry called by the detach at 0x00604C00; address-derived name
+?hand@U4Target0060C2C0@@QAEXPAX@Z,0x0061D4D0,U4 lane: guarded __thiscall callee of the __stdcall wrapper at 0x0060C2C0; address-derived name
+?u1Do_005C7410@@YAXPAX00PAVU1ByteFlagged@@@Z,0x005C7410,tail-call target of the byte-flag guard 0x005C8A80; address-derived name
+?u1Do_005C90D0@@YAXPAX00PAVU1DwordFlagged@@@Z,0x005C90D0,tail-call target of the pointer guard 0x005C9C80; address-derived name
+?u1Do_005C71F0@@YAXPAX00PAVU1CountedHolder@@@Z,0x005C71F0,tail-call target of the two-level guard 0x005C7280; address-derived name
+?u1Do_005C9030@@YAXPAX00PAVU1Pair@@@Z,0x005C9030,tail-call target of the float guard 0x005C9C40; address-derived name
+?u1Check_005C2CD0@@YA_NPAX@Z,0x005C2CD0,cdecl byte-returning predicate called by the ctor 0x005C4690; address-derived name
+?accepts@U4Filter@@QBE_NPBUU4Elem@@@Z,0x00606BF0,U4 lane: element predicate called by both scan loops at 0x00606DC0 and 0x00607000; address-derived name
+_GdiplusShutdown@4,0x009F6C10,gdiplus.dll import stub (direct REL32 call site; see U3GdiplusTokenHolder.cpp)
+?firstNamed@U4Scan@@QBE_NPAXPBVU4Filter@@@Z,0x00606D60,U4 lane: third scan entry forwarded to by the proxy at 0x00606E20; address-derived name
+?Rva007EB810Get@@YAPAURva007EB810Diag@@XZ,0x007EB810,U2 lane: cdecl getter of the diagnostic reporter used by the FESL asserts at 0x008013F0 and 0x00802980
+?Rva007E8640Copy@@YAXPADIPBD@Z,0x007E8640,U2 lane: bounded string copy called by the setters at 0x00801470 and 0x008014A0
+?Rva00844230Do@@YAHPAX000@Z,0x00844230,U2 lane: cdecl callee of the four-argument forwarder at 0x008442E0
+??0U1First_005E3300@@QAE@PAX0@Z,0x005DD290,two-argument base ctor called by 0x005E3300; address-derived name
+?u1Widen_005C5E40@@YAXPAVU1FloatSink@@N@Z,0x005C5E40,cdecl (this double) callee of 0x005C67A0; address-derived name
+?u1Call_005C7110@@YAXPAX00PAPAX@Z,0x005C7110,cdecl four-argument callee of 0x005C8320; address-derived name
+?reserve@U1Buffer_005C5FB0@@QAEXPAXH@Z,0x005C46C0,member called by the ctor 0x005C5FB0; address-derived name
+?Rva00066A40Construct@@YAXPAXPBX@Z,0x00066A40,plain two-pointer spelling of the STLport _Construct<pair<const NameKeyType DamageFX>> the ledger already names at this address (U3_node_allocators.cpp)
+?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@SAXPAXI@Z,0x0082E5F0,public-static spelling of the ledger CAXPAXI@Z private-static symbol at the same address (U3_node_allocators.cpp)
+?Rva00809010Find@@YGPAURva00809500Sink@@PAURva00809500Entry@@@Z,0x00809010,U2 lane: stdcall lookup called by the 27-byte wrapper at 0x00809500
+?accept@Rva00809500Sink@@QAEXPAURva00809500Entry@@@Z,0x00808ED0,U2 lane: thiscall member called on the lookup result at 0x00809500
+??0U4Made005EA530@@QAE@PAVU4Maker005EA530@@@Z,0x005EA560,U4 lane: constructor run on the 0xB0 block allocated at 0x005EA530; address-derived name
+??0U4Thing0060CD80@@QAE@XZ,0x0060CCC0,U4 lane: default constructor run on the 0x74 block allocated at 0x0060CD80; address-derived name
+?createEx@Rva0005FA90Factory@@AAEPAXPAX00000@Z,0x0005ECD0,six-argument __thiscall callee of the 0x0005FA90 forwarder (U3_table_lookup_and_forwarder.cpp); identity not recovered
+??0U4Base00094900@@QAE@ABV0@@Z,0x00094900,U4 lane: base copy ctor called by the copy ctor at 0x0060D680; address-derived name
+?release@U4Counted005F0D40@@QAEXXZ,0x009EB7A0,U4 lane: release called by the retain-then-release assign at 0x005F0D40; address-derived name
+?evaluate@U4Curve006095D0@@QBEMH@Z,0x0006A520,U4 lane: float-valued member callee of the blend at 0x006095D0; address-derived name
+?build@Rva0006A980Cursor@@QAEXPBU1@@Z,0x00069F00,__thiscall callee of the 0x0006A980 copy constructor invoked on the sub-object at this+8 (U3_iterator_ctor.cpp); identity not recovered
+?u4Widen005F5080@@YAXPAUU4Ret005F5080@@N@Z,0x005C5E40,U4 lane: out-parameter callee of the widening forwarder at 0x005F5080; address-derived name
+?u4Take005F79A0@@YAXPAUU4Ret005F79A0@@H@Z,0x005F0120,U4 lane: out-parameter callee of the forwarder at 0x005F79A0; address-derived name
+?u4Then005F7A30@@YAXPAVINI@@PAX1PBX@Z,0x005F79C0,U4 lane: INI callback tail-jumped to by the guard at 0x005F7A30; address-derived name
+?push@U4Sink0060D3B0@@QAEXHH@Z,0x00396B00,U4 lane: two-literal callee of the emitter at 0x0060D3B0; address-derived name
+?u4Next005F5120@@YAXPAVINI@@PAX1PBX@Z,0x005F50B0,U4 lane: four-argument callee reached from 0x005F5120 and 0x005FF120; address-derived name
+?u4Next005F8AE0@@YAXPAVINI@@PAX1PBX@Z,0x005C8AA0,U4 lane: four-argument callee tail-jumped to by 0x005F8AE0; address-derived name
+?poke@U4Global006094C0@@QAEXXZ,0x006159C0,U4 lane: no-argument tail callee of the guarded jump at 0x006094C0; address-derived name

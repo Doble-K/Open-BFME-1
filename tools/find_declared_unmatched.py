@@ -146,6 +146,16 @@ def find_defined_functions(text: str):
             in_macro = line.rstrip().endswith("\\")
         if was_macro or stripped.startswith("#define"):
             continue
+        # A MEMBER-INITIALISER LIST is not a definition. A constructor written
+        #     Derived::Derived(const Derived &other)
+        #         : std::exception(other)
+        # puts `std::exception(other)` on its own line, which matches the same
+        # Qualified::name( shape a definition has -- so the checker reported a
+        # function called `std::exception` and failed the commit. Initialiser
+        # entries always begin with the ':' that opens the list or the ',' that
+        # continues it, and a real definition never starts a line with either.
+        if stripped.startswith((":", ",")) and not stripped.startswith("::"):
+            continue
         if stripped.startswith("// ?"):
             # Only a real ANNOTATION may bind to the next definition. Two forms
             # exist in this tree: a bare mangled name (3305 of them), and a name
