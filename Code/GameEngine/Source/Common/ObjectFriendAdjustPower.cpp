@@ -1,4 +1,5 @@
 class Object;
+class Player;
 
 class Overridable
 {
@@ -17,13 +18,22 @@ struct ThingTemplatePowerABI
 class Energy
 {
 public:
-	void objectEnteringInfluence(Object *object);
-	void objectLeavingInfluence(Object *object);
+	// The friend helper reaches both methods through retail ILTs, so their
+	// bodies must remain out of line even after being recovered in this TU.
+	__declspec(noinline) void objectEnteringInfluence(Object *object);
+	__declspec(noinline) void objectLeavingInfluence(Object *object);
+
+private:
+	void *m_vptrPad;
+	int m_production;
+	int m_consumption;
+	Player *m_player;
 };
 
 class Player
 {
 	public:
+	void onPowerBrownOutChange(bool brownOut);
 	char pad[0xA4];
 	Energy energy;
 };
@@ -36,6 +46,7 @@ public:
 
 class Object
 {
+friend class Energy;
 private:
 	char pad0[4];
 	ThingTemplatePowerABI *thingTemplate;
@@ -72,4 +83,58 @@ void Object::friend_adjustPowerForPlayer(bool incoming)
 		energy->objectEnteringInfluence(this);
 	else
 		energy->objectLeavingInfluence(this);
+}
+
+void Energy::objectEnteringInfluence(Object *object)
+{
+	if (object == 0)
+		return;
+
+	ThingTemplatePowerABI *powerTemplate = object->thingTemplate;
+	if (powerTemplate != 0 && powerTemplate->nextOverride != 0)
+	{
+		powerTemplate = reinterpret_cast<ThingTemplatePowerABI *>(
+			const_cast<Overridable *>(powerTemplate->nextOverride->getFinalOverride()));
+	}
+
+	int power = powerTemplate->energyProduction;
+	if (power < 0)
+	{
+		m_consumption -= power;
+		if (m_player != 0)
+			m_player->onPowerBrownOutChange(m_production < m_consumption);
+	}
+	else if (power > 0)
+	{
+		m_production += power;
+		if (m_player != 0)
+			m_player->onPowerBrownOutChange(m_production < m_consumption);
+	}
+}
+
+void Energy::objectLeavingInfluence(Object *object)
+{
+	if (object == 0)
+		return;
+
+	ThingTemplatePowerABI *powerTemplate = object->thingTemplate;
+	if (powerTemplate != 0 && powerTemplate->nextOverride != 0)
+	{
+		powerTemplate = reinterpret_cast<ThingTemplatePowerABI *>(
+			const_cast<Overridable *>(powerTemplate->nextOverride->getFinalOverride()));
+	}
+
+	int power = powerTemplate->energyProduction;
+	if (power < 0)
+	{
+		m_consumption += power;
+		if (m_player != 0)
+			m_player->onPowerBrownOutChange(m_production < m_consumption);
+	}
+	else if (power > 0)
+	{
+		m_production -= power;
+		if (m_player != 0)
+			m_player->onPowerBrownOutChange(m_production < m_consumption);
+	}
 }
