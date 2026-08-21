@@ -52,6 +52,9 @@
 
 #include "GameLogic/ScriptEngine.h"
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -429,7 +432,6 @@ Bool Mouse::isClick(const ICoord2D *anchor, const ICoord2D *dest, UnsignedInt pr
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0CursorInfo@@ present-unmatched
 CursorInfo::CursorInfo( void )
 {
 	// Added Sadullah Nader
@@ -972,18 +974,28 @@ void Mouse::setPosition( Int x, Int y )
 	* the operating system.  For system specific limits and windows etc,
 	* just override this function in the device implementation of the mouse */
 //-------------------------------------------------------------------------------------------------
-// ?setMouseLimits@Mouse@@ present-unmatched
+class BfmeMouseLimitDisplay
+{
+public:
+	virtual void slot00() = 0; virtual void slot04() = 0; virtual void slot08() = 0;
+	virtual void slot0c() = 0; virtual void slot10() = 0; virtual void slot14() = 0;
+	virtual void slot18() = 0; virtual void slot1c() = 0; virtual void slot20() = 0;
+	virtual void slot24() = 0; virtual void slot28() = 0;
+	virtual Int getWidth() = 0;
+	virtual Int getHeight() = 0;
+};
+
 void Mouse::setMouseLimits( void )
 {
-
-	m_minX = 0;
-	m_minY = 0;
+	char *mouse = reinterpret_cast<char *>(this);
+	*reinterpret_cast<Int *>(mouse + 0x4d88) = 0;
+	*reinterpret_cast<Int *>(mouse + 0x4d90) = 0;
 	if( TheDisplay )
 	{
-
-		m_maxX = TheDisplay->getWidth();
-		m_maxY = TheDisplay->getHeight();
-	
+		*reinterpret_cast<Int *>(mouse + 0x4d8c) =
+			reinterpret_cast<BfmeMouseLimitDisplay *>(TheDisplay)->getWidth();
+		*reinterpret_cast<Int *>(mouse + 0x4d94) =
+			reinterpret_cast<BfmeMouseLimitDisplay *>(TheDisplay)->getHeight();
 	}  // end if
 
 }  // end setMouseLimits
@@ -1108,7 +1120,24 @@ void Mouse::drawCursorText( void )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?getCursorIndex@Mouse@@ present-unmatched
+static __forceinline Int compareCursorName(const AsciiString &name, const char *cursorName)
+{
+	Int cursorLength = cursorName ? strlen(cursorName) : 0;
+	const void *nameData = *reinterpret_cast<const void * const *>(&name);
+	Int nameLength = nameData
+		? *reinterpret_cast<const unsigned short *>(reinterpret_cast<const char *>(nameData) + 4)
+		: 0;
+	_ReadWriteBarrier();
+	const char *nameText = nameData
+		? reinterpret_cast<const char *>(nameData) + 8
+		: "";
+	Int compareLength = nameLength < cursorLength ? nameLength : cursorLength;
+	Int result = _strnicmp(nameText, cursorName, compareLength);
+	if (result != 0)
+		return result;
+	return nameLength - cursorLength;
+}
+
 Int Mouse::getCursorIndex(const AsciiString& name)
 {
 	if (name.isEmpty())
@@ -1116,7 +1145,7 @@ Int Mouse::getCursorIndex(const AsciiString& name)
 
 	/** @todo This is silly to have to define these names from INI in the code ... 
 		* that should be changed (CBD) */
-	static char *CursorININames[NUM_MOUSE_CURSORS] =
+	static char *CursorININames[50] =
 	{
 		//"InvalidMouseCursor",  // this entry is not actually a mouse cursor, but just a
 														 // reminder that it does exist
@@ -1171,12 +1200,22 @@ Int Mouse::getCursorIndex(const AsciiString& name)
 		"PlaceChargeInvalid",
 		"Hack",
 		"ParticleUplinkCannon",
+		"LivingWorldZoom",
+		"LightPointParticle",
+		"JoinHorde",
+		"WeaponUpgrade",
+		"ArmorUpgrade",
+		"Beam",
+		"Bombard",
+		"Axe",
+		"EvilAbilityObj",
+		"PickUp",
 
 	};
 
-	for (Int i=0; i<NUM_MOUSE_CURSORS; ++i)
+	for (Int i = 0; i < 50; ++i)
 	{
-		if (name.compareNoCase(CursorININames[i]) == 0)
+		if (compareCursorName(name, CursorININames[i]) == 0)
 			return i;
 	}
 
@@ -1253,5 +1292,3 @@ void INI::parseMouseDefinition( INI* ini )
 		ini->initFromINI( TheMouse, TheMouseFieldParseTable );
 	}
 }
-
-
