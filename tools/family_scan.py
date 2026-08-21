@@ -59,7 +59,14 @@ FILTERS, each of which exists because omitting it cost a run:
   * EXCLUDE PREVIOUSLY-ATTEMPTED ADDRESSES ONLY AFTER GROUPING. Excluding them
     first splits a partially-attempted family into two apparently distinct
     groups -- that is exactly how 0x001EEAE0 and 0x001F35C0 were reported as
-    two families of 6 and 7 when they were one family of 7.
+    two families of 6 and 7 when they were one family of 7;
+  * drop a whole family if any member carries a `refuted` or `blocked` verdict:
+    a refutation refutes the SHAPE, so the siblings are dead too;
+  * drop bodies that call _atexit -- their source needs a function-local static
+    of class type, and MSVC numbers those destructor helpers `_$E<n>` PER
+    TRANSLATION UNIT, so the second such TU in the image always collides with
+    the first on a name-global consistency check. See
+    registers_a_local_static(); it has cost three landings so far.
 
 Usage:
   python3 tools/family_scan.py [--exact|--disp|--operand|--mnemonic]
@@ -181,6 +188,39 @@ def load_attempted():
     return seen, dead
 
 
+ATEXIT_RVA = 0x009F6E26          # _atexit, per reverse/symbols.csv
+
+
+def registers_a_local_static(body, rva):
+    """True if the body calls _atexit -- i.e. its source needs a function-local
+    static of class type.
+
+    Such a TU is currently UNCONVERTIBLE, and not for any reason visible in its
+    bytes. MSVC names the destructor helper for each function-local static
+    `_$E<n>`, numbered sequentially FROM THE START OF THE TRANSLATION UNIT, so
+    the second such TU in the image reuses _$E4, _$E6, _$E12 ... and
+    verify_dir32_consistency -- which is keyed on symbol NAME across the whole
+    image -- reports them as one symbol at several addresses.
+
+    This has now cost three separate landings (19 rows, then 7, then 6), and the
+    first two times it was recorded as a property of the SHAPE, which is why the
+    refuted-family exclusion above could not catch the third: those were local
+    static GUARDS and the third was local static INITIALISERS, a different
+    mnemonic sequence and a different normal form. TWO COLLIDING TUs NEED NOT
+    SHARE A SINGLE BYTE, so the filter has to key on the CONSTRUCT, and the call
+    to _atexit is what makes the construct visible from the outside.
+
+    Remove this filter once verify_dir32_consistency scopes compiler-local
+    symbols per-TU, or once the _$E family is whitelisted with that reasoning.
+    """
+    for i in range(len(body) - 4):
+        if body[i] == 0xE8:
+            target = rva + i + 5 + int.from_bytes(body[i + 1:i + 5], "little", signed=True)
+            if target == ATEXIT_RVA:
+                return True
+    return False
+
+
 def candidates(min_size, max_size, real_pins):
     with io.open(ROOT / "reverse" / "functions.csv", encoding="utf-8") as fh:
         for i, row in enumerate(csv.reader(fh)):
@@ -223,7 +263,7 @@ def main():
     attempted, dead = load_attempted()
 
     groups = collections.defaultdict(list)
-    scanned = undecoded = 0
+    scanned = undecoded = local_statics = 0
     for name, rva, size in candidates(args.min_size, args.max_size, real_pins):
         try:
             window = build.read_target_bytes(rva, size + 1)
@@ -234,6 +274,9 @@ def main():
         body = window[:size]
         if body[-1] not in (0xC3, 0xC2, 0xE9, 0xEB) and body[-2:-1] != b"\xff":
             continue                       # must end in a ret or a jmp
+        if registers_a_local_static(body, rva):
+            local_statics += 1
+            continue
         scanned += 1
         if args.mode == "exact":
             key = body
@@ -274,6 +317,7 @@ def main():
           % (args.min_members, len(families)))
     print("unattempted rows reachable: %d" % sum(f[1] for f in families))
     print("families dropped as refuted/blocked shapes: %d" % refuted)
+    print("bodies skipped as function-local-static TUs: %d" % local_statics)
     print("unattempted singletons (regex-sweep territory): %d" % singletons)
 
     if args.out:
