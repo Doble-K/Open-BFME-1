@@ -16,3 +16,22 @@ float Rva000EC9F0::get()
 {
 	return m_value;
 }
+
+// Float-field getter at 0x000F9440.
+//
+//     fld dword ptr [ecx+0x3BC] / ret
+//
+// Identity is not recovered. The class name is the retail RVA.
+
+class Rva000F9440
+{
+public:
+	float get();
+	char m_lead[0x3BC];
+	float m_value;
+};
+
+float Rva000F9440::get()
+{
+	return m_value;
+}
