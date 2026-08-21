@@ -9,8 +9,12 @@
 //   0x0067D410  0x0067D250 + getFileLength            namelen + 0xF + filelen
 //   0x0067D460  0x0067D2E0                            namelen + 0xE
 //
-// The first, third and fourth constants are Zero Hour's exactly; the chat one is
-// four larger, so BFME's chat header carries one more dword.
+// The first, third and fourth constants are Zero Hour's exactly. The chat one is
+// four larger, and not because BFME added a field: Zero Hour's own
+// GetChatCommandSize omits the four-byte player mask that its
+// FillBufferWithChatCommand writes, so the two disagree there. BFME's counts it.
+// See NetPacket_fillChatCommand.cpp (0x0067D620), which writes that mask at
+// 2*len + 0x10 and lands exactly on this 2*len + 0x14.
 //
 // The strings are StringBase<T> handles returned by value: the length is the
 // word at +4, read as a byte because Zero Hour assigns it to an UnsignedByte,
@@ -113,7 +117,7 @@ UnsignedInt NetPacket::GetChatCommandSize(NetCommandMsg *msg)
 	++msglen;
 	msglen += sizeof(UnsignedByte);
 	msglen += sizeof(UnsignedShort) + sizeof(UnsignedByte);
-	msglen += sizeof(UnsignedInt);		// BFME carries one dword Zero Hour does not
+	msglen += sizeof(UnsignedInt);		// the player mask, which Zero Hour writes but does not count
 
 	++msglen;				// the 'D'
 	msglen += sizeof(UnsignedByte);		// string msglength
