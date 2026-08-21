@@ -25,10 +25,41 @@
 // related, or what any of the fifteen members do -- only that the guard, the
 // order, and the tail position are as written.
 
-#define S3_H( ADDR ) void h##ADDR();
+#define S3_H( ADDR ) __declspec(noinline) void h##ADDR();
 
-class GenAlpha { public: S3_H(00044062) S3_H(00016AF4) S3_H(00024D2A) S3_H(00040601) S3_H(000053B7) };
-class GenBeta  { public: S3_H(00015BF4) S3_H(00008ACB) S3_H(00043743) S3_H(000217DD) S3_H(00005592) };
+struct GenAlphaNode
+{
+	void *m_vtable;
+	bool m_enabled;
+	char m_unmodelled[ 0x63 ];
+	GenAlphaNode *m_next;
+};
+
+struct GenBetaNode
+{
+	virtual void remove( bool destroy );
+	bool m_enabled;
+	char m_unmodelled[ 0x67 ];
+	GenBetaNode *m_next;
+};
+
+class GenAlpha
+{
+public:
+	S3_H(00044062) S3_H(00016AF4) S3_H(00024D2A) S3_H(00040601) S3_H(000053B7)
+	GenAlphaNode *m_head;
+	void *m_04;
+	void *m_08;
+};
+
+class GenBeta
+{
+public:
+	S3_H(00015BF4) S3_H(00008ACB) S3_H(00043743) S3_H(000217DD) S3_H(00005592)
+	void *m_00;
+	void *m_04;
+	GenBetaNode *m_head;
+};
 class GenGamma { public: S3_H(0004AB42) S3_H(000131E2) S3_H(0001FE8D) S3_H(00048C70) S3_H(0000C919) };
 
 extern GenAlpha *TheAlpha;
@@ -48,3 +79,27 @@ S3_TRIPLE( Rva007B75C0, 00016AF4, 00008ACB, 000131E2 )
 S3_TRIPLE( Rva007B7680, 00024D2A, 00043743, 0001FE8D )
 S3_TRIPLE( Rva007B7880, 00040601, 000217DD, 00048C70 )
 S3_TRIPLE( Rva007B78C0, 000053B7, 00005592, 0000C919 )
+
+void GenAlpha::h00040601()
+{
+	for( GenAlphaNode *node = m_head; node; node = node->m_next )
+		node->m_enabled = false;
+}
+
+void GenAlpha::h000053B7()
+{
+	for( GenAlphaNode *node = m_head; node; node = node->m_next )
+		node->m_enabled = true;
+}
+
+void GenBeta::h000217DD()
+{
+	for( GenBetaNode *node = m_head; node; node = node->m_next )
+		node->m_enabled = false;
+}
+
+void GenBeta::h00005592()
+{
+	for( GenBetaNode *node = m_head; node; node = node->m_next )
+		node->m_enabled = true;
+}
