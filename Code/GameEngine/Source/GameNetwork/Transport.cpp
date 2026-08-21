@@ -393,21 +393,11 @@ Bool Transport::init( const TransportAddress *addr )
 	return true;
 }
 
-// ?init@Transport@@QAE_NVAsciiString@@G@Z present-unmatched
-// Correct through the SEH frame and the TransportAddress it builds, but retail
-// calls AsciiString's copy constructor out of line to make ResolveIP's by-value
-// argument, where every AsciiString header in the tree defines that constructor
-// inline and so copies the pointer in place. Landing it needs a TU-scoped
-// AsciiString whose copy constructor is declared but not defined, with the
-// symbol pinned at the ICF-folded body -- more shim than 127 bytes is worth
-// until something else needs the same lever.
-Bool Transport::init( AsciiString ip, UnsignedShort port )
-{
-	TransportAddress addr;
-	addr.ip = ResolveIP(ip);
-	addr.port = port;
-	return init(&addr);
-}
+// Transport::init(AsciiString, UnsignedShort) is matched from
+// Transport_init_AsciiString.cpp, not from here. It needs an AsciiString whose
+// copy constructor is declared and not defined so that ResolveIP's by-value
+// argument is built by an out-of-line call, and the header set this file
+// compiles against defines that constructor inline.
 
 /**
  * Two departures from the reference: the guard rejects a NULL buffer rather
