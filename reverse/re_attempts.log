@@ -4916,3 +4916,4 @@ concurrent-lanes-make-a-mid-write-read-lie		4	tooling	A CONCURRENCY HAZARD ONE S
 ?get@Rva001E0AD0@@QAEIXZ	0x001E0AD0	7	converted	t=2min model=grok exact clean C++ dword getter at this+0x2A0 8B 81 A0 02 00 00 C3 matched via TinyDwordFieldGetters_001db160.cpp add_match and two focused build.py runs passed identity remains address-derived
 ?d_006be060@@YAXXZ	0x006BE060	7	converted	t=25min model=grok-4.6 exact clean C++ dword getter; 8B 81 .. C3 matched via TinyDwordFieldGetters_0069c4f0.cpp
 ?d_0075af50@@YAXXZ	0x0075AF50	7	converted	t=8min model=grok-4.6 exact clean C++ byte getter; 8A 81 B2 03 00 00 C3 matched via TinyByteFieldGetters.cpp; add_match and targeted build.py passed; identity remains address-derived
+?d_00516a70@@YAXXZ	0x00516A70	13	converted	t=8min model=grok-4.6 Open-BFME5 exact clean C++ dword setter at this+0x3A8 value 5 ret 4; identity remains address-derived; matched ?apply@Rva00516A70@@QAEXH@Z
