@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHs-c-
+// cl: /DNDEBUG /MD /EHsc
 /*
 **	Command & Conquer Generals Zero Hour(tm)
 **	Copyright 2025 Electronic Arts Inc.
@@ -54,15 +54,31 @@
 #define MIN_SLOT_SIZE_SHIFT 5
 #define MAX_NUMBER_SLOTS 4096
 #define MAX_VERTEX_BUFFERS_CREATED 32
-#define MAX_IB_SIZES 128
+#define MAX_IB_SIZES 1024
 #define MAX_INDEX_BUFFERS_CREATED 32
 
 #define NULL 0
 
 typedef int Int;
 
-class DX8VertexBufferClass;
-class DX8IndexBufferClass;
+class DX8VertexBufferClass
+{
+public:
+	enum UsageType { USAGE_DEFAULT = 0 };
+	DX8VertexBufferClass( unsigned fvf, unsigned short vertexCount,
+		UsageType usage = USAGE_DEFAULT, unsigned vertexSize = 0 );
+private:
+	char m_storage[ 32 ];
+};
+
+class DX8IndexBufferClass
+{
+public:
+	enum UsageType { USAGE_DEFAULT = 0 };
+	DX8IndexBufferClass( unsigned indexCount, UsageType usage = USAGE_DEFAULT );
+private:
+	char m_storage[ 24 ];
+};
 
 class W3DBufferManager
 {
@@ -250,4 +266,128 @@ void W3DBufferManager::releaseSlot(W3DIndexBufferSlot *ibSlot)
 		m_W3DIndexBufferSlots[sizeIndex]->m_prevSameSize=ibSlot;
 
 	m_W3DIndexBufferSlots[sizeIndex]=ibSlot;
+}
+
+static int FVFTypeIndexList[ W3DBufferManager::MAX_FVF ] =
+{
+	0x002, 0x042, 0x102, 0x142, 0x202, 0x242,
+	0x012, 0x052, 0x112, 0x152, 0x212, 0x252,
+	0x004, 0x044, 0x104, 0x144, 0x204, 0x244
+};
+
+W3DBufferManager::W3DVertexBufferSlot *W3DBufferManager::allocateSlotStorage(
+	VBM_FVF_TYPES fvfType, Int size )
+{
+	W3DVertexBuffer *pVB = m_W3DVertexBuffers[ fvfType ];
+	W3DVertexBufferSlot *vbSlot;
+
+	while ( pVB )
+	{
+		if ( pVB->m_size - pVB->m_startFreeIndex >= size )
+		{
+			if ( m_numEmptySlotsAllocated < MAX_NUMBER_SLOTS )
+			{
+				vbSlot = &m_W3DVertexBufferEmptySlots[ m_numEmptySlotsAllocated ];
+				vbSlot->m_size = size;
+				vbSlot->m_start = pVB->m_startFreeIndex;
+				vbSlot->m_VB = pVB;
+				vbSlot->m_nextSameVB = pVB->m_usedSlots;
+				vbSlot->m_prevSameVB = NULL;
+				if ( pVB->m_usedSlots )
+					pVB->m_usedSlots->m_prevSameVB = vbSlot;
+				vbSlot->m_prevSameSize = vbSlot->m_nextSameSize = NULL;
+				pVB->m_usedSlots = vbSlot;
+				pVB->m_startFreeIndex += size;
+				m_numEmptySlotsAllocated++;
+				return vbSlot;
+			}
+		}
+		pVB = pVB->m_nextVB;
+	}
+
+	pVB = m_W3DVertexBuffers[ fvfType ];
+	if ( m_numEmptyVertexBuffersAllocated < MAX_VERTEX_BUFFERS_CREATED )
+	{
+		m_W3DVertexBuffers[ fvfType ] =
+			&m_W3DEmptyVertexBuffers[ m_numEmptyVertexBuffersAllocated ];
+		m_W3DVertexBuffers[ fvfType ]->m_nextVB = pVB;
+		m_numEmptyVertexBuffersAllocated++;
+		pVB = m_W3DVertexBuffers[ fvfType ];
+
+		Int vbSize = size < 16384 ? 16384 : size;
+		pVB->m_DX8VertexBuffer = new DX8VertexBufferClass(
+			FVFTypeIndexList[ fvfType ], (unsigned short)vbSize,
+			DX8VertexBufferClass::USAGE_DEFAULT );
+		pVB->m_format = fvfType;
+		pVB->m_startFreeIndex = size;
+		pVB->m_size = vbSize;
+		pVB->m_renderTaskList = NULL;
+		vbSlot = &m_W3DVertexBufferEmptySlots[ m_numEmptySlotsAllocated ];
+		m_numEmptySlotsAllocated++;
+		pVB->m_usedSlots = vbSlot;
+		vbSlot->m_size = size;
+		vbSlot->m_start = 0;
+		vbSlot->m_VB = pVB;
+		vbSlot->m_prevSameVB = vbSlot->m_nextSameVB = NULL;
+		vbSlot->m_prevSameSize = vbSlot->m_nextSameSize = NULL;
+		return vbSlot;
+	}
+
+	return NULL;
+}
+
+W3DBufferManager::W3DIndexBufferSlot *W3DBufferManager::allocateSlotStorage( Int size )
+{
+	W3DIndexBuffer *pIB = m_W3DIndexBuffers;
+	W3DIndexBufferSlot *ibSlot;
+
+	while ( pIB )
+	{
+		if ( pIB->m_size - pIB->m_startFreeIndex >= size )
+		{
+			if ( m_numEmptyIndexSlotsAllocated < MAX_NUMBER_SLOTS )
+			{
+				ibSlot = &m_W3DIndexBufferEmptySlots[ m_numEmptyIndexSlotsAllocated ];
+				ibSlot->m_size = size;
+				ibSlot->m_start = pIB->m_startFreeIndex;
+				ibSlot->m_IB = pIB;
+				ibSlot->m_nextSameIB = pIB->m_usedSlots;
+				ibSlot->m_prevSameIB = NULL;
+				if ( pIB->m_usedSlots )
+					pIB->m_usedSlots->m_prevSameIB = ibSlot;
+				ibSlot->m_prevSameSize = ibSlot->m_nextSameSize = NULL;
+				pIB->m_usedSlots = ibSlot;
+				pIB->m_startFreeIndex += size;
+				m_numEmptyIndexSlotsAllocated++;
+				return ibSlot;
+			}
+		}
+		pIB = pIB->m_nextIB;
+	}
+
+	pIB = m_W3DIndexBuffers;
+	if ( m_numEmptyIndexBuffersAllocated < MAX_INDEX_BUFFERS_CREATED )
+	{
+		m_W3DIndexBuffers = &m_W3DEmptyIndexBuffers[ m_numEmptyIndexBuffersAllocated ];
+		m_W3DIndexBuffers->m_nextIB = pIB;
+		m_numEmptyIndexBuffersAllocated++;
+		pIB = m_W3DIndexBuffers;
+
+		Int ibSize = size < 32768 ? 32768 : size;
+		pIB->m_DX8IndexBuffer =
+			new DX8IndexBufferClass( ibSize, DX8IndexBufferClass::USAGE_DEFAULT );
+		pIB->m_startFreeIndex = size;
+		pIB->m_size = ibSize;
+		ibSlot = &m_W3DIndexBufferEmptySlots[ m_numEmptyIndexSlotsAllocated ];
+		m_numEmptyIndexSlotsAllocated++;
+		pIB->m_usedSlots = ibSlot;
+		ibSlot->m_size = size;
+		ibSlot->m_start = 0;
+		ibSlot->m_IB = pIB;
+		ibSlot->m_prevSameIB = ibSlot->m_nextSameIB = NULL;
+		ibSlot->m_prevSameSize = ibSlot->m_nextSameSize = NULL;
+		return ibSlot;
+	}
+
+	return NULL;
 }
