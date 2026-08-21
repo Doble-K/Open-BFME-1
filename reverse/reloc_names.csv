@@ -1,5 +1,5 @@
 name,target_rva,target_size,source,notes
-?grow@Rva0005CBD0Buffer@@IAEXI@Z,0x0005CBD0,37,Code/gen_small/U3_arena_alloc.cpp,reloc-derived;call-sites=2;identity=real
+_W3AtlThrow@4,0x0005BA40,23,Code/gen_small/W3AtlBufferGrow.cpp,reloc-derived;call-sites=4;identity=real
 ??1Gen_dtorv_0005e7b0@@UAE@XZ,0x0005DBE0,12,Code/gen_small/dtorsv_000.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0093e860@@UAE@XZ,0x0005E960,45,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0005fa60@@UAE@XZ,0x0005EC20,134,Code/gen_small/dtors_000.cpp,reloc-derived;call-sites=1;identity=generated
@@ -8,7 +8,6 @@ name,target_rva,target_size,source,notes
 ??1PendingSurfaceStruct@Render2DSentenceClass@@QAE@XZ,0x0005F5E0,59,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,reloc-derived;call-sites=1;identity=real
 ?Gen00061F00@@YAHHH@Z,0x00061F00,216,Code/GameEngine/Source/Common/BigObfHookWrappers.cpp,reloc-derived;call-sites=1;identity=generated
 ??0Obf00062D90@@QAE@PAH0@Z,0x00062D90,173,Code/GameEngine/Source/Common/BigObfHookWrappers.cpp,reloc-derived;call-sites=1;identity=real
-?gen000647B0@@YAXPAX0@Z,0x000647B0,53,Code/GameEngine/Source/Common/AllocateThenInitialise.cpp,reloc-derived;call-sites=1;identity=generated
 ?at@Gen_00064730@@QAEPAVGen003BBA00Element@@H@Z,0x00064800,52,Code/GameEngine/Source/Common/V4SubObjectSizeGuard.cpp,reloc-derived;call-sites=1;identity=generated
 ?step@Gen003BBA40Member@@QAEXPAVGenXferInterface@@@Z,0x000650C0,320,Code/GameEngine/Source/Common/V4XferSlotSequences.cpp,reloc-derived;call-sites=1;identity=generated
 ??$_M_allocate_and_copy@PAUGen_t_00065800_p4cd@@@?$vector@UGen_t_00065800_p4cd@@V?$allocator@UGen_t_00065800_p4cd@@@_STL@@@_STL@@IAEPAUGen_t_00065800_p4cd@@IPAU2@0@Z,0x000656F0,94,Code/gen_small/tgrid_100.cpp,reloc-derived;call-sites=1;identity=generated
@@ -19,8 +18,6 @@ name,target_rva,target_size,source,notes
 ?releaseData@Dict@@AAEXXZ,0x000681C0,127,Code/GameEngine/Source/Common/Dict.cpp,reloc-derived;call-sites=4;identity=real
 ?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,0x000683D0,278,Code/GameEngine/Source/Common/Dict.cpp,reloc-derived;call-sites=3;identity=real
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,0x00068580,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,reloc-derived;call-sites=1;identity=real
-?Gen00069DF0@@YAXPAX0000@Z,0x00069DF0,71,Code/GameEngine/Source/Common/Q2TrailingZeroForwarders.cpp,reloc-derived;call-sites=1;identity=generated
-?Gen00069E60@@YAXPAX0000@Z,0x00069E60,73,Code/GameEngine/Source/Common/Q2TrailingZeroForwarders.cpp,reloc-derived;call-sites=1;identity=generated
 ?evaluate@U4Curve006095D0@@QBEMH@Z,0x0006A520,611,Code/GameEngine/Source/Common/U4SmallCompositeBodies.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_0006b110@@UAE@XZ,0x0006B140,11,Code/gen_small/dtors_000.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0006e3e0@@UAE@XZ,0x0006B690,11,Code/gen_small/dtors_000.cpp,reloc-derived;call-sites=1;identity=generated

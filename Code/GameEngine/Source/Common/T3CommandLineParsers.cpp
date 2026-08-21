@@ -364,3 +364,31 @@ Int Rva000613F0_parse(char *args[], int num)
 	}
 	return 1;
 }
+
+// ?Rva00060880_parse@@YAHQAPADH@Z -- the first two stores of Rva00060910_parse
+Int Rva00060880_parse(char *args[], int num)
+{
+	if (TheWritableGlobalData)
+	{
+		TheWritableGlobalData->m_flagBB4 = false;
+		TheWritableGlobalData->m_flagBB5 = true;
+	}
+	return 1;
+}
+
+// ?Rva00060970_parse@@YAHQAPADH@Z -- the set twin of Rva00060980_parse
+Int Rva00060970_parse(char *args[], int num)
+{
+	g_flag12ED4D9 = true;
+	return 1;
+}
+
+// ?Rva000609C0_parse@@YAHQAPADH@Z -- the set twin of Rva00060B20_parseNoWin
+Int Rva000609C0_parse(char *args[], int num)
+{
+	if (TheWritableGlobalData)
+	{
+		TheWritableGlobalData->m_windowed = true;
+	}
+	return 1;
+}

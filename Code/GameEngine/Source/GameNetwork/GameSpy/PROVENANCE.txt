@@ -145,3 +145,28 @@ static-CRT direct calls do not byte-match. `__cdecl` (i.e. NOT `/Gz`) — `/Gz`
 collapses the qr2+GP+ghttp core from 108 exact hits to 6. Win32 headers come
 from `reference/shims/gamespy` (see its windows.h): the toolchain ships no
 Platform SDK, and the sweep shim next door is C++-only.
+
+Chat and Peer: opened 2026-08-21, and NOT on the same footing as the rest
+-------------------------------------------------------------------------
+The refusal recorded above was a licence judgement, and the scope paragraph
+near the top of this file answers it: the owner states the permission covers
+the Chat and Peer modules. On that basis peer/ and chat/ now exist here. What
+is in them is NOT vendored and must not be read as such -- the Area 51 carrier
+ships no chat/ or peer/ directory at all, so there is no 2004 text to vendor.
+These files are RECONSTRUCTIONS: bodies transcribed from the 2007 SDK
+(nitrocaster/GameSpy) with local declarations standing in for the 2004 headers,
+and each one carries a header block saying so and saying what anchors its
+placement. They therefore carry no `vendored=gamespy-2004` note, and the
+measurement that dated the rest of this tree does not cover them.
+
+    peer/peerCallbacks.c   85 rows   the 34 copy/free/call triples reached
+                                     through callbackFuncs[] at 0x00D30D50
+    peer/peerMangle.c      10 rows   room/user name mangling
+    chat/chatCrypt.c        3 rows   gs_prepare_key / gs_crypt / gs_xcode_buf
+
+That the 2007 text reproduces 2004 bytes at all is itself a measurement worth
+keeping: peerCallbacks.c matched 101 of the 102 bodies it emits on the first
+compile, which is the opposite of the 51-vs-440 result the 2007 SDK scored on
+the qr2/GP/ghttp core. Do not generalise it -- peerMain.c and chatMain.c were
+not attempted, and both reach deep into connection structs whose 2004 layout
+is not known.

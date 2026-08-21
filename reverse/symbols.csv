@@ -74600,3 +74600,10 @@ _sprintf,0x009F6DE2,V2 lane: sprintf import thunk (reverse/functions.csv gen-imp
 ??0BfmeLivingWorldAnimObject@@QAE@ABVAsciiString@@@Z,0x000089E0,LivingWorld animation object constructor ILT decoded from findAnimObject retail callsite
 ?_M_insert_overflow@?$vector@PAVBfmeLivingWorldAnimObject@@V?$allocator@PAVBfmeLivingWorldAnimObject@@@_STL@@@_STL@@IAEXPAPAVBfmeLivingWorldAnimObject@@ABQAV3@ABU__true_type@2@I_N@Z,0x000094D5,STL vector overflow helper ILT decoded from findAnimObject retail callsite
 ?calcPitches@GeometryInfo@@QBEXABUCoord3D@@ABV1@0AAM2@Z,0x0087EC20,GeometryInfo pitch calculation body decoded from Weapon::isWithinTargetPitch retail callsite
+_W3AtlThrow@4,0x00019ACE,ILT thunk to the ATL throw helper at 0x0005BA40; pinned for gen_small glue
+_W3AtlThrowLastWin32@0,0x00032AF1,ILT thunk to the ATL last-Win32-error throw helper at 0x0005BA60; pinned for gen_small glue
+_W3AtlThreadAcp@0,0x00002C34,ILT thunk to the NT5+ constant code-page getter at 0x0005B810; pinned for gen_small glue
+_W3AtlParseLocaleAcp@0,0x0001B770,ILT thunk to the locale-parsing code-page getter at 0x0005B7A0; pinned for gen_small glue
+?dlink_removeFrom_TeamMemberList@Object@@QAEXPAPAV1@@Z,0x001BD490,MAKE_DLINK unlink body; unlinks Object +0x25C/+0x260 and writes *pListHead
+?release@Rva0005C6B0Holder@@QAEXXZ,0x0005C6B0,out-of-line release of the small-buffer conversion holder; reached from 0x0005E1E0 via ILT 0x0002F0AE
+_W3RbDecrement,0x0082B8E0,alias pin for the red-black tree node decrement helper at 0x0082B8E0 used by 0x00064880

@@ -4551,6 +4551,7 @@ Bool Object::affectedByUpgrade( const UpgradeTemplate *upgradeT ) const
 /** Give this upgrade to this object */
 //-------------------------------------------------------------------------------------------------
 // ?giveUpgrade@Object@@QAEXPBVUpgradeTemplate@@@Z present-unmatched
+// (the matched BFME body lives in ObjectFields.cpp at 0x001C9F70)
 void Object::giveUpgrade( const UpgradeTemplate *upgradeT )
 {
 	if (upgradeT)
