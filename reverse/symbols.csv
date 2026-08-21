@@ -74219,3 +74219,152 @@ _Gen00881EF0,0x00881EF0,address-derived callee of a guarded cdecl release-and-cl
 ?GenAdjust00260D80@@YAXPAUGen8ByteElement@@HHU1@P6A_NABU1@2@Z@Z,0x00260D80,address-derived REL32 callee of a heap-pop helper reached through the ILT thunk at 0x000075D6; cdecl with six pushed dwords
 ?GenAdjust004379B0@@YAXPAUGen8ByteElement@@HHU1@P6A_NABU1@2@Z@Z,0x004379B0,address-derived REL32 callee of a heap-pop helper reached through the ILT thunk at 0x00028501; cdecl with six pushed dwords
 ?GenAdjust005757E0@@YAXPAUGen8ByteElement@@HHU1@P6A_NABU1@2@Z@Z,0x005757E0,address-derived REL32 callee of a heap-pop helper reached through the ILT thunk at 0x00027138; cdecl with six pushed dwords
+??1Gen009DB400@@QAE@XZ,0x009DB400,S3 delete-and-clear family callee destructor (address-derived name)
+??1Gen0003FA7B@@QAE@XZ,0x0003FA7B,S3 delete-and-clear family callee destructor (address-derived name)
+??1Gen009DB4D0@@QAE@XZ,0x009DB4D0,S3 delete-and-clear family callee destructor (address-derived name)
+??1Gen0000D33C@@QAE@XZ,0x0000D33C,S3 delete-and-clear family callee destructor (address-derived name)
+??1Gen0097D800@@QAE@XZ,0x0097D800,S3 delete-and-clear family callee destructor (address-derived name)
+?h00044062@GenAlpha@@QAEXXZ,0x00044062,S3 guarded-global-triple family callee (address-derived name)
+?h00016AF4@GenAlpha@@QAEXXZ,0x00016AF4,S3 guarded-global-triple family callee (address-derived name)
+?h00024D2A@GenAlpha@@QAEXXZ,0x00024D2A,S3 guarded-global-triple family callee (address-derived name)
+?h00040601@GenAlpha@@QAEXXZ,0x00040601,S3 guarded-global-triple family callee (address-derived name)
+?h000053B7@GenAlpha@@QAEXXZ,0x000053B7,S3 guarded-global-triple family callee (address-derived name)
+?h00015BF4@GenBeta@@QAEXXZ,0x00015BF4,S3 guarded-global-triple family callee (address-derived name)
+?h00008ACB@GenBeta@@QAEXXZ,0x00008ACB,S3 guarded-global-triple family callee (address-derived name)
+?h00043743@GenBeta@@QAEXXZ,0x00043743,S3 guarded-global-triple family callee (address-derived name)
+?h000217DD@GenBeta@@QAEXXZ,0x000217DD,S3 guarded-global-triple family callee (address-derived name)
+?h00005592@GenBeta@@QAEXXZ,0x00005592,S3 guarded-global-triple family callee (address-derived name)
+?h0004AB42@GenGamma@@QAEXXZ,0x0004AB42,S3 guarded-global-triple family callee (address-derived name)
+?h000131E2@GenGamma@@QAEXXZ,0x000131E2,S3 guarded-global-triple family callee (address-derived name)
+?h0001FE8D@GenGamma@@QAEXXZ,0x0001FE8D,S3 guarded-global-triple family callee (address-derived name)
+?h00048C70@GenGamma@@QAEXXZ,0x00048C70,S3 guarded-global-triple family callee (address-derived name)
+?h0000C919@GenGamma@@QAEXXZ,0x0000C919,S3 guarded-global-triple family callee (address-derived name)
+?Gen0003A17A@@YAXPAXPBD@Z,0x0003A17A,S3 critter-desync family report callee (address-derived name)
+?Gen007EFFC0@@YAPAVGenAlloc@@XZ,0x007EFFC0,S3 polymorphic-array-clear family allocator getter (address-derived name)
+?next@Gen008509C0@@QAEPAVGenItem@@H@Z,0x008509C0,S3 sink-drain family callee (address-derived name)
+?handle@Gen00049A2B@@QAE_NPAVGenItem@@PA_N1@Z,0x00049A2B,S3 sink-drain family callee (address-derived name)
+?handle@Gen00006F78@@QAE_NPAVGenItem@@PA_N1@Z,0x00006F78,S3 sink-drain family callee (address-derived name)
+?handle@Gen000140D8@@QAE_NPAVGenItem@@PA_N1@Z,0x000140D8,S3 sink-drain family callee (address-derived name)
+?handle@Gen0002E893@@QAE_NPAVGenItem@@PA_N1@Z,0x0002E893,S3 sink-drain family callee (address-derived name)
+?handle@Gen000341FD@@QAE_NPAVGenItem@@PA_N1@Z,0x000341FD,S3 sink-drain family callee (address-derived name)
+??$__adjust_heap@PAUS4SortElem8@@HU1@US4Cmp00261140@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp00261140@@@Z,0x00260D80,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__adjust_heap@PAUS4SortElem8@@HU1@US4Cmp00437D80@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp00437D80@@@Z,0x004379B0,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__adjust_heap@PAUS4SortElem8@@HU1@US4Cmp00575AA0@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp00575AA0@@@Z,0x005757E0,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__adjust_heap@PAUS4SortElem8@@HU1@US4Cmp009F3400@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp009F3400@@@Z,0x009F3110,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__adjust_heap@PAUS4SortElem8@@HU1@US4Cmp009F34B0@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp009F34B0@@@Z,0x009F3190,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__insertion_sort@PAUS4SortElem12@@US4Cmp002E1690@@@_STL@@YAXPAUS4SortElem12@@0US4Cmp002E1690@@@Z,0x002E1170,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__insertion_sort@PAUS4SortElem12@@US4Cmp00531FA0@@@_STL@@YAXPAUS4SortElem12@@0US4Cmp00531FA0@@@Z,0x00531720,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__insertion_sort@PAUS4SortElem12@@US4Cmp00532740@@@_STL@@YAXPAUS4SortElem12@@0US4Cmp00532740@@@Z,0x00532080,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__insertion_sort@PAUS4SortElem12@@US4Cmp00574DF0@@@_STL@@YAXPAUS4SortElem12@@0US4Cmp00574DF0@@@Z,0x00574250,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__insertion_sort@PAUS4SortElem20@@US4Cmp002EB8E0@@@_STL@@YAXPAUS4SortElem20@@0US4Cmp002EB8E0@@@Z,0x002EB270,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__unguarded_insertion_sort_aux@PAUS4SortElem12@@U1@US4Cmp002E1690@@@_STL@@YAXPAUS4SortElem12@@00US4Cmp002E1690@@@Z,0x002E0730,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__unguarded_insertion_sort_aux@PAUS4SortElem12@@U1@US4Cmp00531FA0@@@_STL@@YAXPAUS4SortElem12@@00US4Cmp00531FA0@@@Z,0x0052FF20,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__unguarded_insertion_sort_aux@PAUS4SortElem12@@U1@US4Cmp00532740@@@_STL@@YAXPAUS4SortElem12@@00US4Cmp00532740@@@Z,0x00530050,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__unguarded_insertion_sort_aux@PAUS4SortElem12@@U1@US4Cmp00574DF0@@@_STL@@YAXPAUS4SortElem12@@00US4Cmp00574DF0@@@Z,0x005719B0,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??$__unguarded_insertion_sort_aux@PAUS4SortElem20@@U1@US4Cmp002EB8E0@@@_STL@@YAXPAUS4SortElem20@@00US4Cmp002EB8E0@@@Z,0x002EA750,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??RS4Cmp003408C0@@QBE_NHH@Z,0x0033D5E0,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??RS4Cmp004529D0@@QBE_NHH@Z,0x00451F60,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??RS4Cmp00452A50@@QBE_NHH@Z,0x00451E90,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??RS4Cmp007534F0@@QBE_NHH@Z,0x00752B80,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?handle@Gen00024C17@@QAEXHH@Z,0x00024C17,address-derived sub-object pair-call callee; target read from the REL32 at 0x00065A40
+?handle@Gen0001D63D@@QAEXHH@Z,0x0001D63D,address-derived sub-object pair-call callee; target read from the REL32 at 0x000FB1F0 and 0x003C3AC0
+?handle@Gen00046B00@@QAEXHH@Z,0x00046B00,address-derived sub-object pair-call callee; target read from the REL32 at 0x00366C80
+?handle@Gen0001D3EA@@QAEXHH@Z,0x0001D3EA,address-derived sub-object pair-call callee; target read from the REL32 at 0x003A3580
+?handle@Gen000157DA@@QAEXHH@Z,0x000157DA,address-derived owner-offset hook callee; target read from the REL32 at 0x001EE8D0 and four siblings; other names already pinned here
+?Make00001B18@@YAPAVGen00001B18@@XZ,0x00001B18,address-derived lazy-pointer fallback callee; target read from the REL32 at 0x005F0CA0 and four siblings
+?b_0002d817@@YAXXZ,0x0002D817,address-derived call-then-store callee; target read from the REL32 at 0x00588A00
+?b_0003144e@@YAXXZ,0x0003144E,address-derived call-then-store callee; target read from the REL32 at 0x00588C30
+?b_00046a74@@YAXXZ,0x00046A74,address-derived call-then-store callee; target read from the REL32 at 0x005A3160
+?b_00025e1e@@YAXXZ,0x00025E1E,address-derived constructor prologue callee; target read from the REL32 at 0x002E2680
+?b_00014f2e@@YAXXZ,0x00014F2E,address-derived constructor prologue callee; target read from the REL32 at 0x00765B00
+?handle@Gen00027F2A@@QAEX_N@Z,0x00027F2A,address-derived guarded flag-forward callee; target read from the REL32 at 0x0048D1B0 and 0x0048D1D0
+?handle@Gen0000C955@@QAEX_N@Z,0x0000C955,address-derived guarded flag-forward callee; target read from the REL32 at 0x00539350 and 0x00539370
+?ready@GenOwner@@QAE_NXZ,0x0004425B,S3 back-step guarded virtual float family predicate (address-derived name)
+??RS4Range00342CE0@@QBE_NHH@Z,0x0033D5E0,S4 unguarded-insertion predicate (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??RS4Range00453090@@QBE_NHH@Z,0x00451F60,S4 unguarded-insertion predicate (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??RS4Range00453180@@QBE_NHH@Z,0x00451E90,S4 unguarded-insertion predicate (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??RS4Range007537C0@@QBE_NHH@Z,0x00752B80,S4 unguarded-insertion predicate (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?add@GenActionSink@@QAEXPAXPBDH1HHHH@Z,0x00015235,S3 action-sink forwarder family callee (address-derived name)
+??1S4Elem00252ED0@@QAE@XZ,0x00252A40,S4 vector element destructor (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Elem0039EBE0@@QAE@XZ,0x0039DCC0,S4 vector element destructor (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Elem00608D40@@QAE@XZ,0x00608480,S4 vector element destructor (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Elem007746E0@@QAE@XZ,0x00753E80,S4 vector element destructor (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Elem0077B010@@QAE@XZ,0x00770F40,S4 vector element destructor (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?fetch@GenKey@@QAEHPA_N@Z,0x00009304,S3 table-lookup-with-fallback family callee (address-derived name)
+?lookup@GenTable@@QAEMH@Z,0x000184B2,S3 table-lookup-with-fallback family callee (address-derived name)
+?set@Gen0002A1B2@@QAEXHHM@Z,0x0002A1B2,S2 sub-object setter reached from the six 24-byte constructors at 0x0073ABxx; target read from their REL32
+?apply@Gen00587600@@QAEXHH@Z,0x00039FEF,S2 two-argument member called after atoi by the six entry points at 0x0051A7xx; ILT thunk to body 0x00587600
+?Gen000247E9@@YAHPAVGenArgA@@PAVGenArgB@@PA_N@Z,0x000247E9,S2 three-argument __cdecl callee of the flag-out forwarders at 0x000BB8F0 and 0x000BC440; ILT thunk to body 0x000BB5D0
+?Gen000336C2@@YAHPAVGenArgA@@PAVGenArgB@@PA_N@Z,0x000336C2,S2 three-argument __cdecl callee of the flag-out forwarders at 0x0069F020 and 0x006A12B0; ILT thunk to body 0x0069CE20
+?Gen000096FB@@YAHPAVGenArgA@@PAVGenArgB@@PA_N@Z,0x000096FB,S2 three-argument __cdecl callee of the flag-out forwarders at 0x006A1420 and 0x006A4BE0; ILT thunk to body 0x0069F100
+??1Gen0002AB5D@@QAE@XZ,0x0002AB5D,S2 non-virtual destructor called directly by the delete-argument body at 0x007889D0
+??1Gen00825550@@QAE@XZ,0x00825550,S2 non-virtual destructor called directly by the delete-argument body at 0x00823210
+??1Gen008267E0@@QAE@XZ,0x008267E0,S2 non-virtual destructor called directly by the delete-argument body at 0x00823230
+??0GenBase000426E0@@QAE@XZ,0x000426E0,S2 base constructor of the three module-data constructors at 0x004286B0 0x00428980 and 0x00429980
+?value00683900@Gen00683900@@QBEMXZ,0x00034AF4,S2 float getter tail-jumped to from 0x00681C10; ILT thunk to body 0x00683900
+?value00683C00@Gen00683900@@QBEMXZ,0x0004AB79,S2 float getter tail-jumped to from 0x00681C70; ILT thunk to body 0x00683C00
+?value00683D80@Gen00683900@@QBEMXZ,0x00026B7A,S2 float getter tail-jumped to from 0x00681CA0; ILT thunk to body 0x00683D80
+?value00683F00@Gen00683900@@QBEMXZ,0x0000D82D,S2 float getter tail-jumped to from 0x00681CD0; ILT thunk to body 0x00683F00
+?value00684080@Gen00683900@@QBEMXZ,0x0001F96A,S2 float getter tail-jumped to from 0x00681D00; ILT thunk to body 0x00684080
+?take@Gen0001581B@@QAEXPAVGenForwardedArg@@@Z,0x0001581B,S2 one-argument member forwarded to by 0x003B70F0 and 0x003B7140; ILT thunk to body 0x00065090
+?handle@Gen00020B5D@@QAEXH@Z,0x00020B5D,address-derived flag-guarded forward callee; target read from the REL32 at 0x00589620
+??0S4New001142A0@@QAE@HH@Z,0x001FE380,S4 constructor of a new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4New00117DC0@@QAE@HH@Z,0x0028C2D0,S4 constructor of a new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4New0011A680@@QAE@HH@Z,0x002C43A0,S4 constructor of a new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4New0011A720@@QAE@HH@Z,0x002C4A70,S4 constructor of a new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Guarded0055BA20@@QAE@H@Z,0x005538A0,S4 constructor of a guarded new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Guarded0055BAA0@@QAE@H@Z,0x005484E0,S4 constructor of a guarded new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Guarded0055BB20@@QAE@H@Z,0x00536DC0,S4 constructor of a guarded new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Guarded0055BC20@@QAE@H@Z,0x00559400,S4 constructor of a guarded new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Guarded0055BCA0@@QAE@H@Z,0x00545310,S4 constructor of a guarded new-expression family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?b_009f6bc8@@YGXH@Z,0x009F6BC8,address-derived single-argument callee reached by REL32 from 0x0005BC00 and 0x0005BE30; the target itself is a jmp-through-.idata import stub
+?Gen00041ABA@@YAXPAVRva00476880Elem@@00PAX@Z,0x00041ABA,S3 final-insertion-sort split family callee (address-derived name)
+?Gen00020D65@@YAXPAVRva00476880Elem@@0PAX@Z,0x00020D65,S3 final-insertion-sort split family callee (address-derived name)
+?Gen000235C4@@YAXPAVRva00574E70Elem@@00PAX@Z,0x000235C4,S3 final-insertion-sort split family callee (address-derived name)
+?Gen0002591E@@YAXPAVRva00574E70Elem@@0PAX@Z,0x0002591E,S3 final-insertion-sort split family callee (address-derived name)
+?Gen000046FB@@YAXPAVRva00576FF0Elem@@00PAX@Z,0x000046FB,S3 final-insertion-sort split family callee (address-derived name)
+?Gen0001EE39@@YAXPAVRva00576FF0Elem@@0PAX@Z,0x0001EE39,S3 final-insertion-sort split family callee (address-derived name)
+?Gen009F3050@@YAXPAVRva009F3CE0Elem@@00PAX@Z,0x009F3050,S3 final-insertion-sort split family callee (address-derived name)
+?Gen009F3A80@@YAXPAVRva009F3CE0Elem@@0PAX@Z,0x009F3A80,S3 final-insertion-sort split family callee (address-derived name)
+?Gen009F30B0@@YAXPAVRva009F3D30Elem@@00PAX@Z,0x009F30B0,S3 final-insertion-sort split family callee (address-derived name)
+?Gen009F3AC0@@YAXPAVRva009F3D30Elem@@0PAX@Z,0x009F3AC0,S3 final-insertion-sort split family callee (address-derived name)
+?fetchB@Rva00677280Msg@@QAEIXZ,0x0003F62A,S3 wire-record fill family fetch callee (address-derived name)
+?fetchA@Rva00677280Msg@@QAEEXZ,0x00028A1F,S3 wire-record fill family fetch callee (address-derived name)
+?fetchB@Rva006772F0Msg@@QAEIXZ,0x00013F20,S3 wire-record fill family fetch callee (address-derived name)
+?fetchA@Rva006772F0Msg@@QAEEXZ,0x000058B7,S3 wire-record fill family fetch callee (address-derived name)
+?fetchB@Rva00677450Msg@@QAEIXZ,0x00033668,S3 wire-record fill family fetch callee (address-derived name)
+?fetchA@Rva00677450Msg@@QAEGXZ,0x00012C15,S3 wire-record fill family fetch callee (address-derived name)
+?fetchB@Rva006774C0Msg@@QAEIXZ,0x0002DF06,S3 wire-record fill family fetch callee (address-derived name)
+?fetchA@Rva006774C0Msg@@QAEIXZ,0x00034612,S3 wire-record fill family fetch callee (address-derived name)
+?fetchB@Rva00677590Msg@@QAEIXZ,0x00035EF4,S3 wire-record fill family fetch callee (address-derived name)
+?fetchA@Rva00677590Msg@@QAEIXZ,0x0000911F,S3 wire-record fill family fetch callee (address-derived name)
+??0S4ModuleData00116640@@QAE@XZ,0x0021D6E0,S4 module-data constructor of the friend_newModuleData family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4ModuleData00116D80@@QAE@XZ,0x0024F390,S4 module-data constructor of the friend_newModuleData family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4ModuleData00116E90@@QAE@XZ,0x00203440,S4 module-data constructor of the friend_newModuleData family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4ModuleData0012A070@@QAE@XZ,0x00129F80,S4 module-data constructor of the friend_newModuleData family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4ModuleData006BF930@@QAE@XZ,0x00759460,S4 module-data constructor of the friend_newModuleData family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Made0090F650@@QAE@XZ,0x0090F650,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Made00912580@@QAE@XZ,0x00912580,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Made0091A730@@QAE@XZ,0x0091A730,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?s4First005F2D80@@YAXXZ,0x005DF2D0,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?s4First005F36D0@@YAXXZ,0x005DEEE0,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?s4First005F6590@@YAXXZ,0x005DF120,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?s4First005F8540@@YAXXZ,0x005DEF70,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?s4Second@@YAXXZ,0x005F40C0,S4 callee of the ctor-then-publish-new family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Base00479CD0@@UAE@XZ,0x00479CD0,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Base0077C1F0@@UAE@XZ,0x0077C1F0,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Base009A1A40@@UAE@XZ,0x009A1A40,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Mem004948B0@@QAE@XZ,0x004948B0,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Mem005864A0@@QAE@XZ,0x005864A0,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Mem005879C0@@QAE@XZ,0x005879C0,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Mem005B33B0@@QAE@XZ,0x005B33B0,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??1S4Mem00887940@@QAE@XZ,0x00887940,S4 member or base destructor of the two-member destructor family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Parsed0059BDE0@@QAE@XZ,0x0059BD00,S4 parsed-object constructor of the INI parse-then-register family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Parsed0059E290@@QAE@XZ,0x0059E1F0,S4 parsed-object constructor of the INI parse-then-register family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Parsed0059E860@@QAE@XZ,0x0059E7C0,S4 parsed-object constructor of the INI parse-then-register family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+??0S4Parsed0059F980@@QAE@XZ,0x0059F8F0,S4 parsed-object constructor of the INI parse-then-register family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?take0046DBB0@S4Holder0046DBB0@@QAEXABVAsciiString@@@Z,0x0046DBB0,S4 holder method of the string-vector drain family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?take0046DD00@S4Holder0046DBB0@@QAEXABVAsciiString@@@Z,0x0046DD00,S4 holder method of the string-vector drain family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?take0046DE10@S4Holder0046DBB0@@QAEXABVAsciiString@@@Z,0x0046DE10,S4 holder method of the string-vector drain family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?take0046DEF0@S4Holder0046DBB0@@QAEXABVAsciiString@@@Z,0x0046DEF0,S4 holder method of the string-vector drain family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
+?invoke@S4Sink004135C0@@QAEXABVAsciiString@@HHHH@Z,0x004135C0,S4 sink method of the Lua string-command family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
