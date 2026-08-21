@@ -1,0 +1,797 @@
+kind,address,expected,note
+vslot,0x0111A968+0x00,0x00682770,BFMENativeNetwork scalar deleting dtor ??_GNetwork
+vslot,0x0111A968+0x04,0x00681E40,Network::init
+vslot,0x0111A968+0x10,0x00681910,Network::reset (jmp [vt+4])
+vslot,0x0111A968+0x24,0x00681930,Network::liteupdate
+vslot,0x0111A968+0x28,0x00682C70,Network::update
+vslot,0x0111A968+0x2C,0x00681960,Network::parseUserList
+vslot,0x0111A968+0x30,0x00681980,Network::setLocalAddress
+vslot,0x0111A968+0x38,0x006819B0,Network::initTransport
+vslot,0x0111A968+0x44,0x006819E0,_bfme_getFrameHeadroom
+vslot,0x0111A968+0x48,0x00681A00,_bfme_isLocalPlayerInGame
+vslot,0x0111A968+0x4C,0x00682310,_bfme_sendFrameInfo
+vslot,0x0111A968+0x50,0x00682440,Network::sendChat
+vslot,0x0111A968+0x58,0x00682540,Network::sendFile
+vslot,0x0111A968+0x5C,0x006825C0,Network::sendFileAnnounce
+vslot,0x0111A968+0x64,0x00681A10,Network::areAllQueuesEmpty
+vslot,0x0111A968+0x68,0x00681A20,_bfme_setFileTransferMode
+vslot,0x0111A968+0x6C,0x00681A40,_bfme_clearFileTransferMode
+vslot,0x0111A968+0x74,0x00681A80,Network::loadProgressComplete
+vslot,0x0111A968+0x78,0x006822E0,Network::quitGame
+vslot,0x0111A968+0x7C,0x00682270,Network::voteForPlayerDisconnect
+vslot,0x0111A968+0x84,0x00681AC0,Network::getPingsSent
+vslot,0x0111A968+0x88,0x00681AF0,Network::getPingsRecieved
+vslot,0x0111A968+0x90,0x00681B40,_bfme_getPacketRouterSlot
+vslot,0x0111A968+0x94,0x00681B60,Network::getNumPlayers
+vslot,0x0111A968+0x98,0x00681B80,Network::getLocalPlayerID
+vslot,0x0111A968+0xA0,0x00681BC0,_bfme_isInUpdate (reads +0x35)
+vslot,0x0111A968+0xA4,0x00681BA0,slot 41 sets +0x35=1 (ledgered setSawCRCMismatch)
+vslot,0x0111A968+0xA8,0x00681BB0,slot 42 sets +0x35=0 (ledgered _bfme_clearSawCRCMismatch)
+vslot,0x0111A968+0xB0,0x00681BE0,_bfme_isWaitingForPlayers
+vslot,0x0111A968+0xB4,0x00681C10,Network::getIncomingBytesPerSecond
+vslot,0x0111A968+0xBC,0x00681C70,Network::getOutgoingBytesPerSecond
+vslot,0x0111A968+0xC0,0x00681CA0,Network::getOutgoingPacketsPerSecond
+vslot,0x0111A968+0xC4,0x00681CD0,Network::getUnknownBytesPerSecond
+vslot,0x0111A968+0xC8,0x00681D00,Network::getUnknownPacketsPerSecond
+vslot,0x0111A968+0xCC,0x00681D30,_bfme_getFramesBehindPacketRouter
+vslot,0x0111A968+0xD8,0x00681DB0,_bfme_getPlayerLatestFrame
+vslot,0x0111A968+0xDC,0x00681BD0,_bfme_isRouterLeavePending
+vslot,0x0111A968+0xE0,0x00681DD0,_bfme_isPlayerSlotActive
+thunk,0x00022985,0x00682770,ILT for slot 0
+thunk,0x00040FB6,0x00681E40,ILT for init
+thunk,0x0003CF1A,0x00681910,ILT for reset
+thunk,0x00009D0E,0x00681930,ILT for liteupdate
+thunk,0x00027E12,0x00682C70,ILT for update
+thunk,0x000069E7,0x00681960,ILT for parseUserList
+thunk,0x0002AA45,0x00681980,ILT for setLocalAddress
+thunk,0x00023F01,0x006819B0,ILT for initTransport
+thunk,0x000238BC,0x006819E0,ILT for _bfme_getFrameHeadroom
+thunk,0x0002AF68,0x00681A00,ILT for _bfme_isLocalPlayerInGame
+thunk,0x0003ED9C,0x00682310,ILT for _bfme_sendFrameInfo
+thunk,0x0002B512,0x00682440,ILT for sendChat
+thunk,0x0002193B,0x00682540,ILT for sendFile
+thunk,0x0001B487,0x006825C0,ILT for sendFileAnnounce
+thunk,0x000149E8,0x00681A10,ILT for areAllQueuesEmpty
+thunk,0x0003B656,0x00681A20,ILT for _bfme_setFileTransferMode
+thunk,0x0000C8C9,0x00681A40,ILT for _bfme_clearFileTransferMode
+thunk,0x00001A5F,0x00681A80,ILT for loadProgressComplete
+thunk,0x00031D81,0x006822E0,ILT for quitGame
+thunk,0x0003D1F4,0x00682270,ILT for voteForPlayerDisconnect
+thunk,0x000266D4,0x00681AC0,ILT for getPingsSent
+thunk,0x00022165,0x00681AF0,ILT for getPingsRecieved
+thunk,0x0001865B,0x00681B40,ILT for _bfme_getPacketRouterSlot
+thunk,0x000393E2,0x00681B60,ILT for getNumPlayers
+thunk,0x0002B85F,0x00681B80,ILT for getLocalPlayerID
+thunk,0x0003171E,0x00681BC0,ILT for _bfme_isInUpdate
+thunk,0x00005461,0x00681BE0,ILT for _bfme_isWaitingForPlayers
+thunk,0x00028C9F,0x00681C10,ILT for getIncomingBytesPerSecond
+thunk,0x00042514,0x00681C70,ILT for getOutgoingBytesPerSecond
+thunk,0x00019AAB,0x00681CA0,ILT for getOutgoingPacketsPerSecond
+thunk,0x0000AFA6,0x00681CD0,ILT for getUnknownBytesPerSecond
+thunk,0x00039806,0x00681D00,ILT for getUnknownPacketsPerSecond
+thunk,0x00030E27,0x00681D30,ILT for _bfme_getFramesBehindPacketRouter
+thunk,0x00042500,0x00681DB0,ILT for _bfme_getPlayerLatestFrame
+thunk,0x0001D65B,0x00681BD0,ILT for _bfme_isRouterLeavePending
+thunk,0x00021A80,0x00681DD0,ILT for _bfme_isPlayerSlotActive
+thunk,0x000393BF,0x006828D0,ILT for GetCommandsFromCommandList (called from update)
+thunk,0x0004215E,0x00682A90,ILT for RelayCommandsToCommandList (called from update)
+thunk,0x0001632E,0x006827A0,ILT for processDestroyPlayerCommand
+thunk,0x0001AB3B,0x00680980,ILT for NetPacket::getCommandList
+thunk,0x00010140,0x006823B0,ILT for ??1Network (called by the scalar deleting dtor)
+thunk,0x0001E8F8,0x006818B0,ILT for construct@BFMENativeNetwork (called by the factory 0x00682320)
+thunk,0x0001D0B1,0x00682320,ILT for the TheNetwork factory 0x00682320
+insn,0x00682B52,"mov dword ptr [esi + 0x38], edx",RelayCommandsToCommandList stores the router leave frame (msg+0x08) into Network+0x38
+insn,0x00682BFA,"mov dword ptr [esi + 0x38], 0xffffffff",RelayCommandsToCommandList clears Network+0x38 after the router leave completes
+insn,0x00682BD0,"mov eax, dword ptr [esi + 0x38]",RelayCommandsToCommandList reads +0x38 for the all-players-reached test 0x00662D50
+insn,0x00681EE8,"mov dword ptr [esi + 0x38], edi",init sets +0x38 = -1 (edi from or edi 0xffffffff at 0x00681E9D)
+insn,0x00681E9D,"or edi, 0xffffffff",init: edi = -1 before the +0x38 store
+insn,0x00681BD0,"mov edx, dword ptr [ecx + 0x38]",slot 55 _bfme_isRouterLeavePending reads +0x38
+insn,0x00681BD5,"cmp edx, -1",slot 55 compares +0x38 with -1
+insn,0x006822FC,"mov dword ptr [esi + 0xc], 3",quitGame stores status 3 (POSTGAME)
+insn,0x006822F7,push 0x1d,quitGame appends MSG_CLEAR_GAME_DATA (0x1D) to TheMessageStream
+insn,0x00682C7E,"mov dword ptr [esi + 0xc], 1",update: PREGAME(0) -> INGAME(1)
+insn,0x00682C98,"cmp dword ptr [esi + 0xc], 2",update tests status 2 (LEFT)
+insn,0x00682CB3,"mov dword ptr [esi + 0xc], 3",update: LEFT(2) -> POSTGAME(3)
+insn,0x00682CAE,push 0x1d,update appends MSG_CLEAR_GAME_DATA on the 2->3 transition
+insn,0x00682C78,"mov byte ptr [esi + 0x34], 0",update clears +0x34 first (ZH m_frameDataReady = FALSE)
+insn,0x00682A18,"mov dword ptr [edi + 0xc], 2",GetCommandsFromCommandList sets status 2 after the 10 s forced self-destroy
+insn,0x00682B6E,"mov dword ptr [esi + 0xc], 2",RelayCommandsToCommandList sets status 2 when beginPlayerLeave returns 1 (local)
+insn,0x00682BF3,"mov dword ptr [esi + 0xc], 2",RelayCommandsToCommandList sets status 2 when the router's pending leave completes
+insn,0x00681EAC,"mov dword ptr [esi + 0xc], ebx",init sets status 0 (ebx zeroed at 0x00681E5E)
+insn,0x00681E5E,"xor ebx, ebx",init: ebx = 0
+insn,0x00681A00,"mov edx, dword ptr [ecx + 0xc]",slot 18 _bfme_isLocalPlayerInGame reads status
+insn,0x00681A05,"cmp edx, 1",slot 18 compares status with INGAME
+insn,0x0068193F,"cmp dword ptr [ecx + 0xc], 1",liteupdate passes status==1 to ConnectionManager::update
+insn,0x00681F43,"mov ecx, dword ptr [esi + 0xc]",isPlayerConnected reads status for the local player
+insn,0x00682915,"cmp dword ptr [edi + 0xc], ebp",GetCommandsFromCommandList gates sending on status==1 (ebp=1)
+insn,0x006828FC,"mov ebp, 1",GetCommandsFromCommandList: ebp = 1
+insn,0x00682904,"cmp eax, 0x3e8",GetCommandsFromCommandList network message range lower bound
+insn,0x0068290E,"cmp eax, 0x7cf",GetCommandsFromCommandList network message range upper bound
+insn,0x00682956,"cmp eax, 0x1d",GetCommandsFromCommandList MSG_CLEAR_GAME_DATA arm
+insn,0x00682AA1,"mov eax, dword ptr [esi + 0xc]",RelayCommandsToCommandList reads status (must be != 0)
+insn,0x00682AFE,"sub eax, 4",RelayCommandsToCommandList switch: NetCommandType 4 GAMECOMMAND
+insn,0x00682B07,"sub eax, 6",RelayCommandsToCommandList switch: 10 PLAYERLEAVE
+insn,0x00682B0C,dec eax,RelayCommandsToCommandList switch: 11 DESTROYPLAYER
+insn,0x00682832,push 0x447,processDestroyPlayerCommand builds GameMessage MSG_SELF_DESTRUCT (0x447)
+insn,0x00681BA0,"mov byte ptr [ecx + 0x35], 1",slot 41 sets +0x35
+insn,0x00681BB0,"mov byte ptr [ecx + 0x35], 0",slot 42 clears +0x35
+insn,0x00681BC0,"mov al, byte ptr [ecx + 0x35]",slot 40 reads +0x35
+insn,0x0006BB1D,call dword ptr [edx + 0xa4],GameEngine update core calls slot 41 before update
+insn,0x0006BB2B,push esi,GameEngine update core pushes its Bool (1) for Network::update
+insn,0x0006BB2C,call dword ptr [eax + 0x28],GameEngine update core calls Network::update
+insn,0x0006BB37,call dword ptr [edx + 0xa8],GameEngine update core calls slot 42 after update
+insn,0x0006BAFA,"mov ecx, dword ptr [0x12f7714]",GameEngine update core loads TheNetwork (0x012F7714)
+insn,0x0068236A,"mov dword ptr [0x12f7714], eax",factory 0x00682320 stores the new BFMENativeNetwork into TheNetwork
+insn,0x00682346,push 0x40,factory 0x00682320 allocates sizeof(BFMENativeNetwork) = 0x40
+insn,0x00681E74,push 0x12190,init allocates sizeof(ConnectionManager) = 0x12190
+insn,0x00491F7F,push 0,load screen pumps Network::update with 0
+insn,0x0068198D,"mov dword ptr [eax + 0x12050], edx",setLocalAddress stores addr at conMgr+0x12050
+insn,0x00681996,"mov dword ptr [eax + 0x12054], ecx",setLocalAddress stores port at conMgr+0x12054
+insn,0x00681A27,"mov byte ptr [eax + 0x12114], 1",_bfme_setFileTransferMode
+insn,0x00681A47,"mov byte ptr [eax + 0x12114], 0",_bfme_clearFileTransferMode
+insn,0x0066ADAA,"mov dl, byte ptr [ebp + 0x12114]",ConnectionManager::update passes the file-transfer byte to Connection::doSend
+insn,0x00681BF1,"movzx eax, byte ptr [eax + 0x270]",_bfme_isWaitingForPlayers reads DisconnectManager+0x270
+insn,0x0066CA7A,"mov byte ptr [esi + 0x270], 1",DisconnectManager update sets +0x270 when connected players are behind
+insn,0x0066CA0B,"mov byte ptr [esi + 0x270], 0",DisconnectManager update clears +0x270 when nobody is behind
+insn,0x00681D3D,"mov eax, dword ptr [eax + 0x1205c]",_bfme_getFramesBehindPacketRouter reads the frame ceiling
+insn,0x00681D43,"sub eax, dword ptr [ecx + 0x3c]",_bfme_getFramesBehindPacketRouter subtracts TheGameLogic frame
+insn,0x00681DBB,"mov eax, dword ptr [eax + ecx*4 + 0x12060]",_bfme_getPlayerLatestFrame indexes conMgr+0x12060
+insn,0x00681AC7,"mov eax, dword ptr [eax + 0x120e0]",getPingsSent reads conMgr+0x120E0 DisconnectManager
+insn,0x0066B130,"mov eax, dword ptr [ecx + 0x260]",Gen_0066b130 getter behind getPingsSent
+insn,0x0066B140,"mov eax, dword ptr [ecx + 0x264]",Gen_0066b140 getter behind getPingsRecieved
+insn,0x00681B8C,"mov eax, 0x31",getLocalPlayerID default 49 as ZH
+insn,0x00681B6C,"or eax, 0xffffffff",getNumPlayers default -1 as ZH
+insn,0x00665D5F,"mov dword ptr [esi + 0x14], 3",sendFrameInfo stamps NetCommandType FRAMEINFO
+insn,0x00664A9B,"mov dword ptr [esi + 0x14], 0x10",sendLoadCompleteCommand stamps NetCommandType LOADCOMPLETE
+insn,0x00682011,inc dword ptr [esi + 0x2c],getFrameAdvanceCount counts run-ahead ceiling hits in +0x2C
+insn,0x00681D60,"mov eax, dword ptr [ecx + 0x2c]",slot 52 returns the ceiling-hit counter
+insn,0x006823CE,"mov dword ptr [esi], 0x111a968",??1Network installs the BFMENativeNetwork vtable
+insn,0x006823FD,"mov dword ptr [esi], 0x111a850",??1Network falls back to the NetworkInterface vtable before ??1Snapshot
+insn,0x00680A97,jmp dword ptr [ebp*4 + 0xa80ee4],NetPacket::getCommandList 'D' dispatch table
+bytes,0x00681910,8b01ff6004,reset: mov eax [ecx] / jmp [eax+4]
+bytes,0x00681BA0,c6413501c3,slot 41: +0x35 = 1
+bytes,0x00681BB0,c6413500c3,slot 42: +0x35 = 0
+bytes,0x00681BC0,8a4135c3,slot 40: return +0x35
+bytes,0x00681920,c3,slot 5 no-op (SubsystemInterface::update position; startNewGame 0x0039451C)
+bytes,0x00681D60,8b412cc3,slot 52: return +0x2C
+bytes,0x00662DE0,8b812c200100c3,getPacketRouterSlot@ConnectionManager: return +0x1202C
+bytes,0x00673AF0,8a411cc3,getLeavingPlayerID@NetPlayerLeaveCommandMsg: return byte +0x1C
+jt,0x00A80EE4[10],0x00680AFE,getCommandList case 10 PLAYERLEAVE arm (calls readPlayerLeaveMessage 0x00678BB0)
+jt,0x00A80EE4[11],0x00680B0E,getCommandList case 11 DESTROYPLAYER arm (calls readDestroyPlayerMessage 0x00678C40)
+jt,0x00A80EE4[4],0x00680A9E,getCommandList case 4 GAMECOMMAND arm
+jt,0x00A80EE4[0],0x00680AAE,getCommandList case 0 ACKBOTH arm
+jt,0x00A6A634[3],0x0066A466,processIncomingCommand case 3 FRAMEINFO: inline arm (walks +0x12060/+0x120A0; raises +0x1205C off-router)
+jt,0x00A6A634[7],0x0066A53B,case 7 REQUESTPLAYERLEAVE: 13-byte stub arm push esi / mov ecx edi / call ILT 0x00038627 -> body 0x00662D90 (table entries are arms inside the dispatcher; not thunks)
+jt,0x00A6A634[8],0x0066A4F7,case 8 INFORMPLAYERLEAVEFRAME: stub arm -> ILT 0x00019169 -> 0x00664430 processInformPlayerLeaveFrameCommand
+jt,0x00A6A634[9],0x0066A52A,case 9 REQUESTFRAMEDATA: stub arm -> ILT 0x0003CB00 -> 0x006659B0 processRequestFrameDataCommand
+jt,0x00A6A634[10],0x0066A608,case 10 PLAYERLEAVE: shared arm cmp eax 0x17 / jle -> returns TRUE (frame-synchronized; executed by 0x00682A90 from the frame command list)
+jt,0x00A6A634[11],0x0066A608,case 11 DESTROYPLAYER: same shared TRUE arm
+jt,0x00A6A634[6],0x0066A519,case 6 GAMESPY_STATS_AUTHKEY: stub arm -> ILT 0x000204AF -> 0x006645B0
+jt,0x00A6A634[13],0x0066A59E,case 13 DISCONNECTCHAT: stub arm -> ILT 0x00006BC2 -> 0x006655C0 processDisconnectChat
+jt,0x00A6A634[14],0x0066A5C4,case 14 CHAT: stub arm -> ILT 0x00004A07 -> 0x00667060 (really processChat)
+jt,0x00A6A634[20],0x0066A5E6,case 20 FILEANNOUNCE: stub arm -> ILT 0x000089F4 -> 0x0066A030 processFileAnnounce
+jt,0x00A6A634[21],0x0066A5F7,case 21 FILEPROGRESS: stub arm -> ILT 0x00030373 -> 0x00669960 processFileProgress
+insn,0x0066A434,"cmp eax, 0x16",dispatcher table bound (23 entries 0..0x16)
+insn,0x0066A43D,jmp dword ptr [eax*4 + 0xa6a634],dispatcher indirect jump through the table at VA 0x00A6A634
+insn,0x0066A53E,call 0x438627,case-7 arm call -> ILT 0x00038627
+insn,0x0066A4FA,call 0x419169,case-8 arm call -> ILT 0x00019169
+insn,0x0066A52D,call 0x43cb00,case-9 arm call -> ILT 0x0003CB00
+insn,0x0066A608,"cmp eax, 0x17",shared arm for cases 4/10/11: types <= 0x17 return TRUE
+insn,0x0066A60B,jle 0xa6a44c,shared arm jump to the mov al 1 epilogue
+thunk,0x00038627,0x00662D90,ILT of the REQUESTPLAYERLEAVE handler
+thunk,0x00019169,0x00664430,ILT of processInformPlayerLeaveFrameCommand
+thunk,0x0003CB00,0x006659B0,ILT of processRequestFrameDataCommand
+thunk,0x0002442E,0x00674250,ILT of the type-7 payload getter (mov eax [ecx+0x1c]) called three times by 0x00662D90
+thunk,0x00028D5D,0x00666300,ILT of disconnectPlayer used by disconnectLocalPlayer 0x006665F1 and beginPlayerLeave 0x006673CE
+thunk,0x00004A07,0x00667060,ILT of the CHAT handler
+thunk,0x00006BC2,0x006655C0,ILT of processDisconnectChat
+thunk,0x000204AF,0x006645B0,ILT of the GAMESPY_STATS_AUTHKEY handler
+thunk,0x000089F4,0x0066A030,ILT of processFileAnnounce
+thunk,0x00030373,0x00669960,ILT of processFileProgress
+thunk,0x00011B08,0x0066B820,vtable 0x0111A2CC slot 0 thunk -> DisconnectManager scalar deleting dtor
+thunk,0x0003B13D,0x0066B820,second ILT landing on the DisconnectManager scalar deleting dtor
+thunk,0x00013633,0x00661F10,ILT of Connection::doSend (flushConnections 0x00663708; update 0x0066ADB1)
+thunk,0x00022A61,0x00661C30,ILT of Connection::clearCommandsExceptFrom
+thunk,0x0004845A,0x00661CA0,ILT of Connection::setQuitting
+thunk,0x00026D3C,0x006624A0,ILT of Connection::sendNetCommandMsg
+thunk,0x0004A895,0x00662D50,ILT of haveAllConnectedPlayersReachedFrame
+thunk,0x0003A12A,0x00662E30,ILT of hasLeaveRequestTimedOut
+thunk,0x000316DD,0x00662E70,ILT of clearLeaveRequestTime
+thunk,0x0001EF5B,0x00663450,ILT of getFrameCommandList
+thunk,0x0004230C,0x006636F0,ILT of flushConnections
+thunk,0x0003CECF,0x006652B0,ILT of ~Connection
+thunk,0x00029744,0x006665E0,ILT of disconnectLocalPlayer
+thunk,0x0003E3AB,0x0066B150,ILT of hasPingSuccessRatioAtLeast
+thunk,0x0002FA63,0x0066BBC0,ILT of countVotersExcluding
+thunk,0x00034900,0x0066BFE0,ILT of turnOnScreen
+thunk,0x000078F6,0x00675ED0,ILT of constructGameMessage
+thunk,0x00029190,0x00679730,ILT of NetPacket(TransportMessage*)
+thunk,0x0001769D,0x006649A0,ILT of resendPendingCommands (no caller)
+thunk,0x00028259,0x0066B190,ILT of sendDisconnectScreenOff (no caller)
+thunk,0x0002A7D9,0x0066B6A0,ILT of hasPlayerConnectionTimedOut (no caller)
+thunk,0x00011EA5,0x0066BB60,ILT of countVoters (no caller)
+thunk,0x00044C8D,0x00673AA0,ILT of NetPlayerLeaveCommandMsg ctor (runRelayPass 0x0066A7D0; sendPlayerLeaveCommands 0x00665C44)
+thunk,0x0003C44D,0x00673B00,ILT of NetPlayerLeaveCommandMsg::setLeavingPlayerID
+thunk,0x0002B904,0x00673B10,ILT of NetDestroyPlayerCommandMsg ctor (runRelayPass 0x0066A846; 0x006828D0 fallback)
+thunk,0x00026C33,0x00673B60,ILT of NetDestroyPlayerCommandMsg::setPlayerIndex
+thunk,0x000195CE,0x006741F0,ILT of the type-7 REQUESTPLAYERLEAVE construct (sendRequestPlayerLeaveCommand 0x006648D6)
+thunk,0x000306D9,0x00674240,ILT of the type-7 payload setter
+thunk,0x0002A72F,0x00674130,ILT of the type-8 INFORMPLAYERLEAVEFRAME ctor (beginPlayerLeave 0x006674AD)
+thunk,0x00032957,0x00667320,ILT of beginPlayerLeave (0x006829BE; 0x00682B64; 0x00682BEE)
+thunk,0x00016121,0x006648A0,ILT of sendRequestPlayerLeaveCommand (Network::quitGame 0x006822EA)
+thunk,0x00028D2B,0x00665C10,ILT of sendPlayerLeaveCommands (0x0068296F on MSG_CLEAR_GAME_DATA)
+thunk,0x000411D7,0x00663300,ILT of sendLocalCommandDirect
+thunk,0x0003F17A,0x00664740,ILT of sendLocalCommand
+thunk,0x00008F4E,0x004C3800,ILT of the last call in beginPlayerLeave (PopulateInGameDiplomacyPopup)
+thunk,0x000061D6,0x0061E8B0,two-hop chain 0x000061D6 -> 0x00637D10 -> 0x0001EC18 -> GameInfo::getSlot (checker must follow up to 3 hops)
+thunk,0x0001EC18,0x0061E8B0,ILT of GameInfo::getSlot
+thunk,0x0003ADD7,0x0008FFC0,ILT of NameKeyGenerator::nameToKey
+thunk,0x0002F586,0x000DF260,ILT of PlayerList::findPlayerWithNameKey
+thunk,0x000359E5,0x0008A2A0,ILT of GameMessage ctor
+thunk,0x0000B9CE,0x006731A0,ILT of NetCommandList::reset
+thunk,0x00049F80,0x00683830,ILT of Transport::queueSend
+thunk,0x0004207D,0x00682DB0,ILT of CommandRequiresAck
+thunk,0x00049CE7,0x006811B0,ILT of NetPacket::addCommand
+thunk,0x00042C08,0x006814B0,ILT of NetPacket::ConstructBigCommandPacketList (anonymous row)
+thunk,0x000051E6,0x00673200,ILT of NetCommandList::addMessage
+thunk,0x000079E6,0x00676240,ILT of NetCommandRef ctor
+thunk,0x00038960,0x00676280,ILT of ~NetCommandRef
+thunk,0x0002EE6A,0x00672EC0,ILT of NetCommandList::removeMessage
+thunk,0x00043AD1,0x006706A0,ILT of FrameDataManager::getFrameCommandList
+thunk,0x0001D205,0x006706D0,ILT of FrameDataManager::resetFrame
+thunk,0x00028B41,0x00673580,ILT of NetCommandList::appendList (anonymous row)
+thunk,0x000203A6,0x00672EA0,ILT of NetCommandList ctor
+thunk,0x00015D3E,0x006834B0,ILT of Transport::doSend
+thunk,0x00020144,0x0050E9A0,ILT of the disconnect-screen show call in turnOnScreen
+thunk,0x000330A0,0x0066BEF0,ILT of populateDisconnectScreen
+thunk,0x00034905,0x0066B980,ILT of resetPlayerTimeouts
+thunk,0x0000F8D0,0x00674310,ILT of NetDisconnectScreenOffCommandMsg ctor
+thunk,0x00029505,0x00674370,ILT of NetDisconnectScreenOffCommandMsg::setNewFrame
+thunk,0x0004A291,0x00663740,ILT of getLocalPlayerID
+thunk,0x00015B72,0x00682D20,ILT of DoesCommandRequireACommandID
+thunk,0x00030558,0x00682D10,ILT of GenerateNextCommandID
+thunk,0x000200A4,0x00673610,ILT of NetCommandMsg::detach
+thunk,0x0001514A,0x00662BB0,ILT of isPlayerConnected
+thunk,0x0001F136,0x00662A50,ILT of isPlayerConnectedDefaultTimeout
+thunk,0x0004A87C,0x00662BE0,ILT of the state==1 predicate (ledger isPlayerInGame)
+thunk,0x000486B2,0x00662C30,ILT of the state 1..3 predicate (ledger isPlayerSlotActive)
+thunk,0x00012C15,0x00674080,ILT of NetFileProgressCommandMsg::getFileID
+thunk,0x00033668,0x006740A0,ILT of NetFileProgressCommandMsg::getProgress
+thunk,0x000302F1,0x00669560,ILT of the progress map operator[]
+thunk,0x00030909,0x00673FF0,ILT of NetFileAnnounceCommandMsg::getFileID
+thunk,0x000106D6,0x00675610,ILT of NetFileAnnounceCommandMsg::getRealFilename
+thunk,0x00018C0F,0x00669B50,ILT of the +0x12118 filename map operator[]
+thunk,0x00043437,0x006694D0,ILT of the +0x12124 mask map operator[]
+thunk,0x000478F2,0x00674010,ILT of NetFileAnnounceCommandMsg::getPlayerMask
+thunk,0x00016DD8,0x00638030,ILT of the GameSlot string getter used by 0x006645B0
+thunk,0x00028952,0x00638060,ILT of the first GameSlot string setter used by 0x006645B0
+thunk,0x00036D31,0x006380F0,ILT of the second GameSlot string setter used by 0x006645B0
+thunk,0x0002F081,0x00675C20,ILT of getText1C
+thunk,0x00019EC5,0x00675CB0,ILT of getText20
+thunk,0x000236DC,0x00670880,ILT of FrameDataManager::getIsQuitting
+thunk,0x00012A62,0x006649E0,ILT of getPlayerNameForSlot
+thunk,0x0000AD67,0x00670850,ILT of FrameDataManager::setQuitFrame
+thunk,0x0001DDB8,0x00661C90,ILT of Connection::isQueueEmpty (update dtor gate)
+thunk,0x00013A6B,0x00673AF0,ILT of NetPlayerLeaveCommandMsg::getLeavingPlayerID
+thunk,0x0002382B,0x006658F0,ILT of processAck (cases 0..2)
+thunk,0x00044139,0x006638F0,ILT of ConnectionManager::isPacketRouter
+thunk,0x00016E05,0x00666240,ILT of sendGameCommand
+vslot,0x0111A2CC+0x00,0x0066B820,DisconnectManager vtable: single slot (string data follows at +0x04)
+vslot,0x0111C0C0+0x44,0x006B9A40,AudioManager vtable slot +0x44 = addAudioEvent (used by 0x00662CE0)
+vslot,0x0111A968+0x8C,0x00681B20,Network vtable +0x8C = isPacketRouter (0x00682A90 case 10)
+insn,0x00661F57,"add ecx, 0x7530",doSend MaxQuitFlushTime 30000ms on Connection+4
+insn,0x00661F32,call dword ptr [0x1359544],doSend timeGetTime via IAT
+insn,0x00661F4A,"cmp dword ptr [edi], -1",doSend quit test on Connection+0
+insn,0x0066210E,"cmp ebp, 5",doSend five-packet cap (BFME Bool argument)
+insn,0x0066206A,"cmp ecx, 0x2710",inlined doRetryMetrics 10-second window
+insn,0x006620A4,"mov ecx, dword ptr [0x12ed5c8]",doSend reads TheWritableGlobalData for the +0xCB4 slack
+insn,0x00661CA7,"mov dword ptr [esi], eax",setQuitting stores the quit frame at Connection+0
+insn,0x00661CA9,call dword ptr [0x1359544],setQuitting timeGetTime via IAT
+insn,0x00661CAF,"mov dword ptr [esi + 4], eax",setQuitting stores the time at Connection+4
+insn,0x0066736A,"mov eax, dword ptr [ecx + 0x3c]",beginPlayerLeave reads TheGameLogic frame for setQuitting
+insn,0x0066736F,inc eax,beginPlayerLeave passes frame+1 to setQuitting
+insn,0x00667371,call 0x44845a,beginPlayerLeave -> setQuitting ILT
+insn,0x00662D50,"lea eax, [ecx + 0x12060]",haveAllConnectedPlayersReachedFrame walks +0x12060
+insn,0x00662D60,"mov esi, dword ptr [eax - 0x1205c]",m_connections[i] read relative to the latest-frame cursor
+insn,0x00662D6A,"cmp dword ptr [eax], ecx",latest frame vs argument
+insn,0x00662D9A,call 0x42442e,type-7 handler reads the leaving slot via the payload getter
+insn,0x00662D9F,"cmp eax, 8",type-7 handler slot bound
+insn,0x00662DAB,"mov ecx, dword ptr [esi + eax*4 + 0x12080]",type-7 handler reads the state
+insn,0x00662DBD,"mov dword ptr [esi + eax*4 + 0x12080], 1",type-7 handler writes 1 (leave requested); the only writer of 1
+insn,0x0066641B,"mov dword ptr [ebp + ebx*4 + 0x12080], 3",disconnectPlayer writes 3 (disconnected); the only writer of 3
+insn,0x0066A77B,"lea ebp, [edi + 0x12080]",runRelayPass state walk base
+insn,0x0066A78A,"cmp dword ptr [ebp], 1",runRelayPass acts on state 1 slots
+insn,0x0066A89A,"mov dword ptr [ebp], 2",runRelayPass writes 2 after issuing PLAYERLEAVE+DESTROYPLAYER; the only writer of 2
+insn,0x0066A7D0,call 0x444c8d,runRelayPass builds NetPlayerLeaveCommandMsg
+insn,0x0066A846,call 0x42b904,runRelayPass builds NetDestroyPlayerCommandMsg
+insn,0x00662BE9,"cmp dword ptr [ecx + eax*4 + 0x12080], 1",ledger isPlayerInGame tests state == 1
+insn,0x00662C40,"cmp edx, 1",ledger isPlayerSlotActive lower bound
+insn,0x00662C45,"cmp edx, 3",ledger isPlayerSlotActive upper bound
+insn,0x00669787,"mov dword ptr [esi + 0x12080], ebx",construct zeroes the state array (ebx = 0)
+insn,0x00665511,"mov dword ptr [eax + 0x20], ebx",reset body 0x00665350 zeroes +0x12080 through the +0x12060 cursor
+insn,0x0066551E,"mov dword ptr [edi + 0x12110], ebx",reset body clears the leave-request stamp
+insn,0x00664955,"mov dword ptr [edi + 0x12110], eax",sendRequestPlayerLeaveCommand stamps the leave request time
+insn,0x0066494F,call dword ptr [0x1359544],sendRequestPlayerLeaveCommand timeGetTime
+insn,0x00665CAA,"mov dword ptr [edi + 0x12110], eax",sendPlayerLeaveCommands stamps the leave request time
+insn,0x00662E33,"mov eax, dword ptr [esi + 0x12110]",hasLeaveRequestTimedOut reads the stamp
+insn,0x00662E4D,"mov ecx, 0x2710",hasLeaveRequestTimedOut 10-second threshold
+insn,0x00662E70,"mov dword ptr [ecx + 0x12110], 0",clearLeaveRequestTime
+insn,0x006663B1,push 0x1104e54,disconnectPlayer pushes Network:PlayerLeftGame
+insn,0x006663BB,"mov eax, dword ptr [0x12f148c]",disconnectPlayer loads the in-game UI global
+insn,0x006663C3,call dword ptr [ecx + 0x3c],disconnectPlayer -> TheInGameUI->message slot +0x3C
+insn,0x006663C9,call 0xa62ce0,disconnectPlayer plays the message sound helper
+insn,0x00666409,call 0x43cecf,disconnectPlayer -> ~Connection ILT
+insn,0x00666470,"mov dword ptr [ebp + 0x1202c], eax",disconnectPlayer packet-router succession store
+insn,0x006664A9,"mov dword ptr [esp + 0x10], 2",disconnectPlayer PLAYERLEAVECODE_PACKETROUTER
+insn,0x006664B9,"mov dword ptr [esp + 0x10], 1",disconnectPlayer PLAYERLEAVECODE_LOCAL
+insn,0x0066652F,"mov eax, 3",disconnectPlayer PLAYERLEAVECODE_UNKNOWN for slot out of range
+insn,0x00666500,"mov dword ptr [ebp + 0x1204c], eax",disconnectPlayer terminates the id list with -1 (eax = -1)
+insn,0x00662CE0,"mov ecx, dword ptr [0x12ed668]",sound helper loads TheAudio
+insn,0x00662CEC,call dword ptr [eax + 0x124],sound helper slot +0x124 (misc-audio table getter)
+insn,0x00662CFE,"add eax, 0xc40",sound helper event at +0xC40
+insn,0x00662D04,call dword ptr [edx + 0x44],sound helper -> addAudioEvent slot +0x44
+insn,0x0066B820,"test byte ptr [esp + 4], 1",scalar deleting dtor flag test
+insn,0x0066B828,"mov dword ptr [esi], 0x111a2cc",scalar deleting dtor installs the DisconnectManager vtable
+insn,0x00679738,"mov dword ptr [eax], 0x111a84c",NetPacket ctor installs the NetPacket vtable
+insn,0x006797BF,"mov ecx, 0x77",NetPacket ctor copies 0x77 dwords = 476 = MAX_PACKET_SIZE
+insn,0x006797CD,"mov dword ptr [eax + 0x1ec], 0xffffffff",NetPacket ctor m_numCommands = -1
+insn,0x006797B6,"mov edx, dword ptr [ecx + 0x404]",NetPacket ctor reads TransportMessage length
+insn,0x0067979C,"mov edx, dword ptr [ecx + 0x408]",NetPacket ctor reads TransportMessage addr
+insn,0x006624BB,"mov ecx, dword ptr [0x12f76fc]",sendNetCommandMsg function-static NetPacket
+insn,0x00662500,"cmp dword ptr [ebp], -1",sendNetCommandMsg quitting test on Connection+0
+insn,0x006625BC,"mov byte ptr [esi + 0xc], bl",sendNetCommandMsg setRelay on NetCommandRef+0xC
+insn,0x0066346A,push 0x10,getFrameCommandList allocates a 16-byte NetCommandList
+insn,0x006634AB,"add esi, 0x120e4",getFrameCommandList walks the FrameDataManagers
+insn,0x006634CA,"mov eax, dword ptr [0x12ba08c]",getFrameCommandList FRAMES_TO_KEEP global
+insn,0x0066349C,"mov ecx, dword ptr [0x12f7714]",getFrameCommandList BFME-added subsystem call (slot +0x48)
+insn,0x006636F5,"lea esi, [ebx + 4]",flushConnections walks m_connections
+insn,0x00663713,"mov ecx, dword ptr [ebx + 0x12024]",flushConnections m_transport
+insn,0x00663720,jmp 0x415d3e,flushConnections tail-jumps Transport::doSend ILT
+insn,0x006645C6,"mov ecx, dword ptr [0x12f7198]",GAMESPY_STATS_AUTHKEY handler GameInfo global
+insn,0x006645CD,call 0x4061d6,GAMESPY_STATS_AUTHKEY handler -> GameInfo::getSlot (two-hop thunk)
+insn,0x006649A3,"mov eax, dword ptr [edi + 0x12104]",resendPendingCommands reads m_pendingCommands
+insn,0x006649C0,call 0x43f17a,resendPendingCommands -> sendLocalCommand ILT
+insn,0x006652CD,"mov ecx, dword ptr [esi + 0x18]",~Connection m_netCommandList
+insn,0x006652E2,"lea ecx, [esi + 0x14]",~Connection UnicodeString member
+insn,0x006665E6,"cmp esi, dword ptr [edi + 0x12028]",disconnectLocalPlayer skips m_localSlot
+insn,0x006665F1,call 0x428d5d,disconnectLocalPlayer -> disconnectPlayer ILT
+insn,0x00669983,"lea ecx, [edi + edx*4 + 0x12130]",processFileProgress map for playerID (stride 12)
+insn,0x0066A070,"lea ecx, [edi + 0x12118]",processFileAnnounce filename map
+insn,0x0066A0A4,"lea ecx, [edi + 0x12124]",processFileAnnounce recipient-mask map
+insn,0x0066A0BE,"add edi, 0x12130",processFileAnnounce progress maps base
+insn,0x0066A10C,"mov dword ptr [eax], 0x64",processFileAnnounce 100 for slots not in the mask
+insn,0x0066B151,"mov eax, dword ptr [ecx + 0x260]",ping ratio m_pingsSent
+insn,0x0066B15E,fild dword ptr [ecx + 0x264],ping ratio m_pingsRecieved
+insn,0x0066C55E,push 0x3e800000,updateDisconnectStatus calls the ratio test with 0.25f
+insn,0x0066C56E,push 0x3dcccccd,updateDisconnectStatus calls the ratio test with 0.1f
+insn,0x0066B1B6,push 0x20,sendDisconnectScreenOff allocates the 0x20-byte message
+insn,0x0066B1CE,call 0x40f8d0,sendDisconnectScreenOff -> NetDisconnectScreenOffCommandMsg ctor ILT
+insn,0x0066B214,push 0xff,sendDisconnectScreenOff relay mask
+insn,0x0066BFF0,"mov dword ptr [esi + 0xc], 0",turnOnScreen m_disconnectState = SCREENON
+insn,0x0066BFF7,"mov dword ptr [esi + 0x10], 0xffffffff",turnOnScreen m_lastKeepAliveSendTime = -1
+insn,0x0066C01C,"mov dword ptr [esi + 0x25c], eax",turnOnScreen m_timeOfDisconnectScreenOn
+insn,0x0066BB8F,call 0x44a87c,countVoters excludes state==1 slots
+insn,0x0066BBF8,call 0x44a87c,countVotersExcluding excludes state==1 slots
+insn,0x0066BC65,call 0x42fa63,isPlayerVotedOut body uses countVotersExcluding as the threshold
+insn,0x0066BC6F,setge al,isPlayerVotedOut: votes >= threshold
+insn,0x0066B769,call 0x4486b2,countVotesForPlayer skips voters with state 1..3
+insn,0x00675F13,call 0x43add7,constructGameMessage -> nameToKey
+insn,0x00675F1F,call 0x42f586,constructGameMessage -> findPlayerWithNameKey
+insn,0x00675F3C,push 0x24,constructGameMessage allocates a GameMessage
+insn,0x00675F7A,"mov dword ptr [edi + 0x14], edx",constructGameMessage stores the player index
+insn,0x00682BD7,call 0x44a895,frame tick -> haveAllConnectedPlayersReachedFrame
+insn,0x00682B55,call 0x4316dd,frame tick -> clearLeaveRequestTime (router sees its own PLAYERLEAVE)
+insn,0x0068299E,call 0x43a12a,command pump -> hasLeaveRequestTimedOut
+insn,0x00682CA1,call 0x429744,Network::update -> disconnectLocalPlayer at state 2
+insn,0x0066A8D1,call 0x429190,runRelayPass -> NetPacket(TransportMessage*) ILT
+global,0x01359544,0x00661CA9,IAT slot WINMM.dll!timeGetTime (import directory); checker convention: expected = RVA of an instruction whose operand carries the VA
+global,0x012ED668,0x00662CE0,TheAudio (symbols.csv ?TheAudio@@3PAVAudioManager@@A at RVA 0x00EED668)
+global,0x012F0898,0x00666352,TheGameLogic (pinned) read by disconnectPlayer for the frame at +0x3C
+global,0x012ED5C8,0x006620A4,TheWritableGlobalData (pinned) +0xCB4 slack in doSend
+global,0x012ED600,0x00675F0C,TheNameKeyGenerator (pinned) in constructGameMessage
+global,0x012ED748,0x00675F18,ThePlayerList (unpinned; findPlayerWithNameKey receiver) in constructGameMessage
+global,0x012F76FC,0x006624BB,function-static NetPacket* of Connection::sendNetCommandMsg
+global,0x012BA08C,0x006634CA,FRAMES_TO_KEEP window (0x41) read by getFrameCommandList
+global,0x012F148C,0x006663BB,in-game UI global (unpinned; slot +0x3C message) in disconnectPlayer
+global,0x012F708C,0x00675EEF,GameInfo global (unpinned) in constructGameMessage / processChat / PopulateInGameDiplomacyPopup
+global,0x012F7198,0x006645C6,second GameInfo global (unpinned) in the GAMESPY_STATS_AUTHKEY handler
+global,0x012F7714,0x0066349C,unidentified subsystem global whose slot +0x48 getFrameCommandList calls
+bytes,0x00D04E54,4e6574776f726b3a506c617965724c65667447616d6500,Network:PlayerLeftGame NUL-terminated at VA 0x01104E54
+bytes,0x00EBA08C,41000000,FRAMES_TO_KEEP = 65
+bytes,0x00C75C70,cdcccc3d,0.1f ping-ratio constant at VA 0x01075C70 (inlined copy in updateDisconnectStatus)
+bytes,0x00674250,8b411cc3,type-7 payload getter: mov eax [ecx+0x1c]; ret
+bytes,0x00662E70,c7811021010000000000c3,clearLeaveRequestTime whole body (11 bytes)
+bytes,0x0066B820,f644240401568bf1c706cca211,scalar deleting dtor prologue incl. the vtable store
+bytes,0x00C87A9C,446973636f6e6e65637453637265656e2e61707400,literal pushed by showScreen 0x0050E9D5
+bytes,0x00D04F90,417074446973636f6e6e65637453637265656e3a3a5175697400,fscommand name bound by ctor 0x0050FACF
+bytes,0x00D04F70,417074446973636f6e6e65637453637265656e3a3a4b69636b00,fscommand name bound by ctor 0x0050FB2A
+bytes,0x00D04FB0,417074446973636f6e6e65637453637265656e3a3a4f6e496e697469616c697a656400,fscommand name bound by ctor 0x0050FA74
+bytes,0x00D04F3C,417074446973636f6e6e65637453637265656e3a3a436861743a3a4f6e4274746e456e7465725465787400,fscommand name bound by ctor 0x0050FB85
+bytes,0x00D04DC0,446973636f6e6e65637453637265656e3a3a496e69744761646765747300,gadget-init name bound by ctor 0x0050FA18
+bytes,0x00D04E2C,446973636f6e6e65637453637265656e3a3a566f7465735265636569766564256400,AS variable set by updateVotes/removePlayer
+bytes,0x00D04E70,446973636f6e6e65637453637265656e3a3a506c617965724e616d65256400,AS variable set by setPlayerName/removePlayer
+bytes,0x00D04E98,53657442617250657263656e7400,AS function called by setPlayerTimeoutTime 0x0050EE16
+bytes,0x00D04D78,53686f774b69636b427574746f6e00,AS function 0x0050E676
+bytes,0x00D04D64,486964654b69636b427574746f6e00,AS function 0x0050E67D
+bytes,0x00D04EA8,4150543a446973636f6e6e65637452756c657300,TheGameText key fetched by onInitGadget 0x0050F157
+bytes,0x00D04EE4,200068006100730020006c0065006600740020007400680065002000670061006d0065002e000000,wide literal appended to the local player name by onQuit 0x0050F1E3
+bytes,0x0050F24F,ff5078,onQuit: call [eax+0x78] = TheNetwork->quitGame
+bytes,0x0050E72F,ff627c,onKick: jmp [edx+0x7c] = TheNetwork->voteForPlayerDisconnect tail call
+bytes,0x0050E9D5,689c7a0801,showScreen: push offset DisconnectScreen.apt
+thunk,0x00024D6B,0x0050E5A0,hideScreen ILT (also aliased HideDisconnectWindow)
+thunk,0x000036FC,0x0050E5F0,_bfme_updateScreen ILT
+thunk,0x000135C0,0x0050E650,_bfme_showPlayerControls ILT
+thunk,0x0001AF28,0x0050E6D0,_bfme_arePlayerControlsShown ILT
+thunk,0x00011C84,0x0050EA10,??1 ILT
+thunk,0x0003F233,0x0050EB00,removePlayer ILT
+thunk,0x00020EB4,0x0050ED70,setPlayerTimeoutTime ILT
+thunk,0x00023E1B,0x0050EF20,showChat ILT
+thunk,0x00031DB8,0x0050EFB0,updateVotes ILT
+thunk,0x00041F8D,0x0050F630,??_G ILT used by vtable 0x01104DE8 slot 0
+thunk,0x00030229,0x0050F630,??_G second ILT
+thunk,0x0003FD87,0x0050F6D0,setPlayerName ILT
+thunk,0x0003C9D9,0x0050F840,FunctorRef ctor ILT (InitGadgets binding)
+thunk,0x000180C5,0x0050F8B0,FunctorRef ctor ILT (fscommand bindings)
+thunk,0x0000BFB9,0x0050F990,??0BfmeAptScreenDisconnectScreen ILT
+thunk,0x000278CC,0x0050F1A0,AptDisconnectScreen::Quit handler ILT
+thunk,0x000044DF,0x0050E6F0,AptDisconnectScreen::Kick handler ILT
+thunk,0x0003FE95,0x0050E630,OnInitialized handler ILT
+thunk,0x00041100,0x0050F2B0,Chat::OnBttnEnterText handler ILT
+thunk,0x0003EED7,0x0050F0B0,InitGadgets handler ILT
+thunk,0x0003D7A8,0x0050E750,PlayerColor provider ILT
+thunk,0x0003E98C,0x0050EE90,sendChat ILT
+thunk,0x000156D6,0x0066B3E0,untranslatedSlotPosition ILT used by onKick
+thunk,0x000147D1,0x0066BAE0,DisconnectManager::voteForPlayerDisconnect ILT reached from ConnectionManager 0x00663762
+thunk,0x0003AB3E,0x00663750,ConnectionManager hop called by Network::voteForPlayerDisconnect 0x0068227D
+thunk,0x000067BC,0x0052ADE0,showScreen first call = HideDiplomacy
+thunk,0x00019583,0x00512670,showScreen second call = HideInGameChat
+thunk,0x0003576F,0x00598F30,"showScreen third call; ledger row is ?hidePurchaseScience@ControlBar@@QAEXXZ (ZH HideQuitMenu position: open question in NOTES_E, not recorded)"
+thunk,0x0000A416,0x005696D0,showScreen fourth call = HideSaveLoadMenu
+vslot,0x0111A968+0x9C,0x006826C0,Network::getPlayerName used by onQuit
+vslot,0x0111A968+0x54,0x006824C0,Network::sendDisconnectChat used by sendChat
+vslot,0x0111A968+0xE4,0x00681DF0,Network::_bfme_isSlotLocalOrLive tested per slot by onQuit
+vslot,0x01104DE8+0x00,0x0050F630,BfmeAptScreenDisconnectScreen deleting dtor
+vslot,0x01104DE8+0x14,0x0050E800,screen virtual that re-applies kick-button flags after OnInitialized
+vslot,0x01104DE4+0x00,0x0050EAF0,+0x218 base adjustor thunk to the deleting dtor
+vslot,0x01104D9C+0x04,0x0050E8F0,functor invoke for the InitGadgets binding
+vslot,0x01104DA8+0x04,0x0050E940,functor invoke for the fscommand bindings
+vslot,0x01104DB4+0x04,0x0050E990,functor invoke for the PlayerColor bindings
+insn,0x0050F24F,call dword ptr [eax + 0x78],onQuit -> TheNetwork->quitGame
+insn,0x0050F23E,call dword ptr [edx + 0x7c],onQuit loop -> TheNetwork->voteForPlayerDisconnect(slot)
+insn,0x0050F22B,call dword ptr [eax + 0xe4],onQuit loop -> TheNetwork->_bfme_isSlotLocalOrLive(slot)
+insn,0x0050F1CB,call dword ptr [edi + 0x98],onQuit -> TheNetwork->getLocalPlayerID
+insn,0x0050F1DD,call dword ptr [edi + 0x9c],onQuit -> TheNetwork->getPlayerName
+insn,0x0050F1BB,"mov byte ptr [esi + 0x261], 1",onQuit sets the quit flag the dtor tests at 0x0050EA59
+insn,0x0050F21B,call 0x43e98c,onQuit -> sendChat
+insn,0x0050F242,"cmp esi, 8",onQuit loops over 8 slots
+insn,0x0050E72F,jmp dword ptr [edx + 0x7c],onKick tail-calls TheNetwork->voteForPlayerDisconnect
+insn,0x0050E712,call dword ptr [eax + 0x98],onKick -> TheNetwork->getLocalPlayerID
+insn,0x0050E71A,call 0x4156d6,onKick -> untranslatedSlotPosition(slot localId)
+insn,0x0050E6FF,call dword ptr [0x1359384],onKick atoi(arg)
+insn,0x0050EEDB,call dword ptr [eax + 0x54],sendChat -> TheNetwork->sendDisconnectChat
+insn,0x0050EEBD,call 0x434ef0,sendChat -> LanguageFilter::filterLine
+insn,0x0050F35B,call 0x43e98c,onChatEnterText -> sendChat
+insn,0x0050E9E7,call dword ptr [edx + 0x6c],showScreen: TheWindowManager slot creating the apt layout
+insn,0x0050E9EA,"mov dword ptr [0x12f4960], eax",showScreen stores the layout global
+insn,0x0050E9F5,call dword ptr [edx],showScreen: layout slot 0 with arg 0
+insn,0x0050E9C8,call dword ptr [eax + 0x150],showScreen: UI singleton 0x012F148C slot +0x150 (1)
+insn,0x0050E5AE,call dword ptr [eax + 0xc],hideScreen: layout slot 3 with arg 0
+insn,0x0050E5BF,call dword ptr [edx + 4],hideScreen: layout slot 1 with arg 1 (delete)
+insn,0x0050E5C8,"mov dword ptr [0x12f4960], 0",hideScreen clears the layout global
+insn,0x0050E5D6,call dword ptr [eax + 0x150],hideScreen: UI singleton slot +0x150 (0)
+insn,0x0050E5FE,call dword ptr [eax + 8],_bfme_updateScreen: layout slot 2 with arg 0
+insn,0x0050E6A4,"mov byte ptr [edi + esi + 0x262], bl",_bfme_showPlayerControls stores the per-slot flag
+insn,0x0050E6D4,"mov al, byte ptr [eax + ecx + 0x262]",_bfme_arePlayerControlsShown reads the per-slot flag
+insn,0x0050F9FA,"mov dword ptr [0x12f4964], esi",ctor publishes this as TheDisconnectMenu
+insn,0x0050EA4F,"mov dword ptr [0x12f4964], 0",dtor clears TheDisconnectMenu
+insn,0x0050EA35,"mov dword ptr [esi + 0x218], 0x1104de4",dtor resets the +0x218 base vtable
+insn,0x0050F633,call 0x411c84,deleting dtor -> ??1
+insn,0x0050EAF0,"sub ecx, 0x218",adjustor thunk for the +0x218 base
+insn,0x0050FC82,call 0x43f233,ctor clears each slot through removePlayer
+insn,0x0050F7BD,call 0x420eb4,setPlayerName -> setPlayerTimeoutTime
+insn,0x0050F7B8,push 0x64,setPlayerName passes 100 percent for a named slot
+insn,0x0050EE16,push 0x1104e98,setPlayerTimeoutTime pushes SetBarPercent
+insn,0x0050EE14,push 2,SetBarPercent takes 2 AS args
+insn,0x0066C608,call 0x420eb4,DisconnectManager::updateDisconnectStatus -> setPlayerTimeoutTime
+insn,0x0066C5EF,"imul eax, eax, 0x64",updateDisconnectStatus converts remaining time to percent
+insn,0x0066C60D,"cmp ebp, 0x5a",kick button shown below 90 percent
+insn,0x0066C62F,"cmp ebp, 0x5f",kick button hidden above 95 percent
+insn,0x0066C61D,call 0x41af28,updateDisconnectStatus -> _bfme_arePlayerControlsShown
+insn,0x0066C655,call 0x4135c0,updateDisconnectStatus -> _bfme_showPlayerControls
+insn,0x0066BFE4,call 0x420144,DisconnectManager::turnOnScreen -> showScreen
+insn,0x0066B279,call 0x424d6b,DisconnectManager::turnOffScreen -> hideScreen
+insn,0x0066C8EE,call 0x4036fc,BFMEDisconnectManager::update -> _bfme_updateScreen
+insn,0x0066C0F5,call 0x43f233,DisconnectManager::disconnectPlayer -> removePlayer
+insn,0x0066BF66,call 0x43fd87,populateDisconnectScreen -> setPlayerName
+insn,0x0066BF7C,call 0x431db8,populateDisconnectScreen -> updateVotes
+insn,0x00665696,call 0x423e1b,ConnectionManager::processDisconnectChat -> showChat
+insn,0x00104D79,call 0x40bfb9,createAptScreenDisconnectScreen -> ctor
+insn,0x00682270,"mov ecx, dword ptr [ecx + 8]",Network::voteForPlayerDisconnect loads m_conMgr
+insn,0x0068227D,call 0x43ab3e,Network::voteForPlayerDisconnect -> ConnectionManager hop
+insn,0x00663762,call 0x4147d1,ConnectionManager hop -> DisconnectManager::voteForPlayerDisconnect
+insn,0x0066B3E4,"cmp eax, -1",untranslatedSlotPosition: slot -1 maps to the local slot
+insn,0x0066B3F4,inc eax,untranslatedSlotPosition: slots past the local one shift up
+global,0x01087A9C,0x0050E9D5,showScreen pushes DisconnectScreen.apt
+global,0x012F1B40,0x0050E9DF,showScreen reads TheWindowManager
+global,0x012F4960,0x0050E9A1,showScreen reads the layout global
+global,0x012F4960,0x0050E5A0,hideScreen reads the layout global
+global,0x012F4960,0x0050E5F0,_bfme_updateScreen reads the layout global
+global,0x012F148C,0x0050E9BE,showScreen reads the UI singleton
+global,0x012F4964,0x0050F9E8,ctor tests TheDisconnectMenu
+global,0x012F4964,0x0050EA3F,dtor compares TheDisconnectMenu
+global,0x012F4964,0x0066C5D0,updateDisconnectStatus tests TheDisconnectMenu
+global,0x012ED5C8,0x0066C5DD,updateDisconnectStatus reads TheWritableGlobalData
+global,0x012F7714,0x0050F1C2,onQuit reads TheNetwork
+global,0x012F7714,0x0050E705,onKick reads TheNetwork
+global,0x012F7714,0x0050EED3,sendChat reads TheNetwork
+global,0x012F1570,0x0050EEA6,sendChat reads TheLanguageFilter
+global,0x012F19E8,0x0050E695,_bfme_showPlayerControls reads g_theWindowManager
+global,0x012B73F8,0x0050EF39,showChat reads the chat colour
+global,0x012F147C,0x0050EBC2,removePlayer reads TheGameText
+global,0x01104DC0,0x0050FA18,ctor binds DisconnectScreen::InitGadgets
+global,0x01104FB0,0x0050FA74,ctor binds AptDisconnectScreen::OnInitialized
+global,0x01104F90,0x0050FACF,ctor binds AptDisconnectScreen::Quit
+global,0x01104F70,0x0050FB2A,ctor binds AptDisconnectScreen::Kick
+global,0x01104F3C,0x0050FB85,ctor binds AptDisconnectScreen::Chat::OnBttnEnterText
+global,0x01104F14,0x0050FC00,ctor binds DisconnectScreen:PlayerColor:%d
+global,0x004278CC,0x0050FAD8,ctor loads the Quit handler ILT
+global,0x004044DF,0x0050FB33,ctor loads the Kick handler ILT
+global,0x0043FE95,0x0050FA7D,ctor loads the OnInitialized handler ILT
+global,0x00441100,0x0050FB8E,ctor loads the Chat handler ILT
+global,0x0043EED7,0x0050FA21,ctor loads the InitGadgets handler ILT
+global,0x0043D7A8,0x0050FBE4,ctor loads the PlayerColor provider ILT
+global,0x01104E70,0x0050EB33,removePlayer pushes PlayerName%d
+global,0x01104E54,0x0050EBD3,removePlayer pushes Network:PlayerLeftGame
+global,0x01104E2C,0x0050EC62,removePlayer pushes VotesReceived%d
+global,0x01104E2C,0x0050EFD9,updateVotes pushes VotesReceived%d
+global,0x01104E70,0x0050F703,setPlayerName pushes PlayerName%d
+global,0x01104E98,0x0050EE16,setPlayerTimeoutTime pushes SetBarPercent
+global,0x01104D78,0x0050E676,_bfme_showPlayerControls loads ShowKickButton
+global,0x01104D64,0x0050E67D,_bfme_showPlayerControls loads HideKickButton
+global,0x01104EE4,0x0050F1E3,onQuit pushes the has-left-the-game literal
+global,0x01104ED8,0x0050F0B9,onInitGadget compares ChatBox
+global,0x01104EA8,0x0050F157,onInitGadget pushes APT:DisconnectRules
+global,0x01104D8C,0x0050E758,getPlayerColor copies the 0xFFFFFFFF literal
+global,0x01104D9C,0x0050F873,FunctorRef ctor 0x0050F840 writes vtable 0x01104D9C
+global,0x01104DA8,0x0050F8E3,FunctorRef ctor 0x0050F8B0 writes vtable 0x01104DA8
+global,0x01104DB4,0x0050FC47,ctor inline PlayerColor functor writes vtable 0x01104DB4
+global,0x01104DE8,0x0050F9C4,ctor writes the primary vtable
+insn,0x0008CC9D,"cmp edi, 0x1d",GameMessage::getCommandTypeAsAsciiString 0x0008B600 selector for type 0x1d
+insn,0x0008CCA0,jne 0x48ccb7,not 0x1d -> next CHECK_IF (0x1e)
+insn,0x0008CCA6,push 0x107daf0,pushes the MSG_CLEAR_GAME_DATA literal for AsciiString(const char*)
+global,0x0107DAF0,0x0008CCA6,VA of MSG_CLEAR_GAME_DATA in .rdata
+bytes,0x00C7DAF0,4d53475f434c4541525f47414d455f4441544100,MSG_CLEAR_GAME_DATA NUL-terminated
+insn,0x0008CCAD,call 0x412c42,AsciiString(const char*) ILT
+thunk,0x00012C42,0x0005EE70,ILT -> ??0AsciiString@@QAE@PBD@Z
+insn,0x00397698,"add edi, -0x1d",logicMessageDispatcher low switch rebased at MSG_CLEAR_GAME_DATA
+insn,0x0039769B,"cmp edi, 0x54",switch spans types 0x1d..0x71
+insn,0x003976A4,"movzx eax, byte ptr [edi + 0x79a27c]",byte index table
+insn,0x003976AB,jmp dword ptr [eax*4 + 0x79a264],pointer table
+bytes,0x0039A27C,00,index byte for type 0x1d selects pointer slot 0
+jt,0x0079A264[0],0x00397771,slot 0 = MSG_CLEAR_GAME_DATA arm
+jt,0x0079A264[1],0x003976D0,slot 1 = MSG_NEW_GAME arm (type 0x1e)
+insn,0x00397771,"mov eax, dword ptr [esp + 0x14]",currentlySelectedGroup local
+insn,0x00397779,"mov ecx, dword ptr [0x12ef214]",TheAI
+global,0x012EF214,0x00397779,TheAI global VA
+insn,0x00397780,call 0x415f69,TheAI->destroyGroup(currentlySelectedGroup)
+thunk,0x00015F69,0x0014BC40,ILT -> AI::destroyGroup body
+insn,0x00397785,"mov ecx, dword ptr [esp + 0x30]",this = GameLogic
+insn,0x00397789,call 0x44a10b,GameLogic::bfme_appendGameOverDetails
+thunk,0x0004A10B,0x00387A50,ILT -> body ledgered as ?endMenu@EstablishConnectionsMenu@@ (wrong name)
+insn,0x0039778E,"mov esi, dword ptr [0x12f0898]",TheGameLogic
+global,0x012F0898,0x0039778E,TheGameLogic global VA
+insn,0x00397794,"cmp dword ptr [esi + 0x10c], 2",m_gameMode == GAME_SKIRMISH
+insn,0x003977A4,call 0x4062d5,TheGameLogic->isInMultiplayerGame()
+thunk,0x000062D5,0x0005C5E0,ILT -> isInMultiplayerGame body
+insn,0x0005C5E0,"mov eax, dword ptr [ecx + 0x10c]",isInMultiplayerGame reads m_gameMode
+insn,0x0005C5E6,"cmp eax, 1",GAME_LAN
+insn,0x0005C5EB,"cmp eax, 5",GAME_INTERNET
+insn,0x003977B6,push 1,second Bool of clearGameData
+insn,0x003977BB,call 0x41c46d,TheGameLogic->clearGameData(showScoreScreen TRUE)
+thunk,0x0001C46D,0x00396B00,ILT -> clearGameData body
+insn,0x00396BF4,"mov ecx, dword ptr [0x12ed524]",clearGameData: TheGameEngine
+global,0x012ED524,0x00396BF4,TheGameEngine global VA
+insn,0x00396BFC,call dword ptr [edx + 0x10],TheGameEngine->reset() (ZH deletes TheNetwork in there)
+insn,0x00396BFF,"mov dword ptr [esi + 0x10c], 8",setGameMode(GAME_NONE)
+insn,0x00396C2C,"mov ecx, dword ptr [0x12ed5ec]",TheMessageStream
+global,0x012ED5EC,0x00396C2C,TheMessageStream global VA
+insn,0x00396C34,push 0x3eb,appendMessage(MSG_DESTROY_SELECTED_GROUP)
+insn,0x00396C6A,call 0x403486,closeWindows()
+thunk,0x00003486,0x00396950,ILT -> ?closeWindows@GameLogic@@QAEXXZ
+insn,0x00387AAA,"mov byte ptr [esi + 0x68], 1",once-only flag
+insn,0x00387AB2,push 0x10eb048,Game Over Details header literal
+bytes,0x00CEB048,2020202047616d65204f7665722044657461696c733a0a00,header literal bytes
+insn,0x00387AC4,"lea ebp, [esi + 0x1b4]",cursor at PlayerLeaveStatus[0].quitFrame
+insn,0x00387B49,"mov dword ptr [esi + 0x484], eax",Player+0x484 = leave status
+insn,0x00387B84,push 0x10eb024,graceful for status 1
+insn,0x00387B73,push 0x10eb030,voted out for status 2
+bytes,0x00CEB024,677261636566756c00,graceful
+bytes,0x00CEB030,766f746564206f757400,voted out
+bytes,0x00CEAF1C,202020202020536c6f742025643a20506c617965724c6561766553746174757320646f6573206e6f742065786973742e0a00,record type name
+thunk,0x0001900B,0x000800C0,ILT -> _List_base<AsciiString>::clear
+insn,0x000800D4,"lea ecx, [edi + 8]",AsciiString payload at node+8
+insn,0x000800D7,call 0x40d828,~AsciiString ILT
+thunk,0x0000D828,0x00887940,~AsciiString ILT chain lands on the shared release body
+insn,0x000800DC,push 0xc,list node size 12
+insn,0x000800DF,call 0xc2e5f0,__node_alloc::_M_deallocate
+insn,0x0066CBDF,call 0x41900b,BFMEDisconnectManager::update clears a list<AsciiString>
+thunk,0x00012AA8,0x00383730,ILT -> GameLogic::timeOutGameStart
+insn,0x00383730,"mov byte ptr [ecx + 0x148], 1",m_forceGameStartByTimeOut = TRUE
+thunk,0x00020405,0x00385570,ILT -> GameLogic::processProgressComplete
+insn,0x00385581,"mov cl, byte ptr [esi + edi + 0x120]",m_progressComplete[slot]
+insn,0x0038558E,"mov byte ptr [esi + edi + 0x120], al",= TRUE
+insn,0x00385595,call 0x4481e4,lastHeardFrom inlined: timeGetTime wrapper ILT
+thunk,0x000481E4,0x00105750,_bfme_timeGetTime@0 ILT -> wrapper body
+insn,0x00105759,call dword ptr [0x1359544],wrapper calls the timeGetTime import
+global,0x01359544,0x00105759,timeGetTime IAT slot VA
+insn,0x0038559A,"mov dword ptr [edi + esi*4 + 0x128], eax",m_progressCompleteTimeout[slot]
+jt,0x00A6A634[16],0x0066A5AF,case 16 NETCOMMANDTYPE_LOADCOMPLETE
+jt,0x00A6A634[17],0x0066A58A,case 17 NETCOMMANDTYPE_TIMEOUTSTART
+insn,0x0066A58A,"mov ecx, dword ptr [0x12f0898]",case 17: TheGameLogic
+insn,0x0066A590,call 0x412aa8,->timeOutGameStart()
+insn,0x0066A5AF,"mov ecx, dword ptr [0x12f0898]",case 16: TheGameLogic
+insn,0x0066A5B5,push ebx,playerID
+insn,0x0066A5B6,call 0x420405,->processProgressComplete(playerID)
+insn,0x00664AD4,call 0x420405,sendLoadCompleteCommand marks the local player complete
+thunk,0x00003797,0x00383B00,ILT -> bfme_resetPlayerLeaveStatus
+insn,0x00383B00,"lea eax, [ecx + 0x1b4]",PlayerLeaveStatus[0]+4
+insn,0x00383B06,"mov edx, 8",MAX_SLOTS records
+insn,0x00383B10,"mov byte ptr [eax + 0xc], 1",notPresent = TRUE
+insn,0x00383B1F,"mov dword ptr [eax + 0x10], 0xff",field +0x14 = 0xff
+insn,0x00383B26,"add eax, 0x1c",record stride 28
+insn,0x00681EDF,call 0x403797,Network::init resets the records
+thunk,0x00006442,0x00383BC0,ILT -> bfme_setPlayerLeaveStatus
+insn,0x00383BD1,"imul eax, eax, 0x1c",record stride
+insn,0x00383BD6,"mov dword ptr [eax + 0x1b0], edx",status
+insn,0x00383BDC,"mov ecx, dword ptr [ecx + 0x3c]",m_frame
+insn,0x00383BDF,"mov dword ptr [eax + 0x1b4], ecx",quitFrame
+insn,0x00682B81,call 0x406442,Network PLAYERLEAVE handler: status 1
+insn,0x0068228B,call 0x406442,Network::voteForPlayerDisconnect: status 2
+insn,0x00383BA0,"lea eax, [eax + ecx + 0x1b0]",getPlayerLeaveStatus(slot)
+insn,0x00383C19,"mov dword ptr [eax + ecx + 0x1b8], edx",defeat frame
+insn,0x00383C49,"mov dword ptr [eax + ecx + 0x1bc], edx",victory frame
+thunk,0x0000BD7F,0x00468090,ILT -> WindowManager::bfme_hideBackground
+insn,0x0046809B,"mov eax, dword ptr [esi + 0x1b8]",pending kind
+insn,0x004680D7,push 0x10f7230,HideInGameBackground
+insn,0x0046811F,push 0x10f7214,HideFrontEndBackground
+bytes,0x00CF7214,4869646546726f6e74456e644261636b67726f756e6400,HideFrontEndBackground
+bytes,0x00CF7230,48696465496e47616d654261636b67726f756e6400,HideInGameBackground
+insn,0x004680E4,"mov dword ptr [esi + 0x1bc], 2",remember in-game kind
+insn,0x0046812C,"mov dword ptr [esi + 0x1bc], 1",remember front-end kind
+insn,0x0046816A,call 0x40bd7f,re-applies through its own ILT
+insn,0x0038D34F,"mov ecx, dword ptr [0x12f19e8]",deleteLoadScreen: g_theWindowManager
+global,0x012F19E8,0x0038D34F,g_theWindowManager global VA
+insn,0x0038D357,call 0x40bd7f,deleteLoadScreen -> hideBackground(TRUE)
+thunk,0x0000BDCA,0x0046CBF0,ILT -> WindowManager::bfme_setAptText
+insn,0x0046CBF7,"add ecx, 0x44",map at WindowManager+0x44
+insn,0x0046CBFA,call 0x441bdc,find-or-insert record
+thunk,0x00041BDC,0x0046B490,ILT -> record lookup body
+insn,0x0046CC0B,call 0xc88530,UnicodeString::set
+insn,0x0046CC19,call dword ptr [edx + 4],listener vslot 1
+insn,0x005101E5,"mov ecx, dword ptr [0x12f19e8]",MapTransferLoadScreen::processTimeout: g_theWindowManager
+insn,0x005101F3,call 0x40bdca,setAptText(APT:FileTransferLoadingTime ...)
+bytes,0x00D05024,4150543a46696c655472616e736665724c6f6164696e6754696d6500,key literal
+insn,0x00638079,"add ecx, 0x70",m_gameSpyLogin
+insn,0x00638085,call 0xc87c90,AsciiString::set (shared body)
+insn,0x00638109,"add ecx, 0x74",m_gameSpyLocale
+insn,0x00638036,"add ecx, 0x70",getLoginName copies +0x70
+insn,0x006380C6,"add ecx, 0x74",getLocale copies +0x74
+insn,0x004FA01D,"lea ecx, [esi + 0x74]",??1GameSpyGameSlot releases m_gameSpyLocale
+insn,0x004FA02D,"lea ecx, [esi + 0x70]",then m_gameSpyLogin
+insn,0x0066462A,call 0x428952,setLoginName(msg->getText1C())
+insn,0x00664640,call 0x436d31,setLocale(msg->getText20())
+insn,0x0066AD54,call 0x428952,BFMEConnectionManager::update setLoginName
+insn,0x0066AD73,call 0x436d31,BFMEConnectionManager::update setLocale
+insn,0x009D39A8,"mov eax, dword ptr [0x134d478]",GetChallenge: g_statsgame
+global,0x0134D478,0x009D39A8,g_statsgame VA
+insn,0x009D39B6,push 0x134d06c,static challenge[9]
+insn,0x009D39BB,"xor eax, 0x38f371e6",CHALLENGEXOR
+insn,0x009D39C0,call 0xdd2eb0,create_challenge
+insn,0x009D39CE,"add eax, 0x10",game->challenge
+insn,0x0066ABFF,"mov edx, dword ptr [eax + 0x464]",statsgame_t member of the GameSpy object
+insn,0x0066AC0B,call 0xdd39a0,BFMEConnectionManager::update -> GetChallenge
+bytes,0x00D1A2C0,4e554c4c47414d4500,NULLGAME compared against the challenge
+insn,0x006822EF,"mov ecx, dword ptr [0x12ed5ec]",Network::quitGame: TheMessageStream
+insn,0x006822F9,call dword ptr [eax + 0x34],->appendMessage(Type)
+insn,0x00383A2C,push 0x1d,GameLogic-band 0x003839E0 posts MSG_CLEAR_GAME_DATA
+insn,0x0038CCBD,push 0x1d,popSleepyUpdate-named 0x0038C1E0 posts MSG_CLEAR_GAME_DATA
+insn,0x0057FBD9,push 0x1d,Shell::showShellMap posts MSG_CLEAR_GAME_DATA
+global,0x012F7714,0x0007A482,TheNetwork: ?init@GameEngine stores the network object it just created
+insn,0x0007A482,"mov dword ptr [0x12f7714], edi",GameEngine::init store into TheNetwork
+global,0x012F7714,0x0068236A,TheNetwork: the factory 0x00682320 stores the BFMENativeNetwork it constructs
+global,0x012F7714,0x0006BAFA,TheNetwork: GameEngine update core loads it before the +0xA4/+0x28/+0xA8 virtual calls
+global,0x012F76F0,0x00637938,"the old seed global: SetUpGameSpy 0x006377D0 stores the object returned by the ledger's ?createNetwork@NetworkInterface 0x0065C1F0 here (GameSpy-side object, not TheNetwork)"
+insn,0x00637933,call 0x4362c3,SetUpGameSpy -> createNetwork ILT
+thunk,0x000362C3,0x0065C1F0,ILT of the ledger's ?createNetwork@NetworkInterface@@SAPAV1@XZ
+insn,0x00637938,"mov dword ptr [0x12f76f0], eax",SetUpGameSpy stores the result at 0x012F76F0
+insn,0x0065C206,push 0xa8,createNetwork allocates 0xA8 bytes (BFMENativeNetwork is 0x40: a different class)
+global,0x012F76F0,0x00639BF4,launchGame hands a PSRequest to [0x012F76F0] slot +0x10: a GameSpy message queue
+vslot,0x010F9B60+0x04,0x00491F70,legacy MapTransferLoadScreen vtable slot 1 = update(Int)
+vslot,0x010F9B60+0x08,0x00492C40,legacy MapTransferLoadScreen vtable slot 2 = ?init@MapTransferLoadScreen@@
+thunk,0x0003EB21,0x00491F70,ILT of the legacy update
+global,0x012F7714,0x00491F73,legacy update loads TheNetwork
+insn,0x00491F81,call dword ptr [eax + 0x28],legacy update -> TheNetwork->update(FALSE)
+insn,0x00491F8B,call 0x403fe4,legacy update -> LoadScreen::update(percent)
+thunk,0x00003FE4,0x004914C0,ILT of LoadScreen::update
+insn,0x00491524,call 0xcfc4c0,LoadScreen::update ends in setFPMode as ZH LoadScreen.cpp
+thunk,0x00015D0C,0x0050FF30,ILT of the APT-era update
+insn,0x0066CED0,call 0x415d0c,_doFileTransfer ls->update(0) (ZH FileTransfer.cpp:54)
+insn,0x0066D11A,call 0x415d0c,_doFileTransfer ls->update(fileTransferPercent) (ZH FileTransfer.cpp:124)
+insn,0x0066CEC8,call 0x4362b9,_doFileTransfer ls->processTimeout right before the first update
+thunk,0x000362B9,0x00510130,ILT of the ls object's processTimeout (ledger ?processTimeout@MapTransferLoadScreen@@)
+global,0x012F7714,0x0050FF31,APT-era update loads TheNetwork
+insn,0x0050FF3F,call dword ptr [eax + 0x28],APT-era update -> TheNetwork->update(FALSE)
+global,0x012F4C5C,0x0050FF5C,APT-era update loads TheMouse for setCursorTooltip
+insn,0x0050FF42,push 0x3f800000,setCursorTooltip width 1.0f default
+insn,0x0050FF9B,call dword ptr [edx + 0x1c],APT-era update ends with TheDisplay->draw
+vslot,0x01075BC8+0x7C,0x0006BAE0,GameEngine vtable slot 31
+vslot,0x0111C9A8+0x7C,0x0006BAE0,W3D/Win32 GameEngine vtable slot 31
+thunk,0x0002CD45,0x0006BAE0,ILT of the GameEngine network/logic update virtual
+insn,0x0006BAEB,"cmp esi, 1",the Bool argument selects the network path
+insn,0x0006BAF5,call 0x422c96,-> TheGameLogic->isGamePaused
+thunk,0x00022C96,0x00383480,ILT of the GameLogic+0x11C getter
+bytes,0x00383480,8a811c010000c3,GameLogic+0x11C byte getter (isGamePaused position of ZH GameEngine::update)
+insn,0x0006BB0E,call dword ptr [eax + 0x3c],TheNetwork->getFrameAdvanceCount
+insn,0x0006BB47,call dword ptr [eax + 0x8c],TheNetwork->isPacketRouter
+insn,0x0006BB6A,"cmp dword ptr [ecx + 0x10c], 5",GameLogic m_gameMode == GAME_INTERNET
+insn,0x0006BB73,call 0x414e25,-> HandleBuddyResponses
+thunk,0x00014E25,0x004EE510,ILT of ?HandleBuddyResponses@@YAXXZ
+insn,0x0006BB86,call dword ptr [eax + 0x20],TheGameLogic->update(arg) through vslot +0x20
+insn,0x0006BB8A,ret 4,one stack argument
+thunk,0x00038361,0x0038B430,ILT of the CRC consensus member
+insn,0x0039A0D6,call 0x438361,logicMessageDispatcher MSG_LOGIC_CRC arm calls it per slot
+insn,0x0039A0DC,"cmp ebp, 8",the arm loops over the 8 slots
+insn,0x0038DDF0,call 0x438361,second GameLogic caller
+insn,0x0009B60A,call 0x438361,Recorder caller (playback CRCs)
+insn,0x0038B437,"mov esi, dword ptr [edi + 0x44]",walks the CRC report list at GameLogic+0x44
+insn,0x0038B49D,push 0x18,a 0x18-byte report node
+insn,0x0038B597,call 0x44a10b,disagreement -> bfme_appendGameOverDetails 0x00387A50
+insn,0x0038B64F,call dword ptr [eax + 0x94],TheNetwork->getNumPlayers decides when a frame is complete
+insn,0x0038B6D8,push 0x449,posts GameMessage 0x449
+global,0x012F7714,0x0038B835,loads TheNetwork before quitGame
+insn,0x0038B841,call dword ptr [eax + 0x78],mismatch ends with TheNetwork->quitGame
+vslot,0x0110A388+0x00,0x00569DE0,QuitMenu screen vtable slot 0 = deleting dtor ??_GGen_dtor_00569de0
+insn,0x00569DE3,call 0x4271f6,deleting dtor -> ??1
+thunk,0x000271F6,0x00569720,ILT of the QuitMenu screen dtor
+thunk,0x00025153,0x0056A2F0,pinned ??0BfmeAptScreenQuitMenu ILT -> ctor body
+insn,0x0056A324,"mov dword ptr [esi], 0x110a388",ctor installs the QuitMenu screen vtable
+insn,0x0056A361,"mov dword ptr [0x12f4b40], esi",ctor publishes this as the QuitMenu screen global
+insn,0x0056973F,"mov dword ptr [edi], 0x110a388",dtor re-installs the same vtable
+insn,0x0056974F,"cmp edi, dword ptr [0x12f4b40]",dtor compares this with the screen global
+global,0x012F7714,0x0056981F,dtor loads TheNetwork
+insn,0x0056982C,call dword ptr [edx + 0x78],dtor -> TheNetwork->quitGame (ZH QuitMenu.cpp:151 branch)
+insn,0x00569858,call 0x4238a3,else branch -> the GameLogic MSG_CLEAR_GAME_DATA poster
+thunk,0x000238A3,0x003839E0,ILT of the MSG_CLEAR_GAME_DATA poster (push 0x1d at 0x00383A2C)
+insn,0x00569903,call 0x4204c3,dtor ends in the APT screen base dtor
+thunk,0x000204C3,0x00465430,ILT of the APT screen base dtor shared with ??1BfmeAptScreenDisconnectScreen
+thunk,0x00006CE4,0x00639950,ILT of launchGame
+insn,0x00506985,call 0x406ce4,WOLQuickMatchMenuUpdate -> launchGame (ZH WOLQuickMatchMenu.cpp:1082)
+insn,0x006399A5,call 0x407f0e,-> markPlayerAsPreorder
+thunk,0x00007F0E,0x0061E680,ILT of ?markPlayerAsPreorder@GameInfo@@QAEXH@Z
+insn,0x006399B0,call 0x41d0b1,-> TheNetwork factory (createNetwork + init)
+insn,0x006399DA,call 0x42b053,-> TheNAT->getSlotPort
+thunk,0x0002B053,0x00670C60,ILT of ?getSlotPort@NAT@@QAEHH@Z
+global,0x012F7714,0x006399E4,launchGame loads TheNetwork for setLocalAddress
+insn,0x006399F1,call dword ptr [edx + 0x30],TheNetwork->setLocalAddress
+insn,0x00639A12,call dword ptr [esi + 0x34],TheNetwork->attachTransport(TheNAT->getTransport())
+insn,0x00639A1F,call dword ptr [eax + 0x38],TheNetwork->initTransport
+insn,0x00639A2B,call dword ptr [edx + 0x2c],TheNetwork->parseUserList(this)
+insn,0x00639A3E,call 0x43227c,-> DoAnyMapTransfers
+thunk,0x0003227C,0x0066E070,ILT of _DoAnyMapTransfers
+insn,0x00639C90,"mov dword ptr [0x12f7714], ebx",launchGame nulls TheNetwork on the transfer failure path
+vslot,0x0111AF50+0x90,0x0068A3E0,LANAPI vtable: OnGameStart
+vslot,0x0111AF50+0x94,0x00689050,LANAPI vtable: ?OnGameStartTimer@LANAPI@@UAEXH@Z right after it (ZH LANAPI.h:194-195)
+thunk,0x0003E8A6,0x0068A3E0,ILT of OnGameStart
+insn,0x0068A454,push 0x107c758,LANPreferences key PlayerTemplate
+bytes,0x00C7C758,506c6179657254656d706c61746500,PlayerTemplate
+insn,0x0068A4C2,push 0x107c750,LANPreferences key Color
+bytes,0x00C7C750,436f6c6f7200,Color
+insn,0x0068A57E,call 0x41d0b1,-> TheNetwork factory (createNetwork + init)
+global,0x012F7714,0x0068A596,OnGameStart loads TheNetwork
+insn,0x0068A5AD,call dword ptr [eax + 0x30],TheNetwork->setLocalAddress
+insn,0x0068A5B8,call dword ptr [eax + 0x38],TheNetwork->initTransport
+insn,0x0068A61B,call dword ptr [eax + 0x2c],TheNetwork->parseUserList
+insn,0x0068A62F,call 0x43227c,-> DoAnyMapTransfers
+insn,0x0068A6F4,call 0x41bbd0,failure path -> LANAPI::removeGame
+thunk,0x0001BBD0,0x00685180,ILT of ?removeGame@LANAPI@@IAEXPAVLANGameInfo@@@Z
+insn,0x0068A727,"mov dword ptr [0x12f7714], ebx",OnGameStart nulls TheNetwork on the transfer failure path

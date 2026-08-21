@@ -11,6 +11,8 @@ identity.
 """
 import csv
 import importlib.util
+import re
+import struct
 import subprocess
 import sys
 from pathlib import Path
@@ -110,7 +112,9 @@ def test_call_derived_starts_stay_derivable():
 
 
 CLOSURE_SEEDS = "reverse/game_end/seeds.json"
-# `callers_of.py --closure` at the commit that introduced it, per (group, tier):
+# `callers_of.py --closure` per (group, tier), regenerated for every cell in
+# Phase 2 when the E_leave vcall seed moved from 0x012F76F0 to the live
+# TheNetwork global 0x012F7714 (the old global matched no call site):
 # (functions, bytes) in each ledger state and on each side of identity. The
 # regressing columns may only fall and the improving ones only rise, so landing
 # a conversion or a pin inside the game-end region is what moves a figure here,
@@ -121,10 +125,10 @@ CLOSURE_BASELINE = {
         "CPP": (0, 0), "identified": (2, 1349), "anonymous": (6, 1383)},
     ("A_victory", 1): {
         "UNCLAIMED": (4, 5816), "ASM": (41, 14918), "SMALL": (4, 75), "LIB": (4, 119),
-        "CPP": (13, 1156), "identified": (28, 10465), "anonymous": (38, 11619)},
+        "CPP": (13, 1156), "identified": (30, 11694), "anonymous": (36, 10390)},
     ("A_victory", 2): {
-        "UNCLAIMED": (34, 23581), "ASM": (570, 157446), "SMALL": (45, 3570), "LIB": (15, 682),
-        "CPP": (149, 13373), "identified": (232, 51543), "anonymous": (581, 147109)},
+        "UNCLAIMED": (33, 21329), "ASM": (559, 149267), "SMALL": (43, 3520), "LIB": (15, 682),
+        "CPP": (146, 13112), "identified": (231, 51362), "anonymous": (565, 136548)},
     ("B_script", 0): {
         "UNCLAIMED": (0, 0), "ASM": (1, 290), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (4, 19630), "identified": (5, 19920), "anonymous": (0, 0)},
@@ -139,10 +143,10 @@ CLOSURE_BASELINE = {
         "CPP": (6, 6151), "identified": (9, 11974), "anonymous": (16, 21132)},
     ("C_results", 1): {
         "UNCLAIMED": (3, 5314), "ASM": (100, 32295), "SMALL": (7, 483), "LIB": (9, 710),
-        "CPP": (54, 13330), "identified": (84, 26731), "anonymous": (89, 25401)},
+        "CPP": (54, 13330), "identified": (87, 27246), "anonymous": (86, 24886)},
     ("C_results", 2): {
-        "UNCLAIMED": (11, 16462), "ASM": (241, 71021), "SMALL": (36, 3830), "LIB": (8, 466),
-        "CPP": (101, 15499), "identified": (177, 44811), "anonymous": (220, 62467)},
+        "UNCLAIMED": (11, 16462), "ASM": (233, 67591), "SMALL": (36, 3830), "LIB": (8, 466),
+        "CPP": (101, 15499), "identified": (171, 43367), "anonymous": (218, 60481)},
     ("D_desync", 0): {
         "UNCLAIMED": (0, 0), "ASM": (2, 861), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (0, 0), "identified": (1, 501), "anonymous": (1, 360)},
@@ -154,19 +158,19 @@ CLOSURE_BASELINE = {
         "CPP": (3, 362), "identified": (7, 949), "anonymous": (35, 3160)},
     ("E_leave", 0): {
         "UNCLAIMED": (0, 0), "ASM": (38, 11957), "SMALL": (0, 0), "LIB": (0, 0),
-        "CPP": (5, 463), "identified": (25, 8200), "anonymous": (18, 4220)},
+        "CPP": (5, 463), "identified": (43, 12420), "anonymous": (0, 0)},
     ("E_leave", 1): {
-        "UNCLAIMED": (0, 0), "ASM": (105, 16034), "SMALL": (4, 122), "LIB": (0, 0),
-        "CPP": (86, 6128), "identified": (124, 16090), "anonymous": (71, 6194)},
+        "UNCLAIMED": (0, 0), "ASM": (113, 20156), "SMALL": (4, 122), "LIB": (0, 0),
+        "CPP": (86, 6128), "identified": (203, 26406), "anonymous": (0, 0)},
     ("E_leave", 2): {
-        "UNCLAIMED": (6, 2145), "ASM": (115, 28567), "SMALL": (19, 2703), "LIB": (4, 2711),
-        "CPP": (198, 15436), "identified": (255, 40938), "anonymous": (87, 10624)},
+        "UNCLAIMED": (12, 8415), "ASM": (200, 59219), "SMALL": (28, 3312), "LIB": (6, 2774),
+        "CPP": (230, 18928), "identified": (323, 60525), "anonymous": (153, 32123)},
     ("F_engine_quit", 0): {
         "UNCLAIMED": (0, 0), "ASM": (6, 13470), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (0, 0), "identified": (3, 12059), "anonymous": (3, 1411)},
     ("F_engine_quit", 1): {
-        "UNCLAIMED": (17, 7410), "ASM": (117, 30410), "SMALL": (1, 3), "LIB": (3, 106),
-        "CPP": (32, 1926), "identified": (50, 14662), "anonymous": (120, 25193)},
+        "UNCLAIMED": (17, 7410), "ASM": (116, 29332), "SMALL": (1, 3), "LIB": (3, 106),
+        "CPP": (32, 1926), "identified": (52, 14756), "anonymous": (117, 24021)},
 }
 REGRESSING = ("UNCLAIMED", "ASM", "SMALL", "anonymous")
 IMPROVING = ("CPP", "identified")
@@ -205,3 +209,83 @@ def test_game_end_closure_coverage_never_regresses():
                 moved.append(f"{key}: {column} fell to {now[column]} from {base[column]}")
     assert not moved, "\n".join(moved) + "\n\n" + proc.stdout
     print("PASS game-end closure: no state or identity figure moved the wrong way")
+
+
+CLAIMS = ROOT / "reverse" / "game_end" / "claims.csv"
+# Address facts the game-end identity packs rest on, each checked against the
+# retail image. Address/expected per kind: bytes 0xRVA/hex; insn 0xRVA/capstone
+# text; vslot 0xVTABLEVA+0xOFF/body RVA after the thunk chain; jt
+# 0xTABLEVA[idx]/the entry RVA; thunk ILT RVA/body RVA; global VA/RVA of an
+# instruction whose immediate or displacement carries that VA.
+
+
+def _claim_observed(kind, address, expected, image, md):
+    """What retail holds where a claims.csv row says `expected` is."""
+    from capstone.x86 import X86_OP_IMM, X86_OP_MEM
+    data, sections, low, high = image
+
+    def offset(rva):
+        assert rva != 0, "a claim at RVA 0 is a typo, not a fact: refusing to read address zero"
+        return build.rva_to_file_offset(sections, rva)
+
+    def follow(rva):
+        for _ in range(4):
+            body = build.follow_thunk(data, sections, rva, low, high)
+            if body == rva:
+                break
+            rva = body
+        return rva
+
+    def insn(rva):
+        decoded = next(md.disasm(data[offset(rva):offset(rva) + 16], IMAGE_BASE + rva), None)
+        assert decoded is not None, f"nothing decodes at 0x{rva:08X}"
+        return decoded
+
+    if kind == "bytes":
+        start = offset(int(address, 16))
+        return data[start:start + len(expected) // 2].hex()
+    if kind == "insn":
+        decoded = insn(int(address, 16))
+        return f"{decoded.mnemonic} {decoded.op_str}".strip()
+    if kind == "thunk":
+        return f"0x{follow(int(address, 16)):08X}"
+    if kind in ("vslot", "jt"):
+        match = re.fullmatch(r"(0x[0-9A-Fa-f]+)(?:\+(0x[0-9A-Fa-f]+)|\[(\d+)\])", address)
+        assert match, f"malformed {kind} address {address!r}"
+        table, off, index = match.groups()
+        va = int(table, 16) + (int(off, 16) if off else 4 * int(index))
+        entry = struct.unpack_from("<I", data, offset(va - IMAGE_BASE))[0] - IMAGE_BASE
+        return f"0x{(follow(entry) if kind == 'vslot' else entry):08X}"
+    if kind == "global":
+        decoded = insn(int(expected, 16))
+        carried = {(op.imm if op.type == X86_OP_IMM else op.mem.disp) & 0xFFFFFFFF
+                   for op in decoded.operands if op.type in (X86_OP_IMM, X86_OP_MEM)}
+        if int(address, 16) in carried:
+            return expected
+        return f"0x{int(expected, 16):08X} carries " + ",".join(f"0x{v:08X}" for v in sorted(carried))
+    raise AssertionError(f"unknown claim kind {kind!r}")
+
+
+def test_game_end_claims_hold_against_retail():
+    try:
+        import capstone
+    except ImportError:
+        raise SystemExit("capstone is missing (pip install capstone): the game-end claims "
+                         "cannot be checked without a disassembler, and skipping them "
+                         "silently would leave every address fact unverified")
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    md.detail = True
+    data, sections = build.exe_image()
+    text = next(section for section in sections if section["name"] == ".text")
+    image = (data, sections, text["rva"], text["rva"] + text["size"])
+    with CLAIMS.open("r", encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    assert len(rows) >= 40, f"{CLAIMS}: only {len(rows)} rows"
+    wrong = []
+    for row in rows:
+        observed = _claim_observed(row["kind"], row["address"], row["expected"], image, md)
+        if observed.lower() != row["expected"].lower():
+            wrong.append(f"{row['kind']},{row['address']},{row['expected']} ({row['note']}): "
+                         f"observed {observed}")
+    assert not wrong, f"{len(wrong)} claim(s) do not hold against retail:\n" + "\n".join(wrong)
+    print(f"PASS game-end claims: {len(rows)} rows hold against retail")
