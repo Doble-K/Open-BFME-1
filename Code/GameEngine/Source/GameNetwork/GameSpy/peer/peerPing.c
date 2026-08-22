@@ -56,7 +56,7 @@ static int piSocketInit(const char *localAddress, unsigned short localPort)
 
 	piSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if (piSocket == INVALID_SOCKET)
-		goto fail;
+		goto socket_error;
 
 	bFlag = 1;
 	rcode = setsockopt(piSocket, SOL_SOCKET, SO_REUSEADDR, (const char *)&bFlag, sizeof(bFlag));
@@ -64,15 +64,12 @@ static int piSocketInit(const char *localAddress, unsigned short localPort)
 	rcode = bind(piSocket, (SOCKADDR *)&sockaddr, sizeof(SOCKADDR_IN));
 	if (rcode == -1)
 	{
+socket_error:
 		WSAGetLastError();
-		goto fail;
-	}
-	goto success;
-
 fail:
-	return 0;
+		return 0;
+	}
 
-success:
 	return 1;
 }
 DArray ArrayNew(int elemSize, int numElemsToAllocate, void *elemFreeFn);
