@@ -12,6 +12,7 @@ class Rva001705A0Inner
 public:
 	Rva001705A0Inner();
 	void apply( int value, bool enabled );
+	void applyAlternate( int value, bool enabled );
 
 private:
 	int *m_vtable;
@@ -49,4 +50,21 @@ void Rva001705A0Owner::setValue( int value )
 	if ( m_inner == 0 )
 		m_inner = new Rva001705A0Inner;
 	m_inner->apply( value, true );
+}
+
+class Rva00170610Owner
+{
+public:
+	void setValue( int value );
+
+private:
+	char m_pad00[ 0x54 ];
+	Rva001705A0Inner *m_inner;
+};
+
+void Rva00170610Owner::setValue( int value )
+{
+	if ( m_inner == 0 )
+		m_inner = new Rva001705A0Inner;
+	m_inner->applyAlternate( value, true );
 }
