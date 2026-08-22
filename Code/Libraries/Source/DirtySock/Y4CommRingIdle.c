@@ -34,7 +34,11 @@ struct Rva00815B50Comm
 	int m_bufferSize;               /* +0xB4 */
 	int m_writeOffset;              /* +0xB8 */
 	int m_readOffset;               /* +0xBC */
-	char m_gap2[ 0x12C ];
+	/* The ring's BASE POINTER.  0x00815FA0 adds the read offset to it and
+	 * dereferences the result, which is what proves the offsets above are
+	 * byte offsets into this buffer rather than indices. */
+	unsigned char *m_buffer;        /* +0xC0 */
+	char m_gap2[ 0x128 ];
 	char m_lock[ 4 ];               /* +0x1EC */
 };
 
@@ -87,4 +91,38 @@ int Rva00815AB0( struct Rva00815B50Comm *comm, int *out )
 		- comm->m_readOffset ) % comm->m_bufferSize ) / comm->m_recordSize;
 
 	return iResult;
+}
+
+/* 0x00815FA0 RETIRES ONE RECORD, but only if the acknowledgement matches.
+ *
+ * It reads a sequence byte from the incoming packet and one from the record
+ * currently at the read cursor, and advances the cursor only when they agree.
+ * THE TWO BYTES ARE BIASED DIFFERENTLY -- 0xC0 is subtracted from the packet's
+ * and 0x80 from the stored one -- so the two sides carry the same sequence
+ * number in different tag spaces, and the constants are what say so.  Reading
+ * either byte alone would tell you nothing.
+ *
+ * A mismatch is silently ignored: no error, no counter, no retransmit here.
+ * The record simply stays at the cursor.
+ *
+ * Both bytes are read with movzx, so the tags are unsigned; the biased results
+ * are then compared as ints, which is why an unexpected tag cannot wrap into
+ * a false match.
+ */
+void Rva00815FA0( struct Rva00815B50Comm *comm, const unsigned char *packet )
+{
+	int iPacketTag;
+	int iRecordTag;
+	unsigned char *pRecord;
+
+	pRecord = comm->m_buffer + comm->m_readOffset;
+
+	iPacketTag = packet[ 8 ] - 0xC0;
+	iRecordTag = pRecord[ 8 ] - 0x80;
+
+	if ( iPacketTag == iRecordTag )
+	{
+		comm->m_readOffset = ( comm->m_readOffset + comm->m_recordSize )
+			% comm->m_bufferSize;
+	}
 }

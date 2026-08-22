@@ -75400,3 +75400,5 @@ _Netbios@4,0x0081BDD8,Y2 lane: Netbios import thunk (gen-import ?ji_0081bdd8@@YA
 _Rva007FFDD0,0x007FFDD0,Y4 lane: DirtySock host and port text parser
 ?Rva007EBCA0@@YAPADPBD0@Z,0x007EBCA0,Y2 lane: address-derived; the tag lookup 0x007EBF20 and 0x007EBFC0 both hand a record and a tag name to
 _Rva00815BB0,0x00815BB0,Y4 lane: DirtySock ring transport pump; the socket callback at 0x00815B50 calls it under the try-lock
+_Rva0081BDAE@4,0x0081BDAE,Y4 lane: unnamed one-argument stdcall import thunk (IAT slot 0x01358C84); the guard at 0x00813780 calls it only for a handle that is not -1
+_Rva00814770,0x00814770,Y4 lane: DirtySock comm pump taking a tick; the socket callback at 0x00814700 samples the clock once and passes it in
