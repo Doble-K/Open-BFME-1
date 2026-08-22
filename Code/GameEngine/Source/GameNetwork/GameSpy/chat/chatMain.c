@@ -25,15 +25,29 @@ typedef enum
 	CHATTrue
 } CHATBool;
 
+typedef void (*ciConnectCallback)(CHAT chat, CHATBool success, int failureReason,
+		void *param);
+
 typedef struct ciConnection
 {
-	unsigned char beforeChatSocket[0x1c];
+	int connected;
+	CHATBool connecting;
+	CHATBool disconnected;
+	void *nickErrorCallback;
+	unsigned char pad10[4];
+	ciConnectCallback connectCallback;
+	void *connectParam;
 	unsigned char chatSocket;
 } ciConnection;
 
 void ciSocketSend(void *chatSocket, const char *buffer);
 CHATBool ciCheckFiltersForID(CHAT chat, int ID);
 CHATBool ciCheckCallbacksForID(CHAT chat, int ID);
+void ciAddCallback_(CHAT chat, int type, void *callback, void *params,
+		void *callbackParam, int ID, void *param2, int paramsSize);
+#define ciAddCallback(chat, type, callback, params, callbackParam, ID, param2) \
+	ciAddCallback_(chat, type, callback, params, callbackParam, ID, param2, \
+		sizeof(*(params)))
 
 static CHATBool ciCheckForID(CHAT chat, int ID)
 {
@@ -234,4 +248,38 @@ int ciNickIsValid(const char *nick)
 	}
 
 	return CHATTrue;
+}
+
+void ciNickError(CHAT chat, int type, const char *nick,
+		int numSuggestedNicks, char **suggestedNicks)
+{
+	typedef struct ciCallbackNickErrorParams
+	{
+		int type;
+		char *nick;
+		int numSuggestedNicks;
+		char **suggestedNicks;
+	} ciCallbackNickErrorParams;
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(connection->nickErrorCallback)
+	{
+		ciCallbackNickErrorParams params;
+
+		memset(&params, 0, sizeof(ciCallbackNickErrorParams));
+		params.type = type;
+		params.nick = (char *)nick;
+		params.numSuggestedNicks = numSuggestedNicks;
+		params.suggestedNicks = suggestedNicks;
+		ciAddCallback(chat, 25, connection->nickErrorCallback, &params,
+			connection->connectParam, 0, NULL);
+	}
+	else
+	{
+		connection->connecting = CHATFalse;
+
+		if(connection->connectCallback != NULL)
+			connection->connectCallback(chat, CHATFalse, 1,
+				connection->connectParam);
+	}
 }
