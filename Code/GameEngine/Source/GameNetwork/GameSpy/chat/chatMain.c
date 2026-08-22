@@ -88,3 +88,32 @@ void ciSendGetKeyAnchor(CHAT chat,
 {
 	ciSendGetKey(chat, target, cookie, num, keys);
 }
+
+void chatSetChannelKeysA(CHAT chat,
+						 const char *channel,
+						 const char *user,
+						 int num,
+						 const char **keys,
+						 const char **values)
+{
+	char buffer[512];
+	const char *value;
+	int i;
+	ciConnection *connection = (ciConnection *)chat;
+	if(!connection || *(int *)connection == 0)
+		return;
+
+	if(!user || !user[0])
+		sprintf(buffer, "SETCHANKEY %s :", channel);
+	else
+		sprintf(buffer, "SETCKEY %s %s :", channel, user);
+	for(i = 0 ; i < num ; i++)
+	{
+		value = values[i];
+		if(!value)
+			value = "";
+		sprintf(buffer + strlen(buffer), "\\%s\\%s", keys[i], value);
+	}
+
+	ciSocketSend(&connection->chatSocket, buffer);
+}
