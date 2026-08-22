@@ -61,12 +61,35 @@
 // twenty-one, since nothing distinguishes them.  What the null type-tag
 // arguments actually are is unobservable past their position and count.
 
+struct Q3SortItem003CDC60
+{
+	char m_pad30[ 0x30 ];
+	int m_key;
+	char m_pad34[ 5 ];
+	char m_tie;
+};
+
+struct Q3SortElem4
+{
+	Q3SortItem003CDC60 *m_item;
+};
+
 struct Q3SortCompare
 {
 	void *m_state;
+	bool operator()( Q3SortElem4 a, Q3SortElem4 b ) const
+	{
+		int a_key = a.m_item->m_key;
+		int b_key = b.m_item->m_key;
+		if( b_key > a_key )
+			return true;
+		if( b_key < a_key )
+			return false;
+		char a_tie = a.m_item->m_tie;
+		char b_tie = b.m_item->m_tie;
+		return b_tie < a_tie;
+	}
 };
-
-struct Q3SortElem4  { int m_a; };
 struct Q3SortElem8  { int m_a, m_b; };
 struct Q3SortElem16 { int m_a, m_b, m_c, m_d; };
 
@@ -95,6 +118,30 @@ BFME_FINAL_INSERTION( Rva00347CD0, Gen00344970, Gen00342CE0 )
 BFME_FINAL_INSERTION( Rva003CFA00, Gen003CEC30, Gen003CDC60 )
 BFME_FINAL_INSERTION( Rva00483DA0, Gen00483B90, Gen0047E480 )
 BFME_FINAL_INSERTION( Rva00513980, Gen00513410, Gen00511B90 )
+
+void Gen003CDC60( Q3SortElem4 *first, Q3SortElem4 *last, Q3SortCompare comp )
+{
+	if( first != last )
+	{
+		Q3SortElem4 *i = first;
+		for( ;; )
+		{
+			Q3SortElem4 value = *i;
+			Q3SortElem4 *cur = i;
+			Q3SortElem4 *next = i - 1;
+			while( comp( *next, value ) )
+			{
+				*cur = *next;
+				cur = next;
+				--next;
+			}
+			++i;
+			*cur = value;
+			if( i == last )
+				break;
+		}
+	}
+}
 
 #define BFME_SORT_DRIVER( NAME, ELEM, INTRO, FINAL )                           \
 	void INTRO( ELEM *first, ELEM *last, ELEM *, int depth,                    \
