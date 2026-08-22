@@ -35,17 +35,25 @@ public:
     virtual int getDamageState() const;
 };
 
-class Object
+class Thing
 {
 public:
     const Coord3D *getPosition() const { return &m_position; }
+    void setPosition(const Coord3D *position);
+
+private:
+    unsigned char m_pad00[0x38];
+    Coord3D m_position;
+};
+
+class Object : public Thing
+{
+public:
     ObjectID getID() const { return m_id; }
     AIUpdateInterface *getAIUpdateInterface() const { return m_ai; }
     BodyStateInterface *getBody() const { return m_body; }
 
 private:
-    unsigned char m_pad00[0x38];
-    Coord3D m_position;
     unsigned char m_pad44[0x30];
     ObjectID m_id;
     unsigned char m_pad78[0x188];
@@ -58,6 +66,15 @@ struct ContainedNode
     ContainedNode *next;
     ContainedNode *previous;
     Object *object;
+};
+
+struct GarrisonPointData
+{
+    ObjectID objectID;
+    ObjectID targetID;
+    unsigned int placeFrame;
+    unsigned int lastEffectFrame;
+    void *effect;
 };
 
 static float calcDistanceSquared(const Coord3D &first, const Coord3D &second)
@@ -112,9 +129,39 @@ private:
     Object *m_object;
     unsigned char m_pad0c[0x2c];
     ContainedNode *m_containedItems;
-    unsigned char m_pad3c[0x3c0];
+    unsigned char m_pad3c[0x9c];
+    GarrisonPointData m_garrisonPointData[40];
+    int m_garrisonPointsInUse;
     Coord3D m_garrisonPoints[3][40];
 };
+
+// ?removeObjectFromGarrisonPoint@GarrisonContain@@IAEXPAVObject@@H@Z
+void GarrisonContain::removeObjectFromGarrisonPoint(Object *object, int index)
+{
+    if (!object)
+        return;
+
+    if (index == -1)
+    {
+        for (int i = 0; i < 40; ++i)
+        {
+            if (m_garrisonPointData[i].objectID == object->getID())
+                removeObjectFromGarrisonPoint(object, i);
+        }
+        return;
+    }
+
+    if (index < 0 || index >= 40)
+        return;
+
+    m_garrisonPointData[index].objectID = INVALID_OBJECT_ID;
+    m_garrisonPointData[index].targetID = INVALID_OBJECT_ID;
+    m_garrisonPointData[index].placeFrame = 0;
+    m_garrisonPointData[index].lastEffectFrame = 0;
+    --m_garrisonPointsInUse;
+
+    object->setPosition(m_object->getPosition());
+}
 
 // ?trackTargets@GarrisonContain@@IAEXXZ
 void GarrisonContain::trackTargets()

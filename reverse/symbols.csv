@@ -74940,6 +74940,7 @@ _Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; 
 ??1Rva00033A37FlatBase@@UAE@XZ,0x00033A37,base destructor address decoded from the retail REL32 tail jump; name is address-derived
 ??1Rva00039D6AFlatBase@@UAE@XZ,0x00039D6A,base destructor address decoded from the retail REL32 tail jump; name is address-derived
 ??1Rva0004418EFlatBase@@UAE@XZ,0x0004418E,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+?setPosition@Thing@@QAEXPBUCoord3D@@@Z,0x0003A1A7,GarrisonContain removal call resolves through the retail ILT to body 0x00132CE0
 
 ??_GNetwork@@UAEPAXI@Z,0x00682770,BFMENativeNetwork vtable 0x0111A968 slot 0 (+0x00) via ILT 0x00022985; scalar deleting dtor: calls ??1Network 0x006823B0 through ILT 0x00010140 then frees when flag bit0 is set
 ?init@Network@@UAEXXZ,0x00681E40,vtable 0x0111A968 slot 1 (+0x04) via ILT 0x00040FB6; ZH Network::init: destroy@BFMEConnectionManager 0x00668D90 + delete of +0x08 then new 0x12190 B ConnectionManager via construct@BFMEConnectionManager 0x00669630 and its vslot 0 init; status +0x0C=0 PREGAME QueryPerformanceFrequency->+0x10 QueryPerformanceCounter->+0x18 +0x2C=0 +0x34=0 +0x38=-1; called right after construction by the factory 0x00682320 (call [vt+4] at 0x0068237B)
