@@ -39,6 +39,7 @@ int   Rva0080B460( void *object, int mode );                // 0x0080B460
 struct Rva00806580Record;
 int   Rva00807370( Rva00806580Record *record, int selector, int flag,
 		char *buffer, int bufferSize );                     // 0x00807370
+int   Rva008076E0( Rva00806580Record *record, int a, int b, int c ); // 0x008076E0
 unsigned int Rva007FEA00Tick( void );                       // 0x007FEA00
 
 // The tick this module first ran at, filled in once and never again.
@@ -412,4 +413,60 @@ int Rva00806710( Rva00806580Record *record, const char *name, unsigned int addr,
 	}
 
 	return 0;
+}
+
+// 0x008078B0 IS A CONDITIONAL RELEASE written as four early returns, not as one
+// condition.  Each test compiles to `je` over a two-byte `jmp` -- the shape an
+// inverted `if( ... ) return;` gives -- where a single && chain would branch
+// straight to the end each time.
+//
+// What the four tests together say is that this only fires on a record in state
+// 3 with nothing outstanding: no +0x70 block, no +0x7C block, and a sub-object
+// still present.  Anything pending and it does nothing at all -- which is what
+// makes this the idle-time collector rather than a destructor.
+void Rva008078B0( Rva00806580Record *record )
+{
+	if( record->m_field5C != 3 )
+		return;
+	if( record->m_field70 != 0 )
+		return;
+	if( record->m_field7C != 0 )
+		return;
+	if( record->m_field00 == 0 )
+		return;
+
+	Rva0080B070Destroy( record->m_field00 );
+	record->m_field00 = 0;
+}
+
+// 0x00807820 TAKES DELIVERY OF A BLOCK AND FREES IT.  It asks 0x008076E0 for a
+// length, and on anything but a negative answer copies out of +0x7C at an
+// offset of 0x0C -- so that block carries a 0x0C-byte header the caller never
+// sees -- then releases it and nulls the field.
+//
+// THE FREE HAPPENS EVEN WHEN THE CALLER PASSED NO BUFFER.  Only the copy is
+// conditional on the destination, so a caller reading the length alone still
+// consumes the block; there is no way to peek.  The length is clamped DOWN to
+// what arrived and never up, and the value returned is the real length rather
+// than the clamped one -- so a caller with too small a buffer is told how much
+// there was and has already lost the rest.
+int Rva00807820( Rva00806580Record *record, int a, int b, void *dest,
+		int destSize )
+{
+	int result;
+
+	result = Rva008076E0( record, a, b, 0 );
+	if( result >= 0 )
+	{
+		if( destSize > result )
+			destSize = result;
+
+		if( dest != 0 )
+			memcpy( dest, (char *)record->m_field7C + 0x0C, destSize );
+
+		Rva007F0030Free( record->m_field7C );
+		record->m_field7C = 0;
+	}
+
+	return result;
 }

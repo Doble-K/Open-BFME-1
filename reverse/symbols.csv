@@ -75384,3 +75384,4 @@ _strcat,0x009F75CA,Y2 lane: strcat import thunk (gen-import ?ji_009f75ca@@YAXXZ 
 ?Rva007FF990Swap16@@YAGG@Z,0x007FF990,Y2 lane: address-derived; the 16-bit byte swap 0x00806910 runs its port argument through, sibling of 0x007FF9F0 and 0x007FFAD0
 ?Rva0080DF70@@YAHPBDPAD1@Z,0x0080DF70,Y2 lane: address-derived; 0x00806710 hands it the record key at +0x90 and two output buffers /GZ names Secret and Ticket
 ?Rva00807370@@YAHPAURva00806580Record@@HHPADH@Z,0x00807370,Y2 lane: address-derived; 0x00806710 calls it with the selector 0x3F746963 and the 0x34-byte Ticket
+?Rva008076E0@@YAHPAURva00806580Record@@HHH@Z,0x008076E0,Y2 lane: address-derived; the four-argument body 0x00807820 wraps, whose negative result it treats as no data
