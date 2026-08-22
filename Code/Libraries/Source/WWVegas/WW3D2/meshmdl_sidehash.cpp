@@ -95,7 +95,7 @@ struct SideIndexInfo
 	unsigned short vidx1;
 	unsigned short vidx2;
 	unsigned polygon_index;
-	SideIndexInfo() {}
+	SideIndexInfo() : vidx1(0), vidx2(0), polygon_index(0) {}
 	SideIndexInfo(int i) { WWASSERT(0); }
 };
 
