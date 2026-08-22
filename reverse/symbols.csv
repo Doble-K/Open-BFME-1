@@ -75255,6 +75255,8 @@ _Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by 
 ?TheGameSpyBuddyMessageQueue@@3PAVGameSpyBuddyMessageQueueInterface@@A,0x00EF71B4,Buddy message queue global used by independently identified callback and queue methods
 ?findFlag@BFMEScriptEngineFlagLookup@@QAEPA_NVAsciiString@@@Z,0x0004278F,TU-scoped ABI name for the ScriptEngine flag lookup ILT; target body 0x00344E10 is semantically proven but its canonical retail spelling is unknown
 ?isStealthedAndUndetected@BFMEObjectStealthQuery@@QBE_NPBVObject@@@Z,0x00003B1B,TU-specific ABI name for the stealth visibility query ILT; target body 0x001CAEE0 proves the semantics while its canonical retail spelling remains unknown
+?TheScriptEngine@@3PAVScriptEngine@@A,0x00EF076C,ScriptEngine global proven by SignalUIInteraction retail DIR32 and independently referenced by script action vcall sites
+?TheShellHookNames@@3PAPBDA,0x00EB3DC0,Shell hook name table proven by SignalUIInteraction indexed retail DIR32 and canonical EA Scripts.cpp data
 _Rva007F0030,0x007F0030,cdecl one-argument helper invoked by 0x007FE210 when its IAT probe returns non-zero; address read from the REL32
 _Rva007FEE40,0x007FEE40,worker pumped by the drain loop at 0x007FE620; address read from the REL32 at that call site
 ?isEmpty@FXList@@QBE_NXZ,0x00011F77,incremental-link thunk to the 188-byte FXList emptiness body called by UpgradeMuxData::performUpgradeFX
