@@ -93,10 +93,13 @@ struct Rva00806580Record
 	char  m_name[ 0x40 ];        // +0x1C
 	int   m_field5C;             // +0x5C -- 'stat'
 	int   m_field60;             // +0x60
-	int   m_field64;             // +0x64 -- 'obuf' is +0x64 minus +0x68
-	int   m_field68;             // +0x68
-	char  m_pad6C[ 0x04 ];
-	void *m_field70;             // +0x70
+	// THE OUTPUT BUFFER, named by 0x00807520: +0x70 is the block, +0x6C its
+	// capacity, +0x64 how much has been written and +0x68 how much has been
+	// sent.  'obuf' reporting +0x64 minus +0x68 is what is still queued.
+	int   m_outUsed;             // +0x64
+	int   m_outSent;             // +0x68
+	int   m_outSize;             // +0x6C
+	void *m_outBuffer;           // +0x70
 	int   m_field74;             // +0x74 -- 'ibuf' is +0x74 minus +0x78
 	int   m_field78;             // +0x78
 	void *m_field7C;             // +0x7C -- gates 'ibuf'
@@ -127,8 +130,8 @@ void Rva00806580( Rva00806580Record *record )
 	if( record->m_field7C != 0 )
 		Rva007F0030Free( record->m_field7C );
 
-	if( record->m_field70 != 0 )
-		Rva007F0030Free( record->m_field70 );
+	if( record->m_outBuffer != 0 )
+		Rva007F0030Free( record->m_outBuffer );
 
 	Rva007F0030Free( record );
 }
@@ -150,10 +153,10 @@ int Rva008068B0( Rva00806580Record *record )
 		record->m_field00 = 0;
 	}
 
-	if( record->m_field70 != 0 )
+	if( record->m_outBuffer != 0 )
 	{
-		Rva007F0030Free( record->m_field70 );
-		record->m_field70 = 0;
+		Rva007F0030Free( record->m_outBuffer );
+		record->m_outBuffer = 0;
 	}
 
 	record->m_field5C = 4;
@@ -168,10 +171,10 @@ int Rva00806A10( Rva00806580Record *record )
 		record->m_field00 = 0;
 	}
 
-	if( record->m_field70 != 0 )
+	if( record->m_outBuffer != 0 )
 	{
-		Rva007F0030Free( record->m_field70 );
-		record->m_field70 = 0;
+		Rva007F0030Free( record->m_outBuffer );
+		record->m_outBuffer = 0;
 	}
 
 	record->m_field5C = 4;
@@ -216,7 +219,7 @@ int Rva00806600( Rva00806580Record *record, int selector )
 	if( selector == 'lprt' )
 		return record->m_localPort;
 	if( selector == 'obuf' )
-		return record->m_field64 - record->m_field68;
+		return record->m_outUsed - record->m_outSent;
 	if( selector == 'ibuf' )
 	{
 		if( record->m_field7C != 0 )
@@ -438,7 +441,7 @@ void Rva008078B0( Rva00806580Record *record )
 {
 	if( record->m_field5C != 3 )
 		return;
-	if( record->m_field70 != 0 )
+	if( record->m_outBuffer != 0 )
 		return;
 	if( record->m_field7C != 0 )
 		return;
@@ -579,13 +582,13 @@ int Rva00807370( Rva00806580Record *record, int kind, int flag,
 	if( Rva00807520( record, total, 0x8000 ) < total )
 		return -1;
 
-	packet = (char *)record->m_field70 + record->m_field64;
+	packet = (char *)record->m_outBuffer + record->m_outUsed;
 	header = packet;
 
 	if( length > 0 )
 		memcpy( packet + 0x0C, data, length );
 
-	record->m_field64 = record->m_field64 + total;
+	record->m_outUsed = record->m_outUsed + total;
 
 	header[ 8 ] = (char)( total >> 24 );
 	header[ 9 ] = (char)( total >> 16 );
@@ -608,4 +611,68 @@ int Rva00807370( Rva00806580Record *record, int kind, int flag,
 
 	Rva00806B10( record );
 	return 0;
+}
+
+// 0x00807520 MAKES ROOM IN THE OUTPUT BUFFER, and it does three separate
+// things depending on what it finds.  With no buffer at all it simply
+// allocates one of exactly the requested size and returns what is free.
+//
+// Otherwise it COMPACTS FIRST.  It walks the queued packets from the start,
+// stepping by each one's own big-endian length at +0x08 -- the header
+// 0x00807370 writes -- until it passes what has been sent, backs off by one
+// packet if it overshot, and slides the remainder down.  So packets are only
+// ever dropped on a packet boundary, which is why the walk needs the length
+// field rather than just the sent cursor.
+//
+// Only then does it grow, and the new size is used + requested + LIMIT rather
+// than just what was asked for -- the caller's third argument is headroom, not
+// a cap.  A failed allocation returns 0 and leaves the old buffer in place, so
+// nothing is lost; every other path returns the free space, which is what
+// 0x00807370 compares against its own requirement.
+int Rva00807520( Rva00806580Record *record, int length, int limit )
+{
+	int size;
+	int used;
+	char *grown;
+	unsigned char *p;
+
+	if( record->m_outBuffer == 0 )
+	{
+		record->m_outUsed = 0;
+		record->m_outSent = 0;
+		record->m_outSize = length;
+		record->m_outBuffer = Rva007F0000Alloc( record->m_outSize );
+		return record->m_outSize - record->m_outUsed;
+	}
+
+	for( size = 0, used = size; used < record->m_outSent; used += size )
+	{
+		p = (unsigned char *)record->m_outBuffer + used;
+		size = ( p[ 8 ] << 24 ) | ( p[ 9 ] << 16 ) | ( p[ 10 ] << 8 ) | p[ 11 ];
+	}
+
+	if( used > record->m_outSent )
+		used -= size;
+
+	if( used > 0 )
+	{
+		memcpy( record->m_outBuffer, (char *)record->m_outBuffer + used,
+				record->m_outUsed - used );
+		record->m_outUsed = record->m_outUsed - used;
+		record->m_outSent = record->m_outSent - used;
+	}
+
+	if( length > record->m_outSize - record->m_outUsed )
+	{
+		grown = (char *)Rva007F0000Alloc( record->m_outUsed + length + limit );
+		if( grown == 0 )
+			return 0;
+
+		memcpy( grown, record->m_outBuffer, record->m_outUsed );
+		Rva007F0030Free( record->m_outBuffer );
+		record->m_outBuffer = grown;
+		record->m_outSize = record->m_outUsed + length + limit;
+	}
+
+	return record->m_outSize - record->m_outUsed;
 }
