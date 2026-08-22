@@ -1,3 +1,6 @@
+void * __cdecl operator new( unsigned int size );
+void __cdecl f_00881eb0( void *block );
+
 // Two __thiscall members that look one object up through a stored owner and
 // then read a flag out of whatever comes back:
 //
@@ -50,6 +53,22 @@ class Glo012F4B98Type
 {
 public:
 	void report( int count, float weight );
+
+private:
+	struct Report
+	{
+		Report( int count, float weight ) :
+			m_weight( static_cast< int >( weight * 30.0f ) ),
+			m_count( count )
+		{
+		}
+
+		int m_weight;
+		int m_count;
+	};
+
+	char    m_pad00[ 0x4CC ];
+	Report *m_report;
 };
 
 extern Glo012F4B98Type * Glo012F4B98;
@@ -105,4 +124,15 @@ void Rva003BCA90::run()
 	if( count <= 0 )
 		return;
 	Glo012F4B98->report( count, 7.0f );
+}
+
+void Glo012F4B98Type::report( int count, float weight )
+{
+	Report *report = new Report( count, weight );
+
+	if( report != m_report )
+	{
+		f_00881eb0( m_report );
+		m_report = report;
+	}
 }
