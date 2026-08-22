@@ -1306,3 +1306,53 @@ struct Rva007FD4E0Socket *Rva007FD7D0( struct Rva007FD4E0Socket *socket,
 
 	return pOpen;
 }
+
+/* 0x007FD2D0 IS THE OPEN, and it is the accept above with the handle made
+ * instead of taken.  Same allocator, same 0x50, same memset, same three-dword
+ * family/type/protocol copy, same acquire/link/release onto the module list --
+ * so the two bodies pin each other's reading of those fields rather than each
+ * standing on its own.
+ *
+ * FOUR IMMEDIATES CARRY THE IDENTIFICATION.  0x8004667E is FIONBIO again;
+ * 0xFFFF is SOL_SOCKET, 0x20 is SO_BROADCAST, and the option is set only when
+ * the requested type is 2, i.e. SOCK_DGRAM.  A socket layer that turns
+ * broadcast on for datagram sockets and nothing else is not a shape argument.
+ *
+ * RETAIL REUSES ONE LOCAL FOR BOTH CALLS.  `nonblock` holds the 1 that FIONBIO
+ * enables and is handed straight to setsockopt as the broadcast value, with a
+ * length of 4; that is why it is set before the socket is even created and why
+ * there is no second flag variable.  /GZ guards it on both sides, which is what
+ * makes the frame 0x14 rather than 0x0C.
+ *
+ * The open flag at +0x14 is NOT set here -- an opened socket is not a connected
+ * one, and only accept and the connect wrapper touch it.
+ */
+struct Rva007FD4E0Socket *Rva007FD2D0( int family, int type, int protocol )
+{
+	unsigned int uSocket;
+	struct Rva007FD4E0Socket *pSocket;
+	unsigned long nonblock = 1;
+
+	uSocket = socket( family, type, protocol );
+	if ( uSocket == 0xFFFFFFFF )
+		return 0;
+
+	pSocket = (struct Rva007FD4E0Socket *)Rva007F0000( 0x50 );
+	memset( pSocket, 0, 0x50 );
+	pSocket->m_socket = uSocket;
+
+	ioctlsocket( uSocket, 0x8004667E, &nonblock );
+	if ( type == 2 )
+		setsockopt( uSocket, 0xFFFF, 0x20, &nonblock, 4 );
+
+	pSocket->m_family = family;
+	pSocket->m_type = type;
+	pSocket->m_protocol = protocol;
+
+	Rva007FEBD0( 0 );
+	pSocket->m_next = (struct Rva007FD4E0Socket *)g_Rva0130AB58Head;
+	g_Rva0130AB58Head = pSocket;
+	Rva007FECB0( 0 );
+
+	return pSocket;
+}
