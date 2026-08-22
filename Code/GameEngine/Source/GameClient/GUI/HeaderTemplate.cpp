@@ -63,6 +63,75 @@
 #include "GameClient/HeaderTemplate.h"
 #include "GameClient/GameFont.h"
 #include "GameClient/GlobalLanguage.h"
+
+// The shared headers above describe the ZH object sizes.  HeaderTemplate's
+// loader is one of the BFME TUs that still carries the compact INI ABI, so its
+// two automatic strings and INI are declared locally.  These are declarations
+// only: the retail StringBase/INI bodies remain the shared engine bodies.
+template <typename T> class HeaderTemplateStringBase
+{
+friend class HeaderTemplateString;
+private:
+	HeaderTemplateStringBase( void );
+	HeaderTemplateStringBase( const HeaderTemplateStringBase<T> &that );
+	HeaderTemplateStringBase( const T *text );
+	void releaseBuffer( void );
+	void set( const HeaderTemplateStringBase<T> &that );
+};
+
+class HeaderTemplateString
+{
+public:
+	HeaderTemplateString( void ) : m_text( 0 ) {}
+	HeaderTemplateString( const HeaderTemplateString &that )
+	{
+		((HeaderTemplateStringBase<char> *)this)->HeaderTemplateStringBase<char>::HeaderTemplateStringBase(
+			*(const HeaderTemplateStringBase<char> *)&that);
+	}
+	HeaderTemplateString( const char *text )
+	{
+		((HeaderTemplateStringBase<char> *)this)->HeaderTemplateStringBase<char>::HeaderTemplateStringBase( text );
+	}
+	~HeaderTemplateString( void );
+
+	void format( HeaderTemplateString fmt, ... );
+	const char *str( void ) const
+	{
+		return m_text ? m_text + 8 : "";
+	}
+	HeaderTemplateString &operator=( const HeaderTemplateString &that )
+	{
+		((HeaderTemplateStringBase<char> *)this)->set(
+			*(const HeaderTemplateStringBase<char> *)&that);
+		return *this;
+	}
+
+private:
+	char *m_text;
+};
+
+// Return type is deliberately TU-local: the ABI is the same two-word value
+// used by GetRegistryLanguage, while its body is the retail global language
+// accessor (pinned by the conversion ledger when this row is landed).
+HeaderTemplateString HeaderTemplateGetRegistryLanguage( void );
+
+enum HeaderTemplateINILoadType
+{
+	HEADER_TEMPLATE_INI_LOAD_OVERWRITE = 1
+};
+
+class HeaderTemplateINI
+{
+public:
+	HeaderTemplateINI( void );
+	~HeaderTemplateINI( void );
+	void load( HeaderTemplateString filename,
+		HeaderTemplateINILoadType loadType, Xfer *xfer );
+
+private:
+	char m_unported[0x848];
+};
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -123,25 +192,25 @@ HeaderTemplateManager::~HeaderTemplateManager( void )
 	}
 }
 
-// ?init@HeaderTemplateManager@@QAEXXZ present-unmatched
+// ?init@HeaderTemplateManager@@QAEXXZ — BFME compact INI/string ABI shim below
 void HeaderTemplateManager::init( void )
 {
-	INI ini;
-	AsciiString fname;
-	fname.format("Data\\%s\\HeaderTemplate.ini", GetRegistryLanguage().str());
+	HeaderTemplateINI ini;
+	HeaderTemplateString fname;
+	fname.format("Lang\\%s\\HeaderTemplate.ini", HeaderTemplateGetRegistryLanguage().str());
 	OSVERSIONINFO	osvi;
 	osvi.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
 	if (GetVersionEx(&osvi))
 	{	//check if we're running Win9x variant since they may need different fonts
 		if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
-		{	AsciiString tempName;
+		{	HeaderTemplateString tempName;
 
-			tempName.format("Data\\%s\\HeaderTemplate9x.ini", GetRegistryLanguage().str());
+			tempName.format("Lang\\%s\\HeaderTemplate9x.ini", HeaderTemplateGetRegistryLanguage().str());
 			if (TheFileSystem->doesFileExist(tempName.str()))
 				fname = tempName;
 		}
 	}
-	ini.load( fname, INI_LOAD_OVERWRITE, NULL );
+	ini.load( fname, HEADER_TEMPLATE_INI_LOAD_OVERWRITE, NULL );
 	populateGameFonts();
 }
 

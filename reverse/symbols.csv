@@ -150587,3 +150587,12 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ?gandalfTheGrey@?9??_bfme_getSelectedPortraitImage@@YAPBVImage@@PBVThingTemplatePortraitShim@@0@Z@4PBV2@B,0x012EF1EC,lazily cached HIGandalTheGrey image
 ?GenCharToBit0012A430@@3PAY0BA@CA,0x0112A430,address-derived 32-byte alphanumeric-to-bit lookup table used by ParseAlphaNumericBitMask
 ??0Rva007FF700FeslString@@QAE@XZ,0x007FF700,address-derived default constructor for two FESL string members in the 0x007F0CB0 blob record
+??0HeaderTemplateINI@@QAE@XZ,0x00851230,Open-BFME5 HeaderTemplateManager init relocation
+?HeaderTemplateGetRegistryLanguage@@YA?AVHeaderTemplateString@@XZ,0x000132AF,Open-BFME5 HeaderTemplateManager init relocation
+??0?$HeaderTemplateStringBase@D@@AAE@PBD@Z,0x00888BC0,Open-BFME5 HeaderTemplateManager init relocation
+?format@HeaderTemplateString@@QAAXV1@ZZ,0x00888FF0,Open-BFME5 HeaderTemplateManager init relocation
+??1HeaderTemplateString@@QAE@XZ,0x00887940,Open-BFME5 HeaderTemplateManager init relocation
+?set@?$HeaderTemplateStringBase@D@@AAEXABV1@@Z,0x00887C90,Open-BFME5 HeaderTemplateManager init relocation
+??0?$HeaderTemplateStringBase@D@@AAE@ABV0@@Z,0x00887B60,Open-BFME5 HeaderTemplateManager init relocation
+?load@HeaderTemplateINI@@QAEXVHeaderTemplateString@@W4HeaderTemplateINILoadType@@PAVXfer@@@Z,0x00853A20,Open-BFME5 HeaderTemplateManager init relocation
+??1HeaderTemplateINI@@QAE@XZ,0x008512E0,Open-BFME5 HeaderTemplateManager init relocation
