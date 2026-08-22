@@ -28,7 +28,8 @@ struct Rva00807BA0Ping;
 void *Rva007FDFF0Connect( const char *host, int timeout );  // 0x007FDFF0
 int   Rva00807960( const char *host, int timeout );         // 0x00807960
 unsigned int Rva007FF9F0Swap32( unsigned int value );       // 0x007FF9F0
-unsigned int Rva007EB410AdapterInfo( int selector, int a, int b );  // 0x007EB410
+// NetConnStatus -- the body at 0x007EB410 names itself in its own warning.
+int Rva007EB410NetConnStatus( int selector, void *buffer, int bufferSize );
 unsigned int Rva007FFAD0( unsigned int value );             // 0x007FFAD0
 
 // Both reached by a direct rel32 to their import stubs, like sprintf above.
@@ -111,7 +112,7 @@ int Rva00807AB0( char *dest, const void *src )
 	return 1;
 }
 
-// 0x00807B10 asks the adapter query at 0x007EB410 for the selector 0x61646472
+// 0x00807B10 asks NetConnStatus at 0x007EB410 for the selector 0x61646472
 // -- 'addr' -- and runs the answer straight through the formatter above.  /GZ
 // names the local uLocalAddr and guards it on both sides because its address is
 // taken, which is what makes the frame 0x0C rather than 0x04.  The return is a
@@ -121,7 +122,7 @@ int Rva00807B10( char *dest )
 {
 	unsigned int uLocalAddr;
 
-	uLocalAddr = Rva007EB410AdapterInfo( 'addr', 0, 0 );
+	uLocalAddr = Rva007EB410NetConnStatus( 'addr', 0, 0 );
 	Rva00807AB0( dest, &uLocalAddr );
 	return 1;
 }

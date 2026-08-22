@@ -75350,7 +75350,7 @@ _strncmp,0x009F6FE2,Y2 lane: strncmp import thunk (gen-import ?ji_009f6fe2@@YAXX
 ??RQ4Sort00755050@@QBE_NHH@Z,0x0002952D,REL32 comparator target used by byte-verified 0x00753340 median specialization
 ?Rva00807960@@YAHPBDH@Z,0x00807960,Y2 lane: address-derived; the two-argument body the 28-byte wrapper at 0x00807940 forwards to
 ?Rva007FF9F0Swap32@@YAII@Z,0x007FF9F0,Y2 lane: address-derived; one-dword-in one-dword-out helper 0x00807AB0 runs a value through before formatting it with %08x; the sibling at 0x007FFAD0 over the same shape is already ledgered as a byte swap
-?Rva007EB410AdapterInfo@@YAIHHH@Z,0x007EB410,Y2 lane: address-derived; three-argument query 0x00807B10 calls with the selector 0x61646472 (addr); its /GZ frame descriptor names a 0xF0-byte local Adapter
+?Rva007EB410NetConnStatus@@YAHHPAXH@Z,0x007EB410,Y2 lane: NetConnStatus -- the body names itself in its own warning string; three-argument query with the third unused
 _Rva007FF860,0x007FF860,Y4 lane: DirtySock socket-address formatter (address destination size); the address-to-text helper at 0x007FFB50 calls it with a 20-byte destination
 _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXXZ names the same address)
 ?Rva00808220@@YAHPAURva00807BA0Ping@@IPBDHH@Z,0x00808220,Y2 lane: address-derived; the five-argument body the wrappers at 0x008081F0 and 0x008085A0 both forward to
@@ -75391,3 +75391,5 @@ _Rva007FF790,0x007FF790,Y4 lane: DirtySock text-to-socket-address parser
 ?Rva00807520@@YAHPAURva00806580Record@@HH@Z,0x00807520,Y2 lane: address-derived; 0x00807370 reserves output space with it and fails when it gets back less than it asked for
 ?Rva0080E350@@YAXPAXPADH@Z,0x0080E350,Y2 lane: address-derived; the first of two passes 0x00807370 makes over the assembled packet
 ?Rva0080E410@@YAXPAXPADH@Z,0x0080E410,Y2 lane: address-derived; the second pass 0x00807370 makes over the assembled packet
+?Rva007EB520@@YAIPAX@Z,0x007EB520,Y2 lane: address-derived; NetConnStatus hands it the 0xF0-byte Adapter block and copies six bytes out on success
+?Rva007FDEE0@@YAHXZ,0x007FDEE0,Y2 lane: C++ spelling of the address-translator self test converted as _Rva007FDEE0 in Y4DirtySockSocket.c; NetConnStatus returns its result for the addr selector
