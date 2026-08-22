@@ -18,6 +18,8 @@ char *Rva007EBCA0( const char *text, const char *tag );   // 0x007EBCA0
 
 // Reached by a direct rel32 to the import stub, so this TU never saw <stdio.h>.
 extern "C" int sprintf( char *buffer, const char *format, ... );
+extern "C" char *strcpy( char *dest, const char *src );
+extern "C" char *strcat( char *dest, const char *src );
 
 char Rva007EBAE0( char value )
 {
@@ -130,4 +132,41 @@ char *Rva007EBFC0( const char *text )
 	}
 
 	return value;
+}
+
+// 0x007EBE20 LOOKS UP A TAG BUILT FROM TWO PIECES, and its three arms are the
+// whole content: a null first piece looks up the second alone, a null second
+// looks up the first alone, and two present pieces are CONCATENATED into a
+// 0x100-byte buffer /GZ names `name` and looked up together.  Two nulls fall
+// into the first arm and look up nothing.
+//
+// The join is strcpy then strcat with no separator, so "addr" and "0" make
+// "addr0" -- the same names 0x007EBF20 builds with "%s%d", reached the other
+// way round.  It is unbounded for the same reason that one is.
+//
+// The result is initialised to null before the arms and every arm assigns it,
+// so that store is dead; it is retail's and removing it removes an instruction.
+char *Rva007EBE20( const char *text, const char *prefix, const char *suffix )
+{
+	char name[ 0x100 ];
+	char *result;
+
+	result = 0;
+
+	if( prefix == 0 )
+	{
+		result = Rva007EBCA0( text, suffix );
+	}
+	else if( suffix == 0 )
+	{
+		result = Rva007EBCA0( text, prefix );
+	}
+	else
+	{
+		strcpy( name, prefix );
+		strcat( name, suffix );
+		result = Rva007EBCA0( text, name );
+	}
+
+	return result;
 }
