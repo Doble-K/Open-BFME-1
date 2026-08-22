@@ -38,9 +38,18 @@ typedef struct ciConnection
 	ciConnectCallback connectCallback;
 	void *connectParam;
 	unsigned char chatSocket;
+	unsigned char pad1d[0x36c - 0x1d];
+	char nick[1];
+	unsigned char pad36d[0x4ac - 0x36d];
+	int namespaceID;
+	unsigned char pad4b0[0x4f0 - 0x4b0];
+	char profilernick[1];
+	unsigned char pad4f1[0x8a8 - 0x4f1];
+	int loginType;
 } ciConnection;
 
 void ciSocketSend(void *chatSocket, const char *buffer);
+void ciSocketSendf(void *chatSocket, const char *format, ...);
 CHATBool ciCheckFiltersForID(CHAT chat, int ID);
 CHATBool ciCheckCallbacksForID(CHAT chat, int ID);
 void ciAddCallback_(CHAT chat, int type, void *callback, void *params,
@@ -282,4 +291,33 @@ void ciNickError(CHAT chat, int type, const char *nick,
 			connection->connectCallback(chat, CHATFalse, 1,
 				connection->connectParam);
 	}
+}
+
+void ciSendNick(CHAT chat)
+{
+	const char *nick;
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(connection->loginType == 0)
+	{
+		nick = connection->nick;
+	}
+	else if((connection->loginType == 2) && (connection->namespaceID == 0))
+	{
+		nick = connection->profilernick;
+	}
+	else
+	{
+		nick = "*";
+		goto sendNick;
+	}
+
+	if(!ciNickIsValid(nick))
+	{
+		ciNickError(chat, 1, nick, 0, NULL);
+		return;
+	}
+
+sendNick:
+	ciSocketSendf(&connection->chatSocket, "NICK %s", nick);
 }
