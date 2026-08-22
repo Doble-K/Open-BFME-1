@@ -150576,3 +150576,11 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ?BFME_DX8_Thread_Assert@@YAXXZ,0x00905B10,both retail IndexBufferClass lock destructors tail-dispatch to the shared DX8 thread assertion path
 ??1?$vector@UMem003BB060Element@@V?$allocator@UMem003BB060Element@@@_STL@@@_STL@@QAE@XZ,0x003BB060,Mem003BB060 uses the exact STLport vector destructor body; element stride 0x14 and call targets are proven by the target range
 ?erase@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@V1@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@@_STL@@QAEIABVAsciiString@@@Z,0x000106FE,Open-BFME5 REL32 pin from IgnorePreferences::setIgnore at 0x000AE990
+?TheGameLogic@@3PAVGameLogicPortraitShim@@A,0x012F0898,BFME portrait selector game-logic global
+?isInMultiplayerOrSkirmishGame@GameLogicPortraitShim@@QAE_NXZ,0x0001E0AB,BFME portrait selector ILT to GameLogic mode predicate
+?TheMappedImageCollection@@3PAVMappedImageCollectionPortraitShim@@A,0x012F6924,BFME portrait selector mapped-image global
+?findImageByName@MappedImageCollectionPortraitShim@@QAEPBVImage@@ABVAsciiString@@@Z,0x0001D606,BFME portrait selector image lookup ILT
+?getSelectedPortraitImage@ThingTemplatePortraitShim@@QBEPBVImage@@XZ,0x00047E38,BFME portrait selector fallback ILT
+?$S1@?6??_bfme_getSelectedPortraitImage@@YAPBVImage@@PBVThingTemplatePortraitShim@@0@Z@4IA,0x012EF1F4,GondorGandalf static AsciiString guard
+?gandalfTemplate@?6??_bfme_getSelectedPortraitImage@@YAPBVImage@@PBVThingTemplatePortraitShim@@0@Z@4VAsciiString@@A,0x012EF1F0,GondorGandalf static AsciiString
+?gandalfTheGrey@?9??_bfme_getSelectedPortraitImage@@YAPBVImage@@PBVThingTemplatePortraitShim@@0@Z@4PBV2@B,0x012EF1EC,lazily cached HIGandalTheGrey image
