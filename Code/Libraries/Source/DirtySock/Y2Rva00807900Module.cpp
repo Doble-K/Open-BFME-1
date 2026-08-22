@@ -732,3 +732,95 @@ int Rva00808630( Rva00807BA0Ping *ping, unsigned int address,
 {
 	return Rva00808220( ping, address, text, length, 1 );
 }
+
+// What 0x00808660 fills in for its caller.  Its size, 0x2C, is the memset
+// length; the text at the front is the "$%08x" form 0x00807AB0 writes, and
+// every other field is copied straight out of the entry.
+struct Rva00808660Result
+{
+	char         m_text[ 0x14 ];   // +0x00
+	unsigned int m_from;           // +0x14
+	int          m_elapsed;        // +0x18
+	int          m_sequence;       // +0x1C
+	int          m_icmpType;       // +0x20
+	int          m_server;         // +0x24
+	int          m_pad28;          // +0x28
+};
+
+// 0x00808660 IS THE RESULT FETCH, and it PUMPS BEFORE IT LOOKS: the first thing
+// it does is call the receive callback directly, with the socket and a zero
+// reason, so a caller polling this never has to run the socket layer itself.
+//
+// It then takes the head of the list the callback appends to, under the same
+// lock, copies out of it, unlinks it, frees it, and GIVES A CREDIT BACK -- the
+// counter the callback spends to accept a reply.  So the credit is a bound on
+// unread results, not on replies in flight.
+//
+// THE TWO OUT PARAMETERS ARE INDEPENDENT AND BOTH OPTIONAL.  The struct is
+// zeroed and filled only if supplied; the payload is copied only if BOTH a
+// length pointer and a buffer are supplied, and the length is clamped down to
+// what arrived and written back either way -- so a caller can ask how big the
+// payload was by passing a length and no buffer, and it still loses the entry.
+//
+// A zero sequence number is reported as 1.  Nothing here explains why; the
+// substitution is in the bytes and only affects the value handed out, not the
+// entry.
+//
+// The return is the elapsed time, read BEFORE the copies and returned even when
+// both out parameters were null -- which is what makes this usable as a bare
+// "was there a reply, and how long did it take".
+int Rva00808660( Rva00807BA0Ping *ping, void *data, int *dataLen,
+		Rva00808660Result *result )
+{
+	int elapsed;
+	Rva00807EE0Entry *entry;
+	int sequence;
+
+	elapsed = 0;
+
+	Rva00807CF0( ping->m_socket, 0, ping );
+
+	if( ping != 0 )
+	{
+		entry = ping->m_list;
+		if( entry != 0 )
+		{
+			Rva007FEBD0Lock( ping->m_lock0C );
+
+			elapsed = entry->m_elapsed;
+
+			if( result != 0 )
+			{
+				memset( result, 0, 0x2C );
+				Rva00807AB0( result->m_text, &entry->m_from );
+				result->m_from = entry->m_from;
+				result->m_elapsed = entry->m_elapsed;
+				result->m_icmpType = entry->m_icmpType;
+
+				if( entry->m_sequence != 0 )
+					sequence = entry->m_sequence;
+				else
+					sequence = 1;
+
+				result->m_sequence = sequence;
+				result->m_server = entry->m_server;
+			}
+
+			if( dataLen != 0 )
+			{
+				if( *dataLen > entry->m_length )
+					*dataLen = entry->m_length;
+
+				if( data != 0 )
+					memcpy( data, (char *)entry + 0x16, *dataLen );
+			}
+
+			ping->m_list = entry->m_next;
+			Rva007F0030Free( entry );
+			ping->m_credits = ping->m_credits + 1;
+			Rva007FECB0Unlock( ping->m_lock0C );
+		}
+	}
+
+	return elapsed;
+}
