@@ -112,6 +112,43 @@ static SimpleVecClass<Vector4> _PlaneEQArray(1024);
 static SimpleVecClass<Vector3> _VNormArray(1024);
 #endif
 
+int MeshGeometryClass::Compute_Ram_Size(void)
+{
+	int size = 0x194;
+	const char * object = reinterpret_cast<const char *>(this);
+
+#define ADD_SHARED_BUFFER_SIZE(offset, element_size) \
+	do { \
+		const char * buffer = *reinterpret_cast<const char * const *>(object + offset); \
+		if (buffer != NULL) { \
+			size += *reinterpret_cast<const int *>(buffer + 0x10) * element_size; \
+		} \
+	} while (0)
+
+	ADD_SHARED_BUFFER_SIZE(0x2c, 6);
+	ADD_SHARED_BUFFER_SIZE(0x30, 12);
+	ADD_SHARED_BUFFER_SIZE(0x38, 4);
+	ADD_SHARED_BUFFER_SIZE(0x40, 12);
+	ADD_SHARED_BUFFER_SIZE(0x48, 4);
+	ADD_SHARED_BUFFER_SIZE(0x34, 12);
+	ADD_SHARED_BUFFER_SIZE(0x3c, 4);
+	ADD_SHARED_BUFFER_SIZE(0x44, 12);
+	ADD_SHARED_BUFFER_SIZE(0x4c, 4);
+	ADD_SHARED_BUFFER_SIZE(0x50, 16);
+	ADD_SHARED_BUFFER_SIZE(0x54, 4);
+	ADD_SHARED_BUFFER_SIZE(0x58, 2);
+	ADD_SHARED_BUFFER_SIZE(0x5c, 2);
+	ADD_SHARED_BUFFER_SIZE(0x60, 1);
+
+#undef ADD_SHARED_BUFFER_SIZE
+
+	AABTreeClass * tree = *reinterpret_cast<AABTreeClass * const *>(object + 0x90);
+	if (tree != NULL) {
+		size += tree->Compute_Ram_Size();
+	}
+	return size;
+}
+
 
 /***********************************************************************************************
  * MeshGeometryClass::MeshGeometryClass -- Constructor                                         *

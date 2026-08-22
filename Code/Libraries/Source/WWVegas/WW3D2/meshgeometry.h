@@ -140,6 +140,7 @@ public:
 
 	int							Get_Polygon_Count(void) const								{ return PolyCount; }
 	int							Get_Vertex_Count(void) const								{ return VertexCount; }
+	int							Compute_Ram_Size(void);
 
 	const TriIndex*			Get_Polygon_Array(void)										{ return get_polys(); }
 	Vector3 *					Get_Vertex_Array(void)										{ WWASSERT(Vertex); return Vertex->Get_Array(); }

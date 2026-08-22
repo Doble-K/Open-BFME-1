@@ -102,7 +102,7 @@ public:
 
 	int						Get_Node_Count(void) { return NodeCount; }
 	int						Get_Poly_Count(void) { return PolyCount; }
-	int						Compute_Ram_Size(void);
+	__declspec(noinline) int	Compute_Ram_Size(void);
 	void						Generate_APT(const OBBoxClass & box,SimpleDynVecClass<uint32> & apt);
 	void						Generate_APT(const OBBoxClass & box,const Vector3 & viewdir,SimpleDynVecClass<uint32> & apt);
 

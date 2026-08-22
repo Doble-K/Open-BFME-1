@@ -75278,6 +75278,7 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 _gmtime,0x009F7B94,Y4 lane: gmtime import thunk (gen-import ?ji_009f7b94@@YAXXZ names the same address)
 _localtime,0x009F700C,Y4 lane: localtime import thunk (gen-import ?ji_009f700c@@YAXXZ names the same address)
 name,address,notes
+?Compute_Ram_Size@AABTreeClass@@QAEHXZ,0x0096A630,callee of byte-verified MeshGeometryClass::Compute_Ram_Size
 ?$S103@?1??getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ@4IA,0x00EEFE34,pool-glue cascade static (back-solved)
 ?$S105@?1??getClassMemoryPool@PoisonedBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF830,pool-glue cascade static (back-solved)
 ?$S107@?1??getClassMemoryPool@SupplyWarehouseCripplingBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF91C,pool-glue cascade static (back-solved)
