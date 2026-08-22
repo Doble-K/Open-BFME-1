@@ -8,6 +8,13 @@
 // inferences; every function name below is derived from an address and asserts
 // nothing about identity.
 //
+// WHAT THE SPAN DOES SAY ABOUT ITSELF: 0x00807A00 logs a line beginning
+// "dirtyaddr: output buffer too small", which is DirtySock naming its address
+// module by its own source file.  That covers the three bodies here that
+// convert an address between its binary and "$%08x" text forms; it says
+// nothing about the other two, which is why the file is still named for its
+// address.
+//
 // sprintf is reached by a DIRECT rel32 to the import stub at 0x009F6DE2 rather
 // than through __imp__sprintf, so this TU did not see <stdio.h> -- the same
 // reason Y2ProtoMangleHelpers.cpp declares it itself.
@@ -20,6 +27,14 @@ void *Rva007FDFF0Connect( const char *host, int timeout );  // 0x007FDFF0
 int   Rva00807960( void *a, void *b );                      // 0x00807960
 unsigned int Rva007FF9F0Swap32( unsigned int value );       // 0x007FF9F0
 unsigned int Rva007EB410AdapterInfo( int selector, int a, int b );  // 0x007EB410
+unsigned int Rva007FFAD0( unsigned int value );             // 0x007FFAD0
+
+// Both reached by a direct rel32 to their import stubs, like sprintf above.
+extern "C" unsigned int strtoul( const char *text, char **end, int base );
+extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
+
+void Rva007FE780Printf( const char *format, ... );          // 0x007FE780
+int  Rva00808220( void *a, unsigned int b, void *c, void *d, int e );  // 0x00808220
 
 // Two 28-byte forwarders that do nothing but pass their two arguments through
 // and let /GZ check the frame afterwards.  They are separate functions rather
@@ -87,4 +102,55 @@ int Rva00807B10( char *dest )
 	uLocalAddr = Rva007EB410AdapterInfo( 'addr', 0, 0 );
 	Rva00807AB0( dest, &uLocalAddr );
 	return 1;
+}
+
+// 0x00807A00 IS THE INVERSE of the two bodies above: it reads a "$xxxxxxxx"
+// text form back into four bytes.  The parse starts at text + 1, which is what
+// skips the '$' the formatter writes, and it is base 16; the result goes
+// through the same transform at 0x007FFAD0 that the sibling at 0x007FF9F0
+// applies in the other direction.
+//
+// THE RETURN IS A CHARACTER COUNT, NOT A STATUS.  Nine is exactly the width of
+// "$" plus eight hex digits, so the caller is being told how much text was
+// consumed; the failure arm returns zero for the same reason.  That failure is
+// a BUFFER check and not an input check -- the only thing tested is that the
+// caller offered four bytes, and it is the check that logs the module's name.
+//
+// The address is copied out with memcpy rather than stored, so the destination
+// needs no alignment -- the opposite of the guard 0x00807AB0 puts on its own
+// source pointer, and worth noticing because the two are a pair.
+int Rva00807A00( void *dest, int destSize, const char *text )
+{
+	unsigned int uAddress;
+
+	if( destSize < 4 )
+	{
+		Rva007FE780Printf( "dirtyaddr: output buffer too small\n" );
+		return 0;
+	}
+
+	uAddress = strtoul( text + 1, 0, 16 );
+	uAddress = Rva007FFAD0( uAddress );
+	memcpy( dest, &uAddress, 4 );
+	return 9;
+}
+
+// Two more wrappers over the 841-byte body at 0x00808220, and the difference
+// between them is the whole point: both append a fifth argument of zero, but
+// 0x008085A0 first runs the text form through the parser above and passes what
+// came out, while 0x008081F0 passes its caller's second argument straight
+// through.  So the pair is one entry point in a binary flavour and a text
+// flavour, which is also why the parser's nine-character return is discarded
+// here -- the caller of the text flavour never sees it.
+int Rva008081F0( void *a, unsigned int b, void *c, void *d )
+{
+	return Rva00808220( a, b, c, d, 0 );
+}
+
+int Rva008085A0( void *a, const char *text, void *c, void *d )
+{
+	unsigned int uAddress;
+
+	Rva00807A00( &uAddress, 4, text );
+	return Rva00808220( a, uAddress, c, d, 0 );
 }
