@@ -1060,7 +1060,6 @@ IgnorePreferences::~IgnorePreferences()
 {
 }
 
-// ?setIgnore@IgnorePreferences@@QAEXABVAsciiString@@H_N@Z present-unmatched
 void IgnorePreferences::setIgnore(const AsciiString& userName, Int profileID, Bool ignore)
 {
 	AsciiString strVal;
