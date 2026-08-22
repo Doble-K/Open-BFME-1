@@ -86,6 +86,18 @@ public:
 	virtual Bool isUnderwater(Real x, Real y, Real *waterZ, Real *terrainZ) = 0;
 };
 
+class BFMEThingSetTransformVTable
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot1() = 0;
+	virtual void slot2() = 0;
+	virtual void slot3() = 0;
+	virtual void slot4() = 0;
+	virtual void slot5() = 0;
+	virtual void reactToTransformChange() = 0;
+};
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -299,8 +311,9 @@ void Thing::setTransformMatrix( const Matrix3D *mx )
 {
 	//USE_PERF_TIMER(ThingMatrixStuff)
 	Real oldAngle = m_cachedAngle;
-	Coord3D oldPos = m_cachedPos;
-	Matrix3D oldMtx = m_transform;
+	Real oldX = m_cachedPos.x;
+	Real oldY = m_cachedPos.y;
+	Real oldZ = m_cachedPos.z;
 
 	m_transform = *mx;
 	m_cachedPos.x = m_transform.Get_X_Translation();
@@ -309,7 +322,13 @@ void Thing::setTransformMatrix( const Matrix3D *mx )
 	m_cachedAngle = m_transform.Get_Z_Rotation();
 	m_cacheFlags = 0;
 
-	reactToTransformChange(&oldMtx, &oldPos, oldAngle);
+	if (oldAngle != m_cachedAngle ||
+		oldX != m_cachedPos.x ||
+		oldY != m_cachedPos.y ||
+		oldZ != m_cachedPos.z)
+	{
+		reinterpret_cast<BFMEThingSetTransformVTable *>(this)->reactToTransformChange();
+	}
 	DEBUG_ASSERTCRASH(!(_isnan(getPosition()->x) || _isnan(getPosition()->y) || _isnan(getPosition()->z)), ("Drawable/Object position NAN! '%s'\n", m_template->getName().str() ));
 }
 
