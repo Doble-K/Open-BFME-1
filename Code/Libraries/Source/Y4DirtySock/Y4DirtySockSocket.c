@@ -211,7 +211,7 @@ void Rva007FEF60( void )
  * thunk the ledger already names.  Every name here is address-derived. */
 extern void *g_Rva0130AB58Head;
 
-void Rva007FD3F0( void *socket );
+int Rva007FD3F0( struct Rva007FD4E0Socket *socket );
 void Rva007FD170( void *head );
 void Rva007FE670( void );
 void Rva0081BDE4( void );
@@ -222,7 +222,7 @@ void Rva007FD270( void )
 	Rva007FEE10();
 
 	while ( g_Rva0130AB58Head != 0 )
-		Rva007FD3F0( g_Rva0130AB58Head );
+		Rva007FD3F0( (struct Rva007FD4E0Socket *)g_Rva0130AB58Head );
 
 	Rva007FD170( &g_Rva0130AB58Head );
 	Rva007FE670();
@@ -553,7 +553,18 @@ __declspec(dllimport) void __stdcall Rva01358CCCRelease( int thread );
 
 extern int g_Rva0130ACB4;
 
-void Rva007FE780( void *text );
+/* Two message objects the printer is handed.  Both were written as CAST
+ * ABSOLUTE ADDRESSES before; an extern is the honest spelling, because
+ * retail's operand is a RELOCATION and a bare integer literal only
+ * happens to agree with it at this image base. */
+extern char g_Rva012C3CE0Message[];
+
+/* The diagnostic printer, which lives in Y4DirtySockDebug.c.  It is
+ * VARARGS -- proven there by the format-string fast path -- and returns
+ * int.  Neither fact is visible at a one-argument call site, since a
+ * cdecl call with one argument compiles the same either way, so this
+ * declaration is corrected from the DEFINITION rather than from use. */
+int Rva007FE780( const char *pFormat, ... );
 
 void Rva007FE520( int priority )
 {
@@ -576,7 +587,7 @@ void Rva007FE520( int priority )
 	}
 
 	if ( 0 )
-		Rva007FE780( (void *)0x12c3ce0 );
+		Rva007FE780( g_Rva012C3CE0Message );
 }
 
 /* A ROTATING-XOR STRING HASH, and every part of it is legible in the bytes
@@ -760,4 +771,72 @@ void Rva007FD170( struct Rva007FD4E0Socket *head )
 	}
 
 	Rva007FECB0( 0 );
+}
+
+/* 0x007FD3F0 is socket DESTROY, and it is the other half of the pump above:
+ * unlink from the active list, close the handle, then push the object onto the
+ * deferred-destroy list the pump drains.  The unlink walks a POINTER TO the
+ * link rather than the node, so the head and every interior link are the same
+ * case and there is no special first-element branch -- that is why the loop
+ * variable is initialised to the ADDRESS of the list head.
+ *
+ * FAILING TO FIND THE SOCKET IS AN ERROR PATH, not a no-op: it reports through
+ * the diagnostic printer at 0x007FE780 and returns -1 without closing
+ * anything.  The pushed operand for the printer's first argument is a DIR32
+ * that the gate fills from retail, so the name below asserts nothing about it;
+ * what can be said is that it lies past the last section's raw data, i.e. in
+ * zero-initialised storage rather than among the string literals.
+ *
+ * A REAL BUG IN RETAIL IS PRESERVED HERE.  The handle guard is written
+ * `>= 0` against an UNSIGNED field -- the compare is `jb`, which no unsigned
+ * value satisfies -- so the branch is always taken and the close always runs.
+ * The intent was plainly to skip an already-closed handle, whose sentinel is
+ * the -1 this function itself writes back a few instructions later.  Making
+ * the field signed would fix the bug and break the bytes; the bytes win.
+ */
+int __stdcall closesocket( unsigned int socket );
+
+extern char g_Rva012C3C88Format[];
+
+int Rva007FD3F0( struct Rva007FD4E0Socket *socket )
+{
+	struct Rva007FD4E0Socket **ppLink;
+	unsigned char bFound;
+
+	bFound = 0;
+	Rva007FEBD0( 0 );
+	for ( ppLink = (struct Rva007FD4E0Socket **)&g_Rva0130AB58Head;
+		*ppLink != 0;
+		ppLink = &( *ppLink )->m_next )
+	{
+		if ( *ppLink == socket )
+		{
+			*ppLink = socket->m_next;
+			bFound = 1;
+			break;
+		}
+	}
+	Rva007FECB0( 0 );
+
+	if ( !bFound )
+	{
+		Rva007FE780( g_Rva012C3C88Format, socket );
+		return -1;
+	}
+
+	Rva007FEE10();
+
+	if ( socket->m_socket >= 0 )
+	{
+		shutdown( socket->m_socket, 2 );
+		closesocket( socket->m_socket );
+	}
+	socket->m_socket = 0xFFFFFFFF;
+	socket->m_head[ 0x14 - 0x08 ] = 0;
+
+	Rva007FEBD0( 0 );
+	socket->m_killNext = g_Rva0130AB5CKillList;
+	g_Rva0130AB5CKillList = socket;
+	Rva007FECB0( 0 );
+	return 0;
 }
