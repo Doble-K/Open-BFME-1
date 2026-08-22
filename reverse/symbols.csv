@@ -75398,3 +75398,4 @@ _Netbios@4,0x0081BDD8,Y2 lane: Netbios import thunk (gen-import ?ji_0081bdd8@@YA
 ?Rva007FD270@@YAXXZ,0x007FD270,Y2 lane: C++ spelling of the DirtySock module shutdown converted as _Rva007FD270 in Y4DirtySockSocket.c
 ?Rva007F8D30@@YAXXZ,0x007F8D30,Y2 lane: address-derived; the no-argument teardown 0x007EB650 runs before the DirtySock module shutdown
 _Rva007FFDD0,0x007FFDD0,Y4 lane: DirtySock host and port text parser
+?Rva007EBCA0@@YAPADPBD0@Z,0x007EBCA0,Y2 lane: address-derived; the tag lookup 0x007EBF20 and 0x007EBFC0 both hand a record and a tag name to

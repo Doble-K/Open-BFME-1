@@ -12,6 +12,13 @@
 // which is why the frame exists at all.
 extern char g_Rva012C391CFlag;
 
+// 0x007EBCA0, the tag lookup both bodies at the end of this file feed; pinned
+// by address and still a dump.
+char *Rva007EBCA0( const char *text, const char *tag );   // 0x007EBCA0
+
+// Reached by a direct rel32 to the import stub, so this TU never saw <stdio.h>.
+extern "C" int sprintf( char *buffer, const char *format, ... );
+
 char Rva007EBAE0( char value )
 {
 	char old;
@@ -80,4 +87,47 @@ char *Rva007EC730( char *empty, char *dest, const char *src )
 	}
 
 	return dest;
+}
+
+// 0x007EBF20 LOOKS UP A NUMBERED TAG.  It builds the name with "%s%d" -- a
+// base and an index -- into a 0x100-byte buffer /GZ names `strTag`, and hands
+// that to the lookup.  So the record's tags are things like "addr0",
+// "addr1"; the numbering is in the name and not in the lookup.
+//
+// The buffer is 0x100 and the format is unbounded: a base name long enough
+// overruns it, and nothing here checks.
+char *Rva007EBF20( const char *text, const char *name, int index )
+{
+	char strTag[ 0x100 ];
+
+	sprintf( strTag, "%s%d", name, index );
+	return Rva007EBCA0( text, strTag );
+}
+
+// 0x007EBFC0 LOOKS UP THE TAG NAMED "~~" and then trims what it finds: it
+// steps over every byte at or below 0x20 -- space and everything below it,
+// which is leading whitespace and control characters together -- and reports a
+// value that turns out to be empty as ABSENT, by returning null rather than a
+// pointer to the terminator.
+//
+// So a caller cannot tell "no such tag" from "tag present but blank", and the
+// trim is what collapses the two.  The comparison is `<= 0x20` on a value read
+// with movzx, so it is UNSIGNED: a high byte is not whitespace here.
+char *Rva007EBFC0( const char *text )
+{
+	char *value;
+
+	value = Rva007EBCA0( text, "~~" );
+
+	if( value != 0 )
+	{
+		while( *(unsigned char *)value != 0
+				&& *(unsigned char *)value <= 0x20 )
+			value++;
+
+		if( *(unsigned char *)value == 0 )
+			value = 0;
+	}
+
+	return value;
 }
