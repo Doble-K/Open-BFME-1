@@ -35,6 +35,34 @@
 // FunctorBindConstructors.cpp.  9 distinct addresses, 9 separate template
 // instantiations, and no surviving name for the class.
 
+
+// WHAT +0x04 IS.  The dword the head zeroes is a REFERENCE COUNT, and the
+// holders appended below are what prove it: every one of them allocates a
+// wrapper, runs this constructor, and then does `inc dword ptr [eax+4]` on the
+// result -- raising to one the counter this constructor had just set to zero.
+// It is named m_refCount here for that reason; before the holders it was only
+// an unmodelled dword.  The counter is non-atomic, a plain `inc`.
+//
+// THE HOLDERS.  Each wrapper is paired with two 58-byte-family constructors of
+// a holder that owns one:
+//
+//     push 12 / mov esi,ecx / call operator new / add esp,4 / test eax,eax /
+//     je <null> / <this constructor, inlined> / jmp <done> /
+//     <null>: xor eax,eax / <done>: test eax,eax / mov [esi],eax /
+//     je +3 / inc dword ptr [eax+4] / mov eax,esi / pop esi / ret
+//
+// which is `m_ptr = new WRAPPER( binding ); if ( m_ptr ) m_ptr->m_refCount++;`
+// -- MSVC 7.1's `new` expression is exactly the allocate, null-test, inlined
+// construct, and the null-test around the increment is separate from it.  The
+// allocation size is 12 bytes, which is the whole wrapper: vftable, counter and
+// the four-byte binding.
+//
+// The two holders per wrapper differ ONLY in how the binding arrives.  The
+// longer takes `const FunctorSlot &` and reads through the pointer; the shorter takes it
+// BY VALUE and reads the caller's own stack slots, which is why it consumes
+// 4 bytes of arguments instead of four and why its copy has no pointer to
+// dereference.  Nothing else about them differs.
+
 struct FunctorSlot
 {
 	void *m_slot;
@@ -43,11 +71,11 @@ struct FunctorSlot
 class FunctorSlotWrapperHead
 {
 public:
-	FunctorSlotWrapperHead() : m_unmodelled_04( 0 ) {}
+	FunctorSlotWrapperHead() : m_refCount( 0 ) {}
 
 	virtual void functorSlotWrapperAnchor();
 
-	unsigned int m_unmodelled_04;
+	unsigned int m_refCount;
 };
 
 #define BFME_FUNCTOR_SLOT_WRAPPER_CTOR( NAME )                                \
@@ -69,3 +97,54 @@ BFME_FUNCTOR_SLOT_WRAPPER_CTOR( Rva004C5660FunctorSlotWrapper )
 BFME_FUNCTOR_SLOT_WRAPPER_CTOR( Rva0058D120FunctorSlotWrapper )
 BFME_FUNCTOR_SLOT_WRAPPER_CTOR( Rva0058D160FunctorSlotWrapper )
 BFME_FUNCTOR_SLOT_WRAPPER_CTOR( Rva0058D1A0FunctorSlotWrapper )
+
+#define BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( NAME, WRAPPER )                       \
+	class NAME                                                                \
+	{                                                                         \
+	public:                                                                   \
+		NAME( const FunctorSlot &binding );                          \
+                                                                              \
+		WRAPPER *m_ptr;                                                       \
+	};                                                                        \
+	NAME::NAME( const FunctorSlot &binding )                      \
+	{                                                                         \
+		m_ptr = new WRAPPER( binding );                                       \
+		if ( m_ptr != 0 )                                                     \
+			m_ptr->m_refCount++;                                              \
+	}
+
+#define BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( NAME, WRAPPER )                           \
+	class NAME                                                                \
+	{                                                                         \
+	public:                                                                   \
+		NAME( FunctorSlot binding );                                 \
+                                                                              \
+		WRAPPER *m_ptr;                                                       \
+	};                                                                        \
+	NAME::NAME( FunctorSlot binding )                             \
+	{                                                                         \
+		m_ptr = new WRAPPER( binding );                                       \
+		if ( m_ptr != 0 )                                                     \
+			m_ptr->m_refCount++;                                              \
+	}
+
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva003BFA00FunctorSlotHolder, Rva003BE8F0FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva0045F650FunctorSlotHolder, Rva0045ED70FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva0045F6A0FunctorSlotHolder, Rva0045EDD0FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva0045F6F0FunctorSlotHolder, Rva0045EE10FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva0046FB20FunctorSlotHolder, Rva0046F150FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva004C5BE0FunctorSlotHolder, Rva004C5660FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva0058FAC0FunctorSlotHolder, Rva0058D120FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva0058FB10FunctorSlotHolder, Rva0058D160FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_REFERENCE( Rva0058FB60FunctorSlotHolder, Rva0058D1A0FunctorSlotWrapper )
+
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva003C00B0FunctorSlotHolder, Rva003BE8F0FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva0045FBD0FunctorSlotHolder, Rva0045ED70FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva0045FC20FunctorSlotHolder, Rva0045EDD0FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva0045FC70FunctorSlotHolder, Rva0045EE10FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva0046FCF0FunctorSlotHolder, Rva0046F150FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva004C5E50FunctorSlotHolder, Rva004C5660FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva00590F90FunctorSlotHolder, Rva0058D120FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva00590FE0FunctorSlotHolder, Rva0058D160FunctorSlotWrapper )
+BFME_FUNCTOR_SLOT_HOLDER_FROM_VALUE( Rva00591030FunctorSlotHolder, Rva0058D1A0FunctorSlotWrapper )
+
