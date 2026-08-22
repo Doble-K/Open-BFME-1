@@ -855,3 +855,34 @@ int Rva008060B0( Rva00804150ProtoMangleRef *ref, int status, int latency )
 	ref->m_state = 4;
 	return 0;
 }
+
+// 0x00806040 IS THE POLL, and it reads as one because of what it does with the
+// state rather than because of its shape.  State 2 is done and succeeded: it
+// closes the probe socket, hands back the peer address and port the probes
+// established, and reports 1.  States 1 and 4 are the two the machine at
+// 0x008054A0 drives, so they report 0 for "still running".  Anything else --
+// including the 3 that every failure path writes -- is -1.
+//
+// THE TWO OUT POINTERS ARE ALL-OR-NOTHING: both are tested and neither is
+// written unless both are non-null, so a caller that wants only the port still
+// has to supply somewhere for the address.  The socket is closed either way,
+// which means a caller polling with two nulls still ends the probe.
+int Rva00806040( Rva00804150ProtoMangleRef *ref, unsigned int *addr, int *port )
+{
+	if( ref->m_state == 2 )
+	{
+		Rva00804380CloseSocket( (Rva008042B0Http *)ref );
+
+		if( addr != 0 && port != 0 )
+		{
+			*addr = ref->m_peerAddr;
+			*port = ref->m_peerPort;
+		}
+		return 1;
+	}
+
+	if( ref->m_state == 1 || ref->m_state == 4 )
+		return 0;
+
+	return -1;
+}
