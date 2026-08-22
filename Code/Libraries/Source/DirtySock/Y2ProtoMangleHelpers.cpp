@@ -194,7 +194,10 @@ int Rva008046E0HttpRequest( Rva008042B0Http *http, const char *host, int port,
 struct Rva00804150ProtoMangleRef
 {
 	void            *m_socket;          // +0x000
-	int              m_pad004;
+	// Compared against m_socket by ProtoMangleDestroy before it closes the
+	// record's socket, and never read anywhere else; the Http sub-object has a
+	// second pointer in exactly this slot, which is all this name rests on.
+	void            *m_field004;        // +0x004
 	unsigned int     m_localAddr;       // +0x008
 	int              m_myPort;          // +0x00C
 	int              m_pad010;
@@ -272,4 +275,77 @@ void Rva008043F0Connect( Rva00804150ProtoMangleRef *ref, int myPort, const char 
 	ref->m_myPort = myPort;
 	Rva00804250CopyField( ref->m_sessID, sessID, 0x20 );
 	Rva00804550RequestPeerAddress( ref );
+}
+
+// 0x007FEA00, the no-argument tick forwarder already converted in
+// Y4DirtySockSocket.c; ProtoMangleCreate seeds its timeout from it.
+unsigned int Rva007FEA00Tick( void );
+
+// ---------------------------------------------------------------- public
+// The two bodies retail names itself, moved here out of protomangle.cpp, where
+// they were byte lifts rather than source.  Both were readable all along -- a
+// lift reproduces the bytes by construction and converts nothing -- and this
+// file already carries every struct and callee they need.
+extern "C" {
+
+// THE ARGUMENT LIST COMES OUT OF THE LOG LINE, not out of the frame.  Retail's
+// own format is "ProtoMangleCreate: Server:%s Port:%d GameID:%s LKey:%s\n" and
+// the four stack slots are pushed in exactly that order, so the names and the
+// types are retail's rather than address-derived.  Where each one lands
+// afterwards agrees: the server string goes to +0x98, the port to +0xB8, the
+// game id to +0x38 and the key to +0x58 with a 0x40 bound, which is the only
+// field wide enough to be a key.
+//
+// THE NULL DEREFERENCE IS RETAIL'S AND IS REPRODUCED.  When the sub-object's
+// buffer allocation fails, the record is freed and the local set to null -- and
+// the very next statement writes the timeout through that null.  A `return 0`
+// in the failure arm would be the obvious fix and it is not what the bytes do:
+// there is no branch around the store.  It is left exactly as retail has it.
+//
+// The initial timeout is `tick % 8000 + 2000`, spelled with an unsigned DIV
+// because /Od does no strength reduction and the tick is unsigned.
+Rva00804150ProtoMangleRef *ProtoMangleCreate( const char *server, int port,
+		const char *gameID, const char *lkey )
+{
+	Rva00804150ProtoMangleRef *ref;
+
+	Rva007FE780Printf( "ProtoMangleCreate: Server:%s Port:%d GameID:%s LKey:%s\n",
+			server, port, gameID, lkey );
+
+	ref = (Rva00804150ProtoMangleRef *)Rva007F0000Alloc( 0x214 );
+	memset( ref, 0, 0x214 );
+
+	if( Rva008042B0HttpCreate( &ref->m_http, 0x400 ) <= 0 )
+	{
+		Rva007F0030Free( ref );
+		ref = 0;
+	}
+
+	ref->m_timeout = Rva007FEA00Tick() % 8000 + 2000;
+
+	Rva00804250CopyField( ref->m_server, server, 0x20 );
+	ref->m_port = port;
+	Rva00804250CopyField( ref->m_gameID, gameID, 0x20 );
+	Rva00804250CopyField( ref->m_lkey, lkey, 0x40 );
+
+	return ref;
+}
+
+// Logs "ProtoMangleDestroy: Shutting down\n", then tears the record down in the
+// order the bytes give: the record's own socket first -- and only when the two
+// pointers at +0x00 and +0x04 disagree -- then the embedded sub-object, then
+// the record itself.  The record is handed to the sub-object's socket closer
+// unchanged, which is what says the first two words of both objects have the
+// same shape.
+void ProtoMangleDestroy( Rva00804150ProtoMangleRef *ref )
+{
+	Rva007FE780Printf( "ProtoMangleDestroy: Shutting down\n" );
+
+	if( ref->m_socket != ref->m_field004 )
+		Rva00804380CloseSocket( (Rva008042B0Http *)ref );
+
+	Rva008043C0HttpDestroy( &ref->m_http );
+	Rva007F0030Free( ref );
+}
+
 }

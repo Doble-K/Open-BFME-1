@@ -75333,3 +75333,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?DecompressMemory@@YA_NPAXH0AAH@Z,0x0081EB80,the callee of CompressionManager::decompressData's COMPRESSION_NOXLZH arm (compression type 2 at 0x0081E890) called with the reference's four arguments in order including outSize by reference; the LZH library declares exactly one function with that shape
+?Rva007FEA00Tick@@YAIXZ,0x007FEA00,Y2 lane: C++ spelling of the no-argument tick forwarder converted as _Rva007FEA00 in Y4DirtySockSocket.c; ProtoMangleCreate calls it for its initial timeout
