@@ -75386,3 +75386,4 @@ _strcat,0x009F75CA,Y2 lane: strcat import thunk (gen-import ?ji_009f75ca@@YAXXZ 
 ?Rva00807370@@YAHPAURva00806580Record@@HHPADH@Z,0x00807370,Y2 lane: address-derived; 0x00806710 calls it with the selector 0x3F746963 and the 0x34-byte Ticket
 ?Rva008076E0@@YAHPAURva00806580Record@@PAI1PAPAD@Z,0x008076E0,Y2 lane: address-derived; the four-argument body 0x00807820 wraps, whose negative result it treats as no data
 ?Rva00806B10@@YAXPAURva00806580Record@@@Z,0x00806B10,Y2 lane: address-derived; the 2102-byte pump 0x008076E0 runs once when its record has no complete block
+_Rva007FF790,0x007FF790,Y4 lane: DirtySock text-to-socket-address parser

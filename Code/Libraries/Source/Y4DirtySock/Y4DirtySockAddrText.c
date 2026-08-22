@@ -178,3 +178,116 @@ unsigned short Rva007FFA60( unsigned short value )
 
 	return *(unsigned short *)x;
 }
+
+/* 0x007FF720 COMPARES TWO SOCKET ADDRESSES, and the interesting part is that
+ * it compares a different NUMBER OF BYTES depending on the family.
+ *
+ * The family words are checked first and, when they differ, their difference
+ * is returned directly -- so the ordering between two different families is by
+ * family number, not by content.  When they agree the rest is handed to the
+ * bounded compare in the socket unit, over 6 bytes for AF_INET and 14
+ * otherwise.  Six is exactly the port plus the address, which means THE
+ * TRAILING EIGHT BYTES OF AN AF_INET ADDRESS ARE DELIBERATELY IGNORED -- and
+ * those are the same eight the receive path stamps an arrival timestamp into.
+ * Two datagrams from one peer therefore compare equal despite differing
+ * bytes, which is plainly the point.
+ *
+ * 14 is the default rather than 16, so the family itself is never re-compared;
+ * it has already been established equal by the time the length is used.
+ */
+struct Rva007FF720SockAddr
+{
+	unsigned short m_family;        /* +0x00 */
+	char m_data[ 14 ];              /* +0x02 */
+};
+
+int Rva007FE6C0( const char *string1, const char *string2, int length );
+
+int Rva007FF720( const struct Rva007FF720SockAddr *a,
+	const struct Rva007FF720SockAddr *b )
+{
+	int iLength;
+
+	iLength = 14;
+
+	if ( a->m_family != b->m_family )
+		return a->m_family - b->m_family;
+
+	if ( a->m_family == 2 )
+		iLength = 6;
+
+	return Rva007FE6C0( a->m_data, b->m_data, iLength );
+}
+
+/* 0x007FFC10 is the inverse of the text helper at the top of this file: it
+ * runs the parser at 0x007FF790 over whatever it is handed, then lifts the
+ * four address bytes out of the resulting socket address in the same
+ * big-endian order everything else here uses.  So the parser fills a whole
+ * socket address and this discards all of it except the address itself.
+ */
+/* Returns 0 or -1; the extractor above ignores that, which is why the type
+ * comes from the definition below rather than from this call site. */
+int Rva007FF790( char *sa, const char *text );
+
+int Rva007FFC10( const char *source )
+{
+	char sa[ 0x10 ];
+	unsigned int uAddress;
+
+	Rva007FF790( sa, source );
+
+	uAddress = ( ( ( ( (unsigned char *)sa )[ 4 ] << 8
+		| ( (unsigned char *)sa )[ 5 ] ) << 8
+		| ( (unsigned char *)sa )[ 6 ] ) << 8 )
+		| ( (unsigned char *)sa )[ 7 ];
+
+	return uAddress;
+}
+
+/* 0x007FF790 PARSES a dotted quad straight into bytes +4..+7 of a socket
+ * address -- the inverse of the formatter above, and the two agree on where
+ * the address lives.
+ *
+ * THE SEPARATOR EXPECTED AFTER EACH OCTET IS COMPUTED, NOT BRANCHED ON: after
+ * the first three it is a dot, after the fourth it is the terminator, and the
+ * two cases are folded into one comparison.  So a trailing dot is rejected and
+ * so is a missing one -- the same test does both.
+ *
+ * There is NO RANGE CHECK on an octet.  Digits are accumulated into a single
+ * byte with `p[i] = p[i] * 10 + digit`, so the multiply and add wrap silently:
+ * "999" parses as 231 rather than failing.  Only the punctuation is validated.
+ *
+ * On failure all four bytes are cleared, and the ORDER of those stores is
+ * evidence about the source: 1, 0, 3, 2, which is two chained pair
+ * assignments rather than one four-way chain or four separate statements.
+ *
+ * The digit conversion masks with 0x0F rather than subtracting '0'.  The two
+ * agree for actual digits, which the loop has already established.
+ */
+int Rva007FF790( char *sa, const char *text )
+{
+	int i;
+	unsigned char *p;
+
+	p = (unsigned char *)sa + 4;
+
+	for ( i = 0; i < 4; i++, text++ )
+	{
+		p[ i ] = 0;
+
+		while ( *text >= '0' && *text <= '9' )
+		{
+			p[ i ] = (unsigned char)( p[ i ] * 10 + ( *text & 0x0F ) );
+			text++;
+		}
+
+		if ( *text != ( i < 3 ? '.' : 0 ) )
+		{
+			p[ 0 ] = p[ 1 ] = 0;
+			p[ 2 ] = p[ 3 ] = 0;
+			return -1;
+		}
+	}
+
+	return 0;
+}
