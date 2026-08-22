@@ -19,6 +19,16 @@ void Rva007FD270( void );                             // 0x007FD270
 void Rva007F8D30( void );                             // 0x007F8D30
 __declspec(dllimport) void __stdcall Rva01358F30Sleep( unsigned int ms );
 
+// The idle-handler table 0x007F8D30 sweeps: sixteen slots of a function and a
+// ref, indexed with an eight-byte stride.  Sixteen is the loop's own bound.
+struct Rva007F8D30Idle
+{
+	void *m_function;   // +0x00
+	void *m_ref;        // +0x04
+};
+
+extern Rva007F8D30Idle g_Rva0130A7B0Idle[ 16 ];
+
 // The default parameter string 0x007EB380 substitutes for a null one.
 extern char g_Rva0130A59CDefault[];
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
@@ -237,4 +247,30 @@ int Rva007EB3F0( void )
 int Rva007EB400( void )
 {
 	return 0;
+}
+
+// 0x007F8D30 belongs to netconn too, and its own line says so: "netconn:
+// removing idle handler at shutdown".  It sweeps all sixteen slots of the
+// handler table, complaining about each one still registered and clearing both
+// halves of it.
+//
+// THE WARNING IS PER SLOT AND CARRIES NOTHING.  It names no handler and no
+// index, so a caller that leaked several sees the same line several times --
+// which is also how the count is visible at all.  The sweep is unconditional:
+// there is no way to shut down quietly having unregistered properly, because
+// an empty slot simply prints nothing.
+void Rva007F8D30( void )
+{
+	int i;
+
+	for( i = 0; i < 0x10; i++ )
+	{
+		if( g_Rva0130A7B0Idle[ i ].m_function != 0 )
+		{
+			Rva007FE780Printf(
+					"netconn: removing idle handler at shutdown\n" );
+			g_Rva0130A7B0Idle[ i ].m_function = 0;
+			g_Rva0130A7B0Idle[ i ].m_ref = 0;
+		}
+	}
 }
