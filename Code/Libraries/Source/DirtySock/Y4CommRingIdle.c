@@ -41,7 +41,13 @@ struct Rva00815B50Comm
 	/* The PEER ADDRESS.  The send hands this to sendto with a length of 0x10,
 	 * which is what fixes both its position and its size. */
 	char m_peer[ 0x10 ];            /* +0x80 */
-	char m_gap[ 0x20 ];
+	/* THE CONNECTION STATE.  The handshake at 0x00816020 is what gives this
+	 * field its meaning: it is tested against 1, 2 and 3 and driven to 3 and
+	 * then 4, and every transition is gated on the state the peer's packet
+	 * type implies.  1 and 2 are the two halves of an unfinished connect, 3 is
+	 * established, 4 is closing. */
+	int m_state;                    /* +0x90 */
+	char m_gap[ 0x1C ];
 	int m_recordSize;               /* +0xB0 */
 	int m_bufferSize;               /* +0xB4 */
 	int m_writeOffset;              /* +0xB8 */
@@ -51,7 +57,8 @@ struct Rva00815B50Comm
 	 * byte offsets into this buffer rather than indices. */
 	unsigned char *m_buffer;        /* +0xC0 */
 	unsigned int m_lastSendTick;    /* +0xC4 */
-	char m_gap2[ 0x124 ];
+	unsigned int m_lastRecvTick;    /* +0xC8 */
+	char m_gap2[ 0x120 ];
 	char m_lock[ 4 ];               /* +0x1EC */
 };
 
@@ -212,4 +219,87 @@ int Rva008155F0( struct Rva00815B50Comm *comm, char kind )
 	packet.m_data[ 0 ] = kind;
 
 	return Rva00815680( comm, &packet );
+}
+
+void *__cdecl memcpy( void *destination, const void *source,
+	unsigned int count );
+
+void Rva00816160( struct Rva00815B50Comm *comm, const void *from );
+
+extern char g_Rva012C4B98Message[];
+
+/* 0x00816020 is the CONTROL-PACKET HANDLER -- the connection handshake.  The
+ * packet's first data byte selects the action, and the five recognised values
+ * are 0x10..0x14.
+ *
+ * EVERY CASE GUARDS ITS ACTION AND THEN BREAKS UNCONDITIONALLY -- the guard's
+ * failure jumps to that case's OWN break, not into the next one.  A packet
+ * arriving in an unexpected state is therefore dropped silently rather than
+ * re-offered to another handler.  Reading the guards as wrapping the break
+ * instead produces a fallthrough chain that compiles cleanly, is two bytes
+ * off per case, and describes behaviour the transport does not have.
+ *
+ * The first thing the body does, before it has looked at anything, is stamp
+ * +0xC8 with the current tick MINUS ONE SECOND.  Backdating rather than
+ * stamping "now" makes the next timeout comparison behave as though the last
+ * activity were already a second old, which is what keeps a handshake moving
+ * instead of resetting its own timer.
+ *
+ * An unrecognised type is reported and otherwise ignored.
+ */
+void Rva00816020( struct Rva00815B50Comm *comm,
+	struct Rva00815680Packet *packet, const void *from )
+{
+	comm->m_lastRecvTick = Rva007FEA00() - 1000;
+
+	/* THE SUBTRACTION OF 0x10 IN THE BYTES IS THE COMPILER'S, NOT THE
+	 * SOURCE'S.  MSVC normalises a switch whose cases start at 0x10 by
+	 * storing the value into its single temporary, subtracting the base in
+	 * place, and bounds-checking the result -- which is exactly the
+	 * store/reload/sub/store the bytes show, in ONE stack slot.  Writing the
+	 * subtraction out as a statement costs a second slot and a copy; folding
+	 * it into the switch expression loses the reload.  Neither matches. */
+	switch ( packet->m_data[ 0 ] )
+	{
+	case 0x10:
+		/* THE REPLY IS UNCONDITIONAL; only the state change is guarded.  The
+		 * jne skips the three statements above the send and lands ON it, so a
+		 * connect request is always answered with a 0x12 whatever state we
+		 * are in -- and only a peer we were actually expecting advances us to
+		 * established.  Putting the send inside the if compiles to a jump 19
+		 * bytes further along and is how this body was first read wrong. */
+		if ( comm->m_state == 2 )
+		{
+			memcpy( comm->m_peer, from, 0x10 );
+			Rva00816160( comm, from );
+			comm->m_state = 3;
+		}
+		Rva008155F0( comm, 0x12 );
+		break;
+
+	case 0x11:
+		if ( comm->m_state == 1 )
+			memcpy( comm->m_peer, from, 0x10 );
+		break;
+
+	case 0x12:
+		if ( comm->m_state == 1 )
+		{
+			Rva00816160( comm, from );
+			comm->m_state = 3;
+		}
+		break;
+
+	case 0x13:
+		if ( comm->m_state == 3 )
+			comm->m_state = 4;
+		break;
+
+	case 0x14:
+		break;
+
+	default:
+		Rva007FE780( g_Rva012C4B98Message, packet->m_data[ 0 ] );
+		break;
+	}
 }
