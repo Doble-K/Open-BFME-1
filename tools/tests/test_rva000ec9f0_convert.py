@@ -11,6 +11,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "Code" / "GameEngine" / "Source" / "Common" / "TinyFloatFieldGetters_EC9F0.cpp"
 BUILD = ROOT / "tools" / "build.py"
+SYMBOL = "?get@Rva000EC9F0@@QAEMXZ"
+
+
+def build(target):
+    result = subprocess.run(
+        [sys.executable, str(BUILD), target],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    output = result.stdout + result.stderr
+    print(output)
+    assert result.returncode == 0, output
+    assert "Functions: OK" in output, output
+    return output
 
 
 def test_source_is_clean_cpp():
@@ -23,17 +38,13 @@ def test_source_is_clean_cpp():
 
 
 def test_build_py_matches_retail():
-    result = subprocess.run(
-        [sys.executable, str(BUILD), str(SOURCE.relative_to(ROOT).as_posix())],
-        cwd=ROOT,
-        capture_output=True,
-        text=True,
-    )
-    output = result.stdout + result.stderr
-    print(output)
-    assert result.returncode == 0, output
-    assert "Functions: OK" in output, output
-    assert "?get@Rva000EC9F0@@QAEMXZ" in output, output
+    # Two filters, because they prove different things. The file verifies every
+    # function in the translation unit, but summarises them as a count, so the
+    # decorated name can never appear in its output. The symbol filter lists the
+    # one function it selected and fails with `no functions match` if the ledger
+    # carries no such name, which is what pins this conversion to its identity.
+    build(SOURCE.relative_to(ROOT).as_posix())
+    assert SYMBOL in build(SYMBOL)
     print("PASS build.py matches retail 0x000EC9F0")
 
 

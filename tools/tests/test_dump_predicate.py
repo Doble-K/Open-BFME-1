@@ -148,6 +148,11 @@ ALLOWED = {
     "conversion_gate.py": "enforces that a gen_asm row carries gen-dump notes, which is "
                           "the invariant is_scaffold_row rests on",
     "wave_accounting.py": "splits an already-classified dump lane into genasm and naked",
+    "family_scan.py": "scopes its family search to the gen_asm lane on purpose -- the 312 "
+                      "gen-dump rows under Code/gen_small/ are owned by gen_small and "
+                      "gen_uw, which AGENTS.md forbids hand-editing. The note cannot say "
+                      "this: both lanes spell it `gen-dump`, so the lane is the path",
+    "struct_match.py": "same lane restriction as family_scan.py, for the same reason",
 }
 
 
