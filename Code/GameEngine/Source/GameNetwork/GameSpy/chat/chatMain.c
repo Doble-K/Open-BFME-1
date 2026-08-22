@@ -29,6 +29,19 @@ typedef struct ciConnection
 } ciConnection;
 
 void ciSocketSend(void *chatSocket, const char *buffer);
+CHATBool ciCheckFiltersForID(CHAT chat, int ID);
+CHATBool ciCheckCallbacksForID(CHAT chat, int ID);
+
+static CHATBool ciCheckForID(CHAT chat, int ID)
+{
+	return (CHATBool)(ciCheckFiltersForID(chat, ID) ||
+		ciCheckCallbacksForID(chat, ID));
+}
+
+CHATBool ciCheckForIDAnchor(CHAT chat, int ID)
+{
+	return ciCheckForID(chat, ID);
+}
 
 char *ciRandomCookie(void)
 {
