@@ -75348,3 +75348,6 @@ _strchr,0x009F6DFA,Y2 lane: strchr import thunk (gen-import ?ji_009f6dfa@@YAXXZ 
 _strncmp,0x009F6FE2,Y2 lane: strncmp import thunk (gen-import ?ji_009f6fe2@@YAXXZ names the same address)
 ?someInsideSomeOutside@Team@@QBE_NPAVPolygonTrigger@@I@Z,0x000F5CE0,the first of the two calls ScriptConditions::evaluateTeamInsideAreaPartially (0x00324670) makes on the team it looked up before falling back on allInside; the reference declares exactly that const member beside allInside with the same pair
 ??RQ4Sort00755050@@QBE_NHH@Z,0x0002952D,REL32 comparator target used by byte-verified 0x00753340 median specialization
+?Rva00807960@@YAHPAX0@Z,0x00807960,Y2 lane: address-derived; the two-argument body the 28-byte wrapper at 0x00807940 forwards to
+?Rva007FF9F0Swap32@@YAII@Z,0x007FF9F0,Y2 lane: address-derived; one-dword-in one-dword-out helper 0x00807AB0 runs a value through before formatting it with %08x; the sibling at 0x007FFAD0 over the same shape is already ledgered as a byte swap
+?Rva007EB410AdapterInfo@@YAIHHH@Z,0x007EB410,Y2 lane: address-derived; three-argument query 0x00807B10 calls with the selector 0x61646472 (addr); its /GZ frame descriptor names a 0xF0-byte local Adapter
