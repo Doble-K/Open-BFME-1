@@ -269,3 +269,98 @@ char *Rva007EBCA0( const char *text, const char *tag )
 
 	return 0;
 }
+
+// 0x007EBB10 NORMALISES A RECORD IN PLACE, rewriting it over itself: the read
+// and write pointers start together and the writer never overtakes the reader,
+// because every run of control bytes collapses to one byte.
+//
+// IT RUNS IN TWO PASSES OVER THE SAME BUFFER.  The first replaces each run of
+// bytes below 0x20 with the caller's separator and stops at the record
+// terminator -- a '=' or ':' followed by a control byte, the same structural
+// end 0x007EBCA0 recognises.  The second pass then rewrites what is LEFT AFTER
+// that terminator with newline separators, and remembers each run's first
+// character so the run ends where that character repeats.
+//
+// BETWEEN THE PASSES IT FIXES THE JOIN.  A trailing separator is replaced by a
+// newline when there is more to come, and by a terminator when there is not, so
+// the caller never sees a record ending in its own separator.  That is the only
+// thing the two passes say to each other.
+//
+// The separator parameter is reused as a variable in the second pass, which is
+// why it is not const: it holds the character each run began with.
+//
+// IT RETURNS NOTHING.  eax happens to hold the write pointer at the end,
+// because the terminator is stored through it, but nothing sets a return value
+// -- so a caller reading one is reading a side effect.  Declaring this to
+// return that pointer adds an instruction retail does not have.
+void Rva007EBB10( char *record, char separator )
+{
+	char *p;
+	char *out;
+	char *start;
+	int extra;
+
+	start = record;
+	out = start;
+	p = out;
+
+	while( *(unsigned char *)p != 0 )
+	{
+		if( *(unsigned char *)p < 0x20 )
+		{
+			*out = separator;
+			out++;
+
+			while( *(unsigned char *)p > 0
+					&& *(unsigned char *)p < 0x20 )
+				p++;
+
+			if( ( *(unsigned char *)p == '=' || *(unsigned char *)p == ':' )
+					&& *(unsigned char *)( p + 1 ) < 0x20 )
+				break;
+		}
+		else
+		{
+			*out = *p;
+			out++;
+			p++;
+		}
+	}
+
+	if( out != start && *(unsigned char *)( out - 1 )
+			== *(unsigned char *)&separator )
+	{
+		if( *(unsigned char *)&separator != 0x0A
+				&& *(unsigned char *)p == 0 )
+			extra = 0;
+		else
+			extra = 0x0A;
+
+		out[ -1 ] = (char)extra;
+	}
+
+	while( *(unsigned char *)p != 0 )
+	{
+		if( *(unsigned char *)p < 0x20 )
+		{
+			*out = 0x0A;
+			out++;
+
+			separator = *p;
+			p++;
+
+			while( *(unsigned char *)p > 0
+					&& *(unsigned char *)p < 0x20
+					&& *(unsigned char *)p != *(unsigned char *)&separator )
+				p++;
+		}
+		else
+		{
+			*out = *p;
+			out++;
+			p++;
+		}
+	}
+
+	*out = 0;
+}
