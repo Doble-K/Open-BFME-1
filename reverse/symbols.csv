@@ -75270,3 +75270,5 @@ _Rva007FE780,0x007FE780,debug text sink; reached only from the folded-out guard 
 _vsprintf,0x009F70AE
 _Rva007FD660,0x007FD660,Y4 lane: DirtySock address remap helper; fills a 16-byte scratch and returns it, called by the connect wrapper at 0x007FD5C0
 _Rva007FE310,0x007FE310,Y4 lane: DirtySock address translator (dest,destLen,src,srcLen); the self test at 0x007FDEE0 round-trips 192.168.1.1:79 through it
+_memcpy,0x009F75B8,Y4 lane: MSVCR71 import stub; IAT slot 0x01359458 sits two entries before _memset 0x01359460 and the import-name table is alphabetical (memcpy memmove memset); called as (dest source count) cdecl
+_WSAIoctl@36,0x0081BE80,Y4 lane: nine-argument WS2_32 stdcall; the address remap at 0x007FE310 calls it with SIO_ROUTING_INTERFACE_QUERY 0xC8000014

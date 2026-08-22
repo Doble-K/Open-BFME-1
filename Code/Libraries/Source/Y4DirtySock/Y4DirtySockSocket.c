@@ -239,13 +239,13 @@ void Rva007FD270( void )
  * this is an errno mapper rather than an ordinary switch.  The pairs that share
  * a result share an `if`: would-block and connection-reset both report success,
  * which is this library's convention rather than anything the bytes explain. */
-int Rva0081BE08( void );
+int __stdcall WSAGetLastError( void );
 
 int Rva007FD540( int result )
 {
 	if ( result < 0 )
 	{
-		result = Rva0081BE08();
+		result = WSAGetLastError();
 
 		if ( result == 10035 || result == 10054 )
 			result = 0;
@@ -839,4 +839,109 @@ int Rva007FD3F0( struct Rva007FD4E0Socket *socket )
 	g_Rva0130AB5CKillList = socket;
 	Rva007FECB0( 0 );
 	return 0;
+}
+
+/* 0x007FE310 is the ADDRESS REMAP the file's own string names -- "dirtynetwin:
+ * addr remap %s".  Its job is to answer "what local address would I use to
+ * reach this peer", and it does so with a fallback ladder rather than one
+ * query.  TWO IMMEDIATES CARRY THE IDENTIFICATION and neither is shape:
+ * 0xC8000014 is SIO_ROUTING_INTERFACE_QUERY, and 0x7F000001 is 127.0.0.1.
+ *
+ * The ladder, in the order the bytes run it:
+ *   - copy the peer address over, then ZERO the four address bytes, so every
+ *     step below is testing "did anything fill this in yet";
+ *   - if the capability word at 0x0130AB54 is at least 0x200, ask the routing
+ *     table.  Its answer is taken, and then THROWN AWAY AGAIN if it comes back
+ *     as loopback -- 127.0.0.1 is a true answer to the wrong question, and the
+ *     original peer address is restored instead;
+ *   - if the address is still zero, connect a scratch UDP socket to the peer
+ *     and ask getsockname what local address the stack picked.  A connect on a
+ *     datagram socket sends nothing, so this is a routing query too.
+ *
+ * THE RETURN CODES ARE NOT AN ERROR LADDER.  Length mismatch is -1 and a
+ * non-AF_INET family is -3 with the destination zeroed, but FAILING TO RESOLVE
+ * ANYTHING returns 0 -- as does failing to create the socket at all.  Success
+ * here means "the output is well-formed", not "an address was found"; the
+ * caller is expected to look at the address.  The self test at 0x007FDEE0 does
+ * exactly that.
+ *
+ * The WSAIoctl bytes-returned pointer is `&destLength` -- retail reuses its own
+ * PARAMETER SLOT as scratch, and getsockname reuses it again.  That is why the
+ * length is not const here.
+ *
+ * The result of WSAGetLastError is stored and never read; it is retail's, and
+ * removing the call would change the bytes.
+ */
+extern int g_Rva0130AB54Capability;
+
+void *__cdecl memcpy( void *destination, const void *source,
+	unsigned int count );
+
+unsigned int __stdcall socket( int family, int type, int protocol );
+int __stdcall getsockname( unsigned int socket, void *name, int *nameLength );
+int __stdcall WSAIoctl( unsigned int socket, unsigned int code,
+	const void *inBuffer, int inLength, void *outBuffer, int outLength,
+	int *bytesReturned, void *overlapped, void *completion );
+
+/* The four address bytes at +4..+7, in the big-endian order the self test at
+ * 0x007FDEE0 writes them; both bodies read them back with movzx. */
+#define RVA007FE310_ADDRESS( p ) \
+	( ( ( ( ( (const unsigned char *)( p ) )[ 4 ] << 8 ) \
+	| ( (const unsigned char *)( p ) )[ 5 ] ) << 8 \
+	| ( (const unsigned char *)( p ) )[ 6 ] ) << 8 \
+	| ( (const unsigned char *)( p ) )[ 7 ] )
+
+int Rva007FE310( void *dest, int destLength, const void *src, int srcLength )
+{
+	unsigned int uSocket;
+	char addr[ 0x10 ];
+	int iError;
+
+	if ( destLength != srcLength )
+		return -1;
+
+	/* THE FAMILY TEST IS WRITTEN POSITIVELY, WITH THE FAILURE AS A TRAILING
+	 * ELSE.  Retail's `jne` is a FAR jump to a block sitting after the whole
+	 * body, which is how MSVC lays out if/else at /Od; writing it as an early
+	 * `if ( family != 2 ) { ... return -3; }` puts a short jump over an inline
+	 * block instead.  That difference also shifts the register rotation
+	 * through every expression that follows, so it is not cosmetic. */
+	if ( *(const unsigned short *)src == 2 )
+	{
+		memcpy( dest, src, destLength );
+		( (unsigned char *)dest )[ 7 ] = 0;
+		( (unsigned char *)dest )[ 6 ] = 0;
+		( (unsigned char *)dest )[ 5 ] = 0;
+		( (unsigned char *)dest )[ 4 ] = 0;
+
+		uSocket = socket( 2, 2, 0 );
+		if ( uSocket != 0xFFFFFFFF )
+		{
+			if ( g_Rva0130AB54Capability >= 0x200 )
+			{
+				if ( WSAIoctl( uSocket, 0xC8000014, src, srcLength, addr,
+					0x10, &destLength, 0, 0 ) < 0 )
+				{
+					iError = WSAGetLastError();
+				}
+				memcpy( (char *)dest + 4, addr + 4, 4 );
+
+				if ( RVA007FE310_ADDRESS( dest ) == 0x7F000001 )
+					memcpy( (char *)dest + 4, (const char *)src + 4, 4 );
+			}
+
+			if ( RVA007FE310_ADDRESS( dest ) == 0
+				&& connect( uSocket, src, srcLength ) == 0
+				&& getsockname( uSocket, addr, &destLength ) == 0 )
+			{
+				memcpy( (char *)dest + 4, addr + 4, 4 );
+			}
+
+			closesocket( uSocket );
+		}
+		return 0;
+	}
+
+	memset( dest, 0, destLength );
+	return -3;
 }
