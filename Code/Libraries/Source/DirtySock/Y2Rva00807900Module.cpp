@@ -24,7 +24,7 @@ extern "C" int sprintf( char *buffer, const char *format, ... );
 // Addresses read from the REL32 at the call sites; each is pinned in
 // reverse/symbols.csv and derived from its address.
 void *Rva007FDFF0Connect( const char *host, int timeout );  // 0x007FDFF0
-int   Rva00807960( void *a, void *b );                      // 0x00807960
+int   Rva00807960( const char *host, int timeout );         // 0x00807960
 unsigned int Rva007FF9F0Swap32( unsigned int value );       // 0x007FF9F0
 unsigned int Rva007EB410AdapterInfo( int selector, int a, int b );  // 0x007EB410
 unsigned int Rva007FFAD0( unsigned int value );             // 0x007FFAD0
@@ -35,6 +35,9 @@ extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
 
 void Rva007FE780Printf( const char *format, ... );          // 0x007FE780
 int  Rva00808220( void *a, unsigned int b, void *c, void *d, int e );  // 0x00808220
+void Rva007FD3F0SocketClose( void *socket );                // 0x007FD3F0
+void Rva007F0030Free( void *block );                        // 0x007F0030
+void Rva007FEAA0ListReset( void *list );                    // 0x007FEAA0
 
 // Two 28-byte forwarders that do nothing but pass their two arguments through
 // and let /GZ check the frame afterwards.  They are separate functions rather
@@ -44,9 +47,9 @@ void *Rva00807920( const char *host, int timeout )
 	return Rva007FDFF0Connect( host, timeout );
 }
 
-int Rva00807940( void *a, void *b )
+int Rva00807940( const char *host, int timeout )
 {
-	return Rva00807960( a, b );
+	return Rva00807960( host, timeout );
 }
 
 // 0x008081C0 IS A SWITCH WITH ONE CASE, and the copy into a stack temp is what
@@ -153,4 +156,108 @@ int Rva008085A0( void *a, const char *text, void *c, void *d )
 
 	Rva00807A00( &uAddress, 4, text );
 	return Rva00808220( a, uAddress, c, d, 0 );
+}
+
+// The record 0x00808140 tears down.  Only the three offsets that body touches
+// are evidence: a socket at +0x00, something 0x007FEAA0 resets at +0x0C, and a
+// singly linked list at +0x30 whose nodes link through their own first word.
+// The span between is padding here and names nothing.
+struct Rva00808140Node
+{
+	Rva00808140Node *m_next;         // +0x00
+};
+
+struct Rva00808140Ref
+{
+	void            *m_socket;       // +0x00
+	int              m_pad04;
+	int              m_pad08;
+	char             m_sub0C[ 0x24 ];// +0x0C
+	Rva00808140Node *m_list;         // +0x30
+};
+
+// 0x00808140 IS A DESTRUCTOR, and the ORDER is what it says: close the socket
+// first, then drain the list, then tear down the sub-object at +0x0C, then free
+// the record itself.  Nothing is nulled on the way out, so this is the last
+// thing that ever touches the record.
+//
+// THE WHOLE BODY IS WRAPPED IN A NULL CHECK RATHER THAN GUARDED BY AN EARLY
+// RETURN.  Retail's is one `je` over everything; an early return compiles to a
+// short `jne` over a `jmp`, two instructions where retail has one, and shifts
+// every displacement after it.
+//
+// The drain re-reads the head each time round instead of walking a cursor --
+// it unlinks the first node, frees it, and tests the head again -- so the list
+// is left consistent at every step even though nothing else can see it.
+void Rva00808140( Rva00808140Ref *ref )
+{
+	Rva00808140Node *node;
+
+	if( ref != 0 )
+	{
+		Rva007FD3F0SocketClose( ref->m_socket );
+
+		while( ref->m_list != 0 )
+		{
+			node = ref->m_list;
+			ref->m_list = node->m_next;
+			Rva007F0030Free( node );
+		}
+
+		Rva007FEAA0ListReset( ref->m_sub0C );
+		Rva007F0030Free( ref );
+	}
+}
+
+// The object 0x007FDFF0 hands back.  Two of its words are CALLED with the
+// object itself as the only argument and the stack cleaned by the caller, so
+// they are __cdecl function pointers and not a C++ vtable -- a thiscall slot
+// would pass the object in ecx and pop nothing.  Only the three offsets
+// 0x00807960 touches are evidence.
+struct Rva00807960Conn;
+typedef int ( __cdecl *Rva00807960Proc )( Rva00807960Conn *conn );
+
+struct Rva00807960Conn
+{
+	int             m_pad00;
+	int             m_result;       // +0x04
+	Rva00807960Proc m_poll;         // +0x08
+	Rva00807960Proc m_close;        // +0x0C
+};
+
+__declspec(dllimport) void __stdcall Rva01358F30Sleep( unsigned int ms );
+
+// 0x00807960 IS THE BLOCKING FORM of the connect at 0x007FDFF0, which is
+// itself non-blocking: it starts the connection, then spins on the object's
+// own poll until that reports non-zero, sleeping ten milliseconds between
+// tries, and only then reads the result out of +0x04 and closes.
+//
+// THE SLEEP IS UNCONDITIONAL AND THERE IS NO DEADLINE.  The timeout argument
+// goes to the connect and is never looked at again here, so if the poll never
+// succeeds this loop never ends -- whatever bounds it lives inside the object,
+// not in this body.
+//
+// The result is read BEFORE the close and the close's own return is dropped,
+// so the object is expected to still be readable at that point and the caller
+// learns nothing about whether tearing it down worked.  On a failed connect
+// the zero the function starts with is what comes back, which is the same
+// value a poll that succeeded with a zero result would give.
+int Rva00807960( const char *host, int timeout )
+{
+	Rva00807960Conn *conn;
+	int result;
+
+	result = 0;
+	conn = (Rva00807960Conn *)Rva007FDFF0Connect( host, timeout );
+
+	if( conn != 0 )
+	{
+		while( conn->m_poll( conn ) == 0 )
+			Rva01358F30Sleep( 10 );
+
+		result = conn->m_result;
+		conn->m_close( conn );
+	}
+
+	return result;
 }
