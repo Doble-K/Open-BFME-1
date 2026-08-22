@@ -30,15 +30,33 @@ int __stdcall shutdown( unsigned int socket, int how );
 
 struct Rva007FD4E0Socket
 {
-	char m_head[ 0x16 ];
+	/* TWO LINKS, NOT ONE, and the idle pump at 0x007FD170 is what proves it.
+	 * That body walks the list through +0x00, and separately drains a SECOND
+	 * list rooted at 0x0130AB5C whose nodes link through +0x04 -- feeding each
+	 * one to the same destroyer the socket teardown at 0x007FE210 uses.  So a
+	 * socket sits on an active list and a deferred-destroy list at the same
+	 * time, through different pointers. */
+	struct Rva007FD4E0Socket *m_next;       /* +0x00 */
+	struct Rva007FD4E0Socket *m_killNext;   /* +0x04 */
+	char m_head[ 0x0E ];            /* +0x08 */
 	short m_shutdownFlags;          /* +0x16 */
 	unsigned int m_socket;          /* +0x18 */
 	char m_gap[ 0x20 ];
 	void *m_callback;               /* +0x3C */
-	char m_gap2[ 0x04 ];
-	void *m_callbackRef;            /* +0x44 */
+	/* THE NEXT FOUR FIELDS ARE RENAMED ON THE STRENGTH OF 0x007FD170, WHICH
+	 * REFUTES WHAT THE SETTER AT 0x007FDE80 SUGGESTED.  That setter only
+	 * stores, so its parameter order was all the earlier names had to go on.
+	 * The pump USES them: +0x40 is compared against a tick count and rewritten
+	 * with a fresh one, so it is a timestamp; +0x44 bounds the elapsed delta
+	 * with an UNSIGNED compare, so it is a rate; and +0x4C is CALLED, with the
+	 * socket, a zero, and +0x48 as its three arguments -- so it is the
+	 * callback procedure and +0x48 is its user data.  A field that is called
+	 * is not "extra". */
+	unsigned int m_lastTick;        /* +0x40 */
+	unsigned int m_rate;            /* +0x44 */
 	void *m_callbackData;           /* +0x48 */
-	void *m_callbackExtra;          /* +0x4C */
+	void ( __cdecl *m_callbackProc )( struct Rva007FD4E0Socket *socket,
+		int reason, void *data );   /* +0x4C */
 };
 
 /* The 'xmap' remap table head and the 'xdns' value, both set through
@@ -53,13 +71,14 @@ int Rva007FD4E0( struct Rva007FD4E0Socket *socket, int how )
 	return 0;
 }
 
-int Rva007FDE80( struct Rva007FD4E0Socket *socket, void *callback, void *ref,
-	void *data, void *extra )
+int Rva007FDE80( struct Rva007FD4E0Socket *socket, void *callback,
+	unsigned int rate, void *data,
+	void ( __cdecl *proc )( struct Rva007FD4E0Socket *, int, void * ) )
 {
-	socket->m_callbackRef = ref;
+	socket->m_rate = rate;
 	socket->m_callback = callback;
 	socket->m_callbackData = data;
-	socket->m_callbackExtra = extra;
+	socket->m_callbackProc = proc;
 	return 0;
 }
 
@@ -263,11 +282,16 @@ void Rva007FE210( void *object )
 
 /* 0x007FEA00: a bare forwarder onto a no-argument stdcall import.  Nothing but
  * the /GZ esp check surrounds it. */
-__declspec(dllimport) void __stdcall Rva01358E0CImport( void );
+__declspec(dllimport) unsigned int __stdcall Rva01358E0CImport( void );
 
-void Rva007FEA00( void )
+/* RETURNS ITS RESULT.  Nothing in this body shows that -- a forwarder that
+ * drops the value and one that returns it compile to the same bytes, because
+ * eax already holds it.  The pump at 0x007FD170 is what settles it: it stores
+ * this call's eax and then uses it as a tick count, so the forwarder is
+ * typed from its CALLER rather than from itself. */
+unsigned int Rva007FEA00( void )
 {
-	Rva01358E0CImport();
+	return Rva01358E0CImport();
 }
 
 /* 0x007FE620: the shutdown drain.  A flag is raised, the worker is pumped until
@@ -622,7 +646,7 @@ int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
 {
 	char temp[ 0x10 ];
 
-	socket->m_head[ 0x14 ] = 0;
+	socket->m_head[ 0x14 - 0x08 ] = 0;
 	return Rva007FD540( connect( socket->m_socket,
 		Rva007FD660( temp, address ), addressLength ) );
 }
@@ -680,4 +704,60 @@ int Rva007FDEE0( void )
 
 	return ( ( ( ( host.m_data[ 2 ] << 8 ) | host.m_data[ 3 ] ) << 8
 		| host.m_data[ 4 ] ) << 8 ) | host.m_data[ 5 ];
+}
+
+/* 0x007FD170 is the IDLE PUMP, and it is the body that gave the socket struct
+ * above its real field names.  It does three things under one lock: fire any
+ * socket whose callback is due, drain the deferred-destroy list, unlock.
+ *
+ * A callback is due only if all four guards pass, and each is a separate fact
+ * about the object: a rate is set, a procedure is installed, the timestamp is
+ * not the in-progress sentinel -1, and the elapsed time exceeds the rate.  The
+ * elapsed comparison is `jbe`, i.e. UNSIGNED, which is what makes the
+ * subtraction wrap correctly across a tick-counter rollover -- so the tick
+ * source and both fields are unsigned, and that is read from the bytes.
+ *
+ * THE SENTINEL IS THE INTERESTING PART.  The timestamp is set to -1 BEFORE the
+ * callback runs and to a FRESH tick count after, not to the tick count taken at
+ * the top.  Both details are load-bearing: -1 makes the entry ineligible for
+ * the duration of the call, which is what keeps a re-entrant pump from firing
+ * the same socket twice, and re-reading the clock afterwards means the rate
+ * measures the gap BETWEEN calls rather than including the call itself.
+ *
+ * The second loop links through +0x04 rather than +0x00 and hands each node to
+ * the same destroyer the socket teardown uses -- a deferred-free list, drained
+ * inside the lock so nothing can be resurrected while it empties.
+ */
+extern struct Rva007FD4E0Socket *g_Rva0130AB5CKillList;
+
+void Rva007FD170( struct Rva007FD4E0Socket *head )
+{
+	struct Rva007FD4E0Socket *pSocket;
+	struct Rva007FD4E0Socket *pList;
+	unsigned int uTick;
+
+	pList = head;
+	uTick = Rva007FEA00();
+	Rva007FEBD0( 0 );
+
+	for ( pSocket = pList->m_next; pSocket != 0; pSocket = pSocket->m_next )
+	{
+		if ( pSocket->m_rate != 0 && pSocket->m_callbackProc != 0
+			&& pSocket->m_lastTick != 0xFFFFFFFF
+			&& uTick - pSocket->m_lastTick > pSocket->m_rate )
+		{
+			pSocket->m_lastTick = 0xFFFFFFFF;
+			pSocket->m_callbackProc( pSocket, 0, pSocket->m_callbackData );
+			uTick = Rva007FEA00();
+			pSocket->m_lastTick = uTick;
+		}
+	}
+
+	while ( ( pSocket = g_Rva0130AB5CKillList ) != 0 )
+	{
+		g_Rva0130AB5CKillList = pSocket->m_killNext;
+		Rva007F0030( pSocket );
+	}
+
+	Rva007FECB0( 0 );
 }
