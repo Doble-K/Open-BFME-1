@@ -75351,3 +75351,4 @@ _strncmp,0x009F6FE2,Y2 lane: strncmp import thunk (gen-import ?ji_009f6fe2@@YAXX
 ?Rva00807960@@YAHPAX0@Z,0x00807960,Y2 lane: address-derived; the two-argument body the 28-byte wrapper at 0x00807940 forwards to
 ?Rva007FF9F0Swap32@@YAII@Z,0x007FF9F0,Y2 lane: address-derived; one-dword-in one-dword-out helper 0x00807AB0 runs a value through before formatting it with %08x; the sibling at 0x007FFAD0 over the same shape is already ledgered as a byte swap
 ?Rva007EB410AdapterInfo@@YAIHHH@Z,0x007EB410,Y2 lane: address-derived; three-argument query 0x00807B10 calls with the selector 0x61646472 (addr); its /GZ frame descriptor names a 0xF0-byte local Adapter
+_Rva007FF860,0x007FF860,Y4 lane: DirtySock socket-address formatter (address destination size); the address-to-text helper at 0x007FFB50 calls it with a 20-byte destination
