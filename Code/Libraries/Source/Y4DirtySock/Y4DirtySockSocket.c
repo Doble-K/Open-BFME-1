@@ -876,7 +876,7 @@ int Rva007FD3F0( struct Rva007FD4E0Socket *socket )
  * The result of WSAGetLastError is stored and never read; it is retail's, and
  * removing the call would change the bytes.
  */
-extern int g_Rva0130AB54Capability;
+extern int g_Rva0130AB54Version;
 
 void *__cdecl memcpy( void *destination, const void *source,
 	unsigned int count );
@@ -921,7 +921,7 @@ int Rva007FE310( void *dest, int destLength, const void *src, int srcLength )
 		uSocket = socket( 2, 2, 0 );
 		if ( uSocket != 0xFFFFFFFF )
 		{
-			if ( g_Rva0130AB54Capability >= 0x200 )
+			if ( g_Rva0130AB54Version >= 0x200 )
 			{
 				if ( WSAIoctl( uSocket, 0xC8000014, src, srcLength, addr,
 					0x10, &destLength, 0, 0 ) < 0 )
@@ -1146,4 +1146,75 @@ int Rva007FDA50( struct Rva007FD4E0Socket *socket, char *buffer, int length,
 			iResult = -1;
 	}
 	return iResult;
+}
+
+/* 0x007FD080 IS THE MODULE CREATE, and a 0x190-byte local is what proves it.
+ * /GZ's frame descriptor names that local `data`, 0x190 is exactly
+ * sizeof(WSADATA), it is zeroed and then handed to the import at 0x0081BDF6 --
+ * whose IAT slot the import-name table calls WSAStartup -- and the version word
+ * that comes back is byte-swapped into the global at 0x0130AB54.
+ *
+ * THAT LAST STEP CORRECTS THE GLOBAL'S MEANING.  0x0130AB54 was read as a
+ * "capability" word, because its only other use is the remap at 0x007FE310
+ * gating a routing query on `>= 0x200`, and a threshold on an unknown word
+ * looks like a feature level.  It is a VERSION: 0x200 is Winsock 2.0 with the
+ * major and minor bytes already in the order this swap puts them.  The name is
+ * corrected here rather than left to read as a bitfield.
+ *
+ * TWO DETAILS OF THE SWAP ARE READ OUT OF THE BYTES rather than chosen.  The
+ * high half shifts with SHR, not SAR, so the shift runs on an UNSIGNED value;
+ * letting the WORD promote to int and shifting there compiles to sar and is
+ * refuted.  And that half carries no mask at all -- retail masks the low half
+ * and only narrows the high one -- so the asymmetry is retail's spelling, not
+ * something to tidy up.
+ *
+ * THE LOCAL ORDER IS FIXED BY /GZ's ARRAY GUARDS, and it is the one thing here
+ * that had to be measured instead of reasoned.  /GZ brackets every local array
+ * with four guard bytes, so the frame runs cookie, guard, data, guard, iResult
+ * -- 4 + 4 + 0x190 + 4 + 4 = 0x1A0, exactly retail's `sub esp`.  That lands only
+ * with `data` declared BEFORE `iResult`; the other order puts iResult against
+ * the cookie and shifts every frame offset in the body by four.
+ *
+ * ORDER IS EVIDENCE HERE, not preference.  The thread creation at 0x007FE520
+ * runs FIRST, with this function's only argument as its priority, and Winsock
+ * is initialised LAST -- so the worker is already running before there is a
+ * stack for it to talk to.  The two 'xmap'/'xdns' words cleared in between are
+ * the same pair the control entry at 0x007FDEB0 sets, which is what makes this
+ * the create half of that pair rather than an unrelated initialiser.
+ *
+ * WSAStartup's result is stored into a local and never read.  It is retail's;
+ * dropping it drops the store.
+ */
+struct Rva007FD080WsaData
+{
+	unsigned short wVersion;
+	unsigned short wHighVersion;
+	char szDescription[ 257 ];
+	char szSystemStatus[ 129 ];
+	unsigned short iMaxSockets;
+	unsigned short iMaxUdpDg;
+	char *lpVendorInfo;
+};
+
+int __stdcall WSAStartup( unsigned short versionRequested,
+	struct Rva007FD080WsaData *data );
+
+void *__cdecl memset( void *destination, int value, unsigned int count );
+
+void Rva007FD080( int priority )
+{
+	struct Rva007FD080WsaData data;
+	int iResult;
+
+	Rva007FE520( priority );
+	Rva007FED40( (void *)Rva007FD170, &g_Rva0130AB58Head );
+
+	g_Rva0130AB60 = 0;
+	g_Rva0130AB64 = 0;
+
+	memset( &data, 0, sizeof( data ) );
+	iResult = WSAStartup( 2, &data );
+
+	g_Rva0130AB54Version = ( (unsigned char)( data.wVersion & 0xFF ) << 8 )
+		| (unsigned char)( (unsigned int)data.wVersion >> 8 );
 }
