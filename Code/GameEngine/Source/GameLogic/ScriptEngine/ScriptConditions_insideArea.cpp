@@ -4,6 +4,7 @@
 //
 //   0x00324AC0  evaluateTeamInsideAreaEntirely   213 bytes
 //   0x00324670  evaluateTeamInsideAreaPartially  239 bytes
+//   0x003247A0  evaluateNamedInsideArea          248 bytes
 //
 // They share this translation unit because they share every model in it, down
 // to the two ScriptEngine vtable slots and the delegating AsciiString.
@@ -33,7 +34,35 @@ typedef int Int;
 typedef unsigned int UnsignedInt;
 typedef bool Bool;
 
-class PolygonTrigger;
+typedef float Real;
+
+// Member-wise, because retail's copy is: the position's y and z go through
+// general registers into the local while x is fld'd straight out of the object
+// for the first __ftol, which a block copy of the three would not do.
+struct Coord3D
+{
+	Coord3D(void) {}
+	Coord3D(const Coord3D &other) { x = other.x; y = other.y; z = other.z; }
+
+	Real x, y, z;
+};
+struct ICoord3D { Int x, y, z; };
+
+class PolygonTrigger
+{
+public:
+	Bool pointInTrigger(ICoord3D &point) const;		// retail 0x0004AB6F
+};
+
+class Object
+{
+public:
+	const Coord3D *getPosition(void) const { return &m_position; }
+
+private:
+	unsigned char m_bfmeHead[0x38];
+	Coord3D m_position;					// this+0x38
+};
 
 template <class T> class StringBase
 {
@@ -104,6 +133,10 @@ public:
 	virtual void slot20() = 0;
 	virtual void slot21() = 0;
 	virtual PolygonTrigger *getQualifiedTriggerAreaByName(AsciiString) = 0;	// slot 22, vtable+0x58
+	virtual void slot23() = 0;
+	virtual void slot24() = 0;
+	virtual void slot25() = 0;
+	virtual Object *getUnitNamed(const AsciiString &name) = 0;	// slot 26, vtable+0x68
 };
 
 extern ScriptEngine *TheScriptEngine;
@@ -113,6 +146,7 @@ class ScriptConditions
 protected:
 	Bool evaluateTeamInsideAreaEntirely(Parameter *, Parameter *, Parameter *);
 	Bool evaluateTeamInsideAreaPartially(Parameter *, Parameter *, Parameter *);
+	Bool evaluateNamedInsideArea(Parameter *, Parameter *);
 };
 
 // ?evaluateTeamInsideAreaEntirely@ScriptConditions@@IAE_NPAVParameter@@00@Z
@@ -142,6 +176,27 @@ Bool ScriptConditions::evaluateTeamInsideAreaPartially(Parameter *pTeamParm, Par
 	if (theTeam) {
 		return (theTeam->someInsideSomeOutside(pTrig, (UnsignedInt) pTypeParm->getInt()) ||
 						theTeam->allInside(pTrig, (UnsignedInt) pTypeParm->getInt()));
+	}
+	return false; // Non existent team isn't in trigger area. :)
+}
+
+// ?evaluateNamedInsideArea@ScriptConditions@@IAE_NPAVParameter@@0@Z
+Bool ScriptConditions::evaluateNamedInsideArea(Parameter *pUnitParm, Parameter *pTriggerAreaParm )
+{
+	Object *theObj = TheScriptEngine->getUnitNamed( *(const AsciiString *)pUnitParm );
+
+	if (!theObj) {
+		return false;
+	}
+
+	AsciiString triggerName = pTriggerAreaParm->getString();
+	PolygonTrigger *pTrig = TheScriptEngine->getQualifiedTriggerAreaByName(pTriggerAreaParm->getString());
+	if (pTrig == 0) return false;
+	if (theObj) {
+		Coord3D pCoord = *theObj->getPosition();
+		ICoord3D iCoord;
+		iCoord.x = pCoord.x; iCoord.y = pCoord.y; iCoord.z = pCoord.z;
+		return pTrig->pointInTrigger(iCoord);
 	}
 	return false; // Non existent team isn't in trigger area. :)
 }
