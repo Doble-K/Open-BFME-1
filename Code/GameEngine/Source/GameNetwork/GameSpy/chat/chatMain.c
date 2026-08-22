@@ -16,6 +16,12 @@
 
 typedef void *CHAT;
 
+typedef enum
+{
+	CHATFalse,
+	CHATTrue
+} CHATBool;
+
 typedef struct ciConnection
 {
 	unsigned char beforeChatSocket[0x1c];
@@ -116,4 +122,83 @@ void chatSetChannelKeysA(CHAT chat,
 	}
 
 	ciSocketSend(&connection->chatSocket, buffer);
+}
+
+static CHATBool ciSendGetChannelKey(CHAT chat,
+									const char *channel,
+									const char *nick,
+									const char *cookie,
+									int num,
+									const char **keys)
+{
+	char buffer[512];
+	int len;
+	int i;
+	int j;
+	int keyLen;
+	CHATBool getBrocastKeys = CHATFalse;
+	ciConnection *connection = (ciConnection *)chat;
+
+	assert(channel && channel[0]);
+	assert(cookie && cookie[0]);
+	assert(!num || keys);
+
+	if(!nick || !nick[0])
+		sprintf(buffer, "GETCHANKEY %s %s 0 :", channel, cookie);
+	else
+		sprintf(buffer, "GETCKEY %s %s %s 0 :", channel, nick, cookie);
+	len = (int)strlen(buffer);
+
+	for(i = 0 ; i < num ; i++)
+	{
+		if(!keys[i] || !keys[i][0])
+			continue;
+
+		if(strcmp(keys[i], "b_*") == 0)
+		{
+			getBrocastKeys = CHATTrue;
+			continue;
+		}
+
+		keyLen = (int)strlen(keys[i]);
+		if((len + keyLen + 1) >= (int)sizeof(buffer))
+			continue;
+
+		buffer[len++] = '\\';
+		memcpy(buffer + len, keys[i], (unsigned int)keyLen);
+		for(j = len ; j < (len + keyLen) ; j++)
+			if(buffer[j] == '\\')
+				buffer[j] = '/';
+		len += keyLen;
+		buffer[len] = '\0';
+	}
+
+	if(getBrocastKeys)
+	{
+		if((len + 4) < (int)sizeof(buffer))
+		{
+			strcpy(buffer + len, "\\b_*");
+			len += 4;
+		}
+	}
+
+	if(!num && (!nick || !nick[0]))
+	{
+		strcpy(buffer + len, "*");
+		len++;
+	}
+
+	ciSocketSend(&connection->chatSocket, buffer);
+
+	return getBrocastKeys;
+}
+
+CHATBool ciSendGetChannelKeyAnchor(CHAT chat,
+									 const char *channel,
+									 const char *nick,
+									 const char *cookie,
+									 int num,
+									 const char **keys)
+{
+	return ciSendGetChannelKey(chat, channel, nick, cookie, num, keys);
 }
