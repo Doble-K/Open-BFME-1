@@ -1611,6 +1611,7 @@ name,address,notes
 ??0AnimationSteeringUpdateModuleData@@QAE@XZ,0x0002DABA,pinharvest x1 (thunk)
 ??0AnimationSteeringUpdateModuleData@@QAE@XZ,0x00043969,pinharvest x1 (thunk)
 ??0AnimationSteeringUpdateModuleData@@QAE@XZ,0x0004601A,pinharvest x1 (thunk)
+??0AppendLockClass@VertexBufferClass@@QAE@PAV1@IIH@Z,0x0091DE90,DX8VertexBufferClass Copy direct call target
 ??0ArchiveFile@@QAE@XZ,0x009D10B0
 ??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,0x009CA8F0,pinharvest x1 (body)
 ??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,0x009D0DB0,pinharvest x1 (body)
@@ -3419,6 +3420,7 @@ name,address,notes
 ??1ActiveCategoryStackClass@@UAE@XZ,0x00AFF130,pinharvest x1 (body)
 ??1AnimateWindow@@UAE@XZ,0x0002F973,ILT thunk; retail call sites use the thunk
 ??1AnimationSoundClientBehaviorModuleDataMember@@QAE@XZ,0x000142EA,AnimationSoundClientBehaviorModuleData dtor member +0x8
+??1AppendLockClass@VertexBufferClass@@QAE@XZ,0x0091DF50,DX8VertexBufferClass Copy direct call target
 ??1ArchiveFile@@UAE@XZ,0x009D0BD0,base destructor called by ~Win32BIGFile
 ??1ArchivedDirectoryInfo@@QAE@XZ,0x009CA4F0,first member destructor in ~ArchiveFileSystem at 0x009CA5B6; members destroy in reverse declaration order so m_rootDirectory goes before m_archiveFileMap
 ??1ArchivedFileInfo@@QAE@XZ,0x009CC600,archive directory entry dtor
@@ -8822,6 +8824,7 @@ name,address,notes
 ?DX8_Assert@@YAXXZ,0x009024F0,DX8 index-buffer lock and unlock paths call the shared retail device/thread assertion helper
 ?DebugAllocMemory@@YAPAXI@Z,0x0088EB30
 ?DebugFreeMemory@@YAXPAX@Z,0x0088EAD0
+?DecompressMemory@@YA_NPAXH0AAH@Z,0x0081EB80,the callee of CompressionManager::decompressData's COMPRESSION_NOXLZH arm (compression type 2 at 0x0081E890) called with the reference's four arguments in order including outSize by reference; the LZH library declares exactly one function with that shape
 ?DeinitLanGameGadgets@@YAXXZ,0x00024613,ILT thunk to body 0x004CB010
 ?Delete@?$DynamicVectorClass@VModelNodeClass@HLodClass@@@@QAE_NH@Z,0x0097B0F0,DynamicVectorClass<HLodClass::ModelNodeClass>::Delete pin for HLod Remove_Sub_Object
 ?Delete@?$List@PAUINISection@@@@QAEXXZ,0x009E2630
@@ -9401,11 +9404,15 @@ name,address,notes
 ?Rva007F0030Free@@YAXPAX@Z,0x007F0030,Y2 DirtySock lane: address-derived; the matching one-argument release, called by ProtoMangleDestroy
 ?Rva007FD3F0SocketClose@@YAXPAX@Z,0x007FD3F0,Y2 DirtySock lane: address-derived; one-argument socket close
 ?Rva007FD4E0SocketShutdown@@YAXPAXH@Z,0x007FD4E0,Y2 DirtySock lane: address-derived; two-argument socket shutdown called with how=2 before the close
+?Rva007FDB60SocketInfo@@YAXPAXH0H@Z,0x007FDB60,Y2 DirtySock lane: address-derived; the socket query 0x008053C0 calls with the selector 0x62696E64 (bind) and a 0x10-byte buffer
 ?Rva007FDFF0Connect@@YAPAXPBDH@Z,0x007FDFF0,Y2 DirtySock lane: address-derived; 0x008046E0 stores its result in the http record and passes it a 30 timeout
 ?Rva007FE310SocketHost@@YAXPAURva00804440SockAddr@@H0H@Z,0x007FE310,Y2 DirtySock lane: address-derived; four-argument (buf,len,buf,len) call that fills a sockaddr with the local interface reaching a destination
 ?Rva007FE780Printf@@YAXPBDZZ,0x007FE780,Y2 DirtySock lane: address-derived; variadic logger every ProtoMangle body calls with its own log line
+?Rva007FEA00Tick@@YAIXZ,0x007FEA00,Y2 lane: C++ spelling of the no-argument tick forwarder converted as _Rva007FEA00 in Y4DirtySockSocket.c; ProtoMangleCreate calls it for its initial timeout
 ?Rva007FFB50AddrText@@YAPADI@Z,0x007FFB50,Y2 DirtySock lane: address-derived; feeds the %s of the /getPeerAddress myIP query so it renders an address as text
+?Rva007FFC10TextAddr@@YAIPBD@Z,0x007FFC10,Y2 DirtySock lane: address-derived; the dotted-quad text-to-address parser 0x00805870 feeds its peerIP tag to
 ?Rva00804920Update@@YAXPAURva008042B0Http@@@Z,0x00804920,Y2 DirtySock lane: address-derived; the 2668-byte ProtoMangle state machine whose log lines all prefix ProtoMangle:
+?Rva00805710TagFieldGet@@YAHPADHPBD1H@Z,0x00805710,Y2 DirtySock lane: address-derived; copies a named tag out of a text blob into a bounded buffer and returns negative when absent
 ?Rva00809010Find@@YGPAURva00809500Sink@@PAURva00809500Entry@@@Z,0x00809010,U2 lane: stdcall lookup called by the 27-byte wrapper at 0x00809500
 ?Rva00844230Do@@YAHPAX000@Z,0x00844230,U2 lane: cdecl callee of the four-argument forwarder at 0x008442E0
 ?Rva0084B210Run@@YAHPAURva00841540Owner@@@Z,0x0084B210,U2 lane: cdecl callee of the 10-byte member at 0x00841540; unnamed dump elsewhere
@@ -75051,6 +75058,7 @@ __strlwr,0x009F7D7A,Y4 lane: _strlwr import thunk (gen-import ?ji_009f7d7a@@YAXX
 _accept@12,0x0081BE6E,decode_calls pin for _gpiProcessPeers callee (accept)
 _assignment,0x0099CB80,vendored=lua-4.0.1
 _atexit,0x009F6E26,CRT atexit (registers static destructors)
+_atoi,0x009F6DEE,Y2 lane: atoi import thunk (gen-import ?ji_009f6dee@@YAXXZ names the same address)
 _audioManagerAddEventHelper@16,0x00020B08,AudioManager::addAudioEvent stdcall helper pin
 _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Create import stub (see Win32DIKeyboardOpen.cpp)
 _bfmeRetailCritterDesyncLog,0x0003A17A,Open-BFME6 BFME desync trace logger (cdecl sink+message) reached from AIDockMoveToDockState onEnter
@@ -75115,6 +75123,7 @@ _getbinopr,0x0099B480,decode_calls pin for _subexpr callee
 _gethostbyname@4,0x0081BDEA,vendored=gamespy-2004
 _gethostname@8,0x0081BDF0,vendored=gamespy-2004
 _getobjname,0x00996950,vendored=lua-4.0.1
+_getpeername@12,0x0081BE7A,Y4 lane: sibling of _getsockname@4 0x0081BE5C; SocketInfo at 0x007FDB60 reaches it from the conn and peer selectors and reaches getsockname from bind, which is what tells the two apart
 _getsockname@12,0x0081BE5C,vendored=gamespy-2004
 _getsockopt@20,0x0081BE56,vendored=gamespy-2004
 _ggetm,0x00822030,static ggetm copy emitted into refdecode.cpp; pinned by REF_size @0x8220D0
@@ -75305,6 +75314,7 @@ _recv@16,0x0081BE74,vendored=gamespy-2004
 _recvfrom@24,0x0081BE26,vendored=gamespy-2004
 _repeatstat,0x0099CD90,decode_calls pin for _stat callee
 _retstat,0x0099BBD0,decode_calls pin for _stat callee
+_select@20,0x0081BE2C,Y4 lane: five-argument WS2_32 stdcall; the stat path of SocketInfo at 0x007FDB60 calls it with two fd_sets and a zero timeval
 _send@16,0x0081BDFC,vendored=gamespy-2004
 _send_heartbeat,0x00856900,vendored=gamespy-2004
 _sendto@24,0x0081BE62,vendored=gamespy-2004

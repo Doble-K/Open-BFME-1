@@ -101,14 +101,14 @@ public:
 	{
 	public:
 		WriteLockClass(VertexBufferClass* vertex_buffer, int flags=0);
-		~WriteLockClass();
+		__declspec(noinline) ~WriteLockClass();
 	};
 
 	class AppendLockClass : public VertexBufferLockClass
 	{
 	public:
-		AppendLockClass(VertexBufferClass* vertex_buffer,unsigned start_index, unsigned index_range);
-		~AppendLockClass();
+		AppendLockClass(VertexBufferClass* vertex_buffer,unsigned start_index, unsigned index_range, int flags=0);
+		__declspec(noinline) ~AppendLockClass();
 	};
 
 	static unsigned Get_Total_Buffer_Count();

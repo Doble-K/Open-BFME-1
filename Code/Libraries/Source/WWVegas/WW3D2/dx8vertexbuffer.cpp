@@ -246,7 +246,7 @@ VertexBufferClass::WriteLockClass::~WriteLockClass()
 // ----------------------------------------------------------------------------
 
 // ??0AppendLockClass@@ present-unmatched
-VertexBufferClass::AppendLockClass::AppendLockClass(VertexBufferClass* VertexBuffer,unsigned start_index, unsigned index_range)
+VertexBufferClass::AppendLockClass::AppendLockClass(VertexBufferClass* VertexBuffer,unsigned start_index, unsigned index_range, int flags)
 	:
 	VertexBufferLockClass(VertexBuffer)
 {
@@ -273,7 +273,7 @@ VertexBufferClass::AppendLockClass::AppendLockClass(VertexBufferClass* VertexBuf
 			start_index*VertexBuffer->FVF_Info().Get_FVF_Size(),
 			index_range*VertexBuffer->FVF_Info().Get_FVF_Size(),
 			(unsigned char**)&Vertices,
-			0));	// Default (no) flags
+			flags));
 		break;
 	case BUFFER_TYPE_SORTING:
 		Vertices=static_cast<SortingVertexBufferClass*>(VertexBuffer)->VertexBuffer+start_index;
@@ -531,7 +531,6 @@ void DX8VertexBufferClass::Create_Vertex_Buffer(UsageType usage)
 
 // ----------------------------------------------------------------------------
 
-// ?Copy@DX8VertexBufferClass@@ present-unmatched
 void DX8VertexBufferClass::Copy(const Vector3* loc, const Vector3* norm, const Vector2* uv, unsigned first_vertex,unsigned count)
 {
 	WWASSERT(loc);
@@ -572,7 +571,6 @@ void DX8VertexBufferClass::Copy(const Vector3* loc, const Vector3* norm, const V
 
 // ----------------------------------------------------------------------------
 
-// ?Copy@DX8VertexBufferClass@@ present-unmatched
 void DX8VertexBufferClass::Copy(const Vector3* loc, unsigned first_vertex, unsigned count)
 {
 	WWASSERT(loc);
