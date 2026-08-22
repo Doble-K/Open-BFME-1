@@ -76849,6 +76849,7 @@ name,address,notes
 ??0AudioEventRTS@@QAE@ABVAsciiString@@W4ObjectID@@@Z,0x00025306,doAudioFeedback AudioEventRTS constructor thunk
 ??0AudioEventRTS@@QAE@ABVAsciiString@@W4ObjectID@@@Z,0x0003961C,FlammableUpdate::startBurningSound constructor call thunk
 ??0AudioEventRTS@@QAE@PAXH@Z,0x00025306,Open-BFME5 AudioEventRTS retail constructor
+??0AudioEventRTS@@QAE@ABVAsciiString@@PBUCoord3D@@H@Z,0x0004941D,Open-BFME5 positional AudioEventRTS constructor ILT used by ScriptActions doPlaySoundEffectAt
 ??0AudioLoopUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x00046EA7,link thunk to the AudioLoopUpgrade constructor; named from the ModuleFactory registration that pairs "AudioLoopUpgrade" with factory 0x0011E0B0
 ??0AutoDepositUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00C15D,module ctor (friend_newModuleInstance retail call target)
 ??0AutoDepositUpdateModuleData@@QAE@XZ,0x00001780,pinharvest x1 (thunk)

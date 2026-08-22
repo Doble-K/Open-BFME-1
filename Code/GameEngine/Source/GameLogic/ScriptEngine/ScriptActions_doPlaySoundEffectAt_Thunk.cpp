@@ -1,322 +1,107 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump ScriptActions::doPlaySoundEffectAt to C++ thunk.
+// Open-BFME5: clean C++ reconstruction of positional script audio.
 
-class AsciiString;
+template <class T> class StringBase
+{
+	friend class AsciiString;
+private:
+	StringBase(const StringBase &);
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const AsciiString &that)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(
+			*(const StringBase<char> *)&that);
+	}
+private:
+	char *m_text;
+};
+struct Coord3D;
+
+class Player
+{
+public:
+	int getPlayerIndex() const { return m_playerIndex; }
+private:
+	unsigned char m_pad[0x24];
+	int m_playerIndex;
+};
+
+class PlayerList
+{
+public:
+	Player *getLocalPlayer() const { return m_localPlayer; }
+private:
+	unsigned char m_pad[0x0C];
+	Player *m_localPlayer;
+};
+
+class Waypoint
+{
+public:
+	const Coord3D *getLocation() const { return (const Coord3D *)&m_location; }
+private:
+	unsigned char m_pad[0x0C];
+	unsigned char m_location[0x0C];
+};
+
+class TerrainLogic
+{
+public:
+	virtual void slot00(); virtual void slot01(); virtual void slot02(); virtual void slot03();
+	virtual void slot04(); virtual void slot05(); virtual void slot06(); virtual void slot07();
+	virtual void slot08(); virtual void slot09(); virtual void slot10(); virtual void slot11();
+	virtual void slot12(); virtual void slot13(); virtual void slot14(); virtual void slot15();
+	virtual void slot16(); virtual void slot17(); virtual void slot18(); virtual void slot19();
+	virtual void slot20(); virtual void slot21(); virtual void slot22(); virtual void slot23();
+	virtual void slot24(); virtual void slot25(); virtual void slot26(); virtual void slot27();
+	virtual void slot28(); virtual void slot29(); virtual void slot30();
+	virtual Waypoint *getWaypointByName(AsciiString name);
+};
+
+class AudioEventRTS
+{
+public:
+	AudioEventRTS(const AsciiString &, const Coord3D *, int positional = 0);
+	virtual ~AudioEventRTS();
+	void setIsLogicalAudio(bool);
+	void setPlayerIndex(int);
+private:
+	unsigned char m_data[0x6C];
+};
+
+class AudioManager
+{
+public:
+	virtual void slot00(); virtual void slot01(); virtual void slot02(); virtual void slot03();
+	virtual void slot04(); virtual void slot05(); virtual void slot06(); virtual void slot07();
+	virtual void slot08(); virtual void slot09(); virtual void slot10(); virtual void slot11();
+	virtual void slot12(); virtual void slot13(); virtual void slot14(); virtual void slot15();
+	virtual void slot16();
+	virtual void addAudioEvent(const AudioEventRTS *event);
+};
+
+extern TerrainLogic *TheTerrainLogic;
+extern PlayerList *ThePlayerList;
+extern AudioManager *TheAudio;
+
 class ScriptActions
 {
 protected:
-void doPlaySoundEffectAt(const AsciiString &, const AsciiString &);
+	void doPlaySoundEffectAt(const AsciiString &, const AsciiString &);
 };
 
-// ?doPlaySoundEffectAt@ScriptActions@@IAEXABVAsciiString@@0@Z
-__declspec(naked) void ScriptActions::doPlaySoundEffectAt(const AsciiString &, const AsciiString &)
+void ScriptActions::doPlaySoundEffectAt(const AsciiString &sound, const AsciiString &waypoint)
 {
-__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x26
-        __emit 0x5a
-        __emit 0x59
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x44
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xf9
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x14
-        __emit 0xf2
-        __emit 0x2e
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x16
-        __emit 0x94
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xe2
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x53
-        __emit 0x0d
-        __emit 0xd3
-        __emit 0xff
-        __emit 0xa1
-        __emit 0xb8
-        __emit 0xd8
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xbc
-        __emit 0xd8
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x15
-        __emit 0xc0
-        __emit 0xd8
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x3d
-        __emit 0xc4
-        __emit 0xd8
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x1d
-        __emit 0xc8
-        __emit 0xd8
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x83
-        __emit 0xec
-        __emit 0x18
-        __emit 0x8b
-        __emit 0xec
-        __emit 0x89
-        __emit 0x45
-        __emit 0x00
-        __emit 0x89
-        __emit 0x4d
-        __emit 0x04
-        __emit 0x89
-        __emit 0x55
-        __emit 0x08
-        __emit 0x89
-        __emit 0x7d
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x5d
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x1d
-        __emit 0xcc
-        __emit 0xd8
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x89
-        __emit 0x5d
-        __emit 0x14
-        __emit 0x83
-        __emit 0xec
-        __emit 0x18
-        __emit 0x8b
-        __emit 0xec
-        __emit 0x89
-        __emit 0x45
-        __emit 0x00
-        __emit 0xa1
-        __emit 0xc8
-        __emit 0xd8
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x89
-        __emit 0x4d
-        __emit 0x04
-        __emit 0x89
-        __emit 0x55
-        __emit 0x08
-        __emit 0x89
-        __emit 0x7d
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x45
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xce
-        __emit 0x89
-        __emit 0x5d
-        __emit 0x14
-        __emit 0xe8
-        __emit 0xa7
-        __emit 0x4f
-        __emit 0xd5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x38
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xe8
-        __emit 0x82
-        __emit 0x59
-        __emit 0x59
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xcc
-        __emit 0xf4
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x50
-        __emit 0x7c
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x74
-        __emit 0x59
-        __emit 0x83
-        __emit 0xfe
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x14
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x7e
-        __emit 0x1b
-        __emit 0x51
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x20
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x44
-        __emit 0xe8
-        __emit 0x10
-        __emit 0xee
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x20
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x88
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x28
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x30
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x38
-        __emit 0x50
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x28
-        __emit 0xe8
-        __emit 0xfb
-        __emit 0x69
-        __emit 0xd5
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x20
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-}
+	Waypoint *way = TheTerrainLogic->getWaypointByName(waypoint);
+	if (!way)
+		return;
+
+	AudioEventRTS event(sound, way->getLocation());
+	event.setIsLogicalAudio(true);
+	event.setPlayerIndex(ThePlayerList->getLocalPlayer()->getPlayerIndex());
+	TheAudio->addAudioEvent(&event);
 }
