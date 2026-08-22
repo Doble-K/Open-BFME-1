@@ -303,10 +303,17 @@ void Rva007FE620( void )
  * one-argument stdcall import is handed the sub-object at +0xC. */
 struct Rva0130AB68List
 {
-	void *m_first;                  /* +0x00 */
-	void *m_last;                   /* +0x04 */
-	int m_count;                    /* +0x08 */
-	char m_body[ 4 ];               /* +0x0C, handed to the import */
+	/* A RECURSIVE LOCK, and the acquire at 0x007FEB00 is what proves each
+	 * field. It compares +0x00 against the return of a no-argument import and,
+	 * on a match, bumps +0x04 and succeeds without locking anything -- that is
+	 * an owner-thread check guarding a recursion count. +0x08 is handed to the
+	 * same two-argument probe the socket body at 0x007FE210 uses, and +0x0C to
+	 * the enter/init/destroy slots. The release tests +0x04 with an UNSIGNED
+	 * `cmp ..,1 / jbe`, so the depth is unsigned. */
+	unsigned int m_ownerThread;     /* +0x00 */
+	unsigned int m_depth;           /* +0x04 */
+	int m_state;                    /* +0x08 */
+	char m_body[ 4 ];               /* +0x0C */
 };
 
 extern struct Rva0130AB68List g_Rva0130AB68Default;
@@ -317,7 +324,7 @@ void Rva007FEAA0( struct Rva0130AB68List *list )
 {
 	struct Rva0130AB68List *node = list ? list : &g_Rva0130AB68Default;
 
-	node->m_count = 0;
+	node->m_state = 0;
 	Rva01358D0CReset( node->m_body );
 }
 
@@ -349,8 +356,63 @@ void Rva007FEA20( struct Rva0130AB68List *list )
 {
 	struct Rva0130AB68List *node = list ? list : &g_Rva0130AB68Default;
 
-	node->m_first = 0;
-	node->m_last = 0;
-	node->m_count = 0;
+	node->m_ownerThread = 0;
+	node->m_depth = 0;
+	node->m_state = 0;
 	Rva01358E4CInit( node->m_body );
+}
+
+/* 0x007FECB0: release one reference.  Above one, the count simply drops; at one
+ * or zero the object is cleared and its +0xC sub-object handed to a THIRD
+ * import slot -- distinct from both the initialiser's and the reset's, which is
+ * what says these three bodies touch one embedded object through its own
+ * create/reset/destroy entry points rather than sharing one call. */
+__declspec(dllimport) void __stdcall Rva01358E74Destroy( void *body );
+
+void Rva007FECB0( struct Rva0130AB68List *list )
+{
+	struct Rva0130AB68List *node = list ? list : &g_Rva0130AB68Default;
+
+	if ( node->m_depth > 1 )
+	{
+		node->m_depth = node->m_depth - 1;
+	}
+	else
+	{
+		node->m_ownerThread = 0;
+		node->m_depth = 0;
+		node->m_state = 0;
+		Rva01358E74Destroy( node->m_body );
+	}
+}
+
+/* 0x007FEB00: acquire, and the body that fixes the whole layout.  If the caller
+ * already owns the lock the depth simply rises and no locking happens -- that
+ * early return is what makes this recursive.  Otherwise the state word is
+ * probed through the SAME two-argument import the socket body at 0x007FE210
+ * uses, a non-zero answer meaning busy, and only then is the critical section
+ * entered and ownership recorded.  Note the owner is re-read from the import
+ * AFTER entering rather than reused from the first call: the compiler was given
+ * no licence to cache it across the lock. */
+__declspec(dllimport) unsigned int __stdcall Rva01358D7CCurrentId( void );
+__declspec(dllimport) void __stdcall Rva01358D18Enter( void *body );
+
+int Rva007FEB00( struct Rva0130AB68List *list )
+{
+	struct Rva0130AB68List *node = list ? list : &g_Rva0130AB68Default;
+
+	if ( node->m_ownerThread == Rva01358D7CCurrentId() )
+	{
+		node->m_depth = node->m_depth + 1;
+		return 1;
+	}
+
+	if ( Rva01358E58Probe( &node->m_state, 1 ) )
+		return 0;
+
+	Rva01358D18Enter( node->m_body );
+
+	node->m_ownerThread = Rva01358D7CCurrentId();
+	node->m_depth = node->m_depth + 1;
+	return 1;
 }
