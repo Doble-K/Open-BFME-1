@@ -149959,7 +149959,10 @@ _ciCheckCallbacksForID,0x00871630,gamespy-chat: second arm of the short-circuit 
 _ciAddGETKEYFilter,0x0086C7E0,gamespy-chat: 7-arg filter registered by chatGetGlobalKeys at 0x00861940
 _ciAddGETCKEYFilter,0x0086C8F0,gamespy-chat: 8-arg filter registered by chatGetChannelKeys at 0x00861C60 on the per-user branch
 _ciAddGETCHANKEYFilter,0x0086CA10,gamespy-chat: 7-arg filter registered by chatGetChannelKeys at 0x00861C60 on the whole-room branch
+_piCallCallbacks,0x00872C20,GameSpy pingerThink tail-calls the queued callback dispatcher
+_piCheckTimeouts,0x00873280,GameSpy pingerThink checks active ping expiry after processing input
 _piGetPlayer,0x00863350,gamespy-peer: looks a piPlayer up by nick in connection->players; sole player-lookup callee of peerKeys.c cache maps
+_piProcessIncoming,0x00873170,GameSpy pingerThink processes pending socket input before timeout checks
 _piRoomToType,0x00863BB0,gamespy-peer: maps a channel name to a RoomType; called by piGetRoomKeysCallbackA at 0x00865DB0
 _piSetPlayerIPAndProfileID,0x00863480,gamespy-peer: called by piKeyChanged at 0x008659C0 on the demangled username key
 _piSetPlayerRoomFlags,0x008635E0,gamespy-peer: called by piKeyChanged at 0x008659C0 on the b_flags key

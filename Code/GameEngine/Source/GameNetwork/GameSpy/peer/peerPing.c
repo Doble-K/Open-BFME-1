@@ -9,29 +9,42 @@ typedef void *DArray;
 
 #define INVALID_SOCKET ((SOCKET)-1)
 
-extern GSIBool pingerInitialized;
-extern GSIBool pingerShuttingDown;
-extern SOCKET pingerSocket;
-extern DArray pingerOutstanding;
-extern DArray pingerCompleted;
+extern GSIBool piInitialized;
+extern GSIBool piSettingData;
+extern SOCKET piSocket;
+extern DArray piActivePingList;
+extern DArray piCallbacks;
 
 int __stdcall closesocket(SOCKET socket);
 void SocketShutDown(void);
 void ArrayFree(DArray array);
+void piProcessIncoming(void);
+void piCheckTimeouts(void);
+void piCallCallbacks(void);
 
 void pingerShutdown(void)
 {
-	if (!pingerInitialized || pingerShuttingDown)
+	if (!piInitialized || piSettingData)
 		return;
 
-	if (pingerSocket != INVALID_SOCKET)
+	if (piSocket != INVALID_SOCKET)
 	{
-		closesocket(pingerSocket);
-		pingerSocket = INVALID_SOCKET;
+		closesocket(piSocket);
+		piSocket = INVALID_SOCKET;
 	}
 
 	SocketShutDown();
-	ArrayFree(pingerCompleted);
-	ArrayFree(pingerOutstanding);
-	pingerInitialized = 0;
+	ArrayFree(piActivePingList);
+	ArrayFree(piCallbacks);
+	piInitialized = 0;
+}
+
+void pingerThink(void)
+{
+	if (!piInitialized || piSettingData)
+		return;
+
+	piProcessIncoming();
+	piCheckTimeouts();
+	piCallCallbacks();
 }
