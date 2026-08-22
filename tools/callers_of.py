@@ -193,15 +193,27 @@ def vtable_bodies(data, off, resolve, starts, text, va):
     sys.exit('vtable 0x%08X: 256 .text pointers and no end' % va)
 
 
-def vcall_sites(text, lo, contain, global_va, slots):
-    """Functions that load the global and, within 48 bytes, call through one of
-    `slots` off a register: the virtual calls an E8 scan cannot see."""
+def vcall_sites(text, lo, bounds, global_va, slots):
+    """Functions that load the global and later call through one of `slots` off
+    a register: the virtual calls an E8 scan cannot see.
+
+    The search runs from the load to the end of the function that contains it.
+    A byte window instead of that boundary silently under-reports -- 48 bytes
+    finds 10 of the 15 `TheNetwork` sites -- and a metric that quietly misses
+    callers reads as coverage we do not have.
+    """
     hits = set()
     for load in (b'\x8b\x0d', b'\xa1', b'\x8b\x15'):  # mov ecx/eax/edx, [global]
         needle = load + struct.pack('<I', global_va)
         j = text.find(needle)
         while j != -1:
-            w = text[j:j + 48]
+            span = bounds(lo + j)
+            if span is None:
+                print('load of 0x%08X at 0x%08X lies in no known function, skipped'
+                      % (global_va, lo + j), file=sys.stderr)
+                j = text.find(needle, j + 1)
+                continue
+            w = text[j:span[1] - lo]
             for k in range(len(w) - 2):
                 if w[k] != 0xFF:
                     continue
@@ -209,12 +221,7 @@ def vcall_sites(text, lo, contain, global_va, slots):
                 if (mode == 0x50 and w[k + 2] in slots) or (
                         mode == 0x90 and k + 6 <= len(w)
                         and struct.unpack_from('<I', w, k + 2)[0] in slots):
-                    fn = contain(lo + j)
-                    if fn is None:
-                        print('virtual call on 0x%08X at 0x%08X lies in no known '
-                              'function, skipped' % (global_va, lo + j), file=sys.stderr)
-                    else:
-                        hits.add(fn)
+                    hits.add(span[0])
                     break
             j = text.find(needle, j + 1)
     return hits
@@ -263,11 +270,16 @@ def closure(seeds_path):
         for tgt in tgts:
             callers[tgt].add(src)
 
-    def contain(rva):
+    def bounds(rva):
+        """(start, end) of the function containing `rva`, or None."""
         i = bisect.bisect_right(starts, rva) - 1
         if i >= 0 and rva < starts[i] + sized[starts[i]]:
-            return starts[i]
+            return starts[i], starts[i] + sized[starts[i]]
         return None
+
+    def contain(rva):
+        span = bounds(rva)
+        return span[0] if span else None
 
     lo, size, raw = next(s for s in secs if s[0] <= starts[0] < s[0] + s[1])
     text = data[raw:raw + size]
@@ -284,7 +296,7 @@ def closure(seeds_path):
                 frontier[g].setdefault(body, 1)
     for g, sites in cfg['vcalls'].items():
         for global_va, slots in sites:
-            for fn in vcall_sites(text, lo, contain, int(global_va, 16), set(slots)):
+            for fn in vcall_sites(text, lo, bounds, int(global_va, 16), set(slots)):
                 frontier[g].setdefault(fn, 1)
 
     assigned = {}

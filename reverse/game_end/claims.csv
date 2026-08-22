@@ -1855,3 +1855,5 @@ patch,0x00662E4D,"B910270000->B9B80B0000|mov ecx, 0xbb8","hasLeaveRequestTimedOu
 insn,0x00576EE3,"cmp byte ptr [ecx + 0x43c], bl",BfmeAptScreenScoreScreen init: the internet (type 3) branch calls the online stats updater 0x000A5D40 only when TheGameSpyGame->m_isQM is set; no ladder POST on this path
 global,0x010879C4,0x005775DD,"_bfme_showScoreScreen 0x005774E0 pushes the ScoreScreen.apt literal: the APT screen replaced ZH TheShell->push(""Menus/ScoreScreen.wnd""); no Menus/ScoreScreen.wnd literal exists in the image"
 string,0x010879C4,ScoreScreen.apt,APT layout name the 1.03 score screen opens with (0x005775DD)
+global,0x012F8054,0x006E89F3,read by the unidentified index dispatcher 0x006E8800; open question in FINDINGS.md
+global,0x012F81A9,0x006E88DD,byte read and written by the unidentified index dispatcher 0x006E8800 (write at 0x006E8AF0)

@@ -126,11 +126,11 @@ CLOSURE_BASELINE = {
         "UNCLAIMED": (0, 0), "ASM": (8, 2732), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (0, 0), "identified": (8, 2732), "anonymous": (0, 0)},
     ("A_victory", 1): {
-        "UNCLAIMED": (4, 5816), "ASM": (41, 14918), "SMALL": (4, 75), "LIB": (4, 119),
-        "CPP": (13, 1156), "identified": (65, 22079), "anonymous": (1, 5)},
+        "UNCLAIMED": (4, 5816), "ASM": (42, 22558), "SMALL": (4, 75), "LIB": (4, 119),
+        "CPP": (13, 1156), "identified": (66, 29719), "anonymous": (1, 5)},
     ("A_victory", 2): {
-        "UNCLAIMED": (33, 21329), "ASM": (559, 149267), "SMALL": (43, 3520), "LIB": (15, 682),
-        "CPP": (146, 13112), "identified": (232, 51369), "anonymous": (564, 136541)},
+        "UNCLAIMED": (42, 30585), "ASM": (691, 186359), "SMALL": (58, 4622), "LIB": (29, 1709),
+        "CPP": (185, 15624), "identified": (307, 63871), "anonymous": (698, 175028)},
     ("B_script", 0): {
         "UNCLAIMED": (0, 0), "ASM": (1, 290), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (4, 19630), "identified": (5, 19920), "anonymous": (0, 0)},
@@ -147,8 +147,8 @@ CLOSURE_BASELINE = {
         "UNCLAIMED": (3, 5314), "ASM": (100, 32295), "SMALL": (7, 483), "LIB": (9, 710),
         "CPP": (54, 13330), "identified": (173, 52132), "anonymous": (0, 0)},
     ("C_results", 2): {
-        "UNCLAIMED": (11, 16462), "ASM": (233, 67591), "SMALL": (36, 3830), "LIB": (8, 466),
-        "CPP": (101, 15499), "identified": (178, 44291), "anonymous": (211, 59557)},
+        "UNCLAIMED": (11, 16462), "ASM": (224, 65623), "SMALL": (35, 3804), "LIB": (8, 466),
+        "CPP": (100, 15488), "identified": (172, 43645), "anonymous": (206, 58198)},
     ("D_desync", 0): {
         "UNCLAIMED": (0, 0), "ASM": (2, 861), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (0, 0), "identified": (2, 861), "anonymous": (0, 0)},
@@ -156,23 +156,23 @@ CLOSURE_BASELINE = {
         "UNCLAIMED": (0, 0), "ASM": (10, 2683), "SMALL": (1, 8), "LIB": (0, 0),
         "CPP": (1, 13), "identified": (10, 2683), "anonymous": (2, 21)},
     ("D_desync", 2): {
-        "UNCLAIMED": (0, 0), "ASM": (29, 2673), "SMALL": (10, 1074), "LIB": (0, 0),
-        "CPP": (3, 362), "identified": (7, 949), "anonymous": (35, 3160)},
+        "UNCLAIMED": (0, 0), "ASM": (27, 2400), "SMALL": (10, 1074), "LIB": (0, 0),
+        "CPP": (2, 324), "identified": (6, 911), "anonymous": (33, 2887)},
     ("E_leave", 0): {
         "UNCLAIMED": (0, 0), "ASM": (38, 11957), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (5, 463), "identified": (43, 12420), "anonymous": (0, 0)},
     ("E_leave", 1): {
-        "UNCLAIMED": (0, 0), "ASM": (113, 20156), "SMALL": (4, 122), "LIB": (0, 0),
-        "CPP": (86, 6128), "identified": (203, 26406), "anonymous": (0, 0)},
+        "UNCLAIMED": (1, 2094), "ASM": (115, 21732), "SMALL": (4, 122), "LIB": (0, 0),
+        "CPP": (86, 6128), "identified": (205, 29314), "anonymous": (1, 762)},
     ("E_leave", 2): {
-        "UNCLAIMED": (12, 8415), "ASM": (200, 59219), "SMALL": (28, 3312), "LIB": (6, 2774),
-        "CPP": (230, 18928), "identified": (324, 62269), "anonymous": (152, 30379)},
+        "UNCLAIMED": (19, 11835), "ASM": (246, 73963), "SMALL": (32, 3729), "LIB": (9, 2909),
+        "CPP": (235, 20558), "identified": (335, 67087), "anonymous": (206, 45907)},
     ("F_engine_quit", 0): {
         "UNCLAIMED": (0, 0), "ASM": (6, 13470), "SMALL": (0, 0), "LIB": (0, 0),
         "CPP": (0, 0), "identified": (3, 12059), "anonymous": (3, 1411)},
     ("F_engine_quit", 1): {
-        "UNCLAIMED": (17, 7410), "ASM": (116, 29332), "SMALL": (1, 3), "LIB": (3, 106),
-        "CPP": (32, 1926), "identified": (52, 14756), "anonymous": (117, 24021)},
+        "UNCLAIMED": (16, 5316), "ASM": (115, 21692), "SMALL": (1, 3), "LIB": (3, 106),
+        "CPP": (32, 1926), "identified": (51, 7116), "anonymous": (116, 21927)},
 }
 REGRESSING = ("UNCLAIMED", "ASM", "SMALL", "anonymous")
 IMPROVING = ("CPP", "identified")

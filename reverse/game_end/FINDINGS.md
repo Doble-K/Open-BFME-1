@@ -549,6 +549,11 @@ Rule A).
   singleton `0x012F148C`.
 * The listing callback `0x0064B6B0` (1836 B, no Ghidra function, no ledger row)
   and the PeerThread body `0x0064FB90` need a peer-thread pass.
+* `0x006E8800` (762 B, `gen_asm` dump, reached through ILT `0x0002F8D8` from
+  `0x006E8DF0`) loads `TheNetwork` and dispatches on an index over roughly
+  seventeen cases, reading `TheGameLogic+0x3C` and the globals `0x012F8054` and
+  `0x012F81A9`. It entered the closure only when the virtual-call scan stopped
+  using a byte window, and it is the one function of E tier 0-1 still unnamed.
 * `writeReportIfMismatched@BFMEDesyncCheck` `0x00065470` is a destructor;
   `native_desync_report.cpp` declares it as a plain method. Rename the pair when
   the constructor `0x000652C0` is converted.
