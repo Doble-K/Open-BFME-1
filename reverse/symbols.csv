@@ -150571,5 +150571,8 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ?slowDoesPathExist@Pathfinder@@QAE_NPAVObject@@PBUCoord3D@@1W4ObjectID@@@Z,0x0004A327,Pathfinder::slowDoesPathExist resolves to the retail ILT at 0x0004A327 and its body at 0x003EDF90; target evaluateTeamCanPathToWaypoint calls this exact four-argument path check
 ??0AICommandParms@@QAE@W4AICommandType@@W4CommandSourceType@@@Z,0x00030EA4,AICommandParms constructor resolves to the retail ILT at 0x00030EA4 and body 0x00185910; AICommandInterface::aiEnter constructs AICMD_ENTER parameters through this exact target
 ??1WaterTracksObj@@QAE@XZ,0x0003DD2F,WaterTracksRenderSystem::shutdown deletes WaterTracksObj through this exact retail ILT; target 0x003DD2F forwards to the proven 0x007AB150 WaterTracksObj destructor body
+?DX8_Assert@@YAXXZ,0x009024F0,DX8 index-buffer lock and unlock paths call the shared retail device/thread assertion helper
+?g_BFMEIndexBufferDebug@@3PAVBFMEIndexBufferDebugClass@@A,0x01336E5C,retail DX8 error path dispatches through the shared game debug manager global
+?BFME_DX8_Thread_Assert@@YAXXZ,0x00905B10,both retail IndexBufferClass lock destructors tail-dispatch to the shared DX8 thread assertion path
 ??1?$vector@UMem003BB060Element@@V?$allocator@UMem003BB060Element@@@_STL@@@_STL@@QAE@XZ,0x003BB060,Mem003BB060 uses the exact STLport vector destructor body; element stride 0x14 and call targets are proven by the target range
 ?erase@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@V1@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@@_STL@@QAEIABVAsciiString@@@Z,0x000106FE,Open-BFME5 REL32 pin from IgnorePreferences::setIgnore at 0x000AE990
