@@ -1,3 +1,7 @@
+// stlport
+#include <set>
+#include <vector>
+
 // Six destructors with an EH frame whose entire body is calls into the string
 // helper at 0x00887940 and whose members are then destroyed by it as well.
 //
@@ -43,6 +47,18 @@ public:
 	char * m_buffer;
 };
 
+// The element payload is twenty bytes: the string-like member at +0, a
+// four-byte scalar at +4, and the twelve-byte STLport tree at +8.  The vector
+// destructor below walks this payload in 0x14 steps, calling the two non-trivial
+// member destructors in declaration order.
+struct Mem003BB060Element
+{
+	Mem00887940   m_at00;
+	char          m_pad04[ 0x4 ];
+	_STL::set< int > m_at08;
+};
+typedef char Mem003BB060ElementMustBe20[ sizeof( Mem003BB060Element ) == 0x14 ? 1 : -1 ];
+
 // Sixteen bytes wide: 0x003BA500 destroys one of these at +0xC and the next
 // subobject it destroys sits at +0x1C.  That is an upper bound, not a
 // measurement -- anything between them that needs no destructor is invisible --
@@ -61,12 +77,7 @@ public:
 	char m_at00[ 0x8 ];
 };
 
-class Mem003BB060
-{
-public:
-	~Mem003BB060();
-	char * m_at00;
-};
+typedef _STL::vector< Mem003BB060Element > Mem003BB060;
 
 class Inner01073744
 {
