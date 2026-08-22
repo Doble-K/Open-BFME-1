@@ -242,3 +242,56 @@ int Rva007FD540( int result )
 
 	return result;
 }
+
+/* 0x007FE210.  The call is `ff 15` through an IAT slot, i.e. a __declspec
+ * (dllimport) __stdcall taking two arguments -- nothing is popped afterwards.
+ * THE IMPORT'S NAME NEVER REACHES THESE BYTES: an IAT call site is a DIR32
+ * relocation and the gate fills those four bytes from retail, so the name below
+ * is address-derived on purpose and asserts nothing about which API this is.
+ * What the bytes do fix is the shape: a two-argument stdcall probe over a
+ * sub-object at +0x54 that, when it reports non-zero, hands the whole object to
+ * a one-argument cdecl helper. */
+__declspec(dllimport) int __stdcall Rva01358E58Probe( void *object, int flag );
+
+void Rva007F0030( void *object );
+
+void Rva007FE210( void *object )
+{
+	if ( Rva01358E58Probe( (char *)object + 0x54, 1 ) )
+		Rva007F0030( object );
+}
+
+/* 0x007FEA00: a bare forwarder onto a no-argument stdcall import.  Nothing but
+ * the /GZ esp check surrounds it. */
+__declspec(dllimport) void __stdcall Rva01358E0CImport( void );
+
+void Rva007FEA00( void )
+{
+	Rva01358E0CImport();
+}
+
+/* 0x007FE620: the shutdown drain.  A flag is raised, the worker is pumped until
+ * a second flag clears, and the first flag is lowered again.  The 0x32 pushed
+ * to the one-argument stdcall import is a 50-unit wait -- a poll interval,
+ * which is what makes this a drain rather than a single hand-off.  Both globals
+ * and the import are address-derived; the import name never reaches the bytes,
+ * since an IAT call site is a DIR32 the gate fills from retail. */
+extern int g_Rva012C3CDCDraining;
+extern int g_Rva0130ACB8Pending;
+
+__declspec(dllimport) void __stdcall Rva01358F30Wait( int interval );
+
+void Rva007FEE40( void );
+
+void Rva007FE620( void )
+{
+	g_Rva012C3CDCDraining = 1;
+
+	while ( g_Rva0130ACB8Pending != 0 )
+	{
+		Rva007FEE40();
+		Rva01358F30Wait( 0x32 );
+	}
+
+	g_Rva012C3CDCDraining = 0;
+}
