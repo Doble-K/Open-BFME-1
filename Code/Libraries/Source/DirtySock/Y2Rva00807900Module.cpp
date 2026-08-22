@@ -43,7 +43,11 @@ int   Rva007FD510Bind( void *socket, const void *addr, int addrLen ); // 0x007FD
 void  Rva007FEA20ListInit( void *list );                    // 0x007FEA20
 int   Rva007FDE80SetCallback( void *socket, int callback, unsigned int rate,
 		void *data, void *proc );                           // 0x007FDE80
-void  Rva00807CF0( void *socket, int reason, void *data ); // 0x007FCF0 callback
+int   Rva00807CF0( void *socket, int reason, void *data ); // 0x00807CF0 callback
+int   Rva007FDA50Recv( void *socket, char *buffer, int length, int flags,
+		char *from, int *fromLength );                      // 0x007FDA50
+void  Rva007FEBD0Lock( void *lock );                        // 0x007FEBD0
+void  Rva007FECB0Unlock( void *lock );                      // 0x007FECB0
 void *Rva007F0000Alloc( int size );                         // 0x007F0000
 extern "C" void *memset( void *dest, int value, unsigned int count );
 
@@ -274,13 +278,22 @@ int Rva00807960( const char *host, int timeout )
 // the socket at +0x00, a one at +0x04, a list object at +0x0C that the same
 // initialiser 0x007FEA20 sets up everywhere else, and two constants at +0x34
 // and +0x38.  0x3C is the allocation size, so the tail is real, not padding.
+struct Rva00807EE0Entry;
+
 struct Rva00807BA0Ping
 {
 	void *m_socket;              // +0x00
 	int   m_field04;             // +0x04
 	int   m_pad08;
-	char  m_list0C[ 0x28 ];      // +0x0C
-	int   m_field34;             // +0x34
+	// The object 0x007FEA20 initialises and 0x007FEBD0/0x007FECB0 take and
+	// release around every mutation of the list below it.
+	char  m_lock0C[ 0x24 ];      // +0x0C .. +0x2F
+	// Head of the result list, walked to its tail by 0x00807CF0.  It sits
+	// INSIDE what an earlier reading of this struct called the list object;
+	// 0x00807CF0 taking the lock at +0x0C and the head at +0x30 separately
+	// is what splits them.
+	Rva00807EE0Entry *m_list;    // +0x30
+	int   m_credits;             // +0x34
 	int   m_field38;             // +0x38
 };
 
@@ -330,10 +343,10 @@ Rva00807BA0Ping *Rva00807BA0( void )
 			memset( ping, 0, 0x3C );
 			ping->m_socket = sock;
 			ping->m_field04 = 1;
-			ping->m_field34 = 8;
+			ping->m_credits = 8;
 			ping->m_field38 = 0x40;
 
-			Rva007FEA20ListInit( ping->m_list0C );
+			Rva007FEA20ListInit( ping->m_lock0C );
 			Rva007FDE80SetCallback( ping->m_socket, 2, 5000, ping,
 					(void *)Rva00807CF0 );
 		}
@@ -479,4 +492,104 @@ Rva00807EE0Entry *Rva00807FB0( const unsigned char *packet,
 	}
 
 	return entry;
+}
+
+// The ICMP packet as this module reads it -- an IP header with the ICMP type
+// at +0x14.  Only that one field is touched through the pointer; everything
+// else the two builders need they index out of the raw buffer themselves.
+struct Rva00807CF0Packet
+{
+	char          m_ip[ 0x14 ];   // +0x00
+	unsigned char m_type;         // +0x14
+};
+
+// 0x00807CF0 IS THE CALLBACK 0x00807BA0 INSTALLS, and it is a DRAIN LOOP: it
+// keeps receiving until the socket has nothing left, rather than handling one
+// datagram per call.  Its first two arguments -- the socket and the reason the
+// socket layer is calling -- are never read; only the user data is, which is
+// the ping record.
+//
+// THE DISPATCH IS A SWITCH, NOT AN IF CHAIN.  Both type tests sit together
+// before either body, each a forward `je` to its own arm, which is MSVC's /Od
+// switch shape; an if/else-if compiles to a test, a body, a jump over the rest,
+// then the next test.  The switch temp is ONE BYTE, which is why the type is
+// read through a struct pointer rather than out of the buffer directly -- a
+// promoted `response[0x14]` would give a four-byte temp.
+//
+// Type 0 is ECHOREPLY and type 0x0B is TIMEEXCEEDED, matching the two builders
+// and their own log lines; anything else is logged as "Unhandled ICMP type %d"
+// and dropped, and the default arm re-reads the field rather than using the
+// switch temp.
+//
+// THE CREDIT CHECK COMES BEFORE THE DISPATCH AND CONSUMES A DATAGRAM.  A reply
+// that arrives with the counter at zero is received and then thrown away
+// unparsed, not left in the socket; the counter is only decremented when an
+// entry was actually built.
+//
+// The append walks to the tail with a POINTER-TO-POINTER: retail starts at the
+// head slot itself and advances to whatever it holds, so the empty list and
+// the non-empty one take the same path.  The loop is a `for` with an empty
+// body -- retail jumps forward over the advance to the test, which is what a
+// for-loop does and a while-loop does not.
+//
+// THE RECEIVE IS THE LOOP'S CONDITION, COMMA AND ALL.  Retail leaves the loop
+// with a single `jle`, which is what a while-condition compiles to; an
+// `if( len <= 0 ) break;` inside a for(;;) gives `jg` over a `jmp` instead --
+// one byte longer and enough to move every displacement after it.  The length
+// has to be re-armed to 0x10 before each receive because the call overwrites
+// it with the datagram size, and putting that back inside the condition with a
+// comma is what keeps it at the top of the loop where the bytes have it.
+int Rva00807CF0( void *socket, int reason, void *ref )
+{
+	int len;
+	char sin[ 0x10 ];
+	char response[ 0x424 ];
+	Rva00807EE0Entry *entry;
+	Rva00807EE0Entry **link;
+	Rva00807BA0Ping *ping;
+	Rva00807CF0Packet *packet;
+
+	ping = (Rva00807BA0Ping *)ref;
+	packet = (Rva00807CF0Packet *)response;
+
+	while( len = 0x10,
+			( len = Rva007FDA50Recv( ping->m_socket, response, 0x424, 0,
+				sin, &len ) ) > 0 )
+	{
+		if( ping->m_credits < 1 )
+			continue;
+
+		entry = 0;
+		switch( packet->m_type )
+		{
+		case 0:
+			entry = Rva00807FB0( (const unsigned char *)response,
+					(const unsigned char *)sin, len );
+			break;
+		case 0x0B:
+			entry = Rva00807EE0( (const unsigned char *)response,
+					sin, len );
+			break;
+		default:
+			Rva007FE780Printf(
+					"_ProtoPingCallback: Unhandled ICMP type %d\n",
+					packet->m_type );
+			break;
+		}
+
+		if( entry != 0 )
+		{
+			Rva007FEBD0Lock( ping->m_lock0C );
+
+			for( link = &ping->m_list; *link != 0;
+					link = (Rva00807EE0Entry **)*link )
+				;
+			*link = entry;
+
+			ping->m_credits = ping->m_credits - 1;
+			Rva007FECB0Unlock( ping->m_lock0C );
+		}
+	}
+
+	return 0;
 }
