@@ -295,3 +295,62 @@ void Rva007FE620( void )
 
 	g_Rva012C3CDCDraining = 0;
 }
+
+/* 0x007FEAA0: reset one list, defaulting to the module's own when handed a null
+ * pointer.  TWO stack slots hold what reads as one value because /Od
+ * materialises a ternary into a temporary and then assigns it -- the second
+ * slot is the compiler's, not a second variable in the source.  The trailing
+ * one-argument stdcall import is handed the sub-object at +0xC. */
+struct Rva0130AB68List
+{
+	void *m_first;                  /* +0x00 */
+	void *m_last;                   /* +0x04 */
+	int m_count;                    /* +0x08 */
+	char m_body[ 4 ];               /* +0x0C, handed to the import */
+};
+
+extern struct Rva0130AB68List g_Rva0130AB68Default;
+
+__declspec(dllimport) void __stdcall Rva01358D0CReset( void *body );
+
+void Rva007FEAA0( struct Rva0130AB68List *list )
+{
+	struct Rva0130AB68List *node = list ? list : &g_Rva0130AB68Default;
+
+	node->m_count = 0;
+	Rva01358D0CReset( node->m_body );
+}
+
+/* 0x007FE670: the other half of the shutdown handshake at 0x007FE620.  That one
+ * raises the draining flag and pumps while work is pending; this one clears the
+ * pending flag and waits for the drain COUNT to fall to zero -- `jle` is a
+ * SIGNED test, so the flag at 0x012C3CDC is a count rather than a boolean --
+ * before resetting both lists.  Passing null to the reset selects the module's
+ * own list, which is why one call has no argument of its own. */
+void Rva007FE670( void )
+{
+	g_Rva0130ACB8Pending = 0;
+
+	while ( g_Rva012C3CDCDraining > 0 )
+		Rva01358F30Wait( 1 );
+
+	Rva007FEAA0( 0 );
+	Rva007FEAA0( (struct Rva0130AB68List *)&g_Rva0130AC90 );
+}
+
+/* 0x007FEA20: the initialiser counterpart of the reset at 0x007FEAA0 -- same
+ * null-defaulting selection, but it clears all three head words rather than the
+ * count alone, and hands the +0xC sub-object to a DIFFERENT import slot.  One
+ * slot initialising what the other tears down is the usual pairing for an
+ * embedded lock, though the bytes fix only that the two slots differ. */
+__declspec(dllimport) void __stdcall Rva01358E4CInit( void *body );
+
+void Rva007FEA20( struct Rva0130AB68List *list )
+{
+	struct Rva0130AB68List *node = list ? list : &g_Rva0130AB68Default;
+
+	node->m_first = 0;
+	node->m_last = 0;
+	node->m_count = 0;
+	Rva01358E4CInit( node->m_body );
+}
