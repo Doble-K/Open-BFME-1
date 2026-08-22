@@ -75269,3 +75269,4 @@ _Rva0081BDEA@4,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; the @4
 _Rva007FE780,0x007FE780,debug text sink; reached only from the folded-out guard at the tail of 0x007FE520, address read from that dead REL32
 _vsprintf,0x009F70AE
 _Rva007FD660,0x007FD660,Y4 lane: DirtySock address remap helper; fills a 16-byte scratch and returns it, called by the connect wrapper at 0x007FD5C0
+_Rva007FE310,0x007FE310,Y4 lane: DirtySock address translator (dest,destLen,src,srcLen); the self test at 0x007FDEE0 round-trips 192.168.1.1:79 through it

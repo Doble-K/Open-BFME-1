@@ -626,3 +626,58 @@ int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
 	return Rva007FD540( connect( socket->m_socket,
 		Rva007FD660( temp, address ), addressLength ) );
 }
+
+/* 0x007FDEE0 is a SELF-TEST of the address translator at 0x007FE310, and it
+ * says so in constants rather than in shape.  It builds one socket address for
+ * 192.168.1.1 port 79 -- 0xC0A80101 is the dotted quad written out, and the
+ * port bytes are the folded halves of 0x004F -- pushes it through the
+ * translator, and reads the address back out of the result.  Nothing else in
+ * the body varies, so the returned value is only interesting when compared
+ * against the value that went in.
+ *
+ * BOTH FRAME NAMES ARE RETAIL'S OWN, from the /GZ descriptor: `inet` and
+ * `host`, each 0x10 bytes.  The pair of names is itself the clue to what the
+ * translator does -- one side is the network form, the other the library's own.
+ *
+ * THE BYTE ORDER IS THE EVIDENCE FOR THE LAYOUT.  The address is stored into a
+ * local and then shifted right eight bits at a time, LOW byte written to the
+ * HIGHEST offset first, which is big-endian placement at +4..+7; the read-back
+ * at the end reassembles from +4 down to +7 with movzx, so those bytes are
+ * unsigned.  The port at +2..+3 is written high half first and needs no
+ * temporary because both halves of a constant fold at compile time.  That
+ * difference in spelling between the port and the address is visible in the
+ * bytes and is reproduced here rather than tidied up.
+ */
+struct Rva007FDEE0Addr
+{
+	short m_family;                 /* +0x00 */
+	unsigned char m_data[ 14 ];     /* +0x02 */
+};
+
+void *__cdecl memset( void *destination, int value, unsigned int count );
+
+int Rva007FE310( void *host, int hostLength, const void *inet, int inetLength );
+
+int Rva007FDEE0( void )
+{
+	struct Rva007FDEE0Addr inet;
+	struct Rva007FDEE0Addr host;
+	unsigned int uAddress;
+
+	memset( &inet, 0, sizeof inet );
+	inet.m_family = 2;
+	inet.m_data[ 0 ] = (unsigned char)( 0x004F >> 8 );
+	inet.m_data[ 1 ] = (unsigned char)0x004F;
+
+	uAddress = 0xC0A80101;
+	inet.m_data[ 5 ] = (unsigned char)uAddress;  uAddress >>= 8;
+	inet.m_data[ 4 ] = (unsigned char)uAddress;  uAddress >>= 8;
+	inet.m_data[ 3 ] = (unsigned char)uAddress;  uAddress >>= 8;
+	inet.m_data[ 2 ] = (unsigned char)uAddress;
+
+	memset( &host, 0, sizeof host );
+	Rva007FE310( &host, sizeof host, &inet, sizeof inet );
+
+	return ( ( ( ( host.m_data[ 2 ] << 8 ) | host.m_data[ 3 ] ) << 8
+		| host.m_data[ 4 ] ) << 8 ) | host.m_data[ 5 ];
+}
