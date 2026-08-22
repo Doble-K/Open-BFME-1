@@ -74716,3 +74716,48 @@ _ciSocketDisconnect,0x0085A990,gamespy-chat: teardown on the connect failure pat
 ?GetGameCommandSize@NetPacket@@KAIPAVNetCommandMsg@@@Z,0x00676A00,GetBufferSizeNeededForCommand's jump table at 0x0067F378 tail-jumps here for command type 4 (GAMECOMMAND) exactly as its other six call-arms reach the already-ledgered Get*CommandSize helpers; the body opens with constructGameMessage and a GameMessageParser which is what the reference's GetGameCommandSize does
 ??0GameSlot@@QAE@ABV0@@Z,0x0006E600,the base-class copy constructor LANGameSlot's own copy constructor (0x00686D50) calls on (this src) at offset 0 before storing LANGameSlot's vtable; the base is GameSlot in the layout LANGameSlot_operator.cpp and LANGameSlot_dtor.cpp both pin
 ??0LANPlayer@@QAE@ABV0@@Z,0x006869C0,the copy constructor LANGameSlot's own (0x00686D50) calls on this+0x44 from src+0x44 which is LANPlayer m_user in that layout; the body itself copy-constructs LANPlayer's three UnicodeString handles and four trailing dwords and returns this
+?call@Gen0001C184@@QAEXPAVY1ForEachArg@@@Z,0x0001C184,element callee of the 0x003D0F60 for-each loop reached via incremental-link thunk; address-derived name
+?call@Gen00041FE7@@QAEXPAVY1ForEachArg@@@Z,0x00041FE7,element callee of the 0x003D0FA0 for-each loop reached via incremental-link thunk; address-derived name
+?call@Gen0000C4F0@@QAEXPAVY1ForEachArg@@@Z,0x0000C4F0,element callee of the 0x003D0FE0 for-each loop reached via incremental-link thunk; address-derived name
+?call@Gen0000D84B@@QAEXXZ,0x0000D84B,element callee of the 0x003CFC60 for-each loop reached via incremental-link thunk; address-derived name
+?call@Gen00025603@@QAEXXZ,0x00025603,element callee of the 0x003D2410 for-each loop reached via incremental-link thunk; address-derived name
+?call@Gen000135B1@@QAEXPAVY1ForEachArg@@0@Z,0x000135B1,element callee of the 0x003CD260 for-each loop reached via incremental-link thunk; address-derived name
+?call@Gen00036A9D@@QAEXXZ,0x00036A9D,element callee of the 0x003CDE60 for-each loop reached via incremental-link thunk; address-derived name
+?call@Gen00018BF1@@QAEXXZ,0x00018BF1,element callee of the 0x003D2EE0 for-each loop reached via incremental-link thunk; address-derived name
+?pre@Gen0004A5A7@@QAEXXZ,0x0004A5A7,leading member call of the 0x003D0EE0 nested walk reached via incremental-link thunk; address-derived name
+?test@Gen0003C2E5@@QAE_NPAX0@Z,0x0003C2E5,first range predicate of the 0x003D08F0/0x003D09A0 pair reached via incremental-link thunk; address-derived name
+?test@Gen00008E68@@QAE_NPAX0@Z,0x00008E68,second range predicate of the 0x003D08F0/0x003D09A0 pair reached via incremental-link thunk; address-derived name
+?check@Gen00003B1B@@QAE_NH@Z,0x00003B1B,stop question asked by 0x003D08F0 reached via incremental-link thunk; address-derived name
+?apply@Gen00006D20@@QAEXPAVY1RangeWrapper@@@Z,0x00006D20,element callee of the 0x003D08F0 dispatch loop reached via incremental-link thunk; address-derived name
+?apply@Gen00025C75@@QAEXPAVY1RangeContext@@@Z,0x00025C75,element callee of the 0x003D09A0 dispatch loop reached via incremental-link thunk; address-derived name
+?Rva007FE780Printf@@YAXPBDZZ,0x007FE780,Y2 DirtySock lane: address-derived; variadic logger every ProtoMangle body calls with its own log line
+?Rva007F0000Alloc@@YAPAXH@Z,0x007F0000,Y2 DirtySock lane: address-derived; one-argument allocator ProtoMangleCreate calls for the 0x214-byte module record
+?Rva007F0030Free@@YAXPAX@Z,0x007F0030,Y2 DirtySock lane: address-derived; the matching one-argument release, called by ProtoMangleDestroy
+?Rva007FD4E0SocketShutdown@@YAXPAXH@Z,0x007FD4E0,Y2 DirtySock lane: address-derived; two-argument socket shutdown called with how=2 before the close
+?Rva007FD3F0SocketClose@@YAXPAX@Z,0x007FD3F0,Y2 DirtySock lane: address-derived; one-argument socket close
+?Rva007FDFF0Connect@@YAPAXPBDH@Z,0x007FDFF0,Y2 DirtySock lane: address-derived; 0x008046E0 stores its result in the http record and passes it a 30 timeout
+?Rva00804920Update@@YAXPAURva008042B0Http@@@Z,0x00804920,Y2 DirtySock lane: address-derived; the 2668-byte ProtoMangle state machine whose log lines all prefix ProtoMangle:
+_strlen,0x009F75D0,Y2 lane: MSVCR71 import stub; name read from the import-name table the descriptor OriginalFirstThunk points at (IAT slot 0x013594B4)
+_strcpy,0x009F75BE,Y2 lane: MSVCR71 import stub; name read from the import-name table (IAT slot 0x013594A8)
+_memset,0x009F75C4,Y2 lane: MSVCR71 import stub; name read from the import-name table (IAT slot 0x01359460)
+?Rva007FFB50AddrText@@YAPADI@Z,0x007FFB50,Y2 DirtySock lane: address-derived; feeds the %s of the /getPeerAddress myIP query so it renders an address as text
+?Rva007FE310SocketHost@@YAXPAURva00804440SockAddr@@H0H@Z,0x007FE310,Y2 DirtySock lane: address-derived; four-argument (buf,len,buf,len) call that fills a sockaddr with the local interface reaching a destination
+?getBool@Rva007E8810Message@@QAE_NPBD_N@Z,0x007E89C0,Y4 lane: FESL message lookup bool field by key with default; ret 8; returns _N in al
+_strncpy,0x009F70BA,Y4 lane: strncpy import thunk (gen-import ?ji_009f70ba@@YAXXZ names the same address)
+__strlwr,0x009F7D7A,Y4 lane: _strlwr import thunk (gen-import ?ji_009f7d7a@@YAXXZ names the same address)
+_time,0x009F6F52,Y4 lane: time import thunk (gen-import ?ji_009f6f52@@YAXXZ names the same address)
+_Rva007FD540,0x007FD540,Y4 lane: DirtySock winsock error translator called by 0x007FD510/0x007FD7A0; body still unclaimed
+_Rva007FEBD0,0x007FEBD0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; body still unclaimed
+_Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; body still unclaimed
+?collect@Y3AdjTail_005C98E0@@QAEXPAVY3AdjOut@@@Z,0x005C98E0,Y4 lane: restored pin the Y3 lane needs; a concurrent whole-file rewrite of symbols.csv dropped it. Address is the one its own address-derived name states and the one its five callers REL32 to.
+?resetAll@Y3ResetTail_005C5A00@@QAEXXZ,0x005C5A00,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name and the byte gate confirms it
+??4Y3AssignTail_005CBEE0@@QAEAAV0@ABV0@@Z,0x005CBEE0,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name and the byte gate confirms it
+?notifyAll@Y3NotifyTail_005C5A50@@QAEXPAX@Z,0x005C5A50,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name and the byte gate confirms it
+??0Sub005C92F0@@QAE@ABV0@@Z,0x005C92F0,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??0Sub005CB130@@QAE@ABV0@@Z,0x005CB130,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??0Sub005CBE40@@QAE@ABV0@@Z,0x005CBE40,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??0Sub005CD2D0@@QAE@ABV0@@Z,0x005CD2D0,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??0Sub005CD770@@QAE@ABV0@@Z,0x005CD770,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??0Sub005CDC20@@QAE@ABV0@@Z,0x005CDC20,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??0Sub005CE420@@QAE@ABV0@@Z,0x005CE420,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??0Sub005CEB10@@QAE@ABV0@@Z,0x005CEB10,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
