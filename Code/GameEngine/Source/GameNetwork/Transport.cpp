@@ -33,22 +33,23 @@
 extern unsigned long CRC_Memory( const unsigned char *data, unsigned long length, unsigned long crc );
 
 
-// ??0Transport@@QAE@XZ present-unmatched
 /**
  * BFME does in the constructor what the reference does in init: clear both
  * message rings and every statistics counter. init is left with nothing to do
  * but bind.
  *
- * This compiles to retail's exact length (182B) and to the same instructions,
- * but not yet to the same bytes. Retail strength-reduces the clear loop onto
- * &m_inBuffer[i].length, so the in-buffer's last three stores get displacements
- * 0/+4/+8 and the out buffer is addressed backwards from there; writing the
- * buffers in this order anchors on &m_outBuffer[i].length instead, and writing
- * them the other way round anchors on &m_inBuffer[i].data. Both candidates give
- * three cheap displacements, so the tie-break is not the source order and is
- * still unidentified. Everything else -- field order, the two rep-stosd memsets,
- * the 0x80 downcount, the statistics loop's six stores in declaration order --
- * already matches.
+ * Two things about the clear loop are in the bytes and neither is free.
+ *
+ * The out buffer is cleared first. Retail strength-reduces the loop onto
+ * &m_inBuffer[i].length -- the in buffer's last three stores get displacements
+ * 0/+4/+8 and everything else is addressed backwards from there -- and which
+ * of the ten addresses MSVC picks as the induction variable depends on the
+ * order the two blocks are written in.
+ *
+ * The entries are reached through a local pointer each rather than subscripted
+ * in place. Subscripting compiles to the same instructions and the same 182
+ * bytes but anchors the loop on &m_outBuffer[i].length, one block earlier;
+ * with the pointers the anchor lands where retail has it.
  */
 Transport::Transport(void)
 {
@@ -61,17 +62,19 @@ Transport::Transport(void)
 	Int i;
 	for (i=0; i<MAX_MESSAGES; ++i)
 	{
-		m_inBuffer[i].header.crc = 0;
-		memset(m_inBuffer[i].data, 0, MAX_MESSAGE_LEN);
-		m_inBuffer[i].length = 0;
-		m_inBuffer[i].addr = 0;
-		m_inBuffer[i].port = 0;
+		TransportMessage *out = &m_outBuffer[i];
+		out->header.crc = 0;
+		memset(out->data, 0, MAX_MESSAGE_LEN);
+		out->length = 0;
+		out->addr = 0;
+		out->port = 0;
 
-		m_outBuffer[i].header.crc = 0;
-		memset(m_outBuffer[i].data, 0, MAX_MESSAGE_LEN);
-		m_outBuffer[i].length = 0;
-		m_outBuffer[i].addr = 0;
-		m_outBuffer[i].port = 0;
+		TransportMessage *in = &m_inBuffer[i];
+		in->header.crc = 0;
+		memset(in->data, 0, MAX_MESSAGE_LEN);
+		in->length = 0;
+		in->addr = 0;
+		in->port = 0;
 	}
 
 	for (i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
