@@ -35,6 +35,12 @@ public:
 	TurretAIAimTurretState(TurretStateMachine *machine);
 };
 
+// ??0TurretState@@IAE@PAVTurretStateMachine@@VAsciiString@@@Z
+TurretState::TurretState(TurretStateMachine *machine, AsciiString name) :
+	State(reinterpret_cast<StateMachine *>(machine), name)
+{
+}
+
 // ??0TurretAIAimTurretState@@QAE@PAVTurretStateMachine@@@Z
 TurretAIAimTurretState::TurretAIAimTurretState(TurretStateMachine *machine) :
 	TurretState(machine, "TurretAIAimTurretState")
