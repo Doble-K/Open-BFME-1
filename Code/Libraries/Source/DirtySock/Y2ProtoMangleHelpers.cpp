@@ -33,7 +33,10 @@ struct Rva008042B0Http;
 // ---------------------------------------------------------------- callees
 // Addresses read from the REL32 at the call sites below; each name is pinned in
 // reverse/symbols.csv and derived from its address, not recovered.
-void  Rva007FE780Printf( const char *format, ... );   // 0x007FE780
+// RETURNS INT.  The definition in Y4DirtySockDebug.c ends `xor eax,eax`, and
+// 0x00805E50 stores that result into a local it never reads -- which is the
+// only reason the return type is visible from this side at all.
+int   Rva007FE780Printf( const char *format, ... );   // 0x007FE780
 void *Rva007F0000Alloc( int size );                   // 0x007F0000
 void  Rva007F0030Free( void *block );                 // 0x007F0030
 void  Rva007FD4E0SocketShutdown( void *socket, int how );  // 0x007FD4E0
@@ -482,6 +485,8 @@ void *Rva007FD2D0SocketOpen( int family, int type, int protocol );
 int   Rva007FD510Bind( void *socket, const void *addr, int addrLen );
 void  Rva007FDB60SocketInfo( void *socket, int selector, void *buffer,
 		int bufferSize );
+int   Rva007FD920Send( void *socket, const char *buffer, int length,
+		int flags, const char *to, int toLength );
 
 // 0x008054A0 IS THE MODULE'S STATE MACHINE, driven by whatever the HTTP
 // sub-object has finished.  It runs at most two steps per call: state 1 reads a
@@ -566,12 +571,16 @@ struct Rva00805960Probe
 {
 	int  m_index;                // +0x00
 	int  m_count;                // +0x04
-	char m_pad08[ 0x08 ];
+	// The peer this probe is aimed at, named by 0x00805E50 writing them into a
+	// sockaddr's address and port slots.
+	unsigned int m_peerAddr;     // +0x08
+	int  m_peerPort;             // +0x0C
 	// The port to probe, or -1 for "pick one".  0x00805C70 compares it against
 	// the module's own port and logs it as "probe port %d".
 	int  m_port;                 // +0x10
 	int  m_serial;               // +0x14
-	char m_pad18[ 0x40 ];
+	// Passed to "tag=%s" in the probe message, so it is text.
+	char m_tag[ 0x40 ];          // +0x18
 };
 
 // Three neighbours 0x00805960 drives, all still dumps and all pinned by
@@ -709,4 +718,68 @@ int Rva00805C70( Rva00804150ProtoMangleRef *ref, Rva00805960Probe *probe )
 
 	Rva007FDB60SocketInfo( ref->m_socket, 'bind', bindaddr, 0x10 );
 	return ( (unsigned char)bindaddr[ 2 ] << 8 ) | (unsigned char)bindaddr[ 3 ];
+}
+
+// 0x00805E50 SENDS ONE PROBE, and the message it builds is a tag=value block:
+// "sourceIP=%s\r\nsourcePort=%d\r\ntag=%s\r\nsendCount=%d\r\n" -- the same
+// shape 0x00805710 reads on the way back in.  Four of the probe block's fields
+// get names from it and from the sockaddr it fills: +0x08 and +0x0C are the
+// peer's address and port, +0x18 is the tag text, and +0x00 is the send count
+// the caller was already using as a loop index.
+//
+// THE WHOLE MESSAGE IS ONE sprintf WITH A NESTED CALL.  Retail pushes the last
+// three arguments, then evaluates the address-to-text helper and pushes its
+// result, then the format and the buffer -- MSVC's right-to-left order, which
+// is what puts the helper's own argument push and its `add esp,4` in the middle
+// of sprintf's argument list.  Splitting it into a temporary does not
+// reproduce that.
+//
+// The length sent is strlen + 1, so the terminator goes on the wire.  Success
+// is judged by the byte count matching exactly -- a short send is reported as
+// an error with its count, and neither branch returns anything: this body only
+// logs.  The printer's return is stored into a local and never read, which is
+// retail's and is why that local exists at all.
+//
+// The trailing line -- "sending probe %d/%d (%d) from port %d\n" -- is
+// logged AFTER the send rather than before it, and its third number is the
+// serial the caller counts, not anything in the block.
+void Rva00805E50( Rva00804150ProtoMangleRef *ref, Rva00805960Probe *probe,
+		int sourcePort, int serial )
+{
+	char peeraddr[ 0x10 ];
+	char strMesg[ 0x80 ];
+	int sent;
+	int length;
+	unsigned int work;
+	int result;
+
+	*(unsigned short *)( peeraddr + 0 ) = 2;
+	*(unsigned short *)( peeraddr + 2 ) = 0;
+	*(int *)( peeraddr + 4 ) = 0;
+	*(int *)( peeraddr + 8 ) = 0;
+	*(int *)( peeraddr + 12 ) = 0;
+
+	work = probe->m_peerAddr;
+	peeraddr[ 7 ] = (char)work;  work >>= 8;
+	peeraddr[ 6 ] = (char)work;  work >>= 8;
+	peeraddr[ 5 ] = (char)work;  work >>= 8;
+	peeraddr[ 4 ] = (char)work;
+	peeraddr[ 2 ] = (char)( probe->m_peerPort >> 8 );
+	peeraddr[ 3 ] = (char)probe->m_peerPort;
+
+	sprintf( strMesg,
+			"sourceIP=%s\r\nsourcePort=%d\r\ntag=%s\r\nsendCount=%d\r\n",
+			Rva007FFB50AddrText( ref->m_localAddr ), sourcePort, probe->m_tag,
+			probe->m_index );
+
+	length = strlen( strMesg ) + 1;
+	sent = Rva007FD920Send( ref->m_socket, strMesg, length, 0, peeraddr, 0x10 );
+
+	if( sent == length )
+		result = Rva007FE780Printf( "ProtoMangle: Success " );
+	else
+		result = Rva007FE780Printf( "ProtoMangle: Error %d ", sent );
+
+	Rva007FE780Printf( "sending probe %d/%d (%d) from port %d\n",
+			probe->m_index, probe->m_count, serial, sourcePort );
 }

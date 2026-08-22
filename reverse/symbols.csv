@@ -75372,3 +75372,4 @@ _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXX
 ?Rva00805A70NextProbe@@YAHPAURva00805960Probe@@PAURva00804150ProtoMangleRef@@PBD@Z,0x00805A70,Y2 DirtySock lane: address-derived; 0x00805960 calls it cdecl with three arguments to fill a 0x58-byte Probe from the response text
 ?Rva00805C70@@YAHPAURva00804150ProtoMangleRef@@PAURva00805960Probe@@@Z,0x00805C70,Y2 DirtySock lane: address-derived; 0x00805960 calls it once per probe and treats a negative result as fatal
 ?Rva00805E50@@YAXPAURva00804150ProtoMangleRef@@PAURva00805960Probe@@HH@Z,0x00805E50,Y2 DirtySock lane: address-derived; 0x00805960 calls it once per entry inside a probe
+?Rva007FE780Printf@@YAHPBDZZ,0x007FE780,Y2 DirtySock lane: the int-returning spelling of the variadic logger; the definition in Y4DirtySockDebug.c returns 0 and 0x00805E50 stores that result

@@ -35,7 +35,7 @@ unsigned int Rva007FFAD0( unsigned int value );             // 0x007FFAD0
 extern "C" unsigned int strtoul( const char *text, char **end, int base );
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
 
-void Rva007FE780Printf( const char *format, ... );          // 0x007FE780
+int  Rva007FE780Printf( const char *format, ... );          // 0x007FE780
 int  Rva00808220( Rva00807BA0Ping *ping, unsigned int address,
 		const char *text, int length, int id );             // 0x00808220
 void Rva007FD3F0SocketClose( void *socket );                // 0x007FD3F0
