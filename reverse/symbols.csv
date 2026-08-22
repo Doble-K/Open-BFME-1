@@ -75248,3 +75248,10 @@ _ciBufferPreAppend,0x0085A740,gamespy-chatSocket internal call from exact ciSock
 ?TheAptPalantir@@3PAVAptPalantir@@A,0x00EF4B98,global allocated as a 0x584-byte AptPalantir at initializer 0x006FC330; constructor 0x0079D9F0 anchors RadarViewBoxEdge and the callback table carries AptPalantir method names
 ?TheBannerUI@@3PAVBannerUI@@A,0x00EF4B70,BannerUI global used by the existing BannerUI parser and constructor sources; adjacent store owns the parsed BannerType collection
 _Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by the translator at 0x007FD540; the ledger names this address ?ji_0081be08, this is the C spelling
+?getInfoResponseForStatus@@YAXPAVGPConnection@@PAUGPGetInfoResponseArg@@PAX@Z,0x0063A980,Buddy status callback helper identified by its GP callback registration and writes into the status response
+?getNickForMessage@@YAXPAVGPConnection@@PAUGPGetInfoResponseArg@@PAX@Z,0x0063A8E0,Buddy message callback helper identified by its GP callback registration and nick copy into the message response
+?getInfoResponseForRequest@@YAXPAVGPConnection@@PAUGPGetInfoResponseArg@@PAX@Z,0x0063A910,Buddy request callback helper identified by its GP callback registration and identity copies into the request response
+?gpGetInfo@@YAXPAVGPConnection@@HHHP6AX0PAX1@Z1@Z,0x008E9FB0,C++ declaration shim for the independently matched vendored GameSpy gpGetInfo body
+?gpGetBuddyStatus@@YAXPAVGPConnection@@HPAUGPBuddyStatus@@@Z,0x008EA400,C++ declaration shim for the independently identified GameSpy gpGetBuddyStatus body
+?MultiByteToWideCharSingleLine@@YA?AV?$basic_string@GU?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@PBD@Z,0x00028C7C,incremental-link thunk used by both Buddy message and request callbacks
+?TheGameSpyBuddyMessageQueue@@3PAVGameSpyBuddyMessageQueueInterface@@A,0x00EF71B4,Buddy message queue global used by independently identified callback and queue methods
