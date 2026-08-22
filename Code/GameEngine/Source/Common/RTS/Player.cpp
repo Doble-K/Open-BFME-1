@@ -3450,22 +3450,25 @@ Bool Player::doesObjectQualifyForBattlePlan( Object *obj ) const
 
 //-------------------------------------------------------------------------------------------------
 // note, bonus is an in-out parm.
-// ?changeBattlePlan@Player@@QAEXW4BattlePlanStatus@@HPAVBattlePlanBonuses@@@Z present-unmatched
 void Player::changeBattlePlan( BattlePlanStatus plan, Int delta, BattlePlanBonuses *bonus )
 {
 	DUMPBATTLEPLANBONUSES(bonus, this, NULL);
+	// The BFME retail layouts differ from the later SAGE headers retained by
+	// this tree.  Keep the accesses tied to the BFME ABI used by this body.
+	Int *const battlePlans = reinterpret_cast<Int *>(reinterpret_cast<char *>(this) + 0x64);
+	char *const battlePlanBonus = reinterpret_cast<char *>(bonus);
 	Bool addBonus = false;
 	Bool removeBonus = false;
 	switch( plan )
 	{
 		case PLANSTATUS_BOMBARDMENT:
 		{
-			m_bombardBattlePlans += delta;
-			if( m_bombardBattlePlans == 1 && delta == 1 )
+			battlePlans[ 0 ] += delta;
+			if( battlePlans[ 0 ] == 1 && delta == 1 )
 			{
 				addBonus = true;
 			}
-			else if( m_bombardBattlePlans == 0 && delta == -1 )
+			else if( battlePlans[ 0 ] == 0 && delta == -1 )
 			{
 				removeBonus = true;
 			}
@@ -3473,12 +3476,12 @@ void Player::changeBattlePlan( BattlePlanStatus plan, Int delta, BattlePlanBonus
 		}
 		case PLANSTATUS_HOLDTHELINE:
 		{
-			m_holdTheLineBattlePlans += delta;
-			if( m_holdTheLineBattlePlans == 1 && delta == 1 )
+			battlePlans[ 1 ] += delta;
+			if( battlePlans[ 1 ] == 1 && delta == 1 )
 			{
 				addBonus = true;
 			}
-			else if( m_holdTheLineBattlePlans == 0 && delta == -1 )
+			else if( battlePlans[ 1 ] == 0 && delta == -1 )
 			{
 				removeBonus = true;
 			}
@@ -3486,12 +3489,12 @@ void Player::changeBattlePlan( BattlePlanStatus plan, Int delta, BattlePlanBonus
 		}
 		case PLANSTATUS_SEARCHANDDESTROY:
 		{
-			m_searchAndDestroyBattlePlans += delta;
-			if( m_searchAndDestroyBattlePlans == 1 && delta == 1 )
+			battlePlans[ 2 ] += delta;
+			if( battlePlans[ 2 ] == 1 && delta == 1 )
 			{
 				addBonus = true;
 			}
-			else if( m_searchAndDestroyBattlePlans == 0 && delta == -1 )
+			else if( battlePlans[ 2 ] == 0 && delta == -1 )
 			{
 				removeBonus = true;
 			}
@@ -3505,19 +3508,19 @@ void Player::changeBattlePlan( BattlePlanStatus plan, Int delta, BattlePlanBonus
 	else if( removeBonus )
 	{
 		//First, inverse the bonuses
-		bonus->m_armorScalar				= 1.0f / __max( bonus->m_armorScalar, 0.01f );
-		bonus->m_sightRangeScalar		= 1.0f / __max( bonus->m_sightRangeScalar, 0.01f );
-		if( bonus->m_bombardment > 0 )
+		*reinterpret_cast<Real *>(battlePlanBonus + 0x00) = 1.0f / __max( *reinterpret_cast<Real *>(battlePlanBonus + 0x00), 0.01f );
+		*reinterpret_cast<Real *>(battlePlanBonus + 0x10) = 1.0f / __max( *reinterpret_cast<Real *>(battlePlanBonus + 0x10), 0.01f );
+		if( *reinterpret_cast<Int *>(battlePlanBonus + 0x04) > 0 )
 		{
-			bonus->m_bombardment			= -1;
+			*reinterpret_cast<Int *>(battlePlanBonus + 0x04) = -1;
 		}
-		if( bonus->m_holdTheLine > 0 )
+		if( *reinterpret_cast<Int *>(battlePlanBonus + 0x0c) > 0 )
 		{
-			bonus->m_holdTheLine			= -1;	
+			*reinterpret_cast<Int *>(battlePlanBonus + 0x0c) = -1;
 		}
-		if( bonus->m_searchAndDestroy > 0 )
+		if( *reinterpret_cast<Int *>(battlePlanBonus + 0x08) > 0 )
 		{
-			bonus->m_searchAndDestroy	= -1;
+			*reinterpret_cast<Int *>(battlePlanBonus + 0x08) = -1;
 		}
 
 		applyBattlePlanBonusesForPlayerObjects( bonus );

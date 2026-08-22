@@ -91882,7 +91882,7 @@ name,address,notes
 ?b_000d7b60@@YAXXZ,0x000D7B60,gen-thunk body
 ?b_000d7ca0@@YAXXZ,0x000D7CA0,gen-thunk body
 ?b_000d7e30@@YAXXZ,0x000D7E30,gen-thunk body
-?b_000d8080@@YAXXZ,0x000D8080,gen-thunk body
+?changeBattlePlan@Player@@QAEXW4BattlePlanStatus@@HPAVBattlePlanBonuses@@@Z,0x000D8080,Open-BFME5 retail identity; exact clean C++ body
 ?b_000d81b0@@YAXXZ,0x000D81B0,gen-thunk body
 ?b_000d81d0@@YAXXZ,0x000D81D0,gen-thunk body
 ?b_000d81e0@@YAXXZ,0x000D81E0,gen-thunk body
