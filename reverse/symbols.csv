@@ -75347,3 +75347,4 @@ _strstr,0x009F709C,Y2 lane: strstr import thunk (gen-import ?ji_009f709c@@YAXXZ 
 _strchr,0x009F6DFA,Y2 lane: strchr import thunk (gen-import ?ji_009f6dfa@@YAXXZ names the same address)
 _strncmp,0x009F6FE2,Y2 lane: strncmp import thunk (gen-import ?ji_009f6fe2@@YAXXZ names the same address)
 ?someInsideSomeOutside@Team@@QBE_NPAVPolygonTrigger@@I@Z,0x000F5CE0,the first of the two calls ScriptConditions::evaluateTeamInsideAreaPartially (0x00324670) makes on the team it looked up before falling back on allInside; the reference declares exactly that const member beside allInside with the same pair
+??RQ4Sort00755050@@QBE_NHH@Z,0x0002952D,REL32 comparator target used by byte-verified 0x00753340 median specialization
