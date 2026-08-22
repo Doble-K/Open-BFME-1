@@ -14,6 +14,13 @@ extern int g_Rva0130A598Online;  // 'onln'
 int  Rva007FE780Printf( const char *format, ... );    // 0x007FE780
 int  Rva007FDEE0( void );                             // 0x007FDEE0
 unsigned int Rva007EB520NetConnMAC( void *adapter );   // 0x007EB520
+void Rva007FD080( int priority );                     // 0x007FD080
+void Rva007FD270( void );                             // 0x007FD270
+void Rva007F8D30( void );                             // 0x007F8D30
+__declspec(dllimport) void __stdcall Rva01358F30Sleep( unsigned int ms );
+
+// The default parameter string 0x007EB380 substitutes for a null one.
+extern char g_Rva0130A59CDefault[];
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
 
 // FIVE SELECTORS, and the first one is answered BEFORE the initialisation
@@ -165,4 +172,69 @@ unsigned int Rva007EB520NetConnMAC( void *adapter )
 	}
 
 	return (unsigned int)-1;
+}
+
+// 0x007EB380 IS THE STARTUP, and what settles that is which word it writes:
+// the same 0x0130A590 NetConnStatus answers 'open' with, set to 1 -- the exact
+// value NetConnStatus's own guard demands before it will answer anything else.
+// It also brings up the DirtySock module underneath, at priority 2.
+//
+// IT REFUSES TO RUN TWICE and says so by returning -1 on any non-zero state,
+// which is checked before anything else happens.
+//
+// THE PARAMETER IS SUBSTITUTED AND THEN NEVER USED.  A null argument is
+// replaced with a default string and the local is not read again -- so whatever
+// this was meant to configure, nothing here reads it.  The store is retail's.
+int Rva007EB380Startup( char *params )
+{
+	if( g_Rva0130A590State != 0 )
+		return -1;
+
+	if( params == 0 )
+		params = g_Rva0130A59CDefault;
+
+	Rva007FD080( 2 );
+
+	g_Rva0130A590State = 1;
+	g_Rva0130A594Conn = 0;
+	g_Rva0130A598Online = 0;
+	return 0;
+}
+
+// 0x007EB650 is its counterpart: two teardowns and the state back to zero, so
+// the next startup will run.  It checks nothing first -- shutting down twice is
+// allowed here where starting twice is not -- and always reports success.
+int Rva007EB650Shutdown( void )
+{
+	Rva007F8D30();
+	Rva007FD270();
+	g_Rva0130A590State = 0;
+	return 0;
+}
+
+// A one-line forwarder onto Sleep, with the /GZ stack check around the import
+// call and nothing else in it.
+void Rva007EB680Sleep( unsigned int ms )
+{
+	Rva01358F30Sleep( ms );
+}
+
+// THREE SEVEN-BYTE BODIES THAT RETURN ZERO, byte-identical and at three
+// separate addresses.  Retail carries all three: identical-code folding would
+// have left one body with three names, and these are three bodies.  So the
+// source really does declare three functions, and they are written out three
+// times rather than aliased.  Nothing says what any of them is for.
+int Rva007EB3E0( void )
+{
+	return 0;
+}
+
+int Rva007EB3F0( void )
+{
+	return 0;
+}
+
+int Rva007EB400( void )
+{
+	return 0;
 }
