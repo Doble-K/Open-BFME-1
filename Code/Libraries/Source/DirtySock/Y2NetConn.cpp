@@ -21,13 +21,21 @@ __declspec(dllimport) void __stdcall Rva01358F30Sleep( unsigned int ms );
 
 // The idle-handler table 0x007F8D30 sweeps: sixteen slots of a function and a
 // ref, indexed with an eight-byte stride.  Sixteen is the loop's own bound.
+// The handler is CALLED with its own ref and a tick, cdecl, by 0x007F8C90.
+typedef void ( __cdecl *Rva007F8D30IdleProc )( void *ref, unsigned int tick );
+
 struct Rva007F8D30Idle
 {
-	void *m_function;   // +0x00
+	void *m_function;   // +0x00 -- cast to Rva007F8D30IdleProc where it is called
 	void *m_ref;        // +0x04
 };
 
 extern Rva007F8D30Idle g_Rva0130A7B0Idle[ 16 ];
+
+// The tick the pump at 0x007F8C90 will next run at.
+extern unsigned int g_Rva0130A850Next;
+
+unsigned int Rva007FEA00Tick( void );                 // 0x007FEA00
 
 // The default parameter string 0x007EB380 substitutes for a null one.
 extern char g_Rva0130A59CDefault[];
@@ -272,5 +280,102 @@ void Rva007F8D30( void )
 			g_Rva0130A7B0Idle[ i ].m_function = 0;
 			g_Rva0130A7B0Idle[ i ].m_ref = 0;
 		}
+	}
+}
+
+// 0x007F8B60 REGISTERS AN IDLE HANDLER, and its two log lines separate the two
+// ways that fails: "ignoring add of an idle handler that is already
+// registered" for a duplicate and "unable to add new idle handler as table is
+// full" for no space, reported as -1 and -2.  A caller can tell them apart
+// from the return alone.
+//
+// BOTH CHECKS RUN IN ONE PASS.  Each slot is tested first for being the same
+// pair and then for being free, so the handler lands in the first empty slot
+// AT OR AFTER any duplicate -- which means a duplicate earlier in the table is
+// always found before an empty slot later, and duplicates are impossible.
+// Identity is the PAIR: the same function with a different ref is not a
+// duplicate.
+int Rva007F8B60( void *function, void *ref )
+{
+	int i;
+
+	for( i = 0; i < 0x10; i++ )
+	{
+		if( g_Rva0130A7B0Idle[ i ].m_function == function
+				&& g_Rva0130A7B0Idle[ i ].m_ref == ref )
+		{
+			Rva007FE780Printf(
+					"netconn: ignoring add of an idle handler that is "
+					"already registered\n" );
+			return -1;
+		}
+
+		if( g_Rva0130A7B0Idle[ i ].m_function == 0 )
+		{
+			g_Rva0130A7B0Idle[ i ].m_function = function;
+			g_Rva0130A7B0Idle[ i ].m_ref = ref;
+			return 0;
+		}
+	}
+
+	Rva007FE780Printf(
+			"netconn: unable to add new idle handler as table is full\n" );
+	return -2;
+}
+
+// 0x007F8C00 is the matching remove -- same pair test, both halves cleared --
+// and it complains about a handler that was never there: "ignoring delete of an
+// idle handler that is not registered".  Unlike the add it has only one failure
+// and reports -1 for it.
+int Rva007F8C00( void *function, void *ref )
+{
+	int i;
+
+	for( i = 0; i < 0x10; i++ )
+	{
+		if( g_Rva0130A7B0Idle[ i ].m_function == function
+				&& g_Rva0130A7B0Idle[ i ].m_ref == ref )
+		{
+			g_Rva0130A7B0Idle[ i ].m_function = 0;
+			g_Rva0130A7B0Idle[ i ].m_ref = 0;
+			return 0;
+		}
+	}
+
+	Rva007FE780Printf(
+			"netconn: ignoring delete of an idle handler that is not "
+			"registered\n" );
+	return -1;
+}
+
+// 0x007F8C90 IS THE PUMP, and the throttle it applies is the interesting part:
+// five ticks between passes -- and it applies ONLY WHEN NETCONN IS UP.  A zero
+// from NetConnStatus('open') jumps straight past the deadline check to the
+// walk, so a module that is not started runs its handlers on every call and one
+// that is started runs them at most every five ticks.
+//
+// THE DEADLINE IS SET FROM A SECOND READING OF THE CLOCK, not from the one it
+// was compared against, and each handler gets a THIRD.  Three separate reads,
+// so the tick a handler sees is later than the one that let the pass through.
+//
+// The handler takes its own ref and that tick, cdecl, which is what types the
+// table's first word.
+void Rva007F8C90( void )
+{
+	int i;
+
+	if( Rva007EB410NetConnStatus( 'open', 0, 0 ) != 0 )
+	{
+		if( Rva007FEA00Tick() < g_Rva0130A850Next )
+			return;
+
+		g_Rva0130A850Next = Rva007FEA00Tick() + 5;
+	}
+
+	for( i = 0; i < 0x10; i++ )
+	{
+		if( g_Rva0130A7B0Idle[ i ].m_function != 0 )
+			( (Rva007F8D30IdleProc)g_Rva0130A7B0Idle[ i ].m_function )(
+					g_Rva0130A7B0Idle[ i ].m_ref, Rva007FEA00Tick() );
 	}
 }
