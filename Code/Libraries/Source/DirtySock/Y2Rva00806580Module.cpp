@@ -39,7 +39,12 @@ int   Rva0080B460( void *object, int mode );                // 0x0080B460
 struct Rva00806580Record;
 int   Rva00807370( Rva00806580Record *record, int selector, int flag,
 		char *buffer, int bufferSize );                     // 0x00807370
-int   Rva008076E0( Rva00806580Record *record, int a, int b, int c ); // 0x008076E0
+int   Rva008076E0( Rva00806580Record *record, unsigned int *outA,
+		unsigned int *outB, char **outText );               // 0x008076E0
+void  Rva00806B10( Rva00806580Record *record );             // 0x00806B10
+
+// The empty string this module hands back for a block with no payload.
+extern char g_Rva0130ACE0Empty[];
 unsigned int Rva007FEA00Tick( void );                       // 0x007FEA00
 
 // The tick this module first ran at, filled in once and never again.
@@ -450,12 +455,12 @@ void Rva008078B0( Rva00806580Record *record )
 // what arrived and never up, and the value returned is the real length rather
 // than the clamped one -- so a caller with too small a buffer is told how much
 // there was and has already lost the rest.
-int Rva00807820( Rva00806580Record *record, int a, int b, void *dest,
-		int destSize )
+int Rva00807820( Rva00806580Record *record, unsigned int *outA,
+		unsigned int *outB, void *dest, int destSize )
 {
 	int result;
 
-	result = Rva008076E0( record, a, b, 0 );
+	result = Rva008076E0( record, outA, outB, 0 );
 	if( result >= 0 )
 	{
 		if( destSize > result )
@@ -469,4 +474,60 @@ int Rva00807820( Rva00806580Record *record, int a, int b, void *dest,
 	}
 
 	return result;
+}
+
+// 0x008076E0 HANDS BACK THE ARRIVED BLOCK, and the shape of that block is the
+// whole result: two big-endian dwords at +0x00 and +0x04, then text from +0x0C
+// on -- which is the 0x0C header 0x00807820 skips when it copies the payload
+// out.  The length returned is the total minus that header.
+//
+// "COMPLETE" IS THE TWO CURSORS BEING EQUAL, not merely non-zero: +0x74 and
+// +0x78 are the same pair 'ibuf' subtracts, so nothing pending is what makes a
+// block readable.  When they differ the pump at 0x00806B10 is run once and the
+// test repeated; it is never run twice.
+//
+// A CALLER THAT WANTS NOTHING GETS NOTHING PUMPED.  All three out-pointers null
+// means -1 without running the pump at all, so this doubles as a poll that has
+// no side effect -- and every other combination pumps.
+//
+// The text is TERMINATED IN PLACE, one past the payload, so the block must have
+// room for it; an empty payload takes a shared empty string instead, which is
+// also what stops that store writing before the buffer.
+int Rva008076E0( Rva00806580Record *record, unsigned int *outA,
+		unsigned int *outB, char **outText )
+{
+	int length;
+	unsigned char *p;
+	char *text;
+
+	if( record->m_field7C == 0 || record->m_field78 != record->m_field74 )
+	{
+		if( outA == 0 && outB == 0 && outText == 0 )
+			return -1;
+
+		Rva00806B10( record );
+
+		if( record->m_field7C == 0 || record->m_field78 != record->m_field74 )
+			return -1;
+	}
+
+	p = (unsigned char *)record->m_field7C;
+	length = record->m_field74 - 0x0C;
+	text = (char *)record->m_field7C + 0x0C;
+
+	if( length < 1 )
+		text = g_Rva0130ACE0Empty;
+	else
+		text[ length ] = 0;
+
+	if( outA != 0 )
+		*outA = ( p[ 0 ] << 24 ) | ( p[ 1 ] << 16 ) | ( p[ 2 ] << 8 ) | p[ 3 ];
+
+	if( outB != 0 )
+		*outB = ( p[ 4 ] << 24 ) | ( p[ 5 ] << 16 ) | ( p[ 6 ] << 8 ) | p[ 7 ];
+
+	if( outText != 0 )
+		*outText = text;
+
+	return length;
 }
