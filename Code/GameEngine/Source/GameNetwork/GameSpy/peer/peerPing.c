@@ -5,6 +5,7 @@
 
 #include <winsock.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef int GSIBool;
 typedef void *DArray;
@@ -21,6 +22,19 @@ typedef struct piQueuedCallback
 	void *param;
 	pingerGotPing callback;
 } piQueuedCallback;
+
+typedef struct piActivePing
+{
+	GSIBool originator;
+	unsigned short ID;
+	unsigned short expectedTrip;
+	unsigned int timestamp;
+	unsigned int timeout;
+	unsigned int remoteIP;
+	unsigned short remotePort;
+	pingerGotPing reply;
+	void *replyParam;
+} piActivePing;
 
 static GSIBool piInitialized;
 static GSIBool piSettingData;
@@ -87,13 +101,45 @@ fail:
 	return 1;
 }
 DArray ArrayNew(int elemSize, int numElemsToAllocate, void *elemFreeFn);
+void ArrayAppend(DArray array, const void *newElem);
 int ArrayLength(DArray array);
 void *ArrayNth(DArray array, int index);
 void ArrayDeleteAt(DArray array, int index);
 void ArrayFree(DArray array);
 void piProcessIncoming(void);
-void piCheckTimeouts(void);
+static void piCheckTimeouts(void);
 static void piCallCallbacks(void);
+unsigned int current_time(void);
+
+static void piQueueCallback(unsigned int IP, unsigned short port, int ping,
+	const char *data, int len, void *param, pingerGotPing callbackFunc)
+{
+	piQueuedCallback callback;
+
+	if (!callbackFunc)
+		return;
+
+	callback.IP = IP;
+	callback.port = port;
+	callback.ping = ping;
+	callback.len = len;
+	callback.param = param;
+	callback.callback = callbackFunc;
+
+	if (data)
+	{
+		callback.data = (char *)malloc((unsigned int)len);
+		if (!callback.data)
+			return;
+		memcpy(callback.data, data, (unsigned int)len);
+	}
+	else
+	{
+		callback.data = 0;
+	}
+
+	ArrayAppend(piCallbacks, &callback);
+}
 
 static void piCallCallbacks(void)
 {
@@ -112,6 +158,33 @@ static void piCallCallbacks(void)
 		callback->callback(callback->IP, callback->port, callback->ping,
 			callback->data, callback->len, callback->param);
 		free(callback->data);
+	}
+}
+
+static void piCheckTimeouts(void)
+{
+	unsigned int now;
+	piActivePing *activePing;
+	int len;
+	int n;
+
+	len = ArrayLength(piActivePingList);
+	if (len == 0)
+		return;
+
+	now = current_time();
+	for (n = len - 1; n >= 0; --n)
+	{
+		activePing = (piActivePing *)ArrayNth(piActivePingList, n);
+		if (activePing != 0 && activePing->timeout != 0 && activePing->timeout <= now)
+		{
+			if (activePing->originator && activePing->reply != 0)
+			{
+				piQueueCallback(activePing->remoteIP, activePing->remotePort, -1,
+					0, 0, activePing->replyParam, activePing->reply);
+			}
+			ArrayDeleteAt(piActivePingList, n);
+		}
 	}
 }
 
