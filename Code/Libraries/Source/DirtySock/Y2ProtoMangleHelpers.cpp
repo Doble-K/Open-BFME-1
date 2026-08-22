@@ -783,3 +783,27 @@ void Rva00805E50( Rva00804150ProtoMangleRef *ref, Rva00805960Probe *probe,
 	Rva007FE780Printf( "sending probe %d/%d (%d) from port %d\n",
 			probe->m_index, probe->m_count, serial, sourcePort );
 }
+
+// 0x00806200 is 0x00804630's POST counterpart and its format says so outright:
+// the same request line, cookie and Host header, plus a content type, a
+// Content-Length and a body.  The length is strlen of that body, computed
+// INSIDE the sprintf argument list -- MSVC evaluates right to left, so retail's
+// strlen call and its `add esp,4` land between the last argument's push and the
+// next one's, which is what says it was written there rather than hoisted.
+//
+// The body is passed twice: once to strlen and once as the last %s.  Both are
+// the same parameter, so a caller that hands in a buffer it mutates between
+// them would be reporting one length and sending another; nothing here guards
+// against that.
+void Rva00806200HttpPost( Rva008042B0Http *http, const char *host, int port,
+		const char *url, const char *sessID, const char *body )
+{
+	char query[ 0x200 ];
+
+	sprintf( query,
+			"POST %s HTTP/1.1\r\nCookie: sessionID=%s\r\n"
+			"Content-Type: application/x-www-form-urlencoded\r\n"
+			"Content-Length: %d\r\nHost: %s\r\n\r\n%s\r\n",
+			url, sessID, strlen( body ), host, body );
+	Rva008046E0HttpRequest( http, host, port, query );
+}
