@@ -554,3 +554,39 @@ void Rva007FE520( int priority )
 	if ( 0 )
 		Rva007FE780( (void *)0x12c3ce0 );
 }
+
+/* A ROTATING-XOR STRING HASH, and every part of it is legible in the bytes
+ * rather than inferred.  Per character: the top five bits of the accumulator
+ * are saved off, the accumulator is shifted left by five, the saved bits are
+ * brought back in at the bottom by an ARITHMETIC shift right of 27 -- which is
+ * what makes the accumulator a SIGNED int rather than unsigned, since a
+ * logical shift would have been shr -- and the character is folded in last.
+ *
+ * The character is read with movsx, so the text is plain `char` and not
+ * `unsigned char`; that distinction is visible and therefore not a guess.
+ *
+ * THE THIRD LOCAL IS REAL, NOT A COMPILER TEMPORARY.  The saved-bits value at
+ * -0x0C is written and then read back on the next instruction, which a /Od
+ * temporary would also do -- so the frame size is what settles it: three
+ * declared locals give exactly the 0x0C frame retail has.
+ *
+ * The loop is MSVC's ordinary /Od `for` layout: initialisers, a jump forward
+ * to the test, the increment sitting BEFORE the test in address order, and the
+ * body jumping back to it.  Writing it as a while loop puts the increment
+ * after the body instead and does not reproduce these bytes.
+ */
+int __cdecl Rva007FF080( const char *pText )
+{
+	int i;
+	int uHash;
+	int uCarry;
+
+	for ( i = 0, uHash = 0; pText[ i ] != 0; i++ )
+	{
+		uCarry = uHash & 0xF8000000;
+		uHash = uHash << 5;
+		uHash = ( uCarry >> 27 ) ^ uHash;
+		uHash = pText[ i ] ^ uHash;
+	}
+	return uHash;
+}
