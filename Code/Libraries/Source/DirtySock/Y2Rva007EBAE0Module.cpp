@@ -415,3 +415,69 @@ int Rva007EC030( char *text, const char *tag )
 	*out = 0;
 	return 0;
 }
+
+// 0x007EC2E0 RETURNS THE FIRST TAG'S NAME.  It scans for the first separator,
+// walks BACK from it to where the name starts -- the record's start, or the
+// first byte at or below 0x20 -- and then copies forward from there to the
+// separator.  Same outward-from-the-separator trick 0x007EC030 uses to delete
+// one, and it stops at the same structural record terminator.
+//
+// THE DESTINATION IS CLEARED BEFORE ANYTHING ELSE, but only when the caller
+// gave a positive size -- so a size of zero leaves the buffer untouched rather
+// than being treated as an error, and a null or empty record then returns 0
+// with the buffer already emptied.
+//
+// TWO OF THE THREE EXITS DO NOT TERMINATE THE BUFFER.  Running off the end of
+// the record and hitting the record terminator both return the count as it
+// stands, leaving whatever the initial clear left; only the successful copy
+// writes a terminator.  Since the count is 0 on both of those paths and the
+// clear already wrote a zero, the result is still a valid empty string -- which
+// is why the omission is invisible rather than a bug.
+//
+// The copy bound is `written + 1 < destSize`, so one byte is always held back.
+//
+// BOTH EXITS FROM THE LOOP ARE `break`, NOT `return`.  Retail jumps to a single
+// shared `mov eax,written` at the end; writing either as its own return loads
+// the count again before jumping, three bytes retail does not have.
+int Rva007EC2E0( const char *text, char *dest, int destSize )
+{
+	int written;
+	const char *p;
+	const char *q;
+	const char *start;
+
+	written = 0;
+	start = text;
+
+	if( destSize > 0 )
+		*dest = 0;
+
+	if( start == 0 || *(unsigned char *)start == 0 )
+		return 0;
+
+	for( p = start; *(unsigned char *)p != 0; p++ )
+	{
+		if( *(unsigned char *)p != '=' && *(unsigned char *)p != ':' )
+			continue;
+
+		if( *(unsigned char *)( p + 1 ) < 0x20
+				&& *(unsigned char *)( p - 1 ) <= 0x20 )
+			break;
+
+		for( q = p; q != start
+				&& *(unsigned char *)( q - 1 ) > 0x20; q-- )
+			;
+
+		while( q != p && written + 1 < destSize )
+		{
+			dest[ written ] = *q;
+			written++;
+			q++;
+		}
+
+		dest[ written ] = 0;
+		break;
+	}
+
+	return written;
+}
