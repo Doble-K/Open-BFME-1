@@ -25,6 +25,30 @@ unsigned short Rva007FFA60Swap16( unsigned short value );   // 0x007FFA60
 unsigned int   Rva007FFAD0( unsigned int value );           // 0x007FFAD0
 void Rva0080DFC0( void *object, int flag );                 // 0x0080DFC0
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
+extern "C" void *memset( void *dest, int value, unsigned int count );
+void *Rva007F0000Alloc( int size );                         // 0x007F0000
+unsigned int Rva007FEA00Tick( void );                       // 0x007FEA00
+
+// The tick this module first ran at, filled in once and never again.
+extern unsigned int g_Rva0130ACDCEpoch;
+
+// Declared here rather than included: retail reaches WSAStartup by a direct
+// rel32 to the stub at 0x0081BDF6, which a <winsock2.h> declaration's dllimport
+// would not produce.  Only the first field is ever read, but the SIZE is
+// load-bearing -- 0x190 is what the frame is built around.
+struct Rva008064A0WsaData
+{
+	unsigned short wVersion;
+	unsigned short wHighVersion;
+	char szDescription[ 257 ];
+	char szSystemStatus[ 129 ];
+	unsigned short iMaxSockets;
+	unsigned short iMaxUdpDg;
+	char *lpVendorInfo;
+};
+
+extern "C" int __stdcall WSAStartup( unsigned short versionRequested,
+		Rva008064A0WsaData *data );
 
 // Only the five offsets these bodies touch are evidence.  +0x00 is a sub-object
 // with its own teardown, +0x70 and +0x7C are plain blocks, +0x5C takes a state
@@ -213,4 +237,44 @@ void Rva00806A90( Rva00806580Record *record, const void *key, int length )
 		record->m_field8E = 1;
 		memcpy( record->m_key, p, 0x54 );
 	}
+}
+
+// 0x008064A0 MAKES THE RECORD, and it is the counterpart of the teardown at
+// 0x00806580: 0x2F0 bytes, zeroed, with the same three fields the resets touch
+// set explicitly afterwards.  0x2F0 is also what fixes the layout's tail --
+// +0xE4 is well inside it.
+//
+// WINSOCK IS STARTED FIRST AND ITS FAILURE IS FATAL, before anything is
+// allocated, so a caller that gets null back has leaked nothing.  The version
+// word it comes back with is DISCARDED here, unlike at 0x007FD080 where the
+// same call's answer is byte-swapped and kept -- this module only cares that it
+// worked.
+//
+// The epoch at 0x0130ACDC is stamped only if it is still zero, so the first
+// record made in the process fixes it for every later one.
+//
+// THE THREE EXPLICIT ZEROES ARE REDUNDANT AFTER THE memset and they are
+// retail's: +0x00, +0x5C and the 16-bit +0x8E are written again with the values
+// the memset already left there.  Dropping them drops three stores.
+Rva00806580Record *Rva008064A0( void )
+{
+	Rva00806580Record *record;
+	Rva008064A0WsaData wsadata;
+
+	if( WSAStartup( 2, &wsadata ) != 0 )
+		return 0;
+
+	if( g_Rva0130ACDCEpoch == 0 )
+		g_Rva0130ACDCEpoch = Rva007FEA00Tick();
+
+	record = (Rva00806580Record *)Rva007F0000Alloc( 0x2F0 );
+	if( record != 0 )
+	{
+		memset( record, 0, 0x2F0 );
+		record->m_field00 = 0;
+		record->m_field5C = 0;
+		record->m_field8E = 0;
+	}
+
+	return record;
 }
