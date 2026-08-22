@@ -157,8 +157,14 @@ int Rva00807A00( void *dest, int destSize, const char *text )
 	return 9;
 }
 
-// Two more wrappers over the 841-byte body at 0x00808220, and the difference
-// between them is the whole point: both append a fifth argument of zero, but
+// THREE wrappers over the 841-byte body at 0x00808220, and the differences
+// between them are the whole point.  0x00808630, at the end of this file,
+// appends a ONE where these two append a zero -- and that one is the byte the
+// echo request writes at +0x18, which 0x00807FB0 reads back and prints as
+// "server=%s".  A request sent that way is marked as coming from the server,
+// and the reply says so; neither end alone could explain that field.
+//
+// These two both append a zero, and differ only in how the address arrives:
 // 0x008085A0 first runs the text form through the parser above and passes what
 // came out, while 0x008081F0 passes its caller's second argument straight
 // through.  So the pair is one entry point in a binary flavour and a text
@@ -718,4 +724,11 @@ int Rva00808220( Rva00807BA0Ping *ping, unsigned int address, const char *text,
 		return -1;
 
 	return ping->m_sequence;
+}
+
+// The server-marked flavour; see the note above the other two wrappers.
+int Rva00808630( Rva00807BA0Ping *ping, unsigned int address,
+		const char *text, int length )
+{
+	return Rva00808220( ping, address, text, length, 1 );
 }
