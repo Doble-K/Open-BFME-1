@@ -202,8 +202,12 @@ struct Rva00804150ProtoMangleRef
 	void            *m_userSocket;      // +0x004
 	unsigned int     m_localAddr;       // +0x008
 	int              m_myPort;          // +0x00C
-	int              m_pad010;
-	int              m_pad014;
+	// THE TWO PEER FIELDS, named by the tags 0x00805870 parses into them: it
+	// pulls "peerIP" out of a response blob, runs it through the dotted-quad
+	// parser and stores the result here, then does the same for "peerPort"
+	// through atoi.  The names are retail's own tag spellings.
+	unsigned int     m_peerAddr;        // +0x010
+	int              m_peerPort;        // +0x014
 	char             m_sessID[ 0x20 ];  // +0x018
 	char             m_gameID[ 0x20 ];  // +0x038
 	char             m_lkey[ 0x40 ];    // +0x058
@@ -398,4 +402,54 @@ void Rva008053C0Connect( Rva00804150ProtoMangleRef *ref, void *socket,
 int Rva00805610HttpField11C( Rva00804150ProtoMangleRef *ref )
 {
 	return ref->m_http.m_field11C;
+}
+
+// The two callees 0x00805870 needs, both address-derived and both pinned.
+// 0x00805710 copies one named tag out of a text blob into a bounded buffer and
+// returns negative when the tag is absent; 0x007FFC10 turns a dotted quad into
+// an address.
+int  Rva00805710TagFieldGet( char *dest, int destSize, const char *text,
+		const char *tag, int flags );          // 0x00805710
+unsigned int Rva007FFC10TextAddr( const char *text );  // 0x007FFC10
+
+// Called directly through the import stub at 0x009F6DEE rather than through
+// __imp__atoi, so this TU did not see <stdlib.h> either.
+extern "C" int atoi( const char *text );
+
+// 0x00805870 PARSES THE PEER OUT OF A RESPONSE, and its two tag strings name
+// the fields it fills: "peerIP" through the dotted-quad parser into +0x10, and
+// "peerPort" through atoi into +0x14.  Neither field had a name before this
+// body; both now have retail's own.
+//
+// THE RETURN IS AN ALL-OR-NOTHING TEST, not a count.  Retail counts the two
+// successes into a local and then returns `count == 2` through a sete -- so a
+// response carrying only one of the two tags reports failure, and the caller
+// cannot tell which half arrived.  A blank address is treated as absent even
+// when the tag parsed, which is why the first arm counts only after checking
+// the stored value; the port arm has no such check and counts unconditionally.
+//
+// The frame is 0x30: cookie, guard, the 0x20 buffer /GZ names `strParm`, guard,
+// the counter.  strParm is declared first; the other order moves the guarded
+// pair and every offset with it.
+int Rva00805870ParsePeer( Rva00804150ProtoMangleRef *ref, const char *text )
+{
+	char strParm[ 0x20 ];
+	int count;
+
+	count = 0;
+
+	if( Rva00805710TagFieldGet( strParm, 0x20, text, "peerIP", 0 ) >= 0 )
+	{
+		ref->m_peerAddr = Rva007FFC10TextAddr( strParm );
+		if( ref->m_peerAddr != 0 )
+			++count;
+	}
+
+	if( Rva00805710TagFieldGet( strParm, 0x20, text, "peerPort", 0 ) >= 0 )
+	{
+		ref->m_peerPort = atoi( strParm );
+		++count;
+	}
+
+	return count == 2;
 }

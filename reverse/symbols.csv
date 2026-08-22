@@ -75337,3 +75337,6 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 _select@20,0x0081BE2C,Y4 lane: five-argument WS2_32 stdcall; the stat path of SocketInfo at 0x007FDB60 calls it with two fd_sets and a zero timeval
 _getpeername@12,0x0081BE7A,Y4 lane: sibling of _getsockname@4 0x0081BE5C; SocketInfo at 0x007FDB60 reaches it from the conn and peer selectors and reaches getsockname from bind, which is what tells the two apart
 ?Rva007FDB60SocketInfo@@YAXPAXH0H@Z,0x007FDB60,Y2 DirtySock lane: address-derived; the socket query 0x008053C0 calls with the selector 0x62696E64 (bind) and a 0x10-byte buffer
+_atoi,0x009F6DEE,Y2 lane: atoi import thunk (gen-import ?ji_009f6dee@@YAXXZ names the same address)
+?Rva007FFC10TextAddr@@YAIPBD@Z,0x007FFC10,Y2 DirtySock lane: address-derived; the dotted-quad text-to-address parser 0x00805870 feeds its peerIP tag to
+?Rva00805710TagFieldGet@@YAHPADHPBD1H@Z,0x00805710,Y2 DirtySock lane: address-derived; copies a named tag out of a text blob into a bounded buffer and returns negative when absent
