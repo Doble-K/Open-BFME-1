@@ -75247,3 +75247,4 @@ _ciBufferPreAppend,0x0085A740,gamespy-chatSocket internal call from exact ciSock
 ?hide@BannerUI@@QAEX_N@Z,0x0003A062,ILT to body 0x005839D0; BannerUI is independently identified by its existing parser and constructor sources; HideControlBar passes TRUE and ShowControlBar passes FALSE
 ?TheAptPalantir@@3PAVAptPalantir@@A,0x00EF4B98,global allocated as a 0x584-byte AptPalantir at initializer 0x006FC330; constructor 0x0079D9F0 anchors RadarViewBoxEdge and the callback table carries AptPalantir method names
 ?TheBannerUI@@3PAVBannerUI@@A,0x00EF4B70,BannerUI global used by the existing BannerUI parser and constructor sources; adjacent store owns the parsed BannerType collection
+_Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by the translator at 0x007FD540; the ledger names this address ?ji_0081be08, this is the C spelling

@@ -209,3 +209,36 @@ void Rva007FD270( void )
 	Rva007FE670();
 	Rva0081BDE4();
 }
+
+/* Winsock error translation at 0x007FD540, already forward-declared above and
+ * called by the bind and listen wrappers.  A negative return means the Winsock
+ * call failed, so the real code is fetched and mapped onto this library's own
+ * small negative vocabulary.  THE IMMEDIATES ARE THE EVIDENCE: 0x2733 10035
+ * WSAEWOULDBLOCK, 0x2746 10054 WSAECONNRESET, 0x2743 10051 WSAENETUNREACH,
+ * 0x2751 10065 WSAEHOSTUNREACH, 0x2749 10057 WSAENOTCONN and 0x274D 10061
+ * WSAECONNREFUSED -- a contiguous run of the WSAE* block, which is what says
+ * this is an errno mapper rather than an ordinary switch.  The pairs that share
+ * a result share an `if`: would-block and connection-reset both report success,
+ * which is this library's convention rather than anything the bytes explain. */
+int Rva0081BE08( void );
+
+int Rva007FD540( int result )
+{
+	if ( result < 0 )
+	{
+		result = Rva0081BE08();
+
+		if ( result == 10035 || result == 10054 )
+			result = 0;
+		else if ( result == 10051 || result == 10065 )
+			result = -5;
+		else if ( result == 10057 )
+			result = -2;
+		else if ( result == 10061 )
+			result = -6;
+		else
+			result = -7;
+	}
+
+	return result;
+}
