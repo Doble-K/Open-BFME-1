@@ -16,12 +16,14 @@
 // LANGameInfo's slot array already uses.
 //
 // GameSlot is modelled as an opaque 0x44-byte block rather than the
-// polymorphic class it is. That is not cosmetic: with a vtable in the model
-// MSVC opens the destructor with a six-byte vptr store that retail does not
-// have, so the class this body destroys has no vtable of its own to reinstall.
-// The base's fields are untouched here, so the block is all this file needs
-// and it keeps the model out of LANGameSlot_operator.cpp, whose own matched
-// operator= needs GameSlot's virtual to skip the vptr.
+// polymorphic class it is, and that is not cosmetic: give the model a vtable
+// and MSVC opens the destructor with a six-byte vptr store retail does not
+// have. LANGameSlot does have its own vtable -- its copy constructor at
+// 0x00686D50 installs 0x0111B6A0 -- so the store is one MSVC emits and retail
+// elided, not evidence that the class is non-polymorphic. Since the base's
+// fields and virtuals are untouched here, the opaque block is all this file
+// needs, and it keeps the model out of LANGameSlot_operator.cpp, whose own
+// matched operator= needs GameSlot's virtual to skip the vptr.
 
 typedef int Int;
 typedef unsigned int UnsignedInt;
