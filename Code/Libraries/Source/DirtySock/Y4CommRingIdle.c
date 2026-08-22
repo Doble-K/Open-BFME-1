@@ -36,8 +36,22 @@ struct Rva00815B50Comm
 	int m_bytesSent;                /* +0x5C */
 	char m_gap0[ 0x04 ];
 	int m_packetsSent;              /* +0x64 */
-	char m_gap1[ 0x14 ];
-	unsigned int m_socket;          /* +0x7C */
+	char m_gap1[ 0x04 ];
+	/* The four endpoint fields, all written by 0x00816160 and in this order:
+	 * local address, peer address, local port, peer port.  The two ports are
+	 * SHORTS -- both are stored with a 16-bit mov and read back with movzx --
+	 * while the addresses are full words. */
+	unsigned int m_localAddress;    /* +0x6C */
+	unsigned int m_peerAddress;     /* +0x70 */
+	unsigned short m_localPort;     /* +0x74 */
+	unsigned short m_peerPort;      /* +0x76 */
+	char m_gap1b[ 0x04 ];
+	/* A POINTER TO THE SOCKET OBJECT, not a raw handle: 0x00816160 passes this
+	 * field straight to SocketInfo, whose first parameter is the object.  The
+	 * send path passes it the same way.  Both spellings are four bytes and
+	 * compile identically, so only a caller that dereferences it could tell,
+	 * and this is that caller. */
+	struct Rva007FD4E0Socket *m_socket;     /* +0x7C */
 	/* The PEER ADDRESS.  The send hands this to sendto with a length of 0x10,
 	 * which is what fixes both its position and its size. */
 	char m_peer[ 0x10 ];            /* +0x80 */
@@ -158,8 +172,10 @@ struct Rva00815680Packet
 	unsigned char m_data[ 4 ];      /* +0x08 */
 };
 
-int Rva007FD920( unsigned int socket, const char *buffer, int length,
-	int flags, void *to, int toLength );
+struct Rva007FD4E0Socket;
+
+int Rva007FD920( struct Rva007FD4E0Socket *socket, const char *buffer,
+	int length, int flags, void *to, int toLength );
 int Rva007FE780( const char *format, ... );
 
 extern char g_Rva012C4B64Message[];
@@ -227,6 +243,7 @@ void *__cdecl memcpy( void *destination, const void *source,
 void Rva00816160( struct Rva00815B50Comm *comm, const void *from );
 
 extern char g_Rva012C4B98Message[];
+extern char g_Rva012C4B38Message[];
 
 /* 0x00816020 is the CONTROL-PACKET HANDLER -- the connection handshake.  The
  * packet's first data byte selects the action, and the five recognised values
@@ -302,4 +319,42 @@ void Rva00816020( struct Rva00815B50Comm *comm,
 		Rva007FE780( g_Rva012C4B98Message, packet->m_data[ 0 ] );
 		break;
 	}
+}
+
+/* 0x00816160 COMPLETES A CONNECTION by recording both endpoints.
+ *
+ * The peer's address and port come out of the sockaddr the packet arrived
+ * from, big-endian at +4..+7 and +2..+3 as everywhere else in this library.
+ * The local port comes from a 'bind' SocketInfo query -- the same
+ * four-character selector the socket layer dispatches on.
+ *
+ * THE LOCAL ADDRESS DOES NOT COME FROM THAT QUERY.  A bound socket's own
+ * address is usually 0.0.0.0, which is useless to report, so the body calls
+ * 0x007FDEE0 instead -- the routing query that asks which interface would be
+ * used to reach an outside address and returns that.  It is why that body
+ * exists, and it is what corrects its earlier reading as a self test.
+ *
+ * Everything is then logged in one call, peer first and local second.
+ */
+int Rva007FDB60( struct Rva007FD4E0Socket *socket, int selector, void *buffer,
+	int bufferLength );
+int Rva007FDEE0( void );
+
+void Rva00816160( struct Rva00815B50Comm *comm, const unsigned char *from )
+{
+	char local[ 0x10 ];
+
+	comm->m_peerAddress = ( ( ( ( from[ 4 ] << 8 ) | from[ 5 ] ) << 8 )
+		| from[ 6 ] ) << 8 | from[ 7 ];
+	comm->m_peerPort = (unsigned short)( ( from[ 2 ] << 8 ) | from[ 3 ] );
+
+	Rva007FDB60( comm->m_socket, 'bind', local, 0x10 );
+
+	comm->m_localAddress = Rva007FDEE0();
+	comm->m_localPort = (unsigned short)
+		( ( ( (unsigned char *)local )[ 2 ] << 8 )
+		| ( (unsigned char *)local )[ 3 ] );
+
+	Rva007FE780( g_Rva012C4B38Message, comm->m_peerAddress, comm->m_peerPort,
+		comm->m_localAddress, comm->m_localPort );
 }

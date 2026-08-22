@@ -677,26 +677,33 @@ int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
 		Rva007FD660( temp, (void *)address ), addressLength ) );
 }
 
-/* 0x007FDEE0 is a SELF-TEST of the address translator at 0x007FE310, and it
- * says so in constants rather than in shape.  It builds one socket address for
- * 192.168.1.1 port 79 -- 0xC0A80101 is the dotted quad written out, and the
- * port bytes are the folded halves of 0x004F -- pushes it through the
- * translator, and reads the address back out of the result.  Nothing else in
- * the body varies, so the returned value is only interesting when compared
- * against the value that went in.
+/* 0x007FDEE0 ASKS THE STACK FOR THIS MACHINE'S OWN ADDRESS.
  *
- * BOTH FRAME NAMES ARE RETAIL'S OWN, from the /GZ descriptor: `inet` and
- * `host`, each 0x10 bytes.  The pair of names is itself the clue to what the
- * translator does -- one side is the network form, the other the library's own.
+ * CORRECTED IDENTIFICATION.  This was first read as a round-trip self test of
+ * the translator at 0x007FE310, because in isolation that is what it looks
+ * like: build one address, push it through, read it back.  Its caller settles
+ * it -- the comm transport at 0x00816160 calls this with no arguments and
+ * stores the result as its LOCAL address, next to the local port it reads out
+ * of a bind query.  Nothing about a self test would be stored that way.
  *
- * THE BYTE ORDER IS THE EVIDENCE FOR THE LAYOUT.  The address is stored into a
- * local and then shifted right eight bits at a time, LOW byte written to the
- * HIGHEST offset first, which is big-endian placement at +4..+7; the read-back
- * at the end reassembles from +4 down to +7 with movzx, so those bytes are
- * unsigned.  The port at +2..+3 is written high half first and needs no
- * temporary because both halves of a constant fold at compile time.  That
- * difference in spelling between the port and the address is visible in the
- * bytes and is reproduced here rather than tidied up.
+ * What it actually does follows from what the translator is: a routing query.
+ * Asking "which local address would I use to reach 192.168.1.1" and keeping
+ * the ANSWER rather than comparing it is how you discover your own address
+ * without enumerating interfaces.  0xC0A80101 is not a test vector, it is a
+ * plausible LAN gateway -- any routable address would do, and the result is
+ * the interface the stack would send from.
+ *
+ * The byte-level reading below was right and is unchanged; only what the body
+ * is FOR was wrong.
+ *
+ * The layout is read off the byte order, not assumed.  The address goes into a
+ * local and is shifted right eight bits at a time with the LOW byte written to
+ * the HIGHEST offset first, so +4..+7 is big-endian; the read-back reassembles
+ * from +4 downwards with movzx, so those bytes are unsigned.  The port at
+ * +2..+3 is written high half first and needs no temporary, because both
+ * halves of a constant fold at compile time.  That inconsistency between how
+ * the port and the address are spelled is real and is reproduced rather than
+ * tidied.
  */
 struct Rva007FDEE0Addr
 {
