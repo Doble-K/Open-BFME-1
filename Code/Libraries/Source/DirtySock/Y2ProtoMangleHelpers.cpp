@@ -470,6 +470,8 @@ int Rva00805870ParsePeer( Rva00804150ProtoMangleRef *ref, const char *text )
 // dump and is pinned by address.
 const char *Rva00805620ParseStatus( const char *text, int *status );  // 0x00805620
 int Rva00805960( Rva00804150ProtoMangleRef *ref, const char *text );  // 0x00805960
+// Also in Y2ProtoMangleTagField.cpp: finds a marker and steps past newlines.
+const char *Rva00805830SkipNewlines( const char *text, const char *find );
 
 // 0x008054A0 IS THE MODULE'S STATE MACHINE, driven by whatever the HTTP
 // sub-object has finished.  It runs at most two steps per call: state 1 reads a
@@ -544,4 +546,74 @@ void Rva008054A0( Rva00804150ProtoMangleRef *ref )
 			ref->m_state = ( Rva00805610HttpCode( ref ) != 200 ) + 2;
 		}
 	}
+}
+
+// The 0x58-byte block /GZ names `Probe`.  Only the three fields 0x00805960
+// touches are evidence: an index and a count it loops between at +0x00 and
+// +0x04, and a serial at +0x14 it checks against its own counter.  The rest is
+// filled and read by bodies still unconverted.
+struct Rva00805960Probe
+{
+	int  m_index;                // +0x00
+	int  m_count;                // +0x04
+	char m_pad08[ 0x0C ];
+	int  m_serial;               // +0x14
+	char m_pad18[ 0x40 ];
+};
+
+// Three neighbours 0x00805960 drives, all still dumps and all pinned by
+// address.  0x00805A70 CANNOT BE WHAT THE LEDGER CALLS IT: that row names it
+// NAT::doThisConnectionRound, a zero-argument __thiscall method, and this call
+// site passes three arguments __cdecl and cleans them with `add esp,0Ch`.  The
+// contradiction is recorded in reverse/re_attempts.log; the pin here is
+// additive and address-derived and claims nothing about that row.
+int  Rva00805A70NextProbe( Rva00805960Probe *probe,
+		Rva00804150ProtoMangleRef *ref, const char *text );  // 0x00805A70
+int  Rva00805C70( Rva00804150ProtoMangleRef *ref, Rva00805960Probe *probe );
+void Rva00805E50( Rva00804150ProtoMangleRef *ref, Rva00805960Probe *probe,
+		int result, int serial );
+
+// 0x00805960 WALKS THE PROBE LIST in a response, and its own warning names the
+// field it checks: "ProtoMangle: Warning, probe sequence mismatch".  It counts
+// probes from 1 and compares that counter against the serial the parser put at
+// +0x14, so the serials are expected to be dense and in order -- and a mismatch
+// is only WARNED about, never acted on.
+//
+// THE PARSE IS THE LOOP'S CONDITION.  Retail tests the parser's result with a
+// single `je` out of the loop and jumps forward past the increment on entry,
+// which is a for-loop with a call for a condition; an `if( ... ) break;` inside
+// a for(;;) is a byte longer at that test and moves everything after it.
+//
+// THE TEXT POINTER IS ADVANCED THROUGH THE CALLER'S OWN PARAMETER SLOT, by
+// searching for the blank line that separates one probe from the next.  There
+// is no bound other than the parser refusing: an input whose separator never
+// appears leaves this loop running on the same text.
+//
+// The inner loop counts through the probe's own +0x00 field rather than a
+// local, so the callee at 0x00805E50 can see which entry it is being handed;
+// and the only fatal error is a negative from 0x00805C70, which returns -1
+// immediately and leaves the rest of the response unread.
+int Rva00805960( Rva00804150ProtoMangleRef *ref, const char *text )
+{
+	Rva00805960Probe Probe;
+	int serial;
+	int result;
+
+	for( serial = 1; Rva00805A70NextProbe( &Probe, ref, text ) != 0; ++serial )
+	{
+		if( serial != Probe.m_serial )
+			Rva007FE780Printf(
+					"ProtoMangle: Warning, probe sequence mismatch\n" );
+
+		result = Rva00805C70( ref, &Probe );
+		if( result < 0 )
+			return -1;
+
+		for( Probe.m_index = 0; Probe.m_index < Probe.m_count; ++Probe.m_index )
+			Rva00805E50( ref, &Probe, result, serial );
+
+		text = Rva00805830SkipNewlines( text, "\n\n" );
+	}
+
+	return 0;
 }
