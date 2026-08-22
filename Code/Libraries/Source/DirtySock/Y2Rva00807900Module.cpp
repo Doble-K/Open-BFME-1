@@ -349,9 +349,9 @@ Rva00807BA0Ping *Rva00807BA0( void )
 // module a traceroute and not only a ping.
 //
 // The constant stored at +0x14 is 0x0B, which is ICMP type 11, TIME EXCEEDED --
-// the same thing the log line says in words.  That pairing is what names +0x14
-// as the ICMP type and, next to it, +0x15 as the code; the byte copied into it
-// comes from the packet at +0x18.
+// the same thing the log line says in words.  That names +0x14 the ICMP type,
+// and 0x00807FB0 confirms it by storing 0 there, ICMP ECHOREPLY.  The other
+// field names come from that body's log line rather than from this one.
 //
 // The address and the port are read BYTE BY BYTE, big-endian, straight out of
 // the packet at +0x0C and +0x1A -- not swapped from a word -- which is the same
@@ -364,12 +364,15 @@ Rva00807BA0Ping *Rva00807BA0( void )
 struct Rva00807EE0Entry
 {
 	Rva00807EE0Entry *m_next;       // +0x00
-	int               m_port;       // +0x04
+	int               m_sequence;   // +0x04
 	unsigned int      m_from;       // +0x08
-	int               m_field0C;    // +0x0C
-	int               m_field10;    // +0x10
+	int               m_elapsed;    // +0x0C
+	int               m_length;     // +0x10
 	unsigned char     m_icmpType;   // +0x14
-	unsigned char     m_icmpCode;   // +0x15
+	unsigned char     m_server;     // +0x15
+	// The payload starts at +0x16, not at +0x18: 0x00807FB0 copies into
+	// `entry + 0x16` while allocating 0x18 more than it copies, so the last
+	// two header bytes are slack the allocation pays for and nothing uses.
 	unsigned char     m_pad16;
 	unsigned char     m_pad17;
 };
@@ -385,15 +388,94 @@ Rva00807EE0Entry *Rva00807EE0( const unsigned char *packet, void *unused,
 		entry->m_next = 0;
 		entry->m_from = ( packet[ 0x0C ] << 24 ) | ( packet[ 0x0D ] << 16 )
 				| ( packet[ 0x0E ] << 8 ) | packet[ 0x0F ];
-		entry->m_field0C = 0;
-		entry->m_port = ( packet[ 0x1A ] << 8 ) | packet[ 0x1B ];
-		entry->m_field10 = 0;
-		entry->m_icmpCode = packet[ 0x18 ];
+		entry->m_elapsed = 0;
+		entry->m_sequence = ( packet[ 0x1A ] << 8 ) | packet[ 0x1B ];
+		entry->m_length = 0;
+		entry->m_server = packet[ 0x18 ];
 		entry->m_icmpType = 0x0B;
 
 		Rva007FE780Printf(
 				"_ProtoPingCallback: ICMP_TIMEEXCEEDED from=%08x\n",
 				entry->m_from );
+	}
+
+	return entry;
+}
+
+// 0x00807FB0 IS THE ECHO REPLY HALF, and its log line spells the record out:
+// "_ProtoPingCallback: ICMP_ECHOREPLY from=%08x, time=%dms, data=%s,
+// server=%s".  Four of the entry's fields are named by that one string --
+// +0x08 is the address, +0x0C is a time in milliseconds, +0x16 onward is text,
+// and +0x15 selects between "true" and "false" for a `server` flag.  It also
+// stores 0 at +0x14, ICMP ECHOREPLY, against the 0x0B the TIMEEXCEEDED body
+// stores there.
+//
+// THE PAYLOAD IS AUTHENTICATED BY A MAGIC WORD before anything is allocated:
+// the dword at packet + 0x1C must equal 0x67535073, which is the literal
+// 'gSPs' and reads "sPSg" in memory order.  A reply that does not carry it is
+// dropped, so this module ignores echo replies it did not send.
+//
+// THE TIME IS A SUBTRACTION OF TWO STAMPS AND BOTH ARE IN THE PACKETS.  The
+// arrival stamp is read big-endian out of the FROM ADDRESS at +0x08 -- which is
+// exactly where 0x007FDA50 writes the tick it receives a datagram at, so this
+// body is reading a field the socket layer stamped -- and the send stamp is a
+// plain dword the sender put in its own payload at +0x20.
+//
+// A ZERO ELAPSED TIME IS FORCED TO 1 AFTER IT HAS BEEN LOGGED, so the log can
+// print 0ms while the caller never sees a zero.  That ordering is retail's and
+// it means the printed value and the stored value can differ by one.
+//
+// The 0x400 bound and the 0x24 header are checked on the length BEFORE the
+// magic word, and the length is decremented in the caller's own parameter
+// slot; a negative result and an oversized one share the same `return 0`.
+//
+// Two spellings had to be measured.  `entry` is declared BEFORE `server`, so
+// it takes the slot next to the frame pointer; the other order moves both.
+// And the elapsed time is ONE expression -- the subtraction folded into the
+// same statement as the four byte reads -- because writing it as an assignment
+// followed by a `-=` stores the sum, reloads it and stores again, twelve bytes
+// retail does not have.
+Rva00807EE0Entry *Rva00807FB0( const unsigned char *packet,
+		const unsigned char *from, int length )
+{
+	Rva00807EE0Entry *entry;
+	const char *server;
+
+	length -= 0x24;
+	if( length < 0 || length > 0x400 )
+		return 0;
+
+	if( *(const int *)( packet + 0x1C ) != 'gSPs' )
+		return 0;
+
+	entry = (Rva00807EE0Entry *)Rva007F0000Alloc( length + 0x18 );
+	if( entry != 0 )
+	{
+		entry->m_next = 0;
+		entry->m_from = ( packet[ 0x0C ] << 24 ) | ( packet[ 0x0D ] << 16 )
+				| ( packet[ 0x0E ] << 8 ) | packet[ 0x0F ];
+		entry->m_elapsed = ( ( ( ( ( ( from[ 8 ] << 8 ) | from[ 9 ] ) << 8 )
+				| from[ 10 ] ) << 8 ) | from[ 11 ] )
+				- *(const int *)( packet + 0x20 );
+		entry->m_sequence = ( packet[ 0x1A ] << 8 ) | packet[ 0x1B ];
+		entry->m_length = length;
+		entry->m_server = packet[ 0x18 ];
+		entry->m_icmpType = 0;
+
+		memcpy( (char *)entry + 0x16, packet + 0x24, length );
+
+		if( entry->m_server != 0 )
+			server = "true";
+		else
+			server = "false";
+
+		Rva007FE780Printf(
+				"_ProtoPingCallback: ICMP_ECHOREPLY from=%08x, time=%dms, "
+				"data=%s, server=%s\n",
+				entry->m_from, entry->m_elapsed, (char *)entry + 0x16, server );
+
+		if( entry->m_elapsed == 0 )
+			entry->m_elapsed = 1;
 	}
 
 	return entry;
