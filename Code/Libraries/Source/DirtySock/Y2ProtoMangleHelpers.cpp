@@ -807,3 +807,51 @@ void Rva00806200HttpPost( Rva008042B0Http *http, const char *host, int port,
 			url, sessID, strlen( body ), host, body );
 	Rva008046E0HttpRequest( http, host, port, query );
 }
+
+// The two words the connection status can carry, read out of retail's .rdata
+// at 0x012C3D4C and 0x012C3D58 with the pointer table indexing them at
+// 0x012C3D60.  There are exactly two, which is what the caller's `> 1` reject
+// is guarding.
+static const char *s_connectionStatus[ 2 ] = { "connected", "failed" };
+
+// 0x008060B0 REPORTS THE RESULT back to the server as a POST to
+// "/connectionStatus", and its two format strings are the whole shape:
+// "myIP=%s&myPort=%d&version=1.0&status=%s&gameFeatureID=%s\n" with an
+// optional "&latency=%d" appended.
+//
+// THE PORT IT CALLS "myPort" IS THE ONE AT +0x14, the field the peer
+// reported back through 0x00805870, not the module's own at +0x0C that
+// 0x00804550 uses under the same name.  That is not a slip to tidy up: after
+// the probes, the port the peer saw IS this side's externally visible port, and
+// it is the one the server needs.
+//
+// The latency is appended only when it is not negative, through a second
+// buffer and a strcat rather than a second format -- so a caller with no
+// latency to report passes anything below zero and the field is simply absent.
+//
+// The state goes to 4 on the way out, which is the arm of 0x008054A0 that
+// grades a response by HTTP code alone: nothing more is parsed after this.
+int Rva008060B0( Rva00804150ProtoMangleRef *ref, int status, int latency )
+{
+	char strData[ 0x80 ];
+	char strData2[ 0x20 ];
+
+	if( status > 1 )
+		return -1;
+
+	sprintf( strData,
+			"myIP=%s&myPort=%d&version=1.0&status=%s&gameFeatureID=%s\n",
+			Rva007FFB50AddrText( ref->m_localAddr ), ref->m_peerPort,
+			s_connectionStatus[ status ], ref->m_gameID );
+
+	if( latency >= 0 )
+	{
+		sprintf( strData2, "&latency=%d", latency );
+		strcat( strData, strData2 );
+	}
+
+	Rva00806200HttpPost( &ref->m_http, ref->m_server, ref->m_port,
+			"/connectionStatus", ref->m_sessID, strData );
+	ref->m_state = 4;
+	return 0;
+}
