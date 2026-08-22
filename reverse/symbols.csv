@@ -75240,6 +75240,9 @@ _Rva007FD3F0,0x007FD3F0,per-socket destroy helper; address read from the REL32 i
 _Rva007FD170,0x007FD170,list-head teardown; registered as a function pointer by 0x007FD270 and also called directly there
 _Rva007FE670,0x007FE670,tail cleanup called by the shutdown at 0x007FD270
 _Rva0081BDE4,0x0081BDE4,import thunk called at the tail of the DirtySock shutdown 0x007FD270; the ledger already names this address ?ji_0081bde4, this is the C spelling the .c TU needs
+_ciSocketThinkSend,0x0085AAB0,gamespy-chatSocket internal call from exact ciSocketThink caller
+_ciSocketThinkRecv,0x0085AB70,gamespy-chatSocket internal call from exact ciSocketThink caller
+_ciBufferPreAppend,0x0085A740,gamespy-chatSocket internal call from exact ciSocketSend caller
 ?hide@AptPalantir@@QAEX_N@Z,0x0001420E,ILT to body 0x00592CD0; the AptPalantir callback table at 0x00565F30 names its RenderRadar RenderRadarViewBox ClipRadar and OnInitialized methods; HideControlBar passes TRUE and ShowControlBar passes FALSE
 ?hide@BannerUI@@QAEX_N@Z,0x0003A062,ILT to body 0x005839D0; BannerUI is independently identified by its existing parser and constructor sources; HideControlBar passes TRUE and ShowControlBar passes FALSE
 ?TheAptPalantir@@3PAVAptPalantir@@A,0x00EF4B98,global allocated as a 0x584-byte AptPalantir at initializer 0x006FC330; constructor 0x0079D9F0 anchors RadarViewBoxEdge and the callback table carries AptPalantir method names
