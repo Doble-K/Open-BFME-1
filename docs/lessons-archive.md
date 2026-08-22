@@ -201,45 +201,6 @@ during a rebase. Check `git status` before pushing -- two pins the converted
 `Set_Animation` bodies needed went missing that way and only turned up because
 the working tree still had them.
 
-## Win32BIGFileSystem::openArchiveFile, decoded but not yet landed
-
-0x009CC710, 900 bytes. Everything below is read off the instruction stream and
-verified as far as it goes -- a written version matched the whole prologue on
-the first attempt, through the file open, the lowercased name, the archive
-allocation and the null-file return. It is recorded here so the next attempt
-starts from the structure rather than the disassembly.
-
-What BFME does differently from Zero Hour:
-
-- one sixteen byte header read, not three four-byte reads;
-- the whole directory table read in a single call into `operator new[]` storage
-  and then walked in memory, rather than each entry read a byte at a time;
-- `"BIG4"` accepted alongside `"BIGF"`, both loaded through pointer variables at
-  0x012D9030 and 0x012D9034 rather than pushed as literals;
-- the archive is told its own name through vtable slot 9 before anything else;
-- a bad magic is **not** fatal: the parse is skipped but the archive is still
-  attached to the file and returned, so the caller gets an empty archive. Only a
-  null file pointer returns NULL.
-
-Header, sixteen bytes: magic at +0x00, archive size at +0x04, entry count at
-+0x08 big endian, and at +0x0c, big endian, where the entry data starts. That
-last one is the allocation size; the read length is it minus sixteen. Entries
-are packed back to back: offset and length, both big endian, then a
-NUL-terminated name, and the next entry begins at name + strlen(name) + 1.
-
-Callee pins are already in `reverse/symbols.csv`: ArchivedFileInfo's constructor
-and destructor at 0x009CC650 and 0x009CC600, `addFile` at 0x009D1110 and
-`attachFile` at 0x009CE560.
-
-Two deltas remain, and they are the same delta twice over. The frame comes out
-at 0x38 where retail has 0x3c, because retail spills the entry counter to memory
-(`dec dword ptr [esp+0x1c]` closes the loop) and the written version keeps it in
-a register. Every register choice downstream follows from that, including the
-four big-endian decodes, which come out three to six bytes short apiece because
-they have a spare register retail does not. Total 61 to 81 bytes short depending
-on how the decode is spelled -- and spelling the decode differently does not
-help, because the difference is not in the decode. Find the frame slot first.
-
 ## To name a global, find its setter and then the setter's callers
 
 `FileSystem::openFile` reads three globals that nothing named. Reading the
@@ -274,65 +235,6 @@ the language path is not knowing what EA called it, so these stay
 `byte_134CA48`-style address names. The evidence names the *role*; only a symbol
 source names the symbol. Record the role in the header and leave the name alone.
 
-## BFME's pivot fade, and what still blocks the two blend evaluators
-
-`HTreeClass::Anim_Update` (0x00953AD0, 987 bytes) is matched, and getting there
-turned up a whole subsystem Zero Hour does not have. The fade lives in four
-places:
-
-- `PivotClass::PivotFade` at +0xac, written by `Base_Update`, `Anim_Update`,
-  `Blend_Update` and `Slave_Update` alike;
-- `HAnimClass` virtual slot 13, a per-pivot fade getter taking the same
-  `(pividx, frame)` the visibility getter does;
-- `NodeMotionStruct`'s ninth channel at +0x20 -- Zero Hour's struct is eight
-  pointers and BFME's stride is 0x24 -- which is where a raw animation's fade
-  curve lives;
-- and `Blend_Update` lerps the two animations' fades by the same percentage it
-  lerps the pose: `fade0 + (fade1 - fade0) * percentage`.
-
-The other BFME change in the same family: `Get_Orientation` returns bool rather
-than void. It reports whether the animation has any rotation for that pivot.
-`Anim_Update` skips the matrix build and post-multiply when it is false;
-`Blend_Update` skips the blend when *neither* animation has one and substitutes
-identity for whichever does not.
-
-### What still blocks Blend_Update and Combo_Update
-
-With the fade, the orientation guard and the identity substitution written in,
-`Blend_Update` compiles to 1473 of retail's 1746 bytes. The remaining 273 are
-one thing: retail **inlines `Matrix3D::Multiply`** there, where our build emits
-a call. Retail calls it in `Anim_Update` and inlines it in `Blend_Update`, which
-is just MSVC's cost model differing between the two functions -- but our
-`matrix3d.h` declares `Multiply` non-inline, so we always call it.
-
-That guess was wrong, and the right answer is simpler. Making `Multiply`
-`WWINLINE` breaks five other functions in htree.cpp, because MSVC then inlines
-it everywhere. `Matrix3D::mul` is **already** `WWINLINE` and does the same job:
-`pivot->Transform.mul(a, b)` inlines where `Matrix3D::Multiply(a, b, &dest)`
-calls, and that one substitution takes Blend_Update from 1473 to **1744 of
-retail's 1746 bytes**. Two different spellings of the same multiply, chosen per
-call site -- that is how retail gets the split.
-
-`Matrix3D::Multiply` did turn out to be worth converting on its own account: its
-403 bytes match the reference's ALLOW_TEMPORARIES arm exactly, first try,
-despite matrix3d.cpp's own note claiming its codegen had drifted.
-
-The last two bytes were the fade, not the multiply: retail reads **motion1's
-fade before motion0's** and keeps both results on the x87 stack, where reading
-them in the written order makes MSVC spill one and add it back from memory --
-`fadd st,st(1)` against `fadd DWORD PTR [esp+0x18]`, two bytes. Declaring the
-second animation's fade first closes it, and Blend_Update now compiles to
-**exactly 1746 bytes**.
-
-What survives is one operand ordering. Retail's inlined `submul` runs its three
-products X, Z, Y -- (0x38 x [esi+0x44]), (0x58 x [esi+0x4c]), (0x48 x
-[esi+0x48]) -- and ours runs them Z, Y, X. Things that do **not** move it:
-splitting `postMul(Build_Matrix3D(q,mtx))` into two statements, moving `mtx`
-inside the rotation block, or using the temp-taking spelling
-(`Matrix3D pre = t; t.mul(pre,mtx)`, which costs 124 bytes instead). `submul` is
-a shared WWINLINE that `Anim_Update` already matches through, so the ordering is
-a scheduling artifact of the larger function rather than a spelling of the
-source. That is the whole remaining distance.
 ## An inlined member call materialises its receiver at the inline site
 
 `File::open` came out six bytes long and would not shrink. The extra bytes were
@@ -363,38 +265,6 @@ control flow, suspect an inlined operator or accessor whose receiver got hoisted
 and try spelling the call out. Hoisting an address above a branch is cheap to
 cause and expensive to spot, because the byte that differs is nowhere near the
 line that caused it.
-
-## Combo_Update's fade is accumulated, and it calls Multiply where Blend_Update inlines it
-
-Two things fall out of retail's `HTreeClass::Combo_Update` (0x00954D90, 1753
-bytes) that do not carry over from its sibling.
-
-**The multiply spelling does not generalise.** Retail calls `Matrix3D::Multiply`
-here -- `call 0x008D80C0` at 0x00954E99 -- where `Blend_Update` inlines the same
-operation through `Matrix3D::mul`. So the two spellings really are chosen per
-call site in the original source, and substituting one for the other everywhere
-is wrong in both directions.
-
-**The fade is summed, not lerped.** Inside the same loop that ors the
-visibilities together:
-
-```
-009553C5  call dword ptr [eax + 0x34]      ; the slot-13 fade getter
-009553C8  fadd dword ptr [edi + 0xac]      ; += PivotFade
-009553CE  fstp dword ptr [edi + 0xac]
-009553D7  fld  dword ptr [esp + 0x48]      ; a running count
-009553DC  fadd dword ptr [0x01075334]      ; += 1.0f
-009553E5  fstp dword ptr [esp + 0x48]
-```
-
-and the count is reloaded once the loop ends, so the accumulated fade is
-averaged over the animations that contributed. That is a third fade rule, after
-`Anim_Update`'s straight read and `Blend_Update`'s lerp.
-
-The C++ body also compiles 96 bytes **longer** than retail's, which points at
-the pivot-weight-map handling in the reference having no counterpart in BFME --
-retail's HAnimComboClass calls in this function are `Get_Motion`, `Get_Frame`
-and three others, with nothing that looks like `Get_Pivot_Weight_Map`.
 
 ## Never pass `--no-verify` to `tools/add_match.py`
 
@@ -495,40 +365,6 @@ code can delete a matched symbol, and you should notice when it does -- but a
 row is not worth a layout. Fix the layout, then go find where the orphaned
 symbol really lives.
 
-## Texture pipeline: what is actually known, and the three sibling vtables
-
-`locate.py` places nothing from any of the six texture sources -- 0 of 152
-functions across `texture.cpp`, `textureloader.cpp`, `surfaceclass.cpp`,
-`ddsfile.cpp`, `bitmaphandler.cpp` and `texproject.cpp`. The nine "ambiguous"
-hits it does report are all 30-byte `??_G` scalar deleting destructors resolving
-to the same six addresses -- folded bodies, worth nothing (see the folded-body
-entry above).
-
-`bitmaphandler.cpp` is the useful datapoint: its twelve functions are static and
-take no object, so no class layout can be blamed, and they still do not place.
-That points at rewritten bodies rather than one shared structural fault.
-
-Three sibling vtables in the family, all reached from constructors around
-0x0090E3D0:
-
-```
-VA 0x0113A668   stored at 0x0090E4A1
-VA 0x0113A6B0   stored at 0x0090E5A1
-VA 0x0113A6F8   stored at 0x0090E8AD and 0x0090E9AB
-```
-
-All three are 12 slots and share slots 0, 4, 5, 6, 7, 8, 10 and 11; only 1, 3
-and 9 are overridden (plus slot 2 in the third). Slot 0 is
-`mov eax,[ecx+0x18]; ret`, a plain getter -- **not** a destructor, so whatever
-owns this vtable has no polymorphic base, which rules out the `TextureBaseClass`
-chain (it derives from `RefCountClass`) and does not fit
-`TextureLoadTaskClass` either, whose subclasses override far more than three
-slots. Identify the owner before writing anything against these.
-
-Note on addresses: values encoded in instruction operands are **VAs**, and
-`IMAGE_BASE` is 0x400000, while the ledger is in RVAs. `read()`/`u32()` in the
-probe helper take RVAs, so a vtable printed as `0x0113A668` must be read at
-`0x00D3A668`. Getting this wrong returns empty bytes, not an error.
 ## Destructors are the blind spot of the byte gate
 
 A destructor consists almost entirely of the two operands `build.py` masks:
@@ -625,49 +461,6 @@ Watch for this whenever a new row lands near a pooled class: the DIR32 check is
 the only thing that sees it, and the per-file verify a delta commit runs does
 not.
 
-## The texture pipeline's real blocker: BFME split the texture classes handle/impl
-
-Earlier entries blamed the format enum for `locate.py` placing nothing from the
-texture sources. That was retracted above; this is the actual reason.
-
-BFME's texture objects hold a **pointer at +0 to a separate implementation
-object**, where Zero Hour's classes hold their state inline. Seven of thirteen
-sampled bodies in the 0x0090D000-0x0090E900 cluster open by dereferencing and
-null-testing `[ecx]`, then calling virtuals on what it points at:
-
-```
-0090DC60  ?Peek_D3D_Base_Texture@TextureBaseClass@@QBEPAUIDirect3DBaseTexture8@@XZ
-0090DC61  mov esi, [ecx]        ; the impl, not a vptr
-0090DC63  test esi, esi ; je -> return 0
-0090DC6B  mov eax, [esi]        ; the impl's vtable
-0090DC6F  call [eax + 0x28]     ; ...and its virtuals
-0090DC7A  call [eax + 0x2c]
-0090DC7D  mov eax, [esi + 0x14]
-0090DC80  mov eax, [eax + 8]
-```
-
-The impl is **0x48 bytes** and is allocated at 0x0090D211 (`push 0x48`, then
-zeroing +4, +8 through +0x20, +0x34 and +0x38). `+0x38` holds the D3D texture --
-`Poke_Texture` writes it and 0x0090E810 writes it through the handle.
-
-This is why no amount of faithful porting makes those bodies match: every Zero
-Hour texture method reaches its members directly, and every BFME one reaches
-them one indirection away. It is a redesign, not an offset fix, and it explains
-all six sources at once (0 of 152 placed).
-
-Do not try to salvage this with small corrections. The way in is the same one
-that produced 62 animation functions today: establish the two class shapes from
-allocation sites, destructors and vtables first, then let locate.py place the
-family. The three sibling vtables noted above (VA 0x0113A668/0x0113A6B0/
-0x0113A6F8, 12 slots, slot 0 a plain getter rather than a destructor) are
-consistent with being the *impl* side of this split, which is why slot 0 did not
-look like a destructor.
-
-Beware the small matched rows here when reconstructing: `?As_TextureClass@TextureBaseClass`
-and `?Get_Asset_Type@ZTextureClass` are both 3 bytes at the same address
-(0x006CF680), and `?Poke_Texture@TextureBaseClass` is 10 bytes at 0x001BD780
-that writes `[ecx+0x38]` -- an impl offset. Folded and near-folded rows like
-these will not constrain the layout, and may mislead.
 ## Naming a temporary can decide which stack slot it gets
 
 `ArchiveFileSystem::openFile` is Zero Hour's three lines unchanged:
@@ -1535,119 +1328,8 @@ rows belong to other people's work -- the tool reports, it does not edit.
 - `strcmp` is an intrinsic under `/Oi` so it inlines as `mov ecx,N / xor edx,edx / repe cmpsb`; `_stricmp` has no intrinsic and goes through the IAT. A retail `repe cmpsb` against a literal therefore means the case-sensitive one.
 - A float local that MSVC keeps in st(0) is invisible except in the width of its constant loads: `fcom dword` / `fld dword` mean `float`, `fcom qword` / `fld qword` mean `double`. Assigning `atof`'s double to a float local emits no narrowing store at all, so the constants are the only evidence of the type.
 
-## locate.py derived the evidence from the placement, and deleting destructors exploited it
-
-`locate.py` validates a candidate placement by reading each REL32 out of the
-retail bytes and recording what it points at — "callee addresses read from the
-binary". For most bodies that is sound: the unmasked bytes carry the real
-evidence and the callee is a bonus. For a deleting destructor there are no
-other bytes. `??_G` is
-
-    push esi / mov esi,ecx / call <the class destructor> /
-    test [esp+8],1 / je / push esi / call operator delete / add esp,4 /
-    mov eax,esi / pop esi / ret 4
-
-and once the two calls are masked, what remains is identical for every class in
-the program. So its identity *is* the destructor it calls — and that address
-was just derived from the placement being tested. The placement proves itself.
-
-This is not theoretical. Running `locate.py` over sixteen sources offered
-**0x002C11A0 to six different translation units**, as `??_GActionManager`,
-`??_GAIUpdateInterface`, `??_GAssaultTransportAIUpdate`,
-`??_GChinookAIStateMachine`, `??_GDeliverPayloadAIUpdate` and
-`??_GDozerPrimaryStateMachine`, each with its own invented `symbols.csv` pin
-putting that class's `??1` at 0x0001E29F. Any one `--emit` would have landed a
-false row *and* a false pin, and the pin is the worse half — it would go on to
-"resolve" call sites in unrelated functions.
-
-The tool now refuses these and reports them as SELF-CONFIRMING. The check that
-works is narrow: for `??_G`/`??_E`, require that the **class destructor** callee
-already has a known address. Requiring merely *some* known callee does not
-work, because the body also calls `operator delete`, whose address is always
-known and says nothing about which class this is — that first attempt let all
-six through unchanged.
-
-To claim one of these properly, pin the class destructor first from something
-outside the body: a vtable slot, or a caller that is already byte-matched.
-
-### And 0x002C11A0 really is identifiable — by the destructor, not by the bytes
-
-Chasing the destructor instead of the deleting destructor settles it. The `??_G`
-at 0x002C11A0 calls thunk 0x0001E29F, which reaches 0x00172430 via 0x002C11D0
-and 0x0004AAF7. That body installs vtable VA 0x1095B08, and slots 4, 5 and 6 of
-that table are the already-matched `onEnter`, `onExit` and `update` of
-`AIInternalMoveToState` — so 0x00172430 is that class's destructor, named by
-evidence entirely outside the bytes being compared.
-
-Which makes 0x002C11A0 the *second* `??_G` of AIInternalMoveToState. The first
-is at 0x0014F350, sitting in slot 0 of the same vtable, and the two differ by
-exactly one operand: 0x0014F350 calls the thunk at 0x0004AAF7 directly, while
-0x002C11A0 goes the long way through 0x0001E29F. Two translation units emitted
-the same deleting destructor, the linker could not fold them because their call
-chains differ, and both survived. Neither belongs to ActionManager,
-AIUpdateInterface, AssaultTransportAIUpdate, ChinookAIStateMachine,
-DeliverPayloadAIUpdate or W3DProjectedShadow, all of which the tool was happy
-to put there.
-
-Worth remembering as a positive result too: two byte-different copies of one
-compiler-generated body are normal when they take different thunk hops, so
-finding a second `??_G` for a class you have already placed is not evidence
-that one of them is wrong.
-- MSVC does not fold `a == K || a < K` into a single `jle`; it emits `cmp/je/jl` to the same target, exactly as written. A retail `cmp` followed by two conditional jumps to one label is therefore evidence of two source conditions, not one relational operator — and getting the split right can also settle register allocation that looked arbitrary.
-- A divide-by-constant magic pins a structure size exactly: brute-forcing which divisor reproduces `imul <magic>` + add-back + `sar n` over a range of inputs gave a unique answer (292 for PlayerTemplate). A plain pointer subtraction then regenerates the whole sequence.
-- MSVC returns a 4-byte struct in `eax`, so a one-pointer iterator will not reproduce a callee that takes a hidden return pointer. Declaring a copy constructor (never defined) makes the type non-trivial and forces the memory-return form — the same declaration trick that fixes by-value class arguments.
 
 
-## docs/ini_schema.md is a complete layout oracle for 96 classes, and nothing uses it
-
-Half the entries above are hand-triangulated class layouts — an offset read off
-one instruction, a size read off an `operator new`, a pad placed and then walked
-back when it broke a matched row. Meanwhile `docs/ini_schema.md` has been
-sitting in the tree with the **exact retail offset of every INI-parsed field of
-96 classes**, decoded from the binary's own `FieldParse` tables. Nothing in
-`lessons.md`, `AGENTS.md` or `docs/structural.md` mentions it. It is not
-inference: the table is plain data, `{ token, proc, userData, Int offset }`, and
-`tools/dump_ini_schema.py` walks it.
-
-Among the 96 are `Weapon`, `Object`, `Locomotor`, `Armor`, `Upgrade`,
-`Science`, `PlayerTemplate`, `Terrain`, `FXList`, `ObjectCreationList` and
-`CommandButton` — several of which have entries above describing exactly the
-guesswork this file would have replaced.
-
-**Correction to the WeaponTemplate entry.** It says "a class whose only proven
-fact is its SIZE takes a tail pad, not a mid-class one", having pinned 0x53C
-from `WeaponStore::newWeaponTemplate`. The size was not the only proven fact:
-the `Weapon` table carries **112 fields with offsets**, up to 0x535. A tail pad
-happens to keep every existing row green, but it is not the layout, and any
-field it puts in the wrong place will surface later as a one-instruction diff
-nobody can explain.
-
-**Worked example, CommandButton.** `CommandButton::isReady` (0x0049AD30, 146
-bytes — not the 93 the queue reports, which is our own body's length) reads
-`[this+0x34]` and hands it to the same callee our source reaches with
-`[this+0x24]`. The table says why, exactly:
-
-```
-Options   0x018    Object 0x01C   Upgrade 0x020      <- ours agree
-NeededUpgrade 0x024                                  <- BFME-only, 4 bytes
-BuildUpgrades 0x028  AsciiStringVector               <- BFME-only, 12 bytes
-SpecialPower  0x034                                  <- ours has it at 0x024
-```
-
-so the divergence is two added fields totalling exactly 0x10. Further down the
-same table shows `TextLabel` at 0x044 and `DescriptLabel` at 0x050 are
-*AsciiStringVectors* where ours are plain AsciiStrings, adding 8 bytes each. The
-class is reconstructable field by field rather than by triangulation.
-
-Two limits worth stating. The table only names fields the INI parser writes, so
-runtime-only members between them are still unconstrained — the offsets bracket
-those gaps rather than filling them. And it gives retail's layout, not our
-header: knowing `SpecialPower` belongs at 0x034 does not by itself say which of
-our members to grow, so the existing matched rows still decide between an
-insert, a pad and a relocation.
-- A hand-rolled value type is not a substitute for the reference one. Replacing WWMath's `Vector3` with an equivalent-looking class (initialiser-list constructor, compiler-generated copy and assignment) made MSVC round-trip every temporary through memory with integer moves; copying the real header's form — user-defined copy constructor and `operator=`, constructor bodies that assign — kept each component in the FPU and the body collapsed onto retail.
-- MSVC does not evaluate float operands in source order, and is not consistent between components of the same expression: `Max + Min` loaded `Min.X` first but `Max.Y` and `Max.Z` first. A reversed-looking operand pair in one component proves nothing on its own — flip the whole expression and re-compare.
-- When a body is mostly a container's inline machinery, identify the exact container first — `SimpleDynVecClass` and `DynamicVectorClass` have different member order and different growth rules, so guessing costs a full reconstruction. Two divide-by-four sequences in one function were `Shrink` (`ActiveCount < VectorMax/4`, folding to `VectorMax/4 > 0` right after `Delete_All` zeroes the count) and `Grow` (`Length() + Length()/4`) — same idiom, unrelated meanings.
 
 ## Ledger and git traps that cost pushes rather than cycles
 
@@ -1676,202 +1358,7 @@ it. Both sides are appends, so keeping both hunks is always the resolution — b
 a conflicted rebase still needs the merge checked, since `functions.csv` uses
 union merge and has no concept of a deletion.
 
-## Where the mechanical methods stand, so nobody re-runs them
 
-Ranked by what they still return, as of 2026-08-04.
-
-**Structural findings** remain the best return by far: one fact about a class
-unlocks many functions at once, and `docs/ini_schema.md` now makes that fact
-cheap for 96 INI-parsed classes (see the oracle entry above).
-
-**Pinning through ILT thunks** still works and is the only way to get an address
-that exists nowhere else. Pin the *thunk*, not the body — call sites encode the
-thunk.
-
-**The masked-body sweep (`tools/landsmall.py`) is exhausted.** It produced ~90
-functions historically and produced nothing at all across four fresh attempts:
-`Common/StateMachine.cpp`, all 51 files of `GameLogic/Object/SpecialPower`, and
-the three largest gap-owning files (`AIUpdate.cpp`, `AIGroup.cpp`,
-`W3DTreeBuffer.cpp`). Previously swept and empty: zlib, Lua, EAC, WWMath,
-WWLib, WW3D2, WWDebug/WWSaveLoad, the Upgrade/Contain/Die/Body/Create modules,
-GUI/Thing/ScriptEngine, most of GameClient and GameNetwork. Re-run it only when
-a class layout changes and reopens what that class blocked.
-
-**Thunk-located bodies (`tools/thunkchase.py`, `tools/claimlocated.py`)** are
-nearly finished: down from 276 wrapper sites to ~29 distinct bodies, of which a
-full run landed one.
-
-So the remaining queue is genuinely structural. `tools/next_work.py --ranked`
-tops out around 87% agreement and its `ghidra` tier is empty — "No
-Ghidra-anchored absent function candidates remain."
-
-## Open leads with addresses, so they are not rediscovered
-
-**`AIInternalMoveToState`'s destructor is identified but unclaimed** at
-0x00172430, 98 bytes. The proof is deliberately not its own bytes: it installs
-vtable VA 0x1095B08 (RVA 0xC95B08), and slots 4, 5 and 6 of that table are the
-already-matched `onEnter`, `onExit` and `update` of that class. Exactly two
-sites in the image store the pointer — this destructor, and a store at
-0x0014F2BF inside the 149-byte function at 0x0014F280, which is the constructor
-and is also unclaimed, with the class's own `??_G` at 0x0014F350 behind it. The
-destructor carries an SEH frame, a global null-check and a virtual call through
-`[edx+0x4c]`, so it is a reconstruction rather than a transcription.
-
-**`CommandButton` layout is proven and landing is blocked by five funclet rows.**
-The INI field table gives the front exactly: `Options` 0x018, `Object` 0x01C and
-`Upgrade` 0x020 agree with ours, then BFME inserts `NeededUpgrade` (0x024, 4B)
-and `BuildUpgrades` (0x028, AsciiStringVector, 12B), which is why retail reads
-`m_specialPower` at +0x34 where ours sits at +0x24. `CommandButton::isReady`
-@0x0049AD30 is what exposed it — and note its real length is **146 bytes**, not
-the 93 the work queue reports, which is our own body's length; it also needs a
-BFME-only branch (`cmp [this+0x10],0x16`) that the Zero Hour source lacks.
-Adding the two members to `reference/shims/controlbarlayout` compiles but
-renumbers the compiler-generated labels in ControlBar.cpp, breaking five
-`object-symbol=$L…` funclet rows (`uw_00c27f10`, `uw_00c27fe0`, `uw_00c27fee`,
-`uw_00c27ffc`, `uw_00c28250`). `tools/relabel.py` reports **all five ambiguous**
-and refuses them: the `std::vector` member adds code, so the labels do not shift
-uniformly and its positional check fails. Landing this needs the layout and the
-funclet re-keying in one commit, deriving each funclet's label from its position
-inside its parent. Further down the same table `TextLabel` (0x044) and
-`DescriptLabel` (0x050) are AsciiStringVectors where ours are plain
-AsciiStrings, so the tail needs more than these two inserts.
-
-**Still open, unchanged:** `MeshMatDescClass::Init_Alternate` @0x929410 (1047B,
-80% agreement, remainder is SIB order and spill-register choice rather than
-layout); `TurretAI::setTurretTargetObject` @0x18D120 (280B, 218 diffs, base
-layout already correct so what is left is its own logic);
-`?loadD3DCursorTextures@W3DMouse@@` (ledger name is truncated with no signature,
-and the body diverges — retail 559B against our 332).
-
-**`StateMachine` has no addresses at all.** `StateMachine.cpp` shows 10 matched
-rows but every one is an STL helper; all 27 real methods are
-`present-unmatched`, none is in the export table or in `reverse/vtables.tsv`,
-and the masked sweep places none of them.
-`reference/shims/turretai/Common/StateMachine.h` already encodes two extra BFME
-virtuals ahead of `setState` (pinned by `recenterTurret` @0x18C8D0) but keeps
-both Zero Hour bases — and the merged `MemoryPoolObject`+`Snapshot` finding
-recorded above has never been tested on this class.
-
-**Dropped as stale:** the `bfmeFactoryAnchor*` question in ModuleFactory.cpp. No
-row in `functions.csv` and no pin in `symbols.csv` mentions those symbols any
-more.
-
-## The unclaimed gaps that are actually ours
-
-From `tools/gap_owner.py`, which names the owning translation unit from the
-`F:\bfme\Code\...` assert strings retail kept. Several of these files have no
-translation unit in `Code/` at all — they are BFME-only and would be
-reconstruction from the disassembly rather than porting.
-
-| Real bytes | Address | Owner |
-|---|---|---|
-| 33,685 | 0x273DCE | `AIUpdate.cpp` |
-| 26,101 | 0x2369B5, 0x2408CE, 0x23B6D5, 0x244AD5 | `HordeContain.cpp` — **no TU** |
-| 24,566 | 0x1527B2, 0x156C2E | `AIGroup.cpp` |
-| 10,811 | 0x558F9E | `AptOnlineQuickMatch.cpp` — **no TU**, Flash/Apt UI |
-| 10,601 | 0x344291 | `ScriptEngine.cpp` |
-| 10,165 | 0x2A6588 | `SpecialAbilityUpdate.cpp` — **no TU** |
-| 9,695 | 0x2E3F04 | `LuaScriptEngine.cpp` — **no TU** |
-| 9,588 | 0x73670E | `W3DTreeBuffer.cpp` |
-| 8,932 | 0x76569E | `W3DScriptedModelDraw.cpp` — no TU |
-| 8,912 | 0x71A140 | `W3DShrubBuffer.cpp` — no TU |
-| 8,138 | 0x6ACB6D | `MilesAudioManager.cpp` — no TU |
-
-## Triaging the eighteen over-long rows
-
-Interior padding proves the end is wrong and says nothing about the start, so
-each row still needs its start checked. Doing that — is it a Ghidra function
-start, is it 16-byte aligned, is it preceded by padding — leaves only **three**
-that are plain over-long rows safe to shrink:
-
-| Row | claims | real body | start evidence |
-|---|---|---|---|
-| `DefaultModuleTemplate<1>::writeINI` @0x6000B0 | 807 | 628 | Ghidra start, aligned, padded |
-| `RTS3DScene::Visibility_Check` @0x9446F0 | 1075 | 456 | 16-byte aligned |
-| `StructureToppleUpdate::update` @0x8F7E80 | 1211 | 52 | 16-byte aligned |
-
-The other fifteen have starts nothing corroborates, which puts them in the same
-class as the withdrawn AIAttackMoveStateMachine row — but that is a triage
-signal and not a verdict, since Ghidra misses a third of real-source starts and
-MSVC does not align every function. Two are worth looking at first because the
-arithmetic is extreme: `OptionPreferences::getLANIPAddress` claims 488 bytes for
-a 124-byte body and `getOnlineIPAddress` claims 397 for 124, and both are
-`__declspec(naked)` `.cpp` sources rather than dumps, so withdrawing them means
-deleting source too.
-
-Note that shrinking a dump row is not a one-line ledger edit: the `.asm` must
-have its `db` lines truncated to the same length, or the source and the row
-disagree about what is being verified.
-- Padding filler must account for the vtable pointer explicitly, and whether one exists depends on the *shim* class, not the real one. A filler of `[0xD8]` in a class that declares a virtual puts the next member at 0xDC; the same filler in a class that declares none puts it at 0xD8. Both mistakes shift every offset in the dump by four and read like a different layout rather than an off-by-one-slot — check the shim's own virtuals before re-deriving the layout.
-- `mov reg,0` where `xor reg,reg` would do is not a different constant: `xor` clobbers flags, so MSVC picks the longer encoding when a comparison has already set flags that a later branch still needs.
-
-## The oracle is now a diff: tools/ini_layout_diff.py
-
-The entry above says an INI-parsed class is reconstructable field by field
-rather than by triangulation. `tools/ini_layout_diff.py` does it in one command:
-it reads our `FieldParse` table out of the compiled object, lines it up by token
-against retail's decoded table in `docs/ini_schema.md`, and prints the per-field
-offset delta plus the list of fields retail parses that our table does not —
-which is the list of members to add.
-
-It reproduces, in seconds, the CommandButton analysis that took an hour of
-disassembly: four fields agreeing, `SpecialPower` at our 0x24 against retail
-0x34, the cascade to +24 and +32 as `TextLabel` and `DescriptLabel` widen into
-vectors, and `NeededUpgrade` 0x024 / `BuildUpgrades` 0x028 at the head of the
-additions list. That agreement with an independent measurement is the reason to
-trust it.
-
-Two things it immediately says about classes nobody had numbers for. Our
-`WeaponTemplate` table has 76 fields against retail's 112, and its front is
-0x24 *too high* — `AttackRange` sits at our 0x38 where retail has 0x14 — so the
-tail pad recorded earlier is not merely incomplete, the class is smaller at the
-front and larger later. `LocomotorTemplate` agrees on exactly one field out of
-fifty, despite Locomotor.cpp verifying 44/44, which is a reminder that a green
-translation unit says nothing about a template class whose accessors are not
-among the matched rows.
-
-Read the deltas as evidence about retail, not as instructions. The table only
-constrains fields the parser writes, runtime-only members between them are
-free, and the matched rows still decide between an insert, a pad and a
-relocation.
-- The decorated name distinguishes `class` from `struct`: `PBURGBColor@@` is a pointer-to-const *struct*, `PBVAsciiString@@` a pointer-to-const *class*. Declaring the wrong one produces a differently-mangled symbol and `build.py` fails with "symbol not found in object" rather than a byte mismatch — read the `U`/`V` before writing the shim.
-- MSVC does not algebraically simplify integer division, so `LOGICFRAMES_PER_SECOND * t / DRAWABLE_FRAMES_PER_FLASH` stays a multiply followed by a divide instead of collapsing. Two constants in the source remain two operations in the bytes, which is what makes them individually recoverable.
-
-## $L-keyed funclet rows freeze 503 translation units against layout work
-
-A row whose note says `object-symbol=$L<n>` finds its compiled body by a
-compiler-generated label. The number depends on how much code precedes it in the
-translation unit, so *any* change that adds or removes code renumbers it and
-`build.py` stops with `symbol not found in object: $L48498` — a message that
-reads like a broken checkout and is really a layout change doing its job.
-
-Measured on the current ledger: **1,367 such rows across 503 translation
-units.** (An older note put it at 87; that number is stale.) The worst
-concentrations are `module_pool_glue_bulk.cpp` with 146,
-`subsystem_interface.cpp` with 63 and `UserPreferences.cpp` with 36.
-
-`tools/relabel.py` repairs the easy case and refuses the rest, correctly: it
-re-identifies a funclet by its bytes, funclets share a prologue and their one
-distinguishing operand is a masked rel32, so it falls back to a positional check
-— same label count, uniform shift, nth stays nth — and reports AMBIGUOUS when
-that does not hold. It does not hold whenever the edit changes how many labels
-the TU emits, which is exactly what adding a member with a constructor does.
-
-Two independent attempts hit this in one session, and neither was an unusual
-edit:
-
-- adding `NeededUpgrade` and a `std::vector<AsciiString> BuildUpgrades` to
-  `CommandButton` broke five funclet rows in ControlBar.cpp
-  (`uw_00c27f10`, `uw_00c27fe0`, `uw_00c27fee`, `uw_00c27ffc`, `uw_00c28250`),
-  all five AMBIGUOUS;
-- opting Upgrade.cpp into the existing AudioEventRTS shim broke `$L48498`.
-
-So the practical position is that the header layout of 503 TUs is frozen, and
-every structural finding that lands in a header has to fight this first. Fixing
-it is worth more than any single class: a funclet's real identity is its parent
-plus its position among that parent's funclets, which the object's unwind data
-states directly, and re-keying the rows that way would survive renumbering. Until
-then, expect to land a layout change and its funclet re-keying as one commit.
 
 ## Frame size counts local slots, so it constrains the signature
 
@@ -1899,39 +1386,6 @@ the allocator as different expressions and it frees eax afterwards in one and no
 other. So when a residue is nothing but a scratch-register choice, try swapping raw
 member reads for the accessors the original almost certainly used -- it is a real
 codegen lever, not just style.
-
-## The $L freeze is breakable: re-key funclets by position, not by bytes
-
-The entry above measures the problem -- 1,367 rows keyed to `object-symbol=$L<n>`
-across 503 translation units, renumbered by any edit that changes how much code
-precedes them, with `relabel.py` refusing most of them because funclets share a
-prologue and their one distinguishing operand is masked. It is the standing
-obstacle in front of every header and shim change.
-
-Position survives renumbering even when bytes cannot tell the labels apart. The
-compiler emits them in a fixed order, so the nth `$L` symbol of a given size
-before the edit is the nth of that size after it. `tools/rekey_funclets.py`
-records the label set first, and maps across afterwards.
-
-Worked example. Opting Scripts.cpp into a shim broke four rows -- `uw_00c19370`,
-`uw_00c19378`, `uw_00c194a8`, `uw_00c196c0` -- which `relabel.py` reported
-AMBIGUOUS with seven and eight byte-identical candidates each. Positionally they
-map to `$L64250`, `$L64251`, `$L65497` and `$L69079`: **all four shifted by
-exactly -43**, and Scripts.cpp then verified 33/33.
-
-That uniform shift is the corroboration to insist on. If every row moves by the
-same delta the mapping is almost certainly right; a ragged one means code landed
-between the funclets and the result needs checking by hand. Either way
-`./build.sh <source>` decides, because a wrong label either fails to resolve or
-fails the byte comparison -- there is no silent way to be wrong here, which is
-what makes the positional guess safe to make.
-
-The workflow is: snapshot, edit, re-key, verify.
-
-    python3 tools/rekey_funclets.py --snapshot <source.cpp> /tmp/before.json
-    # make the header or shim change
-    python3 tools/rekey_funclets.py <source.cpp> /tmp/before.json
-    ./build.sh <source.cpp>
 
 ## Two BFME facts that unlock ScriptEngine's callers
 
@@ -3530,43 +2984,6 @@ different class and says nothing. That took the candidate list from 73 to 45 and
 a class of suggestion that looked well-evidenced and was not.
 
 
-## Census: what is actually left in the naked backlog
-
-Both seams this session has worked -- vtable gaps and naked rows -- came up naming-limited
-in the same pass, so it was worth measuring rather than guessing. Screening the first 400
-naked rows by blocker signature:
-
-    ~286  carry an SEH prologue (alone or with others)
-      41  x87 only
-      24  function-local static guard
-      12  clear, every call pinned
-       4  clear, but with unpinned call targets
-    the rest  esp-stash, vptr-sink, ebp-frame, identity, in combination
-
-Two things follow.
-
-SEH is not one blocker among several, it is roughly seventy per cent of the remaining
-work in this sample. Everything else put together is a minority. Any further large gain
-in this backlog goes through unwind funclets, not through the codegen levers this session
-has been accumulating.
-
-And the clear-and-pinned pool is twelve rows, all of which have already been examined and
-are blocked on codegen rather than on anything new: removeAllShadows, FastAllocatorGeneral,
-StealthUpgradeModuleData and the two friend_newModuleData factories. There is no
-unexplored cheap remainder; the cheap rows are done.
-
-The census covers 400 of roughly 948 naked rows, so the proportions are a sample rather
-than a total. That is worth stating rather than rounding away.
-
-Concretely for the next attempt: Remove_Render_Object is fully understood -- its twin was
-converted last pass and the class layout came with it -- and blocked on exactly one
-unnamed callee, 0x00943430, a non-virtual helper on the object at SimpleSceneClass+0x34
-that also serves Visibility_Check@RTS3DScene. Naming that one function converts a
-134-byte row. It cannot be read off the reference, because this build's SimpleSceneClass
-does not match it: lists sit at +0x5C, +0xBC, +0xD4 and +0xEC with an unidentified member
-at +0x34, where the reference declares four adjacent lists and nothing else.
-
-
 ## The thunk question answered itself
 
 The previous entry stopped short of pinning a real name at an ILT thunk because it was
@@ -3751,28 +3168,6 @@ and a body are many to many, and these rows are exactly where the two come apart
 so anything reasoning from ledger names has to drop them first. add_match caught
 it regardless: it appended, rebuilt, failed to find the symbol, and reverted
 without touching anything.
-
-
-## A silent no-op shipped a tool that did not match its message
-
-The reverse pass described in the previous commit was not in it. The patch that
-added it did a string replacement whose search text contained a backslash-n
-inside an ordinary Python string, so it became a real newline and never matched
-the literal two characters in the file. str.replace does not complain when it
-replaces nothing, so the tool was written, run, committed and pushed still doing
-only the forward pass -- and the forward pass returns zero, which looks exactly
-like a tool that ran fine.
-
-The output was there to be read: the mirror section prints unconditionally, so
-its absence from the run was the whole answer. It went unnoticed because the run
-was piped through tail alongside a commit in one command, and a zero-result tool
-and a tool missing half its body print the same thing.
-
-Two habits would each have caught it. Use the editor for edits to files already
-in context rather than a replace script, since it fails loudly on a missed match.
-And do not put a verification run in the same command as the commit that depends
-on it -- when the check and the irreversible step share a command, the check
-cannot gate anything.
 
 
 ## Two offsets that cannot both be right, and what that told me
@@ -4899,14 +4294,6 @@ exactly, and the claim then verified 15/15 first try.
 So when a name has an ambiguous pin set and a draft exists, compile the draft
 first and let its prefix pick the address. It is cheaper than reading six bodies
 and it does not depend on getting the vptr or literal addresses right beforehand.
-
-## What the gate still cannot see
-
-??_GDebugIOFlat at 0x0088A680 calls 0x00889620, not the address now claimed as
-its destructor. Both rows verify. The stub is most likely another DebugIO class
-wearing the name from the same harvest, but the byte gate has no way to notice
-the disagreement, so it is logged rather than resolved.
-
 
 ## A check that had never fired once
 
@@ -7289,50 +6676,6 @@ ObjectModule's constructor, pinned at 0x000170E4 under about ten ICF-folded
 aliases; naming the class ObjectModule emits the right symbol without inventing
 anything.
 
-## The mouselayout InGameUI model is wrong, and disregardDrawable proves it
-
-InGameUI.cpp is tempting: 108 unmatched markers against 59 matched rows, and
-it is on the sweep shim alone while `reference/shims/mouselayout` ships an
-InGameUI.h that claims BFME has nine more virtuals ahead of `isScrolling`.
-Wiring that shim into the TU does not unlock it - it breaks a row that
-already matched. `?disregardDrawable@InGameUI@@UAEXPAVDrawable@@@Z` tail-jumps
-through slot 0xC8 in retail and the shim moves it to 0xEC, because
-disregardDrawable is declared thirty-four virtuals after isScrolling and any
-insertion ahead of isScrolling carries it along.
-
-So one of two things is true: BFME does not put nine extra virtuals ahead of
-isScrolling, or it also drops nine somewhere between isScrolling and
-disregardDrawable. Either way slot 0xC8 for disregardDrawable is a hard
-anchor, and the shim as written cannot be adopted by any TU that calls a
-virtual past isScrolling. W3DMouse.cpp only survives it because it does not.
-
-## TeamFactory's destructor is at 0x000F74C0, not 0x009F2800
-
-Two of the four remaining DIR32 failures are `??_7TeamFactory@@6BSnapshot@@@`
-and `??_7TeamFactory@@6BSubsystemInterface@@@`, and the constructor and
-destructor rows disagree about which vtables those names mean. The
-constructor settles it. `??0TeamFactory@@QAE@XZ` @0x000F2250 writes
-`[esi+8]=0x1073744` (the MemoryPoolObject base), then `[esi]=0x1085F1C` and
-`[esi+8]=0x1085F08`, so TeamFactory's own tables are 0x1085F1C primary and
-0x1085F08 at +8. The row claimed as its destructor, @0x009F2800, writes
-`[esi]=0x11457F8` and `[esi+8]=0x11457E8` instead - a different class
-entirely - even though its note says the vtables prove ownership.
-
-Exactly two functions in the whole image write 0x1085F1C: the constructor at
-0x000F2282 and one at 0x000F74E1. That second one is an INT3-delimited
-118-byte body starting at **0x000F74C0**, and it reads as the destructor: it
-installs both TeamFactory tables, destroys the member at this+0xC, nulls the
-singleton at 0x12ED810, then puts `[esi+8]` back to the MemoryPoolObject
-vtable 0x1073744 - the inlined base destructor - and returns. Its neighbours
-line up too: 0x1085F1C slot 0 reaches 0xF7760 and slot 1 reaches 0xF7560.
-
-So `??1TeamFactory@@UAE@XZ,0x009F2800` is a misplaced claim, not a vtable
-mystery, and repointing it to 0x000F74C0 both fixes the identity and clears
-two DIR32 failures. Whoever takes it should land 0x000F74C0 as clean C++
-rather than repointing the existing `__emit` thunk, and should work out what
-class really owns 0x009F2800 before retracting it, since that address is
-carrying 115 bytes of coverage today.
-
 ## What UpdateModule's three vtable stores look like, and where TensileFormationUpdate differs
 
 Useful for reading any Update-module destructor. `~AutoAbilityBehavior`
@@ -7353,39 +6696,6 @@ model in TensileFormationUpdateDestructorThunk.cpp is missing it, which would
 make this a modelling artifact fixable in that one TU - or 0x10B1DC4 is a
 second copy of the same table. Deciding which is what the last DIR32 failure
 in this family needs.
-
-## The retail LANAPI vtable, slot by slot
-
-`reference/shims/lanapi` models six extra virtuals and puts them after
-GetMyGame, which moves nothing that matters; the real table is at RVA
-**0xD1AF50** and has 56 slots (0x000-0x0DC). Dumping it and matching each
-target against the ledger anchors enough of it to rebuild the header
-mechanically. Follow the `E9` at each slot - most entries are ILT thunks.
-
-    slot  off    target     identity
-     2   0x008  0x9A1A50   SubsystemInterface::loadIniFilesFromLegend
-     5   0x014  0x6870F0   LANAPI::update
-    16   0x040  0x6865C0   LANAPI::RequestChat
-    22   0x058  0x687E90   LANAPI::RequestGameCreate
-    25   0x064  0x6850F0   LANAPI::RequestLobbyLeave
-    26   0x068  0x684F20   LANAPI::ResetGameStartTimer
-    37   0x094  0x689050   LANAPI::OnGameStartTimer
-    41   0x0A4  0x689B70   LANAPI::OnNameChange
-    43   0x0AC  0x685150   LANAPI::LookupGameByListOffset
-    47   0x0BC  0x685660   LANAPI::GetMyName
-
-Two things fall out. Slot 2 being `loadIniFilesFromLegend` - a virtual Zero
-Hour's SubsystemInterface does not have - means the first two of BFME's extra
-slots are contributed by **SubsystemInterface**, not by LANAPIInterface: that
-is why `update` sits at 5 where Zero Hour puts it at 3. From RequestChat
-onward the delta is a flat +5 until GetMyName, where it becomes +8.
-
-Second, `OnChat` is slot 35 (0x8C) - retail `OnGameStartTimer` @0x006890FE
-calls it there - against 0x78 in our build, and the local IP it passes comes
-from a virtual at slot 55 (0x0DC, target 0x685630) rather than the this+0x40
-member the Zero Hour source reads. Any LANAPICallbacks.cpp body that calls an
-On* method needs both fixed.
-
 
 ## A member sourced from the module data avoids the register residual entirely
 
@@ -7438,75 +6748,6 @@ together, and `??1ControlBar@@UAE@XZ` is meanwhile claimed at 0x004A9980 on a
 Whoever untangles this should start from the constructor, since constructors
 name their class unambiguously, and expect to retract two rows. TeamFactory's
 is already known wrong from the other direction.
-
-## The retail InGameUI vtable, anchored
-
-InGameUI.cpp is the biggest single-file prize in the tree - 108 unmatched
-markers against 59 matched rows - and the thing standing in front of it is the
-vtable, not the class layout. The retail table is at RVA **0xCF5B38** and has
-**110 slots** (0x000-0x1B4). Matching each entry against the ledger anchors
-thirty of them; follow the `E9` at each slot, most are ILT thunks.
-
-    slot  off    target     identity
-      1  0x004  0x440B40   InGameUI::createReplayControl   (BFME-only)
-      2  0x008  0x9A1A50   SubsystemInterface::loadIniFilesFromLegend
-      5  0x014  0x4410C0   InGameUI::update
-      9  0x024  0x442040   InGameUI::popupMessage
-     11  0x02C  0x43DEF0   InGameUI::messageColor
-     12  0x030  0x43DED0   InGameUI::message(AsciiString, ...)
-     13  0x034  0x43DEE0   InGameUI::message(UnicodeString, ...)
-     19  0x04C  0x441D30   InGameUI::militarySubtitle
-     21  0x054  0x4431B0   InGameUI::removeMilitarySubtitle
-     25  0x064  0x43AC30   InGameUI::beginAreaSelectHint
-     26  0x068  0x43AC70   InGameUI::endAreaSelectHint
-     28  0x070  0x43AC80   InGameUI::createMoveHint
-     30  0x078  0x4445C0   InGameUI::createMouseoverHint
-     32  0x080  0x43ACA0   InGameUI::createGarrisonHint
-     33  0x084  0x44C970   InGameUI::addSuperweapon
-     35  0x08C  0x449FC0   InGameUI::objectChangedTeam
-     36  0x090  0x43AA60   InGameUI::setSuperweaponDisplayEnabledByScript
-     46  0x0B8  0x43ADE0   InGameUI::setGUICommand
-     48  0x0C0  0x43AF60   InGameUI::placeBuildAvailable
-     50  0x0C8  0x43B140   (unnamed - what disregardDrawable forwards to)
-     59  0x0EC  0x446550   InGameUI::selectAllUnitsByTypeAcrossMap
-     65  0x104  0x43E180   InGameUI::getFirstSelectedDrawable
-     67  0x10C  0x43E1A0   InGameUI::isDrawableSelected
-     70  0x118  0x43DBE0   InGameUI::setRadiusCursor
-     75  0x12C  0x4469F0   InGameUI::postDraw
-     80  0x140  0x441AF0   InGameUI::playCameoMovie
-     81  0x144  0x441C50   InGameUI::stopCameoMovie
-     88  0x160  0x43EF70   InGameUI::selectMatchingAcrossScreen
-
-Slot 1 is `createReplayControl`, which Zero Hour's InGameUI does not declare as
-a virtual at all, and slot 2 is the SubsystemInterface addition - so the extra
-virtuals start at the very top of the table, not down at `isScrolling` where
-`reference/shims/mouselayout` puts nine of them. That model moves slot 50 to
-0xEC and so breaks `disregardDrawable`, which is an 8-byte body at 0x00537A1A
-that does nothing but `jmp [eax+0xC8]` - it forwards to slot 50, whose target
-0x43B140 is still unnamed, and that forwarding is what pins the slot. Rebuild the header from these anchors instead of
-inserting a block: the gaps between consecutive anchors give the exact number
-of unnamed virtuals in each stretch.
-
-### the InGameUI deltas are not monotonic, so it is not pure insertion
-
-Lining the anchors up against Zero Hour's declaration order (the dtor is slot 0
-and each subsequent `virtual` is the next slot) gives these ZH-slot to
-retail-slot deltas, in table order:
-
-    update +3; messageColor/message/message +5; militarySubtitle +8;
-    removeMilitarySubtitle +9; beginAreaSelectHint/endAreaSelectHint +11;
-    createMoveHint +12; createMouseoverHint through placeBuildAvailable +11;
-    getFirstSelectedDrawable/isDrawableSelected/setRadiusCursor +10;
-    postDraw +8
-
-The delta rises to +12, drops back to +11, then to +10, then to +8. A class
-that only *added* virtuals would give a non-decreasing delta, so BFME removes
-some of Zero Hour's as well - which fits, since several of them sit behind
-`ALLOW_SURRENDER` and similar Generals-only features. Reconstructing this
-header therefore cannot be done by inserting a block of unnamed slots; each
-stretch between two anchors has to be balanced individually, and some ZH
-declarations have to come out. The anchors give the exact slot count in each
-stretch, which is the constraint to solve against.
 
 ## Sweep in batch; the queue is the slow path
 
@@ -8067,35 +7308,6 @@ Doing this one means modelling `SidesList` TU-locally first. Worth it, because
 `SidesList+0x63C` will explain every other unmatched body that walks sides, but it
 is a class model rather than a body conversion - budget it as such.
 
-## The locate.py byte-scan lane is exhausted on the big sources
-
-Earlier in the day a masked byte-scan sweep was the cheapest coverage there was -
-`tools/locate.py` placed 23 bodies out of 178 markers on one pass and 45 out of 216
-on another. That lane has since closed. Ten of the highest-marker sources in the
-tree, better than a thousand `present-unmatched` markers between them, now yield
-nothing at all:
-
-    AIStates(261) Object(174) Player(139) parameter(117) W3DShaderManager(114)
-    hlod(89) textureloader(80) GameWindowTransitionsStyles(75) ParticleSys(72)
-    INI_stl(66)                                    -> 0 placements, all ten
-
-What comes back instead is the three failure kinds, and each names the work that
-would actually move them:
-
-- `unlocated (drifted or not in this binary)` - the overwhelming majority, and the
-  real remaining pile. These have C++ in `Code/` that does not byte-match, so they
-  need a drift found, not a placement. `Object::xfer` at 2485B,
-  `Player::xfer` at 3476B and `Player::init` at 1742B are the biggest.
-- `AMBIGUOUS` - STL template bodies that ICF-fold to four or six identical copies.
-  A byte-scan can never break these ties; they need a caller pin.
-- `SELF-CONFIRMING` - `??_G` deleting destructors whose only distinguishing operand
-  is a callee derived from the placement itself. All of them land on 0x009F2900.
-  Pin the class destructor from a vtable or a caller first.
-
-Do not re-run the sweep over these files. If you want to spend a sweep, spend it on
-sources nobody has swept yet - the count of markers is not a predictor, coverage
-history is.
-
 ## Name dumps from the call graph, not from their bytes (tools/callers_of.py)
 
 Byte-scanning is finished as a lane, and 5.0 MB of the binary is still sitting in
@@ -8200,3 +7412,16 @@ generated file's own cl line adds /EHsc and retail built that instantiation
 without unwind. Four callees also need pins. The pins are routine; the exception
 model is not, because the file carries forty other verified rows and changing
 its flags needs the full gate rather than a scoped build.
+
+## One-line lessons kept from trimmed sections
+
+- MSVC does not fold `a == K || a < K` into a single `jle`; it emits `cmp/je/jl` to the same target, exactly as written. A retail `cmp` followed by two conditional jumps to one label is therefore evidence of two source conditions, not one relational operator — and getting the split right can also settle register allocation that looked arbitrary.
+- A divide-by-constant magic pins a structure size exactly: brute-forcing which divisor reproduces `imul <magic>` + add-back + `sar n` over a range of inputs gave a unique answer (292 for PlayerTemplate). A plain pointer subtraction then regenerates the whole sequence.
+- MSVC returns a 4-byte struct in `eax`, so a one-pointer iterator will not reproduce a callee that takes a hidden return pointer. Declaring a copy constructor (never defined) makes the type non-trivial and forces the memory-return form — the same declaration trick that fixes by-value class arguments.
+- A hand-rolled value type is not a substitute for the reference one. Replacing WWMath's `Vector3` with an equivalent-looking class (initialiser-list constructor, compiler-generated copy and assignment) made MSVC round-trip every temporary through memory with integer moves; copying the real header's form — user-defined copy constructor and `operator=`, constructor bodies that assign — kept each component in the FPU and the body collapsed onto retail.
+- MSVC does not evaluate float operands in source order, and is not consistent between components of the same expression: `Max + Min` loaded `Min.X` first but `Max.Y` and `Max.Z` first. A reversed-looking operand pair in one component proves nothing on its own — flip the whole expression and re-compare.
+- When a body is mostly a container's inline machinery, identify the exact container first — `SimpleDynVecClass` and `DynamicVectorClass` have different member order and different growth rules, so guessing costs a full reconstruction. Two divide-by-four sequences in one function were `Shrink` (`ActiveCount < VectorMax/4`, folding to `VectorMax/4 > 0` right after `Delete_All` zeroes the count) and `Grow` (`Length() + Length()/4`) — same idiom, unrelated meanings.
+- Padding filler must account for the vtable pointer explicitly, and whether one exists depends on the *shim* class, not the real one. A filler of `[0xD8]` in a class that declares a virtual puts the next member at 0xDC; the same filler in a class that declares none puts it at 0xD8. Both mistakes shift every offset in the dump by four and read like a different layout rather than an off-by-one-slot — check the shim's own virtuals before re-deriving the layout.
+- `mov reg,0` where `xor reg,reg` would do is not a different constant: `xor` clobbers flags, so MSVC picks the longer encoding when a comparison has already set flags that a later branch still needs.
+- The decorated name distinguishes `class` from `struct`: `PBURGBColor@@` is a pointer-to-const *struct*, `PBVAsciiString@@` a pointer-to-const *class*. Declaring the wrong one produces a differently-mangled symbol and `build.py` fails with "symbol not found in object" rather than a byte mismatch — read the `U`/`V` before writing the shim.
+- MSVC does not algebraically simplify integer division, so `LOGICFRAMES_PER_SECOND * t / DRAWABLE_FRAMES_PER_FLASH` stays a multiply followed by a divide instead of collapsing. Two constants in the source remain two operations in the bytes, which is what makes them individually recoverable.
