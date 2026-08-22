@@ -141,3 +141,40 @@ int Rva007FF990( unsigned short value )
 	*(unsigned short *)x = value;
 	return ( x[ 0 ] << 8 ) | x[ 1 ];
 }
+
+/* 0x007FF9F0 is the 32-bit companion of the swap above -- retail's frame
+ * descriptor names its local `x` and gives its width as 4.  Same idea: store
+ * the argument whole, read the bytes back individually most-significant first.
+ */
+int Rva007FF9F0( unsigned int value )
+{
+	unsigned char x[ 4 ];
+
+	*(unsigned int *)x = value;
+	return ( ( ( ( ( x[ 0 ] << 8 ) | x[ 1 ] ) << 8 ) | x[ 2 ] ) << 8 ) | x[ 3 ];
+}
+
+/* 0x007FFA60 swaps sixteen bits too, but SPELLED THE OTHER WAY ROUND, and the
+ * pair is worth keeping distinct rather than collapsing.  0x007FF990 stores a
+ * short and reads two bytes out; this one writes two bytes in and reads a
+ * short back.  The two are functionally identical and compile to different
+ * code, so which one a call site uses is evidence about which direction the
+ * original source meant -- host-to-network here, network-to-host there.
+ *
+ * It also shifts the PARAMETER rather than a local, and shifts it as sixteen
+ * bits: the emitted `shr cx, 8` is a 16-bit operation writing back to the
+ * argument slot.  A 32-bit temporary would compile to `shr eax, 8`.
+ *
+ * The return is a 16-bit `mov ax`, so this one returns unsigned short where
+ * its counterpart returns int.
+ */
+unsigned short Rva007FFA60( unsigned short value )
+{
+	unsigned char x[ 2 ];
+
+	x[ 1 ] = (unsigned char)value;
+	value >>= 8;
+	x[ 0 ] = (unsigned char)value;
+
+	return *(unsigned short *)x;
+}
