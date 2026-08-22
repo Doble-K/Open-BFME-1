@@ -75343,3 +75343,6 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+_strstr,0x009F709C,Y2 lane: strstr import thunk (gen-import ?ji_009f709c@@YAXXZ names the same address)
+_strchr,0x009F6DFA,Y2 lane: strchr import thunk (gen-import ?ji_009f6dfa@@YAXXZ names the same address)
+_strncmp,0x009F6FE2,Y2 lane: strncmp import thunk (gen-import ?ji_009f6fe2@@YAXXZ names the same address)
