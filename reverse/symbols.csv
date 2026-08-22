@@ -74761,3 +74761,7 @@ _Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; 
 ??0Sub005CDC20@@QAE@ABV0@@Z,0x005CDC20,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
 ??0Sub005CE420@@QAE@ABV0@@Z,0x005CE420,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
 ??0Sub005CEB10@@QAE@ABV0@@Z,0x005CEB10,Y4 lane: restored pin a concurrent whole-file rewrite of reverse/symbols.csv dropped; address is the one the Y3 lane encodes in its own address-derived name
+??1Z1Elem00129220@@QAE@XZ,0x001266B0,Z1 lane: element destructor of a list<T>::clear() instantiation; address read from the retail REL32 at the clear() call site
+??1Z1Elem0013BF00@@QAE@XZ,0x0013AD00,Z1 lane: element destructor of a list<T>::clear() instantiation; address read from the retail REL32 at the clear() call site
+??1Z1Elem0056D960@@QAE@XZ,0x0010DAE0,Z1 lane: element destructor of a list<T>::clear() instantiation; address read from the retail REL32 at the clear() call site
+??1Z1Elem0076AE50@@QAE@XZ,0x00762EC0,Z1 lane: element destructor of a list<T>::clear() instantiation; address read from the retail REL32 at the clear() call site
