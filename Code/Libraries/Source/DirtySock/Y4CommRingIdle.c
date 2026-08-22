@@ -1,4 +1,7 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
+/* /GS is needed for 0x008155F0, whose local packet contains an array and so
+ * carries a cookie.  It costs the other bodies here nothing: /GS only emits
+ * a cookie in a function that HAS a local array, and none of them do. */
 /* EA DirtySock -- the idle pump for a RING-BUFFERED comm transport.
  *
  * PLACEMENT IS BY ADDRESS NEIGHBOURHOOD ONLY, and is stated rather than
@@ -27,9 +30,18 @@ void Rva007FECB0( void *lock );
 
 struct Rva00815B50Comm
 {
-	char m_head[ 0x7C ];
+	char m_head[ 0x5C ];
+	/* Byte and packet counters, both incremented by the send at 0x00815680
+	 * and by nothing else here. */
+	int m_bytesSent;                /* +0x5C */
+	char m_gap0[ 0x04 ];
+	int m_packetsSent;              /* +0x64 */
+	char m_gap1[ 0x14 ];
 	unsigned int m_socket;          /* +0x7C */
-	char m_gap[ 0x30 ];
+	/* The PEER ADDRESS.  The send hands this to sendto with a length of 0x10,
+	 * which is what fixes both its position and its size. */
+	char m_peer[ 0x10 ];            /* +0x80 */
+	char m_gap[ 0x20 ];
 	int m_recordSize;               /* +0xB0 */
 	int m_bufferSize;               /* +0xB4 */
 	int m_writeOffset;              /* +0xB8 */
@@ -38,7 +50,8 @@ struct Rva00815B50Comm
 	 * dereferences the result, which is what proves the offsets above are
 	 * byte offsets into this buffer rather than indices. */
 	unsigned char *m_buffer;        /* +0xC0 */
-	char m_gap2[ 0x128 ];
+	unsigned int m_lastSendTick;    /* +0xC4 */
+	char m_gap2[ 0x124 ];
 	char m_lock[ 4 ];               /* +0x1EC */
 };
 
@@ -125,4 +138,78 @@ void Rva00815FA0( struct Rva00815B50Comm *comm, const unsigned char *packet )
 		comm->m_readOffset = ( comm->m_readOffset + comm->m_recordSize )
 			% comm->m_bufferSize;
 	}
+}
+
+/* The wire packet.  Twelve bytes, and the builder at 0x008155F0 leaves the
+ * FIRST FOUR UNINITIALISED -- only the length and the leading data byte are
+ * set -- so whatever +0x00 is, it is not part of what gets transmitted.
+ */
+struct Rva00815680Packet
+{
+	int m_reserved0;                /* +0x00, not initialised before sending */
+	int m_length;                   /* +0x04 */
+	unsigned char m_data[ 4 ];      /* +0x08 */
+};
+
+int Rva007FD920( unsigned int socket, const char *buffer, int length,
+	int flags, void *to, int toLength );
+int Rva007FE780( const char *format, ... );
+
+extern char g_Rva012C4B64Message[];
+
+/* 0x00815680 SENDS ONE PACKET.  The length on the wire is the payload length
+ * PLUS ONE, and the buffer starts at +0x08 -- so the leading data byte is a
+ * header the payload length does not count.  That off-by-one is deliberate and
+ * is the only thing distinguishing the two.
+ *
+ * A SHORT WRITE IS TREATED AS A HARD FAILURE, not a partial send: the sent
+ * count is compared for EQUALITY against the requested length, and anything
+ * else is reported and returns -1.  Nothing retries the remainder, so this
+ * transport assumes a datagram socket where a send is all-or-nothing.
+ *
+ * On success three pieces of state move together -- the last-send tick, the
+ * byte counter and the packet counter -- and the tick is read AFTER the send
+ * returns, so it records completion rather than submission.
+ */
+int Rva00815680( struct Rva00815B50Comm *comm, struct Rva00815680Packet *packet )
+{
+	/* Declared in this order because retail's frame has the length nearest
+	 * ebp; swapping them compiles cleanly and matches nothing. */
+	int iLength;
+	int iSent;
+
+	iLength = 1;
+	iLength = iLength + packet->m_length;
+
+	iSent = Rva007FD920( comm->m_socket, (const char *)packet->m_data,
+		iLength, 0, comm->m_peer, 0x10 );
+
+	if ( iSent != iLength )
+	{
+		Rva007FE780( g_Rva012C4B64Message, iSent );
+		return -1;
+	}
+
+	comm->m_lastSendTick = Rva007FEA00();
+	comm->m_bytesSent = comm->m_bytesSent + iLength;
+	comm->m_packetsSent = comm->m_packetsSent + 1;
+
+	return iLength;
+}
+
+/* 0x008155F0 sends a ONE-BYTE control packet: payload length zero, the kind
+ * byte in the first data slot.  The packet is a local, and it is the local
+ * ARRAY that pulls in the /GS cookie this body carries and the neighbouring
+ * ones do not.
+ */
+unsigned int Rva007FEA00( void );
+
+int Rva008155F0( struct Rva00815B50Comm *comm, char kind )
+{
+	struct Rva00815680Packet packet;
+
+	packet.m_length = 0;
+	packet.m_data[ 0 ] = kind;
+
+	return Rva00815680( comm, &packet );
 }
