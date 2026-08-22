@@ -150602,3 +150602,5 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ?TheGameLogic@@3PAVGameLogicFrameSlice@@A,0x012F0898,game logic global used for the current frame slice in AI target dispatch
 ?attackOptimizedTarget@AIStateTargetDispatch@@QAEXPAVThing@@@Z,0x0027E070,address-derived optimized target dispatch callee
 ?attackOrdinaryTarget@AIStateTargetDispatch@@QAEXPAVThing@@@Z,0x0027CF60,address-derived ordinary target dispatch callee
+?removeDrawableFromLookupTable@GameClient@@QAEXPAVDrawable@@@Z,0x0004819E,Open-BFME5 setID retail REL32 pin
+?addDrawableToLookupTable@GameClient@@QAEXPAVDrawable@@@Z,0x0003CC4A,Open-BFME5 setID retail REL32 pin
