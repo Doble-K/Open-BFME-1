@@ -38,7 +38,11 @@ struct Rva007FD4E0Socket
 	 * time, through different pointers. */
 	struct Rva007FD4E0Socket *m_next;       /* +0x00 */
 	struct Rva007FD4E0Socket *m_killNext;   /* +0x04 */
-	char m_head[ 0x0E ];            /* +0x08 */
+	char m_head[ 0x04 ];            /* +0x08 */
+	/* SOCK_* type.  The send path at 0x007FD920 branches on this being 3,
+	 * i.e. SOCK_RAW, and strips a caller-supplied IP header when it is. */
+	int m_type;                     /* +0x0C */
+	char m_head2[ 0x06 ];           /* +0x10 */
 	short m_shutdownFlags;          /* +0x16 */
 	unsigned int m_socket;          /* +0x18 */
 	char m_gap[ 0x20 ];
@@ -657,7 +661,7 @@ int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
 {
 	char temp[ 0x10 ];
 
-	socket->m_head[ 0x14 - 0x08 ] = 0;
+	socket->m_head2[ 0x14 - 0x10 ] = 0;
 	return Rva007FD540( connect( socket->m_socket,
 		Rva007FD660( temp, (void *)address ), addressLength ) );
 }
@@ -832,7 +836,7 @@ int Rva007FD3F0( struct Rva007FD4E0Socket *socket )
 		closesocket( socket->m_socket );
 	}
 	socket->m_socket = 0xFFFFFFFF;
-	socket->m_head[ 0x14 - 0x08 ] = 0;
+	socket->m_head2[ 0x14 - 0x10 ] = 0;
 
 	Rva007FEBD0( 0 );
 	socket->m_killNext = g_Rva0130AB5CKillList;
@@ -1015,4 +1019,131 @@ void *Rva007FD660( char *temp, void *address )
 		}
 	}
 	return address;
+}
+
+/* 0x007FD920 is SEND, and its interesting half is the RAW-SOCKET path.  When
+ * the socket's type word at +0x0C is 3 -- SOCK_RAW -- the caller has handed in
+ * a whole IP datagram including its header, and Windows will not let that
+ * header through as data.  So the library takes the two fields it can honour
+ * and drops the rest: byte 8 of an IP header is the TTL, and it is pushed
+ * through setsockopt with level 0 and option 4, i.e. IPPROTO_IP / IP_TTL; the
+ * low nibble of byte 0 is the IHL in 32-bit words, so multiplying it by four
+ * gives the header length, which is then skipped over.  EVERY ONE OF THOSE
+ * CONSTANTS IS IN THE BYTES -- the 3, the 0 and 4 of the setsockopt, the 0xF
+ * mask and the shift by two -- so this identification does not rest on shape.
+ *
+ * The clamp afterwards is defensive and is retail's: a header longer than the
+ * buffer would otherwise make the length negative.
+ *
+ * THE FLAGS PARAMETER IS IGNORED.  Both calls pass a literal zero, not the
+ * caller's flags.  That is retail's behaviour and it is preserved.
+ *
+ * Which call is used depends only on whether a destination was supplied, and
+ * the destination goes through the 'xmap' remap first -- the same interleaved
+ * argument evaluation as the connect wrapper, with the remap's own two
+ * arguments cleaned in the middle of sendto's list.
+ */
+struct Rva007FD920IpHeader
+{
+	unsigned char m_versionAndLength;   /* +0x00, low nibble is IHL */
+	unsigned char m_skip[ 7 ];
+	unsigned char m_timeToLive;         /* +0x08 */
+};
+
+int __stdcall setsockopt( unsigned int socket, int level, int option,
+	const void *value, int valueLength );
+int __stdcall send( unsigned int socket, const char *buffer, int length,
+	int flags );
+int __stdcall sendto( unsigned int socket, const char *buffer, int length,
+	int flags, const void *to, int toLength );
+
+int Rva007FD920( struct Rva007FD4E0Socket *socket, const char *buffer,
+	int length, int flags, void *to, int toLength )
+{
+	int iResult;
+	char scratch[ 0x10 ];
+	const struct Rva007FD920IpHeader *pHeader;
+	int iTimeToLive;
+
+	if ( socket->m_type == 3 )
+	{
+		pHeader = (const struct Rva007FD920IpHeader *)buffer;
+		iTimeToLive = pHeader->m_timeToLive;
+		setsockopt( socket->m_socket, 0, 4, &iTimeToLive, 4 );
+
+		length -= ( pHeader->m_versionAndLength & 0x0F ) * 4;
+		buffer = buffer + ( pHeader->m_versionAndLength & 0x0F ) * 4;
+		if ( length < 0 )
+			length = 0;
+	}
+
+	if ( to == 0 )
+		iResult = send( socket->m_socket, buffer, length, 0 );
+	else
+		iResult = sendto( socket->m_socket, buffer, length, 0,
+			Rva007FD660( scratch, to ), toLength );
+
+	return Rva007FD540( iResult );
+}
+
+/* 0x007FDA50 is RECEIVE, and it carries the neatest trick in this file: on a
+ * successful recvfrom it STAMPS A TICK COUNT INTO BYTES 8..11 OF THE SOURCE
+ * ADDRESS.  Those are the tail of sockaddr's 14-byte data area, which
+ * sockaddr_in leaves as zero padding, so the library gets a per-datagram
+ * arrival timestamp delivered to the caller through a structure that already
+ * had room for it and no field to name it.  The bytes go in low-first at
+ * descending offsets -- the same big-endian placement used for addresses
+ * everywhere else in this file.
+ *
+ * TWO SEPARATE RESULT CONVENTIONS MEET HERE AND THE ORDER MATTERS.  First a
+ * zero-length read -- an orderly shutdown -- is turned into -1, while anything
+ * else goes through the Winsock error translator.  Then, and only if bit 5 of
+ * the flags is set, 0 and -1 are SWAPPED.  The two are applied in sequence
+ * rather than folded together, so a caller passing that bit gets 0 for a
+ * closed connection: the flag selects which of the two spellings of "nothing
+ * arrived" the caller wants.
+ */
+int __stdcall recv( unsigned int socket, char *buffer, int length, int flags );
+int __stdcall recvfrom( unsigned int socket, char *buffer, int length,
+	int flags, char *from, int *fromLength );
+
+int Rva007FDA50( struct Rva007FD4E0Socket *socket, char *buffer, int length,
+	int flags, char *from, int *fromLength )
+{
+	int iResult;
+	unsigned int uTick;
+	int iTranslated;
+
+	if ( from == 0 )
+	{
+		iResult = recv( socket->m_socket, buffer, length, 0 );
+	}
+	else
+	{
+		iResult = recvfrom( socket->m_socket, buffer, length, 0, from,
+			fromLength );
+		if ( iResult > 0 )
+		{
+			uTick = Rva007FEA00();
+			from[ 11 ] = (char)uTick;  uTick >>= 8;
+			from[ 10 ] = (char)uTick;  uTick >>= 8;
+			from[ 9 ] = (char)uTick;   uTick >>= 8;
+			from[ 8 ] = (char)uTick;
+		}
+	}
+
+	if ( iResult == 0 )
+		iTranslated = -1;
+	else
+		iTranslated = Rva007FD540( iResult );
+	iResult = iTranslated;
+
+	if ( flags & 0x20 )
+	{
+		if ( iResult == -1 )
+			iResult = 0;
+		else if ( iResult == 0 )
+			iResult = -1;
+	}
+	return iResult;
 }
