@@ -75268,3 +75268,4 @@ _Rva0081BDEA,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; address 
 _Rva0081BDEA@4,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; the @4 is the stdcall decoration for its one argument
 _Rva007FE780,0x007FE780,debug text sink; reached only from the folded-out guard at the tail of 0x007FE520, address read from that dead REL32
 _vsprintf,0x009F70AE
+_Rva007FD660,0x007FD660,Y4 lane: DirtySock address remap helper; fills a 16-byte scratch and returns it, called by the connect wrapper at 0x007FD5C0

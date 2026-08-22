@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
 
 /* EA DirtySock ("DirtySDK") -- Windows socket layer, dirtynetwin.c.
  *
@@ -589,4 +589,40 @@ int __cdecl Rva007FF080( const char *pText )
 		uHash = pText[ i ] ^ uHash;
 	}
 	return uHash;
+}
+
+/* 0x007FD5C0 is the CONNECT wrapper, and it is the same family as the bind and
+ * listen ones above: hand the raw Winsock result to the error translator.  Two
+ * things make it longer than its siblings.
+ *
+ * First, the address is TRANSLATED rather than passed through -- the helper at
+ * 0x007FD660 fills a 16-byte scratch buffer and returns a pointer to it, which
+ * is what connect actually receives.  Retail's own name for that buffer, taken
+ * from the /GZ frame descriptor, is `temp`, and its declared width there is
+ * 0x10; neither is a name or a size I chose.
+ *
+ * Second, a byte at +0x14 is cleared first.  It sits in the same head region
+ * the shutdown-flag word occupies, and nothing in THIS body says what it means,
+ * so it is left as a byte store into the existing head array rather than given
+ * an invented field name.
+ *
+ * The whole outer expression is one statement: MSVC evaluates arguments
+ * right-to-left, so the length is pushed BEFORE the translation helper runs,
+ * and the helper's own two arguments are cleaned with `add esp,8` in the middle
+ * of connect's argument list.  That interleaving is what the bytes show, and
+ * splitting the call across statements does not reproduce it.
+ */
+int __stdcall connect( unsigned int socket, const void *address,
+	int addressLength );
+
+void *Rva007FD660( char *temp, const void *address );
+
+int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
+	int addressLength )
+{
+	char temp[ 0x10 ];
+
+	socket->m_head[ 0x14 ] = 0;
+	return Rva007FD540( connect( socket->m_socket,
+		Rva007FD660( temp, address ), addressLength ) );
 }
