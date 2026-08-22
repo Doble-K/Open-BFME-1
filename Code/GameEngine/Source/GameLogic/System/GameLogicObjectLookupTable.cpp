@@ -48,7 +48,6 @@ private:
 	ObjectPtrHash m_objHash;	// this+0xB0
 };
 
-// ?addObjectToLookupTable@GameLogic@@QAEXPAVObject@@@Z present-unmatched
 void GameLogic::addObjectToLookupTable(Object *obj)
 {
 	// sanity
