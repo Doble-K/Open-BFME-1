@@ -11,8 +11,11 @@
    0x0085AC90 with &connection->chatSocket (connection + 0x1c). */
 
 #include <assert.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+
+#define VALID_NICK_CHARS "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]\\`_^{|}-"
 
 typedef void *CHAT;
 
@@ -214,4 +217,21 @@ CHATBool ciSendGetChannelKeyAnchor(CHAT chat,
 									 const char **keys)
 {
 	return ciSendGetChannelKey(chat, channel, nick, cookie, num, keys);
+}
+
+int ciNickIsValid(const char *nick)
+{
+	if((NULL == nick) || ('\0' == *nick))
+		return CHATFalse;
+
+	if(isdigit(*nick) || (*nick == '-'))
+		return CHATFalse;
+
+	while(*nick != '\0')
+	{
+		if(NULL == strchr(VALID_NICK_CHARS, *nick++))
+			return CHATFalse;
+	}
+
+	return CHATTrue;
 }
