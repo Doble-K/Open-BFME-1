@@ -650,7 +650,7 @@ int __cdecl Rva007FF080( const char *pText )
 int __stdcall connect( unsigned int socket, const void *address,
 	int addressLength );
 
-void *Rva007FD660( char *temp, const void *address );
+void *Rva007FD660( char *temp, void *address );
 
 int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
 	int addressLength )
@@ -659,7 +659,7 @@ int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
 
 	socket->m_head[ 0x14 - 0x08 ] = 0;
 	return Rva007FD540( connect( socket->m_socket,
-		Rva007FD660( temp, address ), addressLength ) );
+		Rva007FD660( temp, (void *)address ), addressLength ) );
 }
 
 /* 0x007FDEE0 is a SELF-TEST of the address translator at 0x007FE310, and it
@@ -944,4 +944,75 @@ int Rva007FE310( void *dest, int destLength, const void *src, int srcLength )
 
 	memset( dest, 0, destLength );
 	return -3;
+}
+
+/* 0x007FD660 is the 'xmap' REMAP LOOKUP -- the consumer of the table that
+ * SocketControl installs at 0x0130AB60 when handed the 'xmap' selector, which
+ * the body at 0x007FDEB0 in this file already showed being stored.  This is
+ * what the table is FOR, and the pair together is the whole feature: a
+ * caller-supplied list that rewrites destination addresses before connect.
+ *
+ * THE TABLE'S LAYOUT IS READ FROM THE WALK, not assumed.  The stride is 0x0C,
+ * and each entry is tested as `match == (address & mask)` with the replacement
+ * at +0x08 doubling as the terminator -- a zero replacement ends the list, so
+ * an entry that maps something to 0.0.0.0 cannot be expressed.  That is a real
+ * limitation of the format and it is visible here.
+ *
+ * On a hit the original and the replacement are both printed, the whole
+ * address is copied into the caller's scratch buffer, the four address bytes
+ * are overwritten from the replacement low-byte-first into descending offsets
+ * -- the same big-endian placement the self test at 0x007FDEE0 uses -- and the
+ * SCRATCH is returned instead of the original.  On a miss the original pointer
+ * comes back untouched, which is why the connect wrapper can pass the result
+ * straight through without checking.
+ *
+ * The parameter is REASSIGNED to the scratch buffer and then returned, so it
+ * cannot be const; that is retail's spelling, not a convenience.
+ */
+struct Rva0130AB60Map
+{
+	unsigned int m_match;           /* +0x00 */
+	unsigned int m_mask;            /* +0x04 */
+	unsigned int m_replace;         /* +0x08, and zero terminates the list */
+};
+
+char *Rva007FFB50AddrText( unsigned int address );
+
+extern char g_Rva012C3C60Message[];
+extern char g_Rva012C3C7CMessage[];
+
+void *Rva007FD660( char *temp, void *address )
+{
+	unsigned int uAddress;
+	struct Rva0130AB60Map *pMap;
+	unsigned int uReplace;
+
+	pMap = g_Rva0130AB60;
+	if ( pMap != 0 )
+	{
+		uAddress = RVA007FE310_ADDRESS( address );
+
+		for ( ; pMap->m_replace != 0; pMap++ )
+		{
+			if ( pMap->m_match == ( uAddress & pMap->m_mask ) )
+			{
+				Rva007FE780( g_Rva012C3C60Message,
+					Rva007FFB50AddrText( uAddress ) );
+				Rva007FE780( g_Rva012C3C7CMessage,
+					Rva007FFB50AddrText( pMap->m_replace ) );
+
+				memcpy( temp, address, 0x10 );
+
+				uReplace = pMap->m_replace;
+				temp[ 7 ] = (char)uReplace;  uReplace >>= 8;
+				temp[ 6 ] = (char)uReplace;  uReplace >>= 8;
+				temp[ 5 ] = (char)uReplace;  uReplace >>= 8;
+				temp[ 4 ] = (char)uReplace;
+
+				address = temp;
+				break;
+			}
+		}
+	}
+	return address;
 }
