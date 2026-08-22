@@ -364,3 +364,54 @@ void Rva007EBB10( char *record, char separator )
 
 	*out = 0;
 }
+
+// 0x007EC030 DELETES A TAG FROM A RECORD, in place, and the four walks are the
+// whole body.  The lookup gives it the value; from there it walks BACK to the
+// start of the name -- stopping at the record's start or at the first byte at
+// or below 0x20 -- then FORWARD past the value and past the control run that
+// ends it, then copies everything that is left down over the hole, then trims
+// trailing whitespace off what it produced.
+//
+// SO THE SEPARATOR IS NEVER SEARCHED FOR AGAIN.  The name's extent is found by
+// scanning outward from the value the lookup already returned, which is why
+// this needs no second parse and why deleting a tag whose name contains a space
+// would leave part of it behind.
+//
+// A tag that is not there is -1 and nothing is touched; anything else is 0.
+// There is no way to tell how much was removed.
+int Rva007EC030( char *text, const char *tag )
+{
+	char *value;
+	char *out;
+	char *p;
+	char *start;
+
+	start = text;
+
+	value = Rva007EBCA0( start, tag );
+	if( value == 0 )
+		return -1;
+
+	for( out = value; out != start
+			&& *(unsigned char *)( out - 1 ) > 0x20; out-- )
+		;
+
+	for( p = value; *(unsigned char *)p >= 0x20; p++ )
+		;
+
+	while( *(unsigned char *)p > 0 && *(unsigned char *)p < 0x20 )
+		p++;
+
+	while( *(unsigned char *)p != 0 )
+	{
+		*out = *p;
+		out++;
+		p++;
+	}
+
+	while( out != start && *(unsigned char *)( out - 1 ) <= 0x20 )
+		out--;
+
+	*out = 0;
+	return 0;
+}
