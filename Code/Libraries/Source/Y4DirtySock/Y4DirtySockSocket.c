@@ -365,9 +365,14 @@ void Rva007FEA20( struct Rva0130AB68List *list )
 /* 0x007FECB0: release one reference.  Above one, the count simply drops; at one
  * or zero the object is cleared and its +0xC sub-object handed to a THIRD
  * import slot -- distinct from both the initialiser's and the reset's, which is
- * what says these three bodies touch one embedded object through its own
- * create/reset/destroy entry points rather than sharing one call. */
-__declspec(dllimport) void __stdcall Rva01358E74Destroy( void *body );
+ * what says these bodies touch one embedded object through its own entry
+ * points rather than sharing one call.
+ *
+ * CORRECTION, from the blocking acquire at 0x007FEBD0: that body calls THIS
+ * SAME SLOT to give the section back after its probe reports busy, which a
+ * destroy could not be.  The slot is a LEAVE, so the last release here is
+ * `clear the ownership words and leave`, not `tear the object down`. */
+__declspec(dllimport) void __stdcall Rva01358E74Leave( void *body );
 
 void Rva007FECB0( struct Rva0130AB68List *list )
 {
@@ -382,7 +387,7 @@ void Rva007FECB0( struct Rva0130AB68List *list )
 		node->m_ownerThread = 0;
 		node->m_depth = 0;
 		node->m_state = 0;
-		Rva01358E74Destroy( node->m_body );
+		Rva01358E74Leave( node->m_body );
 	}
 }
 
@@ -416,3 +421,34 @@ int Rva007FEB00( struct Rva0130AB68List *list )
 	node->m_depth = node->m_depth + 1;
 	return 1;
 }
+
+/* 0x007FEBD0: the blocking acquire built on the try-acquire above.  Each round
+ * first attempts the cheap path, then takes the section, and only claims
+ * ownership if the state word is still clear; if it is not, the section is
+ * given straight back and the thread waits before trying again.  That
+ * give-it-back call is what proves slot 0x1358E74 is a leave.
+ *
+ * One source detail the bytes fix: the try-acquire is called with the RAW
+ * PARAMETER, not with the already-defaulted local -- so a null argument is
+ * re-defaulted inside the callee on every round, and the loop re-enters at the
+ * call rather than at the selection. */
+void Rva007FEBD0( struct Rva0130AB68List *list )
+{
+	struct Rva0130AB68List *node = list ? list : &g_Rva0130AB68Default;
+
+	while ( !Rva007FEB00( list ) )
+	{
+		Rva01358D18Enter( node->m_body );
+
+		if ( !Rva01358E58Probe( &node->m_state, 1 ) )
+		{
+			node->m_ownerThread = Rva01358D7CCurrentId();
+			node->m_depth = node->m_depth + 1;
+			return;
+		}
+
+		Rva01358E74Leave( node->m_body );
+		Rva01358F30Wait( 1 );
+	}
+}
+
