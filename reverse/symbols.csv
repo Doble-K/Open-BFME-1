@@ -150604,3 +150604,8 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ?attackOrdinaryTarget@AIStateTargetDispatch@@QAEXPAVThing@@@Z,0x0027CF60,address-derived ordinary target dispatch callee
 ?removeDrawableFromLookupTable@GameClient@@QAEXPAVDrawable@@@Z,0x0004819E,Open-BFME5 setID retail REL32 pin
 ?addDrawableToLookupTable@GameClient@@QAEXPAVDrawable@@@Z,0x0003CC4A,Open-BFME5 setID retail REL32 pin
+?m_curFadeValue@ScreenCrossFadeFilterUpdateFadeLevelShim@@0MA,0x01307200,Open-BFME5 retail ScreenCrossFade static
+?m_fadeDirection@ScreenCrossFadeFilterUpdateFadeLevelShim@@0HA,0x01307204,Open-BFME5 retail ScreenCrossFade static
+?m_fadeFrames@ScreenCrossFadeFilterUpdateFadeLevelShim@@0HA,0x01307208,Open-BFME5 retail ScreenCrossFade static
+?m_curFadeFrame@ScreenCrossFadeFilterUpdateFadeLevelShim@@0HA,0x0130720C,Open-BFME5 retail ScreenCrossFade static
+?TheTacticalViewFadeShim@@3PAVTacticalViewFadeShim@@A,0x012F1600,Open-BFME5 retail tactical-view global
