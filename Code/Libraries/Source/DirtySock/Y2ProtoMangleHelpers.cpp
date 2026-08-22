@@ -194,10 +194,12 @@ int Rva008046E0HttpRequest( Rva008042B0Http *http, const char *host, int port,
 struct Rva00804150ProtoMangleRef
 {
 	void            *m_socket;          // +0x000
-	// Compared against m_socket by ProtoMangleDestroy before it closes the
-	// record's socket, and never read anywhere else; the Http sub-object has a
-	// second pointer in exactly this slot, which is all this name rests on.
-	void            *m_field004;        // +0x004
+	// THE CALLER'S SOCKET, and 0x008053C0 is what says so: it stores its own
+	// socket argument here and then queries THAT for its bound address.  It is
+	// also the counterweight ProtoMangleDestroy compares +0x00 against before
+	// closing it -- a socket the caller handed in must not be closed on the
+	// caller's behalf, which is exactly what that guard buys.
+	void            *m_userSocket;      // +0x004
 	unsigned int     m_localAddr;       // +0x008
 	int              m_myPort;          // +0x00C
 	int              m_pad010;
@@ -341,11 +343,59 @@ void ProtoMangleDestroy( Rva00804150ProtoMangleRef *ref )
 {
 	Rva007FE780Printf( "ProtoMangleDestroy: Shutting down\n" );
 
-	if( ref->m_socket != ref->m_field004 )
+	if( ref->m_socket != ref->m_userSocket )
 		Rva00804380CloseSocket( (Rva008042B0Http *)ref );
 
 	Rva008043C0HttpDestroy( &ref->m_http );
 	Rva007F0030Free( ref );
 }
 
+}
+
+// 0x007FDB60, the DirtySock socket query.  0x008053C0 calls it with the
+// selector 0x62696E64 -- 'bind' as a multi-character literal, the same
+// convention 0x007FDEB0's 'xmap'/'xdns' pair uses -- and a 0x10-byte buffer,
+// which is a sockaddr.  The name is address-derived; the selector is evidence.
+void Rva007FDB60SocketInfo( void *socket, int selector, void *buffer,
+		int bufferSize );  // 0x007FDB60
+
+// 0x008053C0 is the CONNECT entry, and it logs itself: "protomangle: connecting
+// with sockref 0x%08x\n".  What it does with that sockref is what names +0x04 --
+// it stores the caller's socket there and immediately asks THAT socket for its
+// bound address, so the record keeps the caller's socket separately from its
+// own.  ProtoMangleDestroy's otherwise puzzling +0x00 versus +0x04 comparison is
+// an ownership test once that is known.
+//
+// THE PORT IS BIG-ENDIAN AND IS READ AS TWO BYTES, not as a swapped short:
+// bytes 2 and 3 of the sockaddr are each widened with movzx and folded with a
+// shift and an or.  That is the same SockaddrInGetPort spelling 0x00804440 uses
+// for the address, and reading it as a short and swapping does not reproduce it.
+//
+// The frame is 0x1C: cookie, guard, the 0x10 buffer /GZ names `SockAddr`,
+// guard.  Nothing else is on the stack.
+void Rva008053C0Connect( Rva00804150ProtoMangleRef *ref, void *socket,
+		const char *sessID )
+{
+	char SockAddr[ 0x10 ];
+
+	Rva007FE780Printf( "protomangle: connecting with sockref 0x%08x\n", socket );
+
+	ref->m_localAddr = Rva00804440LocalAddr();
+	ref->m_userSocket = socket;
+
+	Rva007FDB60SocketInfo( ref->m_userSocket, 'bind', SockAddr, 0x10 );
+	ref->m_myPort = ( (unsigned char)SockAddr[ 2 ] << 8 )
+			| (unsigned char)SockAddr[ 3 ];
+
+	Rva00804250CopyField( ref->m_sessID, sessID, 0x20 );
+	Rva00804550RequestPeerAddress( ref );
+}
+
+// A one-line reader for the sub-object's +0x11C, reached through the record at
+// +0x1DC -- 0xC0 + 0x11C, which is what ties the two structs together here.  It
+// takes no frame beyond ebp and makes no call, so /GZ leaves it alone; the name
+// is address-derived because the field's meaning is not settled anywhere.
+int Rva00805610HttpField11C( Rva00804150ProtoMangleRef *ref )
+{
+	return ref->m_http.m_field11C;
 }
