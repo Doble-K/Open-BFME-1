@@ -74765,3 +74765,28 @@ _Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; 
 ??1Z1Elem0013BF00@@QAE@XZ,0x0013AD00,Z1 lane: element destructor of a list<T>::clear() instantiation; address read from the retail REL32 at the clear() call site
 ??1Z1Elem0056D960@@QAE@XZ,0x0010DAE0,Z1 lane: element destructor of a list<T>::clear() instantiation; address read from the retail REL32 at the clear() call site
 ??1Z1Elem0076AE50@@QAE@XZ,0x00762EC0,Z1 lane: element destructor of a list<T>::clear() instantiation; address read from the retail REL32 at the clear() call site
+??1Rva00009E35TailBase@@UAE@XZ,0x00009E35,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0000DBA7TailBase@@UAE@XZ,0x0000DBA7,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0001AA9BTailBase@@UAE@XZ,0x0001AA9B,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00020BA3TailBase@@UAE@XZ,0x00020BA3,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00020D9CTailBase@@UAE@XZ,0x00020D9C,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00021FC1TailBase@@UAE@XZ,0x00021FC1,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00026175TailBase@@UAE@XZ,0x00026175,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00026FC6TailBase@@UAE@XZ,0x00026FC6,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00028763TailBase@@UAE@XZ,0x00028763,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00028ECATailBase@@UAE@XZ,0x00028ECA,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0002B8C8TailBase@@UAE@XZ,0x0002B8C8,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00031D5ETailBase@@UAE@XZ,0x00031D5E,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00033875TailBase@@UAE@XZ,0x00033875,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00035D46TailBase@@UAE@XZ,0x00035D46,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0004584ATailBase@@UAE@XZ,0x0004584A,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva000491E3TailBase@@UAE@XZ,0x000491E3,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0004B227TailBase@@UAE@XZ,0x0004B227,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0082AE40TailBase@@UAE@XZ,0x0082AE40,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00832090TailBase@@UAE@XZ,0x00832090,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0083F730TailBase@@UAE@XZ,0x0083F730,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva008B2DF0TailBase@@UAE@XZ,0x008B2DF0,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva008D5F70TailBase@@UAE@XZ,0x008D5F70,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva0092B6A0TailBase@@UAE@XZ,0x0092B6A0,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva00943E70TailBase@@UAE@XZ,0x00943E70,base destructor address decoded from the retail REL32 tail jump; name is address-derived
+??1Rva009EB810TailBase@@UAE@XZ,0x009EB810,base destructor address decoded from the retail REL32 tail jump; name is address-derived
