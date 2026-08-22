@@ -1,6 +1,8 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/bfmeheightmap /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
+#define __PLACEMENT_VEC_NEW_INLINE  // always.h defines array placement-new itself
+#define _STLP_USE_STATIC_LIB       // the retail floor list calls __node_alloc directly
 /*
 **	Command & Conquer Generals Zero Hour(tm)
 **	Copyright 2025 Electronic Arts Inc.
@@ -52,6 +54,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <list>
 #include <assetmgr.h>
 #include <texture.h>
 #include <tri.h>
@@ -738,6 +741,74 @@ public:
 	void clear30A4();
 	void clear30A0();
 };
+
+// BFME's +0x30A4 buffer is a W3DFloorBuffer.  Its list is the STLport
+// circular list at +0x20; the payloads are the floor render objects allocated
+// by the buffer and owned by this reset path.
+class Gen_dtor_006f8910
+{
+public:
+	virtual ~Gen_dtor_006f8910();
+};
+
+class BFMETextureRelease
+{
+public:
+	void Release_Ref();
+};
+
+struct BaseHeightMapFloorElement
+{
+	char m_pad00[0x20];
+	BFMETextureRelease *m_texture;
+	RefCountClass *m_renderObject;
+	void *m_field28;
+	char m_pad2c[0x1c];
+	void *m_field48;
+	char m_pad4c[0x30];
+	bool m_active;
+};
+
+struct BaseHeightMapFloorBufferLayout
+{
+	char m_pad00[0x18];
+	Int m_field18;
+	char m_pad1c[4];
+	_STL::list<void *> m_elements;
+	Int m_field24;
+};
+
+void BaseHeightMapResetBuffer::clear30A4()
+{
+	BaseHeightMapFloorBufferLayout *buffer =
+		reinterpret_cast<BaseHeightMapFloorBufferLayout *>(this);
+	for (_STL::list<void *>::iterator it = buffer->m_elements.begin();
+		it != buffer->m_elements.end(); ++it) {
+		BaseHeightMapFloorElement *element =
+			reinterpret_cast<BaseHeightMapFloorElement *>(*it);
+		RefCountClass *renderObject = element->m_renderObject;
+		element->m_active = false;
+		if (renderObject) {
+			renderObject->Release_Ref();
+			element->m_renderObject = NULL;
+		}
+		BFMETextureRelease *texture = element->m_texture;
+		if (texture) {
+			texture->Release_Ref();
+			element->m_texture = NULL;
+		}
+		element->m_field28 = NULL;
+		element->m_field48 = NULL;
+		element = reinterpret_cast<BaseHeightMapFloorElement *>(*it);
+		if (element) {
+			reinterpret_cast<Gen_dtor_006f8910 *>(element)->Gen_dtor_006f8910::~Gen_dtor_006f8910();
+			::operator delete(element);
+		}
+	}
+	buffer->m_elements.clear();
+	buffer->m_field18 = 0;
+	buffer->m_field24 = 0;
+}
 
 class BaseHeightMapResetShroud
 {
