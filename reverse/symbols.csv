@@ -74817,3 +74817,7 @@ _Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; 
 ??0Rva0003707ECtorBase@@QAE@PAX@Z,0x0003707E,base constructor address decoded from the retail REL32 call site; name is address-derived
 ??0Rva00048F09CtorBase@@QAE@PAX@Z,0x00048F09,base constructor address decoded from the retail REL32 call site; name is address-derived
 ??0Rva000493F0CtorBase@@QAE@PAX@Z,0x000493F0,base constructor address decoded from the retail REL32 call site; name is address-derived
+?run@Rva0000B9CECleanup@@QAEXXZ,0x0000B9CE,__thiscall callee address decoded from the retail REL32 call site; name is address-derived
+?run@Rva007EB6C0Cleanup@@QAEXXZ,0x007EB6C0,__thiscall callee address decoded from the retail REL32 call site; name is address-derived
+?run@Rva007FA650Cleanup@@QAEXXZ,0x007FA650,__thiscall callee address decoded from the retail REL32 call site; name is address-derived
+?run@Rva009EDD30Cleanup@@QAEXXZ,0x009EDD30,__thiscall callee address decoded from the retail REL32 call site; name is address-derived
