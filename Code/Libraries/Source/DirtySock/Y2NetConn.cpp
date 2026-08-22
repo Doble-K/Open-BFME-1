@@ -37,6 +37,18 @@ extern unsigned int g_Rva0130A850Next;
 
 unsigned int Rva007FEA00Tick( void );                 // 0x007FEA00
 
+// The MAC 0x007F89F0 asks for and the text it caches beside it: 0x0130A830 is
+// the 0x10-byte buffer handed to the 'macx' selector, 0x0130A840 the fourteen
+// bytes of text written over it.  They are 0x10 apart, so the buffer is exactly
+// the size the call declares.
+extern unsigned char g_Rva0130A830Mac[ 0x10 ];
+extern char g_Rva0130A840Text[ 0x10 ];
+
+// "0123456789abcdef" at 0x0112B918, sixteen bytes with NO terminator -- the
+// next literal in .rdata starts immediately after it.  An extern is the only
+// honest spelling; a string literal here would be seventeen bytes.
+extern const char g_Rva0112B918HexDigits[];
+
 // The default parameter string 0x007EB380 substitutes for a null one.
 extern char g_Rva0130A59CDefault[];
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
@@ -378,4 +390,46 @@ void Rva007F8C90( void )
 			( (Rva007F8D30IdleProc)g_Rva0130A7B0Idle[ i ].m_function )(
 					g_Rva0130A7B0Idle[ i ].m_ref, Rva007FEA00Tick() );
 	}
+}
+
+// 0x007F89F0 CACHES THE MAC AS TEXT, and the cache test is the first byte of
+// the result itself: a non-empty string is returned unchanged, so the whole
+// body runs at most once per process.  There is no way to invalidate it.
+//
+// The form is '$' followed by twelve lower-case hex digits and a terminator --
+// the same '$'-prefixed shape 0x00807AB0 uses for an address, which is what
+// makes these two the text encodings of this library rather than one-offs.
+//
+// THE TWELVE DIGITS ARE WRITTEN OUT LONGHAND, not looped.  Each of the six
+// bytes is loaded twice, shifted or masked, and indexed into the digit table,
+// which is twelve straight copies of the same four instructions; a loop would
+// need an index and a bound and does not reproduce them.
+//
+// A FAILED QUERY LEAVES THE CACHE EMPTY AND RETURNS IT ANYWAY.  The caller gets
+// a pointer to an empty string rather than null, and the next call will try
+// again -- which is the one thing the cache test buys beyond speed.
+char *Rva007F89F0( void )
+{
+	if( g_Rva0130A840Text[ 0 ] == 0 )
+	{
+		if( Rva007EB410NetConnStatus( 'macx', g_Rva0130A830Mac, 0x10 ) > 0 )
+		{
+			g_Rva0130A840Text[ 0 ] = '$';
+			g_Rva0130A840Text[ 1 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 0 ] >> 4 ];
+			g_Rva0130A840Text[ 2 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 0 ] & 0x0F ];
+			g_Rva0130A840Text[ 3 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 1 ] >> 4 ];
+			g_Rva0130A840Text[ 4 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 1 ] & 0x0F ];
+			g_Rva0130A840Text[ 5 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 2 ] >> 4 ];
+			g_Rva0130A840Text[ 6 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 2 ] & 0x0F ];
+			g_Rva0130A840Text[ 7 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 3 ] >> 4 ];
+			g_Rva0130A840Text[ 8 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 3 ] & 0x0F ];
+			g_Rva0130A840Text[ 9 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 4 ] >> 4 ];
+			g_Rva0130A840Text[ 10 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 4 ] & 0x0F ];
+			g_Rva0130A840Text[ 11 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 5 ] >> 4 ];
+			g_Rva0130A840Text[ 12 ] = g_Rva0112B918HexDigits[ g_Rva0130A830Mac[ 5 ] & 0x0F ];
+			g_Rva0130A840Text[ 13 ] = 0;
+		}
+	}
+
+	return g_Rva0130A840Text;
 }
