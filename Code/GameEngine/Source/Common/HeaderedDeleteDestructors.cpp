@@ -1,0 +1,84 @@
+// 26 forty-two-byte __thiscall members with one shape:
+//
+//     push esi / mov esi,ecx / call <destructor> / test byte ptr [esp+8],1 /
+//     je +21 / push esi / call 0x00897330 / lea eax,[esi-8] / push <SIZE> /
+//     push eax / call dword ptr [0x01337830] / add esp,0xc /
+//     mov eax,esi / pop esi / ret 4
+//
+// WHAT THE BODY IS.  MSVC 7.1's scalar deleting destructor `??_G`, and the
+// second flavour of the sized deallocator landed in SizedDeleteDestructors.cpp:
+// the same run-time deallocator pointer at 0x01337830, called with the same
+// (storage, size) pair, but reached through a longer `operator delete` -- one
+// that first hands the object to 0x00897330 and then frees EIGHT BYTES BEFORE it.
+// Freeing `p - 8` for a block whose size is passed alongside is an allocation
+// header: the block the allocator owns starts eight bytes ahead of the object.
+//
+// WHAT VARIES AND WHAT DOES NOT.  Across all 26 bodies the -8, the notify call
+// and the deallocator pointer are IDENTICAL, and only the size and the
+// destructor differ.  That is what puts the -8 and the two calls inside one
+// shared `operator delete` and leaves the size to `sizeof`: a class-level
+// `operator delete( void *, size_t )` receives the class's own size, which is
+// what fixes each class's padding below.  Declared inline on the base, it is
+// folded into every helper, which is what produces the single merged
+// `add esp,0xc` for two separate __cdecl calls.
+//
+// 26 bodies, 26 distinct destructors -- one each, no folding here.  Each is an
+// address decoded from the retail REL32 and pinned in `reverse/symbols.csv`
+// under an address-derived name, as is the notify call.
+//
+// IDENTITY IS NOT RECOVERED.  Every name is derived from an address.
+
+extern void ( __cdecl *g_Va01337830 )( void *storage, unsigned int size );
+
+void __cdecl Rva00897330NotifyFree( void *storage );
+
+class HeaderedDeleteBase
+{
+public:
+	virtual ~HeaderedDeleteBase();
+
+	static void operator delete( void *storage, unsigned int size )
+	{
+		Rva00897330NotifyFree( storage );
+		g_Va01337830( (char *)storage - 8, size );
+	}
+};
+
+#define BFME_HEADERED_DELETE_DTOR( NAME, PAD )                                \
+	class NAME : public HeaderedDeleteBase                                    \
+	{                                                                         \
+	public:                                                                   \
+		virtual ~NAME();                                                      \
+                                                                              \
+		char m_pad[ PAD ];                                                    \
+	};                                                                        \
+	NAME::~NAME()                                                             \
+	{                                                                         \
+	}
+
+BFME_HEADERED_DELETE_DTOR( Rva00892ED0HeaderedDeleting, 104 )
+BFME_HEADERED_DELETE_DTOR( Rva00899500HeaderedDeleting, 36 )
+BFME_HEADERED_DELETE_DTOR( Rva00899E80HeaderedDeleting, 32 )
+BFME_HEADERED_DELETE_DTOR( Rva00899FE0HeaderedDeleting, 40 )
+BFME_HEADERED_DELETE_DTOR( Rva0089A3E0HeaderedDeleting, 28 )
+BFME_HEADERED_DELETE_DTOR( Rva0089A4B0HeaderedDeleting, 36 )
+BFME_HEADERED_DELETE_DTOR( Rva0089A660HeaderedDeleting, 28 )
+BFME_HEADERED_DELETE_DTOR( Rva0089A800HeaderedDeleting, 28 )
+BFME_HEADERED_DELETE_DTOR( Rva0089A9A0HeaderedDeleting, 28 )
+BFME_HEADERED_DELETE_DTOR( Rva0089AB40HeaderedDeleting, 28 )
+BFME_HEADERED_DELETE_DTOR( Rva008A6410HeaderedDeleting, 44 )
+BFME_HEADERED_DELETE_DTOR( Rva008B01E0HeaderedDeleting, 68 )
+BFME_HEADERED_DELETE_DTOR( Rva008B2F20HeaderedDeleting, 44 )
+BFME_HEADERED_DELETE_DTOR( Rva008B3A10HeaderedDeleting, 44 )
+BFME_HEADERED_DELETE_DTOR( Rva008B46D0HeaderedDeleting, 40 )
+BFME_HEADERED_DELETE_DTOR( Rva008B58B0HeaderedDeleting, 48 )
+BFME_HEADERED_DELETE_DTOR( Rva008B9C90HeaderedDeleting, 48 )
+BFME_HEADERED_DELETE_DTOR( Rva008CB760HeaderedDeleting, 40 )
+BFME_HEADERED_DELETE_DTOR( Rva008CB9F0HeaderedDeleting, 104 )
+BFME_HEADERED_DELETE_DTOR( Rva008CBAA0HeaderedDeleting, 36 )
+BFME_HEADERED_DELETE_DTOR( Rva008CBB50HeaderedDeleting, 40 )
+BFME_HEADERED_DELETE_DTOR( Rva008CBD70HeaderedDeleting, 28 )
+BFME_HEADERED_DELETE_DTOR( Rva008D5780HeaderedDeleting, 40 )
+BFME_HEADERED_DELETE_DTOR( Rva008D6260HeaderedDeleting, 52 )
+BFME_HEADERED_DELETE_DTOR( Rva008D62C0HeaderedDeleting, 56 )
+BFME_HEADERED_DELETE_DTOR( Rva008D6320HeaderedDeleting, 56 )

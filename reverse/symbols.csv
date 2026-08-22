@@ -74900,3 +74900,30 @@ _Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; 
 ??0WOLLoginNickList@@QAE@ABV0@@Z,0x0003FA67,WOLLogin pair list-layout copy thunk;target=0x00443D60
 ??1Gen003D1380Elem@@QAE@XZ,0x00036A9D,EH vector element destructor callee for 0x003D1380
 ?rva0082C6E0CopyValues@@YAPAURva0082C6E0Value@@PAU1@00@Z,0x00018179,0x0082C6E0 vector erase trivial-copy thunk;target=0x00065E30
+?Rva00897330NotifyFree@@YAXPAX@Z,0x00897330,address decoded from the retail REL32 call site; name is address-derived
+??1Rva00892ED0HeaderedDeleting@@UAE@XZ,0x008C4270,address decoded from the retail REL32 call site; name is address-derived
+??1Rva00899500HeaderedDeleting@@UAE@XZ,0x00899380,address decoded from the retail REL32 call site; name is address-derived
+??1Rva00899E80HeaderedDeleting@@UAE@XZ,0x00899EB0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva00899FE0HeaderedDeleting@@UAE@XZ,0x0089A010,address decoded from the retail REL32 call site; name is address-derived
+??1Rva0089A3E0HeaderedDeleting@@UAE@XZ,0x0089A410,address decoded from the retail REL32 call site; name is address-derived
+??1Rva0089A4B0HeaderedDeleting@@UAE@XZ,0x0089A4E0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva0089A660HeaderedDeleting@@UAE@XZ,0x0089A690,address decoded from the retail REL32 call site; name is address-derived
+??1Rva0089A800HeaderedDeleting@@UAE@XZ,0x0089A830,address decoded from the retail REL32 call site; name is address-derived
+??1Rva0089A9A0HeaderedDeleting@@UAE@XZ,0x0089A9D0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva0089AB40HeaderedDeleting@@UAE@XZ,0x0089AB70,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008A6410HeaderedDeleting@@UAE@XZ,0x008A61F0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008B01E0HeaderedDeleting@@UAE@XZ,0x008B0210,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008B2F20HeaderedDeleting@@UAE@XZ,0x008B2DF0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008B3A10HeaderedDeleting@@UAE@XZ,0x008B3980,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008B46D0HeaderedDeleting@@UAE@XZ,0x008B42F0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008B58B0HeaderedDeleting@@UAE@XZ,0x008B58E0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008B9C90HeaderedDeleting@@UAE@XZ,0x008B93A0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008CB760HeaderedDeleting@@UAE@XZ,0x008CB790,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008CB9F0HeaderedDeleting@@UAE@XZ,0x008CBA20,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008CBAA0HeaderedDeleting@@UAE@XZ,0x008CBAD0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008CBB50HeaderedDeleting@@UAE@XZ,0x008A5500,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008CBD70HeaderedDeleting@@UAE@XZ,0x008CBDA0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008D5780HeaderedDeleting@@UAE@XZ,0x008D56E0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008D6260HeaderedDeleting@@UAE@XZ,0x008D5F70,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008D62C0HeaderedDeleting@@UAE@XZ,0x008D5FD0,address decoded from the retail REL32 call site; name is address-derived
+??1Rva008D6320HeaderedDeleting@@UAE@XZ,0x008D5FF0,address decoded from the retail REL32 call site; name is address-derived
