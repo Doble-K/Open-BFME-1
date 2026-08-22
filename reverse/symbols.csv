@@ -150598,3 +150598,7 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ??1HeaderTemplateINI@@QAE@XZ,0x008512E0,Open-BFME5 HeaderTemplateManager init relocation
 ?Find_Asset@AssetRegistry@@QAE?AVAssetReference@@PBD@Z,0x009EEC60,address-derived AssetRegistry counted lookup callee at 0x009EBEC0
 ?Release_Ref@CountedAsset@@QAEXXZ,0x009EB7A0,address-derived counted asset release callee at 0x009EBEC0
+?g_aiTargetDispatchSuppressed@@3_NA,0x012F08A0,address-derived global suppression flag read by the AI update target dispatcher
+?TheGameLogic@@3PAVGameLogicFrameSlice@@A,0x012F0898,game logic global used for the current frame slice in AI target dispatch
+?attackOptimizedTarget@AIStateTargetDispatch@@QAEXPAVThing@@@Z,0x0027E070,address-derived optimized target dispatch callee
+?attackOrdinaryTarget@AIStateTargetDispatch@@QAEXPAVThing@@@Z,0x0027CF60,address-derived ordinary target dispatch callee
