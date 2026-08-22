@@ -24,6 +24,17 @@ typedef struct ciConnection
 
 void ciSocketSend(void *chatSocket, const char *buffer);
 
+char *ciRandomCookie(void)
+{
+	static char cookie[4];
+	static int nextCookie = 0;
+
+	sprintf(cookie, "%03d", nextCookie++);
+	nextCookie %= 1000;
+
+	return cookie;
+}
+
 static void ciSendGetKey(CHAT chat,
 						 const char *target,
 						 const char *cookie,
