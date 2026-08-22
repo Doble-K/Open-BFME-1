@@ -1495,3 +1495,74 @@ void Rva007FE880( int group, const unsigned char *buffer, int length )
 			Rva007FE780( g_Rva012C3D1CFormat, addr, line );
 	}
 }
+
+/* 0x007FEF80 IS THE CACHED LOCAL-VERSUS-UTC OFFSET IN SECONDS, and the three
+ * multipliers are the whole identification: 0x15180 is 86400, 0xE10 is 3600 and
+ * 0x3C is 60, applied to fields at +0x0C, +0x08 and +0x04 with +0x00 added
+ * plain.  That is `struct tm`'s tm_mday, tm_hour, tm_min and tm_sec folded to
+ * seconds, done once over gmtime's answer and once over localtime's, and the
+ * difference cached in the word at 0x012C3D24.  The imports are named by the
+ * import-name table: 0x009F6F52 time, 0x009F7B94 gmtime, 0x009F700C localtime.
+ *
+ * THE FRAME'S TWO "GAPS" ARE /GZ GUARDS, NOT COMPILER TEMPORARIES.  Six slots
+ * with only four values in them looks like MSVC spilling, and an earlier
+ * attempt recorded it that way; it is not.  `uTime` has its address taken, so
+ * /GZ brackets it with four bytes on each side exactly as it brackets an array
+ * -- which is also why the frame descriptor names it at all.  0x18 is
+ * pTm + guard + uTime + guard + iLocal + iGmt, and nothing here is the
+ * compiler's.
+ *
+ * THE POINTER IS RELOADED PER FIELD AND THE SUM STAYS IN REGISTERS.  Retail
+ * reads the local pTm before each of the four accesses but never spills the
+ * running total, so the four terms are ONE expression; splitting them into
+ * `iGmt = ...; iGmt += ...;` stores and reloads iGmt three extra times and does
+ * not reproduce these bytes.  That is where the earlier attempt's 26 surplus
+ * bytes were.
+ *
+ * The whole computation is skipped once the cache is set: the guard tests the
+ * global against -1 and the return reads it back from memory either way, so
+ * there is no separate result local.
+ */
+struct Rva007FEF80Tm
+{
+	int tm_sec;
+	int tm_min;
+	int tm_hour;
+	int tm_mday;
+	int tm_mon;
+	int tm_year;
+	int tm_wday;
+	int tm_yday;
+	int tm_isdst;
+};
+
+struct Rva007FEF80Tm *__cdecl gmtime( const long *timer );
+struct Rva007FEF80Tm *__cdecl localtime( const long *timer );
+
+/* -1 until the first call fills it in. */
+extern int g_Rva012C3D24Offset;
+
+int Rva007FEF80( void )
+{
+	int iGmt;
+	int iLocal;
+	long uTime;
+	struct Rva007FEF80Tm *pTm;
+
+	if ( g_Rva012C3D24Offset == -1 )
+	{
+		uTime = time( 0 );
+
+		pTm = gmtime( &uTime );
+		iGmt = pTm->tm_mday * 86400 + pTm->tm_hour * 3600
+			+ pTm->tm_min * 60 + pTm->tm_sec;
+
+		pTm = localtime( &uTime );
+		iLocal = pTm->tm_mday * 86400 + pTm->tm_hour * 3600
+			+ pTm->tm_min * 60 + pTm->tm_sec;
+
+		g_Rva012C3D24Offset = iLocal - iGmt;
+	}
+
+	return g_Rva012C3D24Offset;
+}
