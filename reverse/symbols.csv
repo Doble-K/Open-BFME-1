@@ -75391,5 +75391,6 @@ _Rva007FF790,0x007FF790,Y4 lane: DirtySock text-to-socket-address parser
 ?Rva00807520@@YAHPAURva00806580Record@@HH@Z,0x00807520,Y2 lane: address-derived; 0x00807370 reserves output space with it and fails when it gets back less than it asked for
 ?Rva0080E350@@YAXPAXPADH@Z,0x0080E350,Y2 lane: address-derived; the first of two passes 0x00807370 makes over the assembled packet
 ?Rva0080E410@@YAXPAXPADH@Z,0x0080E410,Y2 lane: address-derived; the second pass 0x00807370 makes over the assembled packet
-?Rva007EB520@@YAIPAX@Z,0x007EB520,Y2 lane: address-derived; NetConnStatus hands it the 0xF0-byte Adapter block and copies six bytes out on success
+?Rva007EB520NetConnMAC@@YAIPAX@Z,0x007EB520,Y2 lane: NetConnMAC -- the body names itself in both of its log lines; NetConnStatus hands it the 0xF0-byte Adapter block
 ?Rva007FDEE0@@YAHXZ,0x007FDEE0,Y2 lane: C++ spelling of the address-translator self test converted as _Rva007FDEE0 in Y4DirtySockSocket.c; NetConnStatus returns its result for the addr selector
+_Netbios@4,0x0081BDD8,Y2 lane: Netbios import thunk (gen-import ?ji_0081bdd8@@YAXXZ names the same address)
