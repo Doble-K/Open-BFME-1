@@ -1412,3 +1412,86 @@ void Rva007FEE40( void )
 		Rva007FECB0( &g_Rva0130AC90 );
 	}
 }
+
+/* 0x007FE880 IS A HEX DUMP, and the four strings it uses say so outright.  Read
+ * out of retail's .rdata they are "%04x" at 0x012C3D04, "%02x" at 0x012C3D0C,
+ * and "%s: %s\n" at BOTH 0x012C3D14 and 0x012C3D1C.  The last two are the same
+ * text at two addresses, so retail wrote that literal twice and the build did
+ * not pool it; that is why there are two externs below and not one, and
+ * collapsing them into a single name would be a claim about string pooling that
+ * the two distinct relocation targets refute.
+ *
+ * THE LINE IS 32 BYTES WITH A GAP IN THE MIDDLE, and both halves of that come
+ * out of the same modulo idiom rather than from a layout guess.  MSVC's signed
+ * `% 32` is `and 0x8000001F` followed by the jns/dec/or/inc fixup, and it
+ * appears twice: on `i + 17`, which fires at the sixteenth byte of a line and
+ * inserts one space, and on `i + 1`, which fires at the thirty-second and
+ * flushes.  Each byte costs two characters -- the pointer advances by 2 after a
+ * "%02x" -- so nothing separates the pairs but that one mid-line space.
+ *
+ * The offset label is formatted into `addr` and the bytes into `line`, both
+ * names retail's own via /GZ, and the two are printed as "%s: %s\n" through the
+ * hookable printer at 0x007FE780.  `addr` is written only when a line starts,
+ * which is what the null pointer doubles as: `line` empty is also "no line in
+ * progress", so one variable carries both.
+ *
+ * THE OUTPUT IS GATED ON A MASK, NOT A LEVEL.  The caller's first argument is
+ * ANDed with the word at 0x0130ACBC and the print is skipped when the result is
+ * zero -- a bitwise test, so that argument selects a debug GROUP.  The dump is
+ * still built either way; only the printing is conditional.
+ *
+ * The trailing flush repeats the guard because a partial line has to be emitted
+ * after the loop ends, and the frame is 0xAC because /GZ brackets each of the
+ * two arrays with four bytes on both sides: 4 + 0x80 + 4 + 4 + 0x10 + 4 + 4 +
+ * 4 + 4.
+ */
+int __cdecl sprintf( char *buffer, const char *format, ... );
+
+/* The debug-group mask the printing is gated on. */
+extern int g_Rva0130ACBCGroupMask;
+
+extern char g_Rva012C3D04Format[];
+extern char g_Rva012C3D0CFormat[];
+extern char g_Rva012C3D14Format[];
+extern char g_Rva012C3D1CFormat[];
+
+void Rva007FE880( int group, const unsigned char *buffer, int length )
+{
+	int i;
+	char *pOut;
+	char addr[ 0x10 ];
+	char line[ 0x80 ];
+
+	pOut = 0;
+
+	for ( i = 0; i < length; i++ )
+	{
+		if ( pOut == 0 )
+		{
+			sprintf( addr, g_Rva012C3D04Format, i );
+			pOut = line;
+		}
+
+		sprintf( pOut, g_Rva012C3D0CFormat, buffer[ i ] );
+		pOut += 2;
+
+		if ( ( i + 0x11 ) % 32 == 0 )
+		{
+			*pOut = ' ';
+			pOut += 1;
+		}
+
+		if ( ( i + 1 ) % 32 == 0 )
+		{
+			if ( group & g_Rva0130ACBCGroupMask )
+				Rva007FE780( g_Rva012C3D14Format, addr, line );
+			pOut = 0;
+		}
+	}
+
+	if ( pOut != 0 )
+	{
+		if ( group & g_Rva0130ACBCGroupMask )
+			Rva007FE780( g_Rva012C3D1CFormat, addr, line );
+	}
+}
