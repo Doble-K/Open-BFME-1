@@ -15,6 +15,7 @@ struct Coord3D
 
 enum AICommandType
 {
+	AICMD_HUNT = 0x12,
 	AICMD_ENTER = 0x17
 };
 
@@ -42,8 +43,15 @@ class AICommandInterface
 {
 public:
 	virtual void aiDoCommand( const AICommandParms *parms ) = 0;
+	void aiHunt( CommandSourceType cmdSource );
 	void aiEnter( Object *obj, CommandSourceType cmdSource );
 };
+
+void AICommandInterface::aiHunt( CommandSourceType cmdSource )
+{
+	AICommandParms parms( AICMD_HUNT, cmdSource );
+	aiDoCommand( &parms );
+}
 
 void AICommandInterface::aiEnter( Object *obj, CommandSourceType cmdSource )
 {
