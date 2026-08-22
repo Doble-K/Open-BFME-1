@@ -22292,3 +22292,5 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0018dad0@@YAXXZ,0x0018DAD0,gen-dump placeholder superseded by the byte-verified named literal getter ?name@Rva0018DAD0Named@@QBEPBDXZ
 ?d_0018db50@@YAXXZ,0x0018DB50,gen-dump placeholder superseded by the byte-verified named literal getter ?name@Rva0018DB50Named@@QBEPBDXZ
 ?d_00861ae0@@YAXXZ,0x00861AE0,"gen-dump placeholder superseded by the real identity of these bytes: _ciSendGetChannelKey, byte-verified from Code/GameEngine/Source/GameNetwork/GameSpy/chat/chatMain.c over the same 370-byte range. The Code/gen_asm/d_00861370.asm dump reproduces those bytes but carries no identity."
+?d_000b8bd0@@YAXXZ,0x000B8BD0,gen-dump placeholder superseded by the byte-verified SkyboxTextureSet hash_map lookup
+?d_00925110@@YAXXZ,0x00925110,gen-dump placeholder superseded by the byte-verified MeshGeometryClass Compute_Ram_Size body
