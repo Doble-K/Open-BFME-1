@@ -14,6 +14,11 @@ extern char g_Rva012C391CFlag;
 
 // 0x007EBCA0, the tag lookup both bodies at the end of this file feed; pinned
 // by address and still a dump.
+// A 256-byte case-folding table at 0x0112A210; the lookup below indexes it
+// with a byte read through movzx, so it is unsigned.
+extern const unsigned char g_Rva0112A210Lower[];
+
+// Defined at the end of this file; the three wrappers above it all call it.
 char *Rva007EBCA0( const char *text, const char *tag );   // 0x007EBCA0
 
 // Reached by a direct rel32 to the import stub, so this TU never saw <stdio.h>.
@@ -169,4 +174,98 @@ char *Rva007EBE20( const char *text, const char *prefix, const char *suffix )
 	}
 
 	return result;
+}
+
+// 0x007EBCA0 IS THE TAG LOOKUP the three wrappers above all feed, and it works
+// BACKWARDS.  It scans forward for a separator -- '=' or ':' -- and then walks
+// back from there comparing the tag's last character first, so a tag is found
+// by where its separator is rather than by where its name starts.  That is why
+// the tag's end is measured up front.
+//
+// THE SEPARATOR TEST IS A NEGATED GUARD WITH A `continue`, not a positive `if`
+// around the body.  Retail enters the body with a forward `je` from BOTH
+// comparisons and falls into a short jump back to the loop; a positive `||`
+// inverts the second test into a far `jne` instead, one byte longer and enough
+// to move every displacement in the body.
+//
+// THE BACKWARD WALK'S THREE TESTS ARE ALL LOOP CONDITIONS, and the terminator
+// check is a `break` rather than a `return 0`: retail leaves each of the three
+// with ONE conditional jump to the same place, and the terminator's exit jumps
+// to the function's own trailing `return 0` rather than making a second one.
+// Writing any of them as an `if ... break` inside the body costs a byte each
+// and a duplicated `xor eax,eax`.
+//
+// THE MATCH IS CASE-INSENSITIVE THROUGH A TABLE, not through tolower: both
+// bytes are indexed into the 256-entry map at 0x0112A210.
+//
+// A MATCH ALSO HAS TO START ON A WORD BOUNDARY.  Running out of tag is not
+// enough: the character before the name must be absent or at or below 0x20, so
+// "peerIP=" does not match a request for "IP".  The scan continues from the
+// same separator when that fails.
+//
+// THE END OF THE RECORD IS A SEPARATOR WITH NOTHING EITHER SIDE OF IT: a byte
+// below 0x20 after it and whitespace before it stops the whole search and
+// returns null.  That is the "~~=" terminator the wrapper above looks up by
+// name, recognised here structurally rather than by text.
+//
+// The value returned skips one space after the separator if there is exactly
+// one -- p + 2 rather than p + 1 -- and no more, so leading whitespace beyond
+// that is the caller's problem.  It is 0x007EBFC0 that trims the rest.
+char *Rva007EBCA0( const char *text, const char *tag )
+{
+	const char *p;
+	const char *q;
+	const char *r;
+	const char *tagEnd;
+	const char *tagPtr;
+	const char *textPtr;
+	const char *result;
+
+	tagPtr = tag;
+	textPtr = text;
+
+	if( textPtr == 0 || *(unsigned char *)textPtr == 0 )
+		return 0;
+
+	if( tagPtr == 0 || *(unsigned char *)tagPtr == 0 )
+		return 0;
+
+	for( tagEnd = tagPtr; *(unsigned char *)tagEnd != 0; tagEnd++ )
+		;
+	tagEnd--;
+
+	for( p = textPtr; *(unsigned char *)p != 0; p++ )
+	{
+		if( *(unsigned char *)p != '=' && *(unsigned char *)p != ':' )
+			continue;
+
+		{
+			if( *(unsigned char *)( p + 1 ) < 0x20
+					&& *(unsigned char *)( p - 1 ) <= 0x20 )
+				break;
+
+			for( q = p - 1, r = tagEnd;
+					q >= textPtr && r >= tagPtr
+						&& g_Rva0112A210Lower[ *(unsigned char *)q ]
+							== g_Rva0112A210Lower[ *(unsigned char *)r ];
+					q--, r-- )
+			{
+				if( r == tagPtr )
+				{
+					if( q == textPtr
+							|| *(unsigned char *)( q - 1 ) <= 0x20 )
+					{
+						if( *(unsigned char *)( p + 1 ) == 0x20 )
+							result = p + 2;
+						else
+							result = p + 1;
+
+						return (char *)result;
+					}
+				}
+			}
+		}
+	}
+
+	return 0;
 }
