@@ -1,0 +1,53 @@
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
+// Open-BFME5: AICommandInterface::aiEnter, retail 0x000D89C0.
+
+#include <vector>
+
+class Object;
+
+struct Coord3D
+{
+	float x;
+	float y;
+	float z;
+};
+
+enum AICommandType
+{
+	AICMD_ENTER = 0x17
+};
+
+enum CommandSourceType
+{
+	CMD_FROM_PLAYER = 0
+};
+
+class AICommandParms
+{
+public:
+	AICommandParms( AICommandType cmd, CommandSourceType cmdSource );
+
+	AICommandType m_cmd;
+	CommandSourceType m_cmdSource;
+	Coord3D m_pos;
+	Object *m_obj;
+	Object *m_otherObj;
+	void *m_team;
+	std::vector<Coord3D> m_coords;
+	char m_remaining[0x9c - 0x2c];
+};
+
+class AICommandInterface
+{
+public:
+	virtual void aiDoCommand( const AICommandParms *parms ) = 0;
+	void aiEnter( Object *obj, CommandSourceType cmdSource );
+};
+
+void AICommandInterface::aiEnter( Object *obj, CommandSourceType cmdSource )
+{
+	AICommandParms parms( AICMD_ENTER, cmdSource );
+	parms.m_obj = obj;
+	aiDoCommand( &parms );
+}
