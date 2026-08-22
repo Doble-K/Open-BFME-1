@@ -289,18 +289,27 @@ def test_logged_dead_ends_suppressed(ranked):
         stale = [name for c in ranked[key] for name in leaked_names(c)]
         assert not stale, f"{key} served {len(stale)} finished candidate(s): {stale[:3]}"
 
-    # Compare names, not items: dropping one dead name off a shared address
-    # removes a name from the collapsed item, not the address. More names come
-    # back than the log retires, because an address with no Ghidra extent is
+    # Compare (name, boundary) pairs, not bare names. A verdict describes the
+    # address its author examined, so one name can be retired at that boundary
+    # and legitimately live at another a drift snap moved it to; comparing names
+    # alone reads that as a leak. ??4GameSpyStagingRoom is suppressed at its
+    # no-match boundary 0x004F15B0 and served, correctly, as a collapsed sibling
+    # of the drift-corrected 0x009D2970, and ?updateState@Team likewise at
+    # 0x000F71C0 against 0x009C0A30. Dropping one dead name off a shared address
+    # still removes a name from the collapsed item, not the address. More pairs
+    # come back than the log retires, because an address with no Ghidra extent is
     # validated over the range it would serve, and restoring the candidates
     # ahead of it in the ranking changes which range that is.
     full = get_ranked_json(["--include-logged"])
-    shown = {name for key in QUEUES for c in ranked[key] for name in served_names(c)}
-    restored = {name for key in QUEUES for c in full[key]
+    shown = {(name, item_rva(c)) for key in QUEUES for c in ranked[key]
+             for name in served_names(c)}
+    restored = {(name, item_rva(c)) for key in QUEUES for c in full[key]
                 for name in served_names(c)} - shown
-    retired = {name for key in QUEUES for c in full[key] for name in leaked_names(c)}
+    retired = {(name, item_rva(c)) for key in QUEUES for c in full[key]
+               for name in leaked_names(c)}
     assert retired, "no queued candidate carries a standing verdict at all"
-    assert retired <= restored, sorted(retired - restored)[:3]
+    assert retired <= restored, sorted(
+        f"{name} at 0x{rva:08X}" for name, rva in retired - restored)[:3]
     assert len(restored) <= ranked["suppressed_logged"], (
         len(restored), ranked["suppressed_logged"])
     print(f"PASS re_attempts filter: {ranked['suppressed_logged']} finished "
