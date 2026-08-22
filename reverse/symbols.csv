@@ -75340,3 +75340,4 @@ _getpeername@12,0x0081BE7A,Y4 lane: sibling of _getsockname@4 0x0081BE5C; Socket
 _atoi,0x009F6DEE,Y2 lane: atoi import thunk (gen-import ?ji_009f6dee@@YAXXZ names the same address)
 ?Rva007FFC10TextAddr@@YAIPBD@Z,0x007FFC10,Y2 DirtySock lane: address-derived; the dotted-quad text-to-address parser 0x00805870 feeds its peerIP tag to
 ?Rva00805710TagFieldGet@@YAHPADHPBD1H@Z,0x00805710,Y2 DirtySock lane: address-derived; copies a named tag out of a text blob into a bounded buffer and returns negative when absent
+?allInside@Team@@QBE_NPAVPolygonTrigger@@I@Z,0x000F5A30,the call ScriptConditions::evaluateTeamInsideAreaEntirely (0x00324AC0) makes on the team it looked up with the trigger area and the type parameter; the reference declares exactly that const member with that pair and nothing else in Team takes it
