@@ -74897,3 +74897,4 @@ _Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; 
 ??1Rva008BED90SizedDeleting@@UAE@XZ,0x008BEDC0,destructor address decoded from the retail REL32 call site; name is address-derived
 ??1Rva008CB5C0SizedDeleting@@UAE@XZ,0x008CB5F0,destructor address decoded from the retail REL32 call site; name is address-derived
 ??1Rva008CB690SizedDeleting@@UAE@XZ,0x008CB6C0,destructor address decoded from the retail REL32 call site; name is address-derived
+??0WOLLoginNickList@@QAE@ABV0@@Z,0x0003FA67,WOLLogin pair list-layout copy thunk;target=0x00443D60

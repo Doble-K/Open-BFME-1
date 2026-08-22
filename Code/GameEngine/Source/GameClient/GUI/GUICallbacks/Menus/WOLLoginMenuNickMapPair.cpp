@@ -7,7 +7,17 @@
 #include "PreRTS.h"
 #include "Common/STLTypedefs.h"
 
-// WOLLoginMenu's NickMap stores a list of nicknames for each email address.
-// This translation unit preserves the retail StringBase-backed AsciiString
-// copy context without changing the other matched WOLLoginMenu instantiations.
-template class _STL::pair<const AsciiString, AsciiStringList>;
+// Retail calls a TU-local list-layout copy thunk at 0x00443D60 rather than
+// the standard STLport list copy constructor used elsewhere.  Only the ABI
+// shape is needed here: the pair constructor passes the second member to it.
+class WOLLoginNickList
+{
+public:
+	WOLLoginNickList();
+	WOLLoginNickList( const WOLLoginNickList &that );
+
+private:
+	void *m_node;
+};
+
+template class _STL::pair<const AsciiString, WOLLoginNickList>;
