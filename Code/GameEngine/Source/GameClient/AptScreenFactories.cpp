@@ -242,15 +242,117 @@ void * __stdcall createAptScreenSpellStore( void *context )
 	return new BfmeAptScreenSpellStore( context );
 }
 
+class NameKeyGenerator
+{
+public:
+	int nameToKey( const char *name );
+};
+
+extern NameKeyGenerator *TheNameKeyGenerator;
+
+class BfmeAptScreenBase
+{
+public:
+	BfmeAptScreenBase( void *context );
+	~BfmeAptScreenBase();
+	virtual void slot0();
+
+private:
+	char m_unmodelled[ 0x214 ];
+};
+
 // QuickMatchMenu, retail 0x001051C0, object 0x2B0 bytes.
-class BfmeAptScreenQuickMatchMenu
+class BfmeAptScreenQuickMatchMenu : public BfmeAptScreenBase
 {
 public:
 	BfmeAptScreenQuickMatchMenu( void *context );
+	virtual void slot0();
 
 private:
-	char m_unmodelled[ 0x2B0 ];
+	bool m_isMatching;
+	char m_pad219[ 3 ];
+	int m_matchingLevel;
+	bool m_isStopping;
+	char m_pad221[ 3 ];
+	int m_selectedMap;
+	int m_parentOptionsKey;
+	void *m_parentOptions;
+	int m_maxPingKey;
+	void *m_maxPing;
+	int m_numPlayersKey;
+	void *m_numPlayers;
+	int m_ladderKey;
+	void *m_ladder;
+	int m_maxDisconnectsKey;
+	void *m_maxDisconnects;
+	int m_sideKey;
+	void *m_side;
+	int m_colorKey;
+	void *m_color;
+	int m_backKey;
+	void *m_back;
+	int m_startKey;
+	void *m_start;
+	int m_currentMatchingLevelKey;
+	void *m_currentMatchingLevel;
+	int m_personalInfoKey;
+	void *m_personalInfo;
+	int m_mapSelectKey;
+	void *m_mapSelect;
+	int m_parentProgressKey;
+	void *m_parentProgress;
+	int m_quickMatchListKey;
+	void *m_quickMatchList;
+	int m_widenKey;
+	void *m_widen;
+	int m_stopKey;
+	void *m_stop;
+	int m_parentStatsKey;
+	void *m_parentStats;
 };
+
+BfmeAptScreenQuickMatchMenu::BfmeAptScreenQuickMatchMenu( void *context )
+	: BfmeAptScreenBase( context )
+{
+	m_isMatching = false;
+	m_matchingLevel = 0;
+	m_isStopping = false;
+	m_selectedMap = 0;
+	m_parentOptionsKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ParentOptions" );
+	m_parentOptions = 0;
+	m_maxPingKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ComboBoxMaxPing" );
+	m_maxPing = 0;
+	m_numPlayersKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ComboBoxNumPlayers" );
+	m_numPlayers = 0;
+	m_ladderKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ComboBoxLadder" );
+	m_ladder = 0;
+	m_maxDisconnectsKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ComboBoxMaxDisconnects" );
+	m_maxDisconnects = 0;
+	m_sideKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ComboBoxSide" );
+	m_side = 0;
+	m_colorKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ComboBoxColor" );
+	m_color = 0;
+	m_backKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ButtonBack" );
+	m_back = 0;
+	m_startKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ButtonStart" );
+	m_start = 0;
+	m_currentMatchingLevelKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:currentMatchingLevel" );
+	m_currentMatchingLevel = 0;
+	m_personalInfoKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:PersonalInfo" );
+	m_personalInfo = 0;
+	m_mapSelectKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ListBoxMapSelect" );
+	m_mapSelect = 0;
+	m_parentProgressKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ParentProgress" );
+	m_parentProgress = 0;
+	m_quickMatchListKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ListboxQuickMatch" );
+	m_quickMatchList = 0;
+	m_widenKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ButtonWiden" );
+	m_widen = 0;
+	m_stopKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ButtonStop" );
+	m_stop = 0;
+	m_parentStatsKey = TheNameKeyGenerator->nameToKey( "WOLQuickMatchMenu.wnd:ParentStats" );
+	m_parentStats = 0;
+}
 
 // ?createAptScreenQuickMatchMenu@@YGPAXPAX@Z
 void * __stdcall createAptScreenQuickMatchMenu( void *context )

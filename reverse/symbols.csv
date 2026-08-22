@@ -1611,6 +1611,7 @@ name,address,notes
 ??0BeaconClientUpdateModuleData@@QAE@XZ,0x000286C3,module-glue cascade callee (from retail call site)
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00113C60,Open-BFME5 base constructor the Collide and Damage module constructors forward to
 ??0BezierSegment@@QAE@XZ,0x00043A9A
+??0BfmeAptScreenBase@@QAE@PAX@Z,0x0001B9FA,ILT thunk to the common 0x218-byte APT screen base constructor used by BfmeAptScreenQuickMatchMenu
 ??0BfmeAptScreenCampaignReview@@QAE@PAX@Z,0x0003D09B,ILT thunk to the CampaignReview.apt screen constructor
 ??0BfmeAptScreenDisconnectScreen@@QAE@PAX@Z,0x0000BFB9,ILT thunk to the DisconnectScreen.apt screen constructor
 ??0BfmeAptScreenInGameChat@@QAE@PAX@Z,0x0004A750,ILT thunk to the InGameChat.apt screen constructor
