@@ -1395,15 +1395,86 @@ void TerrainLogic::addWaypoint(MapObject *pMapObj)
 //-------------------------------------------------------------------------------------------------
 /** Links 2 waypoints. */
 //-------------------------------------------------------------------------------------------------
-// ?addWaypointLink@TerrainLogic@@IAEXHH@Z present-unmatched
 void TerrainLogic::addWaypointLink(Int id1, Int id2)
 {
-	Waypoint *pWay1 = NULL;
-	Waypoint *pWay2 = NULL;
-	Waypoint *pWay;
+	// BFME's Waypoint layout differs from the ZH header used by this TU.  Keep
+	// the conversion local: the link array starts at +0x20, its count is at
+	// +0x4c, the list link is at +0x1c, and addLink records its source at +0x40.
+	struct BFMEWaypoint
+	{
+		char pad0[4];
+		WaypointID m_id;
+		char pad8[0x14];
+		BFMEWaypoint *m_pNext;
+		BFMEWaypoint *m_links[8];
+		BFMEWaypoint *m_linkSource;
+		char pad44[8];
+		Int m_numLinks;
+		char pad50[0xc];
+		Bool m_biDirectional;
+
+		BFMEWaypoint *getNext(void) const { return m_pNext; }
+		WaypointID getID(void) const { return m_id; }
+		Int getNumLinks(void) const { return m_numLinks; }
+		BFMEWaypoint *getLink(Int ndx) const
+		{
+			if (ndx >= 0 && ndx < 8)
+				return m_links[ndx];
+			return NULL;
+		}
+		void addLink(BFMEWaypoint *pLink)
+		{
+			if (m_numLinks < 8)
+			{
+				m_links[m_numLinks] = pLink;
+				++m_numLinks;
+			}
+			pLink->m_linkSource = this;
+		}
+		Bool getBiDirectional(void) const { return m_biDirectional; }
+	};
+	class BFME_TerrainLogic
+	{
+	public:
+		virtual void slot0(void) = 0;
+		virtual void slot1(void) = 0;
+		virtual void slot2(void) = 0;
+		virtual void slot3(void) = 0;
+		virtual void slot4(void) = 0;
+		virtual void slot5(void) = 0;
+		virtual void slot6(void) = 0;
+		virtual void slot7(void) = 0;
+		virtual void slot8(void) = 0;
+		virtual void slot9(void) = 0;
+		virtual void slot10(void) = 0;
+		virtual void slot11(void) = 0;
+		virtual void slot12(void) = 0;
+		virtual void slot13(void) = 0;
+		virtual void slot14(void) = 0;
+		virtual void slot15(void) = 0;
+		virtual void slot16(void) = 0;
+		virtual void slot17(void) = 0;
+		virtual void slot18(void) = 0;
+		virtual void slot19(void) = 0;
+		virtual void slot20(void) = 0;
+		virtual void slot21(void) = 0;
+		virtual void slot22(void) = 0;
+		virtual void slot23(void) = 0;
+		virtual void slot24(void) = 0;
+		virtual void slot25(void) = 0;
+		virtual void slot26(void) = 0;
+		virtual void slot27(void) = 0;
+		virtual void slot28(void) = 0;
+		virtual void slot29(void) = 0;
+		virtual BFMEWaypoint *getFirstWaypoint(void) = 0;
+	};
+
+	BFMEWaypoint *pWay1 = NULL;
+	BFMEWaypoint *pWay2 = NULL;
+	BFMEWaypoint *pWay;
 	// Traverse all waypoints.
 	/// @todo ID's should be UnsignedInts (MSB)
-	for (pWay = getFirstWaypoint(); pWay; pWay = pWay->getNext()) {
+	for (pWay = ((BFME_TerrainLogic *)this)->getFirstWaypoint(); pWay; pWay = pWay->getNext()) {
 		if (pWay->getID() == (UnsignedInt)id1) {
 			pWay1 = pWay;
 		}
