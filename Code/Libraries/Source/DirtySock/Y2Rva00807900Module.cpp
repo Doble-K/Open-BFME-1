@@ -38,6 +38,14 @@ int  Rva00808220( void *a, unsigned int b, void *c, void *d, int e );  // 0x0080
 void Rva007FD3F0SocketClose( void *socket );                // 0x007FD3F0
 void Rva007F0030Free( void *block );                        // 0x007F0030
 void Rva007FEAA0ListReset( void *list );                    // 0x007FEAA0
+void *Rva007FD2D0SocketOpen( int family, int type, int protocol ); // 0x007FD2D0
+int   Rva007FD510Bind( void *socket, const void *addr, int addrLen ); // 0x007FD510
+void  Rva007FEA20ListInit( void *list );                    // 0x007FEA20
+int   Rva007FDE80SetCallback( void *socket, int callback, unsigned int rate,
+		void *data, void *proc );                           // 0x007FDE80
+void  Rva00807CF0( void *socket, int reason, void *data ); // 0x007FCF0 callback
+void *Rva007F0000Alloc( int size );                         // 0x007F0000
+extern "C" void *memset( void *dest, int value, unsigned int count );
 
 // Two 28-byte forwarders that do nothing but pass their two arguments through
 // and let /GZ check the frame afterwards.  They are separate functions rather
@@ -260,4 +268,133 @@ int Rva00807960( const char *host, int timeout )
 	}
 
 	return result;
+}
+
+// The record 0x00807BA0 builds.  Only the offsets it writes are evidence:
+// the socket at +0x00, a one at +0x04, a list object at +0x0C that the same
+// initialiser 0x007FEA20 sets up everywhere else, and two constants at +0x34
+// and +0x38.  0x3C is the allocation size, so the tail is real, not padding.
+struct Rva00807BA0Ping
+{
+	void *m_socket;              // +0x00
+	int   m_field04;             // +0x04
+	int   m_pad08;
+	char  m_list0C[ 0x28 ];      // +0x0C
+	int   m_field34;             // +0x34
+	int   m_field38;             // +0x38
+};
+
+// 0x00807BA0 OPENS A RAW ICMP SOCKET, and the three immediates handed to the
+// socket open say exactly that: family 2 is AF_INET, type 3 is SOCK_RAW and
+// protocol 1 is IPPROTO_ICMP.  That, with the 0x424 `echo` and `response`
+// buffers /GZ names in the two bodies this one wires together, is what makes
+// this span a ping module rather than a general socket one.
+//
+// THE BIND ADDRESS IS BUILT TWICE OVER, and both passes are retail's.  The
+// family and port are written as words and the rest as dwords, and then the
+// two port BYTES are written again individually -- zero then one, i.e. port 1
+// big-endian.  Rewriting the same two bytes a second time is redundant and is
+// in the bytes; folding it into the word store above does not reproduce them.
+//
+// The callback installed on the socket is 0x00807CF0 at a 5000-unit rate, and
+// the record itself is the user data -- so the receive half of this module is
+// reached from here and nowhere else.
+//
+// A FAILED ALLOCATION AND A FAILED SOCKET RETURN THE SAME NULL, and the socket
+// is NOT closed on the allocation path: the local holding it simply goes out
+// of scope.  That is a leak and it is retail's.
+Rva00807BA0Ping *Rva00807BA0( void )
+{
+	Rva00807BA0Ping *ping;
+	void *sock;
+	char bind[ 0x10 ];
+
+	ping = 0;
+	sock = Rva007FD2D0SocketOpen( 2, 3, 1 );
+
+	if( sock != 0 )
+	{
+		*(unsigned short *)( bind + 0 ) = 2;
+		*(unsigned short *)( bind + 2 ) = 0;
+		*(int *)( bind + 4 ) = 0;
+		*(int *)( bind + 8 ) = 0;
+		*(int *)( bind + 12 ) = 0;
+		bind[ 2 ] = 0;
+		bind[ 3 ] = 1;
+
+		Rva007FD510Bind( sock, bind, 0x10 );
+
+		ping = (Rva00807BA0Ping *)Rva007F0000Alloc( 0x3C );
+		if( ping != 0 )
+		{
+			memset( ping, 0, 0x3C );
+			ping->m_socket = sock;
+			ping->m_field04 = 1;
+			ping->m_field34 = 8;
+			ping->m_field38 = 0x40;
+
+			Rva007FEA20ListInit( ping->m_list0C );
+			Rva007FDE80SetCallback( ping->m_socket, 2, 5000, ping,
+					(void *)Rva00807CF0 );
+		}
+	}
+
+	return ping;
+}
+
+// THE MODULE NAMES ITSELF HERE.  0x00807EE0 logs "_ProtoPingCallback:
+// ICMP_TIMEEXCEEDED from=%08x" -- so the raw ICMP socket opened at 0x00807BA0,
+// the callback it installs, and the 0x424 echo and response buffers /GZ names
+// around them are DirtySock's protoping, and the TIMEEXCEEDED path makes this
+// module a traceroute and not only a ping.
+//
+// The constant stored at +0x14 is 0x0B, which is ICMP type 11, TIME EXCEEDED --
+// the same thing the log line says in words.  That pairing is what names +0x14
+// as the ICMP type and, next to it, +0x15 as the code; the byte copied into it
+// comes from the packet at +0x18.
+//
+// The address and the port are read BYTE BY BYTE, big-endian, straight out of
+// the packet at +0x0C and +0x1A -- not swapped from a word -- which is the same
+// SockaddrIn spelling the rest of this library uses, and the address is what
+// the log's "from=%08x" prints.
+//
+// The entry is 0x18 bytes of header plus whatever the caller asked for, and
+// the SECOND ARGUMENT IS NEVER READ.  It is retail's; dropping it from the
+// signature changes every caller's stack.
+struct Rva00807EE0Entry
+{
+	Rva00807EE0Entry *m_next;       // +0x00
+	int               m_port;       // +0x04
+	unsigned int      m_from;       // +0x08
+	int               m_field0C;    // +0x0C
+	int               m_field10;    // +0x10
+	unsigned char     m_icmpType;   // +0x14
+	unsigned char     m_icmpCode;   // +0x15
+	unsigned char     m_pad16;
+	unsigned char     m_pad17;
+};
+
+Rva00807EE0Entry *Rva00807EE0( const unsigned char *packet, void *unused,
+		int payload )
+{
+	Rva00807EE0Entry *entry;
+
+	entry = (Rva00807EE0Entry *)Rva007F0000Alloc( payload + 0x18 );
+	if( entry != 0 )
+	{
+		entry->m_next = 0;
+		entry->m_from = ( packet[ 0x0C ] << 24 ) | ( packet[ 0x0D ] << 16 )
+				| ( packet[ 0x0E ] << 8 ) | packet[ 0x0F ];
+		entry->m_field0C = 0;
+		entry->m_port = ( packet[ 0x1A ] << 8 ) | packet[ 0x1B ];
+		entry->m_field10 = 0;
+		entry->m_icmpCode = packet[ 0x18 ];
+		entry->m_icmpType = 0x0B;
+
+		Rva007FE780Printf(
+				"_ProtoPingCallback: ICMP_TIMEEXCEEDED from=%08x\n",
+				entry->m_from );
+	}
+
+	return entry;
 }
