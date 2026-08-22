@@ -10,6 +10,29 @@
 
 _STLP_BEGIN_NAMESPACE
 
+bool _Filebuf_base::_M_close()
+{
+  if (!_M_is_open)
+    return false;
+
+  bool ok;
+
+  if (!_M_should_close)
+    ok = true;
+  else {
+    if (_M_file_id != INVALID_HANDLE_VALUE) {
+      ok = (CloseHandle(_M_file_id) != 0);
+    }
+    else {
+      ok = false;
+    }
+  }
+
+  _M_is_open = _M_should_close = false;
+  _M_openmode = 0;
+  return ok;
+}
+
 ptrdiff_t _Filebuf_base::_M_read(char *buf, ptrdiff_t n)
 {
   DWORD NumberOfBytesRead;
