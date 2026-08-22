@@ -42,6 +42,11 @@ int   Rva00807370( Rva00806580Record *record, int selector, int flag,
 int   Rva008076E0( Rva00806580Record *record, unsigned int *outA,
 		unsigned int *outB, char **outText );               // 0x008076E0
 void  Rva00806B10( Rva00806580Record *record );             // 0x00806B10
+int   Rva0080E330( void *crypto, int length );              // 0x0080E330
+int   Rva00807520( Rva00806580Record *record, int length, int limit ); // 0x00807520
+void  Rva0080E350( void *crypto, char *packet, int length );  // 0x0080E350
+void  Rva0080E410( void *crypto, char *packet, int length );  // 0x0080E410
+extern "C" unsigned int strlen( const char *text );
 
 // The empty string this module hands back for a block with no payload.
 extern char g_Rva0130ACE0Empty[];
@@ -530,4 +535,77 @@ int Rva008076E0( Rva00806580Record *record, unsigned int *outA,
 		*outText = text;
 
 	return length;
+}
+
+// 0x00807370 QUEUES ONE PACKET, and the twelve byte stores are its whole
+// header: a big-endian kind at +0x00, a big-endian flag at +0x04 and the
+// big-endian total at +0x08, with the payload from +0x0C -- which is exactly
+// the 0x0C header 0x008076E0 reads back and 0x00807820 skips.  The two ends of
+// this module agree byte for byte.
+//
+// THE SELECTOR IS A VERB PLUS A NOUN.  This body clears the key flag when the
+// kind is 0x40746963, '@tic', while 0x00806710 sends 0x3F746963, '?tic' -- same
+// three letters, '@' against '?'.  So the leading character is set-versus-query
+// and the rest names what is being carried; nothing else in this file would
+// have shown that, because each body only ever sees one of the pair.
+//
+// THE LENGTH IS NEGOTIATED, NOT ASSUMED.  The crypto sub-object is asked what a
+// payload of this size becomes, and the output reservation must come back with
+// AT LEAST that much or the packet is dropped -- so the header's total is the
+// wrapped length and not the caller's.
+//
+// The header is written AFTER the payload is copied and after the cursor has
+// already advanced, through a second pointer holding the same address; both
+// locals are retail's.  A negative length means the payload is text and is
+// measured with its terminator, and a zero-length payload skips the copy but
+// still gets a header.
+//
+// The pump runs at both ends: once before anything is reserved and once after
+// the packet is complete.
+int Rva00807370( Rva00806580Record *record, int kind, int flag,
+		char *data, int length )
+{
+	int total;
+	char *header;
+	char *packet;
+
+	Rva00806B10( record );
+
+	if( length < 0 )
+		length = strlen( data ) + 1;
+
+	total = Rva0080E330( &record->m_fieldE4, length + 0x0C );
+
+	if( Rva00807520( record, total, 0x8000 ) < total )
+		return -1;
+
+	packet = (char *)record->m_field70 + record->m_field64;
+	header = packet;
+
+	if( length > 0 )
+		memcpy( packet + 0x0C, data, length );
+
+	record->m_field64 = record->m_field64 + total;
+
+	header[ 8 ] = (char)( total >> 24 );
+	header[ 9 ] = (char)( total >> 16 );
+	header[ 10 ] = (char)( total >> 8 );
+	header[ 11 ] = (char)total;
+	header[ 0 ] = (char)( kind >> 24 );
+	header[ 1 ] = (char)( kind >> 16 );
+	header[ 2 ] = (char)( kind >> 8 );
+	header[ 3 ] = (char)kind;
+	header[ 4 ] = (char)( flag >> 24 );
+	header[ 5 ] = (char)( flag >> 16 );
+	header[ 6 ] = (char)( flag >> 8 );
+	header[ 7 ] = (char)flag;
+
+	Rva0080E350( &record->m_fieldE4, packet, total );
+	Rva0080E410( &record->m_fieldE4, packet, total );
+
+	if( kind == '@tic' )
+		record->m_field8E = 0;
+
+	Rva00806B10( record );
+	return 0;
 }

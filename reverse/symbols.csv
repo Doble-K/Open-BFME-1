@@ -75387,3 +75387,7 @@ _strcat,0x009F75CA,Y2 lane: strcat import thunk (gen-import ?ji_009f75ca@@YAXXZ 
 ?Rva008076E0@@YAHPAURva00806580Record@@PAI1PAPAD@Z,0x008076E0,Y2 lane: address-derived; the four-argument body 0x00807820 wraps, whose negative result it treats as no data
 ?Rva00806B10@@YAXPAURva00806580Record@@@Z,0x00806B10,Y2 lane: address-derived; the 2102-byte pump 0x008076E0 runs once when its record has no complete block
 _Rva007FF790,0x007FF790,Y4 lane: DirtySock text-to-socket-address parser
+?Rva0080E330@@YAHPAXH@Z,0x0080E330,Y2 lane: address-derived; 0x00807370 asks it how much space a payload of a given length needs once the crypto sub-object has wrapped it
+?Rva00807520@@YAHPAURva00806580Record@@HH@Z,0x00807520,Y2 lane: address-derived; 0x00807370 reserves output space with it and fails when it gets back less than it asked for
+?Rva0080E350@@YAXPAXPADH@Z,0x0080E350,Y2 lane: address-derived; the first of two passes 0x00807370 makes over the assembled packet
+?Rva0080E410@@YAXPAXPADH@Z,0x0080E410,Y2 lane: address-derived; the second pass 0x00807370 makes over the assembled packet
