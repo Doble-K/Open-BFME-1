@@ -1566,3 +1566,142 @@ int Rva007FEF80( void )
 
 	return g_Rva012C3D24Offset;
 }
+
+/* 0x007FDB60 is SocketInfo -- the query counterpart of the SocketControl at
+ * 0x007FDEB0 -- and like that one it dispatches on a four-character selector
+ * held as a bare imm32: 'conn', 'bind', 'peer' and 'stat' all read out of the
+ * comparisons directly.  Three of the four are thin: 'bind' is getsockname,
+ * while 'conn' and 'peer' are both getpeername, and it is the SELECTOR NAMES
+ * that identify which sibling import is which -- 'bind' uses the one the
+ * ledger already pins as getsockname, so the one the other two use is
+ * getpeername.
+ *
+ * 'stat' is the real body, and it is a NON-BLOCKING CONNECT COMPLETION CHECK.
+ * The frame descriptor gives retail's own names for all four locals --
+ * fdwrite, fdexcept, tv and peeraddr -- and the first two are 0x104 bytes,
+ * which is exactly fd_count plus 64 handles.  That fixes them as fd_set, and
+ * the two long inline blocks that follow are then unmistakable: they are the
+ * Winsock FD_SET macro expanded at /Od, scan-for-duplicate and all, each with
+ * its own __i and each wrapped in the `do { } while ( 0 )` that leaves a
+ * trailing `xor`/`jne` in the bytes.  The macro is reproduced here rather than
+ * hand-inlined because only the macro form emits that.
+ *
+ * HOW THE STATE IS DECIDED, and the order matters: a zero timeout select is
+ * run over both sets; an exception means failed, writable means connected, and
+ * WRITABLE IS TESTED SECOND SO IT WINS.  Then, if the socket now looks
+ * connected, getpeername is called as a confirmation -- and a -2 back from the
+ * error translator, this library's "not connected", downgrades it to failed
+ * again.  So a socket is only reported connected once the stack agrees twice.
+ *
+ * The flag is a SIGNED char: every read is movsx and the failure value is
+ * written as 0xFF, so its three states are 1 connected, 0 still trying, -1
+ * failed.  The function returns 1 or 0, never -1, so a caller using only the
+ * return value cannot distinguish "failed" from "still connecting".
+ *
+ * Retail reuses the caller's length PARAMETER as scratch for getpeername --
+ * the same habit as the address remap at 0x007FE310.
+ */
+struct Rva007FDB60FdSet
+{
+	unsigned int fd_count;
+	unsigned int fd_array[ 64 ];
+};
+
+struct Rva007FDB60TimeVal
+{
+	long tv_sec;
+	long tv_usec;
+};
+
+/* Winsock's FD_SET, which is what retail compiled.  It scans for the handle
+ * before adding it and silently drops the add when the set is full. */
+#define RVA007FDB60_FD_SET( fd, set )                                      \
+	do {                                                                   \
+		unsigned int __i;                                                  \
+		for ( __i = 0; __i < ( set )->fd_count; __i++ )                    \
+		{                                                                  \
+			if ( ( set )->fd_array[ __i ] == ( fd ) )                      \
+				break;                                                     \
+		}                                                                  \
+		if ( __i == ( set )->fd_count )                                    \
+		{                                                                  \
+			if ( ( set )->fd_count < 64 )                                  \
+			{                                                              \
+				( set )->fd_array[ __i ] = ( fd );                         \
+				( set )->fd_count++;                                       \
+			}                                                              \
+		}                                                                  \
+	} while ( 0 )
+
+int __stdcall select( int nfds, struct Rva007FDB60FdSet *readfds,
+	struct Rva007FDB60FdSet *writefds, struct Rva007FDB60FdSet *exceptfds,
+	const struct Rva007FDB60TimeVal *timeout );
+int __stdcall getpeername( unsigned int socket, void *name, int *nameLength );
+
+int Rva007FDB60( struct Rva007FD4E0Socket *socket, int selector, void *buffer,
+	int bufferLength )
+{
+	int iResult;
+	struct Rva007FDB60FdSet fdwrite;
+	struct Rva007FDB60FdSet fdexcept;
+	struct Rva007FDB60TimeVal tv;
+	char peeraddr[ 0x10 ];
+
+	if ( buffer != 0 )
+		memset( buffer, 0, bufferLength );
+
+	if ( socket->m_socket == 0xFFFFFFFF )
+		return -7;
+
+	if ( selector == 'conn' )
+	{
+		getpeername( socket->m_socket, buffer, &bufferLength );
+		return 0;
+	}
+
+	if ( selector == 'bind' )
+	{
+		getsockname( socket->m_socket, buffer, &bufferLength );
+		return 0;
+	}
+
+	if ( selector == 'peer' )
+	{
+		getpeername( socket->m_socket, buffer, &bufferLength );
+		return 0;
+	}
+
+	if ( selector == 'stat' )
+	{
+		if ( socket->m_opened == 0 )
+		{
+			fdwrite.fd_count = 0;
+			fdexcept.fd_count = 0;
+			RVA007FDB60_FD_SET( socket->m_socket, &fdwrite );
+			RVA007FDB60_FD_SET( socket->m_socket, &fdexcept );
+
+			tv.tv_sec = tv.tv_usec = 0;
+
+			if ( select( 1, 0, &fdwrite, &fdexcept, &tv ) != 0 )
+			{
+				if ( fdexcept.fd_count > 0 )
+					socket->m_opened = -1;
+				if ( fdwrite.fd_count > 0 )
+					socket->m_opened = 1;
+			}
+		}
+
+		if ( socket->m_opened > 0 )
+		{
+			bufferLength = 0x10;
+			iResult = Rva007FD540( getpeername( socket->m_socket, peeraddr,
+				&bufferLength ) );
+			if ( iResult == -2 )
+				socket->m_opened = -1;
+		}
+
+		return socket->m_opened > 0;
+	}
+
+	return -1;
+}
