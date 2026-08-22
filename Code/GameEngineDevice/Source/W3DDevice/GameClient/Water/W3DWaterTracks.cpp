@@ -156,7 +156,7 @@ waveInfo waveTypeInfo[WaveTypeMax]=
 /** Destructor. Releases w3d assets. */
 //=============================================================================
 // ??1WaterTracksObj@@QAE@XZ present-unmatched
-WaterTracksObj::~WaterTracksObj(void)
+__declspec(noinline) WaterTracksObj::~WaterTracksObj(void)
 {
 	freeWaterTracksResources();
 }
@@ -825,20 +825,32 @@ void WaterTracksRenderSystem::reset(void)
 //=============================================================================
 /** Shutdown and free all memory for this system */
 //=============================================================================
-// ?shutdown@WaterTracksRenderSystem@@QAEXXZ present-unmatched
 void WaterTracksRenderSystem::shutdown( void )
 {
+	register WaterTracksRenderSystem *self = this;
 	WaterTracksObj *nextMod,*mod;
 
 	//release unbound tracks that may still be fading out
-	mod=m_usedModules;
+	mod=self->m_usedModules;
 
 	while(mod)
 	{
 		nextMod=mod->m_nextSystem;
 
 		if (!mod->m_bound)
-			releaseTrack(mod);
+		{
+			if (mod->m_nextSystem)
+				mod->m_nextSystem->m_prevSystem = mod->m_prevSystem;
+			if (mod->m_prevSystem)
+				mod->m_prevSystem->m_nextSystem = mod->m_nextSystem;
+			else
+				self->m_usedModules = mod->m_nextSystem;
+			mod->m_prevSystem = NULL;
+			mod->m_nextSystem = self->m_freeModules;
+			if (self->m_freeModules)
+				self->m_freeModules->m_prevSystem = mod;
+			self->m_freeModules = mod;
+		}
 
 		mod = nextMod;
 	}  // end while
@@ -857,9 +869,21 @@ void WaterTracksRenderSystem::shutdown( void )
 
 	}  // end while
 
-	REF_PTR_RELEASE(m_indexBuffer);
-	REF_PTR_RELEASE(m_vertexMaterialClass);
-	REF_PTR_RELEASE(m_vertexBuffer);
+	if (m_indexBuffer)
+	{
+		m_indexBuffer->Release_Ref();
+		*(DX8IndexBufferClass *volatile *)&m_indexBuffer = NULL;
+	}
+	if (m_vertexMaterialClass)
+	{
+		m_vertexMaterialClass->Release_Ref();
+		*(VertexMaterialClass *volatile *)&m_vertexMaterialClass = NULL;
+	}
+	if (m_vertexBuffer)
+	{
+		m_vertexBuffer->Release_Ref();
+		*(DX8VertexBufferClass *volatile *)&m_vertexBuffer = NULL;
+	}
 
 }  // end shutdown
 
