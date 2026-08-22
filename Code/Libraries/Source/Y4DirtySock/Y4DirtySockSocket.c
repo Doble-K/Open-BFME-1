@@ -452,3 +452,57 @@ void Rva007FEBD0( struct Rva0130AB68List *list )
 	}
 }
 
+
+/* 0x007FE250: name resolution.  The hostname buffer lives at +0x10 of the
+ * request and is handed to a stdcall lookup; on success the FOUR BYTES at
+ * offset +0x0C of the returned record are assembled MOST SIGNIFICANT FIRST
+ * ((b[0]<<24)|(b[1]<<16)|(b[2]<<8)|b[3]) and stored at +0x04.  That
+ * byte-at-a-time big-endian assembly, rather than a dword load, is what says
+ * the source is reading a network-order address out of a pointer-to-list at
+ * +0x0C -- a dword load would have been one instruction.  Status is 1 on
+ * success and -1 on failure, and the tail is the same probe-then-helper pair
+ * the socket body at 0x007FE210 ends with. */
+struct Rva0081BDEAHostRecord
+{
+	char m_head[ 0x0C ];
+	unsigned char **m_addressList;  /* +0x0C */
+};
+
+struct Rva007FE250Request
+{
+	int m_status;                   /* +0x00, 1 resolved, -1 failed */
+	unsigned int m_address;         /* +0x04, host byte order */
+	char m_gap[ 8 ];
+	char m_hostname[ 0x44 ];        /* +0x10 */
+	int m_state;                    /* +0x54, probed like the lock's */
+};
+
+struct Rva0081BDEAHostRecord * __stdcall Rva0081BDEA( const char *name );
+
+int Rva007FE250( struct Rva007FE250Request *request )
+{
+	/* DECLARATION ORDER IS LOAD-BEARING: /Od hands the first-declared local
+	 * the slot nearest the frame pointer, and retail puts the byte pointer
+	 * there, so it was declared first. */
+	unsigned char *bytes;
+	struct Rva0081BDEAHostRecord *record;
+
+	record = Rva0081BDEA( request->m_hostname );
+
+	if ( record != 0 )
+	{
+		bytes = *record->m_addressList;
+		request->m_address = ( bytes[ 0 ] << 24 ) | ( bytes[ 1 ] << 16 )
+		                   | ( bytes[ 2 ] << 8 ) | bytes[ 3 ];
+		request->m_status = 1;
+	}
+	else
+	{
+		request->m_status = -1;
+	}
+
+	if ( Rva01358E58Probe( &request->m_state, 1 ) )
+		Rva007F0030( request );
+
+	return 0;
+}

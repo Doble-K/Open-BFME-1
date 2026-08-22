@@ -75264,3 +75264,5 @@ _Rva007FEE40,0x007FEE40,worker pumped by the drain loop at 0x007FE620; address r
 ?doFXObj@FXList@@QBEXPBVObject@@0@Z,0x00022BBA,incremental-link thunk to the 163-byte FXList object-effect body called by UpgradeMuxData::performUpgradeFX
 ?TheUpgradeCenter@@3PAVUpgradeCenter@@A,0x00EEF188,UpgradeCenter global independently identified by matched upgrade parsing and Object upgrade code
 __TI1?AVINIException@@,0x00DDFC30,retail INIException throw type descriptor used by the exact UpgradeMuxData removal exception path
+_Rva0081BDEA,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; address read from the REL32 at that call site
+_Rva0081BDEA@4,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; the @4 is the stdcall decoration for its one argument
