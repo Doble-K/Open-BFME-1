@@ -103,3 +103,26 @@ BFME_DISP_ADDRESS_GETTER( Rva00663D60FieldAddress, 0x1FFC )
 BFME_DISP_ADDRESS_GETTER( Rva006948A0FieldAddress, 0x8C )
 BFME_DISP_ADDRESS_GETTER( Rva006C5580FieldAddress, 0x110 )
 BFME_DISP_ADDRESS_GETTER( Rva007EA660FieldAddress, 0x203 )
+
+// Six further members outside the 0x80..0x8000 window, four of them at a
+// NEGATIVE displacement.  Returning the address of a member cannot produce a
+// negative offset, so those four are spelled as the pointer arithmetic they
+// are; nothing about a containing object is claimed.
+
+#define BFME_DISP_ADDRESS_GETTER_BEFORE( NAME, BACK )                         \
+	class NAME                                                                \
+	{                                                                         \
+	public:                                                                   \
+		char *get();                                                          \
+	};                                                                        \
+	char *NAME::get()                                                         \
+	{                                                                         \
+		return (char *)this - ( BACK );                                       \
+	}
+
+BFME_DISP_ADDRESS_GETTER_BEFORE( Rva001D3F60FieldAddress, 0x314 )
+BFME_DISP_ADDRESS_GETTER_BEFORE( Rva001D3FE0FieldAddress, 0x388 )
+BFME_DISP_ADDRESS_GETTER_BEFORE( Rva002307B0FieldAddress, 0xAC )
+BFME_DISP_ADDRESS_GETTER_BEFORE( Rva00230830FieldAddress, 0xE4 )
+BFME_DISP_ADDRESS_GETTER( Rva00336C20FieldAddress, 0x1607C )
+BFME_DISP_ADDRESS_GETTER( Rva006044D0FieldAddress, 0x17604 )

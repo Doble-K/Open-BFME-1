@@ -120,3 +120,19 @@ BFME_DISP_DWORD_GETTER( Rva00746040DwordField, 0x110 )
 BFME_DISP_DWORD_GETTER( Rva00751AD0DwordField, 0x2F0 )
 BFME_DISP_DWORD_GETTER( Rva007B8160DwordField, 0x2094 )
 BFME_DISP_DWORD_GETTER( Rva007F6250DwordField, 0x2D8 )
+
+// Ten further members whose displacement is outside the 0x80..0x8000 window the
+// block above covers.  The largest, 0x2A7CB0, is far too big to be an ordinary
+// member offset; the bytes say only that a dword is read at that displacement
+// from ecx, and the lead array spells exactly that and nothing more.
+
+BFME_DISP_DWORD_GETTER( Rva00090420DwordField, 0x17620 )
+BFME_DISP_DWORD_GETTER( Rva002ED520DwordField, 0x170D8 )
+BFME_DISP_DWORD_GETTER( Rva00322020DwordField, 0x170DC )
+BFME_DISP_DWORD_GETTER( Rva00410810DwordField, 0x170B4 )
+BFME_DISP_DWORD_GETTER( Rva006629F0DwordField, 0x1205C )
+BFME_DISP_DWORD_GETTER( Rva006C5680DwordField, 0x2A7CB0 )
+BFME_DISP_DWORD_GETTER( Rva006C56F0DwordField, 0x120E0 )
+BFME_DISP_DWORD_GETTER( Rva006C5700DwordField, 0x120E4 )
+BFME_DISP_DWORD_GETTER( Rva006C5710DwordField, 0x120E8 )
+BFME_DISP_DWORD_GETTER( Rva006C5720DwordField, 0x120EC )

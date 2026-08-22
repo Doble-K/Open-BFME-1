@@ -85,3 +85,27 @@ BFME_DISP_FLOAT_GETTER( Rva00751B10FloatField, 0x3D4 )
 BFME_DISP_FLOAT_GETTER( Rva00751B20FloatField, 0x3E0 )
 BFME_DISP_FLOAT_GETTER( Rva00751B30FloatField, 0x3E4 )
 BFME_DISP_FLOAT_GETTER( Rva007B7CE0FloatField, 0x300C )
+
+// One further member whose displacement is NEGATIVE.  That cannot be a member
+// offset, so it is spelled as an explicit backward cast; the bytes cannot say
+// whether it is a sub-object `this` pointing into the middle of a larger
+// object, a container-of computation in the source, or something else, and no
+// inheritance relationship is claimed.
+
+#define BFME_DISP_FLOAT_GETTER_BEFORE( NAME, BACK )                           \
+	class Sub##NAME                                                           \
+	{                                                                         \
+	public:                                                                   \
+		float m_value;                                                        \
+	};                                                                        \
+	class NAME                                                                \
+	{                                                                         \
+	public:                                                                   \
+		float get() const;                                                     \
+	};                                                                        \
+	float NAME::get() const                                                   \
+	{                                                                         \
+		return ( (const Sub##NAME *)( (const char *)this - ( BACK ) ) )->m_value; \
+	}
+
+BFME_DISP_FLOAT_GETTER_BEFORE( Rva001D4000FloatField, 0x37C )

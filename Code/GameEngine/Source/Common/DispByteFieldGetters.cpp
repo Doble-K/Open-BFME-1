@@ -150,3 +150,31 @@ BFME_DISP_BYTE_GETTER( Rva007460E0ByteField, 0x248E )
 BFME_DISP_BYTE_GETTER( Rva007D0A90ByteField, 0x272 )
 BFME_DISP_BYTE_GETTER( Rva007DCBC0ByteField, 0x306C )
 BFME_DISP_BYTE_GETTER( Rva00910F30ByteField, 0x271 )
+
+// Four further members whose displacement is outside the 0x80..0x8000 window
+// the block above covers, and one whose displacement is NEGATIVE.  A negative
+// displacement cannot be a member offset, so those are spelled as an explicit
+// backward cast -- the bytes cannot say whether it is a sub-object `this`
+// pointing into the middle of a larger object, a container-of computation in
+// the source, or something else, and no inheritance relationship is claimed.
+
+#define BFME_DISP_BYTE_GETTER_BEFORE( NAME, BACK )                            \
+	class Sub##NAME                                                           \
+	{                                                                         \
+	public:                                                                   \
+		unsigned char m_value;                                                \
+	};                                                                        \
+	class NAME                                                                \
+	{                                                                         \
+	public:                                                                   \
+		unsigned char get() const;                                            \
+	};                                                                        \
+	unsigned char NAME::get() const                                           \
+	{                                                                         \
+		return ( (const Sub##NAME *)( (const char *)this - ( BACK ) ) )->m_value; \
+	}
+
+BFME_DISP_BYTE_GETTER( Rva00336EF0ByteField, 0x17624 )
+BFME_DISP_BYTE_GETTER( Rva00337180ByteField, 0x17636 )
+BFME_DISP_BYTE_GETTER( Rva006C5670ByteField, 0x2A98FC )
+BFME_DISP_BYTE_GETTER( Rva00889BE0ByteField, 0x9F58 )
