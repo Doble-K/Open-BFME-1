@@ -39,7 +39,10 @@ void  Rva007F0030Free( void *block );                 // 0x007F0030
 void  Rva007FD4E0SocketShutdown( void *socket, int how );  // 0x007FD4E0
 void  Rva007FD3F0SocketClose( void *socket );              // 0x007FD3F0
 void *Rva007FDFF0Connect( const char *host, int timeout );  // 0x007FDFF0
-void  Rva00804920Update( Rva008042B0Http *http );           // 0x00804920
+// RETURNS THE RESPONSE BODY, not void: 0x008054A0 stores its result, tests it
+// for null and hands it to the two parsers.  A one-argument call site cannot
+// show that, which is why the earlier declaration here had it as void.
+const char *Rva00804920Update( Rva008042B0Http *http );      // 0x00804920
 char *Rva007FFB50AddrText( unsigned int addr );             // 0x007FFB50
 struct Rva00804440SockAddr;
 void  Rva007FE310SocketHost( Rva00804440SockAddr *host, int hostLen,
@@ -59,7 +62,10 @@ struct Rva008042B0Http
 	int          m_port;            // +0x110
 	int          m_state;           // +0x114
 	int          m_pad118;
-	int          m_field11C;        // +0x11C
+	// THE HTTP RESPONSE CODE.  0x008054A0 compares the reader at 0x00805610 --
+	// which is this field seen through the record -- against 400 and against
+	// 200; a field tested against two HTTP status codes is one.
+	int          m_httpCode;        // +0x11C
 	int          m_pad120;
 	int          m_field124;        // +0x124
 	int          m_pad128;
@@ -183,7 +189,7 @@ int Rva008046E0HttpRequest( Rva008042B0Http *http, const char *host, int port,
 		http->m_state = 1;
 	}
 
-	http->m_field11C = 0;
+	http->m_httpCode = 0;
 	Rva00804920Update( http );
 	return 0;
 }
@@ -213,11 +219,15 @@ struct Rva00804150ProtoMangleRef
 	char             m_lkey[ 0x40 ];    // +0x058
 	char             m_server[ 0x20 ];  // +0x098
 	int              m_port;            // +0x0B8
-	int              m_pad0BC;
+	// The status word 0x00805620 writes through a pointer: 0 success, 1 probe,
+	// 2 failure, -1 for a response carrying no status at all.
+	int              m_status;          // +0x0BC
 	Rva008042B0Http  m_http;            // +0x0C0
 	int              m_pad208;
 	int              m_timeout;         // +0x20C
-	int              m_field210;        // +0x210
+	// The module's own state.  0x008054A0 dispatches on it being 1 or 4 and
+	// writes 2 or 3 back; 0x00804150 leaves it zero.
+	int              m_state;           // +0x210
 };
 
 // The local address the peer server should see: ask the stack which interface
@@ -272,7 +282,7 @@ void Rva00804550RequestPeerAddress( Rva00804150ProtoMangleRef *ref )
 	sprintf( strUrl, "/getPeerAddress?myIP=%s&myPort=%d&version=1.0",
 			Rva007FFB50AddrText( ref->m_localAddr ), ref->m_myPort );
 	Rva00804630HttpGet( &ref->m_http, ref->m_server, ref->m_port, strUrl, ref->m_sessID );
-	ref->m_field210 = 1;
+	ref->m_state = 1;
 }
 
 void Rva008043F0Connect( Rva00804150ProtoMangleRef *ref, int myPort, const char *sessID )
@@ -397,11 +407,12 @@ void Rva008053C0Connect( Rva00804150ProtoMangleRef *ref, void *socket,
 
 // A one-line reader for the sub-object's +0x11C, reached through the record at
 // +0x1DC -- 0xC0 + 0x11C, which is what ties the two structs together here.  It
-// takes no frame beyond ebp and makes no call, so /GZ leaves it alone; the name
-// is address-derived because the field's meaning is not settled anywhere.
-int Rva00805610HttpField11C( Rva00804150ProtoMangleRef *ref )
+// takes no frame beyond ebp and makes no call, so /GZ leaves it alone.  What it
+// reads is the HTTP response code: 0x008054A0 compares this call against 400
+// and against 200.
+int Rva00805610HttpCode( Rva00804150ProtoMangleRef *ref )
 {
-	return ref->m_http.m_field11C;
+	return ref->m_http.m_httpCode;
 }
 
 // The two callees 0x00805870 needs, both address-derived and both pinned.
@@ -452,4 +463,85 @@ int Rva00805870ParsePeer( Rva00804150ProtoMangleRef *ref, const char *text )
 	}
 
 	return count == 2;
+}
+
+// The two bodies 0x008054A0 dispatches to that live elsewhere.  0x00805620 is
+// the status-line parser in Y2ProtoMangleTagField.cpp; 0x00805960 is still a
+// dump and is pinned by address.
+const char *Rva00805620ParseStatus( const char *text, int *status );  // 0x00805620
+int Rva00805960( Rva00804150ProtoMangleRef *ref, const char *text );  // 0x00805960
+
+// 0x008054A0 IS THE MODULE'S STATE MACHINE, driven by whatever the HTTP
+// sub-object has finished.  It runs at most two steps per call: state 1 reads a
+// response and decides what the peer said, state 4 reads a second response and
+// grades it by HTTP code alone.
+//
+// THE STATUS DISPATCH IS A SWITCH WITH A DELIBERATE FALLTHROUGH.  Case 1 --
+// "probe" -- calls the probe handler and, when that reports negative, drops
+// into the default arm's `state = 3` rather than jumping past it: retail's
+// `jl` targets the default's own store, not a copy of it.  Writing the failure
+// arm out separately duplicates that store and does not reproduce the bytes.
+//
+// TWO CONDITIONAL STORES ARE SPELLED DIFFERENTLY AND BOTH SPELLINGS ARE
+// RETAIL'S.  The peer result becomes 2 or 3 through `neg`/`sbb`, which is what
+// MSVC emits for a ternary between two constants one apart; the HTTP code
+// becomes 2 or 3 through `setne` and an add, which is what it emits for a
+// comparison used as a number.  Swapping the two forms changes six bytes.
+//
+// THERE IS NO STATUS LOCAL.  The frame is two slots: the response body and
+// MSVC's own switch temporary, which is what the load from +0xBC into -8 is.
+// Reading the status into a named local first adds a third slot and moves
+// every offset in the body.
+//
+// The 400-or-stuck check sits OUTSIDE the response test: a state-1 update with
+// no body still gets graded, so a stalled HTTP sub-object -- state 8 -- fails
+// the module rather than hanging it.
+//
+// Both log lines are "HTTP Data:\n%s\n" and they are TWO SEPARATE
+// LITERALS at 0x012C42A4 and 0x012C42B4.  Retail wrote the string twice and the
+// build did not pool it, so writing it twice is what reproduces the two
+// relocations.
+void Rva008054A0( Rva00804150ProtoMangleRef *ref )
+{
+	const char *body;
+
+	if( ref->m_state == 1 )
+	{
+		body = Rva00804920Update( &ref->m_http );
+		if( body != 0 )
+		{
+			Rva007FE780Printf( "HTTP Data:\n%s\n", body );
+			body = Rva00805620ParseStatus( body, &ref->m_status );
+
+			switch( ref->m_status )
+			{
+			case 0:
+				ref->m_state = Rva00805870ParsePeer( ref, body ) ? 2 : 3;
+				break;
+			case 1:
+				if( Rva00805960( ref, body ) >= 0 )
+				{
+					Rva00804550RequestPeerAddress( ref );
+					break;
+				}
+				// falls through
+			default:
+				ref->m_state = 3;
+				break;
+			}
+		}
+
+		if( Rva00805610HttpCode( ref ) == 400 || ref->m_http.m_state == 8 )
+			ref->m_state = 3;
+	}
+
+	if( ref->m_state == 4 )
+	{
+		body = Rva00804920Update( &ref->m_http );
+		if( body != 0 )
+		{
+			Rva007FE780Printf( "HTTP Data:\n%s\n", body );
+			ref->m_state = ( Rva00805610HttpCode( ref ) != 200 ) + 2;
+		}
+	}
 }
