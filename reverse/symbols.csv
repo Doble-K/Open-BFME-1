@@ -75360,3 +75360,4 @@ _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXX
 ?Rva007FEA20ListInit@@YAXPAX@Z,0x007FEA20,Y2 lane: C++ spelling of the list initialiser converted as _Rva007FEA20 in Y4DirtySockSocket.c
 ?Rva007FDE80SetCallback@@YAHPAXHI00@Z,0x007FDE80,Y2 lane: C++ spelling of the socket callback setter converted as _Rva007FDE80 in Y4DirtySockSocket.c
 ?Rva00807CF0@@YAXPAXH0@Z,0x00807CF0,Y2 lane: address-derived; the callback 0x00807BA0 installs on its raw socket
+?apply@Rva001705A0Inner@@QAEXH_N@Z,0x0001EA24,address-derived call target from the exact lazy-owner body at 0x001705A0; ILT fronts the shared body at 0x0018BCF0
