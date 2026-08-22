@@ -134,7 +134,6 @@ ConstFXListPtr DamageFX::getDamageFXList(DamageType t, Real damageAmount, const 
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getFieldParse@DamageFX@@ present-unmatched
 const FieldParse* DamageFX::getFieldParse() const
 {
 	static const FieldParse myFieldParse[] = 
