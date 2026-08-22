@@ -23,7 +23,11 @@ __declspec(dllimport) void __stdcall Rva01358F30Sleep( unsigned int ms );
 // The two byte swaps in Y4DirtySock's range and the reset at 0x0080DFC0.
 unsigned short Rva007FFA60Swap16( unsigned short value );   // 0x007FFA60
 unsigned int   Rva007FFAD0( unsigned int value );           // 0x007FFAD0
-void Rva0080DFC0( void *object, int flag );                 // 0x0080DFC0
+// The second argument is a KEY POINTER, not a flag: 0x00806710 passes the
+// 0x20-byte Secret it just derived, and 0x00806A90 passes null.
+void Rva0080DFC0( void *object, const void *secret );        // 0x0080DFC0
+int  Rva0080DF70( const char *key, char *secret, char *ticket ); // 0x0080DF70
+extern "C" char *strncpy( char *dest, const char *src, unsigned int count );
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
 extern "C" void *memset( void *dest, int value, unsigned int count );
 void *Rva007F0000Alloc( int size );                         // 0x007F0000
@@ -32,6 +36,9 @@ unsigned int   Rva007FF9F0Swap32( unsigned int value );     // 0x007FF9F0
 void *Rva0080B000Create( void );                            // 0x0080B000
 int   Rva0080B150( void *object, void *addr, int addrLen );  // 0x0080B150
 int   Rva0080B460( void *object, int mode );                // 0x0080B460
+struct Rva00806580Record;
+int   Rva00807370( Rva00806580Record *record, int selector, int flag,
+		char *buffer, int bufferSize );                     // 0x00807370
 unsigned int Rva007FEA00Tick( void );                       // 0x007FEA00
 
 // The tick this module first ran at, filled in once and never again.
@@ -70,7 +77,9 @@ struct Rva00806580Record
 	char  m_pad0C[ 0x08 ];
 	int   m_localAddr;           // +0x14 -- 'ladr', returned raw
 	int   m_localPort;           // +0x18 -- 'lprt', returned raw
-	char  m_pad1C[ 0x40 ];
+	// A 0x3F-byte name with its own terminator: 0x00806710 strncpy's 0x3F bytes
+	// here and then writes a zero at +0x5B, which is exactly +0x1C plus 0x3F.
+	char  m_name[ 0x40 ];        // +0x1C
 	int   m_field5C;             // +0x5C -- 'stat'
 	int   m_field60;             // +0x60
 	int   m_field64;             // +0x64 -- 'obuf' is +0x64 minus +0x68
@@ -336,5 +345,71 @@ int Rva00806910( Rva00806580Record *record, unsigned int addr,
 	record->m_field5C = 1;
 	record->m_field60 = 0;
 	record->m_field8E = 0;
+	return 0;
+}
+
+// 0x00806710 IS THE SECURE OPEN, and it is 0x00806910 with a key step bolted
+// on: the same refusal when a sub-object already exists, the same +0x7C
+// release, the same 0x10-byte sockaddr built from swapped arguments.  What it
+// adds is a name and, when a key was installed, a derivation.
+//
+// THE NAME FIELD SIZES ITSELF: 0x3F bytes are copied to +0x1C and a zero is
+// then written at +0x5B, which is exactly +0x1C plus 0x3F.  strncpy does not
+// terminate when it fills, so that store is the terminator and the field is
+// 0x40 wide.  A null name is skipped entirely, terminator included, which
+// leaves whatever was there before.
+//
+// THE KEY STEP IS GATED ON THE FLAG 0x00806A90 SETS, read with MOVSX from
+// +0x8E.  It derives a 0x20-byte Secret and a 0x34-byte Ticket from the stored
+// key -- 0x20 plus 0x34 is the 0x54 that key is -- then hands the Ticket to the
+// selector 0x3F746963, '?tic', and the Secret to the crypto sub-object at
+// +0xE4.  A derivation that does not report a positive result clears the flag,
+// so the record falls back to unsecured rather than failing the open.
+//
+// Unlike 0x00806910 this body never makes a sub-object of its own: it requires
+// one to be absent and then leaves it absent, which is what separates the two.
+int Rva00806710( Rva00806580Record *record, const char *name, unsigned int addr,
+		unsigned short port )
+{
+	char Secret[ 0x20 ];
+	char Ticket[ 0x34 ];
+
+	if( record->m_field00 != 0 )
+		return -1;
+
+	if( record->m_field7C != 0 )
+	{
+		Rva007F0030Free( record->m_field7C );
+		record->m_field7C = 0;
+	}
+
+	memset( &record->m_family, 0, 0x10 );
+	record->m_family = 2;
+	record->m_addr = Rva007FF9F0Swap32( addr );
+	record->m_port = Rva007FF990Swap16( port );
+
+	if( name != 0 )
+	{
+		strncpy( record->m_name, name, 0x3F );
+		record->m_name[ 0x3F ] = 0;
+	}
+
+	record->m_field5C = 2;
+	record->m_field60 = 0;
+	record->m_field8C = 0;
+
+	if( record->m_field8E != 0 )
+	{
+		if( Rva0080DF70( record->m_key, Secret, Ticket ) > 0 )
+		{
+			Rva00807370( record, '?tic', 0, Ticket, 0x34 );
+			Rva0080DFC0( &record->m_fieldE4, Secret );
+		}
+		else
+		{
+			record->m_field8E = 0;
+		}
+	}
+
 	return 0;
 }
