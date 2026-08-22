@@ -12830,6 +12830,7 @@ name,address,notes
 ?b_0007cd40@@YAXXZ,0x0007CD40,gen-thunk body
 ?b_0007cd50@@YAXXZ,0x0007CD50,gen-thunk body
 ?b_0007cdb0@@YAXXZ,0x0007CDB0,gen-thunk body
+?StaticGameLODNames@@3PAPBDA,0x00EA73E4,GameLODManager::getStaticGameLODIndex direct DIR32; six retail names VeryLow through Custom
 ?b_0007cec0@@YAXXZ,0x0007CEC0,gen-thunk body
 ?b_0007cfb0@@YAXXZ,0x0007CFB0,gen-thunk body
 ?b_0007d0c0@@YAXXZ,0x0007D0C0,gen-thunk body
