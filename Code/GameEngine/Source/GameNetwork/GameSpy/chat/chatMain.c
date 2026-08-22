@@ -40,11 +40,17 @@ typedef struct ciConnection
 	unsigned char chatSocket;
 	unsigned char pad1d[0x36c - 0x1d];
 	char nick[1];
-	unsigned char pad36d[0x4ac - 0x36d];
+	unsigned char pad36d[0x3ac - 0x36d];
+	char name[1];
+	unsigned char pad3ad[0x42c - 0x3ad];
+	char user[1];
+	unsigned char pad42d[0x4ac - 0x42d];
 	int namespaceID;
 	unsigned char pad4b0[0x4f0 - 0x4b0];
 	char profilernick[1];
-	unsigned char pad4f1[0x8a8 - 0x4f1];
+	unsigned char pad4f1[0x774 - 0x4f1];
+	char server[1];
+	unsigned char pad775[0x8a8 - 0x775];
 	int loginType;
 } ciConnection;
 
@@ -320,4 +326,16 @@ void ciSendNick(CHAT chat)
 
 sendNick:
 	ciSocketSendf(&connection->chatSocket, "NICK %s", nick);
+}
+
+void ciSendNickAndUser(CHAT chat)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	ciSocketSendf(&connection->chatSocket, "USER %s %s %s :%s",
+		connection->user,
+		"127.0.0.1",
+		connection->server,
+		connection->name);
+	ciSendNick(chat);
 }
