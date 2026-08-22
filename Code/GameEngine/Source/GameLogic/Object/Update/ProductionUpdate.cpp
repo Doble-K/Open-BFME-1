@@ -1008,44 +1008,53 @@ UpdateSleepTime ProductionUpdate::update( void )
 //-------------------------------------------------------------------------------------------------
 /** Add the production entry to the *END* of the production queue list */
 //-------------------------------------------------------------------------------------------------
-// ?addToProductionQueue@ProductionUpdate@@ present-unmatched
 void ProductionUpdate::addToProductionQueue( ProductionEntry *production )
 {
-
-	// check for empty list
-	if( m_productionQueue == NULL )
-		m_productionQueue = production;
-
-	// make any existing tail pointer now point to us, and we point back to them
-	if( m_productionQueueTail )
+	struct BFMEProductionEntryLayout
 	{
-
-		m_productionQueueTail->m_next = production;
-		production->m_prev = m_productionQueueTail;
-
-	}  // end if
-
-	// this production entry is now the new tail at the end of the list
-	m_productionQueueTail = production;
-
-	// we now have one more production item
-	++m_productionCount;
-
-	// when something is in the queue ... we are in the actively constructing state
-	Drawable *draw = getObject()->getDrawable();
-	if( draw )
+		unsigned char padding[0x3C];
+		BFMEProductionEntryLayout *next;
+		BFMEProductionEntryLayout *previous;
+	};
+	struct BFMEObjectLayout
 	{
-		ModelConditionFlags condition = draw->getModelConditionFlags();
+		unsigned char padding[0x110];
+		unsigned int modelConditions[10];
+	};
+	struct BFMEProductionUpdateLayout
+	{
+		unsigned char padding0[8];
+		BFMEObjectLayout *object;
+		unsigned char padding0C[0x28 - 0x0C];
+		BFMEProductionEntryLayout *queue;
+		BFMEProductionEntryLayout *queueTail;
+		unsigned char padding30[4];
+		unsigned int productionCount;
+		unsigned char padding38[0xAC - 0x38];
+		unsigned int setFlags;
+		unsigned char paddingB0[0xCC - 0xB0];
+		unsigned char flagsDirty;
+	};
 
-		if( condition.test( MODELCONDITION_ACTIVELY_CONSTRUCTING ) == FALSE )
-		{
-
-			m_setFlags.set( MODELCONDITION_ACTIVELY_CONSTRUCTING );
-			m_flagsDirty = TRUE;
-
-		}  // end if
-
-	}  // end if
+	BFMEProductionUpdateLayout *update = reinterpret_cast<BFMEProductionUpdateLayout *>( this );
+	BFMEProductionEntryLayout *entry = reinterpret_cast<BFMEProductionEntryLayout *>( production );
+	if( update->queue == NULL )
+		update->queue = entry;
+	if( update->queueTail )
+	{
+		update->queueTail->next = entry;
+		entry->previous = update->queueTail;
+	}
+	update->queueTail = entry;
+	++update->productionCount;
+	BFMEObjectLayout *object = update->object;
+	unsigned int modelConditions[10];
+	memcpy( modelConditions, object->modelConditions, sizeof( modelConditions ) );
+	if( ( modelConditions[2] & 0x100 ) == 0 )
+	{
+		update->setFlags |= 0x100;
+		update->flagsDirty = TRUE;
+	}
 
 }  // end addToProductionQueue
 

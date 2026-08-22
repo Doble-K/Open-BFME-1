@@ -150585,3 +150585,4 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ?$S1@?6??_bfme_getSelectedPortraitImage@@YAPBVImage@@PBVThingTemplatePortraitShim@@0@Z@4IA,0x012EF1F4,GondorGandalf static AsciiString guard
 ?gandalfTemplate@?6??_bfme_getSelectedPortraitImage@@YAPBVImage@@PBVThingTemplatePortraitShim@@0@Z@4VAsciiString@@A,0x012EF1F0,GondorGandalf static AsciiString
 ?gandalfTheGrey@?9??_bfme_getSelectedPortraitImage@@YAPBVImage@@PBVThingTemplatePortraitShim@@0@Z@4PBV2@B,0x012EF1EC,lazily cached HIGandalTheGrey image
+?GenCharToBit0012A430@@3PAY0BA@CA,0x0112A430,address-derived 32-byte alphanumeric-to-bit lookup table used by ParseAlphaNumericBitMask
