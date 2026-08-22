@@ -1356,3 +1356,59 @@ struct Rva007FD4E0Socket *Rva007FD2D0( int family, int type, int protocol )
 
 	return pSocket;
 }
+
+/* 0x007FEE40 is the idle-callback dispatcher, and it is the READER of the
+ * table the two bodies above maintain.  The remove above does not shrink the
+ * table -- it only zeroes both halves of an entry -- so something has to reap
+ * the holes, and this is it.
+ *
+ * IT COMPACTS WHILE WALKING.  An entry with either half cleared is dead; the
+ * LAST live entry is moved down into the hole, the tail is zeroed, the count
+ * drops, and the index steps BACK ONE so the entry just moved in is examined
+ * on the next pass.  That is swap-with-last removal, and it is why callbacks
+ * have no guaranteed order -- a removal reshuffles the tail.
+ *
+ * THE GUARD WRAPS THE BODY rather than returning early.  Retail's is a single
+ * far `je` past everything; an early return compiles to a short `jne` over a
+ * `jmp`, two instructions where retail has one.  And the lock is TRIED, not
+ * taken: when the acquire returns zero the whole pass is skipped rather than
+ * retried, so missing an idle tick is cheaper than contending for one.
+ *
+ * The dispatch is an indirect call through a table slot, which is why the /GZ
+ * stack check surrounds it and nothing else here.
+ */
+int Rva007FEB00( void *list );
+
+void Rva007FEE40( void )
+{
+	int i;
+	void ( __cdecl *pFunction )( void *ref );
+	void *pRef;
+
+	if ( Rva007FEB00( &g_Rva0130AC90 ) != 0 )
+	{
+		for ( i = 0; i < g_Rva0130ACB4; i++ )
+		{
+			pFunction = ( void ( __cdecl * )( void * ) )
+				g_Rva0130AB90[ i ].m_function;
+			pRef = g_Rva0130AB90[ i ].m_ref;
+
+			if ( pFunction == 0 || pRef == 0 )
+			{
+				g_Rva0130AB90[ i ].m_function =
+					g_Rva0130AB90[ g_Rva0130ACB4 - 1 ].m_function;
+				g_Rva0130AB90[ i ].m_ref =
+					g_Rva0130AB90[ g_Rva0130ACB4 - 1 ].m_ref;
+				g_Rva0130AB90[ g_Rva0130ACB4 - 1 ].m_function = 0;
+				g_Rva0130AB90[ g_Rva0130ACB4 - 1 ].m_ref = 0;
+				g_Rva0130ACB4 = g_Rva0130ACB4 - 1;
+				i = i - 1;
+				continue;
+			}
+
+			pFunction( pRef );
+		}
+
+		Rva007FECB0( &g_Rva0130AC90 );
+	}
+}

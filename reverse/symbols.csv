@@ -75274,3 +75274,4 @@ _memcpy,0x009F75B8,Y4 lane: MSVCR71 import stub; IAT slot 0x01359458 sits two en
 _WSAIoctl@36,0x0081BE80,Y4 lane: nine-argument WS2_32 stdcall; the address remap at 0x007FE310 calls it with SIO_ROUTING_INTERFACE_QUERY 0xC8000014
 _Rva007FFB50AddrText,0x007FFB50,Y4 lane: C-callable spelling of the same body the C++ pin names; the xmap lookup at 0x007FD660 is a .c translation unit and cannot emit the decorated form
 _Rva007F0000,0x007F0000,cdecl one-argument allocator; the C spelling the Y4DirtySock TU needs for the address already pinned as ?Rva007F0000Alloc@@YAPAXH@Z
+_Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-zero on success and the idle dispatcher at 0x007FEE40 skips its whole pass when it returns zero
