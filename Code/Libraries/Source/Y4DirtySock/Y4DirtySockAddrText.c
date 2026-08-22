@@ -291,3 +291,146 @@ int Rva007FF790( char *sa, const char *text )
 
 	return 0;
 }
+
+/* 0x007FFCB0 BUILDS A SOCKET ADDRESS FROM TEXT.  It zeroes the whole 16 bytes
+ * field by field, runs the host:port parser at 0x007FFDD0, and writes the
+ * address and port back big-endian.
+ *
+ * Retail's frame descriptor names both locals -- iPort and uAddr -- and gives
+ * each a width of 4.  They are not arrays: they are ADDRESS-TAKEN SCALARS,
+ * both passed to the parser by pointer, and /GZ guards those the same way it
+ * guards buffers.  Their signedness is visible too: the port is shifted with
+ * SAR and the address with SHR, so one is int and the other unsigned.
+ *
+ * THE PORT AND THE ADDRESS ARE WRITTEN DIFFERENTLY and it is worth not
+ * tidying that up.  The address is shifted through a temporary, low byte to
+ * the highest offset first; the port is written straight from two expressions
+ * on the local, high half then low.  Same byte order, different spelling.
+ *
+ * The parser's third argument is a literal zero here -- an optional third
+ * number it can return, which this path never asks for.
+ */
+struct Rva007FFCB0Addr
+{
+	unsigned short m_family;        /* +0x00 */
+	unsigned short m_port;          /* +0x02 */
+	unsigned int m_address;         /* +0x04 */
+	unsigned int m_reserved8;       /* +0x08 */
+	unsigned int m_reservedC;       /* +0x0C */
+};
+
+/* The third argument is an OPTIONAL OUT-POINTER, not a flag.  The builder
+ * below passes a literal zero, which compiles identically either way, so
+ * the type comes from the definition further down -- which tests it against
+ * zero and then STORES THROUGH IT. */
+int Rva007FFDD0( unsigned int *address, int *port, int *extra,
+	const char *text );
+
+int Rva007FFCB0( struct Rva007FFCB0Addr *sa, const char *text )
+{
+	int iResult;
+	int iPort;
+	unsigned int uAddr;
+	unsigned int uTemp;
+
+	iResult = 0;
+
+	sa->m_family = 2;
+	sa->m_port = 0;
+	sa->m_address = 0;
+	sa->m_reserved8 = 0;
+	sa->m_reservedC = 0;
+
+	iResult = Rva007FFDD0( &uAddr, &iPort, 0, text );
+
+	uTemp = uAddr;
+	( (unsigned char *)sa )[ 7 ] = (unsigned char)uTemp;  uTemp >>= 8;
+	( (unsigned char *)sa )[ 6 ] = (unsigned char)uTemp;  uTemp >>= 8;
+	( (unsigned char *)sa )[ 5 ] = (unsigned char)uTemp;  uTemp >>= 8;
+	( (unsigned char *)sa )[ 4 ] = (unsigned char)uTemp;
+
+	( (unsigned char *)sa )[ 2 ] = (unsigned char)( iPort >> 8 );
+	( (unsigned char *)sa )[ 3 ] = (unsigned char)iPort;
+
+	return iResult;
+}
+
+/* 0x007FFDD0 parses "host:port" -- and optionally a THIRD colon-separated
+ * number, if the caller passes somewhere to put it.  The return value is a
+ * BITMASK OF WHAT WAS ACTUALLY FOUND, not a success code: bit 0 for a non-zero
+ * address, bit 1 for a port field, bit 2 for the third field.  So a caller can
+ * tell "port absent" from "port present and zero", which the out-parameters
+ * alone cannot express.
+ *
+ * NOTE THE ASYMMETRY IN HOW THE BITS ARE SET.  Bit 0 is set only when the
+ * parsed address is NON-ZERO, so "0.0.0.0" reports as absent; bits 1 and 2 are
+ * set whenever the colon was there, whatever number followed.  That is retail's
+ * behaviour and it is not obviously deliberate, but it is what the bytes do.
+ *
+ * The dotted quad is packed as it is scanned, with a left shift of eight at
+ * each dot and the running value's LOW BYTE multiplied by ten -- the upper
+ * bytes are preserved by subtracting the low byte out and adding it back
+ * scaled.  That is why there is no per-octet array here and no range check:
+ * an octet above 255 simply carries into the byte above it.
+ *
+ * Leading whitespace is skipped with `> 0 && <= ' '`, so any control character
+ * counts as space and a high-bit byte does not.
+ */
+int Rva007FFDD0( unsigned int *address, int *port, int *extra,
+	const char *text )
+{
+	int iFlags;
+	int iValue;
+
+	iFlags = 0;
+
+	while ( *text > 0 && *text <= ' ' )
+		text++;
+
+	for ( iValue = 0;
+		( *text >= '0' && *text <= '9' ) || *text == '.';
+		text++ )
+	{
+		if ( *text != '.' )
+		{
+			iValue = ( iValue - ( iValue & 0xFF ) )
+				+ ( iValue & 0xFF ) * 10 + ( *text & 0x0F );
+		}
+		else
+		{
+			iValue = iValue << 8;
+		}
+	}
+
+	*address = iValue;
+	if ( iValue != 0 )
+		iFlags |= 1;
+
+	while ( *text != ':' && *text != 0 )
+		text++;
+
+	iValue = 0;
+	if ( *text == ':' )
+	{
+		text++;
+		for ( ; *text >= '0' && *text <= '9'; text++ )
+			iValue = iValue * 10 + ( *text & 0x0F );
+		iFlags |= 2;
+	}
+	*port = iValue;
+
+	if ( extra != 0 )
+	{
+		iValue = 0;
+		if ( *text == ':' )
+		{
+			text++;
+			for ( ; *text >= '0' && *text <= '9'; text++ )
+				iValue = iValue * 10 + ( *text & 0x0F );
+			iFlags |= 4;
+		}
+		*extra = iValue;
+	}
+
+	return iFlags;
+}
