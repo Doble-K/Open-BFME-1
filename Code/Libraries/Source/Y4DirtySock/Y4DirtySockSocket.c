@@ -277,7 +277,11 @@ void Rva007FEA00( void )
  * and the import are address-derived; the import name never reaches the bytes,
  * since an IAT call site is a DIR32 the gate fills from retail. */
 extern int g_Rva012C3CDCDraining;
-extern int g_Rva0130ACB8Pending;
+/* Holds the worker THREAD HANDLE: the startup at 0x007FE520 stores
+ * CreateThread's return here, and the drain loops treat non-zero as
+ * "worker still running". It is set to 1 first and then overwritten
+ * with the handle, so the same word doubles as the running flag. */
+extern int g_Rva0130ACB8Thread;
 
 __declspec(dllimport) void __stdcall Rva01358F30Wait( int interval );
 
@@ -287,7 +291,7 @@ void Rva007FE620( void )
 {
 	g_Rva012C3CDCDraining = 1;
 
-	while ( g_Rva0130ACB8Pending != 0 )
+	while ( g_Rva0130ACB8Thread != 0 )
 	{
 		Rva007FEE40();
 		Rva01358F30Wait( 0x32 );
@@ -336,7 +340,7 @@ void Rva007FEAA0( struct Rva0130AB68List *list )
  * own list, which is why one call has no argument of its own. */
 void Rva007FE670( void )
 {
-	g_Rva0130ACB8Pending = 0;
+	g_Rva0130ACB8Thread = 0;
 
 	while ( g_Rva012C3CDCDraining > 0 )
 		Rva01358F30Wait( 1 );
@@ -505,4 +509,48 @@ int Rva007FE250( struct Rva007FE250Request *request )
 		Rva007F0030( request );
 
 	return 0;
+}
+
+/* 0x007FE520: module startup.  The fifth argument pushed to the six-argument
+ * stdcall creator is 0x00BFE620 -- a VIRTUAL address whose RVA is 0x007FE620,
+ * the drain loop already converted above -- so this is thread creation and that
+ * loop is the worker body.  The frame descriptor /GZ left after this function
+ * names the sixth argument's local `pid`, which is retail's own name.
+ *
+ * The tail is DEAD CODE: `xor ecx,ecx` immediately followed by `je` always
+ * jumps, so the call it skips can never run.  That is what a debug print looks
+ * like once its guard has folded to a constant zero, and it is reproduced here
+ * rather than dropped because the bytes carry it. */
+__declspec(dllimport) int __stdcall Rva01358D00CreateWorker(
+	void *security, unsigned int stackSize, void *start, void *parameter,
+	unsigned int flags, unsigned int *identifier );
+__declspec(dllimport) void __stdcall Rva01358F20SetPriority( int thread, int priority );
+__declspec(dllimport) void __stdcall Rva01358CCCRelease( int thread );
+
+extern int g_Rva0130ACB4;
+
+void Rva007FE780( void *text );
+
+void Rva007FE520( int priority )
+{
+	unsigned int pid;
+
+	g_Rva0130ACB4 = 0;
+	g_Rva012C3CDCDraining = -1;
+
+	Rva007FEA20( 0 );
+	Rva007FEA20( (struct Rva0130AB68List *)&g_Rva0130AC90 );
+
+	g_Rva0130ACB8Thread = 1;
+	g_Rva0130ACB8Thread = Rva01358D00CreateWorker( 0, 0, (void *)Rva007FE620,
+	                                               0, 0, &pid );
+
+	if ( g_Rva0130ACB8Thread != 0 )
+	{
+		Rva01358F20SetPriority( g_Rva0130ACB8Thread, priority );
+		Rva01358CCCRelease( g_Rva0130ACB8Thread );
+	}
+
+	if ( 0 )
+		Rva007FE780( (void *)0x12c3ce0 );
 }
