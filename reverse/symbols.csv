@@ -75267,3 +75267,4 @@ __TI1?AVINIException@@,0x00DDFC30,retail INIException throw type descriptor used
 _Rva0081BDEA,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; address read from the REL32 at that call site
 _Rva0081BDEA@4,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; the @4 is the stdcall decoration for its one argument
 _Rva007FE780,0x007FE780,debug text sink; reached only from the folded-out guard at the tail of 0x007FE520, address read from that dead REL32
+_vsprintf,0x009F70AE
