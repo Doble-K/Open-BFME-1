@@ -38,11 +38,22 @@ struct Rva007FD4E0Socket
 	 * time, through different pointers. */
 	struct Rva007FD4E0Socket *m_next;       /* +0x00 */
 	struct Rva007FD4E0Socket *m_killNext;   /* +0x04 */
-	char m_head[ 0x04 ];            /* +0x08 */
+	/* ADDRESS FAMILY, and the accept at 0x007FD7D0 is what names it: that body
+	 * refuses to run unless this word is 2, then copies it, the type and the
+	 * word after it into the child socket.  2 is AF_INET, and a socket layer
+	 * that tests a word for AF_INET before accepting is testing the family. */
+	int m_family;                   /* +0x08 */
 	/* SOCK_* type.  The send path at 0x007FD920 branches on this being 3,
 	 * i.e. SOCK_RAW, and strips a caller-supplied IP header when it is. */
 	int m_type;                     /* +0x0C */
-	char m_head2[ 0x06 ];           /* +0x10 */
+	/* Protocol, from the same three-field copy at 0x007FD7D0. */
+	int m_protocol;                 /* +0x10 */
+	/* OPEN FLAG.  Three writes fix it and none of them is shape: the connect
+	 * wrapper clears it as a connect begins, the destroy at 0x007FD3F0 clears
+	 * it alongside setting the handle to -1, and the accept at 0x007FD7D0 sets
+	 * it to 1 on a socket that arrives already connected. */
+	char m_opened;                  /* +0x14 */
+	char m_reserved15;              /* +0x15 */
 	short m_shutdownFlags;          /* +0x16 */
 	unsigned int m_socket;          /* +0x18 */
 	char m_gap[ 0x20 ];
@@ -661,7 +672,7 @@ int Rva007FD5C0( struct Rva007FD4E0Socket *socket, const void *address,
 {
 	char temp[ 0x10 ];
 
-	socket->m_head2[ 0x14 - 0x10 ] = 0;
+	socket->m_opened = 0;
 	return Rva007FD540( connect( socket->m_socket,
 		Rva007FD660( temp, (void *)address ), addressLength ) );
 }
@@ -836,7 +847,7 @@ int Rva007FD3F0( struct Rva007FD4E0Socket *socket )
 		closesocket( socket->m_socket );
 	}
 	socket->m_socket = 0xFFFFFFFF;
-	socket->m_head2[ 0x14 - 0x10 ] = 0;
+	socket->m_opened = 0;
 
 	Rva007FEBD0( 0 );
 	socket->m_killNext = g_Rva0130AB5CKillList;
@@ -1217,4 +1228,81 @@ void Rva007FD080( int priority )
 
 	g_Rva0130AB54Version = ( (unsigned char)( data.wVersion & 0xFF ) << 8 )
 		| (unsigned char)( (unsigned int)data.wVersion >> 8 );
+}
+
+/* 0x007FD7D0 IS ACCEPT, and the FIONBIO immediate is what proves it rather
+ * than the shape.  0x8004667E is FIONBIO, it is handed to the import at
+ * 0x0081BE4A whose IAT slot the import-name table calls ioctlsocket, and the
+ * value it enables is the local /GZ names `nonblock` -- retail's own name.  The
+ * handle it makes non-blocking came from the import at 0x0081BE6E, `accept`,
+ * called with this socket's handle and the caller's address and length.
+ *
+ * THE GUARDS ARE PART OF THE FRAME.  /GZ brackets `nonblock` with four bytes on
+ * each side, so the 0x14 retail subtracts is 4 + 4 + 4 + 4 + 4: two scalars, a
+ * guard, the flag, a guard.  Declaring the flag anywhere but last in the list
+ * moves the guarded pair and every offset after it.
+ *
+ * THREE THINGS ABOUT THE ARGUMENTS ARE READ, NOT ASSUMED.  The length is
+ * compared with `jae`, so it is UNSIGNED -- a signed minimum would have been
+ * jge; 0x10 is sizeof(sockaddr_in), and the check is skipped entirely when no
+ * address was asked for.  And the family word is tested for 2, i.e. AF_INET,
+ * with the failure falling into the ordinary return rather than an early one:
+ * a wrong family returns the null this function started with, not an error.
+ *
+ * The child socket is 0x50 bytes from the same one-argument allocator at
+ * 0x007F0000 that the mangle module uses, zeroed, and then given the parent's
+ * family, type and protocol -- three adjacent dwords, which is what let the
+ * struct above stop calling +0x08 and +0x10 head bytes.  Its open flag goes to
+ * 1 because accept hands back a connection that is already up.
+ *
+ * The link onto the module list is done under the same acquire/release pair
+ * every other mutation of that list uses, and both are passed null so they fall
+ * back to the module's own list.
+ */
+unsigned int __stdcall accept( unsigned int socket, void *address,
+	unsigned int *addressLength );
+int __stdcall ioctlsocket( unsigned int socket, long command,
+	unsigned long *argument );
+
+void *Rva007F0000( int size );
+
+struct Rva007FD4E0Socket *Rva007FD7D0( struct Rva007FD4E0Socket *socket,
+	void *address, unsigned int *addressLength )
+{
+	struct Rva007FD4E0Socket *pOpen;
+	unsigned int uSocket;
+	unsigned long nonblock;
+
+	pOpen = 0;
+	nonblock = 1;
+
+	if ( socket->m_socket == 0xFFFFFFFF )
+		return 0;
+
+	if ( address != 0 && *addressLength < 0x10 )
+		return 0;
+
+	if ( socket->m_family == 2 )
+	{
+		uSocket = accept( socket->m_socket, address, addressLength );
+		if ( uSocket != 0xFFFFFFFF )
+		{
+			ioctlsocket( uSocket, 0x8004667E, &nonblock );
+
+			pOpen = (struct Rva007FD4E0Socket *)Rva007F0000( 0x50 );
+			memset( pOpen, 0, 0x50 );
+			pOpen->m_socket = uSocket;
+			pOpen->m_family = socket->m_family;
+			pOpen->m_type = socket->m_type;
+			pOpen->m_protocol = socket->m_protocol;
+			pOpen->m_opened = 1;
+
+			Rva007FEBD0( 0 );
+			pOpen->m_next = (struct Rva007FD4E0Socket *)g_Rva0130AB58Head;
+			g_Rva0130AB58Head = pOpen;
+			Rva007FECB0( 0 );
+		}
+	}
+
+	return pOpen;
 }

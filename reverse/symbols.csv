@@ -75273,3 +75273,4 @@ _Rva007FE310,0x007FE310,Y4 lane: DirtySock address translator (dest,destLen,src,
 _memcpy,0x009F75B8,Y4 lane: MSVCR71 import stub; IAT slot 0x01359458 sits two entries before _memset 0x01359460 and the import-name table is alphabetical (memcpy memmove memset); called as (dest source count) cdecl
 _WSAIoctl@36,0x0081BE80,Y4 lane: nine-argument WS2_32 stdcall; the address remap at 0x007FE310 calls it with SIO_ROUTING_INTERFACE_QUERY 0xC8000014
 _Rva007FFB50AddrText,0x007FFB50,Y4 lane: C-callable spelling of the same body the C++ pin names; the xmap lookup at 0x007FD660 is a .c translation unit and cannot emit the decorated form
+_Rva007F0000,0x007F0000,cdecl one-argument allocator; the C spelling the Y4DirtySock TU needs for the address already pinned as ?Rva007F0000Alloc@@YAPAXH@Z
