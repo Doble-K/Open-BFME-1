@@ -27,6 +27,11 @@ void Rva0080DFC0( void *object, int flag );                 // 0x0080DFC0
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
 extern "C" void *memset( void *dest, int value, unsigned int count );
 void *Rva007F0000Alloc( int size );                         // 0x007F0000
+unsigned short Rva007FF990Swap16( unsigned short value );   // 0x007FF990
+unsigned int   Rva007FF9F0Swap32( unsigned int value );     // 0x007FF9F0
+void *Rva0080B000Create( void );                            // 0x0080B000
+int   Rva0080B150( void *object, void *addr, int addrLen );  // 0x0080B150
+int   Rva0080B460( void *object, int mode );                // 0x0080B460
 unsigned int Rva007FEA00Tick( void );                       // 0x007FEA00
 
 // The tick this module first ran at, filled in once and never again.
@@ -56,15 +61,18 @@ extern "C" int __stdcall WSAStartup( unsigned short versionRequested,
 struct Rva00806580Record
 {
 	void *m_field00;             // +0x00
-	char  m_pad04[ 0x02 ];
-	short m_port;                // +0x06 -- 'port', byte-swapped on the way out
+	// +0x04..+0x13 IS A SOCKADDR: 0x00806910 memsets exactly 0x10 bytes from
+	// +0x04, writes 2 into the first word, and fills the next two fields from
+	// its own address and port arguments through the byte swaps.
+	short m_family;              // +0x04
+	short m_port;                // +0x06 -- 'port', swapped back on the way out
 	int   m_addr;                // +0x08 -- 'addr', likewise
 	char  m_pad0C[ 0x08 ];
 	int   m_localAddr;           // +0x14 -- 'ladr', returned raw
 	int   m_localPort;           // +0x18 -- 'lprt', returned raw
 	char  m_pad1C[ 0x40 ];
 	int   m_field5C;             // +0x5C -- 'stat'
-	char  m_pad60[ 0x04 ];
+	int   m_field60;             // +0x60
 	int   m_field64;             // +0x64 -- 'obuf' is +0x64 minus +0x68
 	int   m_field68;             // +0x68
 	char  m_pad6C[ 0x04 ];
@@ -277,4 +285,56 @@ Rva00806580Record *Rva008064A0( void )
 	}
 
 	return record;
+}
+
+// 0x00806910 IS THE OPEN, and the pairing is what reads it: it builds the
+// sockaddr in the record, makes the sub-object with 0x0080B000 -- the
+// constructor matching the 0x0080B070 teardown the three destructors above all
+// call -- and then configures it twice before declaring the record ready.
+//
+// IT REFUSES TO RUN TWICE.  A record that already has a sub-object is rejected
+// outright, so this is an open and not a reconnect; the reset at 0x008068B0 is
+// what has to run in between.
+//
+// The address and port arrive in host order and are swapped in, which is the
+// mirror of 'addr' and 'port' swapping them back out at 0x00806600 -- the
+// record stores them the way the wire wants them.  The port argument is loaded
+// SIXTEEN BITS WIDE at the call, so it is a short parameter and not a
+// truncated int.
+//
+// EVERY FAILURE RETURNS -1 AND LEAVES THE SUB-OBJECT IN PLACE.  Neither
+// configuration failure tears down what 0x0080B000 just built, so the caller
+// must run a reset before trying again -- and the second attempt would then hit
+// the refusal at the top if it did not.
+int Rva00806910( Rva00806580Record *record, unsigned int addr,
+		unsigned short port )
+{
+	if( record->m_field00 != 0 )
+		return -1;
+
+	if( record->m_field7C != 0 )
+	{
+		Rva007F0030Free( record->m_field7C );
+		record->m_field7C = 0;
+	}
+
+	memset( &record->m_family, 0, 0x10 );
+	record->m_family = 2;
+	record->m_addr = Rva007FF9F0Swap32( addr );
+	record->m_port = Rva007FF990Swap16( port );
+
+	record->m_field00 = Rva0080B000Create();
+	if( record->m_field00 == 0 )
+		return -1;
+
+	if( Rva0080B150( record->m_field00, &record->m_family, 0x10 ) < 0 )
+		return -1;
+
+	if( Rva0080B460( record->m_field00, 2 ) < 0 )
+		return -1;
+
+	record->m_field5C = 1;
+	record->m_field60 = 0;
+	record->m_field8E = 0;
+	return 0;
 }

@@ -75378,3 +75378,7 @@ _strcat,0x009F75CA,Y2 lane: strcat import thunk (gen-import ?ji_009f75ca@@YAXXZ 
 ?Rva0080DFC0@@YAXPAXH@Z,0x0080DFC0,Y2 lane: address-derived; the two-argument reset 0x00806A90 calls on the sub-object at +0xE4 when it is handed no key
 ?Rva007FFA60Swap16@@YAGG@Z,0x007FFA60,Y2 lane: address-derived; the 16-bit counterpart of the byte swap at 0x007FFAD0, which 0x00806600 runs the port through
 ?Rva007FFAD0@@YAII@Z,0x007FFAD0,Y2 lane: the 32-bit byte swap already ledgered under this name in Rva007FFAD0ByteSwap.cpp; pinned so C++ TUs resolve it
+?Rva0080B000Create@@YAPAXXZ,0x0080B000,Y2 lane: address-derived; the no-argument constructor 0x00806910 stores at +0x00 of its record, paired with the teardown at 0x0080B070
+?Rva0080B150@@YAHPAX0H@Z,0x0080B150,Y2 lane: address-derived; 0x00806910 hands it the object from 0x0080B000 with a 0x10-byte sockaddr and treats a negative result as fatal
+?Rva0080B460@@YAHPAXH@Z,0x0080B460,Y2 lane: address-derived; 0x00806910 calls it with the same object and a 2 immediately after 0x0080B150
+?Rva007FF990Swap16@@YAGG@Z,0x007FF990,Y2 lane: address-derived; the 16-bit byte swap 0x00806910 runs its port argument through, sibling of 0x007FF9F0 and 0x007FFAD0
