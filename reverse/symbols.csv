@@ -72644,7 +72644,6 @@ name,address,notes
 ?moveMouse@Mouse@@IAEXHHH@Z,0x000141A5
 ?moveRoadSegTo@W3DRoadBuffer@@IAEXHH@Z,0x0003283F,ILT thunk -> 0x70b040 (checkLinkBefore callee)
 ?muxDataProcessUpgradeRemoval@UpgradeMuxData@@QBEXPAVObject@@@Z,0x0002E320,pinharvest x1 (thunk)
-?muxDataProcessUpgradeRemoval@UpgradeMuxData@@QBEXPAVObject@@@Z,0x0002EB4F,pinharvest x1 (thunk)
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@ABVAsciiString@@@Z,0x0004A1DD,pinharvest x4 (thunk)
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x0003ADD7,site-decoded x1 (thunk)
 ?nameToKey@NameKeyGenerator@@QAEHPBD@Z,0x0003ADD7,UpgradeCenter newUpgrade retail name-key thunk
@@ -72778,7 +72777,6 @@ name,address,notes
 ?perform@Gen00761E10@@QAEXXZ,0x00761E10,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
 ?perform@Gen0088C550@@QAEXXZ,0x0088C550,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
 ?perform@Gen00903090@@QAEXXZ,0x00903090,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
-?performUpgradeFX@UpgradeMuxData@@QBEXPAVObject@@@Z,0x0002E320,pinharvest x1 (thunk)
 ?performUpgradeFX@UpgradeMuxData@@QBEXPAVObject@@@Z,0x0002EB4F,pinharvest x1 (thunk)
 ?playerFromParam@ScriptConditions@@IAEPAVPlayer@@PAVParameter@@@Z,0x00025347,Open-BFME5 ILT; called by ?evaluateSkirmishSupplySourceAttacked@ScriptConditions@@IAE_NPAVParameter@@@Z at 0x000F9700
 ?playerHasPrereqsForScience@ScienceStore@@QBE_NPBVPlayer@@W4ScienceType@@@Z,0x0000DCDD
@@ -75258,3 +75256,7 @@ _Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by 
 ?findFlag@BFMEScriptEngineFlagLookup@@QAEPA_NVAsciiString@@@Z,0x0004278F,TU-scoped ABI name for the ScriptEngine flag lookup ILT; target body 0x00344E10 is semantically proven but its canonical retail spelling is unknown
 _Rva007F0030,0x007F0030,cdecl one-argument helper invoked by 0x007FE210 when its IAT probe returns non-zero; address read from the REL32
 _Rva007FEE40,0x007FEE40,worker pumped by the drain loop at 0x007FE620; address read from the REL32 at that call site
+?isEmpty@FXList@@QBE_NXZ,0x00011F77,incremental-link thunk to the 188-byte FXList emptiness body called by UpgradeMuxData::performUpgradeFX
+?doFXObj@FXList@@QBEXPBVObject@@0@Z,0x00022BBA,incremental-link thunk to the 163-byte FXList object-effect body called by UpgradeMuxData::performUpgradeFX
+?TheUpgradeCenter@@3PAVUpgradeCenter@@A,0x00EEF188,UpgradeCenter global independently identified by matched upgrade parsing and Object upgrade code
+__TI1?AVINIException@@,0x00DDFC30,retail INIException throw type descriptor used by the exact UpgradeMuxData removal exception path
