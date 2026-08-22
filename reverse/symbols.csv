@@ -75353,7 +75353,7 @@ _strncmp,0x009F6FE2,Y2 lane: strncmp import thunk (gen-import ?ji_009f6fe2@@YAXX
 ?Rva007EB410AdapterInfo@@YAIHHH@Z,0x007EB410,Y2 lane: address-derived; three-argument query 0x00807B10 calls with the selector 0x61646472 (addr); its /GZ frame descriptor names a 0xF0-byte local Adapter
 _Rva007FF860,0x007FF860,Y4 lane: DirtySock socket-address formatter (address destination size); the address-to-text helper at 0x007FFB50 calls it with a 20-byte destination
 _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXXZ names the same address)
-?Rva00808220@@YAHPAXI00H@Z,0x00808220,Y2 lane: address-derived; the five-argument body the wrappers at 0x008081F0 and 0x008085A0 both forward to
+?Rva00808220@@YAHPAURva00807BA0Ping@@IPBDHH@Z,0x00808220,Y2 lane: address-derived; the five-argument body the wrappers at 0x008081F0 and 0x008085A0 both forward to
 ?Rva007FEAA0ListReset@@YAXPAX@Z,0x007FEAA0,Y2 lane: C++ spelling of the list reset converted as _Rva007FEAA0 in Y4DirtySockSocket.c; 0x00808140 hands it a sub-object at +0x0C
 ?Rva007FD2D0SocketOpen@@YAPAXHHH@Z,0x007FD2D0,Y2 lane: C++ spelling of the socket open converted as _Rva007FD2D0 in Y4DirtySockSocket.c
 ?Rva007FD510Bind@@YAHPAXPBXH@Z,0x007FD510,Y2 lane: C++ spelling of the bind wrapper converted as _Rva007FD510 in Y4DirtySockSocket.c
@@ -75367,3 +75367,4 @@ _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXX
 ?Rva007FDA50Recv@@YAHPAXPADHH1PAH@Z,0x007FDA50,Y2 lane: C++ spelling of the receive converted as _Rva007FDA50 in Y4DirtySockSocket.c
 ?Rva007FEBD0Lock@@YAXPAX@Z,0x007FEBD0,Y2 lane: C++ spelling of the blocking acquire converted as _Rva007FEBD0 in Y4DirtySockSocket.c
 ?Rva007FECB0Unlock@@YAXPAX@Z,0x007FECB0,Y2 lane: C++ spelling of the reference release converted as _Rva007FECB0 in Y4DirtySockSocket.c
+?Rva007FD920Send@@YAHPAXPBDHH1H@Z,0x007FD920,Y2 lane: C++ spelling of the send converted as _Rva007FD920 in Y4DirtySockSocket.c

@@ -23,6 +23,8 @@ extern "C" int sprintf( char *buffer, const char *format, ... );
 // ------------------------------------------------------------------ callees
 // Addresses read from the REL32 at the call sites; each is pinned in
 // reverse/symbols.csv and derived from its address.
+struct Rva00807BA0Ping;
+
 void *Rva007FDFF0Connect( const char *host, int timeout );  // 0x007FDFF0
 int   Rva00807960( const char *host, int timeout );         // 0x00807960
 unsigned int Rva007FF9F0Swap32( unsigned int value );       // 0x007FF9F0
@@ -34,7 +36,8 @@ extern "C" unsigned int strtoul( const char *text, char **end, int base );
 extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
 
 void Rva007FE780Printf( const char *format, ... );          // 0x007FE780
-int  Rva00808220( void *a, unsigned int b, void *c, void *d, int e );  // 0x00808220
+int  Rva00808220( Rva00807BA0Ping *ping, unsigned int address,
+		const char *text, int length, int id );             // 0x00808220
 void Rva007FD3F0SocketClose( void *socket );                // 0x007FD3F0
 void Rva007F0030Free( void *block );                        // 0x007F0030
 void Rva007FEAA0ListReset( void *list );                    // 0x007FEAA0
@@ -48,6 +51,10 @@ int   Rva007FDA50Recv( void *socket, char *buffer, int length, int flags,
 		char *from, int *fromLength );                      // 0x007FDA50
 void  Rva007FEBD0Lock( void *lock );                        // 0x007FEBD0
 void  Rva007FECB0Unlock( void *lock );                      // 0x007FECB0
+int   Rva007FD920Send( void *socket, const char *buffer, int length,
+		int flags, const char *to, int toLength );          // 0x007FD920
+unsigned int Rva007FEA00Tick( void );                       // 0x007FEA00
+extern "C" unsigned int strlen( const char *text );
 void *Rva007F0000Alloc( int size );                         // 0x007F0000
 extern "C" void *memset( void *dest, int value, unsigned int count );
 
@@ -157,17 +164,19 @@ int Rva00807A00( void *dest, int destSize, const char *text )
 // through.  So the pair is one entry point in a binary flavour and a text
 // flavour, which is also why the parser's nine-character return is discarded
 // here -- the caller of the text flavour never sees it.
-int Rva008081F0( void *a, unsigned int b, void *c, void *d )
+int Rva008081F0( Rva00807BA0Ping *ping, unsigned int address,
+		const char *text, int length )
 {
-	return Rva00808220( a, b, c, d, 0 );
+	return Rva00808220( ping, address, text, length, 0 );
 }
 
-int Rva008085A0( void *a, const char *text, void *c, void *d )
+int Rva008085A0( Rva00807BA0Ping *ping, const char *address,
+		const char *text, int length )
 {
 	unsigned int uAddress;
 
-	Rva00807A00( &uAddress, 4, text );
-	return Rva00808220( a, uAddress, c, d, 0 );
+	Rva00807A00( &uAddress, 4, address );
+	return Rva00808220( ping, uAddress, text, length, 0 );
 }
 
 // The record 0x00808140 tears down.  Only the three offsets that body touches
@@ -283,7 +292,10 @@ struct Rva00807EE0Entry;
 struct Rva00807BA0Ping
 {
 	void *m_socket;              // +0x00
-	int   m_field04;             // +0x04
+	// The ICMP sequence number: set to 1 when the record is made, stepped by
+	// 0x00808220 on every request, split into the packet's two sequence bytes
+	// and handed back to that caller as its request id.
+	int   m_sequence;            // +0x04
 	int   m_pad08;
 	// The object 0x007FEA20 initialises and 0x007FEBD0/0x007FECB0 take and
 	// release around every mutation of the list below it.
@@ -294,7 +306,10 @@ struct Rva00807BA0Ping
 	// is what splits them.
 	Rva00807EE0Entry *m_list;    // +0x30
 	int   m_credits;             // +0x34
-	int   m_field38;             // +0x38
+	// The IP header's TTL byte.  0x00807BA0 sets it to 0x40 and 0x00808220
+	// copies its low byte into the packet at +0x08, which is where a TTL
+	// lives -- and a settable TTL is what makes this module a traceroute.
+	int   m_ttl;                 // +0x38
 };
 
 // 0x00807BA0 OPENS A RAW ICMP SOCKET, and the three immediates handed to the
@@ -342,9 +357,9 @@ Rva00807BA0Ping *Rva00807BA0( void )
 		{
 			memset( ping, 0, 0x3C );
 			ping->m_socket = sock;
-			ping->m_field04 = 1;
+			ping->m_sequence = 1;
 			ping->m_credits = 8;
-			ping->m_field38 = 0x40;
+			ping->m_ttl = 0x40;
 
 			Rva007FEA20ListInit( ping->m_lock0C );
 			Rva007FDE80SetCallback( ping->m_socket, 2, 5000, ping,
@@ -592,4 +607,115 @@ int Rva00807CF0( void *socket, int reason, void *ref )
 	}
 
 	return 0;
+}
+
+// 0x00808220 SENDS THE ECHO REQUEST, and it builds the whole IP datagram
+// itself rather than letting the stack do it -- which is what the raw socket
+// at 0x00807BA0 is for.  Four bytes name the layout without any guessing:
+// 0x45 at +0x00 is IPv4 with a five-word header, 1 at +0x09 is IPPROTO_ICMP,
+// 8 at +0x14 is ICMP ECHO, and the record's TTL goes to +0x08 -- exactly the
+// IP header's own field order.  The destination goes to +0x10 big-endian,
+// which is where an IP header carries it.
+//
+// The payload is stamped with the same two things 0x00807FB0 checks on the way
+// back: 'gSPs' at +0x1C and the tick at +0x20.  So the round trip is closed
+// here -- this body writes the magic and the send stamp, that one verifies the
+// magic and subtracts the stamp.
+//
+// THE CHECKSUM IS BUILT BIG-ENDIAN BY HAND, byte pair by byte pair over
+// everything from +0x14 on, with the odd trailing byte handled separately and
+// the carry folded twice before the complement.  Folding twice is not
+// redundant: the first fold can itself carry.
+//
+// TWO PARAMETERS ARE OVERWRITTEN IN PLACE and both matter.  A negative length
+// means "text", so it is replaced by strlen + 1; and the length is then
+// clamped to 0x400, rounded up to a multiple of four through `(len + 3) &
+// 0x7FFC` -- which also caps it a second time -- and finally has the 0x24
+// header added.  The text pointer is overwritten with the packet buffer and
+// never read again; that store is dead and is retail's.
+//
+// The return is the sequence number, not a byte count, so the caller can match
+// a reply to its request; a failed send reports -1 instead.
+int Rva00808220( Rva00807BA0Ping *ping, unsigned int address, const char *text,
+		int length, int id )
+{
+	int count;
+	unsigned char echo[ 0x424 ];
+	char sin[ 0x10 ];
+	unsigned int sum;
+	unsigned char *p;
+	unsigned int work;
+
+	if( ping == 0 )
+		return -1;
+
+	if( length < 0 )
+		length = strlen( text ) + 1;
+
+	*(unsigned short *)( sin + 0 ) = 2;
+	*(unsigned short *)( sin + 2 ) = 0;
+	*(int *)( sin + 4 ) = 0;
+	*(int *)( sin + 8 ) = 0;
+	*(int *)( sin + 12 ) = 0;
+
+	work = address;
+	sin[ 7 ] = (char)work;  work >>= 8;
+	sin[ 6 ] = (char)work;  work >>= 8;
+	sin[ 5 ] = (char)work;  work >>= 8;
+	sin[ 4 ] = (char)work;
+
+	ping->m_sequence = ping->m_sequence + 1;
+
+	memset( echo, 0, 0x424 );
+	echo[ 0x00 ] = 0x45;
+	echo[ 0x10 ] = (unsigned char)( address >> 24 );
+	echo[ 0x11 ] = (unsigned char)( address >> 16 );
+	echo[ 0x12 ] = (unsigned char)( address >> 8 );
+	echo[ 0x13 ] = (unsigned char)address;
+	echo[ 0x09 ] = 1;
+	echo[ 0x08 ] = (unsigned char)ping->m_ttl;
+	echo[ 0x14 ] = 8;
+	echo[ 0x18 ] = (unsigned char)id;
+	echo[ 0x19 ] = 0;
+	echo[ 0x1A ] = (unsigned char)( ping->m_sequence >> 8 );
+	echo[ 0x1B ] = (unsigned char)ping->m_sequence;
+
+	if( length > 0x400 )
+		length = 0x400;
+	memcpy( echo + 0x24, text, length );
+	length = ( length + 3 ) & 0x7FFC;
+	text = (const char *)echo;
+	length += 0x24;
+
+	*(int *)( echo + 0x1C ) = 'gSPs';
+	*(unsigned int *)( echo + 0x20 ) = Rva007FEA00Tick();
+
+	sum = 0;
+	p = echo + 0x14;
+	for( count = length - 0x14; count > 1; count -= 2 )
+	{
+		sum += *p << 8;
+		++p;
+		sum += *p;
+		++p;
+	}
+	if( count > 0 )
+	{
+		sum += *p << 8;
+		++p;
+	}
+
+	sum = ( sum >> 16 ) + ( sum & 0xFFFF );
+	sum = ( sum >> 16 ) + ( sum & 0xFFFF );
+	sum = ~sum;
+
+	echo[ 0x16 ] = (unsigned char)( sum >> 8 );
+	echo[ 0x17 ] = (unsigned char)sum;
+
+	count = Rva007FD920Send( ping->m_socket, (const char *)echo, length, 0,
+			sin, 0x10 );
+	if( count < 0 )
+		return -1;
+
+	return ping->m_sequence;
 }
