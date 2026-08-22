@@ -145513,6 +145513,7 @@ name,address,notes
 ?clearAllEvents@Radar@@IAEXXZ,0x00028C27
 ?clearAllProps@W3DPropBuffer@@QAEXXZ,0x000298BB
 ?clearAndSetModelConditionFlags@Object@@QAEXABVModelConditionFlags@@PBV2@@Z,0x001C7370,Open-BFME5 the member clearModelConditionState forwards its one-bit mask to with a null set-mask; unnamed in the image
+?clearAndSet@ModelConditionFlags@@QAEXABV1@0@Z,0x0000AF06,Drawable::replaceModelConditionState calls the retail ModelConditionFlags clear-and-set ILT
 ?clearAndSetModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@0@Z,0x0001C8D2
 ?clearDisabled@Object@@QAE_NW4DisabledType@@@Z,0x0003C06A,ILT thunk used by setScriptStatus call site
 ?clearFlag@ScriptEngine@@QAEXABVAsciiString@@@Z,0x0001B6F3,ScriptEngine clearTeamFlags retail ILT thunk
@@ -148204,6 +148205,7 @@ name,address,notes
 ?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,0x0003FE36
 ?render_box@BoxRenderObjClass@@IAEXAAVRenderInfoClass@@ABVVector3@@1@Z,0x00956F40,rel32 pin for exact-ambiguous landing
 ?replaceModelConditionState@Drawable@@QAEXABVModelConditionFlags@@II@Z,0x0041CCD0,Open-BFME5 the Drawable member Object::notifyModelConditionChanged pushes its condition flags at +0x110 into; unnamed in the image
+?refreshAmbientSound@Drawable@@AAEXXZ,0x0002E564,Drawable::replaceModelConditionState reaches the no-argument ambient-state callee through its retail ILT
 ?repopulateBuildTooltipLayout@ControlBar@@QAEXXZ,0x00038F4B,REL32 pin from ControlBar::setSquishedControlBarConfig @0x49D0B0
 ?requestApproachPath@AIUpdateInterface@@QAEXPAUCoord3D@@@Z,0x00015D93,AIMoveAndTightenState::onEnter retail REL32 call target
 ?requestCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyRequestArg@@@Z,0x00031D9F
