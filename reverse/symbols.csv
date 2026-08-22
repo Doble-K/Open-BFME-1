@@ -75236,3 +75236,7 @@ _piAddListingGamesCallback,0x0085E420,Peer SDK peerCallbacks.c:385 piAddListingG
 ?update@GameLogic@@UAEXXZ,0x0038DA10,the main logic tick; calls setFPMode popSleepyUpdate getCRC RecorderClass::getMode and VictorySystem::update at 0x0038DC4D; reached through ILT 0x0003A9C7 and loads TheNetwork 0x012F7714
 ?ScriptDebugMessagesDisabled@@3_NA,0x00ED4D8,global command-line flag guarding ScriptEngine debug output
 ?TheScriptDebugWindowDLL@@3PAXA,0x00EF0758,debug-window module used by ScriptEngine message dispatch
+_Rva007FD3F0,0x007FD3F0,per-socket destroy helper; address read from the REL32 in the shutdown loop at 0x007FD270
+_Rva007FD170,0x007FD170,list-head teardown; registered as a function pointer by 0x007FD270 and also called directly there
+_Rva007FE670,0x007FE670,tail cleanup called by the shutdown at 0x007FD270
+_Rva0081BDE4,0x0081BDE4,import thunk called at the tail of the DirtySock shutdown 0x007FD270; the ledger already names this address ?ji_0081bde4, this is the C spelling the .c TU needs

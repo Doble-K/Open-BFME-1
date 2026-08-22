@@ -183,3 +183,29 @@ void Rva007FEF60( void )
 {
 	time( 0 );
 }
+
+/* Module shutdown at 0x007FD270.  The first call takes a FUNCTION POINTER:
+ * the pushed immediate 0x00BFD170 is a virtual address, and its RVA is
+ * 0x007FD170 -- the per-socket destroy helper called directly further down.
+ * So the module registers its own destroyer, drains the list head until it is
+ * empty, then tears the head down itself.  The trailing call is an import
+ * thunk the ledger already names.  Every name here is address-derived. */
+extern void *g_Rva0130AB58Head;
+
+void Rva007FD3F0( void *socket );
+void Rva007FD170( void *head );
+void Rva007FE670( void );
+void Rva0081BDE4( void );
+
+void Rva007FD270( void )
+{
+	Rva007FED90( (void *)Rva007FD170, &g_Rva0130AB58Head );
+	Rva007FEE10();
+
+	while ( g_Rva0130AB58Head != 0 )
+		Rva007FD3F0( g_Rva0130AB58Head );
+
+	Rva007FD170( &g_Rva0130AB58Head );
+	Rva007FE670();
+	Rva0081BDE4();
+}
