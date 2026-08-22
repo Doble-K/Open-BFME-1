@@ -1,9 +1,15 @@
 // cl: /DNDEBUG /MD /EHsc
 
-// ScriptConditions::evaluateTeamInsideAreaEntirely, 0x00324AC0, 213 bytes.
+// The ScriptConditions trigger-area conditions:
 //
-// The reference's body -- it is the TeamInside condition despite the name --
-// with the one BFME change its sibling
+//   0x00324AC0  evaluateTeamInsideAreaEntirely   213 bytes
+//   0x00324670  evaluateTeamInsideAreaPartially  239 bytes
+//
+// They share this translation unit because they share every model in it, down
+// to the two ScriptEngine vtable slots and the delegating AsciiString.
+//
+// Both are the reference's bodies -- the first is the TeamInside condition
+// despite its name -- with the one BFME change their sibling
 // ScriptConditions_evaluateTeamCanPathToWaypoint.cpp already carries:
 // getTeamNamed takes a second Bool the reference does not have.
 //
@@ -18,8 +24,10 @@
 // constructor that visibly forwards to StringBase<char> is what puts the
 // __$SEHRec$ store ahead of `mov ecx, esp`.
 //
-// One callee is pinned rather than owned: ?allInside@Team@@QBE_NPAVPolygonTrigger@@I@Z
-// at 0x000F5A30, the call this body makes on the team it looked up.
+// Two callees are pinned rather than owned, both calls these bodies make on
+// the team they looked up: ?allInside@Team@@QBE_NPAVPolygonTrigger@@I@Z at
+// 0x000F5A30 and ?someInsideSomeOutside@Team@@QBE_NPAVPolygonTrigger@@I@Z at
+// 0x000F5CE0, which the partial condition tries first and falls back from.
 
 typedef int Int;
 typedef unsigned int UnsignedInt;
@@ -66,7 +74,8 @@ private:
 class Team
 {
 public:
-	Bool allInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;	// retail 0x000F5A30
+	Bool allInside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;			// retail 0x000F5A30
+	Bool someInsideSomeOutside(PolygonTrigger *pTrigger, UnsignedInt whichToConsider) const;	// retail 0x000F5CE0
 };
 
 class ScriptEngine
@@ -103,6 +112,7 @@ class ScriptConditions
 {
 protected:
 	Bool evaluateTeamInsideAreaEntirely(Parameter *, Parameter *, Parameter *);
+	Bool evaluateTeamInsideAreaPartially(Parameter *, Parameter *, Parameter *);
 };
 
 // ?evaluateTeamInsideAreaEntirely@ScriptConditions@@IAE_NPAVParameter@@00@Z
@@ -117,6 +127,21 @@ Bool ScriptConditions::evaluateTeamInsideAreaEntirely(Parameter *pTeamParm, Para
 
 	if (theTeam) {
 		return theTeam->allInside(pTrig, (UnsignedInt)pTypeParm->getInt());
+	}
+	return false; // Non existent team isn't in trigger area. :)
+}
+
+// ?evaluateTeamInsideAreaPartially@ScriptConditions@@IAE_NPAVParameter@@00@Z
+Bool ScriptConditions::evaluateTeamInsideAreaPartially(Parameter *pTeamParm, Parameter *pTriggerAreaParm, Parameter *pTypeParm)
+{
+	Team *theTeam = TheScriptEngine->getTeamNamed( pTeamParm->getString(), false );
+	AsciiString triggerName = pTriggerAreaParm->getString();
+	PolygonTrigger *pTrig = TheScriptEngine->getQualifiedTriggerAreaByName(pTriggerAreaParm->getString());
+
+	if (pTrig == 0) return false;
+	if (theTeam) {
+		return (theTeam->someInsideSomeOutside(pTrig, (UnsignedInt) pTypeParm->getInt()) ||
+						theTeam->allInside(pTrig, (UnsignedInt) pTypeParm->getInt()));
 	}
 	return false; // Non existent team isn't in trigger area. :)
 }
