@@ -85565,6 +85565,8 @@ name,address,notes
 ?addObjectToPathfindMap@BfmeSpawnPointPathfinder@@QAEXPAVObject@@@Z,0x0000B81B,SpawnPoint exit BFME one-argument pathfinder insertion
 ?addObjectToPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,0x0000B81B,Open-BFME5 retail pathfinder addition thunk
 ?addPlayerArmy@BfmeLivingWorldCampaignManager@@QAEXPAVLivingWorldPlayerArmy@@@Z,0x00037786,derived from the REL32 displacement at 0x00366410
+??$_Construct@VLivingWorldPlayerArmy@@V1@@_STL@@YAXPAVLivingWorldPlayerArmy@@ABV1@@Z,0x000344A0,Open-BFME5 REL32 pin from addPlayerArmy; ILT thunk to 0x003661E0
+?_M_insert_overflow@?$vector@VLivingWorldPlayerArmy@@V?$allocator@VLivingWorldPlayerArmy@@@_STL@@@_STL@@IAEXPAVLivingWorldPlayerArmy@@ABV3@ABU__false_type@2@I_N@Z,0x000345B8,Open-BFME5 REL32 pin from addPlayerArmy; ILT thunk to 0x003665C0
 ?addPlayerFrameRatiosCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00017319,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
 ?addPlayerFrameRatiosCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067C150,addCommand's jump-table arm for command type 22
 ?addPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00034CB1,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop

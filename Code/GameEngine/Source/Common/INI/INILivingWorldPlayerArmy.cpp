@@ -15,26 +15,39 @@
 // member that takes it is named for the call site.
 #include "PreRTS.h"
 #include "Common/INI.h"
+#include <vector>
 
 class LivingWorldPlayerArmy
 {
 public:
 	LivingWorldPlayerArmy();
+	LivingWorldPlayerArmy( const LivingWorldPlayerArmy &other );
 	~LivingWorldPlayerArmy();
 
 	static const FieldParse m_fieldParseTable[];
 
-private:
-	char m_unmodelled[ 0x58 ];
+	char m_unmodelled00[ 4 ];
+	Int m_index;
+	char m_unmodelled08[ 0x50 ];
 };
 
 class BfmeLivingWorldCampaignManager
 {
 public:
 	void addPlayerArmy( LivingWorldPlayerArmy *army );
+
+private:
+	char m_unmodelled[ 0x20 ];
+	std::vector<LivingWorldPlayerArmy> m_playerArmies;
 };
 
 extern BfmeLivingWorldCampaignManager *TheLivingWorldCampaignManager;	// 0x012F1024
+
+void BfmeLivingWorldCampaignManager::addPlayerArmy( LivingWorldPlayerArmy *army )
+{
+	m_playerArmies.push_back( *army );
+	m_playerArmies.back().m_index = m_playerArmies.size() - 1;
+}
 
 // ?parseLivingWorldPlayerArmy@@YAXPAVINI@@@Z
 void parseLivingWorldPlayerArmy( INI *ini )
