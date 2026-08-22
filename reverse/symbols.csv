@@ -149970,6 +149970,7 @@ _piPingInitPlayer,0x00862E10,gamespy-peer: called by piAddPlayer at 0x008637E0 w
 _piPingPlayerJoinedRoom,0x00862E90,gamespy-peer: called by piPlayerJoinedRoom at 0x008638D0
 _piPingPlayerLeftRoom,0x00862FA0,gamespy-peer: called by piPlayerLeftRoom at 0x00863970
 _piSendChannelUTM,0x00857EB0,gamespy-peer: called by piXpingPlayer at 0x00862B80 with the PNG command literal
+_piSocketInit,0x00872AE0,GameSpy pingerInit static socket-setup callee; authentic pingerMain control flow and sole call site
 _pingerInit,0x00872CB0,gamespy-pinger: sole callee of piPingInit at 0x00862780 that takes the got-ping and set-data callbacks
 _pingerShutdown,0x00872DD0,gamespy-pinger: called by piPingCleanup at 0x00862820
 _pingerThink,0x00873340,gamespy-pinger: called by piPingThink at 0x00862D30
