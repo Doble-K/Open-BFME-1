@@ -75255,3 +75255,4 @@ _Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by 
 ?gpGetBuddyStatus@@YAXPAVGPConnection@@HPAUGPBuddyStatus@@@Z,0x008EA400,C++ declaration shim for the independently identified GameSpy gpGetBuddyStatus body
 ?MultiByteToWideCharSingleLine@@YA?AV?$basic_string@GU?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@PBD@Z,0x00028C7C,incremental-link thunk used by both Buddy message and request callbacks
 ?TheGameSpyBuddyMessageQueue@@3PAVGameSpyBuddyMessageQueueInterface@@A,0x00EF71B4,Buddy message queue global used by independently identified callback and queue methods
+?findFlag@BFMEScriptEngineFlagLookup@@QAEPA_NVAsciiString@@@Z,0x0004278F,TU-scoped ABI name for the ScriptEngine flag lookup ILT; target body 0x00344E10 is semantically proven but its canonical retail spelling is unknown
