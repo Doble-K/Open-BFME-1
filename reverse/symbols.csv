@@ -150596,3 +150596,5 @@ _Rva007FEB00,0x007FEB00,Y4 lane: DirtySock recursive-lock acquire; returns non-z
 ??0?$HeaderTemplateStringBase@D@@AAE@ABV0@@Z,0x00887B60,Open-BFME5 HeaderTemplateManager init relocation
 ?load@HeaderTemplateINI@@QAEXVHeaderTemplateString@@W4HeaderTemplateINILoadType@@PAVXfer@@@Z,0x00853A20,Open-BFME5 HeaderTemplateManager init relocation
 ??1HeaderTemplateINI@@QAE@XZ,0x008512E0,Open-BFME5 HeaderTemplateManager init relocation
+?Find_Asset@AssetRegistry@@QAE?AVAssetReference@@PBD@Z,0x009EEC60,address-derived AssetRegistry counted lookup callee at 0x009EBEC0
+?Release_Ref@CountedAsset@@QAEXXZ,0x009EB7A0,address-derived counted asset release callee at 0x009EBEC0
