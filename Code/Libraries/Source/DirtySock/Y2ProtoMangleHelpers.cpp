@@ -224,7 +224,11 @@ struct Rva00804150ProtoMangleRef
 	int              m_status;          // +0x0BC
 	Rva008042B0Http  m_http;            // +0x0C0
 	int              m_pad208;
-	int              m_timeout;         // +0x20C
+	// THE ROLLING LOCAL PORT, not a timeout.  0x00804150 seeds it from the tick
+	// as `tick % 8000 + 2000`, which is an ephemeral port range rather than a
+	// duration, and 0x00805C70 binds probe sockets to it and steps it as it
+	// goes.
+	int              m_localPort;       // +0x20C
 	// The module's own state.  0x008054A0 dispatches on it being 1 or 4 and
 	// writes 2 or 3 back; 0x00804150 leaves it zero.
 	int              m_state;           // +0x210
@@ -337,7 +341,7 @@ Rva00804150ProtoMangleRef *ProtoMangleCreate( const char *server, int port,
 		ref = 0;
 	}
 
-	ref->m_timeout = Rva007FEA00Tick() % 8000 + 2000;
+	ref->m_localPort = Rva007FEA00Tick() % 8000 + 2000;
 
 	Rva00804250CopyField( ref->m_server, server, 0x20 );
 	ref->m_port = port;
@@ -472,6 +476,12 @@ const char *Rva00805620ParseStatus( const char *text, int *status );  // 0x00805
 int Rva00805960( Rva00804150ProtoMangleRef *ref, const char *text );  // 0x00805960
 // Also in Y2ProtoMangleTagField.cpp: finds a marker and steps past newlines.
 const char *Rva00805830SkipNewlines( const char *text, const char *find );
+// Three more DirtySock callees, all C++ spellings of bodies converted in
+// Y4DirtySockSocket.c.
+void *Rva007FD2D0SocketOpen( int family, int type, int protocol );
+int   Rva007FD510Bind( void *socket, const void *addr, int addrLen );
+void  Rva007FDB60SocketInfo( void *socket, int selector, void *buffer,
+		int bufferSize );
 
 // 0x008054A0 IS THE MODULE'S STATE MACHINE, driven by whatever the HTTP
 // sub-object has finished.  It runs at most two steps per call: state 1 reads a
@@ -556,7 +566,10 @@ struct Rva00805960Probe
 {
 	int  m_index;                // +0x00
 	int  m_count;                // +0x04
-	char m_pad08[ 0x0C ];
+	char m_pad08[ 0x08 ];
+	// The port to probe, or -1 for "pick one".  0x00805C70 compares it against
+	// the module's own port and logs it as "probe port %d".
+	int  m_port;                 // +0x10
 	int  m_serial;               // +0x14
 	char m_pad18[ 0x40 ];
 };
@@ -616,4 +629,84 @@ int Rva00805960( Rva00804150ProtoMangleRef *ref, const char *text )
 	}
 
 	return 0;
+}
+
+// 0x00805C70 GETS A SOCKET FOR ONE PROBE, and its four log lines carry the
+// whole decision: "tearing down probe socket", "using shared socket ref
+// 0x%08x to probe port %d", "Error creating probe socket", "created probe
+// socket".  It reuses the CALLER'S socket when there is one and the probe asks
+// for the port the module is already on; otherwise it opens a datagram socket
+// of its own and binds it.
+//
+// Any socket left over from a previous probe is closed first, and the test for
+// that is `own != caller's` -- the same ownership comparison ProtoMangleDestroy
+// makes, which is what stops it closing a socket it was handed.
+//
+// THE PORT PAIR IS A RETAIL BUG AND IS REPRODUCED.  When the probe asks for any
+// port, the high byte is taken from the rolling counter, the counter is
+// stepped, the low byte is taken, and the counter is stepped AGAIN -- so the
+// two bytes come from different numbers and the counter advances by two per
+// probe.  Reading it once into the pair is one instruction shorter and is not
+// what the bytes do.
+//
+// The bound port is read back through the same 'bind' selector 0x008053C0 uses
+// and returned big-endian from the two bytes, so the caller learns the port the
+// stack actually gave -- which is the point of asking for -1 in the first place.
+int Rva00805C70( Rva00804150ProtoMangleRef *ref, Rva00805960Probe *probe )
+{
+	char bindaddr[ 0x10 ];
+
+	if( ref->m_socket != ref->m_userSocket )
+	{
+		Rva007FE780Printf(
+				"protomangle: tearing down probe socket 0x%08x\n",
+				ref->m_socket );
+		Rva00804380CloseSocket( (Rva008042B0Http *)ref );
+	}
+
+	if( ref->m_userSocket != 0 && probe->m_port == ref->m_myPort )
+	{
+		Rva007FE780Printf(
+				"protomangle: using shared socket ref 0x%08x to probe port %d\n",
+				ref->m_userSocket, ref->m_myPort );
+		ref->m_socket = ref->m_userSocket;
+	}
+	else
+	{
+		ref->m_socket = Rva007FD2D0SocketOpen( 2, 2, 0 );
+		if( ref->m_socket == 0 )
+		{
+			Rva007FE780Printf(
+					"ProtoMangle: Error creating probe socket\n" );
+			return -1;
+		}
+
+		Rva007FE780Printf(
+				"protomangle: created probe socket 0x%08x\n",
+				ref->m_socket );
+
+		*(unsigned short *)( bindaddr + 0 ) = 2;
+		*(unsigned short *)( bindaddr + 2 ) = 0;
+		*(int *)( bindaddr + 4 ) = 0;
+		*(int *)( bindaddr + 8 ) = 0;
+		*(int *)( bindaddr + 12 ) = 0;
+
+		if( probe->m_port != -1 )
+		{
+			bindaddr[ 2 ] = (char)( probe->m_port >> 8 );
+			bindaddr[ 3 ] = (char)probe->m_port;
+		}
+		else
+		{
+			bindaddr[ 2 ] = (char)( ref->m_localPort >> 8 );
+			ref->m_localPort = ref->m_localPort + 1;
+			bindaddr[ 3 ] = (char)ref->m_localPort;
+			ref->m_localPort = ref->m_localPort + 1;
+		}
+
+		Rva007FD510Bind( ref->m_socket, bindaddr, 0x10 );
+	}
+
+	Rva007FDB60SocketInfo( ref->m_socket, 'bind', bindaddr, 0x10 );
+	return ( (unsigned char)bindaddr[ 2 ] << 8 ) | (unsigned char)bindaddr[ 3 ];
 }
