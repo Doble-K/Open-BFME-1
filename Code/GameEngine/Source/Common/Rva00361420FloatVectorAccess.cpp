@@ -4,12 +4,40 @@
 // targets the existing retail thunk at RVA 0x0002CC5F.  Class and method names
 // remain descriptive because no trustworthy higher-level identity is known.
 
+typedef unsigned int UnsignedInt;
+
+class GameLogic
+{
+public:
+	UnsignedInt m_pad[ 0x3C / sizeof( UnsignedInt ) ];
+	UnsignedInt m_frame;
+};
+
+extern GameLogic *TheGameLogic;
+
 class Rva003608F0FloatElement
 {
 public:
-	float value();
-	char m_storage[ 0x58 ];
+	__declspec( noinline ) float value();
+
+private:
+	char m_lead[ 0x28 ];
+	int m_endFrame;
+	int m_startFrame;
+	char m_tail[ 0x28 ];
 };
+
+float Rva003608F0FloatElement::value()
+{
+	UnsignedInt now = TheGameLogic->m_frame;
+	int start = m_startFrame;
+	UnsignedInt elapsed = now - start;
+	double fraction = static_cast< float >( elapsed ) /
+		static_cast< double >( m_endFrame - start );
+	if ( fraction > 1.0 )
+		return 1.0f;
+	return fraction;
+}
 
 class Rva00361420FloatRange
 {
