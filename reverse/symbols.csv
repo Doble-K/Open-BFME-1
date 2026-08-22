@@ -74930,3 +74930,4 @@ _Rva007FECB0,0x007FECB0,Y4 lane: DirtySock idle-list half called by 0x007FEE10; 
 ??0Rva000A19E0StateBase@@QAE@PAXVAsciiString@@@Z,0x000035B2,base constructor thunk address decoded from the retail REL32 call site; name is address-derived
 ??0Rva0014F280StateBase@@QAE@PAXVAsciiString@@@Z,0x00032182,base constructor thunk address decoded from the retail REL32 call site; name is address-derived
 ??0Rva000250BDStateBase@@QAE@PAXVAsciiString@@@Z,0x000250BD,base constructor thunk address decoded from the retail REL32 call site; name is address-derived
+??1NestedInlineBase@@UAE@XZ,0x00047C53,base destructor address decoded from the retail REL32 tail jump; name is address-derived
