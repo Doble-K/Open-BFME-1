@@ -111,6 +111,13 @@ public:
 	Bool isKindOf(Int kind) const;
 };
 
+class BFMEActionBehaviorModule
+{
+public:
+	virtual void slot0() = 0;
+	virtual CollideModuleInterface *getCollide() = 0;
+};
+
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 static Bool isObjectShroudedForAction(const Object *source, const Object *target, CommandSourceType commandSource)
@@ -883,65 +890,29 @@ Bool ActionManager::canConvertObjectToCarBomb( const Object *obj, const Object *
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?canHijackVehicle@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z present-unmatched
 Bool ActionManager::canHijackVehicle( const Object *obj, const Object *objectToHijack, CommandSourceType commandSource ) //LORENZEN
 {
-	// sanity
-	if( obj == NULL || objectToHijack == NULL )
-	{
+	if (obj == NULL || objectToHijack == NULL)
 		return FALSE;
-	}
-
-	//Make sure it's alive.
-	if( objectToHijack->isEffectivelyDead() )
-	{
+	if (*reinterpret_cast<const UnsignedByte *>(reinterpret_cast<const char *>(objectToHijack) + 0x344) & 1)
 		return FALSE;
-	}
-
-	// if the target is in the shroud, we can't do anything
 	if (isObjectShroudedForAction(obj, objectToHijack, commandSource))
-	{
 		return FALSE;
-	}
-
-	Relationship r = obj->getRelationship(objectToHijack);
-	//Only hijack enemy objects
-	if( r != ENEMIES )
-	{
+	if (obj->getRelationship(objectToHijack) != ENEMIES)
 		return FALSE;
-	}
-
-	//Make sure target is a vehicle.
-	if( ! objectToHijack->isKindOf( KINDOF_VEHICLE ) )
-	{
+	if (reinterpret_cast<const BFMEActionThing *>(objectToHijack)->isKindOf(12))
 		return FALSE;
-	}
 
-	//Kris -- Hijackers can no longer hijack any aircraft.
-	if( objectToHijack->isKindOf( KINDOF_AIRCRAFT ) )
+	BehaviorModule **m = *reinterpret_cast<BehaviorModule ***>(reinterpret_cast<char *>(const_cast<Object *>(obj)) + 0x1f0);
+	for (; *m; ++m)
 	{
-		return FALSE;
-	}
-
-	//Can't hijack a drone type.
-	if( objectToHijack->isKindOf( KINDOF_DRONE ) )
-	{
-		return FALSE;
-	}
-
-	// last, see if we'd like to collide with 'objectToHijack' 
-	for (BehaviorModule** m = obj->getBehaviorModules(); *m; ++m)
-	{
-		CollideModuleInterface* collide = (*m)->getCollide();
+		BFMEActionBehaviorModule *module = reinterpret_cast<BFMEActionBehaviorModule *>(reinterpret_cast<char *>(*m) + 0x0c);
+		CollideModuleInterface *collide = module->getCollide();
 		if (!collide)
 			continue;
-
-		if( collide->wouldLikeToCollideWith( objectToHijack ) && collide->isHijackedVehicleCrateCollide() )
-		{
+		if (collide->wouldLikeToCollideWith(objectToHijack) && collide->isHijackedVehicleCrateCollide())
 			return TRUE;
-		}
 	}
-
 	return FALSE;
 }
 
