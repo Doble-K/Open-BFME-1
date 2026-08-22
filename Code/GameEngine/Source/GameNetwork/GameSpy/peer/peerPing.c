@@ -4,9 +4,23 @@
    addresses while the remainder of peerPing.c is recovered. */
 
 #include <winsock.h>
+#include <stdlib.h>
 
 typedef int GSIBool;
 typedef void *DArray;
+
+typedef void (*pingerGotPing)(unsigned int, unsigned short, int, const char *, int, void *);
+
+typedef struct piQueuedCallback
+{
+	unsigned int IP;
+	unsigned short port;
+	int ping;
+	char *data;
+	int len;
+	void *param;
+	pingerGotPing callback;
+} piQueuedCallback;
 
 static GSIBool piInitialized;
 static GSIBool piSettingData;
@@ -73,10 +87,33 @@ fail:
 	return 1;
 }
 DArray ArrayNew(int elemSize, int numElemsToAllocate, void *elemFreeFn);
+int ArrayLength(DArray array);
+void *ArrayNth(DArray array, int index);
+void ArrayDeleteAt(DArray array, int index);
 void ArrayFree(DArray array);
 void piProcessIncoming(void);
 void piCheckTimeouts(void);
-void piCallCallbacks(void);
+static void piCallCallbacks(void);
+
+static void piCallCallbacks(void)
+{
+	piQueuedCallback *callback;
+	piQueuedCallback callbackCopy;
+
+	while (ArrayLength(piCallbacks) > 0)
+	{
+		callback = (piQueuedCallback *)ArrayNth(piCallbacks, 0);
+		if (!callback)
+			return;
+
+		callbackCopy = *callback;
+		callback = &callbackCopy;
+		ArrayDeleteAt(piCallbacks, 0);
+		callback->callback(callback->IP, callback->port, callback->ping,
+			callback->data, callback->len, callback->param);
+		free(callback->data);
+	}
+}
 
 int pingerInit(register const char *localAddress, register unsigned short localPort, void *pinged,
 	void *pingedParam, void *setData, void *setDataParam)
