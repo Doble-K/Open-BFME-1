@@ -2,7 +2,14 @@ struct ModelConditionInfo
 {
 	struct HideShowSubObjInfo
 	{
+		unsigned int vtable;
+		unsigned int flags;
 	};
+};
+
+struct HideShowSubObjInfoDestroyVTable
+{
+	virtual void destroy(unsigned int) = 0;
 };
 
 namespace _STL
@@ -14,6 +21,13 @@ struct __false_type
 template <class Type>
 class allocator
 {
+};
+
+template <bool Threads, int Instance>
+class __node_alloc
+{
+public:
+	static void _M_deallocate(void *, unsigned int);
 };
 
 template <class Type, class Allocator>
@@ -40,5 +54,39 @@ void vector<ModelConditionInfo::HideShowSubObjInfo, allocator<ModelConditionInfo
 void vector<ModelConditionInfo::HideShowSubObjInfo, allocator<ModelConditionInfo::HideShowSubObjInfo> >::_M_clear()
 {
 	((ModelConditionInfoHideShowSubObjInfoInsertOverflowShim *)this)->clear();
+}
+
+void ModelConditionInfoHideShowSubObjInfoInsertOverflowShim::clear()
+{
+	typedef ModelConditionInfo::HideShowSubObjInfo Element;
+	struct VectorLayout
+	{
+		Element *start;
+		Element *finish;
+		Element *end;
+	};
+
+	VectorLayout *vector = reinterpret_cast<VectorLayout *>(this);
+	Element *first = vector->start;
+	Element *last = vector->finish;
+	while (first != last)
+	{
+		reinterpret_cast<HideShowSubObjInfoDestroyVTable *>(first)->destroy(0);
+		++first;
+	}
+
+	Element *start = vector->start;
+	if (start != 0)
+	{
+		unsigned int bytes = static_cast<unsigned int>((vector->end - start) * sizeof(Element));
+		if (bytes > 0x80)
+		{
+			::operator delete(start);
+		}
+		else
+		{
+			__node_alloc<true, 0>::_M_deallocate(start, bytes);
+		}
+	}
 }
 }
