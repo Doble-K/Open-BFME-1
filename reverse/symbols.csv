@@ -75375,3 +75375,6 @@ _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXX
 ?Rva007FE780Printf@@YAHPBDZZ,0x007FE780,Y2 DirtySock lane: the int-returning spelling of the variadic logger; the definition in Y4DirtySockDebug.c returns 0 and 0x00805E50 stores that result
 _strcat,0x009F75CA,Y2 lane: strcat import thunk (gen-import ?ji_009f75ca@@YAXXZ names the same address)
 ?Rva0080B070Destroy@@YAXPAX@Z,0x0080B070,Y2 lane: address-derived; the one-argument teardown 0x00806580 and its two siblings call on the pointer at +0x00 of their record
+?Rva0080DFC0@@YAXPAXH@Z,0x0080DFC0,Y2 lane: address-derived; the two-argument reset 0x00806A90 calls on the sub-object at +0xE4 when it is handed no key
+?Rva007FFA60Swap16@@YAGG@Z,0x007FFA60,Y2 lane: address-derived; the 16-bit counterpart of the byte swap at 0x007FFAD0, which 0x00806600 runs the port through
+?Rva007FFAD0@@YAII@Z,0x007FFAD0,Y2 lane: the 32-bit byte swap already ledgered under this name in Rva007FFAD0ByteSwap.cpp; pinned so C++ TUs resolve it

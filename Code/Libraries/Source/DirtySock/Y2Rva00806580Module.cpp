@@ -20,20 +20,39 @@ extern "C" void Rva0081BDE4( void );
 
 __declspec(dllimport) void __stdcall Rva01358F30Sleep( unsigned int ms );
 
+// The two byte swaps in Y4DirtySock's range and the reset at 0x0080DFC0.
+unsigned short Rva007FFA60Swap16( unsigned short value );   // 0x007FFA60
+unsigned int   Rva007FFAD0( unsigned int value );           // 0x007FFAD0
+void Rva0080DFC0( void *object, int flag );                 // 0x0080DFC0
+extern "C" void *memcpy( void *dest, const void *src, unsigned int count );
+
 // Only the five offsets these bodies touch are evidence.  +0x00 is a sub-object
 // with its own teardown, +0x70 and +0x7C are plain blocks, +0x5C takes a state
 // constant and +0x8C a boolean.  Everything between is padding and names nothing.
 struct Rva00806580Record
 {
 	void *m_field00;             // +0x00
-	char  m_pad04[ 0x58 ];
-	int   m_field5C;             // +0x5C
-	char  m_pad60[ 0x10 ];
+	char  m_pad04[ 0x02 ];
+	short m_port;                // +0x06 -- 'port', byte-swapped on the way out
+	int   m_addr;                // +0x08 -- 'addr', likewise
+	char  m_pad0C[ 0x08 ];
+	int   m_localAddr;           // +0x14 -- 'ladr', returned raw
+	int   m_localPort;           // +0x18 -- 'lprt', returned raw
+	char  m_pad1C[ 0x40 ];
+	int   m_field5C;             // +0x5C -- 'stat'
+	char  m_pad60[ 0x04 ];
+	int   m_field64;             // +0x64 -- 'obuf' is +0x64 minus +0x68
+	int   m_field68;             // +0x68
+	char  m_pad6C[ 0x04 ];
 	void *m_field70;             // +0x70
-	char  m_pad74[ 0x08 ];
-	void *m_field7C;             // +0x7C
+	int   m_field74;             // +0x74 -- 'ibuf' is +0x74 minus +0x78
+	int   m_field78;             // +0x78
+	void *m_field7C;             // +0x7C -- gates 'ibuf'
 	char  m_pad80[ 0x0C ];
-	short m_field8C;             // +0x8C
+	short m_field8C;             // +0x8C -- 'secu', read SIGNED
+	short m_field8E;             // +0x8E -- set by 0x00806A90
+	char  m_key[ 0x54 ];         // +0x90
+	int   m_fieldE4;             // +0xE4 -- 'cryp'; 0x90 + 0x54 lands exactly here
 };
 
 // 0x00806580 IS THE FULL TEARDOWN and the sleep in the middle is the whole
@@ -113,4 +132,85 @@ int Rva00806A10( Rva00806580Record *record )
 void Rva00806A70( Rva00806580Record *record, int value )
 {
 	record->m_field8C = (short)( value == 1 );
+}
+
+// 0x00806600 IS THE RECORD'S QUERY, and nine multi-character selectors are what
+// say so -- 'port', 'addr', 'ladr', 'lprt', 'obuf', 'ibuf', 'stat', 'secu' and
+// 'cryp', the same convention 0x007FDEB0's 'xmap'/'xdns' and 0x008053C0's
+// 'bind' use.  They also name most of the layout above: two of them come back
+// byte-swapped and two do not, which is what separates the wire-order pair at
+// +0x06 and +0x08 from the host-order pair at +0x14 and +0x18.
+//
+// THE TWO BUFFER SELECTORS ARE DIFFERENCES, NOT FIELDS: 'obuf' is +0x64 minus
+// +0x68 and 'ibuf' is +0x74 minus +0x78, so each pair is a write cursor and a
+// read cursor and the answer is how much is pending.  'ibuf' is additionally
+// gated on +0x7C and reports 0 when that is null -- the only arm here that
+// needs a local, which is why the frame is four bytes.
+//
+// IT IS AN IF-CHAIN, NOT A SWITCH.  Each test is followed by its own body and a
+// jump to the epilogue before the next test; a switch groups every comparison
+// first.  'secu' is read with MOVSX, so that field is a signed short, and an
+// unrecognised selector returns 0 rather than an error.
+int Rva00806600( Rva00806580Record *record, int selector )
+{
+	int pending;
+
+	if( selector == 'port' )
+		return Rva007FFA60Swap16( record->m_port );
+	if( selector == 'addr' )
+		return Rva007FFAD0( record->m_addr );
+	if( selector == 'ladr' )
+		return record->m_localAddr;
+	if( selector == 'lprt' )
+		return record->m_localPort;
+	if( selector == 'obuf' )
+		return record->m_field64 - record->m_field68;
+	if( selector == 'ibuf' )
+	{
+		if( record->m_field7C != 0 )
+			pending = record->m_field74 - record->m_field78;
+		else
+			pending = 0;
+		return pending;
+	}
+	if( selector == 'stat' )
+		return record->m_field5C;
+	if( selector == 'secu' )
+		return record->m_field8C;
+	if( selector == 'cryp' )
+		return record->m_fieldE4;
+
+	return 0;
+}
+
+// 0x00806A90 INSTALLS A 0x54-BYTE KEY, and 0x54 is not an arbitrary size: the
+// body at 0x00806710 in this same span has /GZ locals named Secret[0x20] and
+// Ticket[0x34], and 0x20 + 0x34 is exactly 0x54.  So what lands at +0x90 is
+// that pair, and the flag at +0x8E records whether it is there.
+//
+// THE GUARD IS WRITTEN NEGATIVELY and that is what puts the clearing arm first:
+// null, or zero length, or any length that is not 0x54, all take it.  A length
+// test that both rejects zero AND demands 0x54 is redundant in its first half,
+// and the redundancy is retail's.
+//
+// The key pointer is copied into a local before the guard runs and the copy is
+// what the memcpy reads; and the clearing arm resets the sub-object at +0xE4,
+// which is the same field 'cryp' reports, so installing no key tears the
+// crypto state down rather than leaving it stale.
+void Rva00806A90( Rva00806580Record *record, const void *key, int length )
+{
+	const void *p;
+
+	p = key;
+
+	if( key == 0 || length == 0 || length != 0x54 )
+	{
+		record->m_field8E = 0;
+		Rva0080DFC0( &record->m_fieldE4, 0 );
+	}
+	else
+	{
+		record->m_field8E = 1;
+		memcpy( record->m_key, p, 0x54 );
+	}
 }
