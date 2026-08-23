@@ -612,3 +612,76 @@ int Rva007EE1D0( unsigned char *buffer, int size, const unsigned char *fields )
 
 	return iChanged;
 }
+
+/* 0x007EFE30 EXTRACTS THE NAME IN FRONT OF THE FIRST '=' and returns a pointer
+ * just past that '=' -- so the caller gets the key copied out and the value's
+ * starting position in one call.
+ *
+ * THE NAME IS FOUND BY WALKING BACKWARDS from the delimiter, not forwards from
+ * the start, which is what lets it pick the LAST word before the '=' out of a
+ * line that has other text on it.  Everything from the previous whitespace up
+ * to the delimiter is the name.
+ *
+ * TWO EDGES FALL OUT OF THAT WALK AND NEITHER IS GUARDED.
+ *
+ * The backward walk stops on a character that is whitespace or lower, and then
+ * steps forward off it -- BUT ONLY IF IT DID NOT REACH THE BUFFER START.  So a
+ * string that BEGINS with a space puts the walk at the buffer start with the
+ * space still under it, the step-forward is skipped, and THE LEADING SPACE
+ * BECOMES PART OF THE COPIED NAME.  A name at the very start of the buffer is
+ * handled correctly; a name preceded only by whitespace is not.
+ *
+ * The size argument bounds the COPY BUT NOT THE TERMINATOR, which is written
+ * unconditionally afterwards.  A caller passing its full capacity gets one
+ * byte written past the end, so the argument means "capacity less one" and
+ * nothing here says so.
+ *
+ * A missing '=' returns null and leaves the destination UNTOUCHED -- not
+ * emptied -- so a caller that ignores the return reads whatever was there.
+ */
+unsigned char *Rva007EFE30( unsigned char *text, unsigned char *dest, int size )
+{
+	unsigned char *p;
+	unsigned char *pDelimiter;
+
+	p = text;
+
+	if ( p == 0 || *p == 0 )
+	{
+		return 0;
+	}
+
+	while ( *p != 0 && *p != '=' )
+	{
+		p++;
+	}
+
+	if ( *p == 0 )
+	{
+		return 0;
+	}
+
+	pDelimiter = p;
+
+	while ( p != text && *p > ' ' )
+	{
+		p--;
+	}
+
+	if ( p != text )
+	{
+		p++;
+	}
+
+	while ( p < pDelimiter && size > 0 )
+	{
+		*dest = *p;
+		dest++;
+		p++;
+		size--;
+	}
+
+	*dest = 0;
+
+	return pDelimiter + 1;
+}
