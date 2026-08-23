@@ -481,3 +481,84 @@ int Rva007EC2E0( const char *text, char *dest, int destSize )
 
 	return written;
 }
+
+// Twenty-four letters, one per bit, in bit order from the least significant.
+// A terminator in the table is what bounds the loop below, so the table's own
+// length is the number of flags this can name -- nothing else limits it.
+extern char g_Rva0112A410FlagLetters[];
+
+// Rva007EC780 lives in Y4TextToValue.c, which is C.  The two halves of this
+// module ended up split across a .c and a .cpp by two different lanes; the
+// declaration has to say so or the call will not link.
+extern "C" int Rva007EC780( unsigned char *buffer, int size, const char *field );
+
+// 0x007ECAF0 NAMES A BIT MASK IN LETTERS and stores it as a field.  Bit zero
+// takes the first letter of the table, bit one the second, and set bits
+// contribute their letter in order -- so the value reads back as the flags it
+// stands for rather than as a number.
+//
+// THE LOOP ENDS ON EITHER EXHAUSTION, and that asymmetry matters.  It stops
+// when the remaining mask is zero OR when the table runs out, so bits above
+// the table's length are DISCARDED SILENTLY: the field is written, the call
+// reports success, and the information is simply gone.
+//
+// THE SHIFT IS ARITHMETIC, so a mask with its top bit set never empties -- it
+// shifts in ones forever.  The table terminator is the only thing that stops
+// it, which makes the table's length load-bearing rather than incidental.
+int Rva007ECAF0( char *record, int size, const char *name, int flags )
+{
+	char *p;
+	const char *pLetter;
+	char strField[ 0x120 ];
+
+	p = Rva007EC730( record, strField, name );
+
+	for( pLetter = g_Rva0112A410FlagLetters;
+		flags != 0 && *pLetter != 0; flags >>= 1, pLetter++ )
+	{
+		if( ( flags & 1 ) != 0 )
+		{
+			*p = *pLetter;
+			p++;
+		}
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, strField );
+}
+
+// 0x007ECD90 IS THE INVERSE OF THE FOUR-CHARACTER TAG PACKER at 0x007EE8B0,
+// and it shares that function's convention exactly: a tag is four printable
+// bytes in an int, left-padded with SPACES rather than zeros.
+//
+// THE PADDING IS SKIPPED BY THE SAME SIGNED BOUND THE PACKER USED.  A value
+// whose top byte is a space or lower compares at or below 0x20FFFFFF, so the
+// byte is dropped and the value shifts on; the first byte above that bound
+// begins the text.  ONE CONSEQUENCE IS THAT THE SKIPPING IS NOT ONLY LEADING:
+// a space in the MIDDLE of a tag is dropped too, so a tag written with an
+// interior space does not survive a round trip through the pair.
+//
+// THE LOOP CANNOT RUN AWAY because the shift is left and unsigned in effect --
+// four shifts of eight empty any int -- so the four-byte limit is a property
+// of the width rather than a counter, exactly as it is in the packer.
+int Rva007ECD90( char *record, int size, const char *name, int value )
+{
+	char *p;
+	char strField[ 0x120 ];
+
+	p = Rva007EC730( record, strField, name );
+
+	for( ; value != 0; value <<= 8 )
+	{
+		if( value > 0x20FFFFFF )
+		{
+			*p = ( char )( value >> 24 );
+			p++;
+		}
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, strField );
+}
