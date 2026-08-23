@@ -11,7 +11,13 @@
 
 struct Rva0081BD40Comm
 {
-	char m_head[ 0xCC ];
+	char m_head[ 0x38 ];
+	/* THE SEND CALLBACK, called by 0x0081A8C0 just before each record goes out
+	 * with the transport, the payload, its length and a zero.  Null means
+	 * nobody is watching; it does not stop the send. */
+	void ( __cdecl *m_sendProc )( struct Rva0081BD40Comm *comm,
+		const void *payload, int length, int reserved );  /* +0x38 */
+	char m_head2[ 0x90 ];
 	/* A STATE.  0x0081B790 and 0x0081B910 both require it to be 1 before
 	 * doing anything, and both convert a 5 into their own result -- 3 and 2
 	 * respectively.  Nothing converted so far shows what sets it to 5. */
@@ -22,7 +28,10 @@ struct Rva0081BD40Comm
 	int m_recvWriteOffset;              /* +0xDC */
 	int m_recvReadOffset;               /* +0xE0 */
 	unsigned char *m_recvBuffer;        /* +0xE4 */
-	char m_gapE8[ 0x04 ];
+	/* THE EXPECTED RECEIVE SEQUENCE.  0x0081A8C0 stamps one less than this
+	 * into every outgoing record's ack field, which is the "I want N next"
+	 * convention the acknowledgement handler above decodes. */
+	int m_recvSequence;             /* +0xE8 */
 	/* THE SEND RING, the same five fields plus an ack cursor that the third
 	 * transport has at +0xB0..+0xC8.  0x0081AA20 is the same acknowledgement
 	 * handler that transport has at 0x008186C0, walking these instead. */
@@ -236,9 +245,11 @@ struct Rva0081AA20Message
  * established here. */
 struct Rva0081AA20SendRecord
 {
-	int m_reserved0;
-	int m_reserved4;
-	unsigned int m_sequence;        /* +0x08 */
+	int m_length;                   /* +0x00 */
+	unsigned int m_tick;            /* +0x04 */
+	unsigned int m_sequence;        /* +0x08, this record's own */
+	int m_ack;                      /* +0x0C, piggybacked acknowledgement */
+	unsigned char m_data[ 4 ];      /* +0x10 */
 };
 
 void Rva0081A8C0( struct Rva0081BD40Comm *comm );
@@ -297,5 +308,75 @@ void Rva0081AA20( struct Rva0081BD40Comm *comm,
 	{
 		comm->m_sendAckOffset = comm->m_sendReadOffset;
 		Rva0081A8C0( comm );
+	}
+}
+
+int Rva0081A3B0( struct Rva0081BD40Comm *comm,
+	struct Rva0081AA20SendRecord *record );
+
+/* 0x0081A8C0 IS A WINDOWED SENDER: it transmits queued records while a
+ * BYTE BUDGET lasts, and the budget is 0x800 -- 2048 bytes in flight.
+ *
+ * It computes the budget by walking everything ALREADY IN FLIGHT -- from the
+ * read cursor up to the transmit cursor -- and subtracting each record's
+ * length from 0x800.  So the window counts bytes outstanding, not packets, and
+ * a few large records close it as effectively as many small ones.
+ *
+ * THE FIRST RECORD ALWAYS GOES OUT REGARDLESS OF THE BUDGET.  The stop test is
+ * "transmit cursor is not at the read cursor AND this record is bigger than
+ * what is left", so when nothing is in flight the size check is skipped
+ * entirely.  Without that exception a record larger than 2048 bytes could
+ * never be sent at all -- the window would never open wide enough -- and the
+ * connection would wedge.  Reading the test as a plain budget check misses
+ * that completely.
+ *
+ * Every record is stamped with one less than the expected receive sequence on
+ * its way out, which is how acknowledgements ride along with data.
+ *
+ * The optional send callback fires BEFORE the transmit and its result is not
+ * consulted; a failed transmit breaks the loop and leaves the transmit cursor
+ * where it was, so the record is retried rather than skipped.
+ */
+void Rva0081A8C0( struct Rva0081BD40Comm *comm )
+{
+	int iOffset;
+	int iBudget;
+	struct Rva0081AA20SendRecord *p;
+	struct Rva0081AA20SendRecord *record;
+
+	iBudget = 0x800;
+
+	for ( iOffset = comm->m_sendReadOffset;
+		iOffset != comm->m_sendAckOffset;
+		iOffset = ( iOffset + comm->m_sendRecordSize )
+			% comm->m_sendBufferSize )
+	{
+		p = (struct Rva0081AA20SendRecord *)( comm->m_sendBuffer + iOffset );
+		iBudget = iBudget - p->m_length;
+	}
+
+	while ( comm->m_sendAckOffset != comm->m_sendWriteOffset )
+	{
+		record = (struct Rva0081AA20SendRecord *)( comm->m_sendBuffer
+			+ comm->m_sendAckOffset );
+
+		if ( comm->m_sendAckOffset != comm->m_sendReadOffset
+			&& record->m_length > iBudget )
+			break;
+
+		iBudget = iBudget - record->m_length;
+		record->m_ack = comm->m_recvSequence - 1;
+
+		if ( comm->m_sendProc != 0 )
+		{
+			comm->m_sendProc( comm, (char *)record + 0x10, record->m_length,
+				0 );
+		}
+
+		if ( Rva0081A3B0( comm, record ) < 0 )
+			break;
+
+		comm->m_sendAckOffset = ( comm->m_sendAckOffset
+			+ comm->m_sendRecordSize ) % comm->m_sendBufferSize;
 	}
 }
