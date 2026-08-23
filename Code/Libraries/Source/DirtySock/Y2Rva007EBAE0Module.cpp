@@ -1004,3 +1004,71 @@ int Rva007EC130( unsigned char *record, int size, const char *oldName,
 
 	return 0;
 }
+
+// 0x007ECBE0 STORES AN ADDRESS AS A DOTTED QUAD.  The four bytes are pulled
+// off the LOW end of the value and stored HIGHEST-INDEX FIRST, so the array
+// ends up in printing order and the loop that follows can simply walk it
+// forwards.  The byte order is therefore fixed here and nowhere else: the
+// caller hands over a host-order integer and never sees the convention.
+//
+// THE DIGITS ARE PEELED, NOT DIVIDED DOWN.  Each segment tests against 9 and
+// 99 to decide how many digits it has, then emits them most-significant first
+// -- so there is no reversal step and no scratch buffer, unlike the decimal
+// writer at 0x007EC5C0 which builds backwards.  Two number formatters a few
+// hundred bytes apart, two different strategies, because this one knows its
+// values are at most three digits and that one does not.
+//
+// THERE IS NO LENGTH CHECK ANYWHERE.  A dotted quad is at most fifteen
+// characters, so it fits after any reasonable name -- but "reasonable" is the
+// whole argument, and nothing enforces it.  The hex and packed writers in this
+// module both check; this one does not.
+int Rva007ECBE0( char *record, int size, const char *name, unsigned int value )
+{
+	int i;
+	unsigned char c;
+	char *p;
+	unsigned char seg[ 4 ];
+	char item[ 0x120 ];
+
+	p = Rva007EC730( record, item, name );
+
+	seg[ 3 ] = ( unsigned char )value;
+	value >>= 8;
+	seg[ 2 ] = ( unsigned char )value;
+	value >>= 8;
+	seg[ 1 ] = ( unsigned char )value;
+	value >>= 8;
+	seg[ 0 ] = ( unsigned char )value;
+
+	for( i = 0; i < 4; i++ )
+	{
+		c = seg[ i ];
+
+		if( i > 0 )
+		{
+			*p = '.';
+			p++;
+		}
+
+		if( c > 9 )
+		{
+			if( c > 99 )
+			{
+				*p = c / 100 + '0';
+				p++;
+				c = c % 100;
+			}
+
+			*p = c / 10 + '0';
+			p++;
+			c = c % 10;
+		}
+
+		*p = c + '0';
+		p++;
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
