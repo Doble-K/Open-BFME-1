@@ -75613,3 +75613,7 @@ _Rva00811310,0x00811310,Y4 lane: SHA-1 block transform, the counterpart of the u
 ?_Bfme_classic_locale@_STL@@3PAV_Locale_impl@1@A,0x0130BCA0,Open-BFME5 classic-locale impl pointer that locale::locale() at 0x00832120 loads; DIR32 sites are masked by the byte gate so this records which global it is
 ?_M_page_size@_Filebuf_base@_STL@@1IA,0x012C7ED0,Open-BFME5 shared page-size static the _Filebuf_base constructor at 0x00849F40 fills from GetSystemInfo; DIR32 sites are masked by the byte gate so this records which global it is
 ?_M_fill_insert@?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAEXPAUICoord2D@@IABU3@@Z,0x000160C2,Open-BFME5 ILT the ICoord2D vector resize uses; it jumps to the _M_fill_insert body at 0x00452450
+?BfmeDynamicDX8VertexBufferInUse@@3PA_NA,0x01346740,Open-BFME5 per-slot in-use flags the BoxDynamicVBAccessClass destructor at 0x0091D9E0 clears; DIR32 sites are masked by the byte gate so this records which global it is
+?BfmeDynamicDX8VertexBufferOffset@@3PAGA,0x01346794,Open-BFME5 per-slot vertex offsets the BoxDynamicVBAccessClass destructor at 0x0091D9E0 advances
+?BfmeDynamicSortingVertexArrayOffset@@3GA,0x013467E4,Open-BFME5 sorting-array vertex offset the BoxDynamicVBAccessClass destructor at 0x0091D9E0 advances
+?BfmeDynamicSortingVertexArrayInUse@@3_NA,0x013467D8,Open-BFME5 sorting-array in-use flag the BoxDynamicVBAccessClass destructor at 0x0091D9E0 clears
