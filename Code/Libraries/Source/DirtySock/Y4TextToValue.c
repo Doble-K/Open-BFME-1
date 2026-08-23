@@ -5,6 +5,15 @@
  * recognise.  Placement is by address neighbourhood.
  */
 
+/* DECLARED HERE RATHER THAN INCLUDED, and that is forced by the bytes.  Under
+ * /MD the CRT headers mark these __declspec(dllimport), which turns each call
+ * into an indirect ff 15 straight through the IAT.  Retail calls the import
+ * STUB with a direct e8, so the translation unit it was built from did not see
+ * <string.h> -- these prototypes reproduce that. */
+void * __cdecl memcpy( void *dest, const void *src, unsigned int count );
+void * __cdecl memmove( void *dest, const void *src, unsigned int count );
+int __cdecl memcmp( const void *a, const void *b, unsigned int count );
+
 /* 0x007EE8B0 PACKS UP TO FOUR PRINTABLE CHARACTERS INTO AN INT -- the same
  * four-character tags the socket layer dispatches on, 'xmap' and the rest,
  * built from text instead of written as a literal.
@@ -347,4 +356,204 @@ const char *Rva007EFAB0( const char *text, int *value, int maxLength )
 	}
 
 	return text;
+}
+
+/* A 256-entry character-class table.  Class 1 ends a field, class 0 is
+ * whitespace or a terminator, and anything >= 2 is a name character -- the
+ * comparison below only ever asks whether two classes are equal AND at least
+ * two, so the distinctions above 1 are the caller's business, not ours.  It is
+ * indexed by the buffer's bytes UNSIGNED and by the field text's bytes SIGNED,
+ * so a high-bit byte in the field reads BEFORE the table start. */
+extern unsigned char g_Rva0112A310Class[];
+
+/* 0x007EC780 REPLACES ONE NAMED FIELD IN A RECORD, or appends it, and returns
+ * the length written less one -- so the value is a count of everything before
+ * the separator it just placed.  This is the engine the small writers above
+ * are thin wrappers over.
+ *
+ * A LEADING '~' MEANS "APPEND, DO NOT SEARCH".  It skips the scan entirely, so
+ * a record can carry the SAME NAME TWICE, deliberately; nothing here rejects a
+ * duplicate, and a later search will only ever find the first.
+ *
+ * THE SCAN COMPARES CHARACTER CLASSES, NOT CHARACTERS, and stops at the first
+ * position where the two classes disagree or drop below 2.  A NAME MATCHES
+ * WHEN THE CLASSES AT THAT POSITION SUM TO EXACTLY 2 -- that is, both sides
+ * ended together on class-1 delimiters.  One side ending early gives 0 + 1 or
+ * 1 + 2 and fails, which is what stops a name being a prefix of another.
+ *
+ * THE THREE-WAY memmove IS A RESIZE IN PLACE.  iDelta is new length minus old:
+ * positive opens a gap and is the only case that can overflow the buffer,
+ * negative closes one, and ZERO SHORT-CIRCUITS ON memcmp -- rewriting a field
+ * with the text it already holds returns 0 without touching a byte.  That is
+ * the only path that reports success without writing.
+ *
+ * THE OVERFLOW CHECK GUARDS ONLY GROWTH, which is correct but worth stating:
+ * when iDelta <= 0 the result cannot be longer than what is already there, so
+ * no check is needed and none is made.
+ *
+ * THE LAST BYTE IS DECIDED BY THE SEPARATOR'S IDENTITY.  Writing the field's
+ * own terminator would end the record, so it is overwritten with the separator
+ * -- EXCEPT where the field landed at the very end AND the separator is not a
+ * newline, where a real terminator goes in instead.  The '\n' case is special
+ * because a trailing newline is harmless at the end of a record and a trailing
+ * anything-else would leave a separator with nothing after it.
+ */
+int Rva007EC780( unsigned char *buffer, int size, const char *field )
+{
+	int i;
+	int iDelta;
+	unsigned char *p;
+	unsigned char *pValue;
+	unsigned char *pTail;
+	unsigned char cClassBuffer;
+	unsigned char cClassField;
+	unsigned char *pBuffer;
+
+	pBuffer = buffer;
+
+	if ( pBuffer == 0 )
+	{
+		return -1;
+	}
+
+	if ( field == 0 || (unsigned int)*field <= ' ' )
+	{
+		return -1;
+	}
+
+	if ( *field == '~' )
+	{
+		for ( p = pBuffer; *p != 0; p++ )
+		{
+		}
+
+		if ( p != pBuffer && p[ -1 ] >= ' '
+			&& p[ -1 ] != g_Rva012C391CSeparator
+			&& p < pBuffer + size - 1 )
+		{
+			*p = g_Rva012C391CSeparator;
+			p++;
+			*p = 0;
+		}
+
+		pTail = p;
+		pValue = pTail;
+	}
+	else
+	{
+		p = pBuffer;
+
+		for ( ;; )
+		{
+			if ( *p == 0 )
+			{
+				if ( p != pBuffer && p[ -1 ] >= ' '
+					&& p[ -1 ] != g_Rva012C391CSeparator
+					&& p < pBuffer + size - 1 )
+				{
+					*p = g_Rva012C391CSeparator;
+					p++;
+					*p = 0;
+				}
+
+				pTail = p;
+				pValue = pTail;
+				break;
+			}
+
+			if ( *p <= ' ' )
+			{
+				p++;
+				continue;
+			}
+
+			if ( g_Rva0112A310Class[ *p ] == 1 )
+			{
+				pTail = p;
+				pValue = pTail;
+				break;
+			}
+
+			for ( i = 0; ; i++ )
+			{
+				cClassBuffer = g_Rva0112A310Class[ p[ i ] ];
+				cClassField = g_Rva0112A310Class[ field[ i ] ];
+
+				if ( cClassBuffer != cClassField || cClassBuffer < 2 )
+				{
+					break;
+				}
+			}
+
+			if ( cClassBuffer + cClassField == 2 )
+			{
+				pTail = p;
+				pValue = pTail;
+
+				for ( ; *pTail >= ' '; pTail++ )
+				{
+				}
+
+				if ( *pTail > 0 )
+				{
+					pTail++;
+				}
+
+				break;
+			}
+
+			do
+			{
+				p++;
+			}
+			while ( *p >= ' ' );
+		}
+	}
+
+	for ( i = 0; (unsigned int)field[ i ] >= ' '; i++ )
+	{
+	}
+
+	i++;
+
+	iDelta = i - ( pTail - pValue );
+
+	for ( p = pTail; *p != 0; p++ )
+	{
+	}
+
+	p++;
+
+	if ( iDelta > 0 && pBuffer + size - p < iDelta )
+	{
+		return -1;
+	}
+
+	if ( iDelta == 0 && memcmp( pValue, field, i ) == 0 )
+	{
+		return 0;
+	}
+
+	if ( iDelta > 0 )
+	{
+		memmove( pTail + iDelta, pTail, p - pTail );
+	}
+
+	if ( iDelta < 0 )
+	{
+		memmove( pValue, pValue - iDelta, p - ( pValue - iDelta ) );
+	}
+
+	memcpy( pValue, field, i );
+
+	if ( pValue[ i ] == 0 && g_Rva012C391CSeparator != '\n' )
+	{
+		pValue[ i - 1 ] = 0;
+	}
+	else
+	{
+		pValue[ i - 1 ] = g_Rva012C391CSeparator;
+	}
+
+	return i - 1;
 }
