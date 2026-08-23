@@ -75405,3 +75405,4 @@ _Rva00814770,0x00814770,Y4 lane: DirtySock comm pump taking a tick; the socket c
 _Rva00814EA0,0x00814EA0,Y4 lane: DirtySock comm operation wrapped by 0x00814F70; negative returns are errors and non-negative ones counts
 ?reset@?$bitset@$0BEA@@_STL@@QAEAAV12@XZ,0x0002194A,address-derived call target from the exact 320-bit INI token sink at 0x00208810; ILT fronts the shared bitset reset body at 0x001C2B80
 _Rva00816160,0x00816160,Y4 lane: DirtySock comm connect-completion helper; the handshake at 0x00816020 calls it on the two transitions that reach the established state
+_Rva00816520,0x00816520,Y4 lane: DirtySock comm enqueue wrapped by 0x008165F0; non-negative means the slot was consumed

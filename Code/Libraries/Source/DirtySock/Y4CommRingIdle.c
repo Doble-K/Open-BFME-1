@@ -61,7 +61,16 @@ struct Rva00815B50Comm
 	 * type implies.  1 and 2 are the two halves of an unfinished connect, 3 is
 	 * established, 4 is closing. */
 	int m_state;                    /* +0x90 */
-	char m_gap[ 0x1C ];
+	char m_gapA[ 0x04 ];
+	/* A SECOND RING in the same object, advanced by 0x008165F0 exactly as the
+	 * one below is: offset += record size, modulo buffer size.  Two rings, one
+	 * transport -- the outbound queue and the inbound one. */
+	int m_sendRecordSize;           /* +0x98 */
+	char m_gapB[ 0x04 ];
+	int m_sendBufferSize;           /* +0xA0 */
+	char m_gapC[ 0x04 ];
+	int m_sendOffset;               /* +0xA8 */
+	char m_gapD[ 0x04 ];
 	int m_recordSize;               /* +0xB0 */
 	int m_bufferSize;               /* +0xB4 */
 	int m_writeOffset;              /* +0xB8 */
@@ -167,7 +176,12 @@ void Rva00815FA0( struct Rva00815B50Comm *comm, const unsigned char *packet )
  */
 struct Rva00815680Packet
 {
-	int m_reserved0;                /* +0x00, not initialised before sending */
+	/* THE RETRANSMIT TIMESTAMP.  The builder at 0x008155F0 leaves this alone,
+	 * which is why it first read as unused; the retransmit timer at
+	 * 0x00816490 is what gives it meaning -- it stamps this field after every
+	 * successful send and compares against it to decide when to send again.
+	 * Zero means "never sent", which is why a fresh record goes out at once. */
+	unsigned int m_sendTick;        /* +0x00 */
 	int m_length;                   /* +0x04 */
 	unsigned char m_data[ 4 ];      /* +0x08 */
 };
@@ -357,4 +371,74 @@ void Rva00816160( struct Rva00815B50Comm *comm, const unsigned char *from )
 
 	Rva007FE780( g_Rva012C4B38Message, comm->m_peerAddress, comm->m_peerPort,
 		comm->m_localAddress, comm->m_localPort );
+}
+
+/* 0x00816490 is the RETRANSMIT TIMER, and it is what gives the packet's +0x00
+ * field its meaning.
+ *
+ * It looks only at the record at the read cursor -- the oldest unacknowledged
+ * one -- and only while the connection is established and the queue is
+ * non-empty.  A record whose stamp is ZERO has never been sent and goes out
+ * immediately; otherwise it waits until 250 milliseconds have passed.  The
+ * elapsed comparison is `jb`, i.e. UNSIGNED, so it survives a tick rollover.
+ *
+ * THE STAMP IS ONLY UPDATED IF THE SEND SUCCEEDS.  A failed send leaves the
+ * old stamp in place, so the next tick retries immediately rather than waiting
+ * another 250 milliseconds -- and a never-sent record whose first send fails
+ * keeps its zero and stays eligible.  Moving the stamp outside the success
+ * test would silently turn a failure into a quarter-second stall.
+ *
+ * Only the head of the queue is ever retransmitted; nothing here walks past
+ * it.
+ */
+void Rva00816490( struct Rva00815B50Comm *comm )
+{
+	struct Rva00815680Packet *packet;
+
+	/* The two guards WRAP the body rather than returning early.  Retail has a
+	 * single conditional jump for each; an early return compiles to a short
+	 * jump over an unconditional one, which is two instructions where retail
+	 * has one. */
+	if ( comm->m_state == 3 && comm->m_writeOffset != comm->m_readOffset )
+	{
+		packet = (struct Rva00815680Packet *)( comm->m_buffer
+			+ comm->m_readOffset );
+
+		if ( packet->m_sendTick == 0
+			|| Rva007FEA00() - packet->m_sendTick >= 250 )
+		{
+			/* THE SEND FAILURE IS AN EARLY RETURN, not another && term.  It
+			 * compiles to `jge` over a `jmp`, where folding it into the
+			 * condition above gives a single `jl`.  The styles really are
+			 * mixed in this body: wrapping ifs for the outer guards, a
+			 * short-circuit || for the timer, an early return here. */
+			if ( Rva00815680( comm, packet ) < 0 )
+				return;
+
+			packet->m_sendTick = Rva007FEA00();
+		}
+	}
+}
+
+/* 0x008165F0 is the outbound-ring counterpart of 0x00814F70 in the other
+ * transport: forward four arguments and advance the SEND cursor only when the
+ * inner call reports success, so a failed enqueue leaves the slot to be
+ * retried.  The four arguments are never inspected here, so their types are
+ * not recoverable and are declared as plain words.
+ */
+int Rva00816520( struct Rva00815B50Comm *comm, int a, int b, int c );
+
+int Rva008165F0( struct Rva00815B50Comm *comm, int a, int b, int c )
+{
+	int iResult;
+
+	iResult = Rva00816520( comm, a, b, c );
+
+	if ( iResult >= 0 )
+	{
+		comm->m_sendOffset = ( comm->m_sendOffset + comm->m_sendRecordSize )
+			% comm->m_sendBufferSize;
+	}
+
+	return iResult;
 }
