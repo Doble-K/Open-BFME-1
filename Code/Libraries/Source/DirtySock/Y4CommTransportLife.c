@@ -61,11 +61,12 @@ struct Rva00816BF0Comm
 	int m_reserved94;               /* +0x94 */
 	int m_recvRecordSize;           /* +0x98 */
 	int m_recvBufferSize;           /* +0x9C */
-	char m_gap1[ 0x04 ];
-	/* The receive cursor, advanced by 0x00818D20 in the same
-	 * offset-plus-record-size-modulo-buffer-size shape the other transports
-	 * use. */
-	int m_recvOffset;               /* +0xA4 */
+	/* The two receive cursors.  0x00818BF0 compares them for emptiness and
+	 * reads the record at +0xA8 plus +0xA4, and 0x00818D20 advances +0xA4
+	 * after a successful read -- so +0xA0 is where records arrive and +0xA4 is
+	 * where they are taken from. */
+	int m_recvWriteOffset;          /* +0xA0 */
+	int m_recvReadOffset;           /* +0xA4 */
 	unsigned char *m_recvBuffer;    /* +0xA8 */
 	char m_gap2[ 0x0C ];
 	int m_sendRecordSize;           /* +0xB8 */
@@ -489,17 +490,21 @@ int Rva007FEB00( void *lock );
  * are declared as plain words rather than guessed at -- converting 0x00818BF0
  * is what would settle them.
  */
-int Rva00818BF0( struct Rva00816BF0Comm *comm, int a, int b, int c );
+/* Settled by converting it: a buffer, a size and an optional out-pointer,
+ * not the plain words this was declared as while nothing had inspected it. */
+int Rva00818BF0( struct Rva00816BF0Comm *comm, void *buffer, int size,
+	unsigned int *when );
 
-int Rva00818D20( struct Rva00816BF0Comm *comm, int a, int b, int c )
+int Rva00818D20( struct Rva00816BF0Comm *comm, void *buffer, int size,
+	unsigned int *when )
 {
 	int iResult;
 
-	iResult = Rva00818BF0( comm, a, b, c );
+	iResult = Rva00818BF0( comm, buffer, size, when );
 
 	if ( iResult >= 0 )
 	{
-		comm->m_recvOffset = ( comm->m_recvOffset + comm->m_recvRecordSize )
+		comm->m_recvReadOffset = ( comm->m_recvReadOffset + comm->m_recvRecordSize )
 			% comm->m_recvBufferSize;
 	}
 
@@ -523,10 +528,18 @@ int Rva00818D20( struct Rva00816BF0Comm *comm, int a, int b, int c )
  * both branches are read together.
  *
  * The driving loop has an EMPTY BODY; all the work is in the condition.
+ *
+ * ITS THREE PARAMETERS ARE THE SOCKET-CALLBACK SIGNATURE and none of them is
+ * read.  0x00818BF0 calls it as (0, 0, comm) -- handle, flags, ref -- which is
+ * exactly how this library installs socket callbacks everywhere else, so the
+ * pump is both installed as one and called directly.  A no-argument definition
+ * compiles to identical bytes, since the body only touches globals, but it
+ * would misdescribe the interface and no caller could then pass anything.
  */
 int Rva00817B30( unsigned int tick );
 
-int Rva00818CB0( void )
+int Rva00818CB0( unsigned int socket, int flags,
+	struct Rva00816BF0Comm *ref )
 {
 	unsigned int uTick;
 
@@ -548,4 +561,59 @@ int Rva00818CB0( void )
 	}
 
 	return 0;
+}
+
+/* A RECEIVED RECORD in this transport, and its header is 0x10 bytes -- exactly
+ * the per-record overhead the constructor adds to the caller's maximum packet
+ * size, which is what fixes the payload offset.
+ *
+ * NOTE THIS IS NOT THE OTHER TRANSPORT'S RECORD.  There the length sits at
+ * +0x04 and the payload at +0x08 behind a one-byte header; here the length is
+ * at +0x00, the timestamp at +0x04, and the payload starts at +0x10 with no
+ * header byte.  Two transports, two wire formats.
+ */
+struct Rva00818BF0Record
+{
+	int m_length;                   /* +0x00 */
+	unsigned int m_tick;            /* +0x04 */
+	char m_reserved[ 0x08 ];
+	unsigned char m_data[ 4 ];      /* +0x10 */
+};
+
+/* 0x00818BF0 DEQUEUES ONE RECEIVED RECORD.  Same double test as the other
+ * transport's: pump only if the queue looks empty, then re-test, so a pump
+ * that produced nothing still returns -7 rather than reading a stale slot.
+ *
+ * THE COPY IS CLAMPED AND THE RETURN IS NOT, again: a caller with a buffer
+ * smaller than the record gets a truncated copy and the FULL length back, so
+ * comparing the two is the only way to notice.  Unlike the other transport
+ * there is no minus-one here -- the stored length IS the payload length,
+ * because this record format has no header byte inside the payload.
+ */
+int Rva00818BF0( struct Rva00816BF0Comm *comm, void *buffer, int size,
+	unsigned int *when )
+{
+	struct Rva00818BF0Record *record;
+	int iCopy;
+
+	if ( comm->m_recvReadOffset == comm->m_recvWriteOffset )
+		Rva00818CB0( 0, 0, comm );
+
+	if ( comm->m_recvReadOffset == comm->m_recvWriteOffset )
+		return -7;
+
+	record = (struct Rva00818BF0Record *)( comm->m_recvBuffer
+		+ comm->m_recvReadOffset );
+
+	if ( record->m_length < size )
+		iCopy = record->m_length;
+	else
+		iCopy = size;
+
+	memcpy( buffer, record->m_data, iCopy );
+
+	if ( when != 0 )
+		*when = record->m_tick;
+
+	return record->m_length;
 }
