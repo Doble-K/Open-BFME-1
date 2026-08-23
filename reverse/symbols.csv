@@ -75424,3 +75424,4 @@ _Rva00817030,0x00817030,Y4 lane: DirtySock transport message submit
 ?setNextOptimized@PathNode@@QAEXPAV1@@Z,0x0002E5FA,Open-BFME5 ILT; ?appendNode@Path@@QAEXPBUCoord3D@@W4PathfindLayerEnum@@@Z at 0x0016A4B0 runs it on the old tail when the path is optimized
 _Rva00818BF0,0x00818BF0,Y4 lane: DirtySock transport receive operation wrapped by 0x00818D20; non-negative means the slot was consumed
 _Rva00817B30,0x00817B30,Y4 lane: DirtySock global comm worker; the pump at 0x00818CB0 drives it with one timestamp until it returns non-positive
+_Rva00817640,0x00817640,Y4 lane: DirtySock transport send kick; the ack handler at 0x008186C0 calls it after rewinding the transmit cursor for a retransmit request

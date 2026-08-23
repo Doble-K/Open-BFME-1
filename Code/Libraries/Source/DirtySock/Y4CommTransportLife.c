@@ -101,7 +101,12 @@ struct Rva00816BF0Comm
 	 * these are the write and read positions. */
 	int m_sendWriteOffset;          /* +0xC0 */
 	int m_sendReadOffset;           /* +0xC4 */
-	int m_sendCounter;              /* +0xC8 */
+	/* A THIRD SEND CURSOR, between the read and write ones.  The ack handler
+	 * at 0x008186C0 drags it along with the read cursor while retiring, and
+	 * snaps it back to the read cursor when a code-4 message arrives -- so it
+	 * marks how far transmission has got, distinctly from how far
+	 * acknowledgement has. */
+	int m_sendAckOffset;            /* +0xC8 */
 	unsigned char *m_sendBuffer;    /* +0xCC */
 	int m_sendSequence;             /* +0xD0 */
 	char m_gap4[ 0x04 ];
@@ -729,7 +734,7 @@ void Rva00819260( struct Rva00816BF0Comm *comm )
 {
 	comm->m_sendWriteOffset = 0;
 	comm->m_sendReadOffset = 0;
-	comm->m_sendCounter = 0;
+	comm->m_sendAckOffset = 0;
 	comm->m_sendSequence = 0x65;
 
 	comm->m_recvWriteOffset = 0;
@@ -816,4 +821,78 @@ void Rva00818500( struct Rva00816BF0Comm *comm, const unsigned char *from )
 
 	Rva007FE780( g_Rva012C4D48Message, comm->m_peerAddress, comm->m_peerPort,
 		comm->m_localAddress, comm->m_localPort );
+}
+
+/* A QUEUED SEND RECORD carries its sequence number at +0x08.  Only that field
+ * is established here; the rest of the layout belongs to whatever builds these,
+ * which is not in this file. */
+struct Rva008186C0SendRecord
+{
+	int m_reserved0;
+	int m_reserved4;
+	unsigned int m_sequence;        /* +0x08 */
+};
+
+void Rva00817640( struct Rva00816BF0Comm *comm );
+
+/* 0x008186C0 IS THE ACKNOWLEDGEMENT HANDLER: it retires every queued send
+ * whose sequence is at or below the one just acknowledged.
+ *
+ * THE ACKNOWLEDGED SEQUENCE IS OFF BY ONE FOR CODE 4 AND NOT FOR ANYTHING
+ * ELSE.  A code-4 message means "I want sequence N next", so everything below
+ * N is retired; any other code means "I have N", so N itself goes too.  That
+ * single decrement is the whole difference between the two conventions, and
+ * getting it backwards would retire one packet too many or too few every time.
+ *
+ * The comparison is UNSIGNED, so a sequence space that has wrapped past
+ * 0x80000000 still retires correctly.
+ *
+ * Code 4 does one more thing: it snaps the transmit cursor back to the
+ * acknowledgement cursor and kicks the sender.  That is a RETRANSMIT REQUEST
+ * -- the peer is saying it wants N next, so everything from there on has to go
+ * out again -- which is why the same message both retires and rewinds.
+ *
+ * The flag is computed once into a local with sete rather than tested twice;
+ * both uses read that local.
+ */
+void Rva008186C0( struct Rva00816BF0Comm *comm,
+	struct Rva00816F60Message *message )
+{
+	int bRewind;
+	unsigned int uAcked;
+	struct Rva008186C0SendRecord *record;
+	int iAcked;
+
+	bRewind = ( message->m_code == 4 );
+
+	if ( bRewind )
+		iAcked = message->m_value - 1;
+	else
+		iAcked = message->m_value;
+
+	uAcked = iAcked;
+
+	while ( comm->m_sendReadOffset != comm->m_sendWriteOffset )
+	{
+		record = (struct Rva008186C0SendRecord *)( comm->m_sendBuffer
+			+ comm->m_sendReadOffset );
+
+		if ( uAcked < record->m_sequence )
+			break;
+
+		if ( comm->m_sendAckOffset == comm->m_sendReadOffset )
+		{
+			comm->m_sendAckOffset = ( comm->m_sendAckOffset
+				+ comm->m_sendRecordSize ) % comm->m_sendBufferSize;
+		}
+
+		comm->m_sendReadOffset = ( comm->m_sendReadOffset
+			+ comm->m_sendRecordSize ) % comm->m_sendBufferSize;
+	}
+
+	if ( bRewind )
+	{
+		comm->m_sendAckOffset = comm->m_sendReadOffset;
+		Rva00817640( comm );
+	}
 }
