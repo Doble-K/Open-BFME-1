@@ -10,7 +10,10 @@ struct Rva00812220Entry
 {
 	char m_gap0[ 0x08 ];
 	char m_nameA[ 0x20 ];			/* +0x08 */
-	char m_nameB[ 0x16C ];			/* +0x28, empty means a free slot */
+	char m_nameB[ 0x20 ];			/* +0x28, empty means a free slot */
+	char m_detail[ 0xC0 ];			/* +0x48 */
+	char m_templates[ 0x7C ];		/* +0x108, tab-separated */
+	char m_substitution[ 0x10 ];		/* +0x184, what ~1 expands to */
 	int m_value;				/* +0x194, zero means not ready */
 	int m_extra;				/* +0x198 */
 	int m_pending;				/* +0x19C, non-zero means skip */
@@ -341,4 +344,200 @@ struct Rva00812320Module *Rva00812320( int iEntries )
 	Rva008125C0( pModule );
 
 	return pModule;
+}
+
+unsigned int __cdecl strlen( const char *text );
+char * __cdecl strcpy( char *dest, const char *src );
+char * __cdecl strstr( const char *haystack, const char *needle );
+
+/* 0x00811E20 FORMATS MATCHING ENTRIES INTO A TEXT LISTING, one line per
+ * template, and returns how many lines it wrote.  Retail's own names for the
+ * two buffers, from the /GZ frame descriptor, are addr and record.
+ *
+ * EACH ENTRY CARRIES SEVERAL TEMPLATES, tab-separated, and each becomes its
+ * own line -- so the count returned is a count of LINES and not of entries,
+ * and one matching entry can contribute many or none.
+ *
+ * A TEMPLATE IS FILTERED BY ITS FIRST THREE CHARACTERS.  It must be at least
+ * five long with a colon in position four; that colon is then temporarily
+ * overwritten with a terminator so the prefix can be searched for in the
+ * caller's filter, and put back afterwards.  THE BUFFER IS EDITED AND
+ * RESTORED IN PLACE rather than copied, which is why the same byte is written
+ * twice a few instructions apart.
+ *
+ * TWO SUBSTITUTIONS ARE RECOGNISED AND THEY BEHAVE DIFFERENTLY.  A "~1"
+ * expands to a field from the entry -- unless that field is empty, in which
+ * case the whole line is ABANDONED rather than expanded to nothing.  A "~2"
+ * simply ends the line early, keeping what came before it.  So one marker can
+ * suppress a line and the other truncates it, and only the bytes distinguish
+ * them.
+ *
+ * THE TRUNCATION MARKER IS THREE DOTS AND A NEWLINE, written when the next
+ * line would not fit -- and note the check reserves FIVE bytes rather than the
+ * four it writes, so there is always one byte spare that nothing uses.  On
+ * that path it returns the count so far, so a caller cannot tell a complete
+ * listing from a truncated one by the return value alone; it has to look for
+ * the dots.
+ *
+ * FIELD OFFSETS ARE EVIDENCED, FIELD LENGTHS ARE NOT.  Only the starts of
+ * m_detail, m_templates and m_substitution are visible in the code; the sizes
+ * below are what makes them adjacent and total 0x1A4, not something the bytes
+ * say.
+ */
+int Rva00811E20( struct Rva00812320Module *module, const char *keyA,
+	const char *keyB, char *out, int outSize, int bIncludePending )
+{
+	char *p;
+	char *pOut;
+	char *pTemplate;
+	char addr[ 0x100 ];
+	char record[ 0x200 ];
+	int iCount;
+	struct Rva00812220Entry *pEntry;
+
+	iCount = 0;
+
+	if ( outSize < 5 )
+	{
+		return -1;
+	}
+
+	*out = 0;
+
+	for ( pEntry = module->m_first; pEntry != module->m_end; pEntry++ )
+	{
+		if ( pEntry->m_nameB[ 0 ] == 0 )
+		{
+			continue;
+		}
+
+		if ( Rva00811CE0( keyA, pEntry->m_nameA ) != 0 )
+		{
+			continue;
+		}
+
+		if ( bIncludePending == 0 && pEntry->m_pending != 0 )
+		{
+			continue;
+		}
+
+		p = pEntry->m_templates;
+
+		while ( *p != 0 )
+		{
+			pOut = addr;
+
+			while ( *p != 0 && *p != 9 )
+			{
+				*pOut = *p;
+				pOut++;
+				p++;
+			}
+
+			*pOut = 0;
+			pOut++;
+
+			if ( *p == 9 )
+			{
+				p++;
+			}
+
+			if ( strlen( addr ) < 5 || addr[ 3 ] != ':' )
+			{
+				continue;
+			}
+
+			addr[ 3 ] = 0;
+
+			if ( *keyB != 0 && strstr( keyB, addr ) == 0 )
+			{
+				continue;
+			}
+
+			addr[ 3 ] = ':';
+
+			strcpy( record, pEntry->m_nameB );
+
+			/* AN EMPTY-BODIED FOR, unlike the two advances below it.  This
+			 * one carries an initialiser and retail steps the cursor in the
+			 * increment clause; the other two have nothing to initialise and
+			 * are plain whiles with the step in the body.  Same walk, three
+			 * times, two shapes -- and only the bytes separate them. */
+			for ( pOut = record; *pOut != 0; pOut++ )
+			{
+			}
+
+			*pOut = 9;
+			pOut++;
+
+			strcpy( pOut, pEntry->m_detail );
+
+			while ( *pOut != 0 )
+			{
+				pOut++;
+			}
+
+			*pOut = 9;
+			pOut++;
+
+			for ( pTemplate = addr; *pTemplate != 0; pTemplate++ )
+			{
+				if ( pTemplate[ 0 ] == '~' && pTemplate[ 1 ] == '1' )
+				{
+					if ( pEntry->m_substitution[ 0 ] == 0 )
+					{
+						break;
+					}
+
+					strcpy( pOut, pEntry->m_substitution );
+
+					while ( *pOut != 0 )
+					{
+						pOut++;
+					}
+
+					pTemplate++;
+					continue;
+				}
+
+				if ( pTemplate[ 0 ] == '~' && pTemplate[ 1 ] == '2' )
+				{
+					break;
+				}
+
+				*pOut = *pTemplate;
+				pOut++;
+			}
+
+			if ( *pTemplate != 0 )
+			{
+				continue;
+			}
+
+			*pOut = '\n';
+			pOut++;
+			*pOut = 0;
+
+			if ( strlen( record ) + 5 > outSize )
+			{
+				*out = '.';
+				out++;
+				*out = '.';
+				out++;
+				*out = '.';
+				out++;
+				*out = '\n';
+				out++;
+				*out = 0;
+				return iCount;
+			}
+
+			strcpy( out, record );
+			out += strlen( record );
+			outSize -= strlen( record );
+			iCount++;
+		}
+	}
+
+	return iCount;
 }
