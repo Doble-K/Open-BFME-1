@@ -74119,9 +74119,6 @@ name,address,notes
 ?removeObjectFromPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,0x00006D7F,Open-BFME5 retail pathfinder removal thunk
 ?removePlayer@DisconnectMenu@@QAEXHVUnicodeString@@@Z,0x0003F233,DisconnectManager::disconnectPlayer direct-call ILT thunk
 ?removePlayer@DisconnectMenu@@QAEXHVUnicodeString@@@Z,0x0050EB00,body of the ILT 0x0003F233 already pinned under this name; ZH removePlayer twin: AS var DisconnectScreen::PlayerName%d := name then TheGameText->fetch(Network:PlayerLeftGame) formatted into the ChatBox listbox this+0x258 via GadgetListBoxAddEntryText 0x004BB4B0 then HideKickButton(slot) and VotesReceived%d := empty; callers DisconnectManager::disconnectPlayer 0x0066C0F5 and the ctor 0x0050FC82 (8 slots with the empty string)
-?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0002F8DD,pinharvest x1 (thunk)
-?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0003A21A,pinharvest x1 (thunk)
-?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0089F420,pinharvest x1 (body)
 ?removeProp@W3DPropBuffer@@QAEXH@Z,0x00018F84
 ?removePropsForConstruction@W3DPropBuffer@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x0001B054,removeTreesAndPropsForConstruction tail-call target (incremental-link thunk; body 0x7039E0 sits in the W3DPropBuffer.cpp region)
 ?removeTeam@TeamsInfoRec@@QAEXH@Z,0x0000D828,pinharvest x3 (thunk)
@@ -75409,3 +75406,5 @@ _Rva00816520,0x00816520,Y4 lane: DirtySock comm enqueue wrapped by 0x008165F0; n
 ?computeBonus@Weapon@@IBEXPBVObject@@IAAVWeaponBonus@@@Z,0x00024591,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 with the source object a zero flag word and the default-constructed bonus block
 ?getAttackRange@WeaponTemplate@@QBEMPBVObject@@ABVWeaponBonus@@PBUCoord3D@@@Z,0x0002FFB3,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 on m_template with the source object the bonus and source+0x38 the object position - BFME widened the reference bonus-only signature
 ??0Locomotor@@QAE@PBVLocomotorTemplate@@@Z,0x00040AA7,Open-BFME5 ILT; the constructor ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z at 0x001B6920 runs on the 0xA8 bytes it allocates
+?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0001D9DA,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C before the layer store
+?updatePos@Pathfinder@@QAEXPAVObject@@PBUCoord3D@@@Z,0x00013647,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C with the object position after the layer store
