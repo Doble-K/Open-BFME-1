@@ -1041,3 +1041,148 @@ int Rva007EE930( const char *text, char *dest, int destSize,
 	*dest = 0;
 	return iLen - 1;
 }
+
+/* 0x007EEC30 READS A VALUE AND DECODES WHICHEVER ENCODING IT IS IN, choosing
+ * between them by the FIRST CHARACTER alone: a caret means seven-bit packed
+ * binary, a quote means a quoted run, anything else is escaped text.  The
+ * writers that produce those three forms are in three different places and
+ * none of them agrees with the others about anything except this one byte.
+ *
+ * IT IS THE SAME THREE-MODE SHAPE as the list extractor at 0x007EE930 -- copy,
+ * measure with a null destination, or fall back to the default -- but WITHOUT
+ * the separator and index arguments.  The two share no code and the escaped
+ * text path is duplicated between them almost instruction for instruction,
+ * which is what makes the small differences worth naming rather than assuming.
+ *
+ * THE PACKED MEASUREMENT IS AN ESTIMATE, NOT A COUNT.  It finds the run's end
+ * by scanning for the first byte without the high bit and then computes seven
+ * eighths of the length, so it agrees with the unpacker only when the sender
+ * padded to a byte boundary.  It also does not consult the destination size,
+ * because in measuring mode there is no destination.
+ *
+ * THE PACKED DECODE RESERVES ITS OWN TERMINATOR by handing the unpacker one
+ * less than the buffer size and then writing the terminator at whatever length
+ * came back -- so unlike the text paths, the count returned here is the number
+ * of bytes produced rather than that number less one.  TWO PATHS OUT OF THIS
+ * FUNCTION USE DIFFERENT CONVENTIONS FOR THEIR RETURN VALUE.
+ *
+ * THE QUOTE VARIABLE IS SET IN AN ELSE, not initialised up front the way the
+ * list extractor does it -- the same idea reached twice with different
+ * spellings, which is a hint the two were written at different times.
+ */
+int Rva007EEC30( const char *text, unsigned char *dest, int destSize,
+	const char *defaultText )
+{
+	int iLen;
+	unsigned char cTerm;
+	const unsigned char *p;
+
+	if ( text == 0 )
+	{
+		if ( defaultText == 0 )
+		{
+			return -1;
+		}
+
+		if ( dest == 0 )
+		{
+			return strlen( defaultText );
+		}
+
+		for ( iLen = 1; iLen < destSize && *defaultText != 0; iLen++ )
+		{
+			*dest = *defaultText;
+			dest++;
+			defaultText++;
+		}
+
+		*dest = 0;
+		return iLen - 1;
+	}
+
+	if ( *text == '^' )
+	{
+		if ( dest == 0 )
+		{
+			for ( p = ( const unsigned char * )text + 1; *p >= 0x80; p++ )
+			{
+			}
+
+			iLen = ( ( p - ( const unsigned char * )text ) - 1 ) * 7 / 8;
+			return iLen;
+		}
+
+		if ( destSize < 1 )
+		{
+			return -1;
+		}
+
+		iLen = Rva007EEF30( dest, destSize - 1,
+			( const unsigned char * )text + 1 );
+		dest[ iLen ] = 0;
+		return iLen;
+	}
+
+	if ( *text == '"' )
+	{
+		cTerm = *text;
+		text++;
+	}
+	else
+	{
+		cTerm = 0;
+	}
+
+	if ( dest == 0 )
+	{
+		iLen = 0;
+
+		for ( p = ( const unsigned char * )text; *p != cTerm && *p >= ' '; p++ )
+		{
+			if ( *p == '%' && p[ 1 ] >= ' ' && p[ 2 ] >= ' ' )
+			{
+				p += 2;
+			}
+
+			iLen++;
+		}
+
+		return iLen;
+	}
+
+	if ( destSize < 1 )
+	{
+		return -1;
+	}
+
+	iLen = 1;
+	p = ( const unsigned char * )text;
+
+	while ( iLen < destSize && *p != cTerm && *p >= ' ' )
+	{
+		if ( *p == '%' && p[ 1 ] == '%' )
+		{
+			*dest = '%';
+			dest++;
+			p += 2;
+			iLen++;
+		}
+		else if ( *p == '%' && p[ 1 ] >= ' ' && p[ 2 ] >= ' ' )
+		{
+			*dest = g_Rva0112A010HexHigh[ p[ 1 ] ] | g_Rva0112A110Hex[ p[ 2 ] ];
+			dest++;
+			p += 3;
+			iLen++;
+		}
+		else
+		{
+			*dest = *p;
+			dest++;
+			p++;
+			iLen++;
+		}
+	}
+
+	*dest = 0;
+	return iLen - 1;
+}
