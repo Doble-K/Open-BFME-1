@@ -74,7 +74,6 @@ CHATBool ciCheckFiltersForID(CHAT chat, int ID)
 	return CHATFalse;
 }
 
-/* ciInitCallbacks present-unmatched */
 CHATBool ciInitCallbacks(CHAT chat)
 {
 	ciConnection *connection = (ciConnection *)chat;
