@@ -71475,6 +71475,7 @@ name,address,notes
 ?disconnectLocalPlayer@ConnectionManager@@QAEXXZ,0x006665E0,ZH twin exact: disconnectPlayer(i) (ILT 0x00028D5D -> 0x00666300) for every i != m_localSlot(+0x12028); sole caller Network::update 0x00682CA1 when Network+0xC==2 just before MSG_CLEAR_GAME_DATA 0x1D is appended; ILT 0x00029744
 ?disconnectPlayer@ConnectionManager@@QAE?AW4PlayerLeaveCode@@H@Z,0x00028D5D,DisconnectManager::disconnectPlayer direct-call ILT thunk
 ?disconnectPlayer@ConnectionManager@@QAE?AW4PlayerLeaveCode@@H@Z,0x00666300,CORRECT NAME for the body the ledger calls buildPlayerStatusText: ZH disconnectPlayer line for line - GameInfo::getSlot lastFrameInGame; TheInGameUI->message(Network:PlayerLeftGame at 0x01104E54) + sound 0x00662CE0; frees frame data and a non-quitting Connection; state +0x12080[slot]=3 at 0x0066641B; router succession over the id list +0x12030 returning PLAYERLEAVECODE_PACKETROUTER 2 / LOCAL 1 / CLIENT 0 / UNKNOWN 3; callers disconnectLocalPlayer beginPlayerLeave DisconnectManager::disconnectPlayer 0x0066C0FD
+?dispatch@Rva00720BB0Context@@QAEXHPAX@Z,0x00039680,Rva00720BB0 retail transfer thunk
 ?dispatchIndexedValue@@YAXPAXH0HPAH1@Z,0x00858070,Open-BFME5 dual indexed dispatch implementation target
 ?dlink_removeFrom_TeamMemberList@Object@@QAEXPAPAV1@@Z,0x001BD490,MAKE_DLINK unlink body; unlinks Object +0x25C/+0x260 and writes *pListHead
 ?doCommandButton@Object@@QAEXPBVCommandButton@@HH@Z,0x000063CF,Object::doCommandButton via ILT thunk
@@ -74974,6 +74975,7 @@ _Rva00817140,0x00817140,Y4 lane: DirtySock transport unlink from the global list
 _Rva00817640,0x00817640,Y4 lane: DirtySock transport send kick; the ack handler at 0x008186C0 calls it after rewinding the transmit cursor for a retransmit request
 _Rva00817B30,0x00817B30,Y4 lane: DirtySock global comm worker; the pump at 0x00818CB0 drives it with one timestamp until it returns non-positive
 _Rva00818BF0,0x00818BF0,Y4 lane: DirtySock transport receive operation wrapped by 0x00818D20; non-negative means the slot was consumed
+_Rva0081A3B0,0x0081A3B0,Y4 lane: DirtySock comm record transmit for the fourth object; a negative return stops the windowed sender and leaves the record queued
 _Rva0081A8C0,0x0081A8C0,Y4 lane: DirtySock comm send kick for the fourth object; the ack handler at 0x0081AA20 calls it after rewinding the transmit cursor
 _Rva0081B010,0x0081B010,Y4 lane: DirtySock comm worker
 _Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
@@ -75456,4 +75458,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-_Rva0081A3B0,0x0081A3B0,Y4 lane: DirtySock comm record transmit for the fourth object; a negative return stops the windowed sender and leaves the record queued
