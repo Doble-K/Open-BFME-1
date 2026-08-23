@@ -108,7 +108,6 @@ TerrainRoadType *TerrainRoadCollection::findRoad( AsciiString name )
 
 }  // end findRoad
 
-// ?findBridge@TerrainRoadCollection@@QAEPAVTerrainRoadType@@VAsciiString@@@Z present-unmatched
 TerrainRoadType *TerrainRoadCollection::findBridge( AsciiString name )
 {
 	TerrainRoadType *bridge;
