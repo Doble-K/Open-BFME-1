@@ -17,8 +17,8 @@ struct Rva008111D0Context
 	unsigned char m_block[ 0x40 ];		/* +0x1C */
 };
 
-/* The block transform.  Pinned for now; 891 bytes and worth its own tick. */
-void Rva00811310( struct Rva008111D0Context *context, const char *block );
+void Rva00811310( struct Rva008111D0Context *context,
+	const unsigned char *block );
 
 void * __cdecl memcpy( void *dest, const void *src, unsigned int count );
 
@@ -63,7 +63,7 @@ void Rva008111D0( struct Rva008111D0Context *context, const char *data,
 
 		if ( uCopied == uRoom )
 		{
-			Rva00811310( context, ( const char * )context->m_block );
+			Rva00811310( context, context->m_block );
 			context->m_count += 0x40;
 			context->m_fill = 0;
 		}
@@ -75,7 +75,7 @@ void Rva008111D0( struct Rva008111D0Context *context, const char *data,
 
 	while ( length >= 0x40 )
 	{
-		Rva00811310( context, data );
+		Rva00811310( context, ( const unsigned char * )data );
 		context->m_count += 0x40;
 		length -= 0x40;
 		data += 0x40;
@@ -86,4 +86,116 @@ void Rva008111D0( struct Rva008111D0Context *context, const char *data,
 		memcpy( context->m_block + context->m_fill, data, length );
 		context->m_fill += length;
 	}
+}
+
+/* 0x00811310 IS THE SHA-1 BLOCK TRANSFORM.  Retail's own name for the message
+ * schedule, from the /GZ frame descriptor, is W -- 0x140 bytes, eighty words,
+ * SHA-1's own notation.
+ *
+ * IT IS ROLLED, NOT UNROLLED, which is the visible difference from the MD5
+ * transform beside it: four loops of twenty rounds each rather than sixty-four
+ * written-out rounds, and 891 bytes against 3765.  The MD5 in this library
+ * spells every round; this one does not.  Two primitives, two styles, in one
+ * codebase.
+ *
+ * THE SCHEDULE IS BUILT BIG-ENDIAN and forwards, from index zero up -- the
+ * opposite of the MD5 loader beside it, which assembles little-endian words
+ * walking the block backwards.  That is not a stylistic choice: SHA-1 is
+ * defined big-endian and MD5 little-endian, so the two loaders disagree
+ * because the standards do.
+ *
+ * EACH ROUND'S TEMPORARY IS SCOPED TO ITS LOOP.  Retail gives the four loops
+ * four DISTINCT stack slots rather than sharing one, which is what a
+ * block-scoped local -- or a macro that declares one -- produces at /Od.  A
+ * single temporary hoisted to function scope would use one slot and would not
+ * match.
+ *
+ * THE EXPANSION RECOMPUTES ITS XOR CHAIN TWICE, once for each half of the
+ * rotate, so the four-way exclusive-or of W[t-3], W[t-8], W[t-14] and W[t-16]
+ * appears twice per iteration.  Written with a temporary it would appear once
+ * and the bytes would not match; the duplication is in the original.
+ */
+void Rva00811310( struct Rva008111D0Context *context,
+	const unsigned char *block )
+{
+	int i;
+	int t;
+	unsigned int a;
+	unsigned int b;
+	unsigned int c;
+	unsigned int d;
+	unsigned int e;
+	unsigned int W[ 0x50 ];
+
+	for ( i = 0; i != 0x10; i++ )
+	{
+		W[ i ] = ( block[ i * 4 ] << 24 ) | ( block[ i * 4 + 1 ] << 16 )
+			| ( block[ i * 4 + 2 ] << 8 ) | block[ i * 4 + 3 ];
+	}
+
+	for ( t = 0x10; t != 0x50; t++ )
+	{
+		W[ t ] = ( ( W[ t - 3 ] ^ W[ t - 8 ] ^ W[ t - 14 ] ^ W[ t - 16 ] ) << 1 )
+			| ( ( W[ t - 3 ] ^ W[ t - 8 ] ^ W[ t - 14 ] ^ W[ t - 16 ] ) >> 31 );
+	}
+
+	a = context->m_state[ 0 ];
+	b = context->m_state[ 1 ];
+	c = context->m_state[ 2 ];
+	d = context->m_state[ 3 ];
+	e = context->m_state[ 4 ];
+
+	for ( t = 0x00; t != 0x14; t++ )
+	{
+		unsigned int uTemp = ( ( a << 5 ) | ( a >> 27 ) ) + ( ( b & c ) | ( ~b & d ) ) + e
+			+ W[ t ] + 0x5A827999;
+
+		e = d;
+		d = c;
+		c = ( b << 30 ) | ( b >> 2 );
+		b = a;
+		a = uTemp;
+	}
+
+	for ( t = 0x14; t != 0x28; t++ )
+	{
+		unsigned int uTemp = ( ( a << 5 ) | ( a >> 27 ) ) + ( b ^ c ^ d ) + e
+			+ W[ t ] + 0x6ED9EBA1;
+
+		e = d;
+		d = c;
+		c = ( b << 30 ) | ( b >> 2 );
+		b = a;
+		a = uTemp;
+	}
+
+	for ( t = 0x28; t != 0x3C; t++ )
+	{
+		unsigned int uTemp = ( ( a << 5 ) | ( a >> 27 ) ) + ( ( b & c ) | ( b & d ) | ( c & d ) ) + e
+			+ W[ t ] + 0x8F1BBCDC;
+
+		e = d;
+		d = c;
+		c = ( b << 30 ) | ( b >> 2 );
+		b = a;
+		a = uTemp;
+	}
+
+	for ( t = 0x3C; t != 0x50; t++ )
+	{
+		unsigned int uTemp = ( ( a << 5 ) | ( a >> 27 ) ) + ( b ^ c ^ d ) + e
+			+ W[ t ] + 0xCA62C1D6;
+
+		e = d;
+		d = c;
+		c = ( b << 30 ) | ( b >> 2 );
+		b = a;
+		a = uTemp;
+	}
+
+	context->m_state[ 0 ] += a;
+	context->m_state[ 1 ] += b;
+	context->m_state[ 2 ] += c;
+	context->m_state[ 3 ] += d;
+	context->m_state[ 4 ] += e;
 }
