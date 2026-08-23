@@ -75434,3 +75434,4 @@ _Rva00817640,0x00817640,Y4 lane: DirtySock transport send kick; the ack handler 
 _Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
 ?getName@CrateTemplate@@QBE?AVAsciiString@@XZ,0x000259D7,Open-BFME5 ILT; ?friend_findCrateTemplate@CrateSystem@@QAEPAVCrateTemplate@@VAsciiString@@@Z at 0x003795E0 compares each vector entry on the name it returns by value
 _fprintf,0x0003A17A,Open-BFME5 ILT to the statically linked fprintf; ?GetGameLogicRandomValueReal@@YAMMMPADH@Z at 0x00096DD0 traces every draw through it
+?releaseTrack@TerrainTracksRenderObjClassSystem@@AAEXPAVTerrainTracksRenderObjClass@@@Z,0x000357E7,Open-BFME5 ILT; ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ at 0x0072EDF0 releases each unbound track through it
