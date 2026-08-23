@@ -75414,3 +75414,6 @@ _Rva00816E10,0x00816E10,Y4 lane: DirtySock transport registration
 _Rva00816F60,0x00816F60,Y4 lane: DirtySock transport close path
 _Rva00817100,0x00817100,Y4 lane: DirtySock transport drain with a timeout
 _Rva00817140,0x00817140,Y4 lane: DirtySock transport unlink from the global list
+??0AudioEventRTS@@QAE@ABV0@@Z,0x00047B27,Open-BFME5 ILT to the copy constructor body at 0x000B2FB0; used by ?disableRadar@Player@@QAEXXZ and ?enableRadar@Player@@QAEXXZ to take a MiscAudio sound by value
+??1AudioEventRTS@@QAE@XZ,0x00026F35,Open-BFME5 ILT to the destructor body at 0x000B31F0; the radar sound locals in Player::disableRadar and Player::enableRadar are released through it
+?okToPlayRadarEdgeSound@Player@@QAE_NXZ,0x000141F0,Open-BFME5 ILT; the third condition of both radar edge tests in Player::disableRadar 0x000CC1C0 and Player::enableRadar 0x000CC2C0
