@@ -5,10 +5,9 @@
 // All three names were parked on 5-byte thunks.
 //
 // The element is 0x14 bytes, which the stride and the divide-by-twenty in the
-// size arithmetic both carry, and that is the reference's Nugget unchanged:
-// two AsciiStrings, a module-data pointer, an interface mask and three Bools.
-// Its assignment is StringBase<char>::set twice and its destructor
-// releaseBuffer twice, which is what the copy loop and the clear loop call.
+// size arithmetic both carry. What fills it is not the reference's Nugget: the
+// copy loop assigns an AsciiString at +0, then twelve bytes at +4 through
+// vector<AsciiString>::operator=, then moves one dword from +0x10.
 #define _STLP_NO_EXCEPTIONS 1
 #include <vector>
 
@@ -41,24 +40,23 @@ public:
 	StringBase<char> m_string;
 };
 
-class ModuleData;
-
 class ModuleInfo
 {
 public:
+	// Not the reference's Nugget. The copy loop assigns the AsciiString at +0
+	// through StringBase<char>::set, the twelve bytes at +4 through
+	// vector<AsciiString>::operator= at 0x000DE2C0, and moves one dword from
+	// +0x10 -- twenty bytes in all, which is the stride.
 	struct Nugget
 	{
 		AsciiString first;
-		AsciiString m_moduleTag;
-		const ModuleData *second;
-		Int interfaceMask;
-		Bool copiedFromDefault;
-		Bool inheritable;
-		Bool overrideableByLikeKind;
+		_STL::vector<AsciiString> m_bfmeStrings;
+		Int m_bfmeTail;
 	};
 };
 
 void BfmeModuleInfoNuggetVectorAnchor(_STL::vector<ModuleInfo::Nugget> &out, const _STL::vector<ModuleInfo::Nugget> &in)
 {
 	out = in;
+	out.erase(out.begin());
 }
