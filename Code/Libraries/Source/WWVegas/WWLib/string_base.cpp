@@ -1418,125 +1418,27 @@ __declspec(naked) StringBase<wchar_t>::StringBase(const wchar_t *str, int len)
     }
 }
 
-__declspec(naked) bool StringBase<char>::endsWith(const StringBase<char> &str) const
+template <>
+bool StringBase<char>::endsWith(const StringBase<char> &str) const
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x8b
-        __emit 0xd1
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x48
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x57
-        __emit 0x74
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x78
-        __emit 0x08
-        __emit 0x80
-        __emit 0x3f
-        __emit 0x00
-        __emit 0x75
-        __emit 0x06
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x02
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x50
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x3b
-        __emit 0xd1
-        __emit 0x7d
-        __emit 0x06
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x17
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x50
-        __emit 0x04
-        __emit 0x2b
-        __emit 0xc1
-        __emit 0x56
-        __emit 0x8d
-        __emit 0x74
-        __emit 0x10
-        __emit 0x08
-        __emit 0x33
-        __emit 0xd2
-        __emit 0xf3
-        __emit 0xa6
-        __emit 0x5e
-        __emit 0x0f
-        __emit 0x94
-        __emit 0xc0
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x2b
-        __emit 0xc1
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x56
-        __emit 0x8d
-        __emit 0x74
-        __emit 0x10
-        __emit 0x08
-        __emit 0x33
-        __emit 0xd2
-        __emit 0xf3
-        __emit 0xa6
-        __emit 0x5e
-        __emit 0x0f
-        __emit 0x94
-        __emit 0xc0
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const int len = str.m_data ? str.m_data->length : 0;
+    const char *data = str.m_data ? &str.m_data->data[0] : "";
+    return endsWith(data, len);
 }
 
+// The retail build does not inline endsWith(const char *, int) here but does
+// inline it into the StringBase overload below, so the depth has to be turned
+// off around this one call site rather than on the callee.
+#pragma inline_depth(0)
 template <>
-__declspec(noinline) bool StringBase<char>::endsWith(const char *str, int len) const
+bool StringBase<char>::endsWith(const char *str) const
+{
+    return endsWith(str, str ? (int)strlen(str) : 0);
+}
+#pragma inline_depth()
+
+template <>
+bool StringBase<char>::endsWith(const char *str, int len) const
 {
     if (str[0] == '\0') {
         return true;
@@ -1550,11 +1452,6 @@ __declspec(noinline) bool StringBase<char>::endsWith(const char *str, int len) c
     return memcmp(addr, str, len) == 0;
 }
 
-template <>
-bool StringBase<char>::endsWith(const char *str) const
-{
-    return endsWith(str, str ? stringLength(str) : 0);
-}
 
 __declspec(naked) bool StringBase<wchar_t>::endsWith(const StringBase<wchar_t> &str) const
 {
