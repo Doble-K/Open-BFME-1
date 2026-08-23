@@ -636,3 +636,51 @@ int Rva007ED9F0( char *record, int size, const char *name, unsigned int uWhen )
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+extern "C" unsigned int Rva007EDE00( const struct Rva007EDB10Time *pTime );
+extern "C" void * __cdecl memset( void *dest, int c, unsigned int count );
+
+// 0x007EE050 STORES A PACKED DATE AND TIME AS A DATE FIELD.  It is the mirror
+// of the reader at 0x007EFC20: that one parses text and hands back two packed
+// integers, this one takes two packed integers and writes the text.
+//
+// THE ROUND TRIP IS NOT SYMMETRIC, though, and the packing is where it shows.
+// The date field is unpacked with a SIXTEEN-BIT year but an EIGHT-BIT month
+// and day, and the clock with three eight-bit fields -- so this accepts values
+// the reader can never have produced, and truncates rather than rejecting
+// them.  A day of 300 becomes 44 with no complaint anywhere.
+//
+// THE ADJUSTMENTS RUN THE OTHER WAY HERE, year less 1900 and month less one,
+// converting the human numbering back to the C one.  That is the fourth
+// appearance of the pair in this module and the second in this direction.
+//
+// THE OFFSET IS SUBTRACTED, NOT ADDED, matching the reader that adds it -- and
+// only when the conversion succeeded, so a zero result stays zero and is then
+// read one level down as "use the current time".  A DATE THAT CONVERTS TO THE
+// EPOCH THEREFORE STORES AS NOW rather than as 1970, which is the same blind
+// spot the rest of this chain has, arrived at from a third direction.
+int Rva007EE050( char *record, int size, const char *name,
+	int iDate, int iTime, int iOffset )
+{
+	struct Rva007EDB10Time tm;
+	unsigned int uTime;
+
+	memset( &tm, 0, sizeof( tm ) );
+	tm.m_isDst = -1;
+
+	tm.m_year = ( ( iDate >> 16 ) & 0xFFFF ) - 1900;
+	tm.m_month = ( ( iDate >> 8 ) & 0xFF ) - 1;
+	tm.m_day = iDate & 0xFF;
+	tm.m_hour = ( iTime >> 16 ) & 0xFF;
+	tm.m_minute = ( iTime >> 8 ) & 0xFF;
+	tm.m_second = iTime & 0xFF;
+
+	uTime = Rva007EDE00( &tm );
+
+	if( uTime != 0 )
+	{
+		uTime -= iOffset;
+	}
+
+	return Rva007ED9F0( record, size, name, uTime );
+}
