@@ -1256,3 +1256,197 @@ int Rva007ED850( char *record, int size, const char *name,
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+extern unsigned char g_Rva0112A310Class[];
+
+// 0x007ED470 SERIALISES A BINARY BUFFER INTO A FIELD UNDER A FORMAT STRING.
+// It is the general case the typed writers in this module are shortcuts for:
+// a tiny interpreter over the data, emitting comma-separated values.
+//
+// THE DIRECTIVES ARE 'a' 'b' 'w' 'l' 's', optionally preceded by a decimal
+// count, with '#' introducing a comment run and '*' meaning REPEAT.  The
+// repeat works by stepping the format pointer BACK one, so the previous
+// directive runs again on the next pass -- it is bounded by the DATA, not by
+// the format, and a format ending in '*' consumes the buffer to its end.
+//
+// A NEGATIVE LENGTH MEANS 64K, not "unbounded" and not an error, so a caller
+// who does not know the size gets a fixed ceiling rather than a refusal.
+//
+// NUMBERS ARE RIGHT-ALIGNED IN A FIXED NIBBLE FIELD AND THEN CLOSED UP, which
+// is what the terminator-at-the-top and the copy-down are for.  THE EXACT-FIT
+// CASE SKIPS THE SEPARATOR: when a value uses every nibble of its width the
+// digits are already in place, the pointer is simply advanced, and the comma
+// that every other path appends is never written.  A full-width value is
+// therefore run together with whatever follows it.
+//
+// THE NEGATIVE TEST IS A MAGNITUDE TEST, not a sign bit.  Only values above
+// 0xFFFF0000 print with a minus, so a 32-bit value that is negative as an int
+// but smaller in magnitude than 65536 prints as a large positive number.  That
+// is consistent for the 'w' and 'b' widths, which cannot reach the threshold
+// at all, and inconsistent for 'l'.
+//
+// STRINGS ARE ESCAPED THROUGH THE CHARACTER-CLASS TABLE, the same one the
+// field matcher uses, so what counts as safe here is defined by the record
+// syntax rather than by this function.
+//
+// TRAILING SEPARATORS ARE STRIPPED IN A LOOP at the end, which is the only
+// thing that keeps a format whose last directive produced nothing from leaving
+// a dangling comma.
+int Rva007ED470( char *record, int size, const char *name,
+	const unsigned char *data, int length, const char *format )
+{
+	int iWidth;
+	int iCount;
+	char *pDigit;
+	char *p;
+	unsigned int uValue;
+	const unsigned char *pString;
+	const unsigned char *pData;
+	const unsigned char *pEnd;
+	char item[ 0x1200 ];
+
+	uValue = 0;
+	pData = data;
+
+	pEnd = ( length < 0 ) ? pData + 0x10000 : pData + length;
+
+	p = Rva007EC730( record, item, name );
+
+	while( *format != 0 )
+	{
+		if( pData >= pEnd )
+		{
+			break;
+		}
+
+		if( *format == '#' )
+		{
+			format++;
+
+			while( *format != 0 && ( *format++ != '=' ) != 0 )
+			{
+			}
+		}
+
+		for( iCount = 0; *format >= '0' && *format <= '9'; format++ )
+		{
+			iCount = iCount * 10 + ( *format & 0xF );
+		}
+
+		iWidth = 0;
+		pString = 0;
+
+		if( *format == 'a' )
+		{
+			pData += ( iCount != 0 ) ? iCount : 1;
+		}
+
+		if( *format == 'b' )
+		{
+			uValue = *pData;
+			iWidth = 2;
+			pData += 1;
+		}
+
+		if( *format == 'w' )
+		{
+			uValue = *( const unsigned short * )pData;
+			iWidth = 4;
+			pData += 2;
+		}
+
+		if( *format == 'l' )
+		{
+			uValue = *( const unsigned int * )pData;
+			iWidth = 8;
+			pData += 4;
+		}
+
+		if( *format == 's' )
+		{
+			pString = pData;
+			pData += iCount;
+		}
+
+		if( iWidth > 0 )
+		{
+			if( uValue > 0xFFFF0000 )
+			{
+				uValue = -uValue;
+				*p = '-';
+				p++;
+			}
+
+			pDigit = p + iWidth + 1;
+			pDigit--;
+			*pDigit = 0;
+
+			while( uValue != 0 )
+			{
+				pDigit--;
+				*pDigit = g_Rva01129F10HexSecond[ uValue & 0xF ];
+				uValue >>= 4;
+			}
+
+			if( p == pDigit )
+			{
+				p += iWidth;
+			}
+			else
+			{
+				while( *pDigit != 0 )
+				{
+					*p = *pDigit;
+					p++;
+					pDigit++;
+				}
+
+				*p = ',';
+				p++;
+			}
+		}
+
+		if( pString != 0 )
+		{
+			while( *pString != 0 )
+			{
+				uValue = *pString;
+				pString++;
+
+				if( g_Rva0112A310Class[ uValue ] > 1 )
+				{
+					*p = ( char )uValue;
+					p++;
+				}
+				else
+				{
+					*p = '%';
+					p++;
+					*p = g_Rva01129E10HexFirst[ uValue ];
+					p++;
+					*p = g_Rva01129F10HexSecond[ uValue ];
+					p++;
+				}
+			}
+
+			*p = ',';
+			p++;
+		}
+
+		format++;
+
+		if( *format == '*' )
+		{
+			format--;
+		}
+	}
+
+	while( p[ -1 ] == ',' )
+	{
+		p--;
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
