@@ -1186,3 +1186,92 @@ int Rva007EEC30( const char *text, unsigned char *dest, int destSize,
 	*dest = 0;
 	return iLen - 1;
 }
+
+/* 0x007EEFF0 READS A VALUE AS BINARY AND NOTHING ELSE.  Where 0x007EEC30
+ * accepts three encodings and falls back to text, this one accepts only the
+ * two BINARY forms -- dollar-prefixed hex and caret-prefixed packed -- and
+ * REFUSES anything else outright.  Two readers over the same data, one
+ * permissive and one strict, and the strictness is the whole difference.
+ *
+ * IT WRITES NO TERMINATOR, which is what makes it a binary reader rather than
+ * a string one.  The decode loop is bounded by the destination size and may
+ * fill it completely; the caller gets a length back and nothing else.  The
+ * packed path likewise hands the unpacker the FULL size where 0x007EEC30 held
+ * one byte back for a terminator it then wrote.
+ *
+ * THE HEX PAIR TEST IS NOT A HEX TEST.  It accepts any two characters at or
+ * above '0', so letters past 'f' and most punctuation pass and are folded
+ * through the tables to whatever those tables say.  It stops on the first
+ * character below '0' -- which is how the value ends, since the separator and
+ * every control character are below it.  A malformed pair is decoded rather
+ * than rejected.
+ *
+ * The measuring and decoding paths use DIFFERENT LOOP SHAPES for the same
+ * walk: the measure is a for with the step in its increment clause, the decode
+ * a while with the step at the end of its body.  Same arithmetic, and the
+ * bytes keep them distinct.
+ */
+int Rva007EEFF0( const char *text, unsigned char *dest, int destSize )
+{
+	int iLen;
+	const unsigned char *p;
+	unsigned char *pDest;
+
+	pDest = dest;
+
+	if ( text == 0 || ( *text != '$' && *text != '^' ) )
+	{
+		return -1;
+	}
+
+	if ( pDest == 0 )
+	{
+		iLen = 0;
+
+		if ( *text == '$' )
+		{
+			for ( p = ( const unsigned char * )text + 1;
+				*p >= '0' && p[ 1 ] >= '0'; p += 2 )
+			{
+				iLen++;
+			}
+		}
+		else
+		{
+			for ( p = ( const unsigned char * )text + 1; *p >= 0x80; p++ )
+			{
+			}
+
+			iLen = ( ( p - ( const unsigned char * )text ) - 1 ) * 7 / 8;
+		}
+
+		return iLen;
+	}
+
+	if ( destSize < 1 )
+	{
+		return -1;
+	}
+
+	iLen = 0;
+
+	if ( *text == '$' )
+	{
+		p = ( const unsigned char * )text + 1;
+
+		while ( iLen < destSize && *p >= '0' && p[ 1 ] >= '0' )
+		{
+			*pDest = g_Rva0112A010HexHigh[ *p ] | g_Rva0112A110Hex[ p[ 1 ] ];
+			pDest++;
+			iLen++;
+			p += 2;
+		}
+	}
+	else
+	{
+		iLen = Rva007EEF30( pDest, destSize,
+			( const unsigned char * )text + 1 );
+	}
+
+	return iLen;
+}
