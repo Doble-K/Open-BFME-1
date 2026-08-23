@@ -18,11 +18,28 @@
 // MultiListNodeClass, whose pool is the one multilist.h's
 // `AutoPoolClass<MultiListNodeClass, 256>` base carries and whose two callers
 // are both inside GenericMultiListClass::Internal_Remove.
+//
+// Six more instantiations land the same 38 bytes elsewhere. Four of them --
+// AABTreeLinkClass, AABTreeNodeClass, CameraShakeSystemClass::CameraShakerClass
+// and GenericSLNode -- were folded onto one body at 0x006D1480, which is why
+// four names share it; PolyRenderTaskClass at 0x009452A0 and MatPassTaskClass
+// at 0x009453B0 kept their own copies. All eight differ only in the
+// relocation on the spin call.
 
 typedef unsigned int uint32;
 
 class HAnimComboDataClass;
 class MultiListNodeClass;
+class AABTreeLinkClass;
+class AABTreeNodeClass;
+class CameraShakeSystemClass
+{
+public:
+	class CameraShakerClass;
+};
+class GenericSLNode;
+class PolyRenderTaskClass;
+class MatPassTaskClass;
 
 class FastCriticalSectionClass
 {
@@ -83,3 +100,9 @@ void ObjectPoolClass<T,BLOCK_SIZE>::Free_Object_Memory(T * obj)
 
 template void ObjectPoolClass<HAnimComboDataClass,256>::Free_Object_Memory(HAnimComboDataClass *);
 template void ObjectPoolClass<MultiListNodeClass,256>::Free_Object_Memory(MultiListNodeClass *);
+template void ObjectPoolClass<AABTreeLinkClass,256>::Free_Object_Memory(AABTreeLinkClass *);
+template void ObjectPoolClass<AABTreeNodeClass,256>::Free_Object_Memory(AABTreeNodeClass *);
+template void ObjectPoolClass<CameraShakeSystemClass::CameraShakerClass,256>::Free_Object_Memory(CameraShakeSystemClass::CameraShakerClass *);
+template void ObjectPoolClass<GenericSLNode,256>::Free_Object_Memory(GenericSLNode *);
+template void ObjectPoolClass<PolyRenderTaskClass,256>::Free_Object_Memory(PolyRenderTaskClass *);
+template void ObjectPoolClass<MatPassTaskClass,256>::Free_Object_Memory(MatPassTaskClass *);
