@@ -75617,3 +75617,6 @@ _Rva00811310,0x00811310,Y4 lane: SHA-1 block transform, the counterpart of the u
 ?BfmeDynamicDX8VertexBufferOffset@@3PAGA,0x01346794,Open-BFME5 per-slot vertex offsets the BoxDynamicVBAccessClass destructor at 0x0091D9E0 advances
 ?BfmeDynamicSortingVertexArrayOffset@@3GA,0x013467E4,Open-BFME5 sorting-array vertex offset the BoxDynamicVBAccessClass destructor at 0x0091D9E0 advances
 ?BfmeDynamicSortingVertexArrayInUse@@3_NA,0x013467D8,Open-BFME5 sorting-array in-use flag the BoxDynamicVBAccessClass destructor at 0x0091D9E0 clears
+??0BfmeDelayedLuaEvent@@QAE@XZ,0x0003A1C5,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element constructor; DIR32 sites are masked by the byte gate so this records the address
+??1BfmeDelayedLuaEvent@@QAE@XZ,0x00041362,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element destructor
+??_7DelayedLuaEventList@@6B@,0x01085E10,Open-BFME5 vtable the DelayedLuaEventList constructor at 0x000EDBB0 stores at +0
