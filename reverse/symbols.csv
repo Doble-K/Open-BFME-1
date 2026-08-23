@@ -75422,3 +75422,5 @@ _Rva00817140,0x00817140,Y4 lane: DirtySock transport unlink from the global list
 _Rva00817030,0x00817030,Y4 lane: DirtySock transport message submit
 ??4CommandSet@@QAEAAV0@ABV0@@Z,0x00007F95,Open-BFME5 ILT; ?newCommandSetOverride@ControlBar@@IAEPAVCommandSet@@PAV2@@Z at 0x0049DE40 copies the original over the fresh override through it
 ?setNextOptimized@PathNode@@QAEXPAV1@@Z,0x0002E5FA,Open-BFME5 ILT; ?appendNode@Path@@QAEXPBUCoord3D@@W4PathfindLayerEnum@@@Z at 0x0016A4B0 runs it on the old tail when the path is optimized
+_Rva00818BF0,0x00818BF0,Y4 lane: DirtySock transport receive operation wrapped by 0x00818D20; non-negative means the slot was consumed
+_Rva00817B30,0x00817B30,Y4 lane: DirtySock global comm worker; the pump at 0x00818CB0 drives it with one timestamp until it returns non-positive

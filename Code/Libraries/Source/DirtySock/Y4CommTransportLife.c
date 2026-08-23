@@ -61,7 +61,11 @@ struct Rva00816BF0Comm
 	int m_reserved94;               /* +0x94 */
 	int m_recvRecordSize;           /* +0x98 */
 	int m_recvBufferSize;           /* +0x9C */
-	char m_gap1[ 0x08 ];
+	char m_gap1[ 0x04 ];
+	/* The receive cursor, advanced by 0x00818D20 in the same
+	 * offset-plus-record-size-modulo-buffer-size shape the other transports
+	 * use. */
+	int m_recvOffset;               /* +0xA4 */
 	unsigned char *m_recvBuffer;    /* +0xA8 */
 	char m_gap2[ 0x0C ];
 	int m_sendRecordSize;           /* +0xB8 */
@@ -475,4 +479,73 @@ int Rva00817340( struct Rva00816BF0Comm *comm )
 		return 3;
 
 	return 4;
+}
+
+int Rva007FEB00( void *lock );
+
+/* 0x00818D20 forwards four arguments and advances the receive cursor only when
+ * the inner call reports success, so a failure leaves the slot to be retried.
+ * Nothing here inspects the four, so their types are not recoverable and they
+ * are declared as plain words rather than guessed at -- converting 0x00818BF0
+ * is what would settle them.
+ */
+int Rva00818BF0( struct Rva00816BF0Comm *comm, int a, int b, int c );
+
+int Rva00818D20( struct Rva00816BF0Comm *comm, int a, int b, int c )
+{
+	int iResult;
+
+	iResult = Rva00818BF0( comm, a, b, c );
+
+	if ( iResult >= 0 )
+	{
+		comm->m_recvOffset = ( comm->m_recvOffset + comm->m_recvRecordSize )
+			% comm->m_recvBufferSize;
+	}
+
+	return iResult;
+}
+
+/* 0x00818CB0 is the GLOBAL PUMP, and it finally explains the counter the
+ * registry zeroes when it builds the lock.
+ *
+ * The lock is TRIED.  On success the tick is read ONCE and the worker is
+ * driven with that same timestamp until it reports nothing left to do -- so a
+ * whole pass shares one consistent time rather than sampling per iteration,
+ * the same discipline the other transport's callback uses.  The counter is
+ * then cleared.
+ *
+ * ON FAILURE THE COUNTER IS INCREMENTED INSTEAD.  So +0x0130AD08 counts
+ * CONSECUTIVE MISSED PUMPS -- how many times the pump was called while another
+ * thread held the lock -- and any successful pass resets it to zero.  That is
+ * a contention measure, not a total, and neither body alone shows it: the
+ * registry only zeroes it at construction, and this one only makes sense once
+ * both branches are read together.
+ *
+ * The driving loop has an EMPTY BODY; all the work is in the condition.
+ */
+int Rva00817B30( unsigned int tick );
+
+int Rva00818CB0( void )
+{
+	unsigned int uTick;
+
+	if ( Rva007FEB00( g_Rva0130AF38Lock ) != 0 )
+	{
+		uTick = Rva007FEA00();
+
+		while ( Rva00817B30( uTick ) > 0 )
+		{
+			/* the work is the condition */
+		}
+
+		g_Rva0130AD08Count = 0;
+		Rva007FECB0( g_Rva0130AF38Lock );
+	}
+	else
+	{
+		g_Rva0130AD08Count = g_Rva0130AD08Count + 1;
+	}
+
+	return 0;
 }
