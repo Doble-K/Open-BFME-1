@@ -75429,3 +75429,5 @@ _Rva00817640,0x00817640,Y4 lane: DirtySock transport send kick; the ack handler 
 ??1NamedReveal@@QAE@XZ,0x000244DD,Open-BFME5 ILT; ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D440 drops the last element through it after shifting the tail down
 ?doShroudReveal@PartitionManager@@QAEXPBUCoord3D@@MI@Z,0x008F7680,Open-BFME5 direct body call; ?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D200 ends in it with the waypoint location the reveal radius and the resolved player mask
 ?undoShroudReveal@PartitionManager@@QAEXPBUCoord3D@@MI@Z,0x008F7730,Open-BFME5 direct body call; ?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D320 ends in it exactly where its do twin ends in doShroudReveal
+??0NamedReveal@@QAE@ABU0@@Z,0x00040930,Open-BFME5 ILT; the in-place copy of ?createNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@0M0@Z at 0x0034EF80 when push_back has room
+?_M_insert_overflow@?$vector@UNamedReveal@@V?$allocator@UNamedReveal@@@_STL@@@_STL@@IAEXPAUNamedReveal@@ABU3@ABU__false_type@2@I_N@Z,0x0002EC58,Open-BFME5 ILT; the grow path of the same push_back
