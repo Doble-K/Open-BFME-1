@@ -684,3 +684,43 @@ int Rva007EE050( char *record, int size, const char *name,
 
 	return Rva007ED9F0( record, size, name, uTime );
 }
+
+// 0x007EDD30 IS THE FIELD-WISE WRITER, taking six separate components where
+// 0x007EE050 takes two packed integers.  With it the module's date interface
+// closes into a FOUR-WAY SYMMETRY: read packed (0x007EFC20), read field-wise
+// (0x007EFB20), write packed (0x007EE050), write field-wise (this).  All four
+// are independent -- none is written in terms of another -- which is why the
+// year and month adjustments appear in every one of them.
+//
+// THIS IS THE ONLY ONE OF THE FOUR THAT CANNOT TRUNCATE.  Its components
+// arrive as full ints rather than through eight-bit fields, so it is the only
+// path by which a caller can supply a value that the packed forms could not
+// represent, and equally the only one that will not silently mangle one.  What
+// it does instead is hand the value to a search that has no not-found exit, so
+// an out-of-range component does not truncate here -- it fails further down.
+int Rva007EDD30( char *record, int size, const char *name,
+	int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond,
+	int iOffset )
+{
+	struct Rva007EDB10Time tm;
+	unsigned int uTime;
+
+	memset( &tm, 0, sizeof( tm ) );
+	tm.m_isDst = -1;
+
+	tm.m_year = iYear - 1900;
+	tm.m_month = iMonth - 1;
+	tm.m_day = iDay;
+	tm.m_hour = iHour;
+	tm.m_minute = iMinute;
+	tm.m_second = iSecond;
+
+	uTime = Rva007EDE00( &tm );
+
+	if( uTime != 0 )
+	{
+		uTime -= iOffset;
+	}
+
+	return Rva007ED9F0( record, size, name, uTime );
+}
