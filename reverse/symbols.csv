@@ -71815,6 +71815,7 @@ name,address,notes
 ?findTemplate@BfmeThingFactory@@QAEPBVThingTemplate@@ABVAsciiString@@@Z,0x00028560,BFME one-arg ThingFactory findTemplate; ScriptActions doAddCommandBarButton facade
 ?findTemplate@ThingFactory@@QAEPAVThingTemplate@@ABVAsciiString@@@Z,0x00028560,SpawnBehavior retail findTemplate ILT
 ?findTerrain@TerrainTypeCollection@@QAEPAVTerrainType@@VAsciiString@@@Z,0x0000DBD9,first of the find-then-create pair in the Terrain block parser; the second call on the same receiver is the already-matched newTerrain and ZH declares findTerrain immediately above it with the same signature
+?findUpdateModule@Object@@QAEPAVOCLUpdate@@W4NameKeyType@@@Z,0x0002AE23,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 looks the OCLUpdate module up through it
 ?findUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@ABVAsciiString@@@Z,0x0002F95A
 ?findWeaponTemplate@WeaponStore@@QBEPBVWeaponTemplate@@VBFMERetailAsciiString@@@Z,0x0000D3FA,WeaponFireSpecialAbilityUpdate WeaponStore lookup ILT thunk
 ?finish@Rva003BEED0@@QAEXXZ,0x003BEC30,niladic member tail-jumped by the two-call forwarder at 0x003BEED0; address-derived name
@@ -72348,6 +72349,7 @@ name,address,notes
 ?getControllingPlayer@Object@@QBEPAVPlayer@@XZ,0x00020824
 ?getControllingPlayer@Team@@QBEPAVPlayer@@XZ,0x0002369B
 ?getControllingPlayer@TeamPrototype@@QBEPAVPlayer@@XZ,0x0000F2DB,TeamInQueue disband call pin
+?getCountdownPercent@OCLUpdate@@QAEMXZ,0x00047069,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 passes its result to the text display
 ?getCurNemesis@TunnelTracker@@QAEPAVObject@@XZ,0x00025766,REL32 pin from TunnelTracker::updateNemesis @0xF90D0
 ?getCurrentVictim@AIUpdateInterface@@QBEPAVObject@@XZ,0x000261A2,GarrisonContain target victim ILT
 ?getCurrentVictimPos@AIUpdateInterface@@QBEPBUCoord3D@@XZ,0x00030634,GarrisonContain target position ILT
@@ -72488,6 +72490,7 @@ name,address,notes
 ?getReal@UserPreferences@@QBEMVAsciiString@@M@Z,0x000A93B0,find virtual +0x18 then atof through the CRT import at 0x01359380 and fstp/fld of the Real default; ILT 0x0000B320 used by getTimePlayed 0x0009C2C0; ret 8
 ?getRelationship@Object@@QBE?AW4Relationship@@PBV1@@Z,0x0004A719,ILT thunk to Object::getRelationship; identity from Zero Hour ActionManager.cpp where the result is compared against ALLIES
 ?getRelationship@Player@@QBE?AW4Relationship@@PBVTeam@@@Z,0x0003E77A
+?getRemainingFrames@OCLUpdate@@QAEIXZ,0x00032AA6,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 divides its result by ten for the second count
 ?getRemoteIPEntry@LANPreferences@@QAE?AVUnicodeString@@H@Z,0x0002B62A,PopulateRemoteIPComboBox direct-call ILT thunk to getRemoteIPEntry
 ?getRoomKeysCallback@@YAXPAXHW4RoomType@@PBDHPAPAD30@Z,0x0064EA90,ZH PeerThread.cpp:2611 line for line: 8-arg peerGetRoomKeys callback (peer success roomType nick num keys values param); bails on null param/roomType/nick/success/keys/values; for i<num t->trackStatsForPlayer(nick roomType keys[i] values[i]) via ILT 0x00043568 -> 0x0064E7B0; then PeerResponse type 0xd (PLAYERINFO) with nick and getPlayerInfo 0x0064AA70 and addResponse +0x20 on 0x012F71C8; ILT 0x000066EA; Ghidra has no function here
 ?getScienceFromInternalName@ScienceStore@@QAE?AW4ScienceType@@ABVAsciiString@@@Z,0x0004B36C,ILT thunk to the ScienceStore name lookup; identity from Zero Hour ScriptActions.cpp doPlayerGrantScience
@@ -74699,6 +74702,7 @@ name,address,notes
 ?updateMeshVolume@W3DVolumetricShadow@@IAEXHHPBVMatrix3D@@ABVAABoxClass@@M@Z,0x007BE000,certified packet 348; updateMeshVolume body 0x7BE000 (thunk 0xC392 from updateVolumes)
 ?updateMouseData@Mouse@@IAEXXZ,0x0002B805,Open-BFME5 Mouse::update tail-call ILT identified from retail REL32 at 0x005A44E6
 ?updateNumPlayersOnline@@YAXXZ,0x0050BA40
+?updateOCLTimerTextDisplay@ControlBar@@AAEXIM@Z,0x00029839,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 calls it only when the second count changed
 ?updatePlayback@RecorderClass@@QAEXXZ,0x00099110,zh-sweep callee pin derived from retail REL32 displacement
 ?updatePos@Pathfinder@@QAEXPAVObject@@PBUCoord3D@@@Z,0x00013647,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C with the object position after the layer store
 ?updatePos@Pathfinder@@QAEXPAVObject@@PBUCoord3D@@@Z,0x003E9D80,Open-BFME5 callee of ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 via ILT 0x00013647
@@ -75448,109 +75452,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-_strstr,0x009F709C,Y2 lane: strstr import thunk (gen-import ?ji_009f709c@@YAXXZ names the same address)
-_strchr,0x009F6DFA,Y2 lane: strchr import thunk (gen-import ?ji_009f6dfa@@YAXXZ names the same address)
-_strncmp,0x009F6FE2,Y2 lane: strncmp import thunk (gen-import ?ji_009f6fe2@@YAXXZ names the same address)
-?someInsideSomeOutside@Team@@QBE_NPAVPolygonTrigger@@I@Z,0x000F5CE0,the first of the two calls ScriptConditions::evaluateTeamInsideAreaPartially (0x00324670) makes on the team it looked up before falling back on allInside; the reference declares exactly that const member beside allInside with the same pair
-??RQ4Sort00755050@@QBE_NHH@Z,0x0002952D,REL32 comparator target used by byte-verified 0x00753340 median specialization
-?Rva00807960@@YAHPBDH@Z,0x00807960,Y2 lane: address-derived; the two-argument body the 28-byte wrapper at 0x00807940 forwards to
-?Rva007FF9F0Swap32@@YAII@Z,0x007FF9F0,Y2 lane: address-derived; one-dword-in one-dword-out helper 0x00807AB0 runs a value through before formatting it with %08x; the sibling at 0x007FFAD0 over the same shape is already ledgered as a byte swap
-?Rva007EB410NetConnStatus@@YAHHPAXH@Z,0x007EB410,Y2 lane: NetConnStatus -- the body names itself in its own warning string; three-argument query with the third unused
-_Rva007FF860,0x007FF860,Y4 lane: DirtySock socket-address formatter (address destination size); the address-to-text helper at 0x007FFB50 calls it with a 20-byte destination
-_strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXXZ names the same address)
-?Rva00808220@@YAHPAURva00807BA0Ping@@IPBDHH@Z,0x00808220,Y2 lane: address-derived; the five-argument body the wrappers at 0x008081F0 and 0x008085A0 both forward to
-?Rva007FEAA0ListReset@@YAXPAX@Z,0x007FEAA0,Y2 lane: C++ spelling of the list reset converted as _Rva007FEAA0 in Y4DirtySockSocket.c; 0x00808140 hands it a sub-object at +0x0C
-?Rva007FD2D0SocketOpen@@YAPAXHHH@Z,0x007FD2D0,Y2 lane: C++ spelling of the socket open converted as _Rva007FD2D0 in Y4DirtySockSocket.c
-?Rva007FD510Bind@@YAHPAXPBXH@Z,0x007FD510,Y2 lane: C++ spelling of the bind wrapper converted as _Rva007FD510 in Y4DirtySockSocket.c
-?Rva007FEA20ListInit@@YAXPAX@Z,0x007FEA20,Y2 lane: C++ spelling of the list initialiser converted as _Rva007FEA20 in Y4DirtySockSocket.c
-?Rva007FDE80SetCallback@@YAHPAXHI00@Z,0x007FDE80,Y2 lane: C++ spelling of the socket callback setter converted as _Rva007FDE80 in Y4DirtySockSocket.c
-?Rva00807CF0@@YAHPAXH0@Z,0x00807CF0,Y2 lane: address-derived; the callback 0x00807BA0 installs on its raw socket
-?apply@Rva001705A0Inner@@QAEXH_N@Z,0x0001EA24,address-derived call target from the exact lazy-owner body at 0x001705A0; ILT fronts the shared body at 0x0018BCF0
-?applyAlternate@Rva001705A0Inner@@QAEXH_N@Z,0x000195B0,address-derived call target from the twin lazy-owner body at 0x00170610; ILT fronts the shared body at 0x0018B8B0
-?erase@?$hashtable@U?$pair@$$CBHPAVObject@@@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHPAVObject@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHPAVObject@@@_STL@@@2@@_STL@@QAEIABH@Z,0x0003FCE2,Open-BFME5 ILT for the ObjectID/Object* hashtable erase; called by GameLogic::removeObjectFromLookupTable at 0x00388A90 and jumps to the erase body at 0x00387640 matched as tg_00387640
-??A?$hash_map@HPAVObject@@U?$hash@H@_STL@@U?$equal_to@H@3@V?$allocator@U?$pair@$$CBHPAVObject@@@_STL@@@3@@_STL@@QAEAAPAVObject@@ABH@Z,0x00005E11,Open-BFME5 ILT for the ObjectID/Object* hash_map operator[]; called by GameLogic::addObjectToLookupTable at 0x0038E490 and jumps to the body at 0x0038B980 matched as Gen_hashraw_0038b980
-?Rva007FDA50Recv@@YAHPAXPADHH1PAH@Z,0x007FDA50,Y2 lane: C++ spelling of the receive converted as _Rva007FDA50 in Y4DirtySockSocket.c
-?Rva007FEBD0Lock@@YAXPAX@Z,0x007FEBD0,Y2 lane: C++ spelling of the blocking acquire converted as _Rva007FEBD0 in Y4DirtySockSocket.c
-?Rva007FECB0Unlock@@YAXPAX@Z,0x007FECB0,Y2 lane: C++ spelling of the reference release converted as _Rva007FECB0 in Y4DirtySockSocket.c
-?Rva007FD920Send@@YAHPAXPBDHH1H@Z,0x007FD920,Y2 lane: C++ spelling of the send converted as _Rva007FD920 in Y4DirtySockSocket.c
-?Rva00805960@@YAHPAURva00804150ProtoMangleRef@@PBD@Z,0x00805960,Y2 DirtySock lane: address-derived; the probe-status handler 0x008054A0 calls with the response body
-?Rva00805A70NextProbe@@YAHPAURva00805960Probe@@PAURva00804150ProtoMangleRef@@PBD@Z,0x00805A70,Y2 DirtySock lane: address-derived; 0x00805960 calls it cdecl with three arguments to fill a 0x58-byte Probe from the response text
-?Rva00805C70@@YAHPAURva00804150ProtoMangleRef@@PAURva00805960Probe@@@Z,0x00805C70,Y2 DirtySock lane: address-derived; 0x00805960 calls it once per probe and treats a negative result as fatal
-?Rva00805E50@@YAXPAURva00804150ProtoMangleRef@@PAURva00805960Probe@@HH@Z,0x00805E50,Y2 DirtySock lane: address-derived; 0x00805960 calls it once per entry inside a probe
-?Rva007FE780Printf@@YAHPBDZZ,0x007FE780,Y2 DirtySock lane: the int-returning spelling of the variadic logger; the definition in Y4DirtySockDebug.c returns 0 and 0x00805E50 stores that result
-_strcat,0x009F75CA,Y2 lane: strcat import thunk (gen-import ?ji_009f75ca@@YAXXZ names the same address)
-?Rva0080B070Destroy@@YAXPAX@Z,0x0080B070,Y2 lane: address-derived; the one-argument teardown 0x00806580 and its two siblings call on the pointer at +0x00 of their record
-?Rva0080DFC0@@YAXPAXPBX@Z,0x0080DFC0,Y2 lane: address-derived; the two-argument reset 0x00806A90 calls on the sub-object at +0xE4 when it is handed no key
-?Rva007FFA60Swap16@@YAGG@Z,0x007FFA60,Y2 lane: address-derived; the 16-bit counterpart of the byte swap at 0x007FFAD0, which 0x00806600 runs the port through
-?Rva007FFAD0@@YAII@Z,0x007FFAD0,Y2 lane: the 32-bit byte swap already ledgered under this name in Rva007FFAD0ByteSwap.cpp; pinned so C++ TUs resolve it
-?Rva0080B000Create@@YAPAXXZ,0x0080B000,Y2 lane: address-derived; the no-argument constructor 0x00806910 stores at +0x00 of its record, paired with the teardown at 0x0080B070
-?Rva0080B150@@YAHPAX0H@Z,0x0080B150,Y2 lane: address-derived; 0x00806910 hands it the object from 0x0080B000 with a 0x10-byte sockaddr and treats a negative result as fatal
-?Rva0080B460@@YAHPAXH@Z,0x0080B460,Y2 lane: address-derived; 0x00806910 calls it with the same object and a 2 immediately after 0x0080B150
-?Rva007FF990Swap16@@YAGG@Z,0x007FF990,Y2 lane: address-derived; the 16-bit byte swap 0x00806910 runs its port argument through, sibling of 0x007FF9F0 and 0x007FFAD0
-?Rva0080DF70@@YAHPBDPAD1@Z,0x0080DF70,Y2 lane: address-derived; 0x00806710 hands it the record key at +0x90 and two output buffers /GZ names Secret and Ticket
-?Rva00807370@@YAHPAURva00806580Record@@HHPADH@Z,0x00807370,Y2 lane: address-derived; 0x00806710 calls it with the selector 0x3F746963 and the 0x34-byte Ticket
-?Rva008076E0@@YAHPAURva00806580Record@@PAI1PAPAD@Z,0x008076E0,Y2 lane: address-derived; the four-argument body 0x00807820 wraps, whose negative result it treats as no data
-?Rva00806B10@@YAXPAURva00806580Record@@@Z,0x00806B10,Y2 lane: address-derived; the 2102-byte pump 0x008076E0 runs once when its record has no complete block
-_Rva007FF790,0x007FF790,Y4 lane: DirtySock text-to-socket-address parser
-?Rva0080E330@@YAHPAXH@Z,0x0080E330,Y2 lane: address-derived; 0x00807370 asks it how much space a payload of a given length needs once the crypto sub-object has wrapped it
-?Rva00807520@@YAHPAURva00806580Record@@HH@Z,0x00807520,Y2 lane: address-derived; 0x00807370 reserves output space with it and fails when it gets back less than it asked for
-?Rva0080E350@@YAXPAXPADH@Z,0x0080E350,Y2 lane: address-derived; the first of two passes 0x00807370 makes over the assembled packet
-?Rva0080E410@@YAXPAXPADH@Z,0x0080E410,Y2 lane: address-derived; the second pass 0x00807370 makes over the assembled packet
-?Rva007EB520NetConnMAC@@YAIPAX@Z,0x007EB520,Y2 lane: NetConnMAC -- the body names itself in both of its log lines; NetConnStatus hands it the 0xF0-byte Adapter block
-?Rva007FDEE0@@YAHXZ,0x007FDEE0,Y2 lane: C++ spelling of the address-translator self test converted as _Rva007FDEE0 in Y4DirtySockSocket.c; NetConnStatus returns its result for the addr selector
-_Netbios@4,0x0081BDD8,Y2 lane: Netbios import thunk (gen-import ?ji_0081bdd8@@YAXXZ names the same address)
-?Rva007FD080@@YAXH@Z,0x007FD080,Y2 lane: C++ spelling of the DirtySock module create converted as _Rva007FD080 in Y4DirtySockSocket.c
-?Rva007FD270@@YAXXZ,0x007FD270,Y2 lane: C++ spelling of the DirtySock module shutdown converted as _Rva007FD270 in Y4DirtySockSocket.c
-?Rva007F8D30@@YAXXZ,0x007F8D30,Y2 lane: address-derived; the no-argument teardown 0x007EB650 runs before the DirtySock module shutdown
-_Rva007FFDD0,0x007FFDD0,Y4 lane: DirtySock host and port text parser
-?Rva007EBCA0@@YAPADPBD0@Z,0x007EBCA0,Y2 lane: address-derived; the tag lookup 0x007EBF20 and 0x007EBFC0 both hand a record and a tag name to
-_Rva00815BB0,0x00815BB0,Y4 lane: DirtySock ring transport pump; the socket callback at 0x00815B50 calls it under the try-lock
-_Rva0081BDAE@4,0x0081BDAE,Y4 lane: unnamed one-argument stdcall import thunk (IAT slot 0x01358C84); the guard at 0x00813780 calls it only for a handle that is not -1
-_Rva00814770,0x00814770,Y4 lane: DirtySock comm pump taking a tick; the socket callback at 0x00814700 samples the clock once and passes it in
-_Rva00814EA0,0x00814EA0,Y4 lane: DirtySock comm operation wrapped by 0x00814F70; negative returns are errors and non-negative ones counts
-?reset@?$bitset@$0BEA@@_STL@@QAEAAV12@XZ,0x0002194A,address-derived call target from the exact 320-bit INI token sink at 0x00208810; ILT fronts the shared bitset reset body at 0x001C2B80
-_Rva00816160,0x00816160,Y4 lane: DirtySock comm connect-completion helper; the handshake at 0x00816020 calls it on the two transitions that reach the established state
-_Rva00816520,0x00816520,Y4 lane: DirtySock comm enqueue wrapped by 0x008165F0; non-negative means the slot was consumed
-?computeBonus@Weapon@@IBEXPBVObject@@IAAVWeaponBonus@@@Z,0x00024591,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 with the source object a zero flag word and the default-constructed bonus block
-?getAttackRange@WeaponTemplate@@QBEMPBVObject@@ABVWeaponBonus@@PBUCoord3D@@@Z,0x0002FFB3,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 on m_template with the source object the bonus and source+0x38 the object position - BFME widened the reference bonus-only signature
-??0Locomotor@@QAE@PBVLocomotorTemplate@@@Z,0x00040AA7,Open-BFME5 ILT; the constructor ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z at 0x001B6920 runs on the 0xA8 bytes it allocates
-?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0001D9DA,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C before the layer store
-?updatePos@Pathfinder@@QAEXPAVObject@@PBUCoord3D@@@Z,0x00013647,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C with the object position after the layer store
-_Rva007F0000Alloc,0x007F0000,Y4 lane: C-callable spelling of the allocator
-_Rva00816DF0,0x00816DF0,Y4 lane: DirtySock transport socket attach/detach
-_Rva00816E10,0x00816E10,Y4 lane: DirtySock transport registration
-_Rva00816F60,0x00816F60,Y4 lane: DirtySock transport close path
-_Rva00817100,0x00817100,Y4 lane: DirtySock transport drain with a timeout
-_Rva00817140,0x00817140,Y4 lane: DirtySock transport unlink from the global list
-??0AudioEventRTS@@QAE@ABV0@@Z,0x00047B27,Open-BFME5 ILT to the copy constructor body at 0x000B2FB0; used by ?disableRadar@Player@@QAEXXZ and ?enableRadar@Player@@QAEXXZ to take a MiscAudio sound by value
-??1AudioEventRTS@@QAE@XZ,0x00026F35,Open-BFME5 ILT to the destructor body at 0x000B31F0; the radar sound locals in Player::disableRadar and Player::enableRadar are released through it
-?okToPlayRadarEdgeSound@Player@@QAE_NXZ,0x000141F0,Open-BFME5 ILT; the third condition of both radar edge tests in Player::disableRadar 0x000CC1C0 and Player::enableRadar 0x000CC2C0
-?getName@TerrainType@@QBE?AVAsciiString@@XZ,0x00031985,Open-BFME5 ILT; the by-value name ?findTerrain@TerrainTypeCollection@@QAEPAVTerrainType@@VAsciiString@@@Z at 0x000A7AF0 compares each list entry on
-??4CrateTemplate@@QAEAAV0@ABV0@@Z,0x000294A1,Open-BFME5 ILT; ?newCrateTemplateOverride@CrateSystem@@QAEPAVCrateTemplate@@PAV2@@Z at 0x0037A230 copies the original over the fresh override through it
-_Rva00817030,0x00817030,Y4 lane: DirtySock transport message submit
-??4CommandSet@@QAEAAV0@ABV0@@Z,0x00007F95,Open-BFME5 ILT; ?newCommandSetOverride@ControlBar@@IAEPAVCommandSet@@PAV2@@Z at 0x0049DE40 copies the original over the fresh override through it
-?setNextOptimized@PathNode@@QAEXPAV1@@Z,0x0002E5FA,Open-BFME5 ILT; ?appendNode@Path@@QAEXPBUCoord3D@@W4PathfindLayerEnum@@@Z at 0x0016A4B0 runs it on the old tail when the path is optimized
-_Rva00818BF0,0x00818BF0,Y4 lane: DirtySock transport receive operation wrapped by 0x00818D20; non-negative means the slot was consumed
-_Rva00817B30,0x00817B30,Y4 lane: DirtySock global comm worker; the pump at 0x00818CB0 drives it with one timestamp until it returns non-positive
-_Rva00817640,0x00817640,Y4 lane: DirtySock transport send kick; the ack handler at 0x008186C0 calls it after rewinding the transmit cursor for a retransmit request
-??$__copy@PAUNamedReveal@@PAU1@H@_STL@@YAPAUNamedReveal@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x0004A1E7,Open-BFME5 ILT; the tail shift of ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D440
-??1NamedReveal@@QAE@XZ,0x000244DD,Open-BFME5 ILT; ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D440 drops the last element through it after shifting the tail down
-?doShroudReveal@PartitionManager@@QAEXPBUCoord3D@@MI@Z,0x008F7680,Open-BFME5 direct body call; ?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D200 ends in it with the waypoint location the reveal radius and the resolved player mask
-?undoShroudReveal@PartitionManager@@QAEXPBUCoord3D@@MI@Z,0x008F7730,Open-BFME5 direct body call; ?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D320 ends in it exactly where its do twin ends in doShroudReveal
-??0NamedReveal@@QAE@ABU0@@Z,0x00040930,Open-BFME5 ILT; the in-place copy of ?createNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@0M0@Z at 0x0034EF80 when push_back has room
-?_M_insert_overflow@?$vector@UNamedReveal@@V?$allocator@UNamedReveal@@@_STL@@@_STL@@IAEXPAUNamedReveal@@ABU3@ABU__false_type@2@I_N@Z,0x0002EC58,Open-BFME5 ILT; the grow path of the same push_back
-_Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
-?getName@CrateTemplate@@QBE?AVAsciiString@@XZ,0x000259D7,Open-BFME5 ILT; ?friend_findCrateTemplate@CrateSystem@@QAEPAVCrateTemplate@@VAsciiString@@@Z at 0x003795E0 compares each vector entry on the name it returns by value
-_fprintf,0x0003A17A,Open-BFME5 ILT to the statically linked fprintf; ?GetGameLogicRandomValueReal@@YAMMMPADH@Z at 0x00096DD0 traces every draw through it
-?releaseTrack@TerrainTracksRenderObjClassSystem@@AAEXPAVTerrainTracksRenderObjClass@@@Z,0x000357E7,Open-BFME5 ILT; ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ at 0x0072EDF0 releases each unbound track through it
-?getLocalPlayerID@ConnectionManager@@QAEHXZ,0x0004A291,Open-BFME5 ILT; ?isPlayerVotedOut@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z at 0x0066BC30 translates the slot against it
-?getVotesNeededToKick@DisconnectManager@@IAEHHPAVConnectionManager@@@Z,0x0002FA63,Open-BFME5 ILT; behaviour-derived name - takes the translated slot and the connection manager and returns the threshold ?isPlayerVotedOut@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z at 0x0066BC30 compares the vote count against where ZH has getNumPlayers()-1
-_Rva0081B010,0x0081B010,Y4 lane: DirtySock comm worker
-??1BfmeParticleSystemHandle@@QAE@XZ,0x00013994,Open-BFME5 ILT; the value ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 gets back from its lookup is released through it
-?destroy@ParticleSystem@@QAEXXZ,0x0000E525,Open-BFME5 ILT; ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 calls it on the system it looked up
-?findParticleSystemByID@ParticleSystemManager@@AAE?AVBfmeParticleSystemHandle@@W4ParticleSystemID@@@Z,0x0002A216,Open-BFME5 ILT; returns the particle system by value into a hidden slot for ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10
-?AsciiStringToQuotedPrintable@@YA?AVAsciiString@@V1@@Z,0x0001E1F0,Open-BFME5 ILT called by the exact CustomMatchPreferences::setPreferredMap body at 0x000ADFC0; fronts the shared body at 0x00106150
-?findUpdateModule@Object@@QAEPAVOCLUpdate@@W4NameKeyType@@@Z,0x0002AE23,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 looks the OCLUpdate module up through it
-?getRemainingFrames@OCLUpdate@@QAEIXZ,0x00032AA6,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 divides its result by ten for the second count
-?getCountdownPercent@OCLUpdate@@QAEMXZ,0x00047069,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 passes its result to the text display
-?updateOCLTimerTextDisplay@ControlBar@@AAEXIM@Z,0x00029839,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 calls it only when the second count changed
