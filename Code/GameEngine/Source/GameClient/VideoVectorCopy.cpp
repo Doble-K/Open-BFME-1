@@ -19,3 +19,8 @@ void BfmeVideoVectorAnchor(_STL::vector<Video> &v)
 {
 	v.erase(v.begin());
 }
+
+void BfmeVideoVectorInsertAnchor(_STL::vector<Video> &v, const Video &value)
+{
+	v.insert(v.begin(), value);
+}

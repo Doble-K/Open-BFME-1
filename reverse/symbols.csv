@@ -75587,3 +75587,4 @@ _Rva00810120,0x00810120,Y4 lane: block transform for the digest whose update is 
 ?deleteBuildTooltipLayout@ControlBar@@QAEXXZ,0x000032AB,resolved via direct disassembly of retail bytes at ScriptActions::doDisableInput
 ?resetModes@LookAtTranslator@@QAEXXZ,0x00027336,resolved via direct disassembly of retail bytes at ScriptActions::doDisableInput
 ?_M_clear@?$vector@UAnimSet@GenericObjectCreationNugget@@V?$allocator@UAnimSet@GenericObjectCreationNugget@@@_STL@@@_STL@@IAEXXZ,0x00018B97,ILT the AnimSet vector overflow calls at 0x00755D96 to clear the old buffer
+?_M_clear@?$vector@UVideo@@V?$allocator@UVideo@@@_STL@@@_STL@@IAEXXZ,0x0001E420,ILT the Video vector overflow calls at 0x006FA8B6 to clear the old buffer
