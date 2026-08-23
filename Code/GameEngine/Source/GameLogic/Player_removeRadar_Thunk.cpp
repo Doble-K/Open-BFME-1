@@ -1,230 +1,95 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+typedef bool Bool;
+
+class AudioEventRTS
+{
+public:
+	AudioEventRTS(const AudioEventRTS &other);
+	virtual ~AudioEventRTS();
+	void setPlayerIndex(int playerIndex);
+
+private:
+	// Retail's audio event is a 0x70-byte polymorphic value type.
+	char m_retailData[0x6c];
+};
+
+class MiscAudio
+{
+public:
+	char m_retailPrefix[0x1c0];
+	AudioEventRTS m_radarOfflineSound;
+};
+
+class AudioManager
+{
+public:
+#define AUDIO_SLOT(number) virtual void vfn##number();
+	AUDIO_SLOT(00) AUDIO_SLOT(01) AUDIO_SLOT(02) AUDIO_SLOT(03)
+	AUDIO_SLOT(04) AUDIO_SLOT(05) AUDIO_SLOT(06) AUDIO_SLOT(07)
+	AUDIO_SLOT(08) AUDIO_SLOT(09) AUDIO_SLOT(10) AUDIO_SLOT(11)
+	AUDIO_SLOT(12) AUDIO_SLOT(13) AUDIO_SLOT(14) AUDIO_SLOT(15)
+	AUDIO_SLOT(16)
+	virtual void addAudioEvent(AudioEventRTS *event);
+	AUDIO_SLOT(18) AUDIO_SLOT(19) AUDIO_SLOT(20) AUDIO_SLOT(21)
+	AUDIO_SLOT(22) AUDIO_SLOT(23) AUDIO_SLOT(24) AUDIO_SLOT(25)
+	AUDIO_SLOT(26) AUDIO_SLOT(27) AUDIO_SLOT(28) AUDIO_SLOT(29)
+	AUDIO_SLOT(30) AUDIO_SLOT(31) AUDIO_SLOT(32) AUDIO_SLOT(33)
+	AUDIO_SLOT(34) AUDIO_SLOT(35) AUDIO_SLOT(36) AUDIO_SLOT(37)
+	AUDIO_SLOT(38) AUDIO_SLOT(39) AUDIO_SLOT(40) AUDIO_SLOT(41)
+	AUDIO_SLOT(42) AUDIO_SLOT(43) AUDIO_SLOT(44) AUDIO_SLOT(45)
+	AUDIO_SLOT(46) AUDIO_SLOT(47) AUDIO_SLOT(48) AUDIO_SLOT(49)
+	AUDIO_SLOT(50) AUDIO_SLOT(51) AUDIO_SLOT(52) AUDIO_SLOT(53)
+	AUDIO_SLOT(54) AUDIO_SLOT(55) AUDIO_SLOT(56) AUDIO_SLOT(57)
+	AUDIO_SLOT(58) AUDIO_SLOT(59) AUDIO_SLOT(60) AUDIO_SLOT(61)
+	AUDIO_SLOT(62) AUDIO_SLOT(63) AUDIO_SLOT(64) AUDIO_SLOT(65)
+	AUDIO_SLOT(66) AUDIO_SLOT(67) AUDIO_SLOT(68) AUDIO_SLOT(69)
+	AUDIO_SLOT(70) AUDIO_SLOT(71) AUDIO_SLOT(72)
+	virtual MiscAudio *getMiscAudio();
+#undef AUDIO_SLOT
+};
+
+extern AudioManager *TheAudio;
 
 class Player
 {
 public:
-	void removeRadar(bool);
+	void removeRadar(Bool disableProof);
+	Bool okToPlayRadarEdgeSound();
+
+private:
+	int getPlayerIndex() const
+	{
+		return m_playerIndex;
+	}
+
+	Bool hasRadar() const
+	{
+		if (m_radarDisabled && m_disableProofRadarCount == 0)
+			return false;
+		return m_radarCount > 0;
+	}
+
+	char m_retailPrefix[0x24];
+	int m_playerIndex;
+	char m_beforeRadar[0x30];
+	int m_radarCount;
+	int m_disableProofRadarCount;
+	Bool m_radarDisabled;
 };
 
-// ?removeRadar@Player@@QAEX_N@Z
-__declspec(naked) void Player::removeRadar(bool)
+void Player::removeRadar(Bool disableProof)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x18
-        __emit 0x96
-        __emit 0xff
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x70
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8a
-        __emit 0x56
-        __emit 0x60
-        __emit 0x84
-        __emit 0xd2
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x5c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x04
-        __emit 0x32
-        __emit 0xc0
-        __emit 0xeb
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x58
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x9f
-        __emit 0xc0
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x58
-        __emit 0x53
-        __emit 0x8a
-        __emit 0x9c
-        __emit 0x24
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x49
-        __emit 0x84
-        __emit 0xdb
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x58
-        __emit 0x74
-        __emit 0x03
-        __emit 0xff
-        __emit 0x4e
-        __emit 0x5c
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x5b
-        __emit 0x74
-        __emit 0x75
-        __emit 0x84
-        __emit 0xd2
-        __emit 0x74
-        __emit 0x07
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x5c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x09
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x0f
-        __emit 0x9f
-        __emit 0xc0
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x61
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xd5
-        __emit 0x80
-        __emit 0xf4
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x68
-        __emit 0xd6
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x90
-        __emit 0x24
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x05
-        __emit 0xc0
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xe8
-        __emit 0xeb
-        __emit 0xb9
-        __emit 0xf7
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x76
-        __emit 0x24
-        __emit 0x56
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x84
-        __emit 0x24
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x34
-        __emit 0xeb
-        __emit 0xf6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x68
-        __emit 0xd6
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x50
-        __emit 0xff
-        __emit 0x52
-        __emit 0x44
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x7c
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xc0
-        __emit 0xad
-        __emit 0xf5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x74
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x7c
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	Bool hadRadar = hasRadar();
+
+	--m_radarCount;
+	if (disableProof)
+		--m_disableProofRadarCount;
+
+	if (hadRadar && !hasRadar() && okToPlayRadarEdgeSound())
+	{
+		AudioEventRTS soundToPlay = TheAudio->getMiscAudio()->m_radarOfflineSound;
+		soundToPlay.setPlayerIndex(getPlayerIndex());
+		TheAudio->addAudioEvent(&soundToPlay);
 	}
 }
