@@ -205,6 +205,9 @@ DEBUG_LOG(( "InitRandom Logic %08lx\n",seed));
 //
 // Integer random value
 //
+// ?GetGameLogicRandomValue@@YAHHHPADH@Z present-unmatched -- the retail body is
+// at 0x00096CF0 with BFME's draw trace, in random_value.cpp; this address is the
+// client twin, which that file already claims.
 Int GetGameLogicRandomValue( int lo, int hi, char *file, int line )
 {
 	//Int delta = hi - lo + 1;

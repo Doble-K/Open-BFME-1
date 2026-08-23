@@ -234,12 +234,8 @@ Int GetGameLogicRandomValue( int lo, int hi, char *file, int line )
 
 	//rval = temp + lo;
 
-/**/
-#ifdef DEBUG_RANDOM_LOGIC
-DEBUG_LOG(( "%d: GetGameLogicRandomValue = %d (%d - %d), %s line %d\n",
-				 TheGameLogic->getFrame(), rval, lo, hi, file, line ));
-#endif
-/**/
+	if (theLogicRandomLogFile)
+		fprintf(theLogicRandomLogFile, "logicrandom = %i (%s, %i)\n", rval, strrchr(file, '\\') + 1, line);
 
 	return rval;
 }
