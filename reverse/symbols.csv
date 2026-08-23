@@ -75474,3 +75474,4 @@ _ciSocketFlush,0x0085AC70,Open-BFME5 behaviour-derived name; _chatDisconnect at 
 ?hasAnyObjects@TeamPrototype@@QAE_N_N@Z,0x00021D96,Open-BFME5 ILT; ?hasAnyObjects@Player@@QBE_N_N@Z at 0x000CE0B0 forwards its flag to each prototype through it
 ?hasAnyBuildings@TeamPrototype@@QAE_NV?$BitFlags@$0MA@@@_N@Z,0x0000B55F,Open-BFME5 ILT; ?hasAnyBuildings@Player@@QBE_NV?$BitFlags@$0MA@@@_N@Z at 0x000CDF70 forwards the mask and the flag to each prototype through it
 ??0AIGroup@@QAE@XZ,0x0002A031,Open-BFME5 ILT; ?createGroup@AI@@QAEPAVAIGroup@@XZ at 0x0014C630 runs it on the 0x40 bytes it allocates
+?getContainCount@TunnelTracker@@QAEIH@Z,0x00036165,Open-BFME5 ILT; BFME gives it an argument the reference does not have and ?canSwitchIndexToIndex@CaveSystem@@QAE_NHH@Z at 0x003782D0 passes zero at both call sites
