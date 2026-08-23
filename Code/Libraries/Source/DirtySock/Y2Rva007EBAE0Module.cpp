@@ -1640,3 +1640,45 @@ int Rva007EE280( char *record, int size, const char *format, ... )
 
 	return iSize - size;
 }
+
+// 0x007EE150 COPIES ONE FIELD FROM ANOTHER RECORD, name and all.  It finds the
+// value with the backwards matcher, walks back over the name to the start of
+// the whole "name=value" run, and hands that to the replace-or-append engine.
+//
+// IT LANDS HERE RATHER THAN BESIDE THE ENGINE because it calls the matcher,
+// which is C++-mangled in this file and cannot be named from the C half of the
+// module.  That is the same seam that put the two field formatters here, and
+// it is a fact about how two lanes reconstructed one translation unit rather
+// than anything retail did.
+//
+// THE RECORD BUILDER'S 'x' DIRECTIVE DOES THE SAME JOB DIFFERENTLY, and the
+// difference is worth stating because both are now converted: that one backs
+// the pointer up by exactly ONE byte and lets the engine rescan for a
+// delimiter, where this walks the whole name.  Two callers of one matcher,
+// two conventions for what to hand on, and neither is documented anywhere but
+// in the bytes.
+//
+// A MISSING FIELD RETURNS 0, NOT -1 -- the same value a successful no-op
+// returns from the engine -- so a caller cannot distinguish "no such field in
+// the source" from "the destination already held this".
+int Rva007EE150( char *record, int size, const char *name, const char *source )
+{
+	const unsigned char *p;
+	const char *pSource;
+
+	pSource = source;
+
+	p = ( const unsigned char * )Rva007EBCA0( pSource, name );
+
+	if( p == 0 )
+	{
+		return 0;
+	}
+
+	while( p != ( const unsigned char * )pSource && p[ -1 ] > ' ' )
+	{
+		p--;
+	}
+
+	return Rva007EC780( ( unsigned char * )record, size, ( const char * )p );
+}
