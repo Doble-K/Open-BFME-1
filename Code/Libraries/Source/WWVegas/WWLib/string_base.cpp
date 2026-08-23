@@ -103,20 +103,16 @@ void StringBase<T>::validate() const
 {
 }
 
-__declspec(naked) int StringBase<char>::compare(const char *str) const
+int StringBase<char>::compare(const char *str) const
 {
-    __asm {
-        __emit 0xe9
-        __emit 0x91
-        __emit 0x7b
-        __emit 0x05
-        __emit 0x00
-        __emit 0xe9
-        __emit 0x8c
-        __emit 0x9a
-        __emit 0x0f
-        __emit 0x00
+    const int strLen = str ? stringLength(str) : 0;
+    const int len = m_data ? m_data->length : 0;
+    const char *data = m_data ? &m_data->data[0] : "";
+    int result = memcmp(data, str, len < strLen ? len : strLen);
+    if (result == 0) {
+        result = len - strLen;
     }
+    return result;
 }
 
 
