@@ -15,6 +15,20 @@
 
 typedef unsigned int uint32;
 
+// Three more pools allocate through the same template with a twenty-byte
+// element -- GridLinkClass at 0x008DD970, MultiListNodeClass at 0x009DBDD0 and
+// HAnimComboDataClass at 0x00973DB0, all asking ::operator new for 0x1404 --
+// so those bodies are 210 bytes where this one is 212.
+class GridLinkClass
+{
+	char m_bfmeBody[20];
+};
+
+class MultiListNodeClass
+{
+	char m_bfmeBody[20];
+};
+
 class CameraShakeSystemClass
 {
 public:
@@ -104,3 +118,5 @@ T * ObjectPoolClass<T,BLOCK_SIZE>::Allocate_Object_Memory(void)
 }
 
 template CameraShakeSystemClass::CameraShakerClass * ObjectPoolClass<CameraShakeSystemClass::CameraShakerClass,256>::Allocate_Object_Memory(void);
+template GridLinkClass * ObjectPoolClass<GridLinkClass,256>::Allocate_Object_Memory(void);
+template MultiListNodeClass * ObjectPoolClass<MultiListNodeClass,256>::Allocate_Object_Memory(void);
