@@ -542,3 +542,54 @@ int Rva00811E20( struct Rva00812320Module *module, const char *keyA,
 
 	return iCount;
 }
+
+/* 0x00811900 COPIES THE WHOLE ENTRY TABLE OUT, but only when it has changed
+ * since the caller last asked.
+ *
+ * THE CHANGE TEST IS A STAMP THE CALLER HOLDS.  It compares the caller's saved
+ * value against the module's own counter and returns zero when they agree, so
+ * the caller carries the "have I seen this" state and the module carries none.
+ * Several callers can poll independently without interfering.
+ *
+ * THE STAMP IS WRITTEN UNCONDITIONALLY EVEN THOUGH IT WAS TESTED FOR NULL.
+ * The guard above tolerates a null pointer -- it short-circuits and skips the
+ * comparison -- and then the very next statement dereferences it anyway.  A
+ * caller passing null to mean "always copy" gets a null write instead.
+ *
+ * BOTH SIZES ARE ROUNDED DOWN TO WHOLE ENTRIES, and the two roundings are not
+ * spelled the same way: the table's own extent divides SIGNED and the caller's
+ * buffer size divides UNSIGNED.  The first can never be negative in practice,
+ * so the difference has no effect -- but it is there, and it is the kind of
+ * thing that says the two expressions were written at different moments.
+ *
+ * A NULL DESTINATION SUPPRESSES THE COPY BUT NOT THE STAMP UPDATE, so probing
+ * for the size consumes the change notification: ask twice and the second call
+ * returns zero.
+ */
+int Rva00811900( struct Rva00812320Module *module, int *pStamp, void *dest,
+	int destSize )
+{
+	int iSize;
+
+	if ( pStamp != 0 && *pStamp == module->m_active )
+	{
+		return 0;
+	}
+
+	*pStamp = module->m_active;
+
+	iSize = ( ( char * )module->m_end - ( char * )module->m_first ) / 0x1A4
+		* 0x1A4;
+
+	if ( iSize > destSize )
+	{
+		iSize = ( unsigned int )destSize / 0x1A4 * 0x1A4;
+	}
+
+	if ( dest != 0 )
+	{
+		memcpy( dest, module->m_first, iSize );
+	}
+
+	return iSize;
+}
