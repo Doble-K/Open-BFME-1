@@ -5513,3 +5513,4 @@ _D3DXVec4Transform@12	0x009FAA48	600	identity-suspect	RVA range is not a single 
 ?_M_clear@?$vector@UParticleSysBoneInfo@@V?$allocator@UParticleSysBoneInfo@@@_STL@@@_STL@@IAEXXZ	0x00771D00	98	void	mis-keyed: 0x00771D00 is the ModuleInfo::Nugget vector clear
 ?_M_clear@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@IAEXXZ	0x00771D00	98	converted	real STLport vector<ModuleInfo::Nugget>; element 0x14 as the reference declares it
 ??$_M_allocate_and_copy@PBUNugget@ModuleInfo@@@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@IAEPAUNugget@ModuleInfo@@IPBU23@0@Z	0x0076B3B0	97	attempted	same TU compiles it at 79 bytes: retail keeps more of the element copy out of line than STLport inlines here
+?_M_clear@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEXXZ	0x003AFE10	99	converted	element 0x18 with a virtual destructor called through vtable slot 0
