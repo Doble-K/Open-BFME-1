@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /RTCu /MD /DNDEBUG
 /* EA DirtySock -- the comm layer's message digest, /Od with /GZ.  Placement is
  * by address neighbourhood within the 0x00810000 group.
  */
@@ -13,13 +13,10 @@
 struct Rva00810060Context
 {
 	unsigned int m_count;			/* +0x00 */
-	char m_state[ 0x10 ];			/* +0x04 */
+	unsigned int m_state[ 4 ];		/* +0x04 */
 	unsigned char m_block[ 0x40 ];		/* +0x14 */
 };
 
-/* The block transform.  Pinned rather than converted for now -- it is 3765
- * bytes and wants a tick of its own; this declaration is what lets the update
- * land ahead of it. */
 void Rva00810120( struct Rva00810060Context *context );
 
 /* 0x00810060 FEEDS BYTES INTO THE DIGEST, flushing whenever the block fills.
@@ -69,4 +66,328 @@ void Rva00810060( struct Rva00810060Context *context, const unsigned char *data,
 			iFill = 0;
 		}
 	}
+}
+
+/* 0x00810120 IS THE MD5 BLOCK TRANSFORM, sixty-four rounds written out in
+ * full.  Retail's own name for the message schedule, from the /GZ frame
+ * descriptor, is uData.
+ *
+ * THIS IS WHAT SETTLES THE ALGORITHM the update at 0x00810060 could only
+ * suggest.  The four round functions, the shift table, the message-index
+ * schedule and all sixty-four sine constants are RFC 1321's exactly -- eight
+ * of them were checked against the bytes before the rest were generated from
+ * the standard tables, so the match is verified at both ends and not assumed
+ * from the first constant alone.
+ *
+ * THE THIRD ROUND FUNCTION IS SPELLED THE SHORT WAY.  RFC 1321 defines the
+ * first two as (x&y)|(~x&z) and (x&z)|(y&~z); retail computes them as
+ * ((y^z)&x)^z and ((x^y)&z)^y -- the well-known equivalent that saves an
+ * operation.  A reader checking against the RFC will not find these forms
+ * there, and they are not an approximation: they agree on every input.
+ *
+ * THE SCHEDULE IS BUILT BACKWARDS, from the end of the block towards the
+ * start, filling uData from index fifteen down.  Each word is assembled
+ * little-endian out of four descending byte reads, so the cursor walks the
+ * block exactly once in reverse rather than indexing forwards.
+ *
+ * THE LOADING LOOP REUSES THE STATE VARIABLES.  Its counter is the same local
+ * that later holds a, and its accumulator the same one that later holds b --
+ * so the two phases share storage and the state is only fetched from the
+ * context after the schedule is complete.  That is why the /GZ
+ * uninitialised-use check fires here at all: uData is written in a loop the
+ * compiler cannot prove runs.
+ */
+void Rva00810120( struct Rva00810060Context *context )
+{
+	unsigned int uData[ 0x10 ];
+	unsigned int a;
+	unsigned int b;
+	unsigned int c;
+	unsigned int d;
+	unsigned char *p;
+
+	p = ( unsigned char * )context + 0x54;
+	a = 0x10;
+
+	while ( a > 0 )
+	{
+		/* THE DECREMENT IS INSIDE THE DEREFERENCE.  Written as a separate
+		 * statement the byte load moves after the shift; written on the
+		 * right of the sum the addition changes direction.  Only the
+		 * pre-decrement form puts the pointer step first, the byte load
+		 * second and the shifted accumulator as the addition's
+		 * destination -- three spellings that differ by no instructions at
+		 * all, only by which register ends up holding the result. */
+		b = *--p;
+		b = ( b << 8 ) + *--p;
+		b = ( b << 8 ) + *--p;
+		b = ( b << 8 ) + *--p;
+		a--;
+		uData[ a ] = b;
+	}
+
+	a = context->m_state[ 0 ];
+	b = context->m_state[ 1 ];
+	c = context->m_state[ 2 ];
+	d = context->m_state[ 3 ];
+
+	a += ( ( ( c ^ d ) & b ) ^ d ) + uData[ 0 ] + 0xD76AA478;
+	a = ( a << 7 ) | ( a >> 25 );
+	a += b;
+
+	d += ( ( ( b ^ c ) & a ) ^ c ) + uData[ 1 ] + 0xE8C7B756;
+	d = ( d << 12 ) | ( d >> 20 );
+	d += a;
+
+	c += ( ( ( a ^ b ) & d ) ^ b ) + uData[ 2 ] + 0x242070DB;
+	c = ( c << 17 ) | ( c >> 15 );
+	c += d;
+
+	b += ( ( ( d ^ a ) & c ) ^ a ) + uData[ 3 ] + 0xC1BDCEEE;
+	b = ( b << 22 ) | ( b >> 10 );
+	b += c;
+
+	a += ( ( ( c ^ d ) & b ) ^ d ) + uData[ 4 ] + 0xF57C0FAF;
+	a = ( a << 7 ) | ( a >> 25 );
+	a += b;
+
+	d += ( ( ( b ^ c ) & a ) ^ c ) + uData[ 5 ] + 0x4787C62A;
+	d = ( d << 12 ) | ( d >> 20 );
+	d += a;
+
+	c += ( ( ( a ^ b ) & d ) ^ b ) + uData[ 6 ] + 0xA8304613;
+	c = ( c << 17 ) | ( c >> 15 );
+	c += d;
+
+	b += ( ( ( d ^ a ) & c ) ^ a ) + uData[ 7 ] + 0xFD469501;
+	b = ( b << 22 ) | ( b >> 10 );
+	b += c;
+
+	a += ( ( ( c ^ d ) & b ) ^ d ) + uData[ 8 ] + 0x698098D8;
+	a = ( a << 7 ) | ( a >> 25 );
+	a += b;
+
+	d += ( ( ( b ^ c ) & a ) ^ c ) + uData[ 9 ] + 0x8B44F7AF;
+	d = ( d << 12 ) | ( d >> 20 );
+	d += a;
+
+	c += ( ( ( a ^ b ) & d ) ^ b ) + uData[ 10 ] + 0xFFFF5BB1;
+	c = ( c << 17 ) | ( c >> 15 );
+	c += d;
+
+	b += ( ( ( d ^ a ) & c ) ^ a ) + uData[ 11 ] + 0x895CD7BE;
+	b = ( b << 22 ) | ( b >> 10 );
+	b += c;
+
+	a += ( ( ( c ^ d ) & b ) ^ d ) + uData[ 12 ] + 0x6B901122;
+	a = ( a << 7 ) | ( a >> 25 );
+	a += b;
+
+	d += ( ( ( b ^ c ) & a ) ^ c ) + uData[ 13 ] + 0xFD987193;
+	d = ( d << 12 ) | ( d >> 20 );
+	d += a;
+
+	c += ( ( ( a ^ b ) & d ) ^ b ) + uData[ 14 ] + 0xA679438E;
+	c = ( c << 17 ) | ( c >> 15 );
+	c += d;
+
+	b += ( ( ( d ^ a ) & c ) ^ a ) + uData[ 15 ] + 0x49B40821;
+	b = ( b << 22 ) | ( b >> 10 );
+	b += c;
+
+	a += ( ( ( b ^ c ) & d ) ^ c ) + uData[ 1 ] + 0xF61E2562;
+	a = ( a << 5 ) | ( a >> 27 );
+	a += b;
+
+	d += ( ( ( a ^ b ) & c ) ^ b ) + uData[ 6 ] + 0xC040B340;
+	d = ( d << 9 ) | ( d >> 23 );
+	d += a;
+
+	c += ( ( ( d ^ a ) & b ) ^ a ) + uData[ 11 ] + 0x265E5A51;
+	c = ( c << 14 ) | ( c >> 18 );
+	c += d;
+
+	b += ( ( ( c ^ d ) & a ) ^ d ) + uData[ 0 ] + 0xE9B6C7AA;
+	b = ( b << 20 ) | ( b >> 12 );
+	b += c;
+
+	a += ( ( ( b ^ c ) & d ) ^ c ) + uData[ 5 ] + 0xD62F105D;
+	a = ( a << 5 ) | ( a >> 27 );
+	a += b;
+
+	d += ( ( ( a ^ b ) & c ) ^ b ) + uData[ 10 ] + 0x02441453;
+	d = ( d << 9 ) | ( d >> 23 );
+	d += a;
+
+	c += ( ( ( d ^ a ) & b ) ^ a ) + uData[ 15 ] + 0xD8A1E681;
+	c = ( c << 14 ) | ( c >> 18 );
+	c += d;
+
+	b += ( ( ( c ^ d ) & a ) ^ d ) + uData[ 4 ] + 0xE7D3FBC8;
+	b = ( b << 20 ) | ( b >> 12 );
+	b += c;
+
+	a += ( ( ( b ^ c ) & d ) ^ c ) + uData[ 9 ] + 0x21E1CDE6;
+	a = ( a << 5 ) | ( a >> 27 );
+	a += b;
+
+	d += ( ( ( a ^ b ) & c ) ^ b ) + uData[ 14 ] + 0xC33707D6;
+	d = ( d << 9 ) | ( d >> 23 );
+	d += a;
+
+	c += ( ( ( d ^ a ) & b ) ^ a ) + uData[ 3 ] + 0xF4D50D87;
+	c = ( c << 14 ) | ( c >> 18 );
+	c += d;
+
+	b += ( ( ( c ^ d ) & a ) ^ d ) + uData[ 8 ] + 0x455A14ED;
+	b = ( b << 20 ) | ( b >> 12 );
+	b += c;
+
+	a += ( ( ( b ^ c ) & d ) ^ c ) + uData[ 13 ] + 0xA9E3E905;
+	a = ( a << 5 ) | ( a >> 27 );
+	a += b;
+
+	d += ( ( ( a ^ b ) & c ) ^ b ) + uData[ 2 ] + 0xFCEFA3F8;
+	d = ( d << 9 ) | ( d >> 23 );
+	d += a;
+
+	c += ( ( ( d ^ a ) & b ) ^ a ) + uData[ 7 ] + 0x676F02D9;
+	c = ( c << 14 ) | ( c >> 18 );
+	c += d;
+
+	b += ( ( ( c ^ d ) & a ) ^ d ) + uData[ 12 ] + 0x8D2A4C8A;
+	b = ( b << 20 ) | ( b >> 12 );
+	b += c;
+
+	a += ( b ^ c ^ d ) + uData[ 5 ] + 0xFFFA3942;
+	a = ( a << 4 ) | ( a >> 28 );
+	a += b;
+
+	d += ( a ^ b ^ c ) + uData[ 8 ] + 0x8771F681;
+	d = ( d << 11 ) | ( d >> 21 );
+	d += a;
+
+	c += ( d ^ a ^ b ) + uData[ 11 ] + 0x6D9D6122;
+	c = ( c << 16 ) | ( c >> 16 );
+	c += d;
+
+	b += ( c ^ d ^ a ) + uData[ 14 ] + 0xFDE5380C;
+	b = ( b << 23 ) | ( b >> 9 );
+	b += c;
+
+	a += ( b ^ c ^ d ) + uData[ 1 ] + 0xA4BEEA44;
+	a = ( a << 4 ) | ( a >> 28 );
+	a += b;
+
+	d += ( a ^ b ^ c ) + uData[ 4 ] + 0x4BDECFA9;
+	d = ( d << 11 ) | ( d >> 21 );
+	d += a;
+
+	c += ( d ^ a ^ b ) + uData[ 7 ] + 0xF6BB4B60;
+	c = ( c << 16 ) | ( c >> 16 );
+	c += d;
+
+	b += ( c ^ d ^ a ) + uData[ 10 ] + 0xBEBFBC70;
+	b = ( b << 23 ) | ( b >> 9 );
+	b += c;
+
+	a += ( b ^ c ^ d ) + uData[ 13 ] + 0x289B7EC6;
+	a = ( a << 4 ) | ( a >> 28 );
+	a += b;
+
+	d += ( a ^ b ^ c ) + uData[ 0 ] + 0xEAA127FA;
+	d = ( d << 11 ) | ( d >> 21 );
+	d += a;
+
+	c += ( d ^ a ^ b ) + uData[ 3 ] + 0xD4EF3085;
+	c = ( c << 16 ) | ( c >> 16 );
+	c += d;
+
+	b += ( c ^ d ^ a ) + uData[ 6 ] + 0x04881D05;
+	b = ( b << 23 ) | ( b >> 9 );
+	b += c;
+
+	a += ( b ^ c ^ d ) + uData[ 9 ] + 0xD9D4D039;
+	a = ( a << 4 ) | ( a >> 28 );
+	a += b;
+
+	d += ( a ^ b ^ c ) + uData[ 12 ] + 0xE6DB99E5;
+	d = ( d << 11 ) | ( d >> 21 );
+	d += a;
+
+	c += ( d ^ a ^ b ) + uData[ 15 ] + 0x1FA27CF8;
+	c = ( c << 16 ) | ( c >> 16 );
+	c += d;
+
+	b += ( c ^ d ^ a ) + uData[ 2 ] + 0xC4AC5665;
+	b = ( b << 23 ) | ( b >> 9 );
+	b += c;
+
+	a += ( ( ~d | b ) ^ c ) + uData[ 0 ] + 0xF4292244;
+	a = ( a << 6 ) | ( a >> 26 );
+	a += b;
+
+	d += ( ( ~c | a ) ^ b ) + uData[ 7 ] + 0x432AFF97;
+	d = ( d << 10 ) | ( d >> 22 );
+	d += a;
+
+	c += ( ( ~b | d ) ^ a ) + uData[ 14 ] + 0xAB9423A7;
+	c = ( c << 15 ) | ( c >> 17 );
+	c += d;
+
+	b += ( ( ~a | c ) ^ d ) + uData[ 5 ] + 0xFC93A039;
+	b = ( b << 21 ) | ( b >> 11 );
+	b += c;
+
+	a += ( ( ~d | b ) ^ c ) + uData[ 12 ] + 0x655B59C3;
+	a = ( a << 6 ) | ( a >> 26 );
+	a += b;
+
+	d += ( ( ~c | a ) ^ b ) + uData[ 3 ] + 0x8F0CCC92;
+	d = ( d << 10 ) | ( d >> 22 );
+	d += a;
+
+	c += ( ( ~b | d ) ^ a ) + uData[ 10 ] + 0xFFEFF47D;
+	c = ( c << 15 ) | ( c >> 17 );
+	c += d;
+
+	b += ( ( ~a | c ) ^ d ) + uData[ 1 ] + 0x85845DD1;
+	b = ( b << 21 ) | ( b >> 11 );
+	b += c;
+
+	a += ( ( ~d | b ) ^ c ) + uData[ 8 ] + 0x6FA87E4F;
+	a = ( a << 6 ) | ( a >> 26 );
+	a += b;
+
+	d += ( ( ~c | a ) ^ b ) + uData[ 15 ] + 0xFE2CE6E0;
+	d = ( d << 10 ) | ( d >> 22 );
+	d += a;
+
+	c += ( ( ~b | d ) ^ a ) + uData[ 6 ] + 0xA3014314;
+	c = ( c << 15 ) | ( c >> 17 );
+	c += d;
+
+	b += ( ( ~a | c ) ^ d ) + uData[ 13 ] + 0x4E0811A1;
+	b = ( b << 21 ) | ( b >> 11 );
+	b += c;
+
+	a += ( ( ~d | b ) ^ c ) + uData[ 4 ] + 0xF7537E82;
+	a = ( a << 6 ) | ( a >> 26 );
+	a += b;
+
+	d += ( ( ~c | a ) ^ b ) + uData[ 11 ] + 0xBD3AF235;
+	d = ( d << 10 ) | ( d >> 22 );
+	d += a;
+
+	c += ( ( ~b | d ) ^ a ) + uData[ 2 ] + 0x2AD7D2BB;
+	c = ( c << 15 ) | ( c >> 17 );
+	c += d;
+
+	b += ( ( ~a | c ) ^ d ) + uData[ 9 ] + 0xEB86D391;
+	b = ( b << 21 ) | ( b >> 11 );
+	b += c;
+	context->m_state[ 0 ] += a;
+	context->m_state[ 1 ] += b;
+	context->m_state[ 2 ] += c;
+	context->m_state[ 3 ] += d;
 }
