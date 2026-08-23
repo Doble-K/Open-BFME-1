@@ -38,8 +38,10 @@ public:
     int firstValue(int value);
     int secondValue(int value);
     int maximumIndex();
+    int alternateMaximumIndex();
     void ignoreValue(int value);
     int upperWord();
+    bool wordsEqual();
 
 private:
     int m_lowerWord;
@@ -61,6 +63,11 @@ int Rva0082B140Helpers::maximumIndex()
     return 0x3fffffff;
 }
 
+int Rva0082B140Helpers::alternateMaximumIndex()
+{
+    return 0x3fffffff;
+}
+
 void Rva0082B140Helpers::ignoreValue(int)
 {
 }
@@ -68,4 +75,46 @@ void Rva0082B140Helpers::ignoreValue(int)
 int Rva0082B140Helpers::upperWord()
 {
     return m_upperWord;
+}
+
+bool Rva0082B140Helpers::wordsEqual()
+{
+    return m_lowerWord == m_upperWord;
+}
+
+class Rva0082B1D0PointerRange
+{
+public:
+    int *firstPointer();
+    int *alternateFirstPointer();
+    int *lastElement();
+    int *alternateLastElement();
+
+private:
+    int *m_first;
+    int *m_end;
+};
+
+int *Rva0082B1D0PointerRange::firstPointer()
+{
+    int *result = m_first;
+    return result;
+}
+
+int *Rva0082B1D0PointerRange::alternateFirstPointer()
+{
+    int *result = m_first;
+    return result;
+}
+
+int *Rva0082B1D0PointerRange::lastElement()
+{
+    int *result = m_end;
+    return result - 1;
+}
+
+int *Rva0082B1D0PointerRange::alternateLastElement()
+{
+    int *result = m_end;
+    return result - 1;
 }
