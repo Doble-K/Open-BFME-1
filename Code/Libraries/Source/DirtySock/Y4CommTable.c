@@ -20,11 +20,24 @@ struct Rva00812220Entry
 	char m_gap1A0[ 4 ];
 };
 
-struct Rva00812220Table
+struct Rva007FD4E0Socket;
+
+/* The owning object, 0x50 bytes.  THE TABLE AND THE MODULE ARE ONE
+ * ALLOCATION: the lookup below reads only +0x28 and +0x2C, the constructor at
+ * 0x00812320 fills the same two and six more, and the announce sender reads
+ * two others -- all from the same pointer.  Three functions had three partial
+ * views of it while they were converted separately; this is the union of
+ * them, and only the first 0x28 remain gap because nothing here reads them. */
+struct Rva00812320Module
 {
 	char m_gap0[ 0x28 ];
 	struct Rva00812220Entry *m_first;	/* +0x28 */
 	struct Rva00812220Entry *m_end;		/* +0x2C */
+	int m_ready;				/* +0x30 */
+	char m_gap34[ 4 ];
+	struct Rva007FD4E0Socket *m_socket;	/* +0x38 */
+	char m_peer[ 0x10 ];			/* +0x3C */
+	int m_active;				/* +0x4C */
 };
 
 /* 0x00811CE0 COMPARES TWO STRINGS IGNORING ASCII CASE, folding with XOR 0x20
@@ -89,7 +102,7 @@ int Rva00811CE0( const char *a, const char *b )
  * default back cannot tell which of the four applied -- or that the table was
  * null, which returns the default too.
  */
-int Rva00812220( struct Rva00812220Table *table, const char *keyA,
+int Rva00812220( struct Rva00812320Module *table, const char *keyA,
 	const char *keyB, int *pExtra, int iDefault )
 {
 	struct Rva00812220Entry *p;
@@ -145,18 +158,6 @@ struct Rva007FD4E0Socket;
  * TABLE THE LOOKUP WALKS IS THIS OBJECT -- 0x00812220 takes the same pointer
  * and reads the same two fields, so the "table" and the "module" are one
  * allocation and the split is only in how each function names it. */
-struct Rva00812320Module
-{
-	char m_gap0[ 0x28 ];
-	struct Rva00812220Entry *m_first;	/* +0x28 */
-	struct Rva00812220Entry *m_end;		/* +0x2C */
-	int m_ready;				/* +0x30 */
-	char m_gap34[ 4 ];
-	struct Rva007FD4E0Socket *m_socket;	/* +0x38 */
-	char m_peer[ 0x10 ];			/* +0x3C */
-	int m_active;				/* +0x4C */
-};
-
 int Rva007FD920( struct Rva007FD4E0Socket *socket, const char *buffer,
 	int length, int flags, void *to, int toLength );
 void * __cdecl memset( void *dest, int c, unsigned int count );

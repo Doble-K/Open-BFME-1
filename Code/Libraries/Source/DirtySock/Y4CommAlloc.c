@@ -36,3 +36,98 @@ void *Rva0080B000( void )
 
 	return pObject;
 }
+
+struct Rva00812320Module;
+
+struct Rva00812320Module *Rva00812320( int iEntries );
+int Rva00812220( struct Rva00812320Module *module, const char *keyA,
+	const char *keyB, int *pExtra, int iDefault );
+int Rva00811E20( struct Rva00812320Module *module, const char *keyA,
+	const char *keyB, char *out, int outSize, int bIncludePending );
+
+/* Uninitialised data.  Whatever filter string this holds is written at run
+ * time, so it is not recoverable from the image; it sits two bytes below the
+ * module's reference count, which is why the group of globals reads as one
+ * small block rather than three unrelated addresses. */
+extern char g_Rva0130ACFAFilter[];
+
+/* The caller's own object.  Only the two fields these wrappers touch are
+ * named -- a default key at +0x04 and the module pointer at +0x64. */
+struct Rva0080F100Object
+{
+	char m_gap0[ 4 ];
+	char m_defaultKey[ 0x60 ];		/* +0x04 */
+	struct Rva00812320Module *m_module;	/* +0x64 */
+};
+
+/* 0x0080F100 AND 0x0080F180 ARE THE SAME WRAPPER TWICE, differing only in
+ * which of the two table functions they end in -- the value lookup or the
+ * text listing.  Both CREATE THE MODULE ON FIRST USE, both substitute the
+ * object's own key when the caller passes none, and both then re-test the
+ * module pointer.
+ *
+ * THAT SECOND TEST IS NOT REDUNDANT-LOOKING BY ACCIDENT.  The constructor can
+ * fail and return null, so the field may still be null after the first branch
+ * assigned it -- the code reads as a doubled check and is really a
+ * create-then-verify.  The failure result is 0, which the lookup also returns
+ * for "no match", so a caller cannot tell a construction failure from an empty
+ * table.
+ *
+ * SIXTEEN ENTRIES IS HARDCODED at both sites rather than passed in, so the
+ * table size is decided by whichever of these two happens to run first and
+ * neither caller can influence it.
+ */
+int Rva0080F100( struct Rva0080F100Object *object, const char *keyA,
+	const char *keyB )
+{
+	int iResult;
+
+	if ( object->m_module == 0 )
+	{
+		object->m_module = Rva00812320( 0x10 );
+	}
+
+	if ( keyA == 0 )
+	{
+		keyA = object->m_defaultKey;
+	}
+
+	if ( object->m_module == 0 )
+	{
+		iResult = 0;
+	}
+	else
+	{
+		iResult = Rva00812220( object->m_module, keyA, keyB, 0, 0 );
+	}
+
+	return iResult;
+}
+
+int Rva0080F180( struct Rva0080F100Object *object, const char *keyA,
+	char *out, int outSize )
+{
+	int iResult;
+
+	if ( object->m_module == 0 )
+	{
+		object->m_module = Rva00812320( 0x10 );
+	}
+
+	if ( keyA == 0 )
+	{
+		keyA = object->m_defaultKey;
+	}
+
+	if ( object->m_module == 0 )
+	{
+		iResult = 0;
+	}
+	else
+	{
+		iResult = Rva00811E20( object->m_module, keyA, g_Rva0130ACFAFilter,
+			out, outSize, 0 );
+	}
+
+	return iResult;
+}
