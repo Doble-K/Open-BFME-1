@@ -17,12 +17,22 @@ struct Rva0081BD40Comm
 	 * respectively.  Nothing converted so far shows what sets it to 5. */
 	int m_state;                    /* +0xCC */
 	char m_gapCC[ 0x04 ];
-	int m_recordSize;               /* +0xD4 */
-	int m_bufferSize;               /* +0xD8 */
-	int m_writeOffset;              /* +0xDC */
-	int m_readOffset;               /* +0xE0 */
-	unsigned char *m_buffer;        /* +0xE4 */
-	char m_gap[ 0x1838 ];
+	int m_recvRecordSize;               /* +0xD4 */
+	int m_recvBufferSize;               /* +0xD8 */
+	int m_recvWriteOffset;              /* +0xDC */
+	int m_recvReadOffset;               /* +0xE0 */
+	unsigned char *m_recvBuffer;        /* +0xE4 */
+	char m_gapE8[ 0x04 ];
+	/* THE SEND RING, the same five fields plus an ack cursor that the third
+	 * transport has at +0xB0..+0xC8.  0x0081AA20 is the same acknowledgement
+	 * handler that transport has at 0x008186C0, walking these instead. */
+	int m_sendRecordSize;           /* +0xEC */
+	int m_sendBufferSize;           /* +0xF0 */
+	int m_sendWriteOffset;          /* +0xF4 */
+	int m_sendReadOffset;           /* +0xF8 */
+	int m_sendAckOffset;            /* +0xFC */
+	unsigned char *m_sendBuffer;    /* +0x100 */
+	char m_gap[ 0x181C ];
 	/* A CRITICAL SECTION, and its SIZE is the evidence: the two bodies that
 	 * take it pass +0x1920 to a pair of one-argument stdcall imports, and the
 	 * busy flag below starts exactly 0x18 bytes later -- which is sizeof
@@ -97,8 +107,8 @@ int Rva0081BD40( struct Rva0081BD40Comm *comm, void *buffer, int size,
 	iResult = Rva0081BC80( comm, buffer, size, when );
 
 	if ( iResult >= 0 )
-		comm->m_readOffset = ( comm->m_readOffset + comm->m_recordSize )
-			% comm->m_bufferSize;
+		comm->m_recvReadOffset = ( comm->m_recvReadOffset + comm->m_recvRecordSize )
+			% comm->m_recvBufferSize;
 
 	return iResult;
 }
@@ -131,14 +141,14 @@ int Rva0081BC80( struct Rva0081BD40Comm *comm, void *buffer, int size,
 	struct Rva0081BC80Record *record;
 	int iCopy;
 
-	if ( comm->m_readOffset == comm->m_writeOffset )
+	if ( comm->m_recvReadOffset == comm->m_recvWriteOffset )
 		return -7;
 
 	while ( comm->m_busy != 0 )
 		Rva01358F30Wait( 0 );
 
-	record = (struct Rva0081BC80Record *)( comm->m_buffer
-		+ comm->m_readOffset );
+	record = (struct Rva0081BC80Record *)( comm->m_recvBuffer
+		+ comm->m_recvReadOffset );
 
 	if ( record->m_length < size )
 		iCopy = record->m_length;
@@ -210,4 +220,82 @@ int Rva0081B910( struct Rva0081BD40Comm *comm, void *argument )
 
 	Rva01358E74Leave( comm->m_lock );
 	return iResult;
+}
+
+/* The control message: a code at +0x08 and a value at +0x0C, the same header
+ * the other transports use. */
+struct Rva0081AA20Message
+{
+	int m_length;                   /* +0x00 */
+	unsigned int m_tick;            /* +0x04 */
+	int m_code;                     /* +0x08 */
+	int m_value;                    /* +0x0C */
+};
+
+/* A queued send record carries its sequence at +0x08.  Only that is
+ * established here. */
+struct Rva0081AA20SendRecord
+{
+	int m_reserved0;
+	int m_reserved4;
+	unsigned int m_sequence;        /* +0x08 */
+};
+
+void Rva0081A8C0( struct Rva0081BD40Comm *comm );
+
+/* 0x0081AA20 IS THE ACKNOWLEDGEMENT HANDLER, and it is the SAME BODY the third
+ * transport has at 0x008186C0 -- same off-by-one for code 4, same
+ * drag-the-ack-cursor loop, same rewind and kick -- walking this object's ring
+ * at +0xEC..+0x100 instead of that one's at +0xB0..+0xC8.
+ *
+ * Because that one is already converted and explained, the reading here is not
+ * a fresh inference: code 4 means "I want sequence N next" so everything BELOW
+ * N is retired, anything else means "I have N" so N itself goes too, and the
+ * comparison is unsigned so a wrapped sequence space still retires correctly.
+ * Code 4 additionally snaps the transmit cursor back and kicks the sender,
+ * which is what makes it a retransmit request.
+ *
+ * Duplicated code rather than shared: the two bodies differ only in field
+ * offsets and which kick they call.
+ */
+void Rva0081AA20( struct Rva0081BD40Comm *comm,
+	struct Rva0081AA20Message *message )
+{
+	int bRewind;
+	unsigned int uAcked;
+	struct Rva0081AA20SendRecord *record;
+	int iAcked;
+
+	bRewind = ( message->m_code == 4 );
+
+	if ( bRewind )
+		iAcked = message->m_value - 1;
+	else
+		iAcked = message->m_value;
+
+	uAcked = iAcked;
+
+	while ( comm->m_sendReadOffset != comm->m_sendWriteOffset )
+	{
+		record = (struct Rva0081AA20SendRecord *)( comm->m_sendBuffer
+			+ comm->m_sendReadOffset );
+
+		if ( uAcked < record->m_sequence )
+			break;
+
+		if ( comm->m_sendAckOffset == comm->m_sendReadOffset )
+		{
+			comm->m_sendAckOffset = ( comm->m_sendAckOffset
+				+ comm->m_sendRecordSize ) % comm->m_sendBufferSize;
+		}
+
+		comm->m_sendReadOffset = ( comm->m_sendReadOffset
+			+ comm->m_sendRecordSize ) % comm->m_sendBufferSize;
+	}
+
+	if ( bRewind )
+	{
+		comm->m_sendAckOffset = comm->m_sendReadOffset;
+		Rva0081A8C0( comm );
+	}
 }
