@@ -62,23 +62,26 @@ struct Rva00815B50Comm
 	 * established, 4 is closing. */
 	int m_state;                    /* +0x90 */
 	char m_gapA[ 0x04 ];
-	/* A SECOND RING in the same object, advanced by 0x008165F0 exactly as the
-	 * one below is: offset += record size, modulo buffer size.  Two rings, one
-	 * transport -- the outbound queue and the inbound one. */
-	int m_sendRecordSize;           /* +0x98 */
+	/* THE RECEIVE QUEUE.  The dequeue at 0x00816520 compares +0xA8 against
+	 * +0xA4 to decide whether anything is waiting and reads the record at
+	 * +0xAC plus +0xA8, which is what identifies the base and the two
+	 * cursors; 0x008165F0 advances +0xA8 by +0x98 modulo +0xA0 after a
+	 * successful read. */
+	int m_recvRecordSize;           /* +0x98 */
 	char m_gapB[ 0x04 ];
-	int m_sendBufferSize;           /* +0xA0 */
-	char m_gapC[ 0x04 ];
-	int m_sendOffset;               /* +0xA8 */
-	char m_gapD[ 0x04 ];
-	int m_recordSize;               /* +0xB0 */
-	int m_bufferSize;               /* +0xB4 */
-	int m_writeOffset;              /* +0xB8 */
-	int m_readOffset;               /* +0xBC */
-	/* The ring's BASE POINTER.  0x00815FA0 adds the read offset to it and
-	 * dereferences the result, which is what proves the offsets above are
-	 * byte offsets into this buffer rather than indices. */
-	unsigned char *m_buffer;        /* +0xC0 */
+	int m_recvBufferSize;           /* +0xA0 */
+	int m_recvWriteOffset;          /* +0xA4 */
+	int m_recvReadOffset;           /* +0xA8 */
+	unsigned char *m_recvBuffer;    /* +0xAC */
+	/* THE SEND QUEUE, same five fields one ring further on.  The retransmit
+	 * timer walks THIS one and hands its records to the send, and the ack
+	 * handler at 0x00815FA0 retires from it -- which is what tells the two
+	 * queues apart, since their shapes are identical. */
+	int m_sendRecordSize;           /* +0xB0 */
+	int m_sendBufferSize;           /* +0xB4 */
+	int m_sendWriteOffset;          /* +0xB8 */
+	int m_sendReadOffset;           /* +0xBC */
+	unsigned char *m_sendBuffer;    /* +0xC0 */
 	unsigned int m_lastSendTick;    /* +0xC4 */
 	unsigned int m_lastRecvTick;    /* +0xC8 */
 	char m_gap2[ 0x120 ];
@@ -125,13 +128,13 @@ int Rva00815AB0( struct Rva00815B50Comm *comm, int *out )
 
 	*out = 0;
 
-	comm->m_writeOffset = ( comm->m_writeOffset + comm->m_recordSize )
-		% comm->m_bufferSize;
+	comm->m_sendWriteOffset = ( comm->m_sendWriteOffset + comm->m_sendRecordSize )
+		% comm->m_sendBufferSize;
 
 	Rva00815B50( comm->m_socket, 0, comm );
 
-	iResult = ( ( comm->m_writeOffset + comm->m_bufferSize
-		- comm->m_readOffset ) % comm->m_bufferSize ) / comm->m_recordSize;
+	iResult = ( ( comm->m_sendWriteOffset + comm->m_sendBufferSize
+		- comm->m_sendReadOffset ) % comm->m_sendBufferSize ) / comm->m_sendRecordSize;
 
 	return iResult;
 }
@@ -158,15 +161,15 @@ void Rva00815FA0( struct Rva00815B50Comm *comm, const unsigned char *packet )
 	int iRecordTag;
 	unsigned char *pRecord;
 
-	pRecord = comm->m_buffer + comm->m_readOffset;
+	pRecord = comm->m_sendBuffer + comm->m_sendReadOffset;
 
 	iPacketTag = packet[ 8 ] - 0xC0;
 	iRecordTag = pRecord[ 8 ] - 0x80;
 
 	if ( iPacketTag == iRecordTag )
 	{
-		comm->m_readOffset = ( comm->m_readOffset + comm->m_recordSize )
-			% comm->m_bufferSize;
+		comm->m_sendReadOffset = ( comm->m_sendReadOffset + comm->m_sendRecordSize )
+			% comm->m_sendBufferSize;
 	}
 }
 
@@ -399,10 +402,10 @@ void Rva00816490( struct Rva00815B50Comm *comm )
 	 * single conditional jump for each; an early return compiles to a short
 	 * jump over an unconditional one, which is two instructions where retail
 	 * has one. */
-	if ( comm->m_state == 3 && comm->m_writeOffset != comm->m_readOffset )
+	if ( comm->m_state == 3 && comm->m_sendWriteOffset != comm->m_sendReadOffset )
 	{
-		packet = (struct Rva00815680Packet *)( comm->m_buffer
-			+ comm->m_readOffset );
+		packet = (struct Rva00815680Packet *)( comm->m_sendBuffer
+			+ comm->m_sendReadOffset );
 
 		if ( packet->m_sendTick == 0
 			|| Rva007FEA00() - packet->m_sendTick >= 250 )
@@ -421,24 +424,72 @@ void Rva00816490( struct Rva00815B50Comm *comm )
 }
 
 /* 0x008165F0 is the outbound-ring counterpart of 0x00814F70 in the other
- * transport: forward four arguments and advance the SEND cursor only when the
- * inner call reports success, so a failed enqueue leaves the slot to be
- * retried.  The four arguments are never inspected here, so their types are
- * not recoverable and are declared as plain words.
+ * transport: forward to the dequeue and advance the RECEIVE read cursor only
+ * when it reports success, so a failed read leaves the record in place.
  */
-int Rva00816520( struct Rva00815B50Comm *comm, int a, int b, int c );
-
-int Rva008165F0( struct Rva00815B50Comm *comm, int a, int b, int c )
+int Rva008165F0( struct Rva00815B50Comm *comm, void *buffer, int size,
+	unsigned int *when )
 {
 	int iResult;
 
-	iResult = Rva00816520( comm, a, b, c );
+	iResult = Rva00816520( comm, buffer, size, when );
 
 	if ( iResult >= 0 )
 	{
-		comm->m_sendOffset = ( comm->m_sendOffset + comm->m_sendRecordSize )
-			% comm->m_sendBufferSize;
+		comm->m_recvReadOffset = ( comm->m_recvReadOffset + comm->m_recvRecordSize )
+			% comm->m_recvBufferSize;
 	}
 
 	return iResult;
+}
+
+/* 0x00816520 DEQUEUES ONE RECEIVED RECORD.
+ *
+ * It pumps the transport first, but ONLY IF THE QUEUE LOOKS EMPTY -- and then
+ * re-tests, so a pump that produced nothing still returns -7 rather than
+ * reading a stale slot.  That double test is not redundant: the pump is what
+ * fills the queue.
+ *
+ * The length it reports is the stored record length MINUS ONE, the inverse of
+ * the plus-one the send applies, and the payload it copies starts at +9 rather
+ * than +8 -- both skip the same one-byte header.
+ *
+ * THE COPY IS CLAMPED BUT THE RETURN IS NOT.  A caller passing a buffer
+ * smaller than the record gets a truncated copy and the FULL length back, so
+ * the return value is "how big it was", not "how much you got"; comparing them
+ * is the only way to detect truncation.  Nothing here reports it otherwise.
+ *
+ * The optional out-parameter receives the record's +0x00 word.  In the send
+ * queue that field is the retransmit stamp; here it is the arrival stamp the
+ * receive path wrote.  Same offset, different meaning per queue.
+ */
+int Rva00816520( struct Rva00815B50Comm *comm, void *buffer, int size,
+	unsigned int *when )
+{
+	struct Rva00815680Packet *packet;
+	int iLength;
+	int iCopy;
+
+	if ( comm->m_recvReadOffset == comm->m_recvWriteOffset )
+		Rva00815B50( 0, 0, comm );
+
+	if ( comm->m_recvReadOffset == comm->m_recvWriteOffset )
+		return -7;
+
+	packet = (struct Rva00815680Packet *)( comm->m_recvBuffer
+		+ comm->m_recvReadOffset );
+
+	iLength = packet->m_length - 1;
+
+	if ( iLength < size )
+		iCopy = iLength;
+	else
+		iCopy = size;
+
+	memcpy( buffer, (char *)packet + 9, iCopy );
+
+	if ( when != 0 )
+		*when = packet->m_sendTick;
+
+	return iLength;
 }
