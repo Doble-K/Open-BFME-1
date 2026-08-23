@@ -75408,3 +75408,9 @@ _Rva00816520,0x00816520,Y4 lane: DirtySock comm enqueue wrapped by 0x008165F0; n
 ??0Locomotor@@QAE@PBVLocomotorTemplate@@@Z,0x00040AA7,Open-BFME5 ILT; the constructor ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z at 0x001B6920 runs on the 0xA8 bytes it allocates
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0001D9DA,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C before the layer store
 ?updatePos@Pathfinder@@QAEXPAVObject@@PBUCoord3D@@@Z,0x00013647,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C with the object position after the layer store
+_Rva007F0000Alloc,0x007F0000,Y4 lane: C-callable spelling of the allocator
+_Rva00816DF0,0x00816DF0,Y4 lane: DirtySock transport socket attach/detach
+_Rva00816E10,0x00816E10,Y4 lane: DirtySock transport registration
+_Rva00816F60,0x00816F60,Y4 lane: DirtySock transport close path
+_Rva00817100,0x00817100,Y4 lane: DirtySock transport drain with a timeout
+_Rva00817140,0x00817140,Y4 lane: DirtySock transport unlink from the global list
