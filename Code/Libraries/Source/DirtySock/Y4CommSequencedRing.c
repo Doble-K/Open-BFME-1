@@ -46,7 +46,11 @@ struct Rva0081BD40Comm
 	int m_sendReadOffset;           /* +0xF8 */
 	int m_sendAckOffset;            /* +0xFC */
 	unsigned char *m_sendBuffer;    /* +0x100 */
-	char m_gap[ 0x181C ];
+	/* THE NEXT SEND SEQUENCE.  0x0081BA60 stamps it into each queued record
+	 * and then increments it, so it is the counter the acknowledgement
+	 * handler's comparisons are against. */
+	unsigned int m_sendSequence;    /* +0x104 */
+	char m_gap[ 0x1818 ];
 	/* A CRITICAL SECTION, and its SIZE is the evidence: the two bodies that
 	 * take it pass +0x1920 to a pair of one-argument stdcall imports, and the
 	 * busy flag below starts exactly 0x18 bytes later -- which is sizeof
@@ -455,4 +459,92 @@ void Rva0081AB40( struct Rva0081BD40Comm *comm,
 
 	comm->m_depth = comm->m_depth - 1;
 	comm->m_flags = comm->m_flags | 1;
+}
+
+__declspec(dllimport) unsigned int __stdcall Rva01358E0CTick( void );
+
+/* 0x0081BA60 IS THE PUBLIC SEND: queue one payload and try to push it out.
+ *
+ * It refuses unless the state is 4 or 5, and returns 0 rather than an error
+ * when the queue is full -- so a caller distinguishes "cannot ever" from "not
+ * right now" by sign, and only the second is worth retrying.
+ *
+ * A ZERO LENGTH IS A QUERY, NOT A SEND.  It returns the queue depth plus one
+ * without touching anything, which is how a caller asks how much is
+ * outstanding through the same entry point.  That branch is taken before the
+ * record is written, so a zero-length payload can never be queued.
+ *
+ * The size ceiling is the record size PLUS 0x800 -- the same 0x800 the
+ * windowed sender uses as its in-flight budget.  Why a per-record limit is
+ * expressed as a record plus a window is not something these bytes explain,
+ * and it is reproduced rather than rationalised; over it, the answer is -6.
+ *
+ * The record is stamped with its own sequence, the sequence is advanced, the
+ * peer's expected receive sequence minus one rides along as the
+ * acknowledgement, and the arrival clock is read last.  THE SENDER IS THEN
+ * CALLED UNDER THE LOCK, which is the only reason this body takes it.
+ *
+ * The return is the queue depth, floored at 1 -- so a successful send never
+ * reports zero, which would otherwise be indistinguishable from the
+ * queue-full case above.
+ */
+int Rva0081BA60( struct Rva0081BD40Comm *comm, const void *payload,
+	int length )
+{
+	int iCount;
+	struct Rva0081AA20SendRecord *slot;
+	int iDepth;
+
+	if ( comm->m_state != 4 && comm->m_state != 5 )
+		return -2;
+
+	if ( ( comm->m_sendWriteOffset + comm->m_sendRecordSize )
+		% comm->m_sendBufferSize == comm->m_sendReadOffset )
+		return 0;
+
+	if ( length == 0 )
+	{
+		iCount = ( ( comm->m_sendWriteOffset + comm->m_sendBufferSize
+			- comm->m_sendReadOffset ) % comm->m_sendBufferSize )
+			/ comm->m_sendRecordSize;
+
+		return iCount + 1;
+	}
+
+	slot = (struct Rva0081AA20SendRecord *)( comm->m_sendBuffer
+		+ comm->m_sendWriteOffset );
+
+	slot->m_length = length;
+
+	/* UNSIGNED: retail compares with jbe, so a negative length does not slip
+	 * under the ceiling -- it wraps to a huge value and is rejected.  A signed
+	 * compare here would accept it and then memcpy with it. */
+	if ( (unsigned int)( slot->m_length + 4 )
+		> (unsigned int)( comm->m_sendRecordSize + 0x800 ) )
+		return -6;
+
+	memcpy( (char *)slot + 0x10, payload, length );
+
+	slot->m_sequence = comm->m_sendSequence;
+	comm->m_sendSequence = comm->m_sendSequence + 1;
+	slot->m_ack = comm->m_recvSequence - 1;
+	slot->m_tick = Rva01358E0CTick();
+
+	comm->m_sendWriteOffset = ( comm->m_sendWriteOffset
+		+ comm->m_sendRecordSize ) % comm->m_sendBufferSize;
+
+	Rva01358D18Enter( comm->m_lock );
+	Rva0081A8C0( comm );
+	Rva01358E74Leave( comm->m_lock );
+
+	iCount = ( ( comm->m_sendWriteOffset + comm->m_sendBufferSize
+		- comm->m_sendReadOffset ) % comm->m_sendBufferSize )
+		/ comm->m_sendRecordSize;
+
+	if ( iCount > 0 )
+		iDepth = iCount;
+	else
+		iDepth = 1;
+
+	return iDepth;
 }
