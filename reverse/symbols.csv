@@ -75512,3 +75512,5 @@ _peerStopGame,0x00857E50,Open-BFME5 cdecl body; ?stopHostingAlready@PeerThreadCl
 ??0W3DShadowGeometryManager@@QAE@XZ,0x00038488,BFME constructor ILT reached by volumetric shadow manager allocation
 ?allocate@ShadowPool@@QAE_NHH@Z,0x0003FC7E,BFME pool allocation used by volumetric shadow manager constructor statistics
 ?setPosition@Object@@QAEXPBUCoord3D@@@Z,0x0003A1A7,Open-BFME5 ILT thunk; ?putObjectAtGarrisonPoint@GarrisonContain@@IAEXPAVObject@@W4ObjectID@@HH@Z at 0x0021D750 calls it with the garrison point it just read
+?getSkillPointsNeeded@RankInfo@@QBEHABVAsciiString@@@Z,0x000066A4,Open-BFME5 ILT thunk to body 0x003A0860; resetRank passes Player::m_side and consumes the returned next-rank threshold; BFME RankInfo has five side override fields at 0x14..0x24
+?resetSciences@Player@@QAEXXZ,0x0003FDA0,Open-BFME5 ILT thunk to body 0x000D7B60; resetRank calls it after rebuilding rank and science-purchase state, matching the reference Player algorithm

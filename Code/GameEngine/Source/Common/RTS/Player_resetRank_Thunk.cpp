@@ -1,333 +1,136 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /Ivendor/stlport
+#include <limits.h>
+#include <vector>
 
-class Player {
-public:
-	void resetRank();
+typedef int Bool;
+
+enum ScienceType {};
+typedef std::vector<ScienceType> ScienceVec;
+
+class AsciiString
+{
+private:
+	char *m_data;
 };
 
-// ?resetRank@Player@@QAEXXZ
-__declspec(naked) void Player::resetRank()
+template <class Character> class StringBase
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x99
-		__emit 0x9b
-		__emit 0xff
-		__emit 0x00
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xec
-		__emit 0x08
-		__emit 0x53
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x33
-		__emit 0xdb
-		__emit 0x89
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xb8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x86
-		__emit 0x58
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x86
-		__emit 0xa0
-		__emit 0x06
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x5c
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x14
-		__emit 0x10
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x02
-		__emit 0xe8
-		__emit 0xb9
-		__emit 0x32
-		__emit 0xf5
-		__emit 0xff
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0d
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x28
-		__emit 0x51
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0xe8
-		__emit 0xaf
-		__emit 0xe9
-		__emit 0xf2
-		__emit 0xff
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0x7f
-		__emit 0x89
-		__emit 0x86
-		__emit 0x68
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x86
-		__emit 0x6c
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x96
-		__emit 0x38
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0x34
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xc2
-		__emit 0x2b
-		__emit 0xc2
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7e
-		__emit 0x0f
-		__emit 0x2b
-		__emit 0xd1
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x2c
-		__emit 0x0a
-		__emit 0x89
-		__emit 0x29
-		__emit 0x83
-		__emit 0xc1
-		__emit 0x04
-		__emit 0x48
-		__emit 0x75
-		__emit 0xf5
-		__emit 0x5d
-		__emit 0x89
-		__emit 0x8e
-		__emit 0x38
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x80
-		__emit 0xc0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x8b
-		__emit 0x96
-		__emit 0x58
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x86
-		__emit 0x64
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x14
-		__emit 0x10
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x52
-		__emit 0xe8
-		__emit 0x3e
-		__emit 0x32
-		__emit 0xf5
-		__emit 0xff
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0x8b
-		__emit 0x40
-		__emit 0x28
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x01
-		__emit 0x86
-		__emit 0x64
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x7c
-		__emit 0x14
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x24
-		__emit 0x8b
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x68
-		__emit 0x6c
-		__emit 0x40
-		__emit 0x08
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x54
-		__emit 0x24
-		__emit 0x14
-		__emit 0x52
-		__emit 0xff
-		__emit 0x50
-		__emit 0x28
-		__emit 0xbb
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x54
-		__emit 0x6e
-		__emit 0x33
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x70
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x7f
-		__emit 0x07
-		__emit 0x7b
-		__emit 0x00
-		__emit 0xf6
-		__emit 0xc3
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0x74
-		__emit 0x09
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xe8
-		__emit 0x09
-		__emit 0x04
-		__emit 0x7b
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0xd2
-		__emit 0x7f
-		__emit 0xf6
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x14
-		__emit 0xc3
+public:
+	void set(const StringBase<Character> &other);
+
+protected:
+	Character *m_data;
+};
+
+class UnicodeString : public StringBase<unsigned short>
+{
+public:
+	~UnicodeString();
+	UnicodeString &operator=(const UnicodeString &other)
+	{
+		set(other);
+		return *this;
 	}
+
+	static const UnicodeString TheEmptyString;
+};
+
+class PlayerTemplate
+{
+public:
+	int getIntrinsicSciencePurchasePoints() const
+	{
+		return m_intrinsicSciencePurchasePoints;
+	}
+
+private:
+	char m_retailPrefix[0xc0];
+	int m_intrinsicSciencePurchasePoints;
+};
+
+class RankInfo
+{
+public:
+	int getSkillPointsNeeded(const AsciiString &side) const;
+
+	char m_retailPrefix[0x28];
+	int m_sciencePurchasePointsGranted;
+};
+
+class RankInfoStore
+{
+public:
+	const RankInfo *getRankInfo(int level) const;
+};
+
+class GameTextInterface
+{
+public:
+	virtual void vfn00();
+	virtual void vfn01();
+	virtual void vfn02();
+	virtual void vfn03();
+	virtual void vfn04();
+	virtual void vfn05();
+	virtual void vfn06();
+	virtual void vfn07();
+	virtual void vfn08();
+	virtual void vfn09();
+	virtual UnicodeString fetch(const char *label, Bool *exists = 0);
+};
+
+extern RankInfoStore *TheRankInfoStore;
+extern GameTextInterface *TheGameText;
+
+class Player
+{
+public:
+	void resetRank();
+	void resetSciences();
+
+private:
+	char m_vtable[4];
+	const PlayerTemplate *m_playerTemplate;
+	char m_beforeSide[0x20];
+	AsciiString m_side;
+	// BFME places additional player state before its science vectors.
+	char m_beforeSciences[0x208];
+	ScienceVec m_sciences;
+	ScienceVec m_sciencesDisabled;
+	ScienceVec m_sciencesHidden;
+	int m_rankLevel;
+	int m_skillPoints;
+	int m_retailRankPadding;
+	int m_sciencePurchasePoints;
+	int m_levelUp;
+	int m_levelDown;
+	UnicodeString m_generalName;
+	char m_afterGeneralName[0x42c];
+	// Retail mirrors rank one in a later Player field used by its accessors.
+	int m_rankLevelMirror;
+};
+
+void Player::resetRank()
+{
+	m_rankLevel = 1;
+	m_rankLevelMirror = 1;
+	m_skillPoints = 0;
+
+	const RankInfo *nextRank = TheRankInfoStore->getRankInfo(m_rankLevel + 1);
+	m_levelUp = nextRank ? nextRank->getSkillPointsNeeded(m_side) : INT_MAX;
+	m_levelDown = 0;
+	m_sciences.clear();
+
+	m_sciencePurchasePoints = m_playerTemplate
+		? m_playerTemplate->getIntrinsicSciencePurchasePoints()
+		: 0;
+	const RankInfo *currentRank = TheRankInfoStore->getRankInfo(m_rankLevel);
+	m_sciencePurchasePoints += currentRank
+		? currentRank->m_sciencePurchasePointsGranted
+		: 0;
+
+	m_generalName = TheGameText
+		? TheGameText->fetch("SCIENCE:GeneralName")
+		: UnicodeString::TheEmptyString;
+	resetSciences();
 }
