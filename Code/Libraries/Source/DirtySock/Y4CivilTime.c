@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /RTCu /MD /DNDEBUG
 /* EA DirtySock -- civil time from a seconds-since-epoch count, written out by
  * hand rather than called out to the CRT.  Placement is by address
  * neighbourhood; the packer at 0x007EFC20 is its only caller so far found.
@@ -112,4 +112,100 @@ struct Rva007EDB10Time *Rva007EDB10( struct Rva007EDB10Time *pTime,
 	pTime->m_isDst = 0;
 
 	return pTime;
+}
+
+/* 0x007EDE00 IS THE INVERSE, AND IT IS A BINARY SEARCH RATHER THAN A FORMULA.
+ * Instead of accumulating days per year the way an ordinary mktime would, it
+ * searches the whole 32-bit timestamp space for the value whose decomposition
+ * matches the caller's, calling 0x007EDB10 about thirty-two times.  That is a
+ * deliberate trade: the forward direction is the only calendar code that has
+ * to be right, and this direction cannot disagree with it.
+ *
+ * The local names below -- cmp, res, mid -- are RETAIL'S OWN, recovered from
+ * the /GZ frame descriptor and from the strings the uninitialised-use checks
+ * pass to __RTC_UninitUse.  Those checks are the compiler's, not the author's:
+ * res and mid are assigned only inside the loop, so MSVC cannot prove they are
+ * set by the time the return expression reads them.
+ *
+ * THE MIDPOINT IS COMPUTED OVERFLOW-SAFE -- half of each end plus the carry
+ * they share -- which is necessary here and not merely careful, because hi
+ * starts at 0xFFFFFFFF and the naive sum would wrap on the first iteration.
+ *
+ * THE SEARCH DOES NOT TERMINATE ON A MISS, and that is the sharp edge.  There
+ * is no "not found" exit: the loop ends only on an exact match.  A target
+ * before 1970 leaves res positive at mid == 0, so hi = mid - 1 wraps back to
+ * 0xFFFFFFFF and the search returns to its starting interval forever.  THE
+ * RANGE VALIDATION IN THE CALLER AT 0x007EF780 IS LOAD-BEARING FOR
+ * TERMINATION, not just for correctness -- it is what guarantees the target
+ * lies inside the searched space.
+ *
+ * THE RETURN IS A TERNARY THAT MSVC MADE BRANCHLESS.  `( res ? 0 : -1 ) & mid`
+ * compiles at /Od to setne + dec + and, with no jump anywhere: this compiler
+ * contracts the shape `x ? 0 : -1` into a mask even with optimisation off,
+ * where the same value written as `( res != 0 ) - 1` gives a three-byte
+ * `sub eax, 1` instead of the one-byte `dec`.  The bytes distinguish the two
+ * spellings; nothing else does.  Since the loop only exits normally with res
+ * zero, the mask is unreachable-false on every real path -- it matters only
+ * for an empty interval, which the unsigned bounds make impossible.
+ */
+unsigned int Rva007EDE00( const struct Rva007EDB10Time *pTime )
+{
+	int res;
+	struct Rva007EDB10Time cmp;
+	unsigned int lo;
+	unsigned int hi;
+	unsigned int mid;
+
+	lo = 0;
+	hi = 0xFFFFFFFF;
+
+	while ( lo <= hi )
+	{
+		mid = ( lo >> 1 ) + ( hi >> 1 ) + ( lo & hi & 1 );
+
+		Rva007EDB10( &cmp, mid );
+
+		res = cmp.m_year - pTime->m_year;
+
+		if ( res == 0 )
+		{
+			res = cmp.m_month - pTime->m_month;
+
+			if ( res == 0 )
+			{
+				res = cmp.m_day - pTime->m_day;
+
+				if ( res == 0 )
+				{
+					res = cmp.m_hour - pTime->m_hour;
+
+					if ( res == 0 )
+					{
+						res = cmp.m_minute - pTime->m_minute;
+
+						if ( res == 0 )
+						{
+							res = cmp.m_second - pTime->m_second;
+
+							if ( res == 0 )
+							{
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		if ( res > 0 )
+		{
+			hi = mid - 1;
+		}
+		else
+		{
+			lo = mid + 1;
+		}
+	}
+
+	return ( res ? 0 : -1 ) & mid;
 }
