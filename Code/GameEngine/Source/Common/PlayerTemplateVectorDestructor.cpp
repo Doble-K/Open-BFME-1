@@ -14,6 +14,7 @@
 class PlayerTemplate
 {
 public:
+	PlayerTemplate(const PlayerTemplate &other);
 	~PlayerTemplate();					// ILT 0x000181CE
 
 private:
@@ -23,4 +24,9 @@ private:
 void BfmePlayerTemplateVectorAnchor(void)
 {
 	_STL::vector<PlayerTemplate> templates;
+}
+
+void BfmePlayerTemplateVectorInsertAnchor(_STL::vector<PlayerTemplate> &v, const PlayerTemplate &value)
+{
+	v.insert(v.begin(), value);
 }
