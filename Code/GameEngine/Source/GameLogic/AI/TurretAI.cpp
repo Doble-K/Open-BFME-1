@@ -502,12 +502,85 @@ void TurretAI::notifyNewVictimChosen(Object* victim)
 }
 
 //----------------------------------------------------------------------------------------------------------
-// BFME predates the third clearDeadTargets argument in the shared ZH declaration.
+// BFME's actual header only ever declared the 2-arg form; the 3-arg
+// clearDeadTargets overload above is ZH's later addition and always applies
+// its "clear" behavior unconditionally rather than gating it on a parameter.
+//
+// TurretStateMachine::getGoalObject/getGoalPosition are the real (non-virtual)
+// StateMachine members. The "clear the dead goal" cleanup dispatches through
+// a vtable call BFME added at slot 14 (+0x38) that ZH's setGoalObject does not
+// have -- called here through a raw slot lookup rather than redeclaring
+// TurretStateMachine's whole vtable. The "is object dead" test is a raw bit-0
+// check on Object+0x344, not a virtual call.
+// A vtable-slot trampoline: any class whose first member is a vtable pointer
+// can be reinterpret_cast onto the real TurretStateMachine to reach the BFME
+// slot-14 virtual purely by ABI shape (thiscall, one Object* arg), without
+// redeclaring TurretStateMachine's whole vtable.
+class BfmeStateMachineClearGoalTrampoline
+{
+public:
+	virtual void _bfme_slot00();
+	virtual void _bfme_slot01();
+	virtual void _bfme_slot02();
+	virtual void _bfme_slot03();
+	virtual void _bfme_slot04();
+	virtual void _bfme_slot05();
+	virtual void _bfme_slot06();
+	virtual void _bfme_slot07();
+	virtual void _bfme_slot08();
+	virtual void _bfme_slot09();
+	virtual void _bfme_slot10();
+	virtual void _bfme_slot11();
+	virtual void _bfme_slot12();
+	virtual void _bfme_slot13();
+	virtual void _bfme_clearGoal(const Object *obj);	// slot 14, vtable+0x38
+};
+
 class BFMETurretTargetAccessor
 {
 public:
 	TurretTargetType friend_getTurretTarget(Object *&obj, Coord3D &pos) const;
+
+private:
+	char                   m_pad_00[0x14];			// this+0x00 .. +0x13, untouched
+	TurretStateMachine    *m_turretStateMachine;		// this+0x14
+	char                   m_pad_18[0x98 - 0x18];		// this+0x18 .. +0x97, untouched
+	mutable TurretTargetType m_target;			// this+0x98
+	char                   m_pad_9c[0xab - 0x9c];		// this+0x9c .. +0xaa, untouched
+	mutable Bool           m_targetWasSetByIdleMood;	// this+0xab
 };
+
+// ?friend_getTurretTarget@BFMETurretTargetAccessor@@QBE?AW4TurretTargetType@@AAPAVObject@@AAUCoord3D@@@Z
+TurretTargetType BFMETurretTargetAccessor::friend_getTurretTarget(Object *&obj, Coord3D &pos) const
+{
+	obj = NULL;
+	pos.zero();
+
+	if (m_target == TARGET_OBJECT)
+	{
+		obj = m_turretStateMachine->getGoalObject();
+		if (obj == NULL ||
+			(*reinterpret_cast<const unsigned char *>(reinterpret_cast<const char *>(obj) + 0x344) & 1))
+		{
+			reinterpret_cast<BfmeStateMachineClearGoalTrampoline *>(m_turretStateMachine)->_bfme_clearGoal(NULL);
+			m_target = TARGET_NONE;
+			m_targetWasSetByIdleMood = false;
+		}
+	}
+	else if (m_target == TARGET_POSITION)
+	{
+		obj = NULL;
+		// Not m_turretStateMachine->getGoalPosition(): that inherited accessor
+		// computes m_goalPosition at StateMachine+0x28 in this shim's layout,
+		// but retail reads +0x24 here -- a 4-byte layout gap elsewhere in the
+		// shim's StateMachine base that this body works around directly
+		// rather than papering over by editing the shared header.
+		pos = *reinterpret_cast<const Coord3D *>(
+			reinterpret_cast<const char *>(m_turretStateMachine) + 0x24);
+	}
+
+	return m_target;
+}
 
 Bool TurretAI::isTryingToAimAtTarget(const Object* victim) const
 {
