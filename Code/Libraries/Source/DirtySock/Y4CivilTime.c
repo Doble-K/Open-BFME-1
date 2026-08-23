@@ -222,11 +222,11 @@ void * __cdecl memset( void *dest, int c, unsigned int count );
 
 /* The bounded digit scanner, and the current-time helper.
  *
- * NOTE ON THE SECOND ONE: Y4DirtySockSocket.c declares Rva007FEF60 returning
- * void, which is byte-neutral there because that body discards nothing -- it
- * tail-loads eax from its own call to time().  THE VALUE IS REAL AND THIS
- * CALLER USES IT, so the void spelling is a mis-declaration rather than a
- * design choice, and is worth correcting in that file. */
+ * NOTE ON THE SECOND ONE: it was landed in Y4DirtySockSocket.c declared void,
+ * which is byte-neutral there -- time() leaves the result in eax and that body
+ * disturbs nothing -- so the gate never contradicted it.  THIS CALLER USES THE
+ * VALUE, which is what settled the question; the declaration there now reads
+ * unsigned int and its translation unit still matches 40 of 40. */
 const char *Rva007EFAB0( const char *text, int *value, int maxLength );
 unsigned int Rva007FEF60( void );
 

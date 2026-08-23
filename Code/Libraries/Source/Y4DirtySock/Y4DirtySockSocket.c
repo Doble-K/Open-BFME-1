@@ -213,9 +213,15 @@ void Rva007FEE10( void )
 
 long __cdecl time( long *destination );
 
-void Rva007FEF60( void )
+/* 0x007FEF60 IS THE CURRENT TIME, and it RETURNS A VALUE despite there being
+ * no move to make that visible in the bytes -- time() leaves the result in eax
+ * and nothing here disturbs it.  This was written as void when it was landed,
+ * which is byte-neutral and was therefore never contradicted by the gate; the
+ * timestamp parser at 0x007EF780 USES the value, which is what settled it.
+ * A byte-exact body does not pin its own return type. */
+unsigned int Rva007FEF60( void )
 {
-	time( 0 );
+	return time( 0 );
 }
 
 /* Module shutdown at 0x007FD270.  The first call takes a FUNCTION POINTER:
