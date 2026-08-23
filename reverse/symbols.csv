@@ -7998,6 +7998,8 @@ name,address,notes
 ??1Render2DSentenceClass@@QAE@XZ,0x00887940,per-TU copy called by W3DGameWindow dtor
 ??1Render2DSentenceClass@@QAE@XZ,0x009409F0,W3DDisplayString dtor call target
 ??1RenderDeviceDescClass@@QAE@XZ,0x009077B0
+??1StringClass@@QAE@XZ,0x009DB7A0,RenderDeviceDescClass string-member destructor calls; ICF with StringClass::Free_String
+??_7?$DynamicVectorClass@UResolutionDescClass@@@@6B@,0x00D3A0E4,RenderDeviceDescClass::ResArray destructor direct vtable DIR32
 ??1RenderObjClass@@UAE@XZ,0x0091FC10,base dtor; derived from ~ParticleBufferClass call site
 ??1RiderChangeContainModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
 ??1RiderChangeContainModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin
