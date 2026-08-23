@@ -1,276 +1,87 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class SidesList;
+enum NameKeyType { NAMEKEY_INVALID = 0 };
+typedef bool Bool;
+
+class StaticNameKey
+{
+public:
+	NameKeyType key() const;
+	operator NameKeyType() const { return key(); }
+};
+
+extern StaticNameKey TheKey_teamName;
+extern StaticNameKey TheKey_teamOwner;
+extern StaticNameKey TheKey_teamIsSingleton;
+
+class AsciiString
+{
+public:
+	AsciiString(const AsciiString &other);
+	~AsciiString() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+	char *m_data;
+};
+
+class Dict
+{
+public:
+	AsciiString getAsciiString(NameKeyType key, Bool *exists = 0) const;
+	Bool getBool(NameKeyType key, Bool *exists = 0) const;
+
+private:
+	void *m_data;
+};
+
+struct TeamInfoSlot
+{
+	short next;
+	short previous;
+	short reserved;
+	short free;
+	int generation;
+	Dict dict;
+};
+
+class SidesList
+{
+private:
+	// BFME's SidesList owns several side/skirmish tables before the team pool.
+	char m_retailPrefix[0x63c];
+
+public:
+	TeamInfoSlot *m_teams;
+};
+
 class TeamFactory
 {
 public:
-	void initFromSides(SidesList *);
+	void initFromSides(SidesList *sides);
+	void clear();
+	void initTeam(const AsciiString &name, const AsciiString &owner,
+		Bool singleton, Dict *dict);
 };
 
-// ?initFromSides@TeamFactory@@QAEXPAVSidesList@@@Z
-__declspec(naked) void TeamFactory::initFromSides(SidesList *)
+typedef char TeamInfoSlotSizeMustMatchRetail[
+	(sizeof(TeamInfoSlot) == 16) ? 1 : -1];
+
+void TeamFactory::initFromSides(SidesList *sides)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xc0
-        __emit 0xc0
-        __emit 0xff
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x0c
-        __emit 0x53
-        __emit 0x55
-        __emit 0x8b
-        __emit 0xe9
-        __emit 0xe8
-        __emit 0xc6
-        __emit 0x00
-        __emit 0xf3
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x80
-        __emit 0x3c
-        __emit 0x06
-        __emit 0x00
-        __emit 0x00
-        __emit 0x0f
-        __emit 0xbf
-        __emit 0x08
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x3b
-        __emit 0xcb
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xb9
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x9b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc1
-        __emit 0xe1
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x66
-        __emit 0x39
-        __emit 0x5c
-        __emit 0x07
-        __emit 0x06
-        __emit 0x0f
-        __emit 0x85
-        __emit 0x89
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x53
-        __emit 0xb9
-        __emit 0xb8
-        __emit 0x75
-        __emit 0x2a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x74
-        __emit 0x07
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0xe5
-        __emit 0x0e
-        __emit 0xf1
-        __emit 0xff
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x41
-        __emit 0x7b
-        __emit 0xf3
-        __emit 0xff
-        __emit 0x53
-        __emit 0xb9
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x2a
-        __emit 0x01
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x28
-        __emit 0xe8
-        __emit 0xc9
-        __emit 0x0e
-        __emit 0xf1
-        __emit 0xff
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x25
-        __emit 0x7b
-        __emit 0xf3
-        __emit 0xff
-        __emit 0x53
-        __emit 0xb9
-        __emit 0xc8
-        __emit 0x75
-        __emit 0x2a
-        __emit 0x01
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x28
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xac
-        __emit 0x0e
-        __emit 0xf1
-        __emit 0xff
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xbd
-        __emit 0xb5
-        __emit 0xf4
-        __emit 0xff
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x20
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x94
-        __emit 0x19
-        __emit 0xf4
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x88
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x24
-        __emit 0xe8
-        __emit 0xb8
-        __emit 0xf4
-        __emit 0x78
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xa7
-        __emit 0xf4
-        __emit 0x78
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0x80
-        __emit 0x3c
-        __emit 0x06
-        __emit 0x00
-        __emit 0x00
-        __emit 0x0f
-        __emit 0xbf
-        __emit 0x0c
-        __emit 0x07
-        __emit 0x3b
-        __emit 0xcb
-        __emit 0x0f
-        __emit 0x85
-        __emit 0x51
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x18
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	clear();
+
+	for (int index = sides->m_teams[0].next; index != 0;
+		index = sides->m_teams[index].next)
+	{
+		TeamInfoSlot &team = sides->m_teams[index];
+		if (team.free == 0)
+		{
+			Dict *dict = &team.dict;
+			AsciiString name = dict->getAsciiString(TheKey_teamName);
+			AsciiString owner = dict->getAsciiString(TheKey_teamOwner);
+			Bool singleton = dict->getBool(TheKey_teamIsSingleton);
+			initTeam(name, owner, singleton, dict);
+		}
 	}
 }
