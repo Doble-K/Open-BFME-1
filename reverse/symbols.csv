@@ -71759,6 +71759,9 @@ name,address,notes
 ?finishConstruct@BFMENetworkQueue1@@QAEXPAX@Z,0x0002E91F,native BFME queue-1 constructor helper ILT
 ?finishConstruct@BFMENetworkQueue@@QAEXPAX@Z,0x000109D3,native BFME queue-0 constructor helper ILT
 ?finishSinglePlayerInit@@YAXXZ,0x0001F78F,ScoreScreen.cpp TU-local; ILT thunk to body 0x004E4790
+?finishState14@Rva56E070StateOwner@@QAEXXZ,0x000335F0,call target in the 0x0056E070 late-state dispatcher
+?finishState15@Rva56E070StateOwner@@QAEXXZ,0x0000C4EB,incremental-link call target in the 0x0056E070 late-state dispatcher
+?finishState16@Rva56E070StateOwner@@QAEXXZ,0x00018A2A,incremental-link call target in the 0x0056E070 late-state dispatcher
 ?first@Rva003C0E40@@QAEHH@Z,0x003C0500,first half of the chained pair at 0x003C0E40; address-derived name
 ?firstNamed@U4Scan@@QBE_NPAXPBVU4Filter@@@Z,0x00606D60,U4 lane: third scan entry forwarded to by the proxy at 0x00606E20; address-derived name
 ?flushConnections@ConnectionManager@@QAEXXZ,0x006636F0,ZH twin exact: doSend(FALSE) on the eight m_connections then tail-jmp Transport::doSend 0x006834B0 on +0x12024; sole caller sendRequestPlayerLeaveCommand 0x00664939 where ZH quitGame calls flushConnections; ILT 0x0004230C
