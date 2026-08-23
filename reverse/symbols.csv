@@ -8916,6 +8916,7 @@ name,address,notes
 ?GadgetRadioSetSelection@@YAXPAVGameWindow@@_N@Z,0x00034536
 ?GadgetStaticTextSetText@@YAXPAVGameWindow@@VUnicodeString@@@Z,0x0002C16F
 ?GadgetTabControlShowSubPane@@YAXPAVGameWindow@@H@Z,0x00008936
+?GameInfoToAsciiString@@YA?AVAsciiString@@PBVGameInfo@@_N@Z,0x0000E70A,Skirmish SlotList formatter ILT
 ?GameSpyCloseAllOverlays@@YAXXZ,0x0000F5AB,Shell push overlay-close thunk
 ?GameSpyCloseOverlay@@YAXW4GSOverlayType@@@Z,0x00040E94
 ?GameSpyCloseOverlayShim@@YAXW4GSOverlayType@@@Z,0x00627AD0,GameSpyCloseOverlay incremental-link thunk target through a free forwarding shim
