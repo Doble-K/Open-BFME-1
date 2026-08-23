@@ -73,7 +73,13 @@ struct Rva00816BF0Comm
 	int m_recvWriteOffset;          /* +0xA0 */
 	int m_recvReadOffset;           /* +0xA4 */
 	unsigned char *m_recvBuffer;    /* +0xA8 */
-	char m_gap2[ 0x0C ];
+	/* Both rings get a sequence set to 0x65 by the reset at 0x00819260 -- one
+	 * here and one at +0xD0 -- alongside their cursors being zeroed.  101 as a
+	 * starting sequence rather than 0 is what makes "never sent" and "sequence
+	 * zero" distinguishable on the wire. */
+	int m_recvSequence;             /* +0xAC */
+	char m_gap2[ 0x04 ];
+	int m_recvCounter;              /* +0xB4 */
 	int m_sendRecordSize;           /* +0xB8 */
 	int m_sendBufferSize;           /* +0xBC */
 	/* The two send cursors, proven by the depth calculation at 0x00817100:
@@ -82,9 +88,14 @@ struct Rva00816BF0Comm
 	 * these are the write and read positions. */
 	int m_sendWriteOffset;          /* +0xC0 */
 	int m_sendReadOffset;           /* +0xC4 */
-	char m_gap3[ 0x04 ];
+	int m_sendCounter;              /* +0xC8 */
 	unsigned char *m_sendBuffer;    /* +0xCC */
-	char m_gap4[ 0x124 ];
+	int m_sendSequence;             /* +0xD0 */
+	char m_gap4[ 0x04 ];
+	/* Two timestamps, both BACKDATED five seconds by the reset. */
+	unsigned int m_tickA;           /* +0xD8 */
+	unsigned int m_tickB;           /* +0xDC */
+	char m_gap5[ 0x114 ];
 	char m_lock[ 4 ];               /* +0x1F4 */
 	char m_tail[ 0x24 ];
 	/* A FLAG WORD AND ITS VALUE, written together under the lock by
@@ -684,4 +695,77 @@ int Rva00818620( struct Rva00816BF0Comm *comm )
 	message.m_value = comm->m_sessionHash;
 
 	return Rva00817030( comm, &message );
+}
+
+/* 0x00819260 RESETS THE CONNECTION without touching the buffers themselves --
+ * only the cursors, the counters, the two sequences and the two clocks.  So it
+ * is a reuse path: the allocations the constructor made survive it.
+ *
+ * BOTH SEQUENCES START AT 0x65, NOT ZERO.  Starting at 101 is what lets a peer
+ * tell "nothing has been sent yet" from "sequence zero arrived", which a
+ * zero-initialised sequence cannot express.
+ *
+ * BOTH CLOCKS ARE BACKDATED FIVE SECONDS, the same trick the handshake uses
+ * with one second: setting them to the past rather than to now makes the first
+ * timeout comparison behave as though the interval had already elapsed, so
+ * whatever they gate fires immediately instead of waiting out a full period.
+ * The two calls are separate, so the two fields can differ by however long the
+ * first one took.
+ */
+void Rva00819260( struct Rva00816BF0Comm *comm )
+{
+	comm->m_sendWriteOffset = 0;
+	comm->m_sendReadOffset = 0;
+	comm->m_sendCounter = 0;
+	comm->m_sendSequence = 0x65;
+
+	comm->m_recvWriteOffset = 0;
+	comm->m_recvReadOffset = 0;
+	comm->m_recvSequence = 0x65;
+	comm->m_recvCounter = 0;
+
+	comm->m_tickA = Rva007FEA00() - 5000;
+	comm->m_tickB = Rva007FEA00() - 5000;
+}
+
+/* The socket callback installer from the socket unit.  Its second argument is
+ * a small INTEGER here -- 2 -- not a pointer, which is worth recording because
+ * that unit's own name for the field it lands in reads like a callback. */
+int Rva007FDE80( struct Rva007FD4E0Socket *socket, int mask, unsigned int rate,
+	void *data,
+	int ( __cdecl *proc )( unsigned int, int, struct Rva00816BF0Comm * ) );
+
+/* 0x00819590 ADOPTS A SOCKET and starts connecting on it.
+ *
+ * THE CALLER GIVES UP THE SOCKET EITHER WAY.  If the transport is not idle the
+ * body DESTROYS the socket it was handed and returns -2 -- it does not hand it
+ * back -- so a caller must not keep using one it passed in, whatever the
+ * return value.  That is the kind of ownership rule a signature cannot carry
+ * and only the failure path shows.
+ *
+ * On the accepting path the old socket is detached first, the connection is
+ * reset, the peer address is copied in, the new socket is attached, and the
+ * global pump is installed as that socket's callback at a 100ms rate.  THAT
+ * INSTALL IS THE PROOF that the pump's three unread parameters really are the
+ * socket-callback signature: it is registered here as one.
+ */
+int Rva00819590( struct Rva00816BF0Comm *comm,
+	struct Rva007FD4E0Socket *socket, const void *peer )
+{
+	if ( comm->m_state != 1 )
+	{
+		Rva007FD3F0( socket );
+		return -2;
+	}
+
+	Rva00816DF0( comm, 0 );
+	Rva00819260( comm );
+
+	memcpy( comm->m_peer, peer, 0x10 );
+
+	Rva00816DF0( comm, socket );
+	Rva007FDE80( socket, 2, 0x64, 0, Rva00818CB0 );
+
+	comm->m_state = 2;
+	return 0;
 }
