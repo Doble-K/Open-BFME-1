@@ -75427,3 +75427,4 @@ _Rva00817B30,0x00817B30,Y4 lane: DirtySock global comm worker; the pump at 0x008
 _Rva00817640,0x00817640,Y4 lane: DirtySock transport send kick; the ack handler at 0x008186C0 calls it after rewinding the transmit cursor for a retransmit request
 ??$__copy@PAUNamedReveal@@PAU1@H@_STL@@YAPAUNamedReveal@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x0004A1E7,Open-BFME5 ILT; the tail shift of ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D440
 ??1NamedReveal@@QAE@XZ,0x000244DD,Open-BFME5 ILT; ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D440 drops the last element through it after shifting the tail down
+?doShroudReveal@PartitionManager@@QAEXPBUCoord3D@@MI@Z,0x008F7680,Open-BFME5 direct body call; ?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z at 0x0034D200 ends in it with the waypoint location the reveal radius and the resolved player mask
