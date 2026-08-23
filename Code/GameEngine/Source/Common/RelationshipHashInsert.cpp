@@ -18,9 +18,17 @@ enum Relationship
 	ALLIES
 };
 
+typedef unsigned int UnsignedInt;
+
 typedef _STL::hash_map<Int, Relationship, _STL::hash<Int>, _STL::equal_to<Int> > BfmeRelationshipHash;
+typedef _STL::hash_map<UnsignedInt, Relationship, _STL::hash<UnsignedInt>, _STL::equal_to<UnsignedInt> > BfmeRelationshipHashU;
 
 Relationship &BfmeRelationshipHashAnchor(BfmeRelationshipHash &table, Int key)
+{
+	return table[key];
+}
+
+Relationship &BfmeRelationshipHashAnchorU(BfmeRelationshipHashU &table, UnsignedInt key)
 {
 	return table[key];
 }
