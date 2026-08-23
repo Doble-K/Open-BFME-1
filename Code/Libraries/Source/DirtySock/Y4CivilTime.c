@@ -209,3 +209,175 @@ unsigned int Rva007EDE00( const struct Rva007EDB10Time *pTime )
 
 	return ( res ? 0 : -1 ) & mid;
 }
+
+/* A 256-entry hex digit table.  Indexed by a SIGNED char, so a high-bit byte
+ * reads before the table start, the same quirk the fold and class tables in
+ * Y4TextToValue.c have. */
+extern unsigned char g_Rva0112A110Hex[];
+
+/* Declared rather than included: under /MD the CRT header marks memset
+ * dllimport and the call becomes an indirect through the IAT, where retail
+ * calls the import stub directly. */
+void * __cdecl memset( void *dest, int c, unsigned int count );
+
+/* The bounded digit scanner, and the current-time helper.
+ *
+ * NOTE ON THE SECOND ONE: Y4DirtySockSocket.c declares Rva007FEF60 returning
+ * void, which is byte-neutral there because that body discards nothing -- it
+ * tail-loads eax from its own call to time().  THE VALUE IS REAL AND THIS
+ * CALLER USES IT, so the void spelling is a mis-declaration rather than a
+ * design choice, and is worth correcting in that file. */
+const char *Rva007EFAB0( const char *text, int *value, int maxLength );
+unsigned int Rva007FEF60( void );
+
+/* 0x007EF780 PARSES A TIMESTAMP IN ANY OF THREE NOTATIONS and falls back to a
+ * caller-supplied default, or to the current time, when it cannot.
+ *
+ * THE THREE NOTATIONS ARE TRIED IN ORDER AND ONLY THE FIRST CHARACTER PICKS
+ * BETWEEN THEM.  A leading '$' means hexadecimal; a bare run of digits that
+ * ENDS AT WHITESPACE means the value is already a timestamp and is taken
+ * verbatim; anything else starting with a digit is parsed as a calendar date.
+ * That middle test is the interesting one -- it parses the decimal number
+ * first and then looks at where the scan STOPPED to decide whether it was a
+ * timestamp at all, so "1234" is a timestamp and "1234-05-06" is a date, and
+ * the two are told apart only after the fact.
+ *
+ * THE HEX PATH ACCEPTS FAR MORE THAN HEX.  It runs while the character is at
+ * least '0', so every letter and most punctuation above '0' keeps it going,
+ * folded through the table.  It stops at a space or a control character and
+ * nowhere else, and it never checks for overflow.
+ *
+ * THE DATE FIELDS ARE SEPARATED BY ANY SINGLE NON-DIGIT.  One character is
+ * skipped between fields, whatever it is, so hyphens, colons, slashes and
+ * spaces all work and are never distinguished -- and exactly one is skipped,
+ * so a date with two separators between fields loses the following field to
+ * the scanner returning zero.
+ *
+ * VALIDATION IS ALL-OR-NOTHING AND SIGNALS THROUGH THE YEAR.  Any field out of
+ * range zeroes m_year, which is then read as "invalid" -- so a bad SECOND
+ * discards a perfectly good date rather than being clamped.  The ranges are
+ * ordinary except the last: seconds are allowed up to 61, which is the C
+ * standard's leap-second allowance rather than anything this code can use.
+ *
+ * THE YEAR RANGE IS LOAD-BEARING FOR TERMINATION, not just correctness.
+ * 0x007EDE00 searches for a match and has no not-found exit, so a year below
+ * 1970 would leave it looping forever; the 1970..2107 test here is what keeps
+ * the target inside the space it searches.
+ *
+ * A RESULT OF ZERO IS INDISTINGUISHABLE FROM FAILURE.  The epoch itself parses
+ * to 0 and is then replaced by the default, so this function cannot return the
+ * first second of 1970 no matter what it is given.
+ */
+unsigned int Rva007EF780( const char *text, unsigned int uDefault )
+{
+	struct Rva007EDB10Time tm;
+	unsigned int uDecimal;
+	unsigned int uResult;
+
+	uResult = 0;
+
+	if ( text == 0 )
+	{
+		goto done;
+	}
+
+	if ( *text == '$' )
+	{
+		text++;
+
+		for ( ; *text >= '0'; text++ )
+		{
+			uResult = ( uResult << 4 ) | g_Rva0112A110Hex[ *text ];
+		}
+
+		goto done;
+	}
+
+	if ( *text >= '0' && *text <= '9' )
+	{
+		if ( *Rva007EFAB0( text, (int *)&uDecimal, 0 ) <= ' ' )
+		{
+			uResult = uDecimal;
+			goto done;
+		}
+	}
+
+	/* A WRAPPING GUARD, NOT AN EARLY EXIT, and the bytes are what say so.  Both
+	 * bounds here compile to far conditional jumps straight to the tail, which
+	 * is the shape an if whose BLOCK ends there produces.  Written as two
+	 * "goto done" statements each test inverts and jumps over an unconditional
+	 * jump instead -- one instruction more, twice.  The probe just above is a
+	 * genuine early exit and keeps that shape. */
+	if ( *text >= '0' && *text <= '9' )
+	{
+		memset( &tm, 0, sizeof( tm ) );
+		tm.m_isDst = -1;
+
+		text = Rva007EFAB0( text, &tm.m_year, 4 );
+
+		if ( ( *text < '0' || *text > '9' ) && *text != 0 )
+		{
+			text++;
+		}
+
+		text = Rva007EFAB0( text, &tm.m_month, 2 );
+
+		if ( ( *text < '0' || *text > '9' ) && *text != 0 )
+		{
+			text++;
+		}
+
+		text = Rva007EFAB0( text, &tm.m_day, 2 );
+
+		if ( ( *text < '0' || *text > '9' ) && *text != 0 )
+		{
+			text++;
+		}
+
+		text = Rva007EFAB0( text, &tm.m_hour, 2 );
+
+		if ( ( *text < '0' || *text > '9' ) && *text != 0 )
+		{
+			text++;
+		}
+
+		text = Rva007EFAB0( text, &tm.m_minute, 2 );
+
+		if ( ( *text < '0' || *text > '9' ) && *text != 0 )
+		{
+			text++;
+		}
+
+		text = Rva007EFAB0( text, &tm.m_second, 2 );
+
+		if ( tm.m_year < 1970 || tm.m_year > 2107
+			|| tm.m_month < 1 || tm.m_month > 12
+			|| tm.m_day < 1 || tm.m_day > 31 )
+		{
+			tm.m_year = 0;
+		}
+
+		if ( tm.m_hour < 0 || tm.m_hour > 23
+			|| tm.m_minute < 0 || tm.m_minute > 59
+			|| tm.m_second < 0 || tm.m_second > 61 )
+		{
+			tm.m_year = 0;
+		}
+
+		if ( tm.m_year != 0 )
+		{
+			tm.m_month--;
+			tm.m_year -= 1900;
+			uResult = Rva007EDE00( &tm );
+		}
+	}
+
+done:
+
+	if ( uResult == 0 )
+	{
+		uResult = ( uDefault == 0 ) ? Rva007FEF60() : uDefault;
+	}
+
+	return uResult;
+}
