@@ -811,3 +811,75 @@ int Rva007ED360( unsigned char *dest, int destSize, const unsigned char *src,
 
 	return pOut - dest;
 }
+
+/* 0x007EE600 COPIES OUT THE VALUE PART OF A FIELD, or the caller's default if
+ * there is no value to be had, and returns where the value started or null.
+ *
+ * ITS SECOND PARAMETER IS NEVER READ.  Nothing in the body touches it, and a
+ * scan of the whole of .text finds NO DIRECT CALLER of this function at all --
+ * it is reached through a pointer or retained by the linker unreferenced.  So
+ * the argument's meaning is not recoverable from anywhere: not from the body,
+ * which ignores it, and not from a call site, because there is none.  It is
+ * declared here as an int purely because something has to occupy the slot.
+ *
+ * THE DEFAULT IS ONLY USED WHEN NO DELIMITER IS FOUND AT ALL.  A field that
+ * ends immediately after its delimiter -- the terminator case -- BREAKS OUT to
+ * the same tail, so an explicitly empty value also yields the default rather
+ * than an empty string.  There is no way to store a value that reads back as
+ * empty through this accessor.
+ *
+ * THE RETURN AND THE COPY REPORT DIFFERENT THINGS.  The pointer says where the
+ * value began in the source; the buffer holds a truncated copy.  A caller that
+ * wants the whole value when it did not fit has to use the pointer, and
+ * nothing indicates truncation happened.
+ *
+ * BOTH COPIES RESERVE ROOM FOR THE TERMINATOR, unlike the extractor at
+ * 0x007EFE30 in this same file, which does not.  Two functions a few hundred
+ * bytes apart disagree about what their size argument means.
+ */
+char *Rva007EE600( char *field, int iUnused, char *dest, int destSize,
+	const char *defaultText )
+{
+	int i;
+	char *p;
+
+	for ( p = field; *p != 0; p++ )
+	{
+		if ( *p == '=' || *p == ':' )
+		{
+			if ( p[ 1 ] < ' ' )
+			{
+				if ( p[ 1 ] == 0 )
+				{
+					break;
+				}
+
+				p += 2;
+
+				if ( dest != 0 )
+				{
+					for ( i = 0; i < destSize - 1 && p[ i ] != 0; i++ )
+					{
+						dest[ i ] = p[ i ];
+					}
+
+					dest[ i ] = 0;
+				}
+
+				return p;
+			}
+		}
+	}
+
+	if ( dest != 0 && defaultText != 0 )
+	{
+		for ( i = 0; i < destSize - 1 && defaultText[ i ] != 0; i++ )
+		{
+			dest[ i ] = defaultText[ i ];
+		}
+
+		dest[ i ] = 0;
+	}
+
+	return 0;
+}
