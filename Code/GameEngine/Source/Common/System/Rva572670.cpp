@@ -32,30 +32,3 @@ void rva572670(Rva572670Record *first, Rva572670Record *last, Rva572670Record *r
 	*result = *first;
 	rva571c40(first, 0, last - first, value, extra);
 }
-
-class Rva5726F0Record
-{
-public:
-	int m_a;
-	int m_b;
-	int m_c;
-};
-
-void rva23deb0(Rva5726F0Record *first, int index, Rva5726F0Record *result,
-	Rva5726F0Record value, void *context);
-
-void rva5726f0(Rva5726F0Record *first, Rva5726F0Record *last, void *context,
-	int unused1, int unused2)
-{
-	int index = last - first;
-	if (index >= 2) {
-		index = (index - 2) / 2;
-		Rva5726F0Record *current = first + index;
-		rva23deb0(first, index, first, *current, context);
-		while (index != 0) {
-			--current;
-			--index;
-			rva23deb0(first, index, first, *current, context);
-		}
-	}
-}
