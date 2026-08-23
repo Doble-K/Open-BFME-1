@@ -11,13 +11,24 @@
 
 struct Rva0081BD40Comm
 {
-	char m_head[ 0xD4 ];
+	char m_head[ 0xCC ];
+	/* A STATE.  0x0081B790 and 0x0081B910 both require it to be 1 before
+	 * doing anything, and both convert a 5 into their own result -- 3 and 2
+	 * respectively.  Nothing converted so far shows what sets it to 5. */
+	int m_state;                    /* +0xCC */
+	char m_gapCC[ 0x04 ];
 	int m_recordSize;               /* +0xD4 */
 	int m_bufferSize;               /* +0xD8 */
 	int m_writeOffset;              /* +0xDC */
 	int m_readOffset;               /* +0xE0 */
 	unsigned char *m_buffer;        /* +0xE4 */
-	char m_gap[ 0x1850 ];
+	char m_gap[ 0x1838 ];
+	/* A CRITICAL SECTION, and its SIZE is the evidence: the two bodies that
+	 * take it pass +0x1920 to a pair of one-argument stdcall imports, and the
+	 * busy flag below starts exactly 0x18 bytes later -- which is sizeof
+	 * CRITICAL_SECTION on x86.  The import names never reach the bytes, so
+	 * the declarations below are address-derived. */
+	char m_lock[ 0x18 ];            /* +0x1920 */
 	/* A BUSY FLAG the dequeue SPINS on.  Its offset also makes this object at
 	 * least 0x193C bytes -- an order of magnitude larger than the three
 	 * transports converted so far, which are 0x224 and smaller. */
@@ -140,4 +151,63 @@ int Rva0081BC80( struct Rva0081BD40Comm *comm, void *buffer, int size,
 		*when = record->m_tick;
 
 	return record->m_length;
+}
+
+__declspec(dllimport) void __stdcall Rva01358D18Enter( void *lock );
+__declspec(dllimport) void __stdcall Rva01358E74Leave( void *lock );
+
+int Rva0081B010( struct Rva0081BD40Comm *comm, void *argument );
+
+/* 0x0081B790 and 0x0081B910 ARE THE SAME BODY BUT FOR ONE CONSTANT: both
+ * refuse unless the argument is non-null and the state is 1, both take the
+ * critical section, both call the same worker, and both convert a state of 5
+ * into their own -- 3 for the first, 2 for the second -- before releasing.
+ *
+ * The pair is what makes 5 legible as a TRANSIENT the worker can leave behind:
+ * neither body sets it, both check for it, and each replaces it with a
+ * different settled value.  So the worker signals "decide what I became" and
+ * the caller's identity is what decides.  Either body alone would just look
+ * like an unexplained magic number.
+ *
+ * The refusal is an early return with an ||, which is legible in the jumps: a
+ * null argument jumps straight to the return, while a state of 1 jumps PAST
+ * it.  An && wrapping the body sends both operands to the same place instead.
+ *
+ * The worker's result is returned unchanged, and it is captured BEFORE the
+ * state fixup -- so the fixup cannot affect what the caller sees.
+ */
+int Rva0081B790( struct Rva0081BD40Comm *comm, void *argument )
+{
+	int iResult;
+
+	if ( argument == 0 || comm->m_state != 1 )
+		return -2;
+
+	Rva01358D18Enter( comm->m_lock );
+
+	iResult = Rva0081B010( comm, argument );
+
+	if ( comm->m_state == 5 )
+		comm->m_state = 3;
+
+	Rva01358E74Leave( comm->m_lock );
+	return iResult;
+}
+
+int Rva0081B910( struct Rva0081BD40Comm *comm, void *argument )
+{
+	int iResult;
+
+	if ( argument == 0 || comm->m_state != 1 )
+		return -2;
+
+	Rva01358D18Enter( comm->m_lock );
+
+	iResult = Rva0081B010( comm, argument );
+
+	if ( comm->m_state == 5 )
+		comm->m_state = 2;
+
+	Rva01358E74Leave( comm->m_lock );
+	return iResult;
 }

@@ -75440,3 +75440,4 @@ _fprintf,0x0003A17A,Open-BFME5 ILT to the statically linked fprintf; ?GetGameLog
 ?releaseTrack@TerrainTracksRenderObjClassSystem@@AAEXPAVTerrainTracksRenderObjClass@@@Z,0x000357E7,Open-BFME5 ILT; ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ at 0x0072EDF0 releases each unbound track through it
 ?getLocalPlayerID@ConnectionManager@@QAEHXZ,0x0004A291,Open-BFME5 ILT; ?isPlayerVotedOut@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z at 0x0066BC30 translates the slot against it
 ?getVotesNeededToKick@DisconnectManager@@IAEHHPAVConnectionManager@@@Z,0x0002FA63,Open-BFME5 ILT; behaviour-derived name - takes the translated slot and the connection manager and returns the threshold ?isPlayerVotedOut@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z at 0x0066BC30 compares the vote count against where ZH has getNumPlayers()-1
+_Rva0081B010,0x0081B010,Y4 lane: DirtySock comm worker
