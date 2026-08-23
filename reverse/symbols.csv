@@ -75553,3 +75553,6 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?getName@DataChunkTableOfContents@@QAE?AVAsciiString@@I@Z,0x00002ECD,ILT thunk found directly in DataChunkInput::readDict retail bytes
 ??RGameSortStruct@@QBE_NPAVGameSpyStagingRoom@@0@Z,0x000317D7,ILT the staging-room tree insert calls at 0x0053F80B on its comparator subobject at this+8
 ??4MultiplayerColorDefinition@@QAEAAV0@ABV0@@Z,0x00027B56,ILT thunk for MultiplayerColorDefinition::operator= found via decode_calls at newMultiplayerColorDefinition call site
+??0AudioEventRTS@@QAE@ABVAsciiString@@@Z,0x00025306,single-arg AudioEventRTS ctor ICF-folded onto the two-arg ctor body; GameSpyOpenOverlay call site confirms
+?GSMessageBoxYesNo@@YAXVUnicodeString@@0P6AXXZ1@Z,0x00627E90,call target resolved directly from GameSpyOpenOverlay retail bytes at 0x00627FE9
+?GSMessageBoxOk@@YAXVUnicodeString@@0P6AXXZ@Z,0x00627C80,call target resolved directly from GameSpyOpenOverlay retail bytes at 0x0062803D
