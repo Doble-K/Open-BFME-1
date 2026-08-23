@@ -24,7 +24,8 @@
 // and GenericSLNode -- were folded onto one body at 0x006D1480, which is why
 // four names share it; PolyRenderTaskClass at 0x009452A0 and MatPassTaskClass
 // at 0x009453B0 kept their own copies. All eight differ only in the
-// relocation on the spin call.
+// relocation on the spin call. GridLinkClass keeps its own copy too, right
+// behind its allocator at 0x008DDA50.
 
 typedef unsigned int uint32;
 
@@ -38,6 +39,7 @@ public:
 	class CameraShakerClass;
 };
 class GenericSLNode;
+class GridLinkClass;
 class PolyRenderTaskClass;
 class MatPassTaskClass;
 
@@ -104,5 +106,6 @@ template void ObjectPoolClass<AABTreeLinkClass,256>::Free_Object_Memory(AABTreeL
 template void ObjectPoolClass<AABTreeNodeClass,256>::Free_Object_Memory(AABTreeNodeClass *);
 template void ObjectPoolClass<CameraShakeSystemClass::CameraShakerClass,256>::Free_Object_Memory(CameraShakeSystemClass::CameraShakerClass *);
 template void ObjectPoolClass<GenericSLNode,256>::Free_Object_Memory(GenericSLNode *);
+template void ObjectPoolClass<GridLinkClass,256>::Free_Object_Memory(GridLinkClass *);
 template void ObjectPoolClass<PolyRenderTaskClass,256>::Free_Object_Memory(PolyRenderTaskClass *);
 template void ObjectPoolClass<MatPassTaskClass,256>::Free_Object_Memory(MatPassTaskClass *);
