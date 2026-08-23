@@ -5417,3 +5417,4 @@ _gpiHandleTransferMessage	0x008F5510	226	no-match	Genuine upstream GameSpy gpiHa
 ?getUVForNdx@WorldHeightMap@@IAEXHPAM000_N@Z	0x00747490	248	converted	zh_sweep packet; EVAL_TILING_MODES off, TEXTURE_WIDTH 2048
 ??0?$StringBase@D@@AAE@PBD@Z	0x00888BC0	72	attempted	body is right but a naked callee in the same TU makes MSVC assume ensureUniqueBufferOfSize clobbers nothing so this is kept in ecx instead of esi; needs the callee written as real C++ first
 ??0?$StringBase@D@@AAE@D@Z	0x00888B50	35	attempted	same as the const char* constructor: the naked ensureUniqueBufferOfSize in this TU suppresses the push esi that saves this across the call
+?d_0043d9f0@@YAXXZ	0x0043D9F0	127	blocked	compiler-generated destructor with unnamed class identity; two virtual member releases and StringBase::releaseBuffer at 0x00887940; no trustworthy source identity; t=20 model=Luna
