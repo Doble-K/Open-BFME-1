@@ -724,3 +724,60 @@ int Rva007EDD30( char *record, int size, const char *name,
 
 	return Rva007ED9F0( record, size, name, uTime );
 }
+
+// Two 256-entry tables, adjacent in data, giving the FIRST and SECOND
+// character of each byte's hex pair.  Two tables rather than one nibble table
+// indexed twice, so neither the shift nor the mask appears anywhere.
+extern char g_Rva01129E10HexFirst[];
+extern char g_Rva01129F10HexSecond[];
+
+// 0x007ED0E0 STORES A BLOCK OF BYTES AS A HEXADECIMAL FIELD, prefixed with the
+// dollar sign that the value parser at 0x007EF780 reads as "this is hex".  The
+// two ends of that convention are in different translation units and neither
+// names the other; the marker is all they share.
+//
+// THE BUFFER IS EIGHT KILOBYTES ON THE STACK, large enough that MSVC emits a
+// stack probe before the frame is even established.  That caps a field at
+// something under 4096 input bytes, and the limit is enforced -- but by
+// ARITHMETIC ON THE BUFFER RATHER THAN ON THE ARGUMENT: it measures how much
+// of the buffer the name already consumed and compares the remainder against
+// two characters per byte plus a terminator.  So the maximum count depends on
+// the length of the name, and no constant anywhere states it.
+//
+// THE CHECK IS UNSIGNED, which matters more than it looks.  A negative count
+// makes the left side wrap to an enormous value, so it fails the test and
+// returns -1 rather than running the loop backwards.  That is a real guard
+// rather than an accident of the loop bound, which would also have stopped it.
+int Rva007ED0E0( char *record, int size, const char *name,
+	const unsigned char *src, int count )
+{
+	char *p;
+	char item[ 0x2100 ];
+	const unsigned char *pSrc;
+
+	pSrc = src;
+
+	p = Rva007EC730( record, item, name );
+
+	*p = '$';
+	p++;
+
+	if( count * 2 + 1 > sizeof( item ) - ( p - item ) )
+	{
+		return -1;
+	}
+
+	while( count > 0 )
+	{
+		*p = g_Rva01129E10HexFirst[ *pSrc ];
+		p++;
+		*p = g_Rva01129F10HexSecond[ *pSrc ];
+		p++;
+		pSrc++;
+		count--;
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
