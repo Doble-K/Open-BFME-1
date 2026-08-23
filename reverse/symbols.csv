@@ -75609,3 +75609,4 @@ _Rva00811310,0x00811310,Y4 lane: SHA-1 block transform, the counterpart of the u
 ?BfmeElementConstruct@_STL@@YAXPAXABVW3DAnimationInfo@@@Z,0x0000927D,Open-BFME5 ILT the W3DAnimationInfo allocate-and-copy uses for its per-element construct
 ??$__find@PAPAVObject@@PAV1@@_STL@@YAPAPAVObject@@PAPAV1@0ABQAV1@ABUrandom_access_iterator_tag@0@@Z,0x0002DA8D,ILT thunk
 ?push_back@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QAEXABQAVObject@@@Z,0x00019E70,ILT thunk
+?bfmeNewMap@BfmePlayerMapState@@QAEXH_N@Z,0x00018679,Open-BFME5 ILT Player::newMap calls for the subobject at Player+0x30; it jumps to 0x000C7A30
