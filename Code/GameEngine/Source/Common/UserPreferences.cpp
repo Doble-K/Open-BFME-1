@@ -761,7 +761,6 @@ AsciiString CustomMatchPreferences::getPreferredMap(void)
 	return ret;
 }
 
-// ?setPreferredMap@CustomMatchPreferences@@QAEXVAsciiString@@@Z present-unmatched
 void CustomMatchPreferences::setPreferredMap(AsciiString val)
 {
 	(*this)["Map"] = AsciiStringToQuotedPrintable(val);

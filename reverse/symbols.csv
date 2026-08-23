@@ -75444,3 +75444,4 @@ _Rva0081B010,0x0081B010,Y4 lane: DirtySock comm worker
 ??1BfmeParticleSystemHandle@@QAE@XZ,0x00013994,Open-BFME5 ILT; the value ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 gets back from its lookup is released through it
 ?destroy@ParticleSystem@@QAEXXZ,0x0000E525,Open-BFME5 ILT; ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 calls it on the system it looked up
 ?findParticleSystemByID@ParticleSystemManager@@AAE?AVBfmeParticleSystemHandle@@W4ParticleSystemID@@@Z,0x0002A216,Open-BFME5 ILT; returns the particle system by value into a hidden slot for ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10
+?AsciiStringToQuotedPrintable@@YA?AVAsciiString@@V1@@Z,0x0001E1F0,Open-BFME5 ILT called by the exact CustomMatchPreferences::setPreferredMap body at 0x000ADFC0; fronts the shared body at 0x00106150
