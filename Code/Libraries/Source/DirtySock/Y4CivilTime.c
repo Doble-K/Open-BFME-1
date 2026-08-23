@@ -444,3 +444,75 @@ int Rva007EFC20( const char *text, int *pDate, int *pTime, int iOffset )
 
 	return 0;
 }
+
+/* 0x007EFB20 IS THE SAME PARSE AS 0x007EFC20 DELIVERED FIELD BY FIELD, six
+ * optional out-pointers instead of two packed integers.  The two are siblings
+ * rather than one wrapping the other: both call the parser and the decomposer
+ * themselves, and neither is written in terms of the other, so the packing
+ * convention lives in exactly one of them and the field convention in the
+ * other.
+ *
+ * THE SAME TWO ADJUSTMENTS ARE REPEATED HERE -- year plus 1900, month plus one
+ * -- rather than shared with the packer.  So the human numbering is applied
+ * twice in this translation unit, at the two places that face outward, and the
+ * structure in between is C-numbered throughout.  A caller of either sees only
+ * the convention it asks for.
+ *
+ * EVERY OUTPUT IS INDEPENDENTLY OPTIONAL and each is tested separately, so a
+ * caller wanting only the hour pays for the whole parse and the whole
+ * decomposition regardless -- there is no early exit once the work is done,
+ * and no way to ask for less of it.
+ */
+int Rva007EFB20( const char *text, int *pYear, int *pMonth, int *pDay,
+	int *pHour, int *pMinute, int *pSecond, int iOffset )
+{
+	struct Rva007EDB10Time *ptm;
+	struct Rva007EDB10Time tm2;
+	unsigned int uTime;
+
+	uTime = Rva007EF780( text, 1 );
+
+	if ( uTime <= 1 )
+	{
+		return -1;
+	}
+
+	ptm = Rva007EDB10( &tm2, uTime + iOffset );
+
+	if ( ptm == 0 )
+	{
+		return -1;
+	}
+
+	if ( pYear != 0 )
+	{
+		*pYear = ptm->m_year + 1900;
+	}
+
+	if ( pMonth != 0 )
+	{
+		*pMonth = ptm->m_month + 1;
+	}
+
+	if ( pDay != 0 )
+	{
+		*pDay = ptm->m_day;
+	}
+
+	if ( pHour != 0 )
+	{
+		*pHour = ptm->m_hour;
+	}
+
+	if ( pMinute != 0 )
+	{
+		*pMinute = ptm->m_minute;
+	}
+
+	if ( pSecond != 0 )
+	{
+		*pSecond = ptm->m_second;
+	}
+
+	return 0;
+}
