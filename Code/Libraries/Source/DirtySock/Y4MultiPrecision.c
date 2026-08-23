@@ -162,3 +162,59 @@ void Rva0080F300( struct Rva0080F200Rc4 *state, unsigned char *data,
 	state->m_x = x;
 	state->m_y = y;
 }
+
+/* 0x0080FED0 PACKS A BYTE STRING INTO LIMBS, most-significant first, and
+ * returns the number of limbs the string actually needs.
+ *
+ * A NEGATIVE LIMB COUNT MEANS "exactly as many as needed" -- it is replaced by
+ * the required count, so the padding loop below does nothing.  Any larger
+ * count is honoured by writing ZERO LIMBS FIRST, which is what makes the
+ * result right-aligned in a fixed-width buffer: the number keeps its value and
+ * gains leading zeros, exactly as a big-endian integer should.
+ *
+ * AN ODD BYTE COUNT IS HANDLED BY A SEPARATE FIRST LIMB holding a single byte
+ * -- not by padding the string.  Padding at the front would have worked too
+ * and is what a reader might assume; the bytes show the odd byte becoming a
+ * limb of its own, which keeps the remaining pairs aligned to the input rather
+ * than shifted by one.  That is visible in a 16-bit movzx, which is how a
+ * single byte reaches a limb without touching the high half.
+ *
+ * The floor and ceiling of half the byte count are computed separately with
+ * the signed shift idiom, and comparing them is how the body tests for
+ * oddness -- there is no AND with 1 anywhere.
+ */
+int Rva0080FED0( unsigned short *result, int limbs, const unsigned char *bytes,
+	int byteCount )
+{
+	int iFloor;
+	int iNeeded;
+
+	iFloor = byteCount / 2;
+	iNeeded = ( byteCount + 1 ) / 2;
+
+	if ( limbs < 0 )
+		limbs = iNeeded;
+
+	for ( ; limbs > iNeeded; limbs-- )
+	{
+		*result = 0;
+		result++;
+	}
+
+	if ( iFloor != iNeeded )
+	{
+		*result = *bytes;
+		result++;
+		bytes++;
+		limbs--;
+	}
+
+	for ( ; limbs > 0; limbs-- )
+	{
+		*result = (unsigned short)( ( bytes[ 0 ] << 8 ) | bytes[ 1 ] );
+		result++;
+		bytes += 2;
+	}
+
+	return iNeeded;
+}
