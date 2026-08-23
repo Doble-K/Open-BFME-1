@@ -7,8 +7,9 @@
 //
 // The element is 0x194 bytes -- both cursor arithmetics use it -- and the
 // destructor call at 0x00648701 goes through the ILT at 0x00016BD5 to
-// ??1PeerRequest@@QAE@XZ, which is what names the instantiation: the
-// PSRequest deque's pop_front folded onto these same bytes.
+// ??1PeerRequest@@QAE@XZ, which is what names the instantiation. The PSRequest
+// name the ledger also carried here belongs to 0x00656B60 instead: that body
+// steps by 0x210 and calls ??1PSRequest.
 #define _STLP_NO_EXCEPTIONS 1
 #include <deque>
 

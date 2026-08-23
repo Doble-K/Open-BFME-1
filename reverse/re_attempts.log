@@ -5575,3 +5575,5 @@ _D3DXVec4Transform@12	0x009FAA48	600	identity-suspect	RVA range is not a single 
 ?parseFromINI@?$BitFlags@$0HE@@@SAXPAVINI@@PAX1PBX@Z	0x00129810	73	converted	parse loop hoisted into one per-token call; helper declared address-anchored
 ?parseFromINI@?$BitFlags@$0CN@@@SAXPAVINI@@PAX1PBX@Z	0x00204E70	73	converted	same shape with the 45-bit instantiation and its own helper
 ??$__copy@PAUVideo@@PAU1@H@_STL@@YAPAUVideo@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z	0x00755100	83	converted	element is a twelve-byte struct holding one STLport string
+?pop_front@?$deque@VPSRequest@@V?$allocator@VPSRequest@@@_STL@@@_STL@@QAEXXZ	0x00656B60	80	converted	element 0x210 with ??1PSRequest as its destructor; the name had been aliased onto the PeerRequest deque
+?pop_front@?$deque@VPSRequest@@V?$allocator@VPSRequest@@@_STL@@@_STL@@QAEXXZ	0x006486F0	80	refuted	that body steps by 0x194 and destroys through ??1PeerRequest; the PSRequest deque is at 0x00656B60 with a 0x210 stride
