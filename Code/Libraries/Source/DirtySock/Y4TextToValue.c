@@ -685,3 +685,58 @@ unsigned char *Rva007EFE30( unsigned char *text, unsigned char *dest, int size )
 
 	return pDelimiter + 1;
 }
+
+/* 0x007EEF30 UNPACKS SEVEN-BIT-PER-BYTE DATA back into bytes, and returns how
+ * many bytes it produced.  Each input byte contributes its low seven bits to a
+ * little-endian bit accumulator; whenever eight bits are available they are
+ * emitted and shifted out.  This is the read side of a transport that keeps
+ * the high bit clear on every byte it sends -- text-safe binary.
+ *
+ * THE HIGH BIT IS A CONTINUATION MARK, NOT A DATA BIT, and it is required on
+ * EVERY packed byte rather than only on the last.  So the run ends at the
+ * first byte without it, and THAT BYTE IS NEITHER CONSUMED NOR DECODED -- the
+ * caller's source pointer is a local copy, so the terminator's position is not
+ * reported either.  Only the output count comes back.
+ *
+ * THE BUDGET IS CHECKED BEFORE THE READ BUT SPENT ONLY ON A WRITE.  A byte
+ * that contributes bits without completing one costs nothing, so the count
+ * bounds OUTPUT bytes exactly -- but the input is read one byte past what the
+ * budget can pay for, since the guard runs before the byte is examined.
+ *
+ * LEFTOVER BITS ARE DISCARDED.  Seven does not divide eight, so a run ends
+ * with up to seven bits still in the accumulator and they are simply dropped.
+ * That is only correct if the sender padded to a byte boundary, which nothing
+ * here checks and nothing here can detect.
+ */
+int Rva007EEF30( unsigned char *dest, int count, const unsigned char *src )
+{
+	unsigned char *pOut;
+	const unsigned char *pIn;
+	int iCount;
+	unsigned int uAccumulator;
+	int iBits;
+
+	pOut = dest;
+	pIn = src;
+	iCount = count;
+	uAccumulator = 0;
+	iBits = 0;
+
+	while ( *pIn >= 0x80 && iCount > 0 )
+	{
+		uAccumulator |= ( *pIn & 0x7F ) << iBits;
+		pIn++;
+		iBits += 7;
+
+		if ( iBits >= 8 )
+		{
+			*pOut = uAccumulator & 0xFF;
+			pOut++;
+			uAccumulator >>= 8;
+			iBits -= 8;
+			iCount--;
+		}
+	}
+
+	return pOut - dest;
+}
