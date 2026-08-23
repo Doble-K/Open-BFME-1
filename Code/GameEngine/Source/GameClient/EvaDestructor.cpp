@@ -31,15 +31,35 @@ struct EvaCheck
 	char  m_rest[ 0x10 ];
 };
 
-// vector<EvaCheckInfo>, 12 bytes.  Its element type owns storage, so retail's
-// destructor is a loop and stays out of line at 0x00426220.
-class EvaCheckInfoVec
+// Each 28-byte parsed record only owns storage through this 12-byte
+// subobject at +0x10: decode_calls resolves its dtor call to the same
+// already-matched _Rb_tree<int, ...> body at 0x004247C0 that backs a
+// generic gen_uw map instantiation elsewhere, so this is a std::map<int,
+// something>'s tree, spelled opaquely here rather than re-deriving the pod
+// value type this TU never otherwise touches.
+class BfmeEvaCheckInfoTail
 {
 public:
-	~EvaCheckInfoVec( void );
+	~BfmeEvaCheckInfoTail( void );
 
 private:
 	char m_raw[ 0x0c ];
+};
+
+struct EvaCheckInfoRecord
+{
+	char                 m_head[ 0x10 ];
+	BfmeEvaCheckInfoTail m_tail;
+};
+
+// vector<EvaCheckInfoRecord>, 12 bytes: STLport begin/end/capacity and
+// nothing else, so the base vector destructor inlines wholesale into this
+// derived one -- the same capacity-vs-0x80 node_alloc/free split the +0x4c
+// std::vector<EvaCheck> member gets for free below.
+class EvaCheckInfoVec : public std::vector<EvaCheckInfoRecord>
+{
+public:
+	~EvaCheckInfoVec( void ) {}
 };
 
 // The 20-byte per-side sound container; destructor out of line at 0x00424890.

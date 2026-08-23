@@ -3565,6 +3565,8 @@ name,address,notes
 ??1Entry@?$HashTemplateClass@VStringClass@@PAVThumbnailClass@@@@QAE@XZ,0x00038A1E,pinharvest x1 (thunk)
 ??1Entry@?$HashTemplateClass@VStringClass@@PAVThumbnailClass@@@@QAE@XZ,0x0003BE8A,pinharvest x1 (thunk)
 ??1Entry@?$HashTemplateClass@VStringClass@@PAVThumbnailClass@@@@QAE@XZ,0x000459F8,pinharvest x1 (thunk)
+??1?$vector@UEvaCheckInfoRecord@@V?$allocator@UEvaCheckInfoRecord@@@_STL@@@_STL@@QAE@XZ,0x00002D15,ILT thunk to the retail vector<EvaCheckInfoRecord> destructor at 0x00426220; the same body EvaCheckInfoVec's own dtor inlines into
+??1BfmeEvaCheckInfoTail@@QAE@XZ,0x00011FDB,ILT thunk to the retail _Rb_tree<int,...> destructor at 0x004247C0, the per-record map subobject the EvaCheckInfoRecord vector destructor tears down at +0x10
 ??1EvaCheckInfoVec@@QAE@XZ,0x00002D15,ILT thunk to the retail vector<EvaCheckInfo> destructor at 0x00426220; unidentified beyond its shape
 ??1EvaSideSoundsVec@@QAE@XZ,0x0003763C,ILT thunk to the retail Eva side-sound container destructor at 0x00424890; unidentified beyond its shape
 ??1FXBoneInfo@@QAE@XZ,0x00007928,resweep callee back-solved
