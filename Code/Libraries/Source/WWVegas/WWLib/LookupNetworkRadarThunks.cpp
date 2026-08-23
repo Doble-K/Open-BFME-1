@@ -30,20 +30,3 @@ bool Radar::localPixelToRadar(ICoord2D const *source, ICoord2D *destination)
 {
 	return ((RadarLocalPixelToRadarShim *)this)->localPixelToRadar(source, destination);
 }
-
-class DisconnectManager
-{
-protected:
-	bool isPlayerVotedOut(int, ConnectionManager *);
-};
-
-class DisconnectManagerIsPlayerVotedOutShim
-{
-public:
-	bool isPlayerVotedOut(int, ConnectionManager *);
-};
-
-bool DisconnectManager::isPlayerVotedOut(int player, ConnectionManager *connectionManager)
-{
-	return ((DisconnectManagerIsPlayerVotedOutShim *)this)->isPlayerVotedOut(player, connectionManager);
-}
