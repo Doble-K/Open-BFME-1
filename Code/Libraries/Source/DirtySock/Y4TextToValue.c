@@ -181,3 +181,69 @@ int Rva007EFD00( const char *a, const char *b )
 
 	return cA - cB;
 }
+
+/* A separator character and a suffix string, both in writable data rather than
+ * among the literals, so both are configurable at run time.  The separator is
+ * a plain char -- read with movsx where the buffer's own bytes are read with
+ * movzx, which is what types the two differently. */
+extern char g_Rva012C391CSeparator;
+extern char g_Rva012C392CSuffix[];
+
+/* 0x007EC4D0 APPENDS THE SUFFIX TO A BUFFER, inserting the separator first if
+ * the buffer needs one, and returns 0 or -1 for "did not fit".
+ *
+ * THE SEPARATOR IS ONLY ADDED WHEN IT IS ACTUALLY MISSING.  Three conditions
+ * all have to hold: the buffer is non-empty, its last character is not a
+ * control character, and it is not already the separator.  So calling this
+ * twice does not double the separator, and appending to text that already ends
+ * in one leaves it alone -- which is what makes the operation repeatable.
+ *
+ * THE TWO LENGTH CHECKS ARE DIFFERENT AND BOTH MATTER.  The separator needs
+ * one free byte and is checked against size - 1; the suffix is checked with a
+ * FIXED MARGIN OF FOUR rather than against its own length, so a suffix longer
+ * than three characters plus its terminator would overrun.  Nothing here reads
+ * the suffix's length, so that margin is an assumption about the data rather
+ * than a bound derived from it.
+ *
+ * A buffer too small for the suffix is left with the separator already
+ * appended -- the failure is not atomic, and -1 does not mean "unchanged".
+ */
+int Rva007EC4D0( unsigned char *buffer, int size )
+{
+	int i;
+	int iResult;
+	char *pSuffix;
+	unsigned char *pBuffer;
+
+	iResult = -1;
+	pSuffix = g_Rva012C392CSuffix;
+	pBuffer = buffer;
+
+	for ( i = 0; pBuffer[ i ] != 0; i++ )
+	{
+	}
+
+	if ( i > 0 && pBuffer[ i - 1 ] >= ' '
+		&& pBuffer[ i - 1 ] != g_Rva012C391CSeparator
+		&& i < size - 1 )
+	{
+		pBuffer[ i ] = g_Rva012C391CSeparator;
+		i++;
+		pBuffer[ i ] = 0;
+	}
+
+	if ( i + 4 < size )
+	{
+		while ( *pSuffix != 0 )
+		{
+			pBuffer[ i ] = *pSuffix;
+			i++;
+			pSuffix++;
+		}
+
+		pBuffer[ i ] = 0;
+		iResult = 0;
+	}
+
+	return iResult;
+}
