@@ -23,14 +23,14 @@ class _Filebuf_base
 public:
 	_Filebuf_base(void);
 
-private:
+protected:
 	void *_M_file_id;					// +0x00
 	void *_M_view_id;					// +0x04
 	int _M_openmode;					// +0x08
 	bool _M_is_open;					// +0x0C
 	bool _M_should_close;					// +0x0D
 
-	static unsigned int _M_page_size;			// 0x012C7ED0
+	static unsigned int _M_page_size;			// 0x012C7ED0 (pinned)
 };
 
 }
