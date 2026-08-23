@@ -391,3 +391,108 @@ void Rva00810120( struct Rva00810060Context *context )
 	context->m_state[ 2 ] += c;
 	context->m_state[ 3 ] += d;
 }
+
+/* A POINTER to the hex digits, not the digits themselves -- the code loads a
+ * dword from this address and indexes through it, so the table can be
+ * retargeted at run time.  It points into the same short run of writable data
+ * that holds the module's other configurable bytes. */
+extern char *g_Rva012C4998HexDigits;
+
+/* 0x00810FF0 FINISHES THE DIGEST AND FORMATS IT, padding the block, appending
+ * the length, running the final transform and writing the result out.
+ *
+ * THE PADDING BYTE IS A VARIABLE THAT ZEROES ITSELF.  It starts at 0x80 and is
+ * set to zero immediately after the first store, so one loop writes the
+ * required 0x80 followed by as many zeros as it takes -- no separate first
+ * write, and no counter distinguishing the two cases.
+ *
+ * IT IS A DO-WHILE, so it always writes at least one byte.  That is what makes
+ * a block already at the length offset pad out a WHOLE FURTHER BLOCK rather
+ * than none, which is required and would be wrong with a while.
+ *
+ * THE LENGTH IS STORED AS FIVE BYTES AND THREE ZEROS.  The context counts
+ * BYTES, so the bit count is the byte count times eight -- thirty-five bits,
+ * which needs five bytes -- and the top three of the eight-byte field are
+ * written as literal zeros rather than computed.  A message of 512 MB or more
+ * would need the sixth byte and silently gets a wrong length.
+ *
+ * THE OUTPUT FORMAT IS CHOSEN BY THE BUFFER SIZE, not by a flag: 0x21 bytes or
+ * more gets thirty-two hex characters and a terminator, anything smaller gets
+ * RAW BYTES and no terminator, truncated to the size given.  So the same call
+ * produces text or binary depending on a number, and a caller passing 33 for a
+ * 16-byte buffer gets neither what it asked for nor an error.
+ */
+void Rva00810FF0( struct Rva00810060Context *context, char *out, int outSize )
+{
+	int i;
+	unsigned int uWord;
+	unsigned char cPad;
+	char *pOut;
+
+	uWord = 0;
+	cPad = 0x80;
+	pOut = out;
+
+	i = context->m_count & 0x3F;
+
+	/* AN EXPLICIT BREAK, not a do-while condition.  The two compile to the
+	 * same test but retail carries the pair of trampolines a break produces
+	 * -- one jump to the exit and one back to the top -- where a do-while
+	 * branches straight back and saves four bytes. */
+	for ( ;; )
+	{
+		context->m_block[ i ] = cPad;
+		i++;
+		cPad = 0;
+
+		if ( i == 0x40 )
+		{
+			Rva00810120( context );
+			i = 0;
+		}
+
+		if ( i == 0x38 )
+		{
+			break;
+		}
+	}
+
+	context->m_block[ 0x38 ] = ( unsigned char )( context->m_count << 3 );
+	context->m_block[ 0x39 ] = ( unsigned char )( context->m_count >> 5 );
+	context->m_block[ 0x3A ] = ( unsigned char )( context->m_count >> 13 );
+	context->m_block[ 0x3B ] = ( unsigned char )( context->m_count >> 21 );
+	context->m_block[ 0x3C ] = ( unsigned char )( context->m_count >> 29 );
+	context->m_block[ 0x3D ] = 0;
+	context->m_block[ 0x3E ] = 0;
+	context->m_block[ 0x3F ] = 0;
+
+	Rva00810120( context );
+
+	for ( i = 0; i < 0x10; i++ )
+	{
+		if ( ( i & 3 ) == 0 )
+		{
+			uWord = context->m_state[ i >> 2 ];
+		}
+
+		if ( outSize >= 0x21 )
+		{
+			*pOut = g_Rva012C4998HexDigits[ ( uWord >> 4 ) & 0xF ];
+			pOut++;
+			*pOut = g_Rva012C4998HexDigits[ uWord & 0xF ];
+			pOut++;
+		}
+		else if ( i < outSize )
+		{
+			*pOut = ( char )uWord;
+			pOut++;
+		}
+
+		uWord >>= 8;
+	}
+
+	if ( outSize >= 0x21 )
+	{
+		*pOut = 0;
+	}
+}
