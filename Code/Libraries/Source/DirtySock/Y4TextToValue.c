@@ -557,3 +557,58 @@ int Rva007EC780( unsigned char *buffer, int size, const char *field )
 
 	return i - 1;
 }
+
+/* 0x007EE1D0 APPLIES A WHOLE LIST OF FIELDS TO A RECORD and returns how many
+ * of them actually changed it.
+ *
+ * THE COUNT IS OF CHANGES, NOT OF FIELDS APPLIED.  The engine returns 0 when a
+ * field already holds the text being written, and only a strictly positive
+ * result is counted here -- so a caller can use the return value to decide
+ * whether the record needs saving, which is the only reason to distinguish
+ * those two cases at all.  Errors return -1 and are counted the same as
+ * no-change: NOTHING HERE REPORTS A FAILED FIELD.  A list that overflows the
+ * buffer halfway through returns a plausible non-zero count.
+ *
+ * A DELIMITER WHERE A NAME SHOULD BE ENDS THE LIST.  Leading whitespace is
+ * skipped, but a field starting with '=' or ':' would name nothing, so the
+ * whole remainder is abandoned rather than skipped -- silently, and with the
+ * fields already applied left in place.
+ *
+ * Fields are separated by anything below a space, and a run of them counts as
+ * one separator, so the list is equally happy as newline- or NUL-delimited
+ * text.
+ */
+int Rva007EE1D0( unsigned char *buffer, int size, const unsigned char *fields )
+{
+	int iChanged;
+	const unsigned char *p;
+
+	iChanged = 0;
+	p = fields;
+
+	while ( *p != 0 )
+	{
+		if ( *p <= ' ' )
+		{
+			p++;
+			continue;
+		}
+
+		if ( *p == '=' || *p == ':' )
+		{
+			break;
+		}
+
+		if ( Rva007EC780( buffer, size, (const char *)p ) > 0 )
+		{
+			iChanged++;
+		}
+
+		while ( *p >= ' ' )
+		{
+			p++;
+		}
+	}
+
+	return iChanged;
+}
