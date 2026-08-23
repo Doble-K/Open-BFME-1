@@ -781,3 +781,58 @@ int Rva007ED0E0( char *record, int size, const char *name,
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+extern "C" int Rva007ED360( unsigned char *dest, int destSize,
+	const unsigned char *src, int count );
+
+// 0x007ED220 IS THE OTHER BINARY FIELD FORMAT, and putting it beside the hex
+// one at 0x007ED0E0 shows the module carries TWO encodings for the same job,
+// distinguished by a single marker character: a dollar sign for hex, a caret
+// for seven-bit packing.  Hex costs two characters per byte and is readable;
+// the packed form costs eight sevenths and is not.  Nothing chooses between
+// them here -- the caller does, by picking a function.
+//
+// THE GUARD HAS TWO PARTS AND NEITHER SUBSUMES THE OTHER.  The size test is
+// unsigned, so it catches a count large enough to overflow the buffer; the
+// separate negative test is needed because a small negative count produces a
+// SMALL positive size estimate rather than a wrapped one, and would sail
+// through.  The hex writer needs only one test because its estimate is a
+// plain doubling, which does wrap.
+//
+// THE ENCODER IS ALSO GIVEN THE REMAINING SPACE, so the length is checked
+// twice by two different calculations -- once here from the ceiling formula
+// and once inside from the same formula.  They agree, which makes the second
+// check dead, but the encoder cannot know that and neither can this.
+int Rva007ED220( char *record, int size, const char *name,
+	const unsigned char *src, int count )
+{
+	char *p;
+	char item[ 0x2100 ];
+	const unsigned char *pSrc;
+	int iWritten;
+
+	pSrc = src;
+
+	p = Rva007EC730( record, item, name );
+
+	*p = '^';
+	p++;
+
+	if( ( count * 8 + 6 ) / 7 + 1 > sizeof( item ) - ( p - item ) || count < 0 )
+	{
+		return -1;
+	}
+
+	iWritten = Rva007ED360( ( unsigned char * )p,
+		sizeof( item ) - ( p - item ), pSrc, count );
+
+	if( iWritten < 0 )
+	{
+		return -1;
+	}
+
+	p += iWritten;
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
