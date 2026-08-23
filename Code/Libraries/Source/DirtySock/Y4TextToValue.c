@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
 /* EA DirtySock -- text-to-value scanners, /Od with /GZ.  Both take a default
  * to return when the input is unusable, so neither can fail visibly; a caller
  * that needs to tell "absent" from "parsed" has to pick a default it can
@@ -1376,4 +1376,198 @@ int Rva007EF5B0( const char *text, unsigned char *dest, int destSize,
 
 	*dest = 0;
 	return iLen - 1;
+}
+
+/* Uninitialised data again -- the text substituted when the caller passes
+ * none.  No bytes for it exist in the image, so what it holds is set at run
+ * time and is not recoverable here. */
+extern char g_Rva0130A5ACEmpty[];
+
+/* 0x007EF190 IS THE INVERSE OF THE FORMAT-DRIVEN SERIALISER at 0x007ED470: it
+ * reads comma-separated values back into a binary buffer under the same
+ * directive letters.  Retail's own name for its scratch buffer is tmp.
+ *
+ * A NULL DESTINATION IS NOT AN ERROR -- IT IS A SCRATCH BUFFER.  When the
+ * caller passes none, a 1 KB local stands in and the whole parse runs into it
+ * and is discarded, with only the LENGTH returned.  So this doubles as a
+ * measuring pass without a separate code path, and a caller measuring a format
+ * that would produce more than 1 KB overruns that local silently.
+ *
+ * THREE THINGS DIFFER FROM THE WRITER, all of them small and none visible from
+ * the letters alone.
+ *
+ * The unbounded length is 0xFFFF here where the writer uses 0x10000 -- one
+ * byte apart, so a buffer the writer would exactly fill is one short of what
+ * the reader will accept.
+ *
+ * The end check runs at the END of the loop body where the writer checks at
+ * the TOP, so THIS ALWAYS PROCESSES AT LEAST ONE DIRECTIVE even when the
+ * destination is already full.
+ *
+ * And the sign is taken from the FIRST CHARACTER before any digits are read,
+ * then re-tested afterwards to negate -- where the writer decides sign by
+ * magnitude.  A value the writer emitted as a large positive number is read
+ * back as exactly that; the two disagree about anything above 0xFFFF0000.
+ *
+ * A STRING FIELD IS ZERO-FILLED TO ITS DECLARED WIDTH, so 's' is fixed-width
+ * on the way in even though the writer emits it variable-length and relies on
+ * the comma.  The count is what makes the round trip work, and a format that
+ * omits it silently reads nothing.
+ */
+int Rva007EF190( const char *text, unsigned char *data, int length,
+	const char *format )
+{
+	char cSign;
+	int iWidth;
+	int iCount;
+	unsigned char tmp[ 0x400 ];
+	int uValue;
+	unsigned char *pOut;
+	unsigned char *pEnd;
+
+	pOut = data;
+
+	pEnd = ( length < 0 ) ? pOut + 0xFFFF : pOut + length;
+
+	if ( text == 0 )
+	{
+		text = g_Rva0130A5ACEmpty;
+	}
+
+	if ( pOut == 0 )
+	{
+		data = tmp;
+		pOut = data;
+	}
+
+	while ( *format != 0 )
+	{
+		if ( *format == '#' )
+		{
+			format++;
+
+			while ( *format != 0 && ( *format++ != '=' ) != 0 )
+			{
+			}
+		}
+
+		for ( iCount = 0; *format >= '0' && *format <= '9'; format++ )
+		{
+			iCount = iCount * 10 + ( *format & 0xF );
+		}
+
+		iWidth = 0;
+
+		if ( *format == 'a' )
+		{
+			pOut += ( iCount != 0 ) ? iCount : 1;
+		}
+
+		if ( *format == 'b' )
+		{
+			iWidth = 2;
+		}
+
+		if ( *format == 'w' )
+		{
+			iWidth = 4;
+		}
+
+		if ( *format == 'l' )
+		{
+			iWidth = 8;
+		}
+
+		if ( iWidth > 0 )
+		{
+			cSign = *text;
+
+			if ( cSign == '-' )
+			{
+				text++;
+			}
+
+			uValue = 0;
+
+			for ( ; iWidth > 0 && *text >= '0'; iWidth-- )
+			{
+				uValue = ( uValue << 4 ) | g_Rva0112A110Hex[ *text ];
+				text++;
+			}
+
+			if ( iWidth > 0 && *text == ',' )
+			{
+				text++;
+			}
+
+			if ( cSign == '-' )
+			{
+				uValue = -uValue;
+			}
+
+			if ( *format == 'b' )
+			{
+				*pOut = ( unsigned char )uValue;
+				pOut += 1;
+			}
+
+			if ( *format == 'w' )
+			{
+				*( unsigned short * )pOut = ( unsigned short )uValue;
+				pOut += 2;
+			}
+
+			if ( *format == 'l' )
+			{
+				*( int * )pOut = uValue;
+				pOut += 4;
+			}
+		}
+
+		if ( *format == 's' && iCount > 0 )
+		{
+			for ( iWidth = 0; ( *text >= '0' || *text == '%' )
+				&& iWidth + 1 < iCount; iWidth++ )
+			{
+				if ( *text == '%' )
+				{
+					pOut[ iWidth ] = g_Rva0112A010HexHigh[ text[ 1 ] ]
+						| g_Rva0112A110Hex[ text[ 2 ] ];
+					text += 3;
+				}
+				else
+				{
+					pOut[ iWidth ] = *text;
+					text++;
+				}
+			}
+
+			while ( iWidth < iCount )
+			{
+				pOut[ iWidth ] = 0;
+				iWidth++;
+			}
+
+			pOut += iWidth;
+
+			if ( *text == ',' )
+			{
+				text++;
+			}
+		}
+
+		if ( pOut >= pEnd )
+		{
+			break;
+		}
+
+		format++;
+
+		if ( *format == '*' )
+		{
+			format--;
+		}
+	}
+
+	return pOut - data;
 }
