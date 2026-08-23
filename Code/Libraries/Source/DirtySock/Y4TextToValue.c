@@ -740,3 +740,74 @@ int Rva007EEF30( unsigned char *dest, int count, const unsigned char *src )
 
 	return pOut - dest;
 }
+
+/* 0x007ED360 IS THE WRITE SIDE OF 0x007EEF30 -- it packs bytes into seven-bit
+ * groups so the result survives a channel that cannot carry the high bit as
+ * data, and returns how many bytes it wrote, or -1 if they would not fit.
+ *
+ * EVERY OUTPUT BYTE HAS THE HIGH BIT SET, THE LAST ONE INCLUDED.  That is the
+ * detail that ties the pair together and it is easy to misread from either
+ * side alone: the decoder stops at the first byte WITHOUT the high bit, and
+ * this encoder never produces one.  SO THE TERMINATOR IS NOT PART OF THE
+ * ENCODING -- it has to come from whatever the run is embedded in, and a
+ * caller that packs two runs back to back with nothing between them produces
+ * something the decoder will read as a single longer run.
+ *
+ * THE SIZE CHECK IS EXACT RATHER THAN CONSERVATIVE.  Eight bits per input byte
+ * over seven bits per output byte, rounded up, is precisely what the loop
+ * emits including the final partial group, so a buffer of exactly that size
+ * always succeeds and one byte less always fails.
+ *
+ * THE FINAL FLUSH DOES NOT MASK, where the loop does.  It is safe only because
+ * fewer than seven bits remain by then, so the accumulator cannot reach the
+ * high bit on its own -- an invariant of the loop above rather than anything
+ * this line checks.
+ */
+int Rva007ED360( unsigned char *dest, int destSize, const unsigned char *src,
+	int count )
+{
+	unsigned char *pOut;
+	const unsigned char *pIn;
+	int iLeft;
+	unsigned int uAccumulator;
+	int iBits;
+
+	pOut = dest;
+	pIn = src;
+	iLeft = count;
+	uAccumulator = 0;
+	iBits = 0;
+
+	if ( destSize < ( count * 8 + 6 ) / 7 )
+	{
+		return -1;
+	}
+
+	/* THE EXPLICIT != 0 IS LOAD-BEARING, not decoration.  Written as a bare
+	 * relational the comparison branches directly; compared against zero it is
+	 * first materialised into a 1 or a 0 in a stack temporary which is then
+	 * tested, costing five instructions and a frame slot.  Retail has the
+	 * temporary, so retail has the comparison. */
+	while ( ( iLeft-- > 0 ) != 0 )
+	{
+		uAccumulator |= *pIn << iBits;
+		pIn++;
+		iBits += 8;
+
+		while ( iBits >= 7 )
+		{
+			*pOut = ( uAccumulator & 0x7F ) | 0x80;
+			pOut++;
+			uAccumulator >>= 7;
+			iBits -= 7;
+		}
+	}
+
+	if ( iBits > 0 )
+	{
+		*pOut = uAccumulator | 0x80;
+		pOut++;
+	}
+
+	return pOut - dest;
+}
