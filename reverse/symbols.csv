@@ -75559,3 +75559,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1Gen_dtor_00654cb0@@QAE@XZ,0x0003B0CF,non-virtual-dispatch sibling of the already-pinned virtual dtor pin at the same address; BFMENetworkQueue1::popFront calls it directly (e8), not through a vtable
 _Rva0051D1E0Forward,0x0003EA45,Open-BFME5 ILT thunk to the shared 0x0051D1E0 body called by the 0x0051D2A0 and 0x0051D2C0 mode forwarders
 ?__stlp_deallocate_small@@YAXPAXI@Z,0x0082E5F0,alias for the already-pinned STLport __node_alloc<0,0>::_M_deallocate small-block pool deallocator, used directly (not through the template) by TensileFormationUpdateMember::~TensileFormationUpdateMember
+??RQ4Sort0034BFC0@@QBE_NHH@Z,0x00024B81,ILT thunk to the Q4Sort0034BFC0 comparator body at 0x0033D5E0, resolved via decode_calls at the __median<int,Q4Sort0034BFC0> call site
