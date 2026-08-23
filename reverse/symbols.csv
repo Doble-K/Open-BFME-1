@@ -75565,3 +75565,6 @@ _Rva0051D1E0Forward,0x0003EA45,Open-BFME5 ILT thunk to the shared 0x0051D1E0 bod
 ??RQ4Sort004566F0@@QBE_NHH@Z,0x00024055,ILT thunk to the Q4Sort004566F0 comparator body at 0x00451F60, resolved via decode_calls at the __median<int,Q4Sort004566F0> call site
 ??RQ4Sort004567A0@@QBE_NHH@Z,0x00039CB1,ILT thunk to the Q4Sort004567A0 comparator body at 0x00451E90, resolved via decode_calls at the __median<int,Q4Sort004567A0> call site
 ??1PSResponse@@QAE@XZ,0x0003B0CF,ILT the PSResponse deque pop_front calls at 0x00656BE1; its target adds four to this and tail-jumps to ??1PSPlayerStats
+?attachToObject@ParticleSystem@@QAEXPBVObject@@@Z,0x00013C82,ILT thunk to ParticleSystem::attachToObject body at 0x005BE170, resolved via decode_calls at the tossEmitters call site
+?Make00001B18@@YAPAVParticleSystem@@XZ,0x00001B18,ParticleSystem-typed alias for the already-established shared lazy-pointer fallback (S1LazyPointerFieldReads.cpp names it Make00001B18 returning Gen00001B18*); same address, different declared return type
+?clear@ParticleSystemFieldClearShim@@QAEXXZ,0x00015640,ILT thunk to the field-clear helper body at 0x005C2240 (thiscall on &field), resolved via decode_calls at the tossEmitters call site
