@@ -836,3 +836,72 @@ int Rva007ED220( char *record, int size, const char *name,
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+// 0x007EC5C0 STORES A SIGNED DECIMAL AS A FIELD, without sprintf and without
+// a separate scratch buffer.
+//
+// THE DIGITS ARE BUILT BACKWARDS INTO THE SAME BUFFER, THIRTY-TWO BYTES AHEAD
+// of where they will end up, and then copied forward over themselves.  That
+// works because the copy advances one byte for every digit while the source
+// starts at least twenty-one bytes ahead of it, so the write cursor can never
+// overtake the read cursor -- an invariant of the arithmetic, not something
+// any line here checks.  NOTHING CHECKS THE FAR END EITHER: a name landing
+// within thirty-two bytes of the buffer's end puts the scratch past it.
+//
+// THE ACCUMULATOR IS UNSIGNED AND THAT IS WHAT MAKES INT_MIN WORK.  Negating
+// the most negative int overflows as a signed value but lands exactly on
+// 0x80000000 when the result is unsigned, so the loop produces the right ten
+// digits.  A signed accumulator would have looped forever or printed nothing.
+//
+// ZERO IS HANDLED AFTER THE FACT rather than as a special case up front: the
+// loop writes no digits at all, and the check that follows notices the
+// terminator is still where it started and backs up one byte to write a '0'.
+int Rva007EC5C0( char *record, int size, const char *name, int value )
+{
+	char *p;
+	unsigned char *pDigit;
+	char item[ 0x120 ];
+	unsigned int uValue;
+
+	p = Rva007EC730( record, item, name );
+
+	if( value < 0 )
+	{
+		*p = '-';
+		p++;
+		uValue = -value;
+	}
+	else
+	{
+		uValue = value;
+	}
+
+	pDigit = ( unsigned char * )p + 32;
+
+	pDigit--;
+	*pDigit = 0;
+
+	while( uValue > 0 )
+	{
+		pDigit--;
+		*pDigit = uValue % 10 + '0';
+		uValue = uValue / 10;
+	}
+
+	if( *pDigit == 0 )
+	{
+		pDigit--;
+		*pDigit = '0';
+	}
+
+	while( *pDigit != 0 )
+	{
+		*p = *pDigit;
+		p++;
+		pDigit++;
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
