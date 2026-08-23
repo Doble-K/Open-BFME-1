@@ -75541,3 +75541,5 @@ _gpiIntToDate,0x008F1090,vendored=gamespy-2004
 ??$_Construct@U?$pair@$$CBIW4Relationship@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBIW4Relationship@@@0@ABU10@@Z,0x009ED790,direct callee of the unsigned-keyed relationship hashtable insert at 0x009EE9FA
 ?_M_push_back_aux_v@?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@IAEXABVPeerResponse@@@Z,0x00005EB1,ILT the queue push falls through to at 0x0064CB67 when the block is full
 ??$_Construct@VPeerResponse@@V1@@_STL@@YAXPAVPeerResponse@@ABV1@@Z,0x0003BB51,ILT the queue push calls at 0x0064CB49 to build the element in place
+?_M_reallocate_map@?$deque@VPingRequest@@V?$allocator@VPingRequest@@@_STL@@@_STL@@IAEXI_N@Z,0x00010929,ILT the PingRequest deque push-back aux calls at 0x006607AB when the map is full
+?_M_reallocate_map@?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@IAEXI_N@Z,0x00044DA5,ILT the PingResponse deque push-back aux calls at 0x006608DB when the map is full
