@@ -951,3 +951,100 @@ void Rva00818AD0( struct Rva00816BF0Comm *comm )
 		Rva00817030( comm, &message );
 	}
 }
+
+/* The socket-address compare from the text unit: it compares only 6 bytes for
+ * AF_INET, so two addresses agreeing on family, port and address compare equal
+ * whatever their trailing bytes hold.  Returns 0 when they match. */
+int Rva007FF720( const void *a, const void *b );
+
+/* The bind wrapper from the socket unit. */
+int Rva007FD510( struct Rva007FD4E0Socket *socket, const void *address,
+	int addressLength );
+
+/* 0x00819090 BINDS -- and it is where SOCKET SHARING COMES FROM.
+ *
+ * Before binding anything it walks the global transport list looking for
+ * another transport already bound to the SAME ADDRESS, asking each one's
+ * socket for its bound address and comparing.  If it finds one it takes that
+ * transport's socket and DESTROYS THE ONE IT WAS HANDED, so two transports end
+ * up sharing a socket.  That is exactly the situation the destructor's
+ * shared-socket scan exists to handle, and this body is the only place it can
+ * arise.
+ *
+ * The comparison ignores the trailing eight bytes of an AF_INET address, so
+ * two binds agreeing on family, port and address share even if those bytes
+ * differ.
+ *
+ * THE CALLER GIVES UP THE SOCKET ON EVERY PATH: destroyed if the transport is
+ * not idle, destroyed if a shared one is found, destroyed if the bind fails,
+ * adopted otherwise.  There is no path that hands it back.
+ *
+ * A FAILED BIND LEAVES THE STATE AT 0, which is not one of the five values any
+ * other body uses -- 1 through 5 are the live ones.  So 0 means "construction
+ * got as far as binding and failed", a state the object cannot otherwise
+ * reach, and nothing here moves it out again.
+ *
+ * On success the state is 3 whether the socket was shared or freshly bound; a
+ * bound listener is treated as established from the start.
+ */
+int Rva00819090( struct Rva00816BF0Comm *comm,
+	struct Rva007FD4E0Socket *socket, const void *address )
+{
+	/* Declared scalars-first: retail's frame has the result nearest ebp, then
+	 * the walk pointer, then the buffer. */
+	int iResult;
+	struct Rva00816BF0Comm *p;
+	char local[ 0x10 ];
+
+	if ( comm->m_state != 1 )
+	{
+		Rva007FD3F0( socket );
+		return -2;
+	}
+
+	Rva00816DF0( comm, 0 );
+	Rva00819260( comm );
+
+	memset( local, 0, 0x10 );
+	memset( comm->m_peer, 0, 0x10 );
+
+	for ( p = g_Rva0130B188List; p != 0; p = p->m_next )
+	{
+		/* THE FIRST TWO TESTS SHARE ONE CONTINUE, joined by ||, and the bytes
+		 * are specific about it: there is a SINGLE two-byte jump back to the
+		 * increment, with the first test jumping TO it and the second falling
+		 * INTO it.  Two separate continues would emit two such jumps, and an
+		 * && wrapping the rest would send both operands past the whole body
+		 * instead. */
+		if ( p == comm || p->m_socket == 0 )
+			continue;
+
+		if ( Rva007FDB60( p->m_socket, 'bind', local, 0x10 ) < 0 )
+			continue;
+
+		if ( Rva007FF720( address, local ) == 0 )
+		{
+			Rva00816DF0( comm, p->m_socket );
+			Rva007FD3F0( socket );
+			break;
+		}
+	}
+
+	if ( p == 0 )
+	{
+		iResult = Rva007FD510( socket, address, 0x10 );
+
+		if ( iResult < 0 )
+		{
+			comm->m_state = 0;
+			Rva007FD3F0( socket );
+			return -5;
+		}
+
+		Rva00816DF0( comm, socket );
+		Rva007FDE80( socket, 2, 0x64, 0, Rva00818CB0 );
+	}
+
+	comm->m_state = 3;
+	return 0;
+}
