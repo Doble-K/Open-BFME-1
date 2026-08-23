@@ -75406,3 +75406,5 @@ _Rva00814EA0,0x00814EA0,Y4 lane: DirtySock comm operation wrapped by 0x00814F70;
 ?reset@?$bitset@$0BEA@@_STL@@QAEAAV12@XZ,0x0002194A,address-derived call target from the exact 320-bit INI token sink at 0x00208810; ILT fronts the shared bitset reset body at 0x001C2B80
 _Rva00816160,0x00816160,Y4 lane: DirtySock comm connect-completion helper; the handshake at 0x00816020 calls it on the two transitions that reach the established state
 _Rva00816520,0x00816520,Y4 lane: DirtySock comm enqueue wrapped by 0x008165F0; non-negative means the slot was consumed
+?computeBonus@Weapon@@IBEXPBVObject@@IAAVWeaponBonus@@@Z,0x00024591,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 with the source object a zero flag word and the default-constructed bonus block
+?getAttackRange@WeaponTemplate@@QBEMPBVObject@@ABVWeaponBonus@@PBUCoord3D@@@Z,0x0002FFB3,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 on m_template with the source object the bonus and source+0x38 the object position - BFME widened the reference bonus-only signature
