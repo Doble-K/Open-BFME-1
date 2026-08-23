@@ -28,6 +28,14 @@
 //   0x001D5F40  ExtraFriction                 table 0x00C9F370
 //       *(Real *)store = <global> * INI::scanReal( ini->getNextToken() ).
 //
+//   0x001ECDC0  PreferredAgainst              table 0x00CA17D8
+//   0x001ECE00  OnlyAgainst                   table 0x00CA17E8
+//       INI::scanIndexList picks a row, then BitFlags<116>::parseFromINI is
+//       handed `instance + index * 24 + <base>` -- so the owner holds two
+//       parallel arrays of 24-byte rows, one at 0x28 and one at 0x88, indexed by
+//       the same name list.  The two bodies differ in that base and nothing
+//       else.
+//
 // THE MULTIPLY NEEDS A NAMED LOCAL.  Written as one expression the tail is
 // `fmulp` and the body is 33 bytes; retail keeps both operands on the x87 stack
 // (`fld <global>` / `fmul st(1)` / `fstp [eax]` / `fstp st(0)`) and runs 37,
@@ -55,6 +63,7 @@ public:
 	static Real scanReal( const char *token );
 	static Bool scanBool( const char *token );
 	static Int scanLookupList( const char *token, const LookupListRec *list );
+	static Int scanIndexList( const char *token, const char *const *list );
 	static void parseCoord2D( INI *, void *, void *, const void * );
 	static void parseUnsignedInt( INI *, void *, void *, const void * );
 };
@@ -105,4 +114,26 @@ void parseExtraFriction( INI *ini, void *, void *store, const void * )
 {
 	Real value = INI::scanReal( ini->getNextToken( 0 ) );
 	*(Real *)store = TheRva001D5F40Scale * value;
+}
+
+extern const char *const TheRva001ECDC0Names[];
+
+template< int N > class BitFlags
+{
+public:
+	static void parseFromINI( INI *, void *, void *, const void * );
+};
+
+void parsePreferredAgainst( INI *ini, void *instance, void *, const void * )
+{
+	Int index = INI::scanIndexList( ini->getNextToken( 0 ), TheRva001ECDC0Names );
+	BitFlags< 116 >::parseFromINI( ini, instance,
+		(char *)instance + index * 24 + 0x28, 0 );
+}
+
+void parseOnlyAgainst( INI *ini, void *instance, void *, const void * )
+{
+	Int index = INI::scanIndexList( ini->getNextToken( 0 ), TheRva001ECDC0Names );
+	BitFlags< 116 >::parseFromINI( ini, instance,
+		(char *)instance + index * 24 + 0x88, 0 );
 }
