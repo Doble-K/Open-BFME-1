@@ -73789,6 +73789,7 @@ name,address,notes
 ?isInMultiplayerGame@GameLogic@@QAE_NXZ,0x0005C5E0,returns m_gameMode (+0x10c) == 1 GAME_LAN or == 5 GAME_INTERNET which is the ZH inline isInMultiplayerGame; called by the MSG_CLEAR_GAME_DATA arm at 0x003977A4 via ILT 0x000062D5; the converted GameLogic::testTimeOut uses it
 ?isInMultiplayerOrSkirmishGame@GameLogicPortraitShim@@QAE_NXZ,0x0001E0AB,BFME portrait selector ILT to GameLogic mode predicate
 ?isKindOf@BFMEActionThing@@QBE_NH@Z,0x0003251F,BFME Thing kind helper ILT decoded from ActionManager::canGetHealedAt
+?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z,0x0004250A,ILT thunk
 ?isKindOf@Thing@@QBE_NW4KindOfType@@@Z,0x0003251F,REL32 pin from TunnelTracker::updateNemesis @0xF90D0
 ?isLocalAlliedDefeat@VictoryConditions@@UAE_NXZ,0x0035F3D0,vtable 0x010E8D90 slot 14 (+0x38) via ILT 0x00003116; ZH body: observer -> m_singleAllianceRemaining (+0xBD; BFME also needs +0xC0 > 0) else hasBeenDefeated(m_players[m_localSlotNum]) via slot +0x28 at 0x0035F3FB
 ?isLocalAlliedVictory@VictoryConditions@@UAE_NXZ,0x0035F380,vtable 0x010E8D90 slot 13 (+0x34) via ILT 0x00044710; ZH body (observer -> false; hasAchievedVictory(m_players[m_localSlotNum]) via slot +0x24 at 0x0035F3AF) plus a BFME TheGameInfo vcall +0x30 that forces false
@@ -75606,3 +75607,5 @@ _Rva00811310,0x00811310,Y4 lane: SHA-1 block transform, the counterpart of the u
 ?BfmeElementConstruct@_STL@@YAXPAXABUNugget@ModuleInfo@@@Z,0x00016626,Open-BFME5 ILT the ModuleInfo Nugget allocate-and-copy uses for its per-element construct
 ?BfmeElementConstruct@_STL@@YAXPAXABUParticleSysBoneInfo@@@Z,0x00044675,Open-BFME5 ILT the ParticleSysBoneInfo allocate-and-copy uses for its per-element construct
 ?BfmeElementConstruct@_STL@@YAXPAXABVW3DAnimationInfo@@@Z,0x0000927D,Open-BFME5 ILT the W3DAnimationInfo allocate-and-copy uses for its per-element construct
+??$__find@PAPAVObject@@PAV1@@_STL@@YAPAPAVObject@@PAPAV1@0ABQAV1@ABUrandom_access_iterator_tag@0@@Z,0x0002DA8D,ILT thunk
+?push_back@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QAEXABQAVObject@@@Z,0x00019E70,ILT thunk

@@ -113,10 +113,57 @@ struct TriggerInfo
 	UnsignedByte					_bfme_pad;									///< +0x07
 };
 
-class Thing
+template <int NUM_BITS>
+class BitFlags
 {
 public:
+	enum { NUM_WORDS = 6 };
+	UnsignedInt m_words[NUM_WORDS];
+
+	enum BogusInitType { kInit = 0 };
+
+	__forceinline BitFlags()
+	{
+		for (Int i = 0; i < NUM_WORDS; ++i)
+			m_words[i] = 0;
+	}
+
+	__forceinline BitFlags( BogusInitType, Int idx1, Int idx2, Int idx3, Int idx4, Int idx5 )
+	{
+		for (Int i = 0; i < NUM_WORDS; ++i)
+			m_words[i] = 0;
+		set(idx1);
+		set(idx2);
+		set(idx3);
+		set(idx4);
+		set(idx5);
+	}
+
+	__forceinline void set( Int bit )
+	{
+		m_words[bit >> 5] |= (1UL << (bit & 31));
+	}
+
+	__forceinline Bool test( size_t pos ) const
+	{
+		return (m_words[pos / 32] & (1UL << (pos % 32))) != 0;
+	}
+};
+
+typedef BitFlags<116> KindOfMaskType;
+
+class Overridable;
+
+class Thing
+{
+protected:
+	UnsignedByte					_bfme_vtbl[4];
+	const ThingTemplate*	m_template;						///< 0x004 (Thing base)
+
+public:
 	Bool isKindOf( KindOfType k ) const;
+	Bool isAnyKindOf( const KindOfMaskType& mask ) const;
+	const ThingTemplate* getTemplate( void ) const;
 };
 
 enum ObjectStatusTypes
@@ -191,8 +238,6 @@ private:
 
 	enum { FOREVER = 0x3fffffff };
 
-	UnsignedByte							_bfme_vtbl[4];
-	const ThingTemplate*			m_template;						///< 0x004 (Thing base)
 	UnsignedByte							_bfme_pad_008[0x108];
 	ObjectStatusMaskType			m_status;							///< 0x110
 	UnsignedByte							_bfme_pad_128[0xc8];
@@ -209,7 +254,9 @@ private:
 	SpecialPowerMaskType			m_specialPowerBits;		///< 0x2c0
 	TriggerInfo								m_triggerInfo[5];						///< 0x2d8
 	UnsignedInt								m_enteredOrExitedFrame;			///< 0x300
-	UnsignedByte							_bfme_pad_304[0x3f];
+	UnsignedByte							_bfme_pad_304[0x3c];
+	Bool											m_isSelectable;							///< 0x340
+	UnsignedByte							_bfme_pad_341[2];
 	UnsignedByte							m_scriptStatus;							///< 0x343
 	UnsignedByte							_bfme_pad_344[2];
 	Char											m_numTriggerAreasActive;		///< 0x346

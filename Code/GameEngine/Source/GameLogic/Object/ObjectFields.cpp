@@ -229,6 +229,17 @@ public:
 	Overridable*	m_nextOverride;
 };
 
+const ThingTemplate* Thing::getTemplate( void ) const
+{
+	const Overridable* tmpl = (const Overridable*)m_template;
+	if( tmpl != NULL )
+	{
+		if( tmpl->m_nextOverride != NULL )
+			tmpl = tmpl->getFinalOverride();
+	}
+	return (const ThingTemplate*)tmpl;
+}
+
 //-------------------------------------------------------------------------------------------------
 class LocomotorTemplate : public Overridable
 {
@@ -340,28 +351,15 @@ enum KindOfType
 	KINDOF_INERT = 24
 };
 
-struct KindOfMaskType
-{
-	UnsignedInt m_words[1];
-
-	UnsignedInt getword( size_t pos ) const { return m_words[pos / 32]; }
-	static UnsignedInt maskbit( size_t pos ) { return 1UL << (pos % 32); }
-
-	Bool test( size_t pos ) const
-	{
-		return (getword(pos) & maskbit(pos)) != 0;
-	}
-};
-
 //-------------------------------------------------------------------------------------------------
 /// ThingTemplate stand-in: an Overridable with KindOfMaskType at +0xd0.
 class ThingTemplate : public Overridable
 {
 public:
-	Bool isKindOf( KindOfType t ) const { return m_kindof.test(t); }
+	Bool isKindOf( KindOfType t ) const { return (m_kindof & (1UL << t)) != 0; }
 
 	UnsignedByte		_bfme_tt_pad[0xc8];
-	KindOfMaskType	m_kindof;														///< +0xd0, bit 24 = KINDOF_INERT
+	UnsignedInt			m_kindof;														///< +0xd0, bit 24 = KINDOF_INERT
 	UnsignedInt			_bfme_tt_flags;											///< +0xd4, bit 0x1000 gates the upgrade broadcast
 };
 
@@ -671,5 +669,16 @@ Bool Object::hasSpecialPower( SpecialPowerType type ) const
 {
 	return m_specialPowerBits.test( type );
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
