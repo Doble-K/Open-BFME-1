@@ -90,3 +90,46 @@ BFME_VPTR_ZERO_REF_PAIR_CTOR( Rva004C5EA0VptrZeroRefObject )
 BFME_VPTR_ZERO_REF_PAIR_CTOR( Rva004C5FB0VptrZeroRefObject )
 
 BFME_VPTR_ZERO_REF_ONE_CTOR( Rva004C5F60VptrZeroRefObject )
+
+struct Rva004C5CE0RefCounted
+{
+	virtual void release( int deletingFlag );
+
+	int m_refCount;
+};
+
+class Rva004C5CE0Reference
+{
+public:
+	Rva004C5CE0Reference( Rva004C5CE0RefCounted *value ) : m_value( value ) {}
+	Rva004C5CE0Reference( const Rva004C5CE0Reference &other );
+	~Rva004C5CE0Reference();
+
+	Rva004C5CE0RefCounted *m_value;
+};
+
+Rva004C5CE0Reference::Rva004C5CE0Reference( const Rva004C5CE0Reference &other ) :
+	m_value( other.m_value )
+{
+	if ( m_value != 0 )
+		m_value->m_refCount++;
+}
+
+Rva004C5CE0Reference::~Rva004C5CE0Reference()
+{
+	if ( m_value != 0 && --m_value->m_refCount <= 0 )
+		m_value->release( 1 );
+}
+
+class Rva004C5CE0ReferenceHolder
+{
+public:
+	Rva004C5CE0ReferenceHolder( Rva004C5CE0Reference value );
+
+	Rva004C5CE0Reference m_value;
+};
+
+Rva004C5CE0ReferenceHolder::Rva004C5CE0ReferenceHolder( Rva004C5CE0Reference value ) :
+	m_value( value )
+{
+}
