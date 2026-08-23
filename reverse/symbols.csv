@@ -75432,3 +75432,4 @@ _Rva00817640,0x00817640,Y4 lane: DirtySock transport send kick; the ack handler 
 ??0NamedReveal@@QAE@ABU0@@Z,0x00040930,Open-BFME5 ILT; the in-place copy of ?createNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@0M0@Z at 0x0034EF80 when push_back has room
 ?_M_insert_overflow@?$vector@UNamedReveal@@V?$allocator@UNamedReveal@@@_STL@@@_STL@@IAEXPAUNamedReveal@@ABU3@ABU__false_type@2@I_N@Z,0x0002EC58,Open-BFME5 ILT; the grow path of the same push_back
 _Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
+?getName@CrateTemplate@@QBE?AVAsciiString@@XZ,0x000259D7,Open-BFME5 ILT; ?friend_findCrateTemplate@CrateSystem@@QAEPAVCrateTemplate@@VAsciiString@@@Z at 0x003795E0 compares each vector entry on the name it returns by value
