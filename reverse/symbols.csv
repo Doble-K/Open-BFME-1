@@ -75532,3 +75532,7 @@ _gpiIntToDate,0x008F1090,vendored=gamespy-2004
 ?setEmoticon@Drawable@@QAEXABVAsciiString@@H@Z,0x00001A3C,Open-BFME5 ILT thunk to body 0x004149E0 in the Drawable range; ?groupSetEmoticon@AIGroup@@QAEXABVAsciiString@@H@Z at 0x001514C0 calls it on every member drawable
 ?resize@?$hashtable@U?$pair@$$CBHW4Relationship@@@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAEXI@Z,0x0000309E,ILT the Int-keyed relationship hashtable insert calls first at 0x0078714C
 ??$_Construct@U?$pair@$$CBHW4Relationship@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHW4Relationship@@@0@ABU10@@Z,0x000013C5,ILT the same insert calls at 0x0078718A to build the pair in its new node
+?_M_list@?$_Stl_prime@_N@_STL@@2QBIB,0x00C75870,STLport's prime table; the relationship hashtable resize pushes its bounds 0x01075870 and 0x010758E0 at 0x007868E4
+??$__lower_bound@PBIIU?$less@I@_STL@@H@_STL@@YAPBIPBI0ABIU?$less@I@0@PAH@Z,0x00015659,ILT the same resize calls at 0x007868EE to pick the next prime
+?get_allocator@?$vector@PAXV?$allocator@PAX@_STL@@@_STL@@QBE?AV?$allocator@PAX@2@XZ,0x00009C28,ILT the same resize calls at 0x00786920
+??0?$vector@PAXV?$allocator@PAX@_STL@@@_STL@@QAE@IABQAXABV?$allocator@PAX@1@@Z,0x0002039C,ILT the same resize calls at 0x00786930 to build the new bucket vector
