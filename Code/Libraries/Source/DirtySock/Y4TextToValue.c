@@ -247,3 +247,69 @@ int Rva007EC4D0( unsigned char *buffer, int size )
 
 	return iResult;
 }
+
+/* 0x007EC3F0 REPLACES THE VALUE OF A ONE-FIELD RECORD IN PLACE, rewriting the
+ * buffer as "key=\nvalue" and returning 0, or -1 if there is not enough room.
+ *
+ * THE SCAN AT THE TOP DEFINES THE RECORD FORMAT more precisely than any of the
+ * parsers in this file do.  A delimiter is '=' OR ':' FOLLOWED BY A CONTROL
+ * CHARACTER -- neither punctuation mark alone ends the key, so a key may
+ * contain either as long as ordinary text follows it.  What is written back is
+ * always '=' and 0x0A, so ':' is accepted on input and never produced.
+ * Finding no delimiter is not an error: the scan then stops at the terminator
+ * and the whole existing string is taken as the key.
+ *
+ * A NULL VALUE MEANS "TRUNCATE", NOT "NO CHANGE", and it returns success.  The
+ * key's terminator is written BEFORE the value is examined, so by the time the
+ * null test runs the old value is already gone -- and the same is true of the
+ * -1 path below, which leaves a truncated buffer behind.  NEITHER FAILURE NOR
+ * THE NULL CASE IS A NO-OP.
+ *
+ * THE MARGIN OF FIVE IS NOT A FIT CHECK.  The copy stops at the last byte of
+ * the buffer and the terminator always lands there, so two bytes past the key
+ * would be enough to write an empty value.  Requiring five means the caller
+ * gets -1 rather than a record whose value was cut to almost nothing: the
+ * check is about the result being worth writing, not about it fitting.
+ */
+int Rva007EC3F0( unsigned char *buffer, int size, const char *value )
+{
+	unsigned char *p;
+	unsigned char *pEnd;
+
+	for ( p = buffer; *p != 0; p++ )
+	{
+		if ( ( *p == '=' || *p == ':' ) && p[ 1 ] < ' ' )
+		{
+			break;
+		}
+	}
+
+	*p = 0;
+
+	if ( value == 0 )
+	{
+		return 0;
+	}
+
+	pEnd = buffer + size - 1;
+
+	if ( pEnd - p < 5 )
+	{
+		return -1;
+	}
+
+	*p = '=';
+	p++;
+	*p = '\n';
+	p++;
+
+	while ( *value != 0 && p != pEnd )
+	{
+		*p = *value;
+		p++;
+		value++;
+	}
+
+	*p = 0;
+	return 0;
+}
