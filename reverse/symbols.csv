@@ -75511,3 +75511,4 @@ _peerStopGame,0x00857E50,Open-BFME5 cdecl body; ?stopHostingAlready@PeerThreadCl
 ??0W3DBufferManager@@QAE@XZ,0x00031ADE,BFME W3DBufferManager constructor reached by W3DVolumetricShadowManager allocation of 0x3e8 bytes
 ??0W3DShadowGeometryManager@@QAE@XZ,0x00038488,BFME constructor ILT reached by volumetric shadow manager allocation
 ?allocate@ShadowPool@@QAE_NHH@Z,0x0003FC7E,BFME pool allocation used by volumetric shadow manager constructor statistics
+?setPosition@Object@@QAEXPBUCoord3D@@@Z,0x0003A1A7,Open-BFME5 ILT thunk; ?putObjectAtGarrisonPoint@GarrisonContain@@IAEXPAVObject@@W4ObjectID@@HH@Z at 0x0021D750 calls it with the garrison point it just read
