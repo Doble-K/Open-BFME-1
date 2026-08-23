@@ -1450,3 +1450,193 @@ int Rva007ED470( char *record, int size, const char *name,
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+#include <stdarg.h>
+
+// A run of field names in UNINITIALISED data.  There are no bytes for it in
+// the image -- the address lands past the raw .data, so the names are written
+// at run time and CANNOT BE RECOVERED STATICALLY.  Every reference to them is
+// a DIR32 whose operand comes from retail, so the bytes match regardless of
+// what this symbol is called or what it eventually holds; the offsets below
+// are the only thing that is real.
+extern char g_Rva0130A5A4Names[];
+
+// The configurable separator, also used by the record engine in Y4TextToValue.c
+// -- one byte of writable data shared across the seam between the two halves of
+// this module.
+extern char g_Rva012C391CSeparator;
+
+// 0x007EE280 BUILDS A RECORD FROM A FORMAT STRING AND VARARGS, dispatching
+// each directive to the typed writer for it.  It is the top of this module:
+// everything else converted here is something this can call.
+//
+// THE DIRECTIVE LETTERS MAP ONE TO ONE ONTO THE WRITERS -- 's' to the escaped
+// string writer, 'd' to the decimal one, 'a' to the dotted quad, 'f' to the
+// flag letters, 'e' to the timestamp.  The FIELD NAME does not come from the
+// format; each writer is handed a fixed name out of the table above, so the
+// format decides only the TYPE and the caller cannot name a field through it.
+//
+// TWO DIRECTIVES ARE NOT WRITERS AT ALL.  'i' takes a pointer and stores it as
+// the SOURCE RECORD for later use, writing nothing; 'x' then looks a field up
+// in that source and copies it across verbatim, falling back to a placeholder
+// pair from the same table when the lookup fails.  So a format can splice
+// fields out of one record into another, and the 'i' that arms it may appear
+// anywhere before the 'x' that uses it.
+//
+// WHITESPACE IN THE FORMAT MEANS "SEPARATOR", not a space: any character at or
+// below a space emits the configured separator byte and then swallows the
+// whole run that follows, so the format is free-form and its own layout does
+// not reach the output.
+//
+// AN '=' ALREADY WRITTEN IS BACKED OVER before each directive, which is what
+// lets the writers append their own name and delimiter without the caller
+// having to know whether one is already there.
+//
+// THE RETURN IS BYTES WRITTEN, computed as the difference between the size on
+// entry and the size left -- so it counts what the writers consumed as well as
+// what this function emitted directly.
+int Rva007EE280( char *record, int size, const char *format, ... )
+{
+	int iResult;
+	va_list args;
+	unsigned char c;
+	int iSize;
+	const char *pSource;
+	const char *pString;
+	int iValue;
+	unsigned int uAddress;
+	int iFlags;
+	unsigned int uWhen;
+	const char *pName;
+	const char *pFound;
+	const char *pRaw;
+
+	iSize = size;
+	pSource = g_Rva0130A5A4Names;
+
+	va_start( args, format );
+
+	// THE INNER != 0 IS LOAD-BEARING.  Retail materialises the fetch-and-test
+	// into a 1 or a 0 in a stack temporary and then tests THAT, which is the
+	// shape a comparison-of-a-comparison produces; the single-comparison form
+	// branches directly and loses five instructions and a frame slot.
+	while( ( ( c = *format++ ) != 0 ) != 0 && size > 1 )
+	{
+		if( c <= ' ' )
+		{
+			*record = g_Rva012C391CSeparator;
+			record++;
+			size--;
+
+			while( *format != 0 && *format <= ' ' )
+			{
+				format++;
+			}
+		}
+		// AN ELSE-IF CHAIN, NOT THREE GUARDS WITH CONTINUES.  All three arms
+		// converge on the end of the loop body and the back edge is there, so
+		// each arm ends in a FORWARD jump.  Written as separate ifs with
+		// continues, each arm jumps BACKWARD to the top instead -- same
+		// behaviour, different displacement, and the only thing that tells
+		// the two apart is the sign of that jump.
+		else if( c != '%' )
+		{
+			*record = c;
+			record++;
+			size--;
+		}
+		else if( *format != 0 )
+		{
+
+			iResult = 0;
+			c = *format;
+			format++;
+
+			if( record[ -1 ] == '=' )
+			{
+				record--;
+				size++;
+			}
+
+			*record = 0;
+
+			if( c == 's' )
+			{
+				pString = va_arg( args, const char * );
+				iResult = Rva007ECE60( record, size, &g_Rva0130A5A4Names[ 1 ],
+					pString );
+			}
+			else if( c == 'd' )
+			{
+				iValue = va_arg( args, int );
+				iResult = Rva007EC5C0( record, size, &g_Rva0130A5A4Names[ 2 ],
+					iValue );
+			}
+			else if( c == 'a' )
+			{
+				uAddress = va_arg( args, unsigned int );
+				iResult = Rva007ECBE0( record, size, &g_Rva0130A5A4Names[ 3 ],
+					uAddress );
+			}
+			else if( c == 'f' )
+			{
+				iFlags = va_arg( args, int );
+				iResult = Rva007ECAF0( record, size, &g_Rva0130A5A4Names[ 4 ],
+					iFlags );
+			}
+			else if( c == 'e' )
+			{
+				uWhen = va_arg( args, unsigned int );
+				iResult = Rva007ED9F0( record, size, &g_Rva0130A5A4Names[ 5 ],
+					uWhen );
+			}
+			else if( c == 'i' )
+			{
+				pSource = va_arg( args, const char * );
+			}
+			else if( c == 'x' )
+			{
+				pName = va_arg( args, const char * );
+				pFound = Rva007EBCA0( pSource, pName );
+
+				if( pFound != 0 )
+				{
+					iResult = Rva007EC780( ( unsigned char * )record, size,
+						pFound - 1 );
+				}
+				else
+				{
+					iResult = Rva007ECE60( record, size,
+						&g_Rva0130A5A4Names[ 7 ], &g_Rva0130A5A4Names[ 6 ] );
+				}
+			}
+			else if( c == 'r' )
+			{
+				pRaw = va_arg( args, const char * );
+
+				while( *pRaw != 0 && size > 0 )
+				{
+					*record = *pRaw;
+					record++;
+					pRaw++;
+					size--;
+				}
+			}
+
+			if( iResult > 0 )
+			{
+				record += iResult;
+				size -= iResult;
+			}
+		}
+	}
+
+	va_end( args );
+
+	if( size > 0 )
+	{
+		*record = 0;
+	}
+
+	return iSize - size;
+}
