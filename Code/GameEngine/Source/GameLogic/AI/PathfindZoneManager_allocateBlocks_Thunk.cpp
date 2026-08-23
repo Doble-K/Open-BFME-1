@@ -1,303 +1,67 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-struct IRegion2D;
+struct ICoord2D
+{
+	int x;
+	int y;
+};
+
+struct IRegion2D
+{
+	ICoord2D lo;
+	ICoord2D hi;
+};
+
+// BFME links both allocations through its array allocator; without the
+// declaration MSVC 7.1 folds these array expressions onto scalar new.
+void *operator new[](unsigned int size);
+
+class ZoneBlock
+{
+public:
+	ZoneBlock();
+	~ZoneBlock();
+
+private:
+	char m_retailLayout[0x228];
+};
+
 class PathfindZoneManager
 {
 public:
-	void allocateBlocks(const IRegion2D &);
+	void allocateBlocks(const IRegion2D &globalBounds);
+
+private:
+	void freeBlocks();
+
+	// BFME added pathfinder state ahead of the ZH fields, so this TU models the
+	// retail offsets without changing the shared ZH compatibility header.
+	unsigned char m_stateEnabled;
+	unsigned char m_secondaryStateEnabled;
+	unsigned char m_statePadding[2];
+	int m_currentZone;
+	char m_pathfinderStorage[0x2361c];
+	ZoneBlock *m_blockOfZoneBlocks;
+	ZoneBlock **m_zoneBlocks;
+	ICoord2D m_zoneBlockExtent;
 };
 
-// ?allocateBlocks@PathfindZoneManager@@QAEXABUIRegion2D@@@Z
-__declspec(naked) void PathfindZoneManager::allocateBlocks(const IRegion2D &)
+typedef char ZoneBlockSizeMustMatchRetail[(sizeof(ZoneBlock) == 0x228) ? 1 : -1];
+
+void PathfindZoneManager::allocateBlocks(const IRegion2D &globalBounds)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xab
-        __emit 0xff
-        __emit 0x01
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x53
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x03
-        __emit 0x31
-        __emit 0xc2
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xc6
-        __emit 0x06
-        __emit 0x01
-        __emit 0xc6
-        __emit 0x46
-        __emit 0x01
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x08
-        __emit 0x2b
-        __emit 0xc2
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x10
-        __emit 0x99
-        __emit 0x83
-        __emit 0xe2
-        __emit 0x0f
-        __emit 0x03
-        __emit 0xc2
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x04
-        __emit 0x89
-        __emit 0x86
-        __emit 0x2c
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0xbe
-        __emit 0x2c
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x2b
-        __emit 0xc2
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x10
-        __emit 0x99
-        __emit 0x83
-        __emit 0xe2
-        __emit 0x0f
-        __emit 0x03
-        __emit 0xc2
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x04
-        __emit 0x0f
-        __emit 0xaf
-        __emit 0xf8
-        __emit 0x89
-        __emit 0x86
-        __emit 0x30
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc7
-        __emit 0x69
-        __emit 0xc0
-        __emit 0x28
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x04
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xa2
-        __emit 0xe1
-        __emit 0x47
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x74
-        __emit 0x1b
-        __emit 0x68
-        __emit 0x38
-        __emit 0x01
-        __emit 0x44
-        __emit 0x00
-        __emit 0x68
-        __emit 0xe4
-        __emit 0xa4
-        __emit 0x44
-        __emit 0x00
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x58
-        __emit 0x04
-        __emit 0x68
-        __emit 0x28
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x53
-        __emit 0x89
-        __emit 0x38
-        __emit 0xe8
-        __emit 0xea
-        __emit 0x30
-        __emit 0x5f
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x2c
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0xc1
-        __emit 0xe1
-        __emit 0x02
-        __emit 0x51
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x89
-        __emit 0x9e
-        __emit 0x24
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x59
-        __emit 0xe1
-        __emit 0x47
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x2c
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x89
-        __emit 0x86
-        __emit 0x28
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x7e
-        __emit 0x2f
-        __emit 0x8d
-        __emit 0x64
-        __emit 0x24
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x96
-        __emit 0x30
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xbe
-        __emit 0x24
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x0f
-        __emit 0xaf
-        __emit 0xd0
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x28
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x69
-        __emit 0xd2
-        __emit 0x28
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x03
-        __emit 0xd7
-        __emit 0x89
-        __emit 0x14
-        __emit 0x81
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x2c
-        __emit 0x36
-        __emit 0x02
-        __emit 0x00
-        __emit 0x40
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x7c
-        __emit 0xd5
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-	}
+	freeBlocks();
+
+	m_stateEnabled = 1;
+	m_secondaryStateEnabled = 1;
+	m_currentZone = -1;
+
+	const int zoneBlockSize = 16;
+	m_zoneBlockExtent.x = (globalBounds.hi.x - globalBounds.lo.x + zoneBlockSize) / zoneBlockSize;
+	m_zoneBlockExtent.y = (globalBounds.hi.y - globalBounds.lo.y + zoneBlockSize) / zoneBlockSize;
+
+	m_blockOfZoneBlocks = new ZoneBlock[m_zoneBlockExtent.x * m_zoneBlockExtent.y];
+	m_zoneBlocks = new ZoneBlock *[m_zoneBlockExtent.x];
+	for (int i = 0; i < m_zoneBlockExtent.x; ++i)
+		m_zoneBlocks[i] = &m_blockOfZoneBlocks[i * m_zoneBlockExtent.y];
 }
