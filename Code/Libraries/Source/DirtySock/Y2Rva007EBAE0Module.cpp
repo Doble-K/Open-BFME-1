@@ -1180,3 +1180,79 @@ int Rva007ECE60( char *record, int size, const char *name, const char *value )
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+// The fallback key, two bytes, "GS".  It sits four bytes before the date
+// format string and immediately after the "~~=\n" suffix, so the whole of this
+// module's configurable data is one small run of writable bytes.
+extern unsigned char g_Rva012C3934DefaultKey[];
+
+// 0x007ED850 STORES AN OBSCURED STRING AS A HEX FIELD.  It is NOT a plain XOR:
+// each output byte is fed back into the next, so the stream is chained and one
+// changed input byte changes everything after it.
+//
+// THE TRANSFORM IS ROTATE-THEN-XOR.  The plaintext byte is combined with the
+// previous output, the result is rotated left by three, and the key byte is
+// mixed in; that becomes both the emitted byte and the feedback for the next
+// round.  The rotate is written as a shift pair with a mask that cannot
+// matter -- an eight-bit value shifted right by five is already under eight --
+// so the AND is belt-and-braces in the original rather than a real bound.
+//
+// THE KEY IS WEAK BY CONSTRUCTION AND THAT IS VISIBLE HERE.  It wraps at its
+// own terminator, and the default is TWO BYTES, so the key period is two.  A
+// null or empty key silently becomes the default rather than being refused,
+// which means a caller that forgets to supply one still gets ciphertext-looking
+// output and no indication that it is barely obscured.  This is obfuscation,
+// not encryption, and nothing in the signature says so.
+//
+// THERE IS NO LENGTH CHECK.  Output is two characters per input byte into a
+// buffer of 0x2100, after the name, and nothing compares the two.  The hex
+// writer at 0x007ED0E0 takes a count and checks it; this one takes a
+// NUL-terminated string and does not.
+int Rva007ED850( char *record, int size, const char *name,
+	const unsigned char *key, const unsigned char *src )
+{
+	unsigned char cCarry;
+	unsigned char cMix;
+	char *p;
+	const unsigned char *pKey;
+	char item[ 0x2100 ];
+	const unsigned char *pKeyStart;
+	const unsigned char *pSrc;
+
+	pKeyStart = key;
+	pSrc = src;
+
+	if( pKeyStart == 0 || *pKeyStart == 0 )
+	{
+		pKeyStart = g_Rva012C3934DefaultKey;
+	}
+
+	p = Rva007EC730( record, item, name );
+
+	*p = '$';
+	p++;
+
+	cCarry = 0;
+	pKey = pKeyStart;
+
+	for( ; *pSrc != 0; pSrc++ )
+	{
+		cMix = *pSrc ^ cCarry;
+		cCarry = ( ( cMix << 3 ) | ( ( cMix >> 5 ) & 7 ) ) ^ *pKey;
+		pKey++;
+
+		if( *pKey == 0 )
+		{
+			pKey = pKeyStart;
+		}
+
+		*p = g_Rva01129E10HexFirst[ cCarry ];
+		p++;
+		*p = g_Rva01129F10HexSecond[ cCarry ];
+		p++;
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
