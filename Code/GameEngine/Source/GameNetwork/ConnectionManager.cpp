@@ -2,6 +2,7 @@
 // stlport
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
+#define _BFME_RETAIL_TREE_INSERT_LAYOUT
 
 #include "PreRTS.h"
 
