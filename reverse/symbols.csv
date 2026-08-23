@@ -75501,3 +75501,7 @@ _memmove,0x009F6EC6,Y4 lane: MSVCR71 import stub. IAT slot 0x0135945C sits betwe
 ?hasAnyObjects@Team@@QBE_N_N@Z,0x0001478B,Open-BFME5 ILT thunk to body 0x000F4CF0; ?hasAnyObjects@TeamPrototype@@QAE_N_N@Z at 0x000F7170 passes its flag through to each team on the instance list
 ?hasAnyBuildings@Team@@QAE_NV?$BitFlags@$0MA@@@_N@Z,0x0003B5B6,Open-BFME5 ILT thunk to body 0x000F4A70; ?hasAnyBuildings@TeamPrototype@@QAE_NV?$BitFlags@$0MA@@@_N@Z at 0x000F7020 asks it of every team on the instance list
 ?removeOverrideTeamRelationship@Team@@QAEXI@Z,0x0001A48D,Open-BFME5 ILT thunk to body 0x000F2530; ?teamAboutToBeDeleted@TeamPrototype@@QAEXPAVTeam@@@Z at 0x000F4090 calls it on every team with the departing team id or zero
+?hasAnyBuildings@TeamPrototype@@QAE_N_N@Z,0x0003DD0C,Open-BFME5 ILT thunk to body 0x000F6FD0; ?hasAnyBuildings@Player@@QBE_N_N@Z at 0x000CDF20 forwards its flag to each prototype through it
+?hasAnyBuildings@Team@@QBE_N_N@Z,0x00017652,Open-BFME5 ILT thunk to body 0x000F4980; ?hasAnyBuildings@TeamPrototype@@QAE_N_N@Z at 0x000F6FD0 passes its flag through to each team on the instance list
+?hasAnyBuildFacility@TeamPrototype@@QBE_NXZ,0x00032C81,Open-BFME5 ILT thunk to body 0x000F0DA0; ?hasAnyBuildFacility@Player@@QBE_NXZ at 0x000CE100 asks it of every prototype
+?hasAnyBuildFacility@Team@@QBE_NXZ,0x0003F594,Open-BFME5 ILT thunk; ?hasAnyBuildFacility@TeamPrototype@@QBE_NXZ at 0x000F0DA0 asks it of every team on the instance list
