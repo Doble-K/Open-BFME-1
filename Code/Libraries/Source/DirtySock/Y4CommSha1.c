@@ -199,3 +199,100 @@ void Rva00811310( struct Rva008111D0Context *context,
 	context->m_state[ 3 ] += d;
 	context->m_state[ 4 ] += e;
 }
+
+/* 0x00811840 COPIES THE STATE OUT AS BYTES, big-endian within each word, and
+ * clamps the request to the digest's twenty bytes.
+ *
+ * IT COMPUTES ITS SHIFT WITH A DIVISION.  The byte position within a word is
+ * i modulo four, and MSVC emits an actual unsigned divide by four rather than
+ * a mask -- so this loop pays a div per byte where an AND would do.  The index
+ * beside it uses a shift, so the two halves of the same decomposition are
+ * written differently in the original.
+ *
+ * OVER-ASKING IS CLAMPED, UNDER-ASKING IS NOT PADDED, and neither is reported:
+ * a caller passing more than twenty gets twenty and a caller passing less gets
+ * a prefix, with no return value to distinguish them.
+ */
+void Rva00811840( struct Rva008111D0Context *context, unsigned char *out,
+	unsigned int size )
+{
+	unsigned char *p;
+	unsigned int i;
+
+	p = out;
+
+	if ( size > 0x14 )
+	{
+		size = 0x14;
+	}
+
+	for ( i = 0; i != size; i++ )
+	{
+		p[ i ] = context->m_state[ i >> 2 ] >> ( ( 3 - i % 4 ) * 8 );
+	}
+}
+
+/* 0x008116B0 FINISHES THE SHA-1 AND WRITES THE RESULT.
+ *
+ * THE LENGTH GOES IN BIG-ENDIAN HERE, high byte first at the low offset --
+ * the mirror image of the MD5 finalise in Y4CommDigest.c, which writes its
+ * length little-endian.  Both are correct for their own standard, and the two
+ * routines sit a few hundred bytes apart doing the opposite thing.
+ *
+ * IT ALSO STOPS SHORT OF A FULL SIXTY-FOUR-BIT LENGTH in the same way MD5
+ * does: five computed bytes and three literal zeros, because the count is in
+ * BYTES and the field wants BITS.  A message of 512 MB or more overflows the
+ * five bytes and is hashed with a wrong length -- the same bound, reached
+ * independently in both implementations.
+ *
+ * THE PADDING BYTE IS A VARIABLE THAT CLEARS ITSELF, exactly as in the MD5:
+ * 0x80 the first time, zero afterwards.  Here it matters more, because the
+ * two-block case really can run the store twice -- when fewer than nine bytes
+ * remain there is no room for the length, so the block is filled, transformed,
+ * and the whole thing repeated with the marker already spent.
+ */
+void Rva008116B0( struct Rva008111D0Context *context, unsigned char *out,
+	unsigned int size )
+{
+	unsigned int i;
+	unsigned char cPad;
+	unsigned int uRoom;
+
+	cPad = 0x80;
+	uRoom = 0x40 - context->m_fill;
+	context->m_count += context->m_fill;
+
+	if ( uRoom < 9 )
+	{
+		context->m_block[ context->m_fill ] = cPad;
+
+		for ( i = context->m_fill + 1; i < 0x40; i++ )
+		{
+			context->m_block[ i ] = 0;
+		}
+
+		Rva00811310( context, context->m_block );
+		cPad = 0;
+		context->m_fill = 0;
+	}
+
+	context->m_block[ context->m_fill ] = cPad;
+
+	for ( i = context->m_fill + 1; i < 0x38; i++ )
+	{
+		context->m_block[ i ] = 0;
+	}
+
+	context->m_block[ 0x38 ] = 0;
+	context->m_block[ 0x39 ] = 0;
+	context->m_block[ 0x3A ] = 0;
+	context->m_block[ 0x3B ] = ( context->m_count >> 29 ) & 0xFF;
+	context->m_block[ 0x3C ] = ( context->m_count >> 21 ) & 0xFF;
+	context->m_block[ 0x3D ] = ( context->m_count >> 13 ) & 0xFF;
+	context->m_block[ 0x3E ] = ( context->m_count >> 5 ) & 0xFF;
+	context->m_block[ 0x3F ] = ( context->m_count << 3 ) & 0xFF;
+
+	Rva00811310( context, context->m_block );
+
+	Rva00811840( context, out, size );
+}
