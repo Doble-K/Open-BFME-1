@@ -75520,3 +75520,4 @@ _gpiIntToDate,0x008F1090,vendored=gamespy-2004
 ?groupGuardPosition@AIGroup@@QAEXPBUCoord3D@@W4GuardMode@1@W4CommandSourceType@1@@Z,0x0004115F,Open-BFME5 ILT at guardSupplyCenter 0x001669C0; receives the adjusted warehouse position with normal guard mode and script command source
 ??$_Construct@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBVAsciiString@@UCoord3D@@@0@ABU10@@Z,0x0000D71F,ILT called by _M_copy at 0x000BFF71 to build the pair in the freshly allocated 0x20-byte node
 ??$_Construct@U?$pair@$$CBHI@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHI@0@ABU10@@Z,0x0001C67A,ILT the int-keyed tree copy at 0x000AAC90 calls to build the pair in its new node
+?_M_clear@?$vector@VUnicodeString@@V?$allocator@VUnicodeString@@@_STL@@@_STL@@IAEXXZ,0x00026D41,tail call of vector<UnicodeString>::_M_insert_overflow at 0x00532AEA
