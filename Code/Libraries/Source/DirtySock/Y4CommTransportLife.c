@@ -45,7 +45,12 @@ struct Rva00816BF0Comm
 {
 	/* +0x00..+0x34, and the first two are this file's own bodies. */
 	void *m_op[ 14 ];
-	char m_gap0[ 0x14 ];
+	char m_gap0[ 0x10 ];
+	/* A SECOND COPY of the socket pointer.  0x00816DF0 writes the same value
+	 * to this and to +0x7C in consecutive statements; nothing converted so far
+	 * reads this one, so what it is for is not yet established -- only that it
+	 * is kept in step. */
+	struct Rva007FD4E0Socket *m_socketAlias;        /* +0x48 */
 	char m_name[ 0x2C ];            /* +0x4C */
 	struct Rva00816BF0Comm *m_next; /* +0x78 */
 	/* The socket OBJECT, not a handle: the destructor hands it straight to the
@@ -77,7 +82,8 @@ extern struct Rva00816BF0Comm *g_Rva0130B188List;
 struct Rva00816BF0Comm *Rva00816BF0( int maxPacket, int recvCount,
 	int sendCount );
 void Rva00816E70( struct Rva00816BF0Comm *comm );
-void Rva00816DF0( struct Rva00816BF0Comm *comm, int flag );
+void Rva00816DF0( struct Rva00816BF0Comm *comm,
+	struct Rva007FD4E0Socket *socket );
 void Rva00816E10( struct Rva00816BF0Comm *comm );
 void Rva00816F60( struct Rva00816BF0Comm *comm );
 void Rva00817100( struct Rva00816BF0Comm *comm, int timeout );
@@ -191,4 +197,92 @@ void Rva00816E70( struct Rva00816BF0Comm *comm )
 	Rva007F0030( comm->m_recvBuffer );
 	Rva007F0030( comm->m_sendBuffer );
 	Rva007F0030( comm );
+}
+
+/* The registry the transports keep themselves in, and the lock guarding it.
+ * Both are constructed and destroyed BY the register and unregister bodies
+ * below rather than by any module init. */
+extern struct Rva00816BF0Comm *g_Rva0130B188List;
+extern char g_Rva0130AF38Lock[ 4 ];
+extern int g_Rva0130AD08Count;
+
+void Rva007FEBD0( void *lock );
+void Rva007FECB0( void *lock );
+
+/* 0x00816DF0 attaches or detaches the socket, and writes it to TWO fields --
+ * +0x7C and +0x48 -- one after the other.  The constructor and the destructor
+ * both call it with a null socket, so it is also the detach.
+ */
+void Rva00816DF0( struct Rva00816BF0Comm *comm,
+	struct Rva007FD4E0Socket *socket )
+{
+	comm->m_socket = socket;
+	comm->m_socketAlias = socket;
+}
+
+/* 0x00816E10 REGISTERS the transport, and the interesting part is that it
+ * builds its own lock on the way.
+ *
+ * The list head being null is taken to mean "nothing has registered yet", and
+ * on that path the lock is CONSTRUCTED and a counter zeroed before anything
+ * else.  So there is no module initialiser for this registry: the first
+ * registration creates it and, in the unregister below, the last one destroys
+ * it.  THAT LAZY CONSTRUCTION IS ITSELF UNGUARDED -- the lock cannot protect
+ * its own creation -- so two threads registering the first two transports at
+ * once would race.  Retail's, and stated rather than quietly fixed.
+ *
+ * The insertion itself is an ordinary push at the head, under the lock.
+ */
+void Rva00816E10( struct Rva00816BF0Comm *comm )
+{
+	if ( g_Rva0130B188List == 0 )
+	{
+		Rva007FEA20( g_Rva0130AF38Lock );
+		g_Rva0130AD08Count = 0;
+	}
+
+	Rva007FEBD0( g_Rva0130AF38Lock );
+
+	comm->m_next = g_Rva0130B188List;
+	g_Rva0130B188List = comm;
+
+	Rva007FECB0( g_Rva0130AF38Lock );
+}
+
+/* 0x00817140 UNREGISTERS it, and mirrors the lazy construction: when the list
+ * empties, the lock is destroyed again.
+ *
+ * The unlink walks a POINTER TO the link rather than the node, so the head and
+ * every interior link are one case -- the same technique the socket destroy in
+ * the socket unit uses.
+ *
+ * THE SEARCH HAS NO TERMINATION GUARD.  Its only exit is finding the node; a
+ * transport that is not on the list walks off the end of the chain.  Nothing
+ * here checks for null, and the constructor is what makes that safe, since a
+ * transport is registered before it can be handed out.  It is still a real
+ * hazard and is not something to add a check for -- the check would change the
+ * bytes.
+ *
+ * The lock is released BEFORE the emptiness test, so the destroy happens
+ * outside it, which is the only order that can work: destroying a lock you
+ * still hold would not.
+ */
+void Rva00817140( struct Rva00816BF0Comm *comm )
+{
+	struct Rva00816BF0Comm **ppLink;
+
+	Rva007FEBD0( g_Rva0130AF38Lock );
+
+	for ( ppLink = &g_Rva0130B188List; *ppLink != comm;
+		ppLink = &( *ppLink )->m_next )
+	{
+		/* the search is the whole loop */
+	}
+
+	*ppLink = comm->m_next;
+
+	Rva007FECB0( g_Rva0130AF38Lock );
+
+	if ( g_Rva0130B188List == 0 )
+		Rva007FEAA0( g_Rva0130AF38Lock );
 }
