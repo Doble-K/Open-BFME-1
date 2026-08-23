@@ -7,11 +7,12 @@
      0x0086C310  ciGetNextID           38 bytes
      0x0086C340  ciCheckFiltersForID   39 bytes
      0x008702C0  ciInitCallbacks       40 bytes
+     0x00871820  ciCleanupChannels     45 bytes
 
    The connection is the CHAT handle itself -- every one of them indexes
    straight off the incoming pointer with no adjustment -- and carries the
-   filter list at +0x814, the next ID at +0x81C and the callback array at
-   +0x820. A filter carries its ID at +0x20 and its next link at +0x24. */
+   channel table at +0x80C, the channel array at +0x810, the filter list at
+   +0x814, the next ID at +0x81C and the callback array at +0x820. A filter carries its ID at +0x20 and its next link at +0x24. */
 
 #include <limits.h>
 
@@ -32,7 +33,9 @@ typedef struct ciFilter
 
 typedef struct ciConnection
 {
-	unsigned char pad0[0x814];
+	unsigned char pad0[0x80c];
+	void *channelTable;				/* +0x80C */
+	void *channelList;				/* +0x810 */
 	ciFilter *filterList;				/* +0x814 */
 	unsigned char pad818[0x81c - 0x818];
 	int nextID;					/* +0x81C */
@@ -46,6 +49,8 @@ typedef struct ciCallback
 } ciCallback;
 
 void *ArrayNew(int elemsize, int initialcount, void (*elemfreefn)(void *elem));
+void ArrayFree(void *array);
+void TableFree(void *table);
 void ciCallbackFree(void *elem);
 
 int ciGetNextID(CHAT chat)
@@ -81,4 +86,15 @@ CHATBool ciInitCallbacks(CHAT chat)
 	connection->callbackList = ArrayNew(sizeof(ciCallback), 128, ciCallbackFree);
 
 	return (CHATBool)(connection->callbackList != 0);
+}
+
+void ciCleanupChannels(CHAT chat)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(connection->channelTable)
+		TableFree(connection->channelTable);
+
+	if(connection->channelList)
+		ArrayFree(connection->channelList);
 }
