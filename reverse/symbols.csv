@@ -75536,3 +75536,5 @@ _gpiIntToDate,0x008F1090,vendored=gamespy-2004
 ??$__lower_bound@PBIIU?$less@I@_STL@@H@_STL@@YAPBIPBI0ABIU?$less@I@0@PAH@Z,0x00015659,ILT the same resize calls at 0x007868EE to pick the next prime
 ?get_allocator@?$vector@PAXV?$allocator@PAX@_STL@@@_STL@@QBE?AV?$allocator@PAX@2@XZ,0x00009C28,ILT the same resize calls at 0x00786920
 ??0?$vector@PAXV?$allocator@PAX@_STL@@@_STL@@QAE@IABQAXABV?$allocator@PAX@1@@Z,0x0002039C,ILT the same resize calls at 0x00786930 to build the new bucket vector
+?getSound@ThingTemplate@@QBEPBVAudioEventRTS@@H@Z,0x0001BFD1,Open-BFME5 ILT thunk to body 0x00416FA0 - an indexed sound getter that falls back to the no-sound event at 0x012F1318; ?onContaining@OpenContain@@UAEXPAVObject@@_N@Z at 0x00221720 asks it for index 101 where the reference calls getSoundEnter
+?setObjectID@AudioEventRTS@@QAEXI@Z,0x00019A6A,Open-BFME5 ILT thunk; ?onContaining@OpenContain@@UAEXPAVObject@@_N@Z at 0x00221720 stamps the entering object id on its copy of the enter sound
