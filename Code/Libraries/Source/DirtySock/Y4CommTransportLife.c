@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
 /* EA DirtySock -- the construct/destroy pair for a THIRD comm transport,
  * distinct again from the two in Y4CommRingIdle.c and Y4CommTickIdle.c.  Its
  * lock sits at +0x1F4 where theirs are at +0x1EC and +0x1E8, and its object is
@@ -66,7 +66,13 @@ struct Rva00816BF0Comm
 	char m_gap2[ 0x0C ];
 	int m_sendRecordSize;           /* +0xB8 */
 	int m_sendBufferSize;           /* +0xBC */
-	char m_gap3[ 0x0C ];
+	/* The two send cursors, proven by the depth calculation at 0x00817100:
+	 * the distance from +0xC4 to +0xC0 taken modulo the buffer size and
+	 * divided by the record size, which only reads as a count of records if
+	 * these are the write and read positions. */
+	int m_sendWriteOffset;          /* +0xC0 */
+	int m_sendReadOffset;           /* +0xC4 */
+	char m_gap3[ 0x04 ];
 	unsigned char *m_sendBuffer;    /* +0xCC */
 	char m_gap4[ 0x124 ];
 	char m_lock[ 4 ];               /* +0x1F4 */
@@ -85,8 +91,8 @@ void Rva00816E70( struct Rva00816BF0Comm *comm );
 void Rva00816DF0( struct Rva00816BF0Comm *comm,
 	struct Rva007FD4E0Socket *socket );
 void Rva00816E10( struct Rva00816BF0Comm *comm );
-void Rva00816F60( struct Rva00816BF0Comm *comm );
-void Rva00817100( struct Rva00816BF0Comm *comm, int timeout );
+int Rva00816F60( struct Rva00816BF0Comm *comm );
+int Rva00817100( struct Rva00816BF0Comm *comm, int unused );
 void Rva00817140( struct Rva00816BF0Comm *comm );
 
 /* THE TWO QUEUE SIZINGS ARE THE INTERESTING PART, and they are identical:
@@ -285,4 +291,74 @@ void Rva00817140( struct Rva00816BF0Comm *comm )
 
 	if ( g_Rva0130B188List == 0 )
 		Rva007FEAA0( g_Rva0130AF38Lock );
+}
+
+/* 0x00817100 REPORTS THE SEND QUEUE DEPTH -- and it is not what its call site
+ * suggested.  The destructor invokes it with a second argument of 0xC8, which
+ * reads like a timeout, and discards the result; this body IGNORES that
+ * argument entirely and returns a count of outstanding records.
+ *
+ * Both facts are stated rather than smoothed over.  The parameter is declared
+ * because the call site pushes it -- two arguments and an eight-byte cleanup
+ * -- but nothing here reads it, so a one-parameter definition would compile to
+ * the same bytes and misdescribe the interface.  Whether retail meant this to
+ * drain for 0xC8 milliseconds and never finished it is not something the bytes
+ * can say.
+ */
+int Rva00817100( struct Rva00816BF0Comm *comm, int unused )
+{
+	return ( ( comm->m_sendWriteOffset + comm->m_sendBufferSize
+		- comm->m_sendReadOffset ) % comm->m_sendBufferSize )
+		/ comm->m_sendRecordSize;
+}
+
+/* 0x00816F60 is the CLOSE, and it only runs from state 4 -- the state the
+ * handshake's 0x13 packet drives the connection into.  Anything else returns
+ * immediately, which is why the destructor guards its call the same way.
+ *
+ * It builds a message on the stack the size of the transport object itself,
+ * fills in exactly three words of it, and hands it to 0x00817030.  The third
+ * of those carries +0x94 out of the object, and the field is cleared straight
+ * afterwards -- so whatever it holds is being handed OVER rather than copied,
+ * and the object must not keep it.
+ *
+ * THE MESSAGE IS OTHERWISE UNINITIALISED.  Only +0x00, +0x08 and +0x0C are
+ * written; the rest is whatever the /GZ fill left.  The recipient therefore
+ * reads at most those three, and the size is a buffer allowance rather than a
+ * payload.
+ *
+ * State goes to 5 last, so 4 means "peer asked to close" and 5 means "close
+ * has been sent".
+ */
+struct Rva00816F60Message
+{
+	int m_kind;                     /* +0x00 */
+	int m_reserved4;
+	int m_code;                     /* +0x08 */
+	int m_value;                    /* +0x0C */
+	/* 0x228 in total, four bytes MORE than the transport object -- close, but
+	 * not the same type, so the size is taken from the frame rather than
+	 * assumed to be a copy of the object. */
+	char m_body[ 0x218 ];
+};
+
+void Rva00817030( struct Rva00816BF0Comm *comm,
+	struct Rva00816F60Message *message );
+
+int Rva00816F60( struct Rva00816BF0Comm *comm )
+{
+	struct Rva00816F60Message message;
+
+	if ( comm->m_state != 4 )
+		return 0;
+
+	message.m_kind = 0;
+	message.m_code = 3;
+	message.m_value = comm->m_reserved94;
+
+	Rva00817030( comm, &message );
+
+	comm->m_reserved94 = 0;
+	comm->m_state = 5;
+	return 0;
 }
