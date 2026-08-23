@@ -75603,3 +75603,6 @@ _Rva00811310,0x00811310,Y4 lane: SHA-1 block transform, the counterpart of the u
 ?BfmeProductionPrerequisiteConstruct@_STL@@YAXPAXABVProductionPrerequisite@@@Z,0x000027A2,Open-BFME5 ILT for the ProductionPrerequisite copy-construct at 0x003ABAD0 as _M_allocate_and_copy calls it
 ?BfmeHideShowSubObjInfoConstruct@_STL@@YAXPAXABUHideShowSubObjInfo@ModelConditionInfo@@@Z,0x00033FF0,Open-BFME5 ILT this allocate-and-copy uses for the 8-byte _Construct at 0x003A9110
 ?BfmeElementConstruct@_STL@@YAXPAXABUPrereqUnitRec@ProductionPrerequisite@@@Z,0x0003C1A0,Open-BFME5 ILT the PrereqUnitRec allocate-and-copy uses for its per-element construct
+?BfmeElementConstruct@_STL@@YAXPAXABUNugget@ModuleInfo@@@Z,0x00016626,Open-BFME5 ILT the ModuleInfo Nugget allocate-and-copy uses for its per-element construct
+?BfmeElementConstruct@_STL@@YAXPAXABUParticleSysBoneInfo@@@Z,0x00044675,Open-BFME5 ILT the ParticleSysBoneInfo allocate-and-copy uses for its per-element construct
+?BfmeElementConstruct@_STL@@YAXPAXABVW3DAnimationInfo@@@Z,0x0000927D,Open-BFME5 ILT the W3DAnimationInfo allocate-and-copy uses for its per-element construct
