@@ -495,12 +495,14 @@ Int QuickMatchPreferences::getSide( void )
 // CustomMatchPreferences base class 
 //-----------------------------------------------------------------------------
 
-// ??0CustomMatchPreferences@@QAE@XZ present-unmatched
+// ??0CustomMatchPreferences@@QAE@XZ
 CustomMatchPreferences::CustomMatchPreferences()
 {
 	AsciiString userPrefFilename;
-	Int localProfile = TheGameSpyInfo->getLocalProfileID();
-	userPrefFilename.format("GeneralsOnline\\CustomPref%d.ini", localProfile);
+	// BFME added seven vtable slots before getLocalProfileID; see
+	// BfmeGameSpyInfoLocalProfileView above.
+	Int localProfile = reinterpret_cast<BfmeGameSpyInfoLocalProfileView *>(TheGameSpyInfo)->getLocalProfileID();
+	userPrefFilename.format("LoTRB4MEOnline\\CustomPref%d.ini", localProfile);
 	load(userPrefFilename);
 }
 
