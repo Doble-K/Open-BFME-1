@@ -5577,3 +5577,4 @@ _D3DXVec4Transform@12	0x009FAA48	600	identity-suspect	RVA range is not a single 
 ??$__copy@PAUVideo@@PAU1@H@_STL@@YAPAUVideo@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z	0x00755100	83	converted	element is a twelve-byte struct holding one STLport string
 ?pop_front@?$deque@VPSRequest@@V?$allocator@VPSRequest@@@_STL@@@_STL@@QAEXXZ	0x00656B60	80	converted	element 0x210 with ??1PSRequest as its destructor; the name had been aliased onto the PeerRequest deque
 ?pop_front@?$deque@VPSRequest@@V?$allocator@VPSRequest@@@_STL@@@_STL@@QAEXXZ	0x006486F0	80	refuted	that body steps by 0x194 and destroys through ??1PeerRequest; the PSRequest deque is at 0x00656B60 with a 0x210 stride
+?pop_front@?$deque@VPSResponse@@V?$allocator@VPSResponse@@@_STL@@@_STL@@QAEXXZ	0x00656BD0	80	converted	element 0x1F0 whose destructor adds four and tail-jumps to ??1PSPlayerStats, which is the reference PSResponse layout
