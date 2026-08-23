@@ -75468,3 +75468,6 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?init@PathfindLayer@@QAE_NPAVBridge@@W4PathfindLayerEnum@@@Z,0x0004B0AB,Open-BFME5 ILT; ?addBridge@Pathfinder@@QAE?AW4PathfindLayerEnum@@PAVBridge@@@Z at 0x003D5850 initialises the first free layer through it
 ??$_Construct@UNoFlyZone@@U1@@_STL@@YAXPAUNoFlyZone@@ABU1@@Z,0x0002713D,Open-BFME5 ILT to the out-of-line STLport _Construct at 0x00148920 (ledgered as tg_00148920); ?addNoFlyZone@AerialPathfinder@@QAEXPAVPolygonTrigger@@M@Z at 0x00148C10 copies its zone into the fresh list node through it
 _ciChannelLeft,0x00871A30,Open-BFME5 the channel bookkeeping _chatLeaveChannel at 0x008609B0 runs after the PART goes out
+_ciFilterCleanup,0x0086C370,Open-BFME5 the filter teardown _chatDisconnect at 0x008603F0 runs first
+_ciCleanup,0x008543A0,Open-BFME5 the library cleanup _chatDisconnect at 0x008603F0 tails into
+_ciSocketFlush,0x0085AC70,Open-BFME5 behaviour-derived name; _chatDisconnect at 0x008603F0 calls it on the chat socket right after the QUIT and before the channel and callback teardown - distinct from the already-pinned ciSocketDisconnect at 0x0085A990 which runs last
