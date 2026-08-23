@@ -2730,10 +2730,12 @@ void W3DView::cameraModFinalMoveTo(Coord3D *pLoc)
 		start = m_mcwpInfo.waypoints[m_mcwpInfo.numWaypoints];
 		delta.x = pLoc->x - start.x;
 		delta.y = pLoc->y - start.y;
+		delta.z = pLoc->z - start.z;
 		for (i=2; i<=m_mcwpInfo.numWaypoints; i++) {
 			Coord3D result = m_mcwpInfo.waypoints[i];
 			result.x += delta.x;
 			result.y += delta.y;
+			result.z += delta.z;
 			m_mcwpInfo.waypoints[i] = result;
 		}
 	}
