@@ -75466,3 +75466,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?setDestroyed@PathfindLayer@@QAE_N_N@Z,0x00005510,Open-BFME5 ILT; ?changeBridgeState@Pathfinder@@QAEXW4PathfindLayerEnum@@_N@Z at 0x003D58C0 hands it the inverted repaired flag
 ?markZonesDirty@PathfindZoneManager@@QAEX_N0@Z,0x00015307,Open-BFME5 ILT; two arguments in BFME where the reference takes one; ?changeBridgeState@Pathfinder@@QAEXW4PathfindLayerEnum@@_N@Z at 0x003D58C0 passes false and true
 ?init@PathfindLayer@@QAE_NPAVBridge@@W4PathfindLayerEnum@@@Z,0x0004B0AB,Open-BFME5 ILT; ?addBridge@Pathfinder@@QAE?AW4PathfindLayerEnum@@PAVBridge@@@Z at 0x003D5850 initialises the first free layer through it
+??$_Construct@UNoFlyZone@@U1@@_STL@@YAXPAUNoFlyZone@@ABU1@@Z,0x0002713D,Open-BFME5 ILT to the out-of-line STLport _Construct at 0x00148920 (ledgered as tg_00148920); ?addNoFlyZone@AerialPathfinder@@QAEXPAVPolygonTrigger@@M@Z at 0x00148C10 copies its zone into the fresh list node through it
