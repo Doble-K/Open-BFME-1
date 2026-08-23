@@ -75556,3 +75556,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??0AudioEventRTS@@QAE@ABVAsciiString@@@Z,0x00025306,single-arg AudioEventRTS ctor ICF-folded onto the two-arg ctor body; GameSpyOpenOverlay call site confirms
 ?GSMessageBoxYesNo@@YAXVUnicodeString@@0P6AXXZ1@Z,0x00627E90,call target resolved directly from GameSpyOpenOverlay retail bytes at 0x00627FE9
 ?GSMessageBoxOk@@YAXVUnicodeString@@0P6AXXZ@Z,0x00627C80,call target resolved directly from GameSpyOpenOverlay retail bytes at 0x0062803D
+??1Gen_dtor_00654cb0@@QAE@XZ,0x0003B0CF,non-virtual-dispatch sibling of the already-pinned virtual dtor pin at the same address; BFMENetworkQueue1::popFront calls it directly (e8), not through a vtable
