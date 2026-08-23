@@ -75508,3 +75508,6 @@ _memmove,0x009F6EC6,Y4 lane: MSVCR71 import stub. IAT slot 0x0135945C sits betwe
 ?freeBlocks@PathfindZoneManager@@AAEXXZ,0x00026E72,Open-BFME5 ILT thunk to body 0x00403760; allocateBlocks calls the BFME-layout cleanup before rebuilding the block matrix
 _peerStopGame,0x00857E50,Open-BFME5 cdecl body; ?stopHostingAlready@PeerThreadClass@@QAEXPAX@Z at 0x0064C9E0 calls it on the peer exactly where the reference does
 ?assign@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEAAV12@PBD0@Z,0x0002B297,Open-BFME5 ILT thunk to the body already matched at 0x000A5810; the room-name assignment in ?stopHostingAlready@PeerThreadClass@@QAEXPAX@Z at 0x0064C9E0 reaches it through this thunk
+??0W3DBufferManager@@QAE@XZ,0x00031ADE,BFME W3DBufferManager constructor reached by W3DVolumetricShadowManager allocation of 0x3e8 bytes
+??0W3DShadowGeometryManager@@QAE@XZ,0x00038488,BFME constructor ILT reached by volumetric shadow manager allocation
+?allocate@ShadowPool@@QAE_NHH@Z,0x0003FC7E,BFME pool allocation used by volumetric shadow manager constructor statistics
