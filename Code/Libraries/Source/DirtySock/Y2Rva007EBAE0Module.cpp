@@ -905,3 +905,102 @@ int Rva007EC5C0( char *record, int size, const char *name, int value )
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+extern "C" unsigned int __cdecl strlen( const char *text );
+
+// 0x007EC130 RENAMES A FIELD IN PLACE, keeping its value and resizing the
+// record around the new name.  It finds the field with the backwards matcher
+// at 0x007EBCA0, walks back over the old name, shifts the rest of the record
+// by the difference in name lengths, and writes the new name over the old.
+//
+// TWO OF ITS THREE PATHS DO NOT WORK, and both are visible only in the bytes.
+// This is written as retail has it, not as it was meant.
+//
+// THE SHRINK LOOP NEVER ADVANCES ITS CURSOR.  Where the grow path steps its
+// pointer each iteration, this one reads and writes through the SAME
+// unchanging pointer, so it copies one byte to one place forever unless the
+// value was already empty.  A rename to a SHORTER name hangs.  The line after
+// it compounds the slip by terminating at the old position rather than the
+// shifted one, which would have left the record a byte long even if the loop
+// had ended.
+//
+// THE GROW GUARD IS INVERTED with respect to the fit test every other writer
+// in this module uses.  It proceeds when the record length is at least the
+// capacity less the growth -- that is, when the result will NOT fit -- and
+// returns -1 when it will.  So growing a name succeeds only in the cases that
+// overflow, and fails in the cases that are safe.
+//
+// The rename itself, the walk and the matcher are all sound; it is only the
+// two resize paths.  A caller renaming to a name of the SAME length skips both
+// and works correctly, which is presumably why this survived.
+int Rva007EC130( unsigned char *record, int size, const char *oldName,
+	const char *newName )
+{
+	int iDelta;
+	unsigned char *pValue;
+	unsigned char *pName;
+	unsigned char *pEnd;
+	unsigned char *pRecord;
+
+	pRecord = record;
+
+	pValue = ( unsigned char * )Rva007EBCA0( ( const char * )pRecord, oldName );
+
+	if( pValue == 0 )
+	{
+		return -1;
+	}
+
+	if( pValue[ -1 ] == ' ' )
+	{
+		pValue--;
+	}
+
+	pValue--;
+
+	// An empty-bodied for, not a while: retail steps the cursor in the
+	// increment clause, which puts the decrement BEFORE the test in the
+	// listing.  A while with the decrement in its body reverses those two
+	// blocks and costs two bytes.
+	for( pName = pValue; pName != pRecord && pName[ -1 ] > ' '; pName-- )
+	{
+	}
+
+	iDelta = strlen( newName ) - ( pValue - pName );
+
+	if( iDelta < 0 )
+	{
+		while( *pValue != 0 )
+		{
+			pValue[ iDelta ] = *pValue;
+		}
+
+		*pValue = 0;
+	}
+
+	if( iDelta > 0 )
+	{
+		for( pEnd = pValue; *pEnd != 0; pEnd++ )
+		{
+		}
+
+		if( pEnd - pRecord < size - iDelta )
+		{
+			return -1;
+		}
+
+		for( ; pEnd != pValue; pEnd-- )
+		{
+			pEnd[ iDelta ] = *pEnd;
+		}
+	}
+
+	while( *newName != 0 )
+	{
+		*pName = *newName;
+		pName++;
+		newName++;
+	}
+
+	return 0;
+}
