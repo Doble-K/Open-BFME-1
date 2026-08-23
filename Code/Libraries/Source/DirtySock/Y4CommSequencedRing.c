@@ -17,7 +17,12 @@ struct Rva0081BD40Comm
 	 * nobody is watching; it does not stop the send. */
 	void ( __cdecl *m_sendProc )( struct Rva0081BD40Comm *comm,
 		const void *payload, int length, int reserved );  /* +0x38 */
-	char m_head2[ 0x90 ];
+	/* THE RECEIVE CALLBACK, called by 0x0081AB40 with the transport, the
+	 * payload, its length and its arrival tick -- the send one beside it gets
+	 * a zero in that last slot instead. */
+	void ( __cdecl *m_recvProc )( struct Rva0081BD40Comm *comm,
+		const void *payload, int length, unsigned int tick );  /* +0x3C */
+	char m_head2[ 0x8C ];
 	/* A STATE.  0x0081B790 and 0x0081B910 both require it to be 1 before
 	 * doing anything, and both convert a 5 into their own result -- 3 and 2
 	 * respectively.  Nothing converted so far shows what sets it to 5. */
@@ -48,10 +53,13 @@ struct Rva0081BD40Comm
 	 * CRITICAL_SECTION on x86.  The import names never reach the bytes, so
 	 * the declarations below are address-derived. */
 	char m_lock[ 0x18 ];            /* +0x1920 */
-	/* A BUSY FLAG the dequeue SPINS on.  Its offset also makes this object at
-	 * least 0x193C bytes -- an order of magnitude larger than the three
-	 * transports converted so far, which are 0x224 and smaller. */
-	int m_busy;                     /* +0x1938 */
+	/* A RE-ENTRANCY DEPTH, and the two bodies that touch it say different
+	 * halves of the story.  0x0081AB40 raises it across the copy and the user
+	 * callback and lowers it after; 0x0081BC80 SPINS WHILE IT IS NON-ZERO.  So
+	 * a reader does not wait on a lock, it waits for a delivery in progress to
+	 * finish -- which is why the dequeue has no timeout and needs none. */
+	int m_depth;                    /* +0x1938 */
+	int m_flags;                    /* +0x193C */
 };
 
 /* The one-argument stdcall import the socket unit already reaches with a 50
@@ -153,7 +161,7 @@ int Rva0081BC80( struct Rva0081BD40Comm *comm, void *buffer, int size,
 	if ( comm->m_recvReadOffset == comm->m_recvWriteOffset )
 		return -7;
 
-	while ( comm->m_busy != 0 )
+	while ( comm->m_depth != 0 )
 		Rva01358F30Wait( 0 );
 
 	record = (struct Rva0081BC80Record *)( comm->m_recvBuffer
@@ -379,4 +387,72 @@ void Rva0081A8C0( struct Rva0081BD40Comm *comm )
 		comm->m_sendAckOffset = ( comm->m_sendAckOffset
 			+ comm->m_sendRecordSize ) % comm->m_sendBufferSize;
 	}
+}
+
+/* 0x0081AB40 ACCEPTS A RECEIVED RECORD, and is the simpler sibling of the
+ * third transport's 0x008187E0: same full-queue test by advancing the write
+ * cursor one record, same three sequenced outcomes, but no unsequenced code-6
+ * path and no byte counter.
+ *
+ *   - BELOW the expected sequence is a duplicate and is dropped;
+ *   - ABOVE it means something was missed, and the incoming record is
+ *     REWRITTEN IN PLACE into a code-4 retransmit request and sent straight
+ *     back -- so a caller must treat its buffer as consumed;
+ *   - equal but empty is a pure acknowledgement and is dropped.
+ *
+ * Everything else is copied in, the sequence advances by one, and the callback
+ * is handed the payload from +0x10.
+ *
+ * The depth at +0x1938 is raised BEFORE the copy and lowered AFTER the
+ * callback, so it covers the whole window in which the queue is being written
+ * and a caller could re-enter.  That is what the dequeue's spin is waiting
+ * out.
+ */
+void Rva0081AB40( struct Rva0081BD40Comm *comm,
+	struct Rva0081AA20SendRecord *record )
+{
+	struct Rva0081AA20SendRecord *slot;
+
+	if ( ( comm->m_recvWriteOffset + comm->m_recvRecordSize )
+		% comm->m_recvBufferSize == comm->m_recvReadOffset )
+		return;
+
+	if ( (unsigned int)record->m_sequence
+		< (unsigned int)comm->m_recvSequence )
+		return;
+
+	if ( (unsigned int)record->m_sequence
+		> (unsigned int)comm->m_recvSequence )
+	{
+		record->m_sequence = 4;
+		record->m_ack = comm->m_recvSequence;
+		record->m_length = 0;
+
+		Rva0081A3B0( comm, record );
+		return;
+	}
+
+	if ( record->m_length == 0 )
+		return;
+
+	slot = (struct Rva0081AA20SendRecord *)( comm->m_recvBuffer
+		+ comm->m_recvWriteOffset );
+
+	memcpy( slot, record, comm->m_recvRecordSize );
+
+	comm->m_depth = comm->m_depth + 1;
+
+	comm->m_recvWriteOffset = ( comm->m_recvWriteOffset
+		+ comm->m_recvRecordSize ) % comm->m_recvBufferSize;
+
+	comm->m_recvSequence = comm->m_recvSequence + 1;
+
+	if ( comm->m_recvProc != 0 )
+	{
+		comm->m_recvProc( comm, (char *)slot + 0x10, slot->m_length,
+			slot->m_tick );
+	}
+
+	comm->m_depth = comm->m_depth - 1;
+	comm->m_flags = comm->m_flags | 1;
 }
