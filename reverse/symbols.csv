@@ -75408,3 +75408,4 @@ _Rva00816160,0x00816160,Y4 lane: DirtySock comm connect-completion helper; the h
 _Rva00816520,0x00816520,Y4 lane: DirtySock comm enqueue wrapped by 0x008165F0; non-negative means the slot was consumed
 ?computeBonus@Weapon@@IBEXPBVObject@@IAAVWeaponBonus@@@Z,0x00024591,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 with the source object a zero flag word and the default-constructed bonus block
 ?getAttackRange@WeaponTemplate@@QBEMPBVObject@@ABVWeaponBonus@@PBUCoord3D@@@Z,0x0002FFB3,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 on m_template with the source object the bonus and source+0x38 the object position - BFME widened the reference bonus-only signature
+??0Locomotor@@QAE@PBVLocomotorTemplate@@@Z,0x00040AA7,Open-BFME5 ILT; the constructor ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z at 0x001B6920 runs on the 0xA8 bytes it allocates
