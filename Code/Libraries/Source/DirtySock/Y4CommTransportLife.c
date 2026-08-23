@@ -419,3 +419,60 @@ int Rva00817240( struct Rva00816BF0Comm *comm )
 	comm->m_state = 1;
 	return 0;
 }
+
+/* 0x008172C0 IS A SECOND COPY OF THE DISCONNECT ABOVE.  The two bodies are
+ * identical byte for byte except for their call displacements, which differ
+ * only because the functions sit at different addresses -- so this is real
+ * duplicated code that the linker did NOT fold, not one function reached two
+ * ways.
+ *
+ * Which of the two the operation table points at is settled elsewhere: the
+ * constructor stores 0xC172C0 into the table, so THIS is the entry point a
+ * caller reaches through the object, and 0x00817240 is the copy reached some
+ * other way.  Nothing here says why there are two; both are converted because
+ * both addresses are real code and the ledger needs each claimed.
+ */
+int Rva008172C0( struct Rva00816BF0Comm *comm )
+{
+	Rva00817100( comm, 0xC8 );
+
+	if ( comm->m_state == 3 )
+		Rva00816DF0( comm, 0 );
+
+	if ( comm->m_socket != 0 )
+	{
+		Rva00816F60( comm );
+		Rva007FD3F0( comm->m_socket );
+		Rva00816DF0( comm, 0 );
+	}
+
+	comm->m_state = 1;
+	return 0;
+}
+
+/* 0x00817340 MAPS THE INTERNAL STATE ONTO A SMALLER PUBLIC ONE, and the
+ * grouping is the interesting part because it LOSES information deliberately.
+ *
+ *   internal 2 or 3  ->  2      connecting and established report the same
+ *   internal 1 or 5  ->  1      never opened and closed report the same
+ *   internal 4       ->  3      peer asked to close
+ *   anything else    ->  4
+ *
+ * So a caller polling this CANNOT TELL "still connecting" FROM "connected",
+ * nor "fresh" from "finished".  Anything wanting that has to read +0x90
+ * directly.  The pairs are written as separate comparisons joined by ||, not
+ * as a switch, which is what keeps this a chain of tests rather than a table.
+ */
+int Rva00817340( struct Rva00816BF0Comm *comm )
+{
+	if ( comm->m_state == 2 || comm->m_state == 3 )
+		return 2;
+
+	if ( comm->m_state == 1 || comm->m_state == 5 )
+		return 1;
+
+	if ( comm->m_state == 4 )
+		return 3;
+
+	return 4;
+}
