@@ -14,8 +14,31 @@ struct Rva0081BD40Comm
 	char m_head[ 0xD4 ];
 	int m_recordSize;               /* +0xD4 */
 	int m_bufferSize;               /* +0xD8 */
-	char m_gap[ 0x04 ];
-	int m_offset;                   /* +0xE0 */
+	int m_writeOffset;              /* +0xDC */
+	int m_readOffset;               /* +0xE0 */
+	unsigned char *m_buffer;        /* +0xE4 */
+	char m_gap[ 0x1850 ];
+	/* A BUSY FLAG the dequeue SPINS on.  Its offset also makes this object at
+	 * least 0x193C bytes -- an order of magnitude larger than the three
+	 * transports converted so far, which are 0x224 and smaller. */
+	int m_busy;                     /* +0x1938 */
+};
+
+/* The one-argument stdcall import the socket unit already reaches with a 50
+ * for a poll interval; here it is called with zero, which is a yield rather
+ * than a wait.  The name is address-derived: an IAT call site is a DIR32 and
+ * the gate fills it from retail, so nothing here asserts which API it is. */
+__declspec(dllimport) void __stdcall Rva01358F30Wait( int interval );
+
+/* A QUEUED RECORD.  Length at +0x00, tick at +0x04, payload at +0x10 -- the
+ * same header the third transport uses, and again with no header byte inside
+ * the payload. */
+struct Rva0081BC80Record
+{
+	int m_length;                   /* +0x00 */
+	unsigned int m_tick;            /* +0x04 */
+	char m_reserved[ 0x08 ];
+	unsigned char m_data[ 4 ];      /* +0x10 */
 };
 
 /* 0x0081A360 is a 16-BIT HASH, and every part of that is in the bytes: the
@@ -49,21 +72,72 @@ unsigned short Rva0081A360( const unsigned char *data, int length )
 /* 0x0081BD40 forwards four arguments and advances the ring cursor only when
  * the inner call reports success, so a failure leaves the slot to be retried.
  * The same shape appears once per transport in this library; this is the
- * fourth.  Nothing here inspects the four arguments, so their types are not
- * recoverable and they are declared as plain words -- converting 0x0081BC80
- * is what would settle them.
+ * fourth.
  */
-int Rva0081BC80( struct Rva0081BD40Comm *comm, int a, int b, int c );
+/* Settled by converting it: a buffer, a size and an optional out-pointer. */
+int Rva0081BC80( struct Rva0081BD40Comm *comm, void *buffer, int size,
+	unsigned int *when );
 
-int Rva0081BD40( struct Rva0081BD40Comm *comm, int a, int b, int c )
+int Rva0081BD40( struct Rva0081BD40Comm *comm, void *buffer, int size,
+	unsigned int *when )
 {
 	int iResult;
 
-	iResult = Rva0081BC80( comm, a, b, c );
+	iResult = Rva0081BC80( comm, buffer, size, when );
 
 	if ( iResult >= 0 )
-		comm->m_offset = ( comm->m_offset + comm->m_recordSize )
+		comm->m_readOffset = ( comm->m_readOffset + comm->m_recordSize )
 			% comm->m_bufferSize;
 
 	return iResult;
+}
+
+void *__cdecl memcpy( void *destination, const void *source,
+	unsigned int count );
+
+/* 0x0081BC80 DEQUEUES ONE RECORD, and it is the only one of these four that
+ * BLOCKS.
+ *
+ * After finding the queue non-empty it spins while a flag at +0x1938 is set,
+ * yielding the timeslice on each pass rather than sleeping for an interval --
+ * the same import the socket unit calls with 50, called here with zero.  So a
+ * reader can be held off indefinitely by whoever owns that flag, with no
+ * timeout and no failure return for it; the only exits are an empty queue and
+ * a successful read.
+ *
+ * Note the order: EMPTINESS IS TESTED BEFORE THE SPIN.  An empty queue returns
+ * -7 immediately rather than waiting for a writer, so this blocks on the flag
+ * and not on data.
+ *
+ * The rest matches its counterparts: the copy is clamped to the caller's size
+ * while the RETURN IS THE FULL RECORD LENGTH, so comparing the two is the only
+ * way to detect truncation, and the optional out-pointer receives the arrival
+ * tick.
+ */
+int Rva0081BC80( struct Rva0081BD40Comm *comm, void *buffer, int size,
+	unsigned int *when )
+{
+	struct Rva0081BC80Record *record;
+	int iCopy;
+
+	if ( comm->m_readOffset == comm->m_writeOffset )
+		return -7;
+
+	while ( comm->m_busy != 0 )
+		Rva01358F30Wait( 0 );
+
+	record = (struct Rva0081BC80Record *)( comm->m_buffer
+		+ comm->m_readOffset );
+
+	if ( record->m_length < size )
+		iCopy = record->m_length;
+	else
+		iCopy = size;
+
+	memcpy( buffer, record->m_data, iCopy );
+
+	if ( when != 0 )
+		*when = record->m_tick;
+
+	return record->m_length;
 }
