@@ -3040,11 +3040,10 @@ void ScriptActions::doCameoFlash(const AsciiString& name, Int timeInSeconds)
 //-------------------------------------------------------------------------------------------------
 /** doNamedCustomColor */
 //-------------------------------------------------------------------------------------------------
-// ?doNamedCustomColor@ScriptActions@@IAEXABVAsciiString@@H@Z present-unmatched
 void ScriptActions::doNamedCustomColor(const AsciiString& unitName, Color c)
 {
 	//sanity
-	Object *obj = TheScriptEngine->getUnitNamed( unitName );
+	Object *obj = ((BFMERetailScriptEngineVTable *)TheScriptEngine)->getUnitNamed( unitName );
 	if ( !obj )
 	{
 		return;
