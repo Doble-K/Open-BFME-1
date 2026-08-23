@@ -76,7 +76,13 @@ struct Rva00816BF0Comm
 	unsigned char *m_sendBuffer;    /* +0xCC */
 	char m_gap4[ 0x124 ];
 	char m_lock[ 4 ];               /* +0x1F4 */
-	char m_tail[ 0x2C ];
+	char m_tail[ 0x24 ];
+	/* A FLAG WORD AND ITS VALUE, written together under the lock by
+	 * 0x008171C0: the value goes into +0x220 and bit 1 is set in +0x21C.  A
+	 * bit per installed thing beside the thing itself is how a caller can ask
+	 * "was this ever set" without a sentinel. */
+	int m_flags;                    /* +0x21C */
+	void *m_value;                  /* +0x220 */
 };
 
 struct Rva007FD4E0Socket;
@@ -360,5 +366,56 @@ int Rva00816F60( struct Rva00816BF0Comm *comm )
 
 	comm->m_reserved94 = 0;
 	comm->m_state = 5;
+	return 0;
+}
+
+/* 0x008171C0 installs a value and RECORDS THAT IT WAS INSTALLED, both under
+ * the lock.  The value lands at +0x220 and bit 1 is set in the flag word at
+ * +0x21C.  Setting a bit beside the value rather than relying on the value
+ * being non-null is what lets a caller install a null one and still have it
+ * count -- and it is why the two writes have to be atomic with respect to each
+ * other, which is what the lock is doing here.
+ */
+void Rva008171C0( struct Rva00816BF0Comm *comm, void *value )
+{
+	Rva007FEBD0( comm->m_lock );
+
+	comm->m_value = value;
+	comm->m_flags = comm->m_flags | 2;
+
+	Rva007FECB0( comm->m_lock );
+}
+
+/* 0x00817240 DISCONNECTS, returning the transport to the state the constructor
+ * left it in, and the interesting part is what happens to the socket.
+ *
+ * If the connection is established, the socket pointer is CLEARED FIRST.  That
+ * makes the block below it unreachable, so an established transport gives up
+ * its socket WITHOUT closing it -- consistent with the destructor's scan,
+ * which exists precisely because a socket can be shared.  From any other state
+ * the socket is closed and destroyed.  The two paths are written as separate
+ * ifs and only their order makes them exclusive; reading them as an if/else
+ * would describe the same behaviour but not these bytes.
+ *
+ * It also opens by calling the queue-depth body with 0xC8 and discarding the
+ * result, exactly as the destructor does -- the same call, the same unused
+ * argument, the same ignored answer, in both of the places that would want a
+ * drain.
+ */
+int Rva00817240( struct Rva00816BF0Comm *comm )
+{
+	Rva00817100( comm, 0xC8 );
+
+	if ( comm->m_state == 3 )
+		Rva00816DF0( comm, 0 );
+
+	if ( comm->m_socket != 0 )
+	{
+		Rva00816F60( comm );
+		Rva007FD3F0( comm->m_socket );
+		Rva00816DF0( comm, 0 );
+	}
+
+	comm->m_state = 1;
 	return 0;
 }
