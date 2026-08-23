@@ -46,7 +46,13 @@ struct Rva00816BF0Comm
 {
 	/* +0x00..+0x34, and the first two are this file's own bodies. */
 	void *m_op[ 14 ];
-	char m_gap0[ 0x10 ];
+	char m_gap0[ 0x04 ];
+	/* THE RECEIVE CALLBACK, called by 0x008187E0 with the transport, the
+	 * payload, its length and its arrival tick.  Null means nobody is
+	 * listening and the record is still queued. */
+	void ( __cdecl *m_receiveProc )( struct Rva00816BF0Comm *comm,
+		const void *payload, int length, unsigned int tick );  /* +0x3C */
+	char m_gap0b[ 0x08 ];
 	/* A SECOND COPY of the socket pointer.  0x00816DF0 writes the same value
 	 * to this and to +0x7C in consecutive statements; nothing converted so far
 	 * reads this one, so what it is for is not yet established -- only that it
@@ -119,7 +125,11 @@ struct Rva00816BF0Comm
 	unsigned int m_tickB;           /* +0xDC */
 	char m_gap5[ 0x114 ];
 	char m_lock[ 4 ];               /* +0x1F4 */
-	char m_tail[ 0x24 ];
+	char m_tail[ 0x20 ];
+	/* A RE-ENTRANCY DEPTH, raised across the whole of 0x008187E0 and lowered
+	 * again at its end -- including across the user callback, which is the
+	 * only place that could re-enter. */
+	int m_depth;                    /* +0x218 */
 	/* A FLAG WORD AND ITS VALUE, written together under the lock by
 	 * 0x008171C0: the value goes into +0x220 and bit 1 is set in +0x21C.  A
 	 * bit per installed thing beside the thing itself is how a caller can ask
@@ -381,8 +391,12 @@ int Rva00817100( struct Rva00816BF0Comm *comm, int unused )
  */
 struct Rva00816F60Message
 {
-	int m_kind;                     /* +0x00 */
-	int m_reserved4;
+	/* THE PAYLOAD LENGTH, not a kind.  The control senders set it to zero and
+	 * that reads either way; 0x008187E0 settles it by testing this field for
+	 * zero to reject an empty data record, and the submit at 0x00817030 uses
+	 * it as the length it puts on the wire. */
+	int m_length;                   /* +0x00 */
+	unsigned int m_tick;            /* +0x04, the arrival stamp once queued */
 	/* EITHER A CONTROL CODE OR THE MESSAGE'S OWN SEQUENCE, and the two share
 	 * the field without ambiguity because sequences start at 0x65: 1 is
 	 * connect, 3 is close, 4 is a retransmit request, and anything from 101
@@ -409,7 +423,7 @@ int Rva00816F60( struct Rva00816BF0Comm *comm )
 	if ( comm->m_state != 4 )
 		return 0;
 
-	message.m_kind = 0;
+	message.m_length = 0;
 	message.m_code = 3;
 	message.m_value = comm->m_sessionHash;
 
@@ -719,7 +733,7 @@ int Rva00818620( struct Rva00816BF0Comm *comm )
 {
 	struct Rva00816F60Message message;
 
-	message.m_kind = 0;
+	message.m_length = 0;
 	message.m_code = 1;
 	message.m_value = comm->m_sessionHash;
 
@@ -946,7 +960,7 @@ void Rva00818AD0( struct Rva00816BF0Comm *comm )
 		message.m_code = comm->m_sendSequence;
 		comm->m_reportedSequence = comm->m_recvSequence;
 		message.m_value = comm->m_reportedSequence - 1;
-		message.m_kind = 0;
+		message.m_length = 0;
 
 		Rva00817030( comm, &message );
 	}
@@ -1047,4 +1061,104 @@ int Rva00819090( struct Rva00816BF0Comm *comm,
 
 	comm->m_state = 3;
 	return 0;
+}
+
+extern char g_Rva012C4DF8Message[];
+
+/* 0x008187E0 ACCEPTS A RECEIVED RECORD into the receive queue, and it is where
+ * the sequence discipline actually lives.
+ *
+ * A FULL QUEUE IS DETECTED BEFORE ANYTHING ELSE, by advancing the write cursor
+ * one record and seeing whether it would land on the read cursor -- so one
+ * record's worth of the ring is always left empty and the two cursors never
+ * mean "full" and "empty" at the same time.
+ *
+ * CODE 6 IS UNSEQUENCED and takes a different path: rather than being checked
+ * against the expected sequence it is admitted only while more than four
+ * records are free, so a flood of them cannot fill the queue and starve
+ * sequenced traffic.  It also does not advance the sequence or the byte
+ * counter on the way in.
+ *
+ * Everything else is sequenced, and the three outcomes are the protocol:
+ *   - BELOW the expected sequence is a duplicate and is dropped silently;
+ *   - ABOVE it means something was missed, and the incoming record is
+ *     REWRITTEN IN PLACE into a code-4 retransmit request naming the sequence
+ *     actually wanted and sent straight back.  Reusing the caller's buffer
+ *     rather than building a message is why this returns -1: the record it was
+ *     handed no longer holds what arrived.
+ *   - equal, but empty, is a pure acknowledgement and is dropped.
+ *
+ * The callback is invoked with the payload from +0x10, and the depth counter
+ * is raised before the copy and lowered after the callback returns -- so it
+ * spans the one window in which a caller could re-enter.
+ */
+int Rva008187E0( struct Rva00816BF0Comm *comm,
+	struct Rva00816F60Message *record )
+{
+	struct Rva00816F60Message *slot;
+	int iUsed;
+	int iFree;
+
+	if ( ( comm->m_recvWriteOffset + comm->m_recvRecordSize )
+		% comm->m_recvBufferSize == comm->m_recvReadOffset )
+	{
+		Rva007FE780( g_Rva012C4DF8Message );
+		return 2;
+	}
+
+	if ( record->m_code == 6 )
+	{
+		iUsed = ( comm->m_recvWriteOffset + comm->m_recvBufferSize
+			- comm->m_recvReadOffset ) % comm->m_recvBufferSize;
+
+		iFree = ( comm->m_recvBufferSize - iUsed ) / comm->m_recvRecordSize;
+
+		if ( iFree <= 4 )
+			return 2;
+	}
+	else
+	{
+		if ( (unsigned int)record->m_code < (unsigned int)comm->m_recvSequence )
+			return 0;
+
+		if ( (unsigned int)record->m_code > (unsigned int)comm->m_recvSequence )
+		{
+			record->m_code = 4;
+			record->m_value = comm->m_recvSequence;
+			record->m_length = 0;
+
+			Rva00817030( comm, record );
+			return -1;
+		}
+
+		if ( record->m_length == 0 )
+			return 0;
+	}
+
+	slot = (struct Rva00816F60Message *)( comm->m_recvBuffer
+		+ comm->m_recvWriteOffset );
+
+	memcpy( slot, record, comm->m_recvRecordSize );
+
+	comm->m_depth = comm->m_depth + 1;
+
+	comm->m_recvWriteOffset = ( comm->m_recvWriteOffset
+		+ comm->m_recvRecordSize ) % comm->m_recvBufferSize;
+
+	if ( record->m_code != 6 )
+	{
+		comm->m_recvSequence = comm->m_recvSequence + 1;
+		comm->m_recvCounter = comm->m_recvCounter + slot->m_length;
+	}
+
+	comm->m_flags = comm->m_flags | 1;
+
+	if ( comm->m_receiveProc != 0 )
+	{
+		comm->m_receiveProc( comm, (char *)slot + 0x10, slot->m_length,
+			slot->m_tick );
+	}
+
+	comm->m_depth = comm->m_depth - 1;
+	return 1;
 }
