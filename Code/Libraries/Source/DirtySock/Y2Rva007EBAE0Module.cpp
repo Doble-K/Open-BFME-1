@@ -562,3 +562,77 @@ int Rva007ECD90( char *record, int size, const char *name, int value )
 
 	return Rva007EC780( ( unsigned char * )record, size, strField );
 }
+
+// Mirrors the definition in Y4CivilTime.c, which is C.  Duplicated rather than
+// shared because the module is split across two translation units and two
+// languages; the layout is struct tm and both halves agree on it.
+struct Rva007EDB10Time
+{
+	int m_second; int m_minute; int m_hour;
+	int m_day; int m_month; int m_year;
+	int m_weekday; int m_yearDay; int m_isDst;
+};
+
+extern "C" struct Rva007EDB10Time *Rva007EDB10(
+	struct Rva007EDB10Time *pTime, unsigned int uSeconds );
+extern "C" unsigned int Rva007FEF60( void );
+
+// "%d.%d.%d %d:%02d:%02d" -- in writable data rather than among the literals,
+// so the stored format is configurable at run time.  Note the asymmetry it
+// carries: the DATE fields are unpadded and the CLOCK fields after the first
+// are zero-padded, so the text is not fixed width and cannot be sorted as a
+// string even though it starts with the year.
+extern char g_Rva012C3938Format[];
+
+// Declared without the CRT header on purpose: under /MD that header marks
+// sprintf dllimport and the call becomes an indirect through the IAT, where
+// retail calls the import stub directly.
+extern "C" int __cdecl sprintf( char *dest, const char *format, ... );
+
+// 0x007ED9F0 STORES A TIMESTAMP AS A HUMAN-READABLE DATE FIELD.
+//
+// A ZERO TIMESTAMP MEANS NOW.  There is no separate entry point for "stamp
+// this with the current time" -- passing zero is the way to ask, which also
+// means the epoch second cannot be stored through this function.  That is the
+// same convention the parser at 0x007EF780 arrived at from the other side, and
+// neither of them says so in its signature.
+//
+// THE OUTPUT IS UNBOUNDED IN PRINCIPLE AND SAFE IN PRACTICE ONLY BY ARITHMETIC.
+// sprintf writes into the tail of a 288-byte local after the name and its
+// separator, with no size passed; nothing here checks that the name left room.
+// A name approaching the buffer's length would overflow it, and the /GS cookie
+// this function carries is the only thing that would notice.
+//
+// The two human-facing adjustments -- year plus 1900, month plus one -- appear
+// here for the third time in this module rather than being shared, which keeps
+// every outward-facing function independent of the others.
+int Rva007ED9F0( char *record, int size, const char *name, unsigned int uWhen )
+{
+	struct Rva007EDB10Time *ptm;
+	struct Rva007EDB10Time tm2;
+	char *pDest;
+	unsigned int uTime;
+	char item[ 0x120 ];
+
+	uTime = uWhen;
+
+	if( uTime == 0 )
+	{
+		uTime = Rva007FEF60();
+	}
+
+	ptm = Rva007EDB10( &tm2, uTime );
+
+	if( ptm == 0 )
+	{
+		return -1;
+	}
+
+	pDest = Rva007EC730( record, item, name );
+
+	sprintf( pDest, g_Rva012C3938Format,
+		ptm->m_year + 1900, ptm->m_month + 1, ptm->m_day,
+		ptm->m_hour, ptm->m_minute, ptm->m_second );
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
