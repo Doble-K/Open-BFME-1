@@ -75586,3 +75586,4 @@ _Rva00810120,0x00810120,Y4 lane: block transform for the digest whose update is 
 ??4Parameter@@QAEAAV0@ABV0@@Z,0x00887C90,ICF-folded with the shared AsciiString::set body; Parameter copy in Condition::duplicate
 ?deleteBuildTooltipLayout@ControlBar@@QAEXXZ,0x000032AB,resolved via direct disassembly of retail bytes at ScriptActions::doDisableInput
 ?resetModes@LookAtTranslator@@QAEXXZ,0x00027336,resolved via direct disassembly of retail bytes at ScriptActions::doDisableInput
+?_M_clear@?$vector@UAnimSet@GenericObjectCreationNugget@@V?$allocator@UAnimSet@GenericObjectCreationNugget@@@_STL@@@_STL@@IAEXXZ,0x00018B97,ILT the AnimSet vector overflow calls at 0x00755D96 to clear the old buffer
