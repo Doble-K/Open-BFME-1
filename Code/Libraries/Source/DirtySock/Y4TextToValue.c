@@ -883,3 +883,161 @@ char *Rva007EE600( char *field, int iUnused, char *dest, int destSize,
 
 	return 0;
 }
+
+/* The high-nibble half of the hex decode.  Its low-nibble partner is the table
+ * the dollar-prefixed parser already uses, so a byte is decoded by OR-ing one
+ * lookup from each -- no shift and no multiply anywhere. */
+extern unsigned char g_Rva0112A010HexHigh[];
+extern unsigned char g_Rva0112A110Hex[];
+
+unsigned int __cdecl strlen( const char *text );
+
+/* 0x007EE930 EXTRACTS ONE VALUE FROM A SEPARATED LIST, undoing the escaping
+ * the writers apply, and substitutes a caller default when the value is not
+ * there.  It is the read side of 0x007ECE60.
+ *
+ * IT HAS THREE MODES AND THE ARGUMENTS SELECT THEM RATHER THAN A FLAG.  With a
+ * destination it copies and unescapes; WITH A NULL DESTINATION IT MEASURES,
+ * returning the decoded length without writing anything; and if the value is
+ * missing entirely it falls back to the default, measuring THAT instead when
+ * the destination is also null.  One function, three behaviours, none of them
+ * named.
+ *
+ * THE MEASURING PASS AND THE COPYING PASS DISAGREE ABOUT ESCAPES, which is the
+ * kind of thing only a byte-level reading catches.  The copy handles a doubled
+ * percent as a literal percent and a percent-hex pair as one byte; THE MEASURE
+ * PASS HAS NO DOUBLED-PERCENT CASE AT ALL and treats "%%" as a percent escape
+ * followed by a stray character, so it can return a length one larger than the
+ * copy would produce.  A caller that measures to size a buffer is safe; a
+ * caller that measures to predict the exact result is not.
+ *
+ * A LEADING QUOTE SETS THE TERMINATOR and is consumed.  Everything downstream
+ * then compares against that terminator instead of against the quote, so an
+ * unquoted value ends at a control character or the separator and a quoted one
+ * runs to its closing quote -- the same one-variable trick the quote-aware
+ * compare in this file uses, arrived at independently.
+ *
+ * THE INDEX IS CONSUMED BY SKIPPING, and a list too short does not report an
+ * error: the walk sets the text pointer to null and the default path takes
+ * over, so "no such element" and "no value" are the same outcome.
+ */
+int Rva007EE930( const char *text, char *dest, int destSize,
+	const char *defaultText, int index, int cSeparator )
+{
+	int iLen;
+	unsigned char cTerm;
+	const unsigned char *p;
+	unsigned char c;
+
+	cTerm = 0;
+
+	if ( text != 0 )
+	{
+		if ( *text == '"' )
+		{
+			cTerm = *text;
+			text++;
+		}
+
+		for ( ; index > 0; index-- )
+		{
+			while ( ( ( c = *text ) != cTerm && c >= ' '
+				&& c != cSeparator ) != 0 )
+			{
+				text++;
+			}
+
+			/* THE POSITIVE CASE COMES FIRST, as an if/else rather than a
+			 * guard-and-fall-through.  Retail branches on equality into the
+			 * advance and lets the failure fall past it; inverting the test
+			 * so the failure is the guard reorders the two blocks and costs
+			 * two bytes. */
+			if ( *text == cSeparator )
+			{
+				text++;
+			}
+			else
+			{
+				text = 0;
+				break;
+			}
+		}
+	}
+
+	if ( text == 0 )
+	{
+		if ( defaultText == 0 )
+		{
+			return -1;
+		}
+
+		if ( dest == 0 )
+		{
+			return strlen( defaultText );
+		}
+
+		for ( iLen = 1; iLen < destSize && *defaultText != 0; iLen++ )
+		{
+			*dest = *defaultText;
+			dest++;
+			defaultText++;
+		}
+
+		*dest = 0;
+		return iLen - 1;
+	}
+
+	if ( dest == 0 )
+	{
+		iLen = 0;
+
+		for ( p = ( const unsigned char * )text;
+			*p != cTerm && *p >= ' ' && *p != cSeparator; p++ )
+		{
+			if ( *p == '%' && p[ 1 ] >= ' ' && p[ 2 ] >= ' ' )
+			{
+				p += 2;
+			}
+
+			iLen++;
+		}
+
+		return iLen;
+	}
+
+	if ( destSize < 1 )
+	{
+		return -1;
+	}
+
+	iLen = 1;
+	p = ( const unsigned char * )text;
+
+	while ( iLen < destSize && *p != cTerm && *p >= ' ' && *p != cSeparator )
+	{
+		if ( *p == '%' && p[ 1 ] == '%' )
+		{
+			*dest = '%';
+			dest++;
+			p += 2;
+			iLen++;
+		}
+		else if ( *p == '%' && p[ 1 ] >= ' ' && p[ 2 ] >= ' ' )
+		{
+			*dest = g_Rva0112A010HexHigh[ p[ 1 ] ] | g_Rva0112A110Hex[ p[ 2 ] ];
+			dest++;
+			p += 3;
+			iLen++;
+		}
+		else
+		{
+			*dest = *p;
+			dest++;
+			p++;
+			iLen++;
+		}
+	}
+
+	*dest = 0;
+	return iLen - 1;
+}
