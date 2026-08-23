@@ -1,305 +1,65 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /Ivendor/stlport
+#include <vector>
 
 enum ScienceType {};
-enum ScienceAvailabilityType {};
+
+enum ScienceAvailabilityType
+{
+	SCIENCE_AVAILABILITY_INVALID = -1,
+	SCIENCE_AVAILABLE,
+	SCIENCE_DISABLED,
+	SCIENCE_HIDDEN
+};
+
+typedef std::vector<ScienceType> ScienceVec;
+
 class Player
 {
 public:
-	void setScienceAvailability(ScienceType, ScienceAvailabilityType);
+	void setScienceAvailability(ScienceType science,
+		ScienceAvailabilityType type);
+
+private:
+	// BFME inserts player state absent from Zero Hour before these vectors.
+	char m_retailPrefix[0x240];
+	ScienceVec m_sciencesDisabled;
+	ScienceVec m_sciencesHidden;
 };
 
-// ?setScienceAvailability@Player@@QAEXW4ScienceType@@W4ScienceAvailabilityType@@@Z
-__declspec(naked) void Player::setScienceAvailability(ScienceType, ScienceAvailabilityType)
+void Player::setScienceAvailability(ScienceType science,
+	ScienceAvailabilityType type)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x81
-        __emit 0x40
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x91
-        __emit 0x44
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xc2
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8d
-        __emit 0xb9
-        __emit 0x40
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x0e
-        __emit 0x8d
-        __emit 0x49
-        __emit 0x00
-        __emit 0x39
-        __emit 0x18
-        __emit 0x74
-        __emit 0x29
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc2
-        __emit 0x75
-        __emit 0xf5
-        __emit 0x8b
-        __emit 0x91
-        __emit 0x4c
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x81
-        __emit 0x50
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xd0
-        __emit 0x74
-        __emit 0x5e
-        __emit 0xeb
-        __emit 0x03
-        __emit 0x8d
-        __emit 0x49
-        __emit 0x00
-        __emit 0x39
-        __emit 0x1a
-        __emit 0x74
-        __emit 0x2d
-        __emit 0x83
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xd0
-        __emit 0x75
-        __emit 0xf5
-        __emit 0xeb
-        __emit 0x4c
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x04
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xf2
-        __emit 0x74
-        __emit 0x14
-        __emit 0x2b
-        __emit 0xd6
-        __emit 0xc1
-        __emit 0xfa
-        __emit 0x02
-        __emit 0x85
-        __emit 0xd2
-        __emit 0x7e
-        __emit 0x0b
-        __emit 0x8b
-        __emit 0x70
-        __emit 0x04
-        __emit 0x89
-        __emit 0x30
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x04
-        __emit 0x4a
-        __emit 0x75
-        __emit 0xf5
-        __emit 0x83
-        __emit 0x47
-        __emit 0x04
-        __emit 0xfc
-        __emit 0xeb
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x81
-        __emit 0x50
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x72
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xf0
-        __emit 0x74
-        __emit 0x14
-        __emit 0x2b
-        __emit 0xc6
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x02
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7e
-        __emit 0x0b
-        __emit 0x8b
-        __emit 0x72
-        __emit 0x04
-        __emit 0x89
-        __emit 0x32
-        __emit 0x83
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x48
-        __emit 0x75
-        __emit 0xf5
-        __emit 0x83
-        __emit 0x81
-        __emit 0x50
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0xfc
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x01
-        __emit 0x75
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x04
-        __emit 0x3b
-        __emit 0x47
-        __emit 0x08
-        __emit 0x74
-        __emit 0x10
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x02
-        __emit 0x89
-        __emit 0x18
-        __emit 0x83
-        __emit 0x47
-        __emit 0x04
-        __emit 0x04
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x78
-        __emit 0xde
-        __emit 0xf4
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x02
-        __emit 0x75
-        __emit 0x3f
-        __emit 0x8b
-        __emit 0x81
-        __emit 0x50
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x91
-        __emit 0x54
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x81
-        __emit 0xc1
-        __emit 0x4c
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xc2
-        __emit 0x74
-        __emit 0x15
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x02
-        __emit 0x89
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x5f
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x04
-        __emit 0x5e
-        __emit 0x89
-        __emit 0x41
-        __emit 0x04
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x52
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x2e
-        __emit 0xde
-        __emit 0xf4
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	ScienceVec::iterator it;
+	bool found = false;
+
+	for (it = m_sciencesDisabled.begin(); it != m_sciencesDisabled.end(); ++it)
+	{
+		if (*it == science)
+		{
+			m_sciencesDisabled.erase(it);
+			found = true;
+			break;
+		}
+	}
+
+	if (!found)
+	{
+		for (it = m_sciencesHidden.begin(); it != m_sciencesHidden.end(); ++it)
+		{
+			if (*it == science)
+			{
+				m_sciencesHidden.erase(it);
+				break;
+			}
+		}
+	}
+
+	if (type == SCIENCE_DISABLED)
+	{
+		m_sciencesDisabled.push_back(science);
+	}
+	else if (type == SCIENCE_HIDDEN)
+	{
+		m_sciencesHidden.push_back(science);
 	}
 }
