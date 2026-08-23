@@ -75551,3 +75551,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?getName@DataChunkTableOfContents@@QAE?AVAsciiString@@I@Z,0x00002ECD,ILT thunk found directly in DataChunkInput::readDict retail bytes
+??RGameSortStruct@@QBE_NPAVGameSpyStagingRoom@@0@Z,0x000317D7,ILT the staging-room tree insert calls at 0x0053F80B on its comparator subobject at this+8
