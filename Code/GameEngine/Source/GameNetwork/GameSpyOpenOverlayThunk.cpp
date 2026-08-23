@@ -6,14 +6,8 @@ enum GSOverlayType
 };
 
 void GameSpyOpenOverlayShim(GSOverlayType);
-void GameSpyCloseOverlayShim(GSOverlayType);
 
 void GameSpyOpenOverlay(GSOverlayType type)
 {
 	GameSpyOpenOverlayShim(type);
-}
-
-void GameSpyCloseOverlay(GSOverlayType type)
-{
-	GameSpyCloseOverlayShim(type);
 }
