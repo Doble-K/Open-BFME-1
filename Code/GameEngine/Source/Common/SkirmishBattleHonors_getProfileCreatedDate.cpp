@@ -4,7 +4,7 @@
 #include "PreRTS.h"
 #include "Common/AsciiString.h"
 
-class GameSpyMiscPreferences
+class SkirmishBattleHonors
 {
 public:
 	virtual void _bfme_slot0( void ) = 0;
@@ -18,7 +18,7 @@ public:
 	AsciiString getProfileCreatedDate( void );
 };
 
-AsciiString GameSpyMiscPreferences::getProfileCreatedDate( void )
+AsciiString SkirmishBattleHonors::getProfileCreatedDate( void )
 {
 	return getAsciiString( "ProfileCreatedDate", AsciiString::TheEmptyString );
 }
