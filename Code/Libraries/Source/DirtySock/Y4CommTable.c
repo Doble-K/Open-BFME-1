@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
 /* EA DirtySock -- the comm layer's entry table and its lookup, /Od with /GZ.
  * Placement is by address neighbourhood within the 0x00810000 group.
  */
@@ -133,4 +133,53 @@ int Rva00812220( struct Rva00812220Table *table, const char *keyA,
 	}
 
 	return iDefault;
+}
+
+/* The module's owning object.  Only the fields this file touches are named. */
+struct Rva008125C0Context
+{
+	char m_gap0[ 0x38 ];
+	struct Rva007FD4E0Socket *m_socket;	/* +0x38 */
+	char m_peer[ 0x10 ];			/* +0x3C */
+};
+
+struct Rva007FD4E0Socket;
+
+int Rva007FD920( struct Rva007FD4E0Socket *socket, const char *buffer,
+	int length, int flags, void *to, int toLength );
+void * __cdecl memset( void *dest, int c, unsigned int count );
+
+/* "gEA\0" repeated.  THE TAG IS READ ONE CHARACTER AT A TIME FROM THREE
+ * DIFFERENT OFFSETS -- 0, 5 and 10 -- which land on the 'g' of the first copy,
+ * the 'E' of the second and the 'A' of the third.  The assembled result spells
+ * the same three characters the run already contains contiguously, so this
+ * buys nothing against a strings dump; it only makes the literal invisible to
+ * a reader of the code. */
+extern char g_Rva012C499CTag[];
+
+/* 0x008125C0 SENDS THE MODULE'S ANNOUNCE PACKET.  Retail's own name for the
+ * buffer, from the /GZ frame descriptor, is Packet.
+ *
+ * THE PACKET IS 0x180 BYTES AND ALL BUT FOUR OF THEM ARE ZERO -- three tag
+ * characters at the front and one byte at offset 8.  The whole 0x180 is sent
+ * regardless, so the wire cost is fixed and does not depend on content; a
+ * reader looking for a length field will not find one.
+ *
+ * THE DESTINATION IS THE CONTEXT'S OWN STORED ADDRESS, passed by pointer with
+ * a fixed length of 0x10, so this always goes to the same place and takes no
+ * argument saying where.
+ */
+int Rva008125C0( struct Rva008125C0Context *context )
+{
+	char Packet[ 0x180 ];
+
+	memset( Packet, 0, sizeof( Packet ) );
+
+	Packet[ 0 ] = g_Rva012C499CTag[ 0 ];
+	Packet[ 1 ] = g_Rva012C499CTag[ 5 ];
+	Packet[ 2 ] = g_Rva012C499CTag[ 10 ];
+	Packet[ 8 ] = 0x3F;
+
+	return Rva007FD920( context->m_socket, Packet, sizeof( Packet ), 0,
+		context->m_peer, 0x10 );
 }
