@@ -1275,3 +1275,105 @@ int Rva007EEFF0( const char *text, unsigned char *dest, int destSize )
 
 	return iLen;
 }
+
+/* The decoder's fallback key.  IT IS A SECOND COPY: the encoder at 0x007ED850
+ * reads its default from 0x012C3934 and this reads from 0x012C3950, and both
+ * hold the same two bytes.  They round-trip today because the contents agree,
+ * not because anything ties them together -- these are writable data, so a
+ * caller that changes one at run time silently breaks the pair. */
+extern unsigned char g_Rva012C3950DefaultKey[];
+
+/* 0x007EF5B0 IS THE INVERSE OF THE OBSCURING WRITER at 0x007ED850: it reads a
+ * dollar-prefixed hex field and undoes the chained rotate-and-xor.
+ *
+ * IT IS ALSO A PASS-THROUGH.  A value that does NOT begin with a dollar sign
+ * is handed straight to the plain reader at 0x007EEC30 -- so this is safe to
+ * call on any field, and a caller cannot tell from the return value whether
+ * the value was obscured or was ordinary text.  Obscuring is advisory, not
+ * enforced.
+ *
+ * THE ROTATE RUNS THE OTHER WAY -- right by three where the writer rotates
+ * left by three -- and the feedback byte is the RAW CIPHERTEXT, taken before
+ * the key is mixed out, which is exactly what the writer emitted.  That is
+ * what makes the chain reversible; feeding back the plaintext instead would
+ * decode the first byte and nothing after it.
+ *
+ * THE MEASURING PASS IGNORES THE KEY ENTIRELY, as it must -- the output length
+ * is one byte per hex pair whatever the key is -- so it is the one path here
+ * that cannot be broken by a key mismatch, and correspondingly the one that
+ * tells a caller nothing about whether the decode will be meaningful.
+ */
+int Rva007EF5B0( const char *text, unsigned char *dest, int destSize,
+	const unsigned char *key, const char *defaultText )
+{
+	int iLen;
+	unsigned char cPrev;
+	unsigned char cMix;
+	const unsigned char *p;
+	const unsigned char *pKey;
+	const unsigned char *pKeyStart;
+
+	pKeyStart = key;
+
+	if ( text == 0 )
+	{
+		return -1;
+	}
+
+	if ( *text != '$' )
+	{
+		return Rva007EEC30( text, dest, destSize, defaultText );
+	}
+
+	if ( pKeyStart == 0 || *pKeyStart == 0 )
+	{
+		pKeyStart = g_Rva012C3950DefaultKey;
+	}
+
+	if ( dest == 0 )
+	{
+		iLen = 0;
+
+		for ( p = ( const unsigned char * )text + 1;
+			*p >= '0' && p[ 1 ] >= '0'; p += 2 )
+		{
+			iLen++;
+		}
+
+		return iLen;
+	}
+
+	if ( destSize < 1 )
+	{
+		return -1;
+	}
+
+	iLen = 1;
+	p = ( const unsigned char * )text + 1;
+	pKey = pKeyStart;
+	cPrev = 0;
+
+	while ( iLen < destSize && *p >= '0' && p[ 1 ] >= '0' )
+	{
+		cMix = ( g_Rva0112A010HexHigh[ *p ] | g_Rva0112A110Hex[ p[ 1 ] ] )
+			^ *pKey;
+		pKey++;
+
+		if ( *pKey == 0 )
+		{
+			pKey = pKeyStart;
+		}
+
+		cMix = ( cMix << 5 ) | ( ( cMix >> 3 ) & 0x1F );
+		*dest = cMix ^ cPrev;
+		dest++;
+
+		cPrev = g_Rva0112A010HexHigh[ *p ] | g_Rva0112A110Hex[ p[ 1 ] ];
+
+		iLen++;
+		p += 2;
+	}
+
+	*dest = 0;
+	return iLen - 1;
+}
