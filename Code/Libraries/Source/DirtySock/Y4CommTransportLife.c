@@ -20,6 +20,7 @@
 
 void *Rva007F0000Alloc( int size );
 void Rva007F0030( void *object );
+int Rva007FE780( const char *format, ... );
 void *__cdecl memset( void *destination, int value, unsigned int count );
 char *__cdecl strcpy( char *destination, const char *source );
 
@@ -51,7 +52,19 @@ struct Rva00816BF0Comm
 	 * reads this one, so what it is for is not yet established -- only that it
 	 * is kept in step. */
 	struct Rva007FD4E0Socket *m_socketAlias;        /* +0x48 */
-	char m_name[ 0x2C ];            /* +0x4C */
+	/* THE NAME BUFFER IS 0x20, NOT the 0x2C the next field's offset alone
+	 * suggested: 0x00818500 writes endpoint fields starting at +0x6C, which
+	 * is where the buffer has to stop. */
+	char m_name[ 0x20 ];            /* +0x4C */
+	/* The four endpoint fields, at the same offsets the ring transport uses
+	 * for them -- local address, peer address, local port, peer port, with
+	 * the ports as shorts.  Two different objects agreeing on this run and on
+	 * +0x7C suggests a shared header, though nothing converted so far proves
+	 * one. */
+	unsigned int m_localAddress;    /* +0x6C */
+	unsigned int m_peerAddress;     /* +0x70 */
+	unsigned short m_localPort;     /* +0x74 */
+	unsigned short m_peerPort;      /* +0x76 */
 	struct Rva00816BF0Comm *m_next; /* +0x78 */
 	/* The socket OBJECT, not a handle: the destructor hands it straight to the
 	 * socket destroy at 0x007FD3F0. */
@@ -768,4 +781,39 @@ int Rva00819590( struct Rva00816BF0Comm *comm,
 
 	comm->m_state = 2;
 	return 0;
+}
+
+int Rva007FDB60( struct Rva007FD4E0Socket *socket, int selector, void *buffer,
+	int bufferLength );
+int Rva007FDEE0( void );
+
+extern char g_Rva012C4D48Message[];
+
+/* 0x00818500 RECORDS BOTH ENDPOINTS, and it is the same body the ring
+ * transport has at 0x00816160 -- same field offsets, same order, same 'bind'
+ * query, differing only in which message it logs through.  Two transports with
+ * two objects and one shared piece of code, duplicated rather than shared.
+ *
+ * As there, THE LOCAL ADDRESS DOES NOT COME FROM THE BIND QUERY.  A bound
+ * socket's own address is usually 0.0.0.0, so the routing query at 0x007FDEE0
+ * is used instead -- the body whose purpose was corrected once already, and
+ * this is a second independent caller storing its result as a local address.
+ */
+void Rva00818500( struct Rva00816BF0Comm *comm, const unsigned char *from )
+{
+	char local[ 0x10 ];
+
+	comm->m_peerAddress = ( ( ( ( from[ 4 ] << 8 ) | from[ 5 ] ) << 8 )
+		| from[ 6 ] ) << 8 | from[ 7 ];
+	comm->m_peerPort = (unsigned short)( ( from[ 2 ] << 8 ) | from[ 3 ] );
+
+	Rva007FDB60( comm->m_socket, 'bind', local, 0x10 );
+
+	comm->m_localAddress = Rva007FDEE0();
+	comm->m_localPort = (unsigned short)
+		( ( ( (unsigned char *)local )[ 2 ] << 8 )
+		| ( (unsigned char *)local )[ 3 ] );
+
+	Rva007FE780( g_Rva012C4D48Message, comm->m_peerAddress, comm->m_peerPort,
+		comm->m_localAddress, comm->m_localPort );
 }
