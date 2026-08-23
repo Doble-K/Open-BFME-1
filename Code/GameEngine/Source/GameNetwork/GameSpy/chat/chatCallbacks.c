@@ -62,7 +62,6 @@ int ciGetNextID(CHAT chat)
 	return ID;
 }
 
-/* ciCheckFiltersForID present-unmatched */
 CHATBool ciCheckFiltersForID(CHAT chat, int ID)
 {
 	ciConnection *connection = (ciConnection *)chat;
