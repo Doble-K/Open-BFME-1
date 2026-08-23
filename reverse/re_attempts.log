@@ -5439,3 +5439,17 @@ _ArrayInsertSorted	0x0086A1F0	57	landed	located by unique masked placement from 
 ?_M_insert_overflow@?$vector@VUnicodeString@@V?$allocator@VUnicodeString@@@_STL@@@_STL@@IAEXPAVUnicodeString@@ABV3@ABU__false_type@2@I_N@Z	0x00532A00	268	converted	real STLport vector<UnicodeString>; _M_clear pinned at its ILT 0x00026D41
 ?_M_insert_overflow@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@IAEXPAU?$pair@W4ObjectID@@W41@@2@ABU32@ABU__false_type@2@I_N@Z	0x00771870	268	identity-suspect	body copies its eight-byte elements through four calls to a copy constructor at ILT 0x0001FA1E, so the element is a class type; pair<ObjectID,ObjectID> is plain data and compiles one register-save shorter
 ??1?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAE@XZ	0x000E3D80	171	converted	real STLport vector; element stride 0x124 and the element destructor stays a call
+?Set_Gamma@DX8Wrapper@@SAXMMM_N0@Z	0x00905750	568	blocked	canonical dx8wrapper.cpp differs at BFME DX8 caps offset/vtable and Win32 import slots; t=5m model=Luna
+?Build_Textures@Render2DSentenceClass@@AAEXXZ	0x0093DD60	530	blocked	canonical render2dsentence.cpp differs in BFME class layout, allocator/texture construction and helper identities; t=5m model=Luna
+??1W3DDebrisDraw@@UAE@XZ	0x00750CC0	474	blocked	canonical source emits protected MAE destructor, not target UAE symbol; t=5m model=Luna
+?W3DLeftHUDDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z	0x00799DC0	271	blocked	canonical callback differs in BFME GameWindow offsets/vtables/globals; t=5m model=Luna
+?newControlBarScheme@ControlBarSchemeManager@@QAEPAVControlBarScheme@@VAsciiString@@@Z	0x004AEB20	267	blocked	canonical manager/list layout and helper identities diverge; t=5m model=Luna
+?init@LanguageFilter@@UAEXXZ	0x0044E7A0	310	blocked	canonical SEH/map/list/helper identities diverge; t=5m model=Luna
+?onSpecialPowerCreation@SpecialPowerModule@@UAEXXZ	0x00269600	304	blocked	canonical module/player/template offsets and helper identities diverge; t=5m model=Luna
+?WOLLobbyMenuShutdown@@YAXPAVWindowLayout@@PAX@Z	0x004FAF70	299	blocked	no complete clean implementation, only MASM annotation; t=3m model=Luna
+?parseCSF@GameTextManager@@IAE_NPBD@Z	0x00437570	672	blocked	canonical parser diverges from BFME memory-buffer CSF layout/control flow; t=5m model=Luna
+?missionSave@GameState@@QAE?AW4SaveCode@@XZ	0x00110600	311	blocked	canonical campaign/save layout and helper identities diverge; t=5m model=Luna
+??1ModelConditionInfo@@QAE@XZ	0x0013C3FE	292	blocked	no complete clean destructor source exists; t=3m model=Luna
+?crushLocationCheck@@YA?AW4CrushEnum@@PAVObject@@0@Z	0x002549A0	387	blocked	no canonical clean implementation exists; t=3m model=Luna
+?W3DRightHUDDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z	0x00799F20	62	blocked	clean C++ matches calls but VC7 emits JGE not retail JNS; inline asm adds prologue; t=20m model=Luna
+?handleInActive@LANAPI@@IAEXPAULANMessage@@I@Z	0x0068B920	323	blocked	canonical handler diverges in LANAPI offsets/helper identities; t=8m model=Luna
