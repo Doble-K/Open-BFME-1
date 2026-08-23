@@ -1072,3 +1072,111 @@ int Rva007ECBE0( char *record, int size, const char *name, unsigned int value )
 
 	return Rva007EC780( ( unsigned char * )record, size, item );
 }
+
+// 0x007ECE60 STORES A STRING AS A FIELD, escaping whatever would confuse the
+// record format and quoting the whole thing if it contains a space.  It is the
+// general-purpose writer the typed ones above are specialisations of.
+//
+// A NULL VALUE DELETES THE FIELD and returns SUCCESS.  There is no separate
+// remove entry point -- passing null is how you ask -- so this cannot store a
+// null and a caller cannot tell "removed" from "written" by the return value.
+//
+// SEVEN CHARACTERS ARE ESCAPED AS %XX and the set is exactly the record
+// syntax: control characters and DEL, the two delimiters '=' and ':', the
+// quote that this function may add itself, the '%' that introduces an escape,
+// and the '^' that marks a packed binary field elsewhere in this module.  The
+// '$' of a hex field is NOT escaped, which is safe only because a hex field is
+// recognised by position rather than by scanning.
+//
+// THE QUOTE DECISION IS MADE BEFORE THE COPY AND RE-READ AFTER IT, through a
+// pointer that survives the whole loop -- the opening and closing quotes are
+// therefore decided by the same test rather than by a flag, which is why the
+// scan pointer is a local rather than a boolean.
+//
+// THE BUDGET GOES NEGATIVE DELIBERATELY.  An escape that does not fit is
+// skipped but STILL CHARGED three, so the counter records the overrun rather
+// than saturating, and the check after the loop turns any overrun into -1.
+// Truncated output is never handed back as success -- but note the field has
+// already been partially written into the record buffer by then.
+int Rva007ECE60( char *record, int size, const char *name, const char *value )
+{
+	char *p;
+	const unsigned char *pScan;
+	const unsigned char *pSrc;
+	char item[ 0x1200 ];
+	int iLeft;
+
+	pSrc = ( const unsigned char * )value;
+	iLeft = sizeof( item );
+
+	if( pSrc == 0 )
+	{
+		Rva007EC030( record, name );
+		return 0;
+	}
+
+	p = Rva007EC730( record, item, name );
+
+	iLeft -= p - item;
+
+	for( pScan = pSrc; *pScan != 0 && *pScan != ' '; pScan++ )
+	{
+	}
+
+	if( *pScan == ' ' )
+	{
+		*p = '"';
+		p++;
+		iLeft--;
+	}
+
+	for( ; *pSrc != 0 && iLeft > 0; pSrc++ )
+	{
+		if( *pSrc < ' ' || *pSrc == 0x7F || *pSrc == '=' || *pSrc == '"'
+			|| *pSrc == ':' || *pSrc == '%' || *pSrc == '^' )
+		{
+			if( iLeft >= 3 )
+			{
+				*p = '%';
+				p++;
+				*p = g_Rva01129E10HexFirst[ *pSrc ];
+				p++;
+				*p = g_Rva01129F10HexSecond[ *pSrc ];
+				p++;
+			}
+
+			iLeft -= 3;
+		}
+		else
+		{
+			*p = *pSrc;
+			p++;
+			iLeft--;
+		}
+	}
+
+	if( iLeft <= 0 )
+	{
+		return -1;
+	}
+
+	if( *pScan == ' ' )
+	{
+		if( iLeft <= 0 )
+		{
+			return -1;
+		}
+
+		*p = '"';
+		p++;
+	}
+
+	if( iLeft <= 0 )
+	{
+		return -1;
+	}
+
+	*p = 0;
+
+	return Rva007EC780( ( unsigned char * )record, size, item );
+}
