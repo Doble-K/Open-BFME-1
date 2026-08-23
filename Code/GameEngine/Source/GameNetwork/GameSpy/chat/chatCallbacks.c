@@ -7,6 +7,7 @@
      0x0086C310  ciGetNextID           38 bytes
      0x0086C340  ciCheckFiltersForID   39 bytes
      0x008702C0  ciInitCallbacks       40 bytes
+     0x008717B0  ciInitChannels       100 bytes
      0x00871820  ciCleanupChannels     45 bytes
 
    The connection is the CHAT handle itself -- every one of them indexes
@@ -48,9 +49,21 @@ typedef struct ciCallback
 	unsigned char pad0[0x18];
 } ciCallback;
 
+/* likewise the channel element */
+typedef struct ciChannel
+{
+	unsigned char pad0[0x1e4];
+} ciChannel;
+
 void *ArrayNew(int elemsize, int initialcount, void (*elemfreefn)(void *elem));
 void ArrayFree(void *array);
+void *TableNew2(int elemsize, int nbuckets, int nchains, void *hashfn, void *comparefn, void *elemfreefn);
 void TableFree(void *table);
+
+/* the channel table's three hooks; only their addresses reach this file */
+void ciChannelHash(void);
+void ciChannelCompare(void);
+void ciChannelFree(void);
 void ciCallbackFree(void *elem);
 
 int ciGetNextID(CHAT chat)
@@ -97,4 +110,23 @@ void ciCleanupChannels(CHAT chat)
 
 	if(connection->channelList)
 		ArrayFree(connection->channelList);
+}
+
+CHATBool ciInitChannels(CHAT chat)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	connection->channelTable = TableNew2(sizeof(ciChannel), 7, 2, ciChannelHash,
+		ciChannelCompare, ciChannelFree);
+	if(!connection->channelTable)
+		return CHATFalse;
+
+	connection->channelList = ArrayNew(sizeof(ciChannel), 0, 0);
+	if(!connection->channelList)
+	{
+		TableFree(connection->channelTable);
+		return CHATFalse;
+	}
+
+	return CHATTrue;
 }
