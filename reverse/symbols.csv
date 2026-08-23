@@ -75518,3 +75518,4 @@ _gpiIntToDate,0x008F1090,vendored=gamespy-2004
 ?isSupplySourceAttacked@AIPlayer@@QAE_NXZ,0x0003C542,Open-BFME5 ILT at guardSupplyCenter 0x001668CE; the returned Bool gates the attacked supply-center lookup
 ?getPlayerStructureBounds@AIPlayer@@SAXPAURegion2D@@H@Z,0x000362AA,Open-BFME5 ILT at guardSupplyCenter 0x0016694A; static helper receives the local bounds and enemy player index
 ?groupGuardPosition@AIGroup@@QAEXPBUCoord3D@@W4GuardMode@1@W4CommandSourceType@1@@Z,0x0004115F,Open-BFME5 ILT at guardSupplyCenter 0x001669C0; receives the adjusted warehouse position with normal guard mode and script command source
+??$_Construct@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBVAsciiString@@UCoord3D@@@0@ABU10@@Z,0x0000D71F,ILT called by _M_copy at 0x000BFF71 to build the pair in the freshly allocated 0x20-byte node
