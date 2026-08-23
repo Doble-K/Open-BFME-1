@@ -45,6 +45,23 @@ struct ParticleSysBoneInfo
 	ParticleSystemTemplate *particleSystemTemplate;
 };
 
+class ModelConditionInfo
+{
+public:
+	// The same eight-byte shape: one AsciiString and one dword.
+	struct HideShowSubObjInfo
+	{
+		AsciiString subObjName;
+		int hide;
+	};
+};
+
+void BfmeHideShowSubObjInfoVectorAnchor(_STL::vector<ModelConditionInfo::HideShowSubObjInfo> &out, const _STL::vector<ModelConditionInfo::HideShowSubObjInfo> &in)
+{
+	out = in;
+	out.erase(out.begin());
+}
+
 void BfmeParticleSysBoneInfoVectorAnchor(_STL::vector<ParticleSysBoneInfo> &out, const _STL::vector<ParticleSysBoneInfo> &in)
 {
 	out = in;
