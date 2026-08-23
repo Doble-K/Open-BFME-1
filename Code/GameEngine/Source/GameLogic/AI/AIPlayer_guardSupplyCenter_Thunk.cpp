@@ -1,285 +1,152 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class Team;
+typedef bool Bool;
+typedef int Int;
+typedef float Real;
+
+struct Coord2D
+{
+	Real x;
+	Real y;
+};
+
+struct Coord3D
+{
+	Real x;
+	Real y;
+	Real z;
+
+	void zero() { x = y = z = 0.0f; }
+	void normalize();
+};
+
+struct Region2D
+{
+	Coord2D lo;
+	Coord2D hi;
+};
+
+class GeometryInfo
+{
+public:
+	Real getBoundingCircleRadius() const { return m_boundingCircleRadius; }
+private:
+	Real m_boundingCircleRadius;
+};
+
+class Object
+{
+public:
+	const Coord3D *getPosition() const { return &m_position; }
+	const GeometryInfo &getGeometryInfo() const { return m_geometryInfo; }
+private:
+	unsigned char m_unreconstructed_000[0x38];
+	Coord3D m_position;
+	unsigned char m_unreconstructed_044[0xbc - 0x44];
+	GeometryInfo m_geometryInfo;
+};
+
+class GameLogic
+{
+public:
+	Object *findObjectByID(Int id);
+};
+
+extern GameLogic *TheGameLogic;
+
+class AIGroup
+{
+public:
+	enum GuardMode { GUARDMODE_NORMAL };
+	enum CommandSourceType { CMD_FROM_SCRIPT = 1 };
+	void groupGuardPosition(const Coord3D *position, GuardMode mode,
+		CommandSourceType commandSource);
+};
+
+class Team
+{
+public:
+	void getTeamAsAIGroup(AIGroup *group);
+};
+
+class AI
+{
+public:
+	AIGroup *createGroup();
+};
+
+extern AI *TheAI;
+
+class Player
+{
+public:
+	Int getPlayerIndex() const { return m_playerIndex; }
+private:
+	unsigned char m_unreconstructed_000[0x24];
+	Int m_playerIndex;
+};
+
+#define BFME_VIRTUAL_SLOT(n) virtual void slot##n();
+class ScriptEngine
+{
+public:
+	BFME_VIRTUAL_SLOT(00) BFME_VIRTUAL_SLOT(04) BFME_VIRTUAL_SLOT(08)
+	BFME_VIRTUAL_SLOT(0C) BFME_VIRTUAL_SLOT(10) BFME_VIRTUAL_SLOT(14)
+	BFME_VIRTUAL_SLOT(18) BFME_VIRTUAL_SLOT(1C) BFME_VIRTUAL_SLOT(20)
+	BFME_VIRTUAL_SLOT(24) BFME_VIRTUAL_SLOT(28) BFME_VIRTUAL_SLOT(2C)
+	BFME_VIRTUAL_SLOT(30) BFME_VIRTUAL_SLOT(34) BFME_VIRTUAL_SLOT(38)
+	BFME_VIRTUAL_SLOT(3C) BFME_VIRTUAL_SLOT(40) BFME_VIRTUAL_SLOT(44)
+	virtual Player *getSkirmishEnemyPlayer();
+};
+#undef BFME_VIRTUAL_SLOT
+
+extern ScriptEngine *TheScriptEngine;
+
 class AIPlayer
 {
 public:
-	void guardSupplyCenter(Team *, int);
+	void guardSupplyCenter(Team *team, Int minSupplies);
+	Bool isSupplySourceAttacked();
+	static void getPlayerStructureBounds(Region2D *bounds, Int playerIndex);
+protected:
+	Object *findSupplyCenter(Int minSupplies);
+private:
+	unsigned char m_unreconstructed_000[0x6c];
+	Int m_supplySourceAttackCheckFrame;
+	Int m_attackedSupplyCenter;
 };
 
-// ?guardSupplyCenter@AIPlayer@@QAEXPAVTeam@@H@Z
-__declspec(naked) void AIPlayer::guardSupplyCenter(Team *, int)
+void AIPlayer::guardSupplyCenter(Team *team, Int minSupplies)
 {
-	__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x28
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xc7
-        __emit 0x47
-        __emit 0x6c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x6f
-        __emit 0x5c
-        __emit 0xed
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x15
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x70
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x08
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x6d
-        __emit 0x89
-        __emit 0xeb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x75
-        __emit 0x16
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x38
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x03
-        __emit 0x78
-        __emit 0xeb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xc3
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x14
-        __emit 0xf2
-        __emit 0x2e
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x63
-        __emit 0x4c
-        __emit 0xed
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xae
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x34
-        __emit 0x57
-        __emit 0xe8
-        __emit 0xa0
-        __emit 0xc5
-        __emit 0xeb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x40
-        __emit 0x8b
-        __emit 0x56
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x3c
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x08
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x48
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x24
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x24
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x5b
-        __emit 0xf9
-        __emit 0xec
-        __emit 0xff
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x30
-        __emit 0xd8
-        __emit 0x44
-        __emit 0x24
-        __emit 0x28
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xd8
-        __emit 0x0d
-        __emit 0x3c
-        __emit 0x53
-        __emit 0x07
-        __emit 0x01
-        __emit 0xd8
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x2c
-        __emit 0xd8
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0xd8
-        __emit 0x0d
-        __emit 0x3c
-        __emit 0x53
-        __emit 0x07
-        __emit 0x01
-        __emit 0xd8
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xe8
-        __emit 0xf3
-        __emit 0x53
-        __emit 0xec
-        __emit 0xff
-        __emit 0xd9
-        __emit 0x86
-        __emit 0xbc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xd8
-        __emit 0x0d
-        __emit 0xc0
-        __emit 0x6e
-        __emit 0x09
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x10
-        __emit 0x52
-        __emit 0xd8
-        __emit 0xc9
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xd8
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xd8
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x24
-        __emit 0xd8
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xe8
-        __emit 0x9a
-        __emit 0xa7
-        __emit 0xed
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x28
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	m_supplySourceAttackCheckFrame = 0;
+	Object *warehouse = 0;
+	if (isSupplySourceAttacked())
+		warehouse = TheGameLogic->findObjectByID(m_attackedSupplyCenter);
+	if (!warehouse)
+		warehouse = findSupplyCenter(minSupplies);
+	if (warehouse)
+	{
+		AIGroup *theGroup = TheAI->createGroup();
+		if (!theGroup)
+			return;
+		team->getTeamAsAIGroup(theGroup);
+		const Coord3D *warehousePosition = warehouse->getPosition();
+		Coord3D location;
+		location.x = warehousePosition->x;
+		location.y = warehousePosition->y;
+		location.z = warehousePosition->z;
+		Region2D bounds;
+		Int enemyNdx = TheScriptEngine->getSkirmishEnemyPlayer()->getPlayerIndex();
+		getPlayerStructureBounds(&bounds, enemyNdx);
+		Coord3D offset;
+		offset.zero();
+		offset.x = location.x - (bounds.lo.x + bounds.hi.x) * 0.5f;
+		offset.y = location.y - (bounds.lo.y + bounds.hi.y) * 0.5f;
+		offset.normalize();
+		Real radius = warehouse->getGeometryInfo().getBoundingCircleRadius() * 0.8f;
+		location.x -= offset.x * radius;
+		location.y -= offset.y * radius;
+		theGroup->groupGuardPosition(&location, AIGroup::GUARDMODE_NORMAL,
+			AIGroup::CMD_FROM_SCRIPT);
 	}
 }
