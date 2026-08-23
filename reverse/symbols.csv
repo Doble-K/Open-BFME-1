@@ -75562,3 +75562,5 @@ _Rva0051D1E0Forward,0x0003EA45,Open-BFME5 ILT thunk to the shared 0x0051D1E0 bod
 ??RQ4Sort0034BFC0@@QBE_NHH@Z,0x00024B81,ILT thunk to the Q4Sort0034BFC0 comparator body at 0x0033D5E0, resolved via decode_calls at the __median<int,Q4Sort0034BFC0> call site
 ?parseToken@Rva00128510BitFlagsParser@@QAE_NPBDPA_N1@Z,0x0003D3B1,ILT to the 459-byte routine at 0x00128510 that BitFlags<116>::parseFromINI calls once per token at 0x0012983F
 ?parseToken@Rva00204770BitFlagsParser@@QAE_NPBDPA_N1@Z,0x0003D68B,ILT to the routine at 0x00204770 that BitFlags<45>::parseFromINI calls once per token at 0x00204E9F
+??RQ4Sort004566F0@@QBE_NHH@Z,0x00024055,ILT thunk to the Q4Sort004566F0 comparator body at 0x00451F60, resolved via decode_calls at the __median<int,Q4Sort004566F0> call site
+??RQ4Sort004567A0@@QBE_NHH@Z,0x00039CB1,ILT thunk to the Q4Sort004567A0 comparator body at 0x00451E90, resolved via decode_calls at the __median<int,Q4Sort004567A0> call site
