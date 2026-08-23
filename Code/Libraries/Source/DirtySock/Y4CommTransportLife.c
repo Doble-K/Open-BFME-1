@@ -58,7 +58,12 @@ struct Rva00816BF0Comm
 	struct Rva007FD4E0Socket *m_socket;     /* +0x7C */
 	char m_peer[ 0x10 ];            /* +0x80 */
 	int m_state;                    /* +0x90 */
-	int m_reserved94;               /* +0x94 */
+	/* A HASH OF THE CONNECTION STRING'S TAIL.  0x00818FF0 finds the '#' in
+	 * the text it is given and hashes from there to the end, storing the
+	 * result here; the connect and close messages then carry it out as their
+	 * third word.  So it identifies which session on a host is meant, not the
+	 * host. */
+	int m_sessionHash;              /* +0x94 */
 	int m_recvRecordSize;           /* +0x98 */
 	int m_recvBufferSize;           /* +0x9C */
 	/* The two receive cursors.  0x00818BF0 compares them for emptiness and
@@ -164,7 +169,7 @@ struct Rva00816BF0Comm *Rva00816BF0( int maxPacket, int recvCount,
 
 	memset( comm->m_peer, 0, 0x10 );
 	comm->m_state = 1;
-	comm->m_reserved94 = 0;
+	comm->m_sessionHash = 0;
 
 	Rva00816E10( comm );
 	return comm;
@@ -353,7 +358,8 @@ struct Rva00816F60Message
 	char m_body[ 0x218 ];
 };
 
-void Rva00817030( struct Rva00816BF0Comm *comm,
+/* Returns the submit result; the close discards it, 0x00818620 returns it. */
+int Rva00817030( struct Rva00816BF0Comm *comm,
 	struct Rva00816F60Message *message );
 
 int Rva00816F60( struct Rva00816BF0Comm *comm )
@@ -365,11 +371,11 @@ int Rva00816F60( struct Rva00816BF0Comm *comm )
 
 	message.m_kind = 0;
 	message.m_code = 3;
-	message.m_value = comm->m_reserved94;
+	message.m_value = comm->m_sessionHash;
 
 	Rva00817030( comm, &message );
 
-	comm->m_reserved94 = 0;
+	comm->m_sessionHash = 0;
 	comm->m_state = 5;
 	return 0;
 }
@@ -616,4 +622,66 @@ int Rva00818BF0( struct Rva00816BF0Comm *comm, void *buffer, int size,
 		*when = record->m_tick;
 
 	return record->m_length;
+}
+
+char *__cdecl strchr( const char *text, int ch );
+
+/* 0x00818FF0 computes the SESSION HASH from a connection string.
+ *
+ * It looks for a '#' and does nothing at all if there is none -- the field
+ * keeps whatever it had, rather than being cleared -- then hashes from the
+ * '#' INCLUSIVE to the end of the string.  Including the separator is
+ * deliberate in the sense that the bytes show it: the scan starts at the
+ * pointer strchr returned, not one past it.
+ *
+ * The hash is the same rotating-XOR used at 0x007FF080 in the socket unit:
+ * top five bits saved, accumulator shifted left five, saved bits brought back
+ * at the bottom by an ARITHMETIC shift right of 27, character folded in last.
+ * The sar is what makes the accumulator signed, and the character is read with
+ * movsx, so the text is plain char.
+ */
+void Rva00818FF0( struct Rva00816BF0Comm *comm, const char *text )
+{
+	char *p;
+	int i;
+	int uHash;
+	int uCarry;
+
+	p = strchr( text, '#' );
+
+	if ( p != 0 )
+	{
+		for ( i = 0, uHash = 0; p[ i ] != 0; i++ )
+		{
+			uCarry = uHash & 0xF8000000;
+			uHash = uHash << 5;
+			uHash = ( uCarry >> 27 ) ^ uHash;
+			uHash = p[ i ] ^ uHash;
+		}
+
+		comm->m_sessionHash = uHash;
+	}
+}
+
+/* 0x00818620 SENDS THE CONNECT MESSAGE, and it is the close's counterpart:
+ * the same stack message, the same three words filled in, differing only in
+ * the code -- 1 here against 3 there.
+ *
+ * TWO DIFFERENCES FROM THE CLOSE ARE WORTH NOTING.  There is no state guard,
+ * so this can be sent from any state; and the session hash is NOT cleared
+ * afterwards, where the close clears it.  So connect carries the hash and
+ * keeps it, and close carries it and gives it up -- which is consistent with
+ * the field identifying the session for as long as one is wanted.
+ *
+ * It also returns the submit result, where the close discards it.
+ */
+int Rva00818620( struct Rva00816BF0Comm *comm )
+{
+	struct Rva00816F60Message message;
+
+	message.m_kind = 0;
+	message.m_code = 1;
+	message.m_value = comm->m_sessionHash;
+
+	return Rva00817030( comm, &message );
 }
