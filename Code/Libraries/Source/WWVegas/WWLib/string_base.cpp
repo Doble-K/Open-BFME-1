@@ -147,178 +147,24 @@ const T *StringBase<T>::reverseFind(T c) const
     return 0;
 }
 
-__declspec(naked) int StringBase<char>::compare(const StringBase<char> &str) const
+template <>
+int StringBase<char>::compare(const StringBase<char> &str) const
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x53
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x58
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x78
-        __emit 0x08
-        __emit 0x75
-        __emit 0x05
-        __emit 0xbf
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x50
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x08
-        __emit 0x75
-        __emit 0x05
-        __emit 0xbe
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x3b
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x7c
-        __emit 0x02
-        __emit 0x8b
-        __emit 0xcb
-        __emit 0x33
-        __emit 0xc0
-        __emit 0xf3
-        __emit 0xa6
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x74
-        __emit 0x05
-        __emit 0x1b
-        __emit 0xc0
-        __emit 0x83
-        __emit 0xd8
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x04
-        __emit 0x2b
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0xc2
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const int len = str.m_data ? str.m_data->length : 0;
+    const char *data = str.m_data ? &str.m_data->data[0] : "";
+    return compare(data, len);
 }
 
-__declspec(naked) int StringBase<char>::compare(const char *str, int len) const
+template <>
+int StringBase<char>::compare(const char *str, int len) const
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x50
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x08
-        __emit 0x75
-        __emit 0x05
-        __emit 0xbe
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x3b
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x7c
-        __emit 0x02
-        __emit 0x8b
-        __emit 0xcb
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x33
-        __emit 0xc0
-        __emit 0xf3
-        __emit 0xa6
-        __emit 0x5f
-        __emit 0x74
-        __emit 0x05
-        __emit 0x1b
-        __emit 0xc0
-        __emit 0x83
-        __emit 0xd8
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x04
-        __emit 0x2b
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0xc2
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+    const int myLen = m_data ? m_data->length : 0;
+    const char *data = m_data ? &m_data->data[0] : "";
+    int result = memcmp(data, str, myLen < len ? myLen : len);
+    if (result == 0) {
+        result = myLen - len;
     }
+    return result;
 }
 
 __declspec(naked) int StringBase<wchar_t>::compare(const StringBase<wchar_t> &str) const
