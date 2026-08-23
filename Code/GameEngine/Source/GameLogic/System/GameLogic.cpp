@@ -7272,25 +7272,26 @@ void GameLogic::bindObjectAndDrawable(Object* obj, Drawable* draw)
 // ------------------------------------------------------------------------------------------------
 /** Send notification of object destruction. */
 // ------------------------------------------------------------------------------------------------
-// ?sendObjectDestroyed@GameLogic@@QAEXPAVObject@@@Z present-unmatched
+struct _BFMEGameLogicShim
+{
+	char _pad0[0x69];
+	Bool m_loadingMap;
+	Bool m_loadingSave;
+	char _pad1[0x15c - 0x6b];
+	std::vector<Object*> m_objectsToDestroy;
+};
+
+// ?sendObjectDestroyed@GameLogic@@QAEXPAVObject@@@Z
 void GameLogic::sendObjectDestroyed( Object *obj )
 {
-	// Because this implementation is a bridge between the Logic and Interface,
-	// we must take extra care to handle such cases as when the system it
-	// shutting down.
-	if(TheGameClient == NULL)
+	_BFMEGameLogicShim* logic = (_BFMEGameLogicShim*)this;
+	if( !obj || logic->m_loadingMap || logic->m_loadingSave )
 		return;
 
-	// destroy the drawable
-	Drawable *draw = obj->getDrawable();
-	if(draw)
+	if( std::find( logic->m_objectsToDestroy.begin(), logic->m_objectsToDestroy.end(), obj ) == logic->m_objectsToDestroy.end() )
 	{
-		TheGameClient->destroyDrawable( draw );
+		logic->m_objectsToDestroy.push_back( obj );
 	}
-
-	// erase the binding of the drawable to this object
-	obj->friend_bindToDrawable( NULL );
-
 }
 
 // ------------------------------------------------------------------------------------------------
