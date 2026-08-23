@@ -7,6 +7,7 @@ class BfmeInGameUI_setInputEnabled
 {
 public:
 	void setInputEnabled(bool enabled);
+	void setEngineInputEnabled(bool enabled);
 
 	// vtable slots 0x00 .. 0x11c, then impl at +0x120.
 	virtual void v00();
@@ -84,7 +85,8 @@ public:
 	virtual void setInputEnabledImpl(bool enabled, unsigned char *flag);
 
 private:
-	char m_pad[0xa];
+	char m_pad[9];
+	unsigned char m_engineFlag;
 	unsigned char m_flag;
 };
 
@@ -92,4 +94,10 @@ private:
 void BfmeInGameUI_setInputEnabled::setInputEnabled(bool enabled)
 {
 	setInputEnabledImpl(enabled, &m_flag);
+}
+
+// @?setEngineInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z 0x0043B260
+void BfmeInGameUI_setInputEnabled::setEngineInputEnabled(bool enabled)
+{
+	setInputEnabledImpl(enabled, &m_engineFlag);
 }
