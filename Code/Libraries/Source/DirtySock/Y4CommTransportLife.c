@@ -91,7 +91,11 @@ struct Rva00816BF0Comm
 	 * starting sequence rather than 0 is what makes "never sent" and "sequence
 	 * zero" distinguishable on the wire. */
 	int m_recvSequence;             /* +0xAC */
-	char m_gap2[ 0x04 ];
+	/* A COPY of the receive sequence, taken by 0x00818AD0 immediately before
+	 * it reports one and used only to build that report.  Keeping the copy
+	 * rather than reading the live field twice is what makes the number sent
+	 * and the number remembered the same one. */
+	int m_reportedSequence;         /* +0xB0 */
 	int m_recvCounter;              /* +0xB4 */
 	int m_sendRecordSize;           /* +0xB8 */
 	int m_sendBufferSize;           /* +0xBC */
@@ -379,7 +383,14 @@ struct Rva00816F60Message
 {
 	int m_kind;                     /* +0x00 */
 	int m_reserved4;
+	/* EITHER A CONTROL CODE OR THE MESSAGE'S OWN SEQUENCE, and the two share
+	 * the field without ambiguity because sequences start at 0x65: 1 is
+	 * connect, 3 is close, 4 is a retransmit request, and anything from 101
+	 * upwards is a data sequence.  That is what the reset's odd-looking choice
+	 * of 0x65 buys -- it reserves a hundred values for control. */
 	int m_code;                     /* +0x08 */
+	/* A session hash for the control codes, an acknowledged sequence for the
+	 * data ones. */
 	int m_value;                    /* +0x0C */
 	/* 0x228 in total, four bytes MORE than the transport object -- close, but
 	 * not the same type, so the size is taken from the frame rather than
@@ -894,5 +905,49 @@ void Rva008186C0( struct Rva00816BF0Comm *comm,
 	{
 		comm->m_sendAckOffset = comm->m_sendReadOffset;
 		Rva00817640( comm );
+	}
+}
+
+/* 0x00818AD0 IS THE IDLE DECISION: with nothing new to send, either retransmit
+ * or acknowledge.
+ *
+ * If the send queue is non-empty AND the transmit cursor has caught up to the
+ * write cursor -- everything queued has gone out and none of it has been
+ * acknowledged -- it backs the transmit cursor up by ONE RECORD and kicks the
+ * sender.  Backing up by subtracting the record size and taking the modulus,
+ * rather than by comparing against the base, is what makes it wrap correctly
+ * at the start of the ring.  So a stalled connection retransmits its most
+ * recent packet rather than its oldest, which is the one an ack would be
+ * answering.
+ *
+ * Otherwise it sends a bare message carrying its own sequence and the peer's
+ * progress: code gets the send sequence, value gets the reported receive
+ * sequence minus one.  The minus one is the same convention the ack handler
+ * decodes -- "I want this next" rather than "I have this".
+ *
+ * The kind word is written LAST, after the two fields it describes, which is
+ * retail's order and not the one a reader would write.
+ */
+void Rva00818AD0( struct Rva00816BF0Comm *comm )
+{
+	struct Rva00816F60Message message;
+
+	if ( comm->m_sendReadOffset != comm->m_sendWriteOffset
+		&& comm->m_sendAckOffset == comm->m_sendWriteOffset )
+	{
+		comm->m_sendAckOffset = ( comm->m_sendAckOffset
+			+ comm->m_sendBufferSize - comm->m_sendRecordSize )
+			% comm->m_sendBufferSize;
+
+		Rva00817640( comm );
+	}
+	else
+	{
+		message.m_code = comm->m_sendSequence;
+		comm->m_reportedSequence = comm->m_recvSequence;
+		message.m_value = comm->m_reportedSequence - 1;
+		message.m_kind = 0;
+
+		Rva00817030( comm, &message );
 	}
 }
