@@ -83,3 +83,101 @@ int Rva007EE820( const char *text, int defaultValue )
 
 	return iValue;
 }
+
+/* 0x007EE720 PARSES A SIGNED DECIMAL INTEGER, and the two things it does NOT
+ * do are the ones worth knowing.
+ *
+ * IT DOES NOT SKIP LEADING WHITESPACE.  A space before the sign or the digits
+ * ends the parse immediately and yields zero -- not the default, which only a
+ * null pointer reaches.  Anything handing it text straight out of a
+ * configuration line has to trim first.
+ *
+ * AND IT DOES NOT DETECT OVERFLOW: digits accumulate into an int by multiply
+ * and add with no bound, so a long enough run wraps silently.
+ *
+ * A leading '+' is accepted and skipped, which strtol does but atoi is not
+ * required to.  The sign is kept as a multiplier applied at the end rather
+ * than by negating the accumulator, so the most negative value is not
+ * representable through this path -- it would have to overflow positive first.
+ */
+int Rva007EE720( const char *text, int defaultValue )
+{
+	int iSign;
+	int iValue;
+
+	if ( text == 0 )
+		return defaultValue;
+
+	iSign = 1;
+
+	if ( *text == '+' )
+	{
+		text++;
+	}
+	else if ( *text == '-' )
+	{
+		text++;
+		iSign = -1;
+	}
+
+	for ( iValue = 0; *text >= '0' && *text <= '9'; text++ )
+		iValue = iValue * 10 + ( *text & 0x0F );
+
+	return iSign * iValue;
+}
+
+/* A 256-entry translation table, indexed by a SIGNED char -- so a byte with
+ * the high bit set reads BEFORE the table's start.  That is what the bytes do;
+ * whether anything upstream keeps such bytes out is not visible here. */
+extern char g_Rva0112A210Fold[];
+
+/* 0x007EFD00 COMPARES TWO STRINGS THROUGH THAT TABLE, and it is doing three
+ * jobs at once rather than one.
+ *
+ * QUOTES SET A PER-SIDE TERMINATOR.  A leading double quote is consumed and
+ * remembered, and thereafter a matching quote ends that side; without one the
+ * side instead ends at any character below space.  The two sides are decided
+ * INDEPENDENTLY, so a quoted string compares cleanly against an unquoted one
+ * -- which is the point, since it lets a configuration value be written either
+ * way.
+ *
+ * The end-of-string test is therefore not a NUL test: a control character ends
+ * an unquoted side, and a NUL ends a quoted one only because it is below
+ * space... which it is not, in the quoted case.  A quoted string missing its
+ * closing quote runs past the terminator.
+ *
+ * The loop is a DO-WHILE, so both sides always advance at least once; the
+ * caller's null and empty-string checks at the top are what make that safe.
+ *
+ * The result is the difference of the two folded characters, so it orders by
+ * the TABLE's ordering rather than by the raw bytes.
+ */
+int Rva007EFD00( const char *a, const char *b )
+{
+	unsigned char cTermA;
+	unsigned char cTermB;
+	unsigned char cA;
+	unsigned char cB;
+
+	if ( a == 0 || *a == 0 )
+		return -1;
+
+	cTermA = ( *a == '"' ) ? *a++ : 0;
+	cTermB = ( *b == '"' ) ? *b++ : 0;
+
+	do
+	{
+		cA = g_Rva0112A210Fold[ *a ];
+		a++;
+		if ( cA == cTermA || ( cA < ' ' && cTermA == 0 ) )
+			cA = 0;
+
+		cB = g_Rva0112A210Fold[ *b ];
+		b++;
+		if ( cB == cTermB || ( cB < ' ' && cTermB == 0 ) )
+			cB = 0;
+	}
+	while ( cA == cB && cA != 0 && cB != 0 );
+
+	return cA - cB;
+}
