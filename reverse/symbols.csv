@@ -75572,3 +75572,4 @@ _Rva0051D1E0Forward,0x0003EA45,Open-BFME5 ILT thunk to the shared 0x0051D1E0 bod
 ??$__adjust_heap@PAHHHUQ4Sort004567A0@@@_STL@@YAXPAHHHHUQ4Sort004567A0@@@Z,0x00453290,ICF-folded with the Q4Cmp00453C20 instantiation at the same address; resolved via decode_calls at __partial_sort<Q4Sort004567A0>
 ??$sort_heap@PAHUQ4Sort004567A0@@@_STL@@YAXPAH0UQ4Sort004567A0@@@Z,0x004546F0,resolved via decode_calls at __partial_sort<Q4Sort004567A0>; final call in the standard partial_sort algorithm shape
 ??$__make_heap@PAHUQ4Sort004567A0@@HH@_STL@@YAXPAH0UQ4Sort004567A0@@00@Z,0x00453C20,ICF-folded with the Rva00453C20/Q3HeapCompare instantiation at the same address; resolved via decode_calls at __partial_sort<Q4Sort004567A0>
+?_M_clear@?$vector@UEvaSideSounds@@V?$allocator@UEvaSideSounds@@@_STL@@@_STL@@IAEXXZ,0x000DE970,ICF-folded with the gen-tgrid vec_p16cd instantiation at the same address; resolved via direct disassembly at _M_insert_overflow<EvaSideSounds>
