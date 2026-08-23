@@ -75473,3 +75473,4 @@ _ciCleanup,0x008543A0,Open-BFME5 the library cleanup _chatDisconnect at 0x008603
 _ciSocketFlush,0x0085AC70,Open-BFME5 behaviour-derived name; _chatDisconnect at 0x008603F0 calls it on the chat socket right after the QUIT and before the channel and callback teardown - distinct from the already-pinned ciSocketDisconnect at 0x0085A990 which runs last
 ?hasAnyObjects@TeamPrototype@@QAE_N_N@Z,0x00021D96,Open-BFME5 ILT; ?hasAnyObjects@Player@@QBE_N_N@Z at 0x000CE0B0 forwards its flag to each prototype through it
 ?hasAnyBuildings@TeamPrototype@@QAE_NV?$BitFlags@$0MA@@@_N@Z,0x0000B55F,Open-BFME5 ILT; ?hasAnyBuildings@Player@@QBE_NV?$BitFlags@$0MA@@@_N@Z at 0x000CDF70 forwards the mask and the flag to each prototype through it
+??0AIGroup@@QAE@XZ,0x0002A031,Open-BFME5 ILT; ?createGroup@AI@@QAEPAVAIGroup@@XZ at 0x0014C630 runs it on the 0x40 bytes it allocates
