@@ -166,7 +166,6 @@ void Player::disableRadar()
 	}
 }
 
-// ?enableRadar@Player@@QAEXXZ present-unmatched
 void Player::enableRadar()
 {
 	Bool hadRadar = hasRadar();

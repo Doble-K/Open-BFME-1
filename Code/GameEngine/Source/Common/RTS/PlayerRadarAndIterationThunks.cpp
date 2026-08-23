@@ -5,14 +5,7 @@ class Object;
 class Player
 {
 public:
-	void enableRadar();
 	void iterateObjects(void (*)(Object *, void *), void *) const;
-};
-
-class PlayerEnableRadarShim
-{
-public:
-	void enableRadar();
 };
 
 class PlayerIterateObjectsShim
@@ -20,11 +13,6 @@ class PlayerIterateObjectsShim
 public:
 	void iterateObjects(void (*)(Object *, void *), void *) const;
 };
-
-void Player::enableRadar()
-{
-	((PlayerEnableRadarShim *)this)->enableRadar();
-}
 
 void Player::iterateObjects(void (*cb)(Object *, void *), void *userData) const
 {
