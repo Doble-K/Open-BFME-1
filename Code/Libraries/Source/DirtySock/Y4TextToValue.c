@@ -313,3 +313,38 @@ int Rva007EC3F0( unsigned char *buffer, int size, const char *value )
 	*p = 0;
 	return 0;
 }
+
+/* 0x007EFAB0 SCANS A RUN OF DIGITS INTO *value AND RETURNS WHERE IT STOPPED,
+ * consuming at most maxLength characters.
+ *
+ * A NON-POSITIVE maxLength MEANS 256, not "unbounded" and not "nothing".  So
+ * there is no way to ask this for an unlimited scan, and passing 0 -- the
+ * value a caller would most naturally use for "no limit" -- silently gets the
+ * default rather than an empty result.
+ *
+ * THE LIMIT IS TESTED LAST, after both digit tests, which is what makes the
+ * returned pointer meaningful: stopping because the budget ran out leaves it
+ * on a digit, while stopping at a non-digit leaves it on the separator.  The
+ * caller can tell the two apart only by looking at what it points to.
+ *
+ * NO OVERFLOW CHECK, and no sign or whitespace handling -- consistent with the
+ * decimal parser above, which shares this shape.  Digits are folded with & 0xF
+ * rather than by subtracting '0'; the two agree for '0'..'9' and this one is a
+ * byte shorter.
+ */
+const char *Rva007EFAB0( const char *text, int *value, int maxLength )
+{
+	if ( maxLength <= 0 )
+	{
+		maxLength = 0x100;
+	}
+
+	*value = 0;
+
+	for ( ; *text >= '0' && *text <= '9' && maxLength > 0; text++, maxLength-- )
+	{
+		*value = *value * 10 + ( *text & 0xF );
+	}
+
+	return text;
+}
