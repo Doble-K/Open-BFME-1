@@ -9181,6 +9181,9 @@ name,address,notes
 ?Invalidate_Cached_Render_States@DX8Wrapper@@SAXXZ,0x00903C50,End_Render depth Open-BFME4+Grok
 ?Is_Bone_Captured@HTreeClass@@QBE_NH@Z,0x00952A40
 ?Is_Running@ThreadClass@@QAE_NXZ,0x009DB590
+?LZHLCreateDecompressor@@YAPAXXZ,0x00823170,LZH-Light decompressor factory wrapper
+?LZHLDecompress@@YAHPAXPAEPAIPBE2@Z,0x00823190,LZH-Light decompression wrapper
+?LZHLDestroyDecompressor@@YAXPAX@Z,0x00823230,LZH-Light decompressor destroy wrapper
 ?Load@INIClass@@QAEHAAVStraw@@@Z,0x009E4680
 ?LoadAndCreateD3DShader@W3DShaderManager@@SAJPBDPAK@Z,0x0001FC99,FlatTerrainShaderPixelShader retail two-argument loader thunk
 ?Load_W3D@AdaptiveDeltaMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977CC0
