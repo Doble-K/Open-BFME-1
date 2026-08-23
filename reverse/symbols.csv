@@ -75543,3 +75543,4 @@ _gpiIntToDate,0x008F1090,vendored=gamespy-2004
 ??$_Construct@VPeerResponse@@V1@@_STL@@YAXPAVPeerResponse@@ABV1@@Z,0x0003BB51,ILT the queue push calls at 0x0064CB49 to build the element in place
 ?_M_reallocate_map@?$deque@VPingRequest@@V?$allocator@VPingRequest@@@_STL@@@_STL@@IAEXI_N@Z,0x00010929,ILT the PingRequest deque push-back aux calls at 0x006607AB when the map is full
 ?_M_reallocate_map@?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@IAEXI_N@Z,0x00044DA5,ILT the PingResponse deque push-back aux calls at 0x006608DB when the map is full
+??0Made002DF2B0@@QAE@XZ,0x00010D07,Open-BFME5 ILT thunk to body 0x002DF2B0 - the shared base every Made001E5xxx constructor runs first; the class itself is unidentified so it is named for its own body address in the ledger convention
