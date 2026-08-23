@@ -381,3 +381,66 @@ done:
 
 	return uResult;
 }
+
+/* 0x007EFC20 PARSES A TIMESTAMP AND HANDS BACK THE DATE AND THE TIME AS TWO
+ * PACKED INTEGERS, each field in its own byte-aligned slot.
+ *
+ * THE PACKING IS DECIMAL-READABLE IN HEX, which is the whole point of the
+ * layout: the date comes out as 0xYYYYMMDD-in-hex-digit-positions -- year in
+ * the top sixteen bits, month plus one in the next eight, day in the low eight
+ * -- and the time as hour, minute, second in three bytes.  Printed as hex it
+ * reads back as the date, which is what makes these values usable in a log or
+ * a record field without a formatter.
+ *
+ * THE MONTH IS RESTORED TO ONE-BASED HERE and the year to its full value, both
+ * undoing what the parser did on the way in.  So the packed form is the human
+ * convention and the structure in between is the C one; neither side of this
+ * function sees the other's numbering.
+ *
+ * THE OFFSET IS APPLIED AFTER PARSING, not before, so it shifts the RESULT
+ * rather than the interpretation of the text.  It is added to an unsigned
+ * timestamp, so a negative offset that takes the value below the epoch wraps
+ * to a far-future date instead of failing.
+ *
+ * A PARSED VALUE OF 0 OR 1 IS REJECTED.  Zero is the parser's own failure
+ * signal, but one is rejected too -- it is the default this passes in, so a
+ * timestamp that comes back as exactly the default is treated as "the parse
+ * did not produce anything".  That makes 1 January 1970, 00:00:01 unusable in
+ * the same way the epoch second itself already was.
+ *
+ * BOTH OUTPUTS ARE OPTIONAL AND INDEPENDENT; passing null for both parses the
+ * text and reports only whether it was valid.
+ */
+int Rva007EFC20( const char *text, int *pDate, int *pTime, int iOffset )
+{
+	struct Rva007EDB10Time *ptm;
+	struct Rva007EDB10Time tm2;
+	unsigned int uTime;
+
+	uTime = Rva007EF780( text, 1 );
+
+	if ( uTime <= 1 )
+	{
+		return -1;
+	}
+
+	ptm = Rva007EDB10( &tm2, uTime + iOffset );
+
+	if ( ptm == 0 )
+	{
+		return -1;
+	}
+
+	if ( pDate != 0 )
+	{
+		*pDate = ( ( ptm->m_year + 1900 ) << 16 )
+			| ( ( ptm->m_month + 1 ) << 8 ) | ptm->m_day;
+	}
+
+	if ( pTime != 0 )
+	{
+		*pTime = ( ptm->m_hour << 16 ) | ( ptm->m_minute << 8 ) | ptm->m_second;
+	}
+
+	return 0;
+}
