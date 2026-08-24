@@ -23254,6 +23254,8 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_006aacb0@@YAXXZ,0x006AACB0,"gen-dump placeholder retired: converted to _STL::vector::push_back in Code/Libraries/Source/WWVegas/WWLib/RvaVectorPushBack.cpp"
 ?d_006f2c70@@YAXXZ,0x006F2C70,"gen-dump placeholder retired: converted to _STL::vector::push_back in Code/Libraries/Source/WWVegas/WWLib/RvaVectorPushBack.cpp"
 ?d_00774090@@YAXXZ,0x00774090,"gen-dump placeholder retired: converted to _STL::vector::push_back in Code/Libraries/Source/WWVegas/WWLib/RvaVectorPushBack.cpp"
+?_M_clear@?$vector@UParticleSysBoneInfo@@V?$allocator@UParticleSysBoneInfo@@@_STL@@@_STL@@IAEXXZ,0x0000903E,"5-byte incremental-link thunk row retired: the body now carries this identity at 0x000A8170 in Code/GameEngine/Source/Common/ParticleSysBoneInfoVectorClearBody.cpp"
+?_M_clear@?$vector@VW3DAnimationInfo@@V?$allocator@VW3DAnimationInfo@@@_STL@@@_STL@@IAEXXZ,0x00008837,"5-byte incremental-link thunk row retired: the body now carries this identity at 0x003B0E90 in Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DAnimationInfoVectorClearBody.cpp"
 ?d_00775fe0@@YAXXZ,0x00775FE0,"gen-dump placeholder retired: converted to _STL::vector::push_back in Code/Libraries/Source/WWVegas/WWLib/RvaVectorPushBack.cpp"
 ?d_00776030@@YAXXZ,0x00776030,"gen-dump placeholder retired: converted to _STL::vector::push_back in Code/Libraries/Source/WWVegas/WWLib/RvaVectorPushBack.cpp"
 ?d_00777e40@@YAXXZ,0x00777E40,"gen-dump placeholder retired: converted to _STL::vector::push_back in Code/Libraries/Source/WWVegas/WWLib/RvaVectorPushBack.cpp"
