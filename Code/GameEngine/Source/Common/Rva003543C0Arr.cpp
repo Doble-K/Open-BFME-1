@@ -85,3 +85,17 @@ int *Rva00354460Arr::addr(int index)
 {
 	return &m_items[index].m_08;
 }
+
+class Rva00354480Arr
+{
+public:
+	unsigned char get(int index);
+
+	char m_pad[0x0C];
+	Rva003543E0Elem *m_items;
+};
+
+unsigned char Rva00354480Arr::get(int index)
+{
+	return m_items[index].m_0c;
+}
