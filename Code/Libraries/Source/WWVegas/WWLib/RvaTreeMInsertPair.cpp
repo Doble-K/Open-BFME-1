@@ -1,12 +1,15 @@
 // cl: /DNDEBUG /MD /EHsc
 
 // Open-BFME5: STLport _Rb_tree<K, pair<const K, V> >::_M_insert, the
-// four-argument form, 45 bodies -- 44 of 176 bytes and one of 182.  Every one
+// four-argument form, 49 bodies -- 48 of 176 bytes and one of 182.  Every one
 // of them carried
-// only a machine byte-dump row, and every one of them is the callee of an
-// insert_unique converted in RvaTreeInsertUniqueSigned.cpp or
-// RvaTreeInsertUniqueUnsigned.cpp -- that call is how these addresses were
-// found and how their trees were named.
+// only a machine byte-dump row.  Most are the callee of an insert_unique
+// converted in RvaTreeInsertUniqueSigned.cpp or RvaTreeInsertUniqueUnsigned.cpp
+// -- that call is how those addresses were found and how their trees were
+// named.  The last four were found by their shape instead: nothing that is
+// itself converted calls them, so only the bytes speak for them -- and one of
+// those four is not a pair at all: it reads its key at value+0x18, so its
+// extractor reaches past 24 bytes rather than taking the first member.
 //
 // The __w_ and __x_ arguments let a caller that has already compared skip the
 // comparison, and both short-circuits are visible: __w_ non-null goes straight
@@ -1024,6 +1027,84 @@ typedef _STL::_Rb_tree<int, Rva0065DC00Pair, _STL::_Select1st<Rva0065DC00Pair>,
 Rva0065DC00Tree::iterator BfmeRbTreeInsertAnchor0065DC00( Rva0065DC00Tree *tree,
 	_STL::_Rb_tree_node_base *x, _STL::_Rb_tree_node_base *y,
 	const Rva0065DC00Pair &v, _STL::_Rb_tree_node_base *w )
+{
+	return BfmeRbTreeInsertAnchorHelper::run( tree, x, y, v, w );
+}
+
+struct Rva00064A30Value
+{
+	char m_lead[ 24 ];
+	unsigned int m_key;
+};
+
+// Not _Select1st: this body reads the key at value+0x18 and at node+0x28, so
+// the extractor reaches past 24 bytes of the value to get it.
+struct Rva00064A30KeyOfValue
+{
+	const unsigned int &operator()( const Rva00064A30Value &x ) const { return x.m_key; }
+};
+
+typedef _STL::_Rb_tree<unsigned int, Rva00064A30Value, Rva00064A30KeyOfValue,
+	_STL::less<unsigned int>, _STL::allocator<Rva00064A30Value> > Rva00064A30Tree;
+
+// retail 0x00064A30, a 44-byte node
+Rva00064A30Tree::iterator BfmeRbTreeInsertAnchor00064A30( Rva00064A30Tree *tree,
+	_STL::_Rb_tree_node_base *x, _STL::_Rb_tree_node_base *y,
+	const Rva00064A30Value &v, _STL::_Rb_tree_node_base *w )
+{
+	return BfmeRbTreeInsertAnchorHelper::run( tree, x, y, v, w );
+}
+
+struct Rva000A1040Value
+{
+	char m_body[ 4 ];
+};
+
+typedef _STL::pair<const unsigned int, Rva000A1040Value> Rva000A1040Pair;
+
+typedef _STL::_Rb_tree<unsigned int, Rva000A1040Pair, _STL::_Select1st<Rva000A1040Pair>,
+	_STL::less<unsigned int>, _STL::allocator<Rva000A1040Pair> > Rva000A1040Tree;
+
+// retail 0x000A1040, a 24-byte node
+Rva000A1040Tree::iterator BfmeRbTreeInsertAnchor000A1040( Rva000A1040Tree *tree,
+	_STL::_Rb_tree_node_base *x, _STL::_Rb_tree_node_base *y,
+	const Rva000A1040Pair &v, _STL::_Rb_tree_node_base *w )
+{
+	return BfmeRbTreeInsertAnchorHelper::run( tree, x, y, v, w );
+}
+
+struct Rva0094CA90Value
+{
+	char m_body[ 4 ];
+};
+
+typedef _STL::pair<const unsigned int, Rva0094CA90Value> Rva0094CA90Pair;
+
+typedef _STL::_Rb_tree<unsigned int, Rva0094CA90Pair, _STL::_Select1st<Rva0094CA90Pair>,
+	_STL::less<unsigned int>, _STL::allocator<Rva0094CA90Pair> > Rva0094CA90Tree;
+
+// retail 0x0094CA90, a 24-byte node
+Rva0094CA90Tree::iterator BfmeRbTreeInsertAnchor0094CA90( Rva0094CA90Tree *tree,
+	_STL::_Rb_tree_node_base *x, _STL::_Rb_tree_node_base *y,
+	const Rva0094CA90Pair &v, _STL::_Rb_tree_node_base *w )
+{
+	return BfmeRbTreeInsertAnchorHelper::run( tree, x, y, v, w );
+}
+
+struct Rva009EDBE0Value
+{
+	char m_body[ 4 ];
+};
+
+typedef _STL::pair<const unsigned int, Rva009EDBE0Value> Rva009EDBE0Pair;
+
+typedef _STL::_Rb_tree<unsigned int, Rva009EDBE0Pair, _STL::_Select1st<Rva009EDBE0Pair>,
+	_STL::less<unsigned int>, _STL::allocator<Rva009EDBE0Pair> > Rva009EDBE0Tree;
+
+// retail 0x009EDBE0, a 24-byte node
+Rva009EDBE0Tree::iterator BfmeRbTreeInsertAnchor009EDBE0( Rva009EDBE0Tree *tree,
+	_STL::_Rb_tree_node_base *x, _STL::_Rb_tree_node_base *y,
+	const Rva009EDBE0Pair &v, _STL::_Rb_tree_node_base *w )
 {
 	return BfmeRbTreeInsertAnchorHelper::run( tree, x, y, v, w );
 }
