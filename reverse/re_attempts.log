@@ -5877,3 +5877,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ??0Made001E5BC0@@QAE@XZ	0x002DE130	36	converted	base ctor then vtable and four tail words; assignments in the ctor body rather than a tail member let the vtable store group with the pi immediate
 ?getVisionRange@Object@@QBEMXZ	0x001C17C0	71	converted	the earlier attempt failed only on slot order; declaring the two floats as one array fixes the layout and the body matches
 ??4CommandSet@@QAEAAV0@ABV0@@Z	0x0049CDA0	64	converted	memberwise: base operator=, AsciiString at +0x0C, twenty pointers at +0x10 through a strength-reduced loop, one word at +0x60
+?getVotesNeededToKick@DisconnectManager@@IAEHHPAVConnectionManager@@@Z	0x0066BBC0	81	converted	counts slots not in game over eight; null test guards only the first two predicates; the redundant bound test is one unsigned compare
