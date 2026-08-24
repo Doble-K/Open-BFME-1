@@ -5713,3 +5713,6 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00707000@@YAXXZ	0x00707000	28	blocked	refcounted store semantics recovered but compiler omits target this save/push and reorders field operations after two shapes; t=5m model=gpt-5.6
 ?d_0068d990@@YAXXZ	0x0068D990	33	blocked	bounded byte-copy semantics recovered but compiler hoists/reduces pointer increment and misses target lea/deref order after three clean shapes; t=7m model=gpt-5.6
 ?d_0082b290@@YAXXZ	0x0082B290	24	blocked	pointer store semantics straightforward but retail frame/local stack shape cannot be reproduced by clean C++ after direct and volatile-local forms; t=4m model=gpt-5.6
+?d_00147070@@YAXXZ	0x00147070	214	blocked	SEH frame plus multiple unresolved indirect/global/callee identities; no honest owner recovered from local symbols/xrefs; t=6m model=gpt-5.6
+?d_001643b0@@YAXXZ	0x001643B0	410	blocked	large stateful body has multiple unresolved virtual dispatches, globals, and object identity; no honest clean owner recovered; t=7m model=gpt-5.6
+?d_00573000@@YAXXZ	0x00573000	359	blocked	SEH/TLS-heavy body with many absolute globals and indirect/relative calls; no honest identity or safe clean reconstruction; t=5m model=gpt-5.6
