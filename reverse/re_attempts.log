@@ -5829,3 +5829,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_005381a0@@YAXXZ	0x005381A0	24	blocked	t=11m model=Codex-ocx-native--gpt-5.6-luna; five signature/layout shapes recover byte-indexed table flag, shift/not/and, ret 4 exactly; compiler register allocation differs in required ordering of unused +0 field load versus index/value loads, preventing exact bytes
 ?d_001506a0@@YAXXZ	0x001506A0	12	no-match	t=6m local pointer predicate retains prior eax high bits; clean C++ emits xor before setne
 ?d_00235140@@YAXXZ	0x00235140	11	blocked	t=8m model=Codex-ocx-native--gpt-5.6-luna; three clean bool/signature shapes recover field +0x34 zero predicate and exact sete/ret, but compiler loads field into ECX while retail loads EDX; no honest byte-true shape found
+?d_0029cc20@@YAXXZ	0x0029CC20	10	no-match	t=5m field increment clean C++ emits inc memory; retail requires load/lea/store ordering
