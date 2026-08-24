@@ -23440,3 +23440,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_00537de0@@YAXXZ,0x00537DE0,"gen-dump placeholder retired: converted to Rva00537DE0Swap::replace in Code/GameEngine/Source/Common/Rva00537600Swap.cpp"
 ?d_00537680@@YAXXZ,0x00537680,"gen-dump placeholder retired: converted to Rva00537680Or::orBits in Code/GameEngine/Source/Common/Rva00537600Swap.cpp"
 ?d_00889690@@YAXXZ,0x00889690,"gen-dump placeholder retired: converted to rva00889690Set in Code/GameEngine/Source/Common/Rva00889690Set.cpp"
+?d_008896d0@@YAXXZ,0x008896D0,"gen-dump placeholder retired: converted to rva008896D0Get in Code/GameEngine/Source/Common/Rva00889690Set.cpp"
