@@ -5734,3 +5734,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00537600@@YAXXZ	0x00537600	13	blocked	dword setter semantics clear but redundant target load is not emitted by clean C++; t=2m model=gpt-5.6
 ?d_00537740@@YAXXZ	0x00537740	15	blocked	increment/update semantics clean but compiler orders this/argument loads differently from retail; t=2m model=gpt-5.6
 ?write@Rva003C6F60@@QAEXI@Z	0x003C6F60	18	blocked	t=8m Codex; local pair-write semantics proven but optimized clean C++ allocates output/argument registers oppositely and reloads output, preventing exact bytes
+?d_005377a0@@YAXXZ	0x005377A0	27	blocked	range initialization semantics close but compiler emits opposite field assignment mapping despite direct source; t=2m model=gpt-5.6
