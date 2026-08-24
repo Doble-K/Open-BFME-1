@@ -75668,3 +75668,4 @@ _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 ??$__linear_insert@PAUS4SortElem12@@U1@US4Cmp002E1690@@@_STL@@YAXPAUS4SortElem12@@0U1@US4Cmp002E1690@@@Z,0x000219F9,Open-BFME5 ILT the S4SortElem12 insertion sort at 0x002E1170 calls; it jumps to 0x002E0FE0
 ??$__linear_insert@PAUS4SortElem12@@U1@US4Cmp00532740@@@_STL@@YAXPAUS4SortElem12@@0U1@US4Cmp00532740@@@Z,0x0002C3D1,Open-BFME5 ILT the second S4SortElem12 insertion sort at 0x00532080 calls
 ??$__push_heap@PAUS4SortElem8@@HU1@US4Cmp009F3400@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp009F3400@@@Z,0x009F2E90,Open-BFME5 the sift-up the __adjust_heap at 0x009F3110 tails into
+??$__push_heap@PAUS4SortElem8@@HU1@US4Cmp009F34B0@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp009F34B0@@@Z,0x009F2F00,Open-BFME5 the sift-up the __adjust_heap at 0x009F3190 tails into
