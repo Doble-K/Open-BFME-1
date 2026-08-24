@@ -78658,3 +78658,5 @@ _bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner de
 ?handle@Gen00005DF3@@QAEXH@Z,0x00005DF3,ILT e9 thunk for 18B void wrap at 0x000C95E0
 ?handle@Gen000107D5@@QAEXH@Z,0x000107D5,ILT e9 thunk for 18B void wrap at 0x000C9770; body is AIPlayer::buildUpgrade
 ?handle@Gen0004AFAC@@QAEXH@Z,0x0004AFAC,ILT e9 thunk for 18B void wrap at 0x000C9B40
+?first@Rva0051DCE0@@QAEXXZ,0x00005F88,ILT to 0x0051D590 for 13B two-call wrap at 0x0051DCE0
+?Rva0051DCE0Second@@YAXXZ,0x0001285A,ILT to 0x00579440 for 13B two-call wrap at 0x0051DCE0
