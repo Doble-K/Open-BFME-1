@@ -44,3 +44,18 @@ Rva0082B2D0Slot *Rva0082B2D0Slot::set(int value)
 	m_value = value;
 	return this;
 }
+
+class Rva0082BD80Slot
+{
+public:
+	Rva0082BD80Slot *assignFrom(const int *src);
+
+private:
+	int m_value;
+};
+
+Rva0082BD80Slot *Rva0082BD80Slot::assignFrom(const int *src)
+{
+	m_value = *src;
+	return this;
+}
