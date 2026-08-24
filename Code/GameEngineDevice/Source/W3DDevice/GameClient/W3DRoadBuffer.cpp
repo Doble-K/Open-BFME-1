@@ -1713,9 +1713,10 @@ void W3DRoadBuffer::addMapObjects()
 //=============================================================================
 /** Updates the count and last fields. */
 //=============================================================================
-// ?updateCounts@W3DRoadBuffer@@IAEXPAVRoadSegment@@@Z present-unmatched
 void W3DRoadBuffer::updateCounts(RoadSegment *pRoad)
 {
+	if (!m_initialized) return;
+
 	pRoad->m_pt1.last = true;
 	pRoad->m_pt2.last = true;
 	pRoad->m_pt1.multi = false;
