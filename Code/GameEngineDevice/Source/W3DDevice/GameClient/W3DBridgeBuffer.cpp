@@ -3554,12 +3554,20 @@ W3DBridgeBuffer::~W3DBridgeBuffer(void)
 //=============================================================================
 /** Frees the index and vertex buffers. */
 //=============================================================================
-// ?freeBridgeBuffers@W3DBridgeBuffer@@IAEXXZ present-unmatched
 void W3DBridgeBuffer::freeBridgeBuffers(void)
 {
-	REF_PTR_RELEASE(m_vertexBridge);
-	REF_PTR_RELEASE(m_indexBridge);
-	REF_PTR_RELEASE(m_vertexMaterial);
+	if (m_vertexBridge) {
+		m_vertexBridge->Release_Ref();
+		m_vertexBridge = NULL;
+	}
+	if (m_indexBridge) {
+		m_indexBridge->Release_Ref();
+		m_indexBridge = NULL;
+	}
+	if (m_vertexMaterial) {
+		m_vertexMaterial->Release_Ref();
+		m_vertexMaterial = NULL;
+	}
 }
 
 //=============================================================================
