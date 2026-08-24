@@ -76398,3 +76398,5 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeMatchRaw@Gen_002dec00@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DEC00 calls
 ?bfmeMatchRaw@Gen_002df4c0@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4C0 calls
 ?bfmeMatchRaw@Gen_002df4e0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4E0 calls
+?m@Gen_002d9b20@@QAEXXZ,0x0002DF5B,Open-BFME5 ILT the loadPostProcess chains at 0x001EE8A0 and its family tail-jump through
+?m@Gen_001ef410@@QAEXXZ,0x0004049E,Open-BFME5 ILT the chain at 0x001FBC40 calls first
