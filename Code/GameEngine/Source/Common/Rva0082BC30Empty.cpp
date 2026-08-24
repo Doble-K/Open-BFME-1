@@ -43,3 +43,11 @@ int *rva0082BBC0Find(int *node, int value)
 		node = (int *)*node;
 	return node;
 }
+
+int rva0082BAF0Count(int *node)
+{
+	int count = 0;
+	for (; node != 0; node = (int *)*node)
+		count++;
+	return count;
+}
