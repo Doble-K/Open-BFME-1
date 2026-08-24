@@ -702,10 +702,9 @@ AABoxRenderObjClass & AABoxRenderObjClass::operator = (const AABoxRenderObjClass
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ?Clone@AABoxRenderObjClass@@UBEPAVRenderObjClass@@XZ present-unmatched
 RenderObjClass * AABoxRenderObjClass::Clone(void) const
 {
-	return W3DNEW AABoxRenderObjClass(*this);
+	return ::new AABoxRenderObjClass(*this);
 }
 
 
