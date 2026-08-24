@@ -75813,3 +75813,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?bfmeFlush@Rva003D8530Owner@@QAEXXZ,0x00009787,Open-BFME5 ILT thunk to body 0x003D55C0; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it once on the same sub-object after the slot loop; address-derived name
 ?bfmeClearMembers@@YAXPAVLGA_MemberObj@@@Z,0x00034DC9,Open-BFME5 ILT thunk to body 0x003D4080; ??1LGA_MemberObj@@QAE@XZ at 0x003D4490 calls it on this as a cdecl of one pointer before its member vector is released; address-derived name
 ?g_01075954@@3MC,0x01075954,accessor-batch external float
+?Glo012F4C62@@3_NA,0x012F4C62,Open-BFME5 reentry flag ?updateMouseData@Mouse@@IAEXXZ at 0x005A42E0 sets across its event drain and clears afterwards; address-derived name
