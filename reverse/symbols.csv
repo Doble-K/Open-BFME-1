@@ -76310,3 +76310,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?bfmeSetSize@BfmeShadowPart@@QAEXMM@Z,0x00022D86,Open-BFME5 ILT thunk to body 0x00428250; ?setSize@Shadow@@QAEXMM@Z at 0x001E4250 calls it on every live entry of the two four-pointer arrays at +0x94 and +0xA4; address-derived name
 ?Glo012F3344@@3PAVGlo012F3344Type@@A,0x012F3344,Open-BFME5 global ?hide@Shell@@QAEX_N@Z at 0x0057F5B0 notifies through slot 10 of its table when it is there; address-derived name
 ?bfmeStopMovie@Display@@QAEXXZ,0x0001992F,Open-BFME5 ILT thunk to body 0x0040EFF0; ?hide@Shell@@QAEX_N@Z at 0x0057F5B0 calls it on TheDisplay with no arguments; address-derived name
+?bfmeErase@S4Mem005879C0@@AAEXPAX@Z,0x00037353,Open-BFME5 ILT thunk; ??1S4Mem005879C0@@QAE@XZ at 0x005879C0 hands it the field at +4 of its header before putting the header back to itself; address-derived name
