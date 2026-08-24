@@ -170,3 +170,14 @@ Rva0082BFC0Identity *Rva0082BFC0Identity::self()
 {
     return this;
 }
+
+class Rva0082B010Fail
+{
+public:
+	int fail();
+};
+
+int Rva0082B010Fail::fail()
+{
+	return -1;
+}
