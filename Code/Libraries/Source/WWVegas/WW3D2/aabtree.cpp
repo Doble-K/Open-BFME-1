@@ -1157,12 +1157,27 @@ void AABTreeClass::Update_Bounding_Boxes_Recursive(CullNodeStruct * node)
  *   6/22/99    GTH : Created.                                                                 *
  *=============================================================================================*/
 // ?AABTreeClass::Update_Min_Max present-unmatched
+namespace {
+template <typename T>
+struct BfmeShareBufferView {
+	char pad00[0x0c];
+	const T * data;
+};
+
+struct BfmeMeshGeometryView {
+	char pad00[0x2c];
+	const BfmeShareBufferView<unsigned short> * polygon_buffer;
+	const BfmeShareBufferView<Vector3> * vertex_buffer;
+};
+}
+
 void AABTreeClass::Update_Min_Max(int poly_index,Vector3 & min,Vector3 & max)
 {
-	for (int vert_index = 0; vert_index < 3; vert_index++) {
-
-		const TriIndex * polyverts = Mesh->Get_Polygon_Array() + poly_index;
-		const Vector3 * point = Mesh->Get_Vertex_Array() + (*polyverts)[vert_index];
+	int vert_offset = poly_index * 6;
+	for (int vert_index = 3; vert_index; --vert_index, vert_offset += 2) {
+		const unsigned short * polyverts = reinterpret_cast<const unsigned short *>(
+			reinterpret_cast<const char *>(reinterpret_cast<const BfmeMeshGeometryView *>(Mesh)->polygon_buffer->data) + vert_offset);
+		const Vector3 * point = reinterpret_cast<const BfmeMeshGeometryView *>(Mesh)->vertex_buffer->data + *polyverts;
 
 		if (point->X  < min.X) min.X = point->X;
 		if (point->Y  < min.Y) min.Y = point->Y;
@@ -1270,6 +1285,3 @@ void AABTreeClass::Read_Nodes(ChunkLoadClass & cload)
 		Nodes[i].BackOrPolyCount = w3dnode.BackOrPolyCount;
 	}
 }
-
-
-
