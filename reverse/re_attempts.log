@@ -5791,3 +5791,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?copyField@Rva0082C600@@QAEPAXPAPAX@Z	0x0082C600	35	blocked	t=3m model=gpt-5; pointer copy semantics exact, but retail frame-local this layout differs under optimized clean C++
 ?assign@Rva0082BD80@@QAEPAXPAPAX@Z	0x0082BD80	26	blocked	t=4m model=gpt-5; pointer assignment semantics exact, but retail frame-local this layout differs under optimized clean C++
 ?d_003b30d0@@YAXXZ	0x003B30D0	27	blocked	t=5m model=Codex-ocx-native--gpt-5.6-luna; decoded local scalar/byte field copy; clean C++ preserves operations but compiler omits retail this-to-EAX prologue and allocates source in EAX
+?assign@Rva004AFA80@@QAEPAXPAVRva004AFA80Source@@@Z	0x004AFA80	25	blocked	t=5m model=gpt-5; source-field assignment exact on nonnull path, but null path emits c7 store then xor-return instead of retail xor/store ordering
