@@ -29,7 +29,6 @@ template <class Key, class Value, class Select, class Less, class Alloc>
 class _Rb_tree
 {
 	_Rb_tree_node<Value> *_M_copy(_Rb_tree_node<Value> *, _Rb_tree_node<Value> *);
-	void _M_erase(_Rb_tree_node<Value> *);
 };
 
 class UnsignedPairTreeCopyShim
@@ -40,12 +39,6 @@ public:
 		_Rb_tree_node<pair<const unsigned short, unsigned char> > *p);
 };
 
-class UnsignedPairTreeEraseShim
-{
-public:
-	void erase(_Rb_tree_node<pair<const unsigned short, unsigned char> > *x);
-};
-
 template <class Key, class Value, class Select, class Less, class Alloc>
 _Rb_tree_node<Value> *_Rb_tree<Key, Value, Select, Less, Alloc>::_M_copy(
 	_Rb_tree_node<Value> *x, _Rb_tree_node<Value> *p)
@@ -54,16 +47,8 @@ _Rb_tree_node<Value> *_Rb_tree<Key, Value, Select, Less, Alloc>::_M_copy(
 		(_Rb_tree_node<pair<const unsigned short, unsigned char> > *)x,
 		(_Rb_tree_node<pair<const unsigned short, unsigned char> > *)p);
 }
-
-template <class Key, class Value, class Select, class Less, class Alloc>
-void _Rb_tree<Key, Value, Select, Less, Alloc>::_M_erase(_Rb_tree_node<Value> *x)
-{
-	((UnsignedPairTreeEraseShim *)this)->erase(
-		(_Rb_tree_node<pair<const unsigned short, unsigned char> > *)x);
-}
 }
 
 typedef _STL::pair<const unsigned short, unsigned char> UnsignedPair;
 typedef _STL::_Rb_tree<unsigned short, UnsignedPair, _STL::_Select1st<UnsignedPair>, _STL::less<unsigned short>, _STL::allocator<UnsignedPair> > UnsignedTree;
 template _STL::_Rb_tree_node<UnsignedPair> *UnsignedTree::_M_copy(_STL::_Rb_tree_node<UnsignedPair> *, _STL::_Rb_tree_node<UnsignedPair> *);
-template void UnsignedTree::_M_erase(_STL::_Rb_tree_node<UnsignedPair> *);
