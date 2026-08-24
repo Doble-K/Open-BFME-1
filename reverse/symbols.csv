@@ -75663,3 +75663,4 @@ _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 ?bfmeCompare@AsciiString@@QBEHABV1@@Z,0x000220C5,Open-BFME5 ILT less<AsciiString> calls in the AsciiString-keyed _Rb_tree _M_insert at 0x005B2EF0; it jumps to 0x0005FEB0 and its result is tested against zero
 ??$_Construct@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBVAsciiString@@VHotKey@@@0@ABU10@@Z,0x0000474B,Open-BFME5 ILT the AsciiString-to-HotKey _Rb_tree _M_insert at 0x005B2EF0 constructs the node value through
 ?vectorLargeDeallocate@_STL@@YAXPAX@Z,0x00881EB0,Open-BFME5 the large-block free the narrow basic_string reserve at 0x0053A100 uses
+?_M_reallocate_map@?$deque@VBuddyRequest@@V?$allocator@VBuddyRequest@@@_STL@@@_STL@@IAEXI_N@Z,0x0000C450,Open-BFME5 ILT the BuddyRequest deque _M_push_back_aux_v at 0x0063CD80 reserves the map through
