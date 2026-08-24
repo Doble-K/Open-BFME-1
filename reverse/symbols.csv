@@ -76414,3 +76414,8 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeMake_0054ed70@@YAPAXHH@Z,0x0000B500,Open-BFME5 ILT the pair at 0x0054ED70 and 0x0054F300 calls
 ?bfmeMake_0054ee00@@YAPAXHH@Z,0x00029771,Open-BFME5 ILT the pair at 0x0054EE00 and 0x0054F390 calls
 ?bfmeMake_0056e1c0@@YAPAXHH@Z,0x0003C65A,Open-BFME5 ILT the pair at 0x0056E1C0 and 0x0056E7C0 calls
+?bfmeMake_0004b28b@@YAPAXPAX0@Z,0x0004B28B,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x0038EB90
+?bfmeMake_00002b8f@@YAPAXPAX0@Z,0x00002B8F,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x003CA460
+?bfmeMake_00025225@@YAPAXPAX0@Z,0x00025225,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x0054F350
+?bfmeMake_0000403e@@YAPAXPAX0@Z,0x0000403E,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x0054F370
+?bfmeMake_000283d5@@YAPAXPAX0@Z,0x000283D5,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x005958F0
