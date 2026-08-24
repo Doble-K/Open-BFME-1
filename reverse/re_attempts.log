@@ -5870,3 +5870,5 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?tail@Gen_00417cb0@@QAEXPAX@Z	0x00417A70	78	converted	three flags at +0x140/+0x141/+0x143 then alt, holder +0xFC source +0x200 slot 8, then bfmeEmit(value, param)
 ??1AttributeHandleStandIn@@QAE@XZ	0x0039D550	76	converted	index at +0 released against the global pool at 0x012F1000; 0x88-byte entries from magic 0x78787879 shift 6; unsigned bound test
 ?getFont@FontLibraryBFMERetail@@QAEPAVGameFont@@PAVAsciiString@@ME@Z	0x004772D0	60	converted	record lookup then build; the byte at +8 of the record picks weight 4 or 1 branchlessly via neg/sbb/and 3/inc
+??1locale@_STL@@QAE@XZ	0x00832170	7	converted	drops the impl reference through virtual slot 2 in tail position; member not cleared
+?_M_use_facet@locale@_STL@@QBEPAVfacet@12@ABVid@12@@Z	0x008321D0	27	converted	facet table at +4 and length at +8 of the impl; positive bound test keeps the lookup falling through
