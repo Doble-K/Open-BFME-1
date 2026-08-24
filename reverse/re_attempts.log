@@ -5716,3 +5716,7 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00147070@@YAXXZ	0x00147070	214	blocked	SEH frame plus multiple unresolved indirect/global/callee identities; no honest owner recovered from local symbols/xrefs; t=6m model=gpt-5.6
 ?d_001643b0@@YAXXZ	0x001643B0	410	blocked	large stateful body has multiple unresolved virtual dispatches, globals, and object identity; no honest clean owner recovered; t=7m model=gpt-5.6
 ?d_00573000@@YAXXZ	0x00573000	359	blocked	SEH/TLS-heavy body with many absolute globals and indirect/relative calls; no honest identity or safe clean reconstruction; t=5m model=gpt-5.6
+?d_0035b840@@YAXXZ	0x0035B840	32	blocked	word append semantics clean but compiler emits begin load/sub before end load; two address-derived shapes mismatch retail load order; t=4m model=gpt-5.6
+?d_0035b870@@YAXXZ	0x0035B870	32	blocked	same word append body and compiler order blocker as sibling 0x0035B840; t=1m model=gpt-5.6
+?d_001c0aa0@@YAXXZ	0x001C0AA0	35	blocked	byte loop reads from absolute global address 0x012C7128, prohibited global/invented identity for structural conversion; t=1m model=gpt-5.6
+?d_0074ac00@@YAXXZ	0x0074AC00	37	blocked	word-to-dword expansion semantics clear but compiler transforms pointer/count loop and misses retail register/loop shape; t=4m model=gpt-5.6
