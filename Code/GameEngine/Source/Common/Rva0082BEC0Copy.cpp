@@ -25,3 +25,15 @@ void Rva0082BEC0Copy::copy(char *first, char *last, char *out)
   for (; first != last; ++first, ++out)
     _STL::char_traits<char>::assign(*out, *first);
 }
+
+class Rva0082BF40Copy
+{
+public:
+  void copy(char *first, char *last, char *out);
+};
+
+void Rva0082BF40Copy::copy(char *first, char *last, char *out)
+{
+  for (; first != last; ++first, ++out)
+    _STL::char_traits<char>::assign(*out, *first);
+}
