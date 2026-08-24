@@ -57,3 +57,19 @@ void Rva008AD330::release()
 	if (--block->m_ref == 0)
 		g_pool01337A30->free(block);
 }
+
+extern Rva00891B80Block g_default012D5298;
+
+class Rva00891B40
+{
+	Rva00891B80Block *m_block;
+
+public:
+	Rva00891B40();
+};
+
+Rva00891B40::Rva00891B40()
+{
+	m_block = &g_default012D5298;
+	++g_default012D5298.m_ref;
+}
