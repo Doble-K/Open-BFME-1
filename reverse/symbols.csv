@@ -75635,3 +75635,5 @@ _ciSetChannelPassword,0x00871D80,gamespy-chat: sets channel password
 ??$uninitialized_copy@PAGPAG@_STL@@YAPAGPAG00@Z,0x00032277,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 uses; it jumps to the 41-byte body at 0x004D4DA0
 ?allocate@?$__node_alloc@$00$0A@@_STL@@SAPAXI@Z,0x00048586,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 allocates through
 ?deallocate@?$__node_alloc@$00$0A@@_STL@@SAXPAXI@Z,0x0001D35E,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 frees the old block through
+?resize@?$hashtable@U?$pair@$$CBHH@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHH@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHH@_STL@@@2@@_STL@@AAEXI@Z,0x0000B212,Open-BFME5 ILT the int-to-int hashtable _M_insert at 0x000D3430 calls first; it jumps to 0x000D10F0
+??$_Construct@U?$pair@$$CBHH@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHH@0@ABU10@@Z,0x0000A8DA,Open-BFME5 ILT the int-to-int hashtable _M_insert at 0x000D3430 copy-constructs the node value through; it jumps to 0x000CD380
