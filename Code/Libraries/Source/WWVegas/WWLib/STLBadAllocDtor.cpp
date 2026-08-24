@@ -20,4 +20,16 @@ bad_alloc::~bad_alloc()
 {
 }
 
+// Retail 0x0082AE60 stores its vptr then calls ~bad_alloc. Identity of the
+// derived type is not yet recovered; the shape is the derived destructor.
+class Rva0082AE60Exc : public bad_alloc
+{
+public:
+  virtual ~Rva0082AE60Exc();
+};
+
+Rva0082AE60Exc::~Rva0082AE60Exc()
+{
+}
+
 }
