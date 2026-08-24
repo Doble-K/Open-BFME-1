@@ -10,23 +10,6 @@ public:
 	void loadTracks();
 };
 
-class SimpleObjectIterator
-{
-public:
-	void makeEmpty();
-};
-
-class SimpleObjectIteratorMakeEmptyShim
-{
-public:
-	void makeEmpty();
-};
-
-void SimpleObjectIterator::makeEmpty()
-{
-	((SimpleObjectIteratorMakeEmptyShim *)this)->makeEmpty();
-}
-
 class WaterTracksRenderSystemLoadTracksShim
 {
 public:
