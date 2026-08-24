@@ -75684,3 +75684,5 @@ _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 ??0BfmeBinkPlayerMember@@QAE@XZ,0x0002833F,Open-BFME5 ILT the member constructor BinkVideoPlayer at 0x00691230 calls for its member at +0x0C
 ?bfmeQuery@Pathfinder@@QAEXPAVObject@@PAH1@Z,0x000461FF,Open-BFME5 ILT the TightenPathStruct constructor at 0x003E1720 queries the pathfinder through; the two pointer arguments are the outputs at +0x0C and +0x10
 _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object wrappers at 0x003D57F0 and 0x003D5810 forward through; it jumps to 0x003FA5B0
+?bfmeLookupSound@ThingTemplate@@ABEPBVAudioEventRTS@@H@Z,0x0000286A,Open-BFME5 ILT ThingTemplate::getSound at 0x00416FA0 looks the sound up through; it jumps to 0x00416F20
+?BfmeTheEmptyAudioEvent@@3VAudioEventRTS@@A,0x012F1318,Open-BFME5 the shared empty audio event ThingTemplate::getSound at 0x00416FA0 falls back to; getPerUnitSound at 0x00416FE0 uses the same global
