@@ -23427,3 +23427,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_00288c50@@YAXXZ,0x00288C50,gen-dump placeholder superseded by the byte-verified real BoneFXUpdate constructor identity.
 ?d_003544a0@@YAXXZ,0x003544A0,"gen-dump placeholder retired: converted to Rva003544A0Arr::get in Code/GameEngine/Source/Common/Rva003543C0Arr.cpp"
 ?d_00355640@@YAXXZ,0x00355640,"gen-dump placeholder retired: converted to Rva00355640Arr::addr in Code/GameEngine/Source/Common/Rva003543C0Arr.cpp"
+?d_0068d3e0@@YAXXZ,0x0068D3E0,"gen-dump placeholder retired: converted to Rva0068D3E0Arr::at in Code/GameEngine/Source/Common/Rva0068D3E0Arr.cpp"
