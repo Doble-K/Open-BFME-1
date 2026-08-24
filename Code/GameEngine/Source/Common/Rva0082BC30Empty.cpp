@@ -36,3 +36,10 @@ int rva0082B120Set(int value)
 	g_rva0082B120 = value;
 	return old;
 }
+
+int *rva0082BBC0Find(int *node, int value)
+{
+	while (node != 0 && *node != value)
+		node = (int *)*node;
+	return node;
+}
