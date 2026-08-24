@@ -75755,3 +75755,6 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeRva000BD3B0Destroy@_STL@@YAXPAURva000BD3B0Element@@0ABU__false_type@1@@Z,0x000247E9,Open-BFME5 ILT for the 4-byte-element _STL::_Destroy range helper at 0x000BB5D0
 ?BfmeRva006AAF10Construct@_STL@@YAXPAURva006AAF10Element@@ABU2@@Z,0x00008BDE,Open-BFME5 ILT for the 4-byte-element _STL::_Construct at 0x0069C370
 ?BfmeRva006AAF10Destroy@_STL@@YAXPAURva006AAF10Element@@0ABU__false_type@1@@Z,0x000096FB,Open-BFME5 ILT for the 4-byte-element _STL::_Destroy range helper at 0x0069F100
+?BfmeRva002E7C50TailCopy@_STL@@YAPAVRva002E7C50Element@@PAV2@00ABU__false_type@1@@Z,0x0001BC93,Open-BFME5 ILT for the 28-byte-element _STL::__uninitialized_copy at 0x002E3050
+?BfmeRva00583330TailCopy@_STL@@YAPAVRva00583330Element@@PAV2@00ABU__false_type@1@@Z,0x00015019,Open-BFME5 ILT for the 28-byte-element _STL::__uninitialized_copy at 0x00581C50
+?BfmeRva0028DAB0TailCopy@_STL@@YAPAVRva0028DAB0Element@@PAV2@00ABU__false_type@1@@Z,0x000030DA,Open-BFME5 ILT for the 48-byte-element _STL::__uninitialized_copy at 0x0028D4E0
