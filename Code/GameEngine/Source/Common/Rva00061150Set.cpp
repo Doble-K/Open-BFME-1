@@ -1,0 +1,9 @@
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+
+char g_rva00061150;
+
+int rva00061150Set()
+{
+	g_rva00061150 = 1;
+	return 1;
+}
