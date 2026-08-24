@@ -113,3 +113,17 @@ int Rva003544A0Arr::get(int index)
 {
 	return m_items[index].m_0e;
 }
+
+class Rva00355660Arr
+{
+public:
+	unsigned char get(int index);
+
+	char m_pad[0x18];
+	Rva003543E0Elem *m_items;
+};
+
+unsigned char Rva00355660Arr::get(int index)
+{
+	return m_items[index].m_0c;
+}
