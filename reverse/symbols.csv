@@ -76372,3 +76372,4 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeLookupPerUnitSound@BfmeOverridable@@QAEPBVAudioEventRTS@@ABVAsciiString@@@Z,0x0003B548,Open-BFME5 ILT the override-side lookup in ThingTemplate::getPerUnitSound at 0x00416FE0 goes through; it jumps to 0x001462D0
 ?bfmeAllocateSorting@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F5B0,Open-BFME5 the 384-byte member the BoxDynamicVBAccessClass constructor calls when its first argument is 2
 ?bfmeAllocateDynamic@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F040,Open-BFME5 the 274-byte member the BoxDynamicVBAccessClass constructor calls otherwise
+?bfmePushBackAux@Gen_00089d90@@IAEXABQAX@Z,0x0002FF1D,Open-BFME5 ILT the deque push_back at 0x00089D90 tail-jumps through
