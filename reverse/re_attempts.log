@@ -5872,3 +5872,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?getFont@FontLibraryBFMERetail@@QAEPAVGameFont@@PAVAsciiString@@ME@Z	0x004772D0	60	converted	record lookup then build; the byte at +8 of the record picks weight 4 or 1 branchlessly via neg/sbb/and 3/inc
 ??1locale@_STL@@QAE@XZ	0x00832170	7	converted	drops the impl reference through virtual slot 2 in tail position; member not cleared
 ?_M_use_facet@locale@_STL@@QBEPAVfacet@12@ABVid@12@@Z	0x008321D0	27	converted	facet table at +4 and length at +8 of the impl; positive bound test keeps the lookup falling through
+?query@Q2FlagOwner@@QAE_NH@Z	0x00416FC0	19	converted	same ILT 0x0000286A sound lookup ThingTemplate::getSound uses, turned into a Bool by neg/sbb/neg; the Q2FlagOwner and ThingTemplate names are the same class
