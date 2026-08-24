@@ -72,3 +72,23 @@ Rva00691040Handle &Rva00691040Handle::operator=(const Rva00691040Handle &other)
 		old->release();
 	return *this;
 }
+
+class Rva00691140Handle
+{
+public:
+	Rva00691140Handle &operator=(const Rva00691140Handle &other);
+
+	Gen0002857E *m_target;
+};
+
+Rva00691140Handle &Rva00691140Handle::operator=(const Rva00691140Handle &other)
+{
+	Gen0002857E *target = other.m_target;
+	Gen0002857E *old = m_target;
+	m_target = target;
+	if (target)
+		target->handle();
+	if (old)
+		old->release();
+	return *this;
+}
