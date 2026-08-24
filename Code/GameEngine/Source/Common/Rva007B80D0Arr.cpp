@@ -41,3 +41,17 @@ Rva007B9EC0Six *Rva007B9EC0Arr::at(int index)
 {
 	return m_items + index;
 }
+
+class Rva0079E3D0Arr
+{
+public:
+	Rva007B80D0Triple *at(int index);
+
+	char m_pad[0x54];
+	Rva007B80D0Triple *m_items;
+};
+
+Rva007B80D0Triple *Rva0079E3D0Arr::at(int index)
+{
+	return m_items + index;
+}
