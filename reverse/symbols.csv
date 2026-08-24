@@ -76406,3 +76406,7 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeAllocate@Gen_009408d0@@AAE_NHH@Z,0x00940450,Open-BFME5 the allocate the reserve at 0x009408D0 calls
 ?bfmeAllocate@Gen_0094e310@@AAE_NHH@Z,0x009131E0,Open-BFME5 the allocate the reserve at 0x0094E310 calls
 ?bfmeAllocate@Gen_0097c8e0@@AAE_NHH@Z,0x0097ADF0,Open-BFME5 the allocate the reserve at 0x0097C8E0 calls
+?bfmeAllowsBase@Gen_00267680@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x00267680 defers through
+?bfmeAllowsBase@Gen_0026c0d0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x0026C0D0 defers through
+?bfmeAllowsBase@Gen_0026c5d0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x0026C5D0 defers through
+?bfmeAllowsBase@Gen_002983b0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x002983B0 defers through
