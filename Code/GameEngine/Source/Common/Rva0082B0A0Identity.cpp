@@ -137,9 +137,14 @@ class Rva0082B060Identity
 {
 public:
     Rva0082B060Identity *self();
+    void touch();
 };
 
 Rva0082B060Identity *Rva0082B060Identity::self()
 {
     return this;
+}
+
+void Rva0082B060Identity::touch()
+{
 }
