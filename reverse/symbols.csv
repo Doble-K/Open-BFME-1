@@ -75715,3 +75715,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeSegInfoUninitializedFillN@_STL@@YAPAUSegInfo@W3DRopeDraw@@PAU23@IABU23@ABU__false_type@1@@Z,0x00042334,Open-BFME5 ILT for _STL::__uninitialized_fill_n on W3DRopeDraw SegInfo at 0x0075A000
 ?BfmeHorzLineUninitializedCopy@_STL@@YAPAUHorzLine@@PAU2@00ABU__false_type@1@@Z,0x0000C61C,Open-BFME5 ILT for the shared 12-byte-element _STL::__uninitialized_copy at 0x00068C50
 ?BfmeHorzLineUninitializedFillN@_STL@@YAPAUHorzLine@@PAU2@IABU2@ABU__false_type@1@@Z,0x0002E91A,Open-BFME5 ILT for the shared 12-byte-element _STL::__uninitialized_fill_n at 0x00068CA0
+?BfmeElementConstruct@_STL@@YAXPAU?$pair@UICoord2D@@UCoord3D@@@1@ABU21@@Z,0x0002A400,Open-BFME5 ILT for _STL::_Construct on pair<ICoord2D Coord3D> as its vector _M_insert_overflow reaches it
+?_M_clear@?$vector@U?$pair@UICoord2D@@UCoord3D@@@_STL@@V?$allocator@U?$pair@UICoord2D@@UCoord3D@@@_STL@@@2@@_STL@@IAEXXZ,0x0002A914,Open-BFME5 ILT for the vector<pair<ICoord2D Coord3D>> teardown reached from _M_insert_overflow
