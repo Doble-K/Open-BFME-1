@@ -273,23 +273,16 @@ Bool W3DShroud::ReAcquireResources(void)
 }
 
 //-----------------------------------------------------------------------------
-// ?getShroudLevel@W3DShroud@@ present-unmatched
 W3DShroudLevel W3DShroud::getShroudLevel(Int x, Int y)
 {
-	DEBUG_ASSERTCRASH( m_pSrcTexture != NULL, ("Reading empty shroud"));
+	if (m_shroudData == NULL)
+		return 0;
 
 	if (x < m_numCellsX && y < m_numCellsY)
 	{
-		UnsignedShort pixel=*(UnsignedShort *)((Byte *)m_srcTextureData + x*2 + y*m_srcTexturePitch);
-		
-#if defined(_DEBUG) || defined(_INTERNAL)
-		if (TheGlobalData && TheGlobalData->m_fogOfWarOn)
-			//in this mode, alpha channel holds intensity
-			return (W3DShroudLevel)((1.0f-((Real)(pixel >> 12)/15.0f))*255.0f);
-		else
-#endif
-			//in this mode, green has the best precision at 6 bits.
-			return (W3DShroudLevel)((Real)((pixel >> 5)&0x3f)/63.0f*255.0f);
+		Int value = (Int)*((volatile UnsignedByte *)((UnsignedByte *)m_shroudData + (x + y * m_numCellsX) * 2));
+		value &= 0x0f;
+		return (W3DShroudLevel)(value * 17.0f);
 	}
 	return 0;
 }
