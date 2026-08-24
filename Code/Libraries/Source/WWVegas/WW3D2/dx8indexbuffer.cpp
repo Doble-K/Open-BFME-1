@@ -338,14 +338,13 @@ IndexBufferClass::AppendLockClass::AppendLockClass(IndexBufferClass* index_buffe
 
 // ----------------------------------------------------------------------------
 
-// ??1AppendLockClass@@ present-unmatched
 IndexBufferClass::AppendLockClass::~AppendLockClass()
 {
 	DX8_THREAD_ASSERT();
 	switch (index_buffer->Type()) {
 	case BUFFER_TYPE_DX8:
 		DX8_Assert();
-		DX8_ErrorCode(static_cast<DX8IndexBufferClass*>(index_buffer)->index_buffer->Unlock());
+		BFME_DX8_ErrorCode(static_cast<DX8IndexBufferClass*>(index_buffer)->index_buffer->Unlock());
 		break;
 	case BUFFER_TYPE_SORTING:
 		break;
@@ -354,6 +353,7 @@ IndexBufferClass::AppendLockClass::~AppendLockClass()
 		break;
 	}
 	index_buffer->Release_Ref();
+	BFME_DX8_Thread_Assert();
 }
 
 // ----------------------------------------------------------------------------
