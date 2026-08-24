@@ -78647,3 +78647,4 @@ _bfme_debugAllocInnerAllocate_82AD80,0x0082AD80,STLport __debug_alloc inner allo
 _bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner deallocate callee of 0x0082B780
 ?rva0082ADB0Fill@@YAXPAD0ABD@Z,0x0082ADB0,callee of rva0082BE60FillN; STLport fill at the ICF alias
 ?grow@Rva0082C300Buf@@AAEXXZ,0x000132CD,callee of Rva0082C300Buf::at; ILT to gen-shim ret-void at 0x006434C0
+?grow@Rva0082C330Buf@@AAEXXZ,0x000132CD,callee of Rva0082C330Buf::at; same ILT as Rva0082C300Buf::grow
