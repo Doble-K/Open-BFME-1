@@ -66,3 +66,20 @@ int *Rva0082C600Copy::copyTo(int *out)
 	*out = temp;
 	return out;
 }
+
+class Rva0082C630Copy
+{
+public:
+	int *copyTo(int *out);
+
+private:
+	int m_pad;
+	int m_value;
+};
+
+int *Rva0082C630Copy::copyTo(int *out)
+{
+	int temp = m_value;
+	*out = temp;
+	return out;
+}
