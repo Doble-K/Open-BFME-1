@@ -5707,3 +5707,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?copyField@Rva0082C2A0@@QAEPAXPAPAX@Z	0x0082C2A0	34	blocked	t=2m Codex; sibling dereference-copy has identical frame-local shape and was not attempted after first blocker
 ?d_00707000@@YAXXZ	0x00707000	28	blocked	clean pointer export/count increment semantics match, but retail preserves this via push/pop and clears saved stack slot; compiler emits direct parameter code; t=7m model=gpt-5.6
 ?d_0074ac00@@YAXXZ	0x0074AC00	37	blocked	clean signed-short expansion loop matches semantics, but compiler emits pointer-bound loop while retail computes count via subtract/sar; t=8m model=gpt-5.6
+?notifyLauncher@CopyProtect@@SA_NXZ	0x001020D0	198	blocked	reference identity/source reproduces 188/198 non-relocation bytes; remaining conditional branch polarity/layout differs and retail extent truncates at continuation; t=12m model=gpt-5.6
