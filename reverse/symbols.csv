@@ -75751,3 +75751,7 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeRva001E9020Construct@_STL@@YAXPAURva001E9020Element@@ABU2@@Z,0x00046AF1,Open-BFME5 ILT for the 8-byte-element _STL::_Construct at 0x001E21F0
 ?BfmeRva002FED10Construct@_STL@@YAXPAURva002FED10Element@@ABU2@@Z,0x000060CD,Open-BFME5 ILT for the 8-byte-element _STL::_Construct at 0x000953E0
 ?BfmeRva0038BAD0Construct@_STL@@YAXPAURva0038BAD0Element@@ABU2@@Z,0x0002A56D,Open-BFME5 ILT for the 8-byte-element _STL::_Construct at 0x00385CC0
+?BfmeRva000BD3B0Construct@_STL@@YAXPAURva000BD3B0Element@@ABU2@@Z,0x0002D30D,Open-BFME5 ILT for the 4-byte-element _STL::_Construct at 0x000BA5B0
+?BfmeRva000BD3B0Destroy@_STL@@YAXPAURva000BD3B0Element@@0ABU__false_type@1@@Z,0x000247E9,Open-BFME5 ILT for the 4-byte-element _STL::_Destroy range helper at 0x000BB5D0
+?BfmeRva006AAF10Construct@_STL@@YAXPAURva006AAF10Element@@ABU2@@Z,0x00008BDE,Open-BFME5 ILT for the 4-byte-element _STL::_Construct at 0x0069C370
+?BfmeRva006AAF10Destroy@_STL@@YAXPAURva006AAF10Element@@0ABU__false_type@1@@Z,0x000096FB,Open-BFME5 ILT for the 4-byte-element _STL::_Destroy range helper at 0x0069F100
