@@ -19188,6 +19188,7 @@ name,address,notes
 ?b_00105da0@@YAXXZ,0x00105DA0,gen-thunk body
 ?b_00105df0@@YAXXZ,0x00105DF0,gen-thunk body
 ?b_00105f40@@YAXXZ,0x00105F40,gen-thunk body
+?UnicodeStringToQuotedPrintable@@YA?AVAsciiString@@VUnicodeString@@@Z,0x00105F40,authoritative WWLib quoted_printable.cpp identity; BFME UnicodeString +0x08 view
 ?b_00106150@@YAXXZ,0x00106150,gen-thunk body
 ?b_001062c0@@YAXXZ,0x001062C0,gen-thunk body
 ?b_00106480@@YAXXZ,0x00106480,gen-thunk body

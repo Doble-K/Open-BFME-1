@@ -29,7 +29,24 @@
 ////////////////////////////////////////////////////////////////////////////
 #include "prerts.h"
 #include "ascii_string.h"
-#include "unicode_string.h"	// This must go first in EVERY cpp file int the GameEngine
+
+// WWLib's retail string header stores the data header at +0x00 and its UTF-16
+// payload at +0x08.  This TU only needs that proven view for the encoder; the
+// destructor remains the existing WWLib ABI call emitted by the compiler.
+class UnicodeString
+{
+	void *m_data;
+public:
+	UnicodeString();
+	UnicodeString(const unsigned short *);
+	UnicodeString(const UnicodeString &);
+	const unsigned short *str() const
+	{
+		return m_data ? (const unsigned short *)((const char *)m_data + 8)
+		              : (const unsigned short *)0x0107388C;
+	}
+	~UnicodeString();
+};
 
 #include "quoted_printable.h"
 
@@ -56,10 +73,9 @@ static int hexDigitToInt(char c)
 }
 
 // Convert unicode strings into ascii quoted-printable strings
-// ?UnicodeStringToQuotedPrintable present-unmatched
 AsciiString UnicodeStringToQuotedPrintable(UnicodeString original)
 {
-	static char dest[1024];
+	static char *const dest = (char *)0x012ED8D8;
 	const char *src = (const char *)original.str();
 	int i=0;
 	while ( !(src[0]=='\0' && src[1]=='\0') && i<1021 )
@@ -67,8 +83,8 @@ AsciiString UnicodeStringToQuotedPrintable(UnicodeString original)
 		if (!isalnum(*src))
 		{
 			dest[i++] = MAGIC_CHAR;
-			dest[i++] = intToHexDigit((*src)>>4);
-			dest[i++] = intToHexDigit((*src)&0xf);
+			dest[i++] = intToHexDigit(((unsigned char)*src)>>4);
+			dest[i++] = intToHexDigit(((unsigned char)*src)&0xf);
 		} else
 		{
 			dest[i++] = *src;
@@ -77,8 +93,8 @@ AsciiString UnicodeStringToQuotedPrintable(UnicodeString original)
 		if (!isalnum(*src))
 		{
 			dest[i++] = MAGIC_CHAR;
-			dest[i++] = intToHexDigit((*src)>>4);
-			dest[i++] = intToHexDigit((*src)&0xf);
+			dest[i++] = intToHexDigit(((unsigned char)*src)>>4);
+			dest[i++] = intToHexDigit(((unsigned char)*src)&0xf);
 		}
 		else
 		{
@@ -209,4 +225,3 @@ AsciiString QuotedPrintableToAsciiString(AsciiString original)
 
 	return AsciiString((const char *)dest);
 }
-
