@@ -75703,3 +75703,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?bfmeBuildFont@FontLibraryBFMERetail@@AAEPAVGameFont@@PAVAsciiString@@MEH@Z,0x0000EBA6,Open-BFME5 ILT thunk to body 0x00476C50; FontLibraryBFMERetail::getFont at 0x004772D0 tail-returns its result; address-derived name
 ??_7Made001E5BC0@@6B@,0x010CF058,Open-BFME5 vftable the constructor at 0x002DE130 installs over the base one
 ??_7Made001E5A20@@6B@,0x010CE8FC,Open-BFME5 vftable the constructor at 0x002DAC10 installs over the base one
+?Rva00863C00@@YAXPAVRva00866770Owner@@@Z,0x00863C00,Open-BFME5 cdecl callee of one pointer that _peerStopGame at 0x00857E50 runs on the peer before looking at the field at +0xAF0; address-derived name
+?Rva008667A0@@YAXPAVRva00866770Owner@@@Z,0x008667A0,Open-BFME5 cdecl callee of one pointer that _peerStopGame at 0x00857E50 runs on the peer when the field at +0x398 is set, where a clear field sends it to _piStopReporting instead; address-derived name
