@@ -670,7 +670,6 @@ void DX8VertexBufferClass::Copy(const Vector3* loc, const Vector3* norm, unsigne
 
 // ----------------------------------------------------------------------------
 
-// ?Copy@DX8VertexBufferClass@@ present-unmatched
 void DX8VertexBufferClass::Copy(const Vector3* loc, const Vector3* norm, const Vector2* uv, const Vector4* diffuse, unsigned first_vertex, unsigned count)
 {
 	WWASSERT(loc);
@@ -714,7 +713,6 @@ void DX8VertexBufferClass::Copy(const Vector3* loc, const Vector3* norm, const V
 
 // ----------------------------------------------------------------------------
 
-// ?Copy@DX8VertexBufferClass@@ present-unmatched
 void DX8VertexBufferClass::Copy(const Vector3* loc, const Vector2* uv, const Vector4* diffuse, unsigned first_vertex, unsigned count)
 {
 	WWASSERT(loc);
