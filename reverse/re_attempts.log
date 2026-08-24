@@ -5666,3 +5666,4 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_0050b8e0@@YAXXZ	0x0050B8E0	57	not-convertible	Bounds-high address-derived body copies three 8-byte blocks into fixed globals 0x012F48CC/EC/0x012F490C then tail-jumps to an unresolved continuation; no proven owner or safe C++ identity; t=2min model=gpt-5.6-luna
 ?d_00381d80@@YAXXZ	0x00381D80	51	blocked	bounds-high STL list/tree allocation helper; identity unresolved from generated tgrid family; t=12m model=gpt-5.6
 ?d_007287e0@@YAXXZ	0x007287E0	21	blocked	clean C++ semantics confirmed; clang-cl emits c7 immediate and EAX pointer, target requires b8/89 and ECX pointer;  t=18m model=gpt-5.6
+?fillPattern@Rva006994F0@@QAEXXZ	0x006994F0	21	blocked	t=18m Codex; semantics proven, but current compiler unrolls memset/fill into stores or saves ecx before rep stosd; intrinsic unavailable in configured headers and external declaration does not inline; no exact clean C++ shape landed
