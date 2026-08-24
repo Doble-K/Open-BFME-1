@@ -5780,3 +5780,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_007f0210@@YAXXZ	0x007F0210	25	blocked	t=1m compiler loads first argument and keeps ECX this; retail loads second argument first and copies this to EAX
 ?d_003d4db0@@YAXXZ	0x003D4DB0	26	blocked	t=1m compiler keeps ECX this and uses EAX for value; retail copies this to EAX and clears ECX for byte stores
 ?d_0073dab0@@YAXXZ	0x0073DAB0	31	blocked	t=1m compiler loads source before target; retail copies this to EAX and loads target argument into ECX first
+?d_0040b9e0@@YAXXZ	0x0040B9E0	31	blocked	t=12m Codex; guarded state predicate matched offsets and control flow near-exactly, but final compare branch opcode/layout differed; reverted --root /home/wacket/Projects/Open-BFME-Clones/Open-BFME7/build/luna_new_c
