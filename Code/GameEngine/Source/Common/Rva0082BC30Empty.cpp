@@ -4,3 +4,10 @@
 void Rva0082BC30()
 {
 }
+
+void rva0082BC40Swap(int *a, int *b)
+{
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
