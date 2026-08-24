@@ -75809,3 +75809,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?TheBfmeMixFileInfoCount@@3HA,0x012F1098,Open-BFME5 counter ?releaseInto@MixFileInfoBuffer@@QAEXPAX@Z at 0x003F6E10 decrements once per release; address-derived name
 ??0BfmeRecorderStore@@QAE@XZ,0x00016D47,Open-BFME5 ILT thunk to body 0x00098EA0; ??0RecorderClass@@QAE@XZ at 0x000993E0 constructs the member at +0x20 through it; address-derived name
 ?bfmeInit@RecorderClass@@AAEXXZ,0x0000B721,Open-BFME5 ILT thunk to body 0x00098050; ??0RecorderClass@@QAE@XZ at 0x000993E0 calls it on this as the last thing it does; address-derived name
+?bfmeDrop@Rva003D8530Owner@@QAEXPAX@Z,0x00016DB0,Open-BFME5 ILT thunk to body 0x003D8530; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it on the sub-object at +0x0C of _TheAIParseDefinitionAI for each live slot whose kind is one of four; address-derived name
+?bfmeFlush@Rva003D8530Owner@@QAEXXZ,0x00009787,Open-BFME5 ILT thunk to body 0x003D55C0; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it once on the same sub-object after the slot loop; address-derived name
