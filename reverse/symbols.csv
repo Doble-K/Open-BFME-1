@@ -73912,7 +73912,7 @@ name,address,notes
 ?m@T_007ea120@@QAEXXZ,0x007EA120,gen-shim call target
 ?m@T_007ea5e0@@QAEXXZ,0x007EA5E0,gen-shim call target
 ?m@T_007eac30@@QAEXXZ,0x007EAC30,gen-shim call target
-?m@T_008811b0@@QAEXH@Z,0x008811B0,gen-shim call target;ret 4 target argument
+?m@T_008811b0@@QAEXXZ,0x008811B0,gen-shim call target
 ?m@T_00881410@@QAEXXZ,0x00881410,gen-shim call target
 ?m@T_008814a0@@QAEXXZ,0x008814A0,gen-shim call target
 ?m@T_008814c0@@QAEXXZ,0x008814C0,gen-shim call target

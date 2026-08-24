@@ -198,6 +198,8 @@ struct Gen_00848ac0 { void m(); };
 void Gen_00848ac0::m() { *(unsigned *)this = 0x0112FBA0u; }
 struct Gen_00879380 { void m(); };
 void Gen_00879380::m() { }
+struct Gen_00880e10 { void m(); };
+void Gen_00880e10::m() { ((T_008811b0 *)*(void **)((char *)this + 12))->m(); }
 struct Gen_00880e20 { void m(); };
 void Gen_00880e20::m() { ((T_00881b10 *)*(void **)((char *)this + 12))->m(); }
 struct Gen_00880e30 { void m(); };

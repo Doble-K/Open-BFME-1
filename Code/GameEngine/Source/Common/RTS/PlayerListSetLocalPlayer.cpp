@@ -25,8 +25,9 @@
 //               keeps an address-derived name until something proves one.
 //
 // The two methods are forwarders of the same shape, `mov ecx,[ecx+0x0C]; jmp`,
-// the destination methods remain address-derived because their owning classes
-// are not identified by this call site.
+// which is why they are named for their addresses rather than guessed at: the
+// body behind 0x008F7380 stores its two arguments at +0x64 and +0x6C of the
+// object hanging off +0x0C, and nothing here says what those fields mean.
 //
 // The two function pointers are the ledger's own d_001072A0 and d_001072F0,
 // 58-byte siblings 0x50 apart that each notify TheDisplay through vtable slot
@@ -89,13 +90,13 @@ public:
 class Gen_012ED5C0
 {
 public:
-	__declspec(noinline) void m_00880E10( SubsystemRefreshProc refresh );
+	void m_00880E10( SubsystemRefreshProc refresh );
 };
 
-// The retail forwarders tail-call these address-derived targets. Their
-// declarations preserve the incoming argument widths so the compiler emits
-// the target's `ret 4`/`ret 8`, while the target bodies own the field stores.
-struct T_008811b0 { void m( int value ); };
+// The retail forwarder method names remain address-derived. The
+// ShroudManager owner is anchored by its constructor tag; 0x012ED5C0 remains
+// unnamed. Their declarations preserve the incoming argument widths so the
+// compiler emits the target's `ret 4`/`ret 8`.
 struct T_008f8c30 { void m( Int tag, SubsystemRefreshProc3 refresh ); };
 
 extern ShroudManager *TheShroudManager;
@@ -114,12 +115,6 @@ private:
 	int m_playerCount;										///< +0x10
 	Player *m_players[32];									///< +0x14
 };
-
-// ?m_00880E10@Gen_012ED5C0@@QAEXP6AXXZ@Z
-__declspec(noinline) void Gen_012ED5C0::m_00880E10( SubsystemRefreshProc refresh )
-{
-	((T_008811b0 *)*(void **)((char *)this + 12))->m( (int)refresh );
-}
 
 // ?m_008F7380@ShroudManager@@QAEXHP6AXHHH@Z@Z
 __declspec(noinline) void ShroudManager::m_008F7380( Int tag, SubsystemRefreshProc3 refresh )

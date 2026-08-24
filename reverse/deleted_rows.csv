@@ -7,8 +7,6 @@ name,target_rva,reason
 # If you later PROVE one of these is real, delete its line here in the same
 # commit that re-adds the row, and say what the proof was.
 ??1?$VectorClass@E@@UAE@XZ,0x00AFF130,retail vtable for VectorClass<unsigned char> is 0x113ac74 (proven by pointgr.cpp ctor) but the folded body at 0x00AFF130 loads 0x11bc44c; ICF folds only identical code so this cannot be that body
-?m@Gen_00880e10@@QAEXXZ,0x00880E10,retired generated shim; exact real identity is Gen_012ED5C0::m_00880E10 in PlayerListSetLocalPlayer.cpp
-?m@Gen_008f7380@@QAEXXZ,0x008F7380,retired generated shim; exact real identity is ShroudManager::m_008F7380 in PlayerListSetLocalPlayer.cpp
 ??1?$VectorClass@PAUtThreadInfoType@@@@UAE@XZ,0x00AFF130,vtable is 0x113a0fc (proven by Except.cpp ctor) not the 0x11bc44c this body loads
 ??1?$VectorClass@PAVDefinitionClass@@@@UAE@XZ,0x00AFF130,vtable is 0x113a0fc (proven by definitionmgr.cpp ctor) not the 0x11bc44c this body loads
 ??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,0x00AFF130,vtable is 0x113a0fc (proven by render2dsentence.cpp ctor) not the 0x11bc44c this body loads
