@@ -75711,3 +75711,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeElementConstruct@_STL@@YAXPAU?$pair@W4ObjectID@@W41@@1@ABU21@@Z,0x0001FA1E,Open-BFME5 ILT for _STL::_Construct on pair<ObjectID ObjectID> as vector<pair<ObjectID ObjectID>>::_M_insert_overflow reaches it
 ?_M_clear@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@IAEXXZ,0x0002F4D2,Open-BFME5 ILT for the vector<pair<ObjectID ObjectID>> teardown reached from _M_insert_overflow
 ?BfmeElementConstruct@_STL@@YAXPAU?$pair@W4ObjectID@@I@1@ABU21@@Z,0x000267F6,Open-BFME5 ILT for _STL::_Construct on pair<ObjectID unsigned int> as vector<pair<ObjectID unsigned int>>::_M_insert_overflow reaches it
+?BfmeSegInfoUninitializedCopy@_STL@@YAPAUSegInfo@W3DRopeDraw@@PBU23@0PAU23@ABU__false_type@1@@Z,0x00017765,Open-BFME5 ILT for the shared 16-byte-element _STL::__uninitialized_copy at 0x00759FB0
+?BfmeSegInfoUninitializedFillN@_STL@@YAPAUSegInfo@W3DRopeDraw@@PAU23@IABU23@ABU__false_type@1@@Z,0x00042334,Open-BFME5 ILT for _STL::__uninitialized_fill_n on W3DRopeDraw SegInfo at 0x0075A000
