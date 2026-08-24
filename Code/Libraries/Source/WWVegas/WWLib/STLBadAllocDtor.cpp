@@ -98,4 +98,15 @@ Rva0082AF20Exc::~Rva0082AF20Exc()
 {
 }
 
+// Retail 0x0082AF40 calls ~Rva0082AE80Exc.
+class Rva0082AF40Exc : public Rva0082AE80Exc
+{
+public:
+  virtual ~Rva0082AF40Exc();
+};
+
+Rva0082AF40Exc::~Rva0082AF40Exc()
+{
+}
+
 }
