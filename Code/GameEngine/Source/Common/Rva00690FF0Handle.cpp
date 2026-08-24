@@ -20,3 +20,18 @@ Rva00690FF0Handle::Rva00690FF0Handle(Gen0002857E *target)
 	if (target)
 		target->handle();
 }
+
+class Rva006910F0Handle
+{
+public:
+	Rva006910F0Handle(Gen0002857E *target);
+
+	Gen0002857E *m_target;
+};
+
+Rva006910F0Handle::Rva006910F0Handle(Gen0002857E *target)
+{
+	m_target = target;
+	if (target)
+		target->handle();
+}
