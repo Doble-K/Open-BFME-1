@@ -106,12 +106,96 @@ void U4Inner00604C00::detach( void )
 
 // ---------------------------------------------------------------- 0x0060C2C0
 
+class Matrix3
+{
+};
+
+class Matrix3D
+{
+public:
+	void Set_Rotation( const Matrix3 &rotation );
+	// Retail takes this snapshot in a fixed load/store sequence before
+	// replacing its rotation, so the view preserves those observable accesses.
+	volatile float m_bfme00;
+	volatile float m_bfme01;
+	volatile float m_bfme02;
+	volatile float m_bfme03;
+	volatile float m_bfme10;
+	volatile float m_bfme11;
+	volatile float m_bfme12;
+	volatile float m_bfme13;
+	volatile float m_bfme20;
+	volatile float m_bfme21;
+	volatile float m_bfme22;
+	volatile float m_bfme23;
+};
+
+class U4MatrixTarget0060C2C0
+{
+public:
+	virtual void v00( void );
+	virtual void v01( void );
+	virtual void v02( void );
+	virtual void v03( void );
+	virtual void v04( void );
+	virtual void v05( void );
+	virtual void v06( void );
+	virtual void v07( void );
+	virtual void v08( void );
+	virtual void v09( void );
+	virtual void v10( void );
+	virtual void v11( void );
+	virtual void v12( void );
+	virtual void v13( void );
+	virtual void v14( void );
+	virtual void v15( void );
+	virtual void v16( void );
+	virtual void v17( void );
+	virtual void v18( void );
+	virtual void v19( void );
+	virtual void prepare( void );
+	virtual void apply( const Matrix3D &matrix );
+	char m_bfmeHead[0x14];
+	Matrix3D m_bfmeMatrix;
+};
+
 // 0x0061D4D0
 class U4Target0060C2C0
 {
 public:
 	void hand( void *payload );
+
+private:
+	char m_bfmeHead[0x08];
+	U4MatrixTarget0060C2C0 *m_bfmePrimary;
+	U4MatrixTarget0060C2C0 *m_bfmeSecondary;
 };
+
+void U4Target0060C2C0::hand( void *payload )
+{
+	U4MatrixTarget0060C2C0 *primary = m_bfmePrimary;
+	if ( primary != 0 )
+	{
+		primary->prepare();
+		Matrix3D matrix;
+		matrix.m_bfme00 = primary->m_bfmeMatrix.m_bfme00;
+		matrix.m_bfme01 = primary->m_bfmeMatrix.m_bfme01;
+		matrix.m_bfme02 = primary->m_bfmeMatrix.m_bfme02;
+		matrix.m_bfme03 = primary->m_bfmeMatrix.m_bfme03;
+		matrix.m_bfme10 = primary->m_bfmeMatrix.m_bfme10;
+		matrix.m_bfme11 = primary->m_bfmeMatrix.m_bfme11;
+		matrix.m_bfme12 = primary->m_bfmeMatrix.m_bfme12;
+		matrix.m_bfme13 = primary->m_bfmeMatrix.m_bfme13;
+		matrix.m_bfme20 = primary->m_bfmeMatrix.m_bfme20;
+		matrix.m_bfme21 = primary->m_bfmeMatrix.m_bfme21;
+		matrix.m_bfme22 = primary->m_bfmeMatrix.m_bfme22;
+		matrix.m_bfme23 = primary->m_bfmeMatrix.m_bfme23;
+		matrix.Set_Rotation( *(const Matrix3 *)payload );
+		m_bfmePrimary->apply( matrix );
+		if ( m_bfmeSecondary != 0 )
+			m_bfmeSecondary->apply( matrix );
+	}
+}
 
 void __stdcall u4Guarded0060C2C0( U4Target0060C2C0 *target, void *payload )
 {
