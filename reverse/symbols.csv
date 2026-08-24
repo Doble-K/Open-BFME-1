@@ -75697,3 +75697,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?bfmeNotifyBridge@PathfindLayer@@AAEXXZ,0x0003B250,Open-BFME5 the notification PathfindLayer::setDestroyed at 0x003FCEC0 makes when the bridge at +0x38 is set
 ?bfmeNotifyPlain@PathfindLayer@@AAEXXZ,0x0003A03F,Open-BFME5 the notification PathfindLayer::setDestroyed at 0x003FCEC0 makes when the bridge at +0x38 is null
 ?TheVictoryConditions@@3PAVVictoryConditionsInterface@@A,0x012F079C,Open-BFME5 VictoryConditionsInterface global; the address symbols.csv line for TheRadar already records as constructed in the WinMain-style subsystem block and createVictoryConditions at 0x0035F810 feeds through initSubsystem at 0x0007A0BC
+?bfmeEmit@Gen_00417cb0@@AAEXPAX0@Z,0x0002CB79,Open-BFME5 ILT thunk to body 0x00417710; Gen_00417cb0::tail at 0x00417A70 calls it on this with the source result and its own argument; address-derived name in the same synthetic family as the class

@@ -5867,3 +5867,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?okToPlayRadarEdgeSound@Player@@QAE_NXZ	0x000C9A20	75	converted	five-term conjunction: VictoryConditions vslot +0x2C on this, player flag +0x680, TheInGameUI +0x12BE, TheGameLogic +0x6B and frame +0x3C unsigned > 0; the chain form is what yields the shared xor tail and mov eax,1
 ?hasUpgradeMask@Object@@QBE_NI@Z	0x001C59C0	84	converted	delegate at +0x1FC slot 26 then source slot 42, else own bit array at +0x224; the delegate must be held in a local to keep it in ecx
 ?alt@Gen_00417cb0@@QAEXXZ	0x00411BE0	55	converted	two optional slots at +0x144 and +0x148 hand their handle at +0x10 to TheAudio slot 19; global reloaded per call, never tested
+?tail@Gen_00417cb0@@QAEXPAX@Z	0x00417A70	78	converted	three flags at +0x140/+0x141/+0x143 then alt, holder +0xFC source +0x200 slot 8, then bfmeEmit(value, param)
