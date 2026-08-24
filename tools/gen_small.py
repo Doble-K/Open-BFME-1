@@ -38,6 +38,8 @@ Subcommands
               which ones reproduce the retail bytes exactly (skeleton library).
   gen-shims   write one Code/gen_small/fun_<batch>.cpp of `gen-shim` struct
               methods for the probed skeletons' instances.
+  gen-getters write one numbered Code/gen_small/getters_<batch>.cpp containing
+              the exact `B8 imm32 C3` bodies held by live gen-dump scaffolds.
   shim-report account for every anonymous FUN_* body: landed, skipped skeleton,
               or out of scope.
   gen-named   write one Code/gen_small/named_<batch>.cpp of the small functions
@@ -1805,6 +1807,184 @@ def shim_pin(skeleton, ops):
         return None
     name_format, address_op = skeleton.pin
     return name_format % ops, ops[address_op]
+
+
+# --------------------------------------------------------------------------
+# constant-return getter batch
+# --------------------------------------------------------------------------
+#
+# The ret-imm skeleton is useful for a particularly narrow conversion lane:
+# several gen_asm dumps are six-byte `mov eax, imm32; ret` bodies.  The dump row
+# proves both the boundary and the bytes, but carries no identity.  This lane
+# only takes over a live gen-dump row after reading those exact six bytes from
+# the retail image. In particular, it does not scan .text for the byte
+# sequence: a coincidental sequence inside another body is not a function.
+
+GETTER_SKELETON = next(s for s in SKELETONS if s.key == "ret-imm")
+GETTER_PATTERN = PATTERNS[GETTER_SKELETON.key]
+EH_FUNCLET_RE = re.compile(r"(?:^|;)ghidra=(?:Catch|Unwind)@")
+
+
+def getter_ghidra_name(row):
+    """The scaffold's inventory name, for an auditable replacement note."""
+    notes = row.get("notes", "")
+    match = re.search(r"(?:^|;)ghidra=([^;]+)", notes)
+    return match.group(1) if match else row["name"]
+
+
+def getter_population(rows=None, read=None):
+    """Return ``(eligible, excluded)`` exact getter scaffold instances.
+
+    ``eligible`` has the same tuple shape as :func:`select_shims`, so the
+    existing shim renderer can be reused.  ``excluded`` contains
+    ``(rva, reason, size)`` for exact six-byte scaffolds rejected by policy.
+    Rows are sorted by RVA (and then name) regardless of ledger order.  Only
+    matched gen-dump scaffold rows are considered regardless of source path;
+    non-scaffolds, wrong sizes, arbitrary byte occurrences, and Catch@/Unwind@
+    funclets never enter this population.
+    """
+    if rows is None:
+        rows = B.load_all_function_rows()
+    if read is None:
+        read = exe_reader()
+
+    live = [row for row in rows if row.get("status") == "matched"]
+    spans = [(int(row["target_rva"], 16),
+              int(row["target_rva"], 16) + int(row["target_size"]), row)
+             for row in live]
+    exact = []
+    for row in live:
+        if not B.is_scaffold_row(row) or int(row["target_size"]) != 6:
+            continue
+        rva = int(row["target_rva"], 16)
+        body = bytes(read(rva, 6))
+        ops = match_pattern(GETTER_PATTERN, body, rva)
+        if ops is None:
+            continue
+        exact.append((rva, body, row, ops))
+
+    eligible, excluded = [], []
+    for rva, body, row, ops in sorted(exact, key=lambda item: (item[0], item[2]["name"])):
+        if EH_FUNCLET_RE.search(row.get("notes", "")):
+            excluded.append((rva, "eh-funclet", len(body)))
+            continue
+        end = rva + len(body)
+        overlaps = [other for start, other_end, other in spans
+                    if other is not row and start < end and rva < other_end]
+        if overlaps:
+            owner = min(overlaps, key=lambda other: (int(other["target_rva"], 16),
+                                                       other["name"]))
+            excluded.append((rva, f"overlap={owner['name']}", len(body)))
+            continue
+        skeleton = GETTER_SKELETON
+        eligible.append((rva, body, getter_ghidra_name(row), skeleton, ops))
+    return eligible, excluded
+
+
+def getter_paths(batch):
+    """Return the immutable numbered source and pending paths for ``batch``."""
+    if batch < 0:
+        raise FormatError(f"getter batch must be non-negative, got {batch}")
+    return (GEN_DIR / f"getters_{batch:03d}.cpp",
+            PENDING_DIR / f"getters_{batch:03d}.json")
+
+
+def ensure_getter_batch_available(source_rel, ledger_rows, candidate_count, batch):
+    """Refuse to reuse a landed batch for a later population.
+
+    Numbered generated TUs are immutable once their rows land.  Reusing one
+    after new scaffolds appear would require modifying a tracked source whose
+    existing rows still point at its old contents, so direct the caller to the
+    next batch instead.
+    """
+    owners = [row for row in ledger_rows
+              if row.get("status") == "matched" and row.get("source") == source_rel]
+    if owners and candidate_count:
+        raise FormatError(
+            f"{source_rel} already owns {len(owners)} live row(s), but {candidate_count} "
+            f"new getter candidate(s) remain; refusing to overwrite an immutable batch — "
+            f"rerun with --batch {batch + 1}")
+
+
+def ensure_generated_text(path, text):
+    """Refuse to overwrite an existing generated artifact with different bytes."""
+    if path.exists() and path.read_text(encoding="utf-8") != text:
+        raise FormatError(
+            f"{path.relative_to(ROOT)} already exists with different generated bytes; "
+            "refusing to overwrite an immutable batch")
+
+
+def render_getters(picked, batch=0):
+    """Render one deterministic TU for all picked constant-return shims."""
+    lines = [
+        f"// Generated by: python3 tools/gen_small.py gen-getters --batch {batch}",
+        "// Do not edit by hand; regenerate instead.",
+        "//",
+        "// Each Gen_<rva>::m() replaces one exact six-byte gen-dump scaffold",
+        "// whose retail body is `B8 imm32 C3`. The source rows are marked gen-shim",
+        "// because this synthetic method is a byte-verified shim, not a recovered",
+        "// identity. Catch@/Unwind@ funclets are excluded from this lane.",
+        "",
+    ]
+    for rva, _, _, skeleton, ops in picked:
+        lines += shim_lines(rva, skeleton, ops)[1]
+    return "\n".join(lines) + "\n"
+
+
+def _write_if_changed(path, text):
+    """Write generated text only when its bytes differ; return whether changed."""
+    if path.exists() and path.read_text(encoding="utf-8") == text:
+        return False
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    return True
+
+
+def cmd_gen_getters(args):
+    rows, excluded = getter_population()
+    exact = len(rows) + len(excluded)
+    exact_bytes = sum(item[2] for item in excluded) + 6 * len(rows)
+    reasons = collections.Counter(item[1].split("=", 1)[0] for item in excluded)
+    detail = ", ".join(f"{count} {reason}" for reason, count in sorted(reasons.items()))
+    print(f"gen-getters: {exact} exact scaffold(s) ({exact_bytes} bytes) = "
+          f"{len(rows)} eligible ({6 * len(rows)} bytes) + "
+          f"{len(excluded)} excluded ({sum(item[2] for item in excluded)} bytes)"
+          + (f" [{detail}]" if detail else ""))
+    if args.dry_run:
+        print("gen-getters: dry-run — no source, pending JSON, or ledger changes")
+        return
+    if not rows:
+        print("gen-getters: 0 new — no eligible ordinary getter scaffolds remain")
+        return
+
+    source_path, pending_path = getter_paths(args.batch)
+    source_rel = source_path.relative_to(ROOT).as_posix()
+    ledger_rows = B.load_all_function_rows()
+    ensure_getter_batch_available(source_rel, ledger_rows, len(rows), args.batch)
+    text = render_getters(rows, args.batch)
+    pending = {
+        "source": source_rel,
+        "rows": [],
+        "pins": [],
+    }
+    _, claimed_names, _ = load_claims()
+    for rva, body, ghidra_name, skeleton, ops in rows:
+        name = shim_symbol(rva, skeleton)
+        existing = claimed_names.get(name)
+        if existing is not None and existing != rva:
+            raise FormatError(f"{name} already claims 0x{existing:08X} in the ledger, "
+                              f"but this batch would claim 0x{rva:08X}")
+        pending["rows"].append(format_row(
+            name, rva, len(body), source_rel,
+            f"gen-shim;skeleton={skeleton.key};ghidra={ghidra_name}"))
+    pending_text = json.dumps(pending, indent=1) + "\n"
+    ensure_generated_text(source_path, text)
+    ensure_generated_text(pending_path, pending_text)
+    changed = _write_if_changed(source_path, text)
+    pending_changed = _write_if_changed(pending_path, pending_text)
+    print(f"gen-getters: {source_rel}: {len(rows)} row(s), "
+          f"{len(rows)} new row(s), 0 new pin(s)"
+          + (" — file unchanged" if not changed and not pending_changed else ""))
 
 
 def population(entries, read, blacklist):
@@ -4778,6 +4958,13 @@ def main(argv=None):
     shims.add_argument("--batch", type=int, default=0)
     shims.add_argument("--limit", type=int, default=200)
     shims.set_defaults(func=cmd_gen_shims)
+    getters = sub.add_parser(
+        "gen-getters",
+        help="write one numbered Code/gen_small/getters_NNN.cpp batch of exact B8 imm32 C3 shims")
+    getters.add_argument("--batch", type=int, default=0)
+    getters.add_argument("--dry-run", action="store_true",
+                         help="report the exact population without writing files")
+    getters.set_defaults(func=cmd_gen_getters)
     sub.add_parser("shim-report", help="account for every anonymous FUN_* body"
                    ).set_defaults(func=cmd_shim_report)
     named = sub.add_parser("gen-named",
