@@ -351,12 +351,13 @@ void GameSpyCloseAllOverlays( void )
 
 void GameSpyUpdateOverlays( void )
 {
+	// Same double-load as raiseOverlays: retail is
+	// mov eax,[esi] / test eax,eax / jz / mov ecx,eax / mov eax,[ecx] / push 0 / call [eax+8].
+	// A single local loads straight into ecx and misses the 34-byte body at 0x00627C10.
 	for (int i=0; i<GSOVERLAY_MAX; ++i)
 	{
-		if (overlayLayouts[(GSOverlayType)i])
-		{
-			overlayLayouts[(GSOverlayType)i]->runUpdate();
-		}
+		if (overlayLayouts[i])
+			((BFMEOverlayLayoutCloseView *)overlayLayouts[i])->runUpdate( NULL );
 	}
 }
 
