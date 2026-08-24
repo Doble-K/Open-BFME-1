@@ -75816,3 +75816,7 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?Glo012F4C62@@3_NA,0x012F4C62,Open-BFME5 reentry flag ?updateMouseData@Mouse@@IAEXXZ at 0x005A42E0 sets across its event drain and clears afterwards; address-derived name
 ?bfmeSetIndicatorOn@Drawable@@AAEX_N@Z,0x00018CF5,Open-BFME5 ILT thunk to body 0x004115A0; ?setIndicatorColor@Drawable@@QAEXI@Z at 0x004186E0 calls it on this from both of its arms with a true or a false; address-derived name
 ??_7Made001E6170@@6B@,0x010CF1C4,Open-BFME5 vftable the constructor at 0x002DE930 installs over the base one
+??_7Made001E5AF0@@6B@,0x010CF270,Open-BFME5 vftable the constructor at 0x002DED90 installs over the base one
+??0LargeGroupAudioUnusedKnownKeysBase@@QAE@ABV0@@Z,0x0001DE26,Open-BFME5 ILT thunk to body 0x000948E0; ??0LargeGroupAudioUnusedKnownKeys@@QAE@ABV0@@Z at 0x003CD590 runs it on this with the source before installing its own vtable; address-derived name
+??0LargeGroupAudioKeyMap@@QAE@ABV0@@Z,0x0002F06D,Open-BFME5 ILT thunk to body 0x003D3BB0; ??0LargeGroupAudioUnusedKnownKeys@@QAE@ABV0@@Z at 0x003CD590 copy-constructs its member at +0x0C through it; address-derived name
+??_7LargeGroupAudioUnusedKnownKeys@@6B@,0x010EE0FC,Open-BFME5 vftable the copy constructor at 0x003CD590 installs over the base one
