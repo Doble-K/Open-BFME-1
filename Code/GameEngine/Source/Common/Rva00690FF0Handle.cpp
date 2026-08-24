@@ -35,3 +35,19 @@ Rva006910F0Handle::Rva006910F0Handle(Gen0002857E *target)
 	if (target)
 		target->handle();
 }
+
+class Rva00691110Handle
+{
+public:
+	Rva00691110Handle(const Rva00691110Handle &other);
+
+	Gen0002857E *m_target;
+};
+
+Rva00691110Handle::Rva00691110Handle(const Rva00691110Handle &other)
+{
+	Gen0002857E *target = other.m_target;
+	m_target = target;
+	if (target)
+		target->handle();
+}
