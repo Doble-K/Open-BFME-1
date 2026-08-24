@@ -75648,3 +75648,4 @@ _ciSetChannelPassword,0x00871D80,gamespy-chat: sets channel password
 _ciGetChannelPassword,0x00871E30,gamespy-chat: retrieves channel password
 _ciJoinCallbackCalled,0x00871E90,gamespy-chat: marks join callback called
 _ciWasJoinCallbackCalled,0x00871EF0,gamespy-chat: checks if join callback called
+_ciSetChannelTopic,0x00871F50,gamespy-chat: sets channel topic
