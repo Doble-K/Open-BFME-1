@@ -181,3 +181,17 @@ int Rva003558A0Arr::get(const Rva00355640Key *key)
 {
 	return m_items[key->m_index].m_10 + 4;
 }
+
+class Rva00355930Arr
+{
+public:
+	int get(const Rva00355640Key *key);
+
+	char m_pad[0x38];
+	Rva003558A0Elem *m_items;
+};
+
+int Rva00355930Arr::get(const Rva00355640Key *key)
+{
+	return m_items[key->m_index].m_10 + 4;
+}
