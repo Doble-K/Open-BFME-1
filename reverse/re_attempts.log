@@ -5776,3 +5776,7 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00236850@@YAXXZ	0x00236850	82	blocked	t=8m Codex; two-block zero transform semantics exact, but compiler emitted sequential this stores instead of retail split pointer/register block shape; reverted --root /home/wacket/Projects/Open-BFME-Clones/Open-BFME7/build/luna_new_c
 ?d_003a5450@@YAXXZ	0x003A5450	92	blocked	t=8m Codex; initializer semantics reconstructed, but loop/array source produced incompatible register and store codegen; reverted --root /home/wacket/Projects/Open-BFME-Clones/Open-BFME7/build/luna_new_c
 ?d_0073c580@@YAXXZ	0x0073C580	117	blocked	t=10m Codex; nested predicate attempted, but recovered layout was incomplete and compiler branch structure diverged; reverted --root /home/wacket/Projects/Open-BFME-Clones/Open-BFME7/build/luna_new_c
+?d_00588f80@@YAXXZ	0x00588F80	25	blocked	t=1m compiler keeps ECX as this base; retail copies this to EAX before loading argument and storing constants
+?d_007f0210@@YAXXZ	0x007F0210	25	blocked	t=1m compiler loads first argument and keeps ECX this; retail loads second argument first and copies this to EAX
+?d_003d4db0@@YAXXZ	0x003D4DB0	26	blocked	t=1m compiler keeps ECX this and uses EAX for value; retail copies this to EAX and clears ECX for byte stores
+?d_0073dab0@@YAXXZ	0x0073DAB0	31	blocked	t=1m compiler loads source before target; retail copies this to EAX and loads target argument into ECX first
