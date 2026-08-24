@@ -10,6 +10,7 @@ class Rva007AECC0Slot
 {
 public:
 	void set(unsigned int index, int value);
+	int get(unsigned int index);
 
 	char m_pad[0x58];
 	Rva007AECC0Item *m_items[1];
@@ -20,4 +21,12 @@ void Rva007AECC0Slot::set(unsigned int index, int value)
 	Rva007AECC0Item *item = m_items[index];
 	if (item)
 		item->m_value = value;
+}
+
+int Rva007AECC0Slot::get(unsigned int index)
+{
+	Rva007AECC0Item *item = m_items[index];
+	if (item)
+		return item->m_value;
+	return 0;
 }
