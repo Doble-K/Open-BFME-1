@@ -78650,3 +78650,5 @@ _bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner de
 ?grow@Rva0082C330Buf@@AAEXXZ,0x000132CD,callee of Rva0082C330Buf::at; same ILT as Rva0082C300Buf::grow
 ?rva0082C760Acquire@@YAXPAVNodeAllocMutex@_STL@@@Z,0x0082C760,node_alloc real acquire called by _M_acquire_lock
 ?ready@Rva00412010Inner@@QAE_NXZ,0x00019B5F,Open-BFME5 ILT callee of Rva00412010::test; gen-thunk target FUN_005c9980
+?classify@Rva005329Classify@@QAEXPAXH@Z,0x00047807,ILT for 15B classify wrappers at 0x005329C0/E0
+?classify@Rva005329Classify@@QAEXPAVRva005329C0Obj@@H@Z,0x00047807,ILT for 15B classify wrappers at 0x005329C0/E0
