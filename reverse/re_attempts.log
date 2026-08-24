@@ -5769,3 +5769,5 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_007ae3b0@@YAXXZ	0x007AE3B0	26	blocked	t=2m compiler loads source before target; local source/destination aliases unchanged bytes
 ?d_00588f50@@YAXXZ	0x00588F50	32	blocked	t=2m compiler uses ECX as this base and loads args in opposite order; exact register shape not reproduced
 ?d_0094c650@@YAXXZ	0x0094C650	53	blocked	t=12m model=Codex-ocx-native--gpt-5.6-luna; decoded null-guarded 16-byte record copy with pointed refcount increment; five clean C++ pointer/record shapes compiled with folded or reordered +4 advances and did not exact-match
+?d_003b7e90@@YAXXZ	0x003B7E90	47	blocked	t=8m Codex; constant initializer matched all stores but compiler removed redundant this copy and used eax for zero; reverted --root /home/wacket/Projects/Open-BFME-Clones/Open-BFME7/build/luna_new_c
+?d_008636e0@@YAXXZ	0x008636E0	25	blocked	t=10m Codex; null/gate mask semantics matched, but compiler inverted branch layout and epilogue placement; reverted --root /home/wacket/Projects/Open-BFME-Clones/Open-BFME7/build/luna_new_c
