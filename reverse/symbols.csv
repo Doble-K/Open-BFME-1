@@ -75660,3 +75660,5 @@ _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 ??$_Construct@U?$pair@$$CBHVBuddyInfo@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHVBuddyInfo@@@0@ABU10@@Z,0x00015F5A,Open-BFME5 ILT the Int-to-BuddyInfo _Rb_tree _M_insert at 0x004EBC90 constructs the node value through
 ??$_Construct@U?$pair@$$CBJVLadderPref@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBJVLadderPref@@@0@ABU10@@Z,0x0002367D,Open-BFME5 ILT the Long-to-LadderPref _Rb_tree _M_insert at 0x000AAD50 constructs the node value through
 ??$_Construct@U?$pair@$$CBGH@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBGH@0@ABU10@@Z,0x0002BCE2,Open-BFME5 ILT the UnsignedShort-to-Int _Rb_tree _M_insert at 0x0037B600 constructs the node value through
+?bfmeCompare@AsciiString@@QBEHABV1@@Z,0x000220C5,Open-BFME5 ILT less<AsciiString> calls in the AsciiString-keyed _Rb_tree _M_insert at 0x005B2EF0; it jumps to 0x0005FEB0 and its result is tested against zero
+??$_Construct@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBVAsciiString@@VHotKey@@@0@ABU10@@Z,0x0000474B,Open-BFME5 ILT the AsciiString-to-HotKey _Rb_tree _M_insert at 0x005B2EF0 constructs the node value through
