@@ -42,12 +42,6 @@ public:
 	void insert_overflow(pair<ObjectID, unsigned int> *pos, pair<ObjectID, unsigned int> const &x, const __false_type &tag, unsigned int n, bool at_end);
 };
 
-class ObjectIDObjectIDOverflowShim
-{
-public:
-	void insert_overflow(pair<ObjectID, ObjectID> *pos, pair<ObjectID, ObjectID> const &x, const __false_type &tag, unsigned int n, bool at_end);
-};
-
 class ObjectIDOverflowShim
 {
 public:
@@ -62,11 +56,6 @@ vector<pair<ObjectID, unsigned int>, allocator<pair<ObjectID, unsigned int> > > 
 void vector<pair<ObjectID, unsigned int>, allocator<pair<ObjectID, unsigned int> > >::_M_insert_overflow(pair<ObjectID, unsigned int> *pos, pair<ObjectID, unsigned int> const &x, const __false_type &tag, unsigned int n, bool at_end)
 {
 	((ObjectIDPairOverflowShim *)this)->insert_overflow(pos, x, tag, n, at_end);
-}
-
-void vector<pair<ObjectID, ObjectID>, allocator<pair<ObjectID, ObjectID> > >::_M_insert_overflow(pair<ObjectID, ObjectID> *pos, pair<ObjectID, ObjectID> const &x, const __false_type &tag, unsigned int n, bool at_end)
-{
-	((ObjectIDObjectIDOverflowShim *)this)->insert_overflow(pos, x, tag, n, at_end);
 }
 
 void vector<ObjectID, allocator<ObjectID> >::_M_insert_overflow(ObjectID *pos, ObjectID const &x, const __false_type &tag, unsigned int n, bool at_end)
