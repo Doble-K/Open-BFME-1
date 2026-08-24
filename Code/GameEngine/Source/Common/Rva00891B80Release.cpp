@@ -73,3 +73,20 @@ Rva00891B40::Rva00891B40()
 	m_block = &g_default012D5298;
 	++g_default012D5298.m_ref;
 }
+
+class Rva00891C10
+{
+	Rva00891B80Block *m_block;
+
+public:
+	void clear();
+};
+
+void Rva00891C10::clear()
+{
+	Rva00891B80Block *block = m_block;
+	if (--block->m_ref == 0)
+		g_pool01337A30->free(block);
+	m_block = &g_default012D5298;
+	++g_default012D5298.m_ref;
+}
