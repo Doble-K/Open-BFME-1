@@ -75632,3 +75632,6 @@ _ciSetChannelPassword,0x00871D80,gamespy-chat: sets channel password
 ?TheControlBar@@3PAVControlBar@@A,0x012F33F8,Open-BFME5 Player::addScience inlines markUIDirty here as a byte store at +0x24 and doDisableInput calls deleteBuildTooltipLayout on it
 ?TheLookAtTranslator@@3PAVLookAtTranslator@@A,0x012F4C84,Open-BFME5 the object doDisableInput tail-calls resetModes on
 ?TheMessageStream@@3PAVMessageStream@@A,0x012ED5EC,Open-BFME5 doDisableInput appends a message through virtual slot 0x34 on this global
+??$uninitialized_copy@PAGPAG@_STL@@YAPAGPAG00@Z,0x00032277,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 uses; it jumps to the 41-byte body at 0x004D4DA0
+?allocate@?$__node_alloc@$00$0A@@_STL@@SAPAXI@Z,0x00048586,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 allocates through
+?deallocate@?$__node_alloc@$00$0A@@_STL@@SAXPAXI@Z,0x0001D35E,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 frees the old block through
