@@ -5751,3 +5751,6 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00729ae0@@YAXXZ	0x00729AE0	211	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; repeated field initialization decoded, but clean struct offset/layout differs from retail and required constants/byte fields are identity-unsupported
 ?d_00872970@@YAXXZ	0x00872970	141	blocked	t=5m model=Codex-ocx-native--gpt-5.6-luna; byte decoder boundary and predicate partially decoded, but clean loop/source shape does not preserve retail register and 16-bit packing sequence
 ?d_005bd4d0@@YAXXZ	0x005BD4D0	8	no-match	t=5m model=gpt-5.6; direct field comparison compiles mov/xor/cmp instead of retail cmp-memory/setz; no clean shape found
+?d_006dfc60@@YAXXZ	0x006DFC60	262	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; dense reset decoded, but clean loop collapses to rep stos and cannot reproduce retail sparse dword/byte store sequence
+?d_009c4cc0@@YAXXZ	0x009C4CC0	301	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; eight-sample ushort-to-byte clamp decoded, but loop source compiles compact indexed loop instead of retail fully unrolled signed clamp sequence
+?d_00840df0@@YAXXZ	0x00840DF0	221	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; bounded ushort sequence search decoded, but free-function ABI/decorated identity is not recovered and attempted symbol is absent from object
