@@ -3563,32 +3563,6 @@ void W3DBridgeBuffer::freeBridgeBuffers(void)
 }
 
 //=============================================================================
-// W3DBridgeBuffer::allocateBridgeBuffers
-//=============================================================================
-/** Allocates the index and vertex buffers. */
-//=============================================================================
-// ?allocateBridgeBuffers@W3DBridgeBuffer@@IAEXXZ present-unmatched
-void W3DBridgeBuffer::allocateBridgeBuffers(void)
-{
-	m_vertexBridge=NEW_REF(DX8VertexBufferClass,(DX8_FVF_XYZNDUV1,MAX_BRIDGE_VERTEX+4,DX8VertexBufferClass::USAGE_DYNAMIC));
-	m_indexBridge=NEW_REF(DX8IndexBufferClass,(MAX_BRIDGE_INDEX+4, DX8IndexBufferClass::USAGE_DYNAMIC));
-	m_vertexMaterial=VertexMaterialClass::Get_Preset(VertexMaterialClass::PRELIT_DIFFUSE);
-#ifdef USE_BRIDGE_NORMALS
-	m_vertexMaterial= NEW VertexMaterialClass();
-	m_vertexMaterial->Set_Shininess(0.0);
-	m_vertexMaterial->Set_Ambient(1,1,1);		  
-	m_vertexMaterial->Set_Diffuse(1,1,1);
-	m_vertexMaterial->Set_Specular(0,0,0);
-	m_vertexMaterial->Set_Emissive(0,0,0);
-	m_vertexMaterial->Set_Opacity(1);
-	m_vertexMaterial->Set_Lighting(true);
-	m_vertexMaterial->Set_Diffuse_Color_Source(VertexMaterialClass::COLOR1);
-#endif
-	m_curNumBridgeVertices=0;
-	m_curNumBridgeIndices=0;
-}
-
-//=============================================================================
 // W3DBridgeBuffer::clearAllBridges
 //=============================================================================
 /** Removes all bridges. */

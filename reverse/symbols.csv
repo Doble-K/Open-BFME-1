@@ -1864,6 +1864,7 @@ name,address,notes
 ??0CullSystemClass@@QAE@XZ,0x008E2140
 ??0CustomMatchPreferences@@QAE@XZ,0x0000B0F5
 ??0DX8IndexBufferClass@@QAE@IW4UsageType@0@@Z,0x0091D0A0,BFME DynamicIB uint-width call-site ABI alias for the unsigned-short constructor
+??0DX8IndexBufferClass@@QAE@GW4UsageType@0@@Z,0x0091D0A0,BFME DynamicIB unsigned-short constructor call-site identity; retail direct call at 0x006D7885 and source definition in dx8indexbuffer.cpp
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001D3AE,pinharvest x1 (thunk)
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001F5C3,pinharvest x1 (thunk)
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002070C,pinharvest x1 (thunk)
