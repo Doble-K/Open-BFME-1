@@ -43,3 +43,24 @@ unsigned char Rva003543E0Arr::get(int index)
 {
 	return m_items[index].m_0c;
 }
+
+struct Rva00354400Elem
+{
+	char m_pad[0x0E];
+	short m_0e;
+	char m_tail[4];
+};
+
+class Rva00354400Arr
+{
+public:
+	int get(int index);
+
+	char m_pad[0x0C];
+	Rva00354400Elem *m_items;
+};
+
+int Rva00354400Arr::get(int index)
+{
+	return m_items[index].m_0e;
+}
