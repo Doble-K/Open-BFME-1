@@ -23425,3 +23425,5 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ??0StatusBitsUpgradeModuleData@@QAE@XZ,0x00852130,alias retracted: 0x00852130 is INI::initFromINIMultiProc which the data-create proc CALLS; the constructor this registration reaches is at 0x00129C10.
 ?d_001f6c70@@YAXXZ,0x001F6C70,gen-dump placeholder superseded by the byte-verified real BuildingBehaviorModuleData constructor identity.
 ?d_00288c50@@YAXXZ,0x00288C50,gen-dump placeholder superseded by the byte-verified real BoneFXUpdate constructor identity.
+?d_003544a0@@YAXXZ,0x003544A0,"gen-dump placeholder retired: converted to Rva003544A0Arr::get in Code/GameEngine/Source/Common/Rva003543C0Arr.cpp"
+?d_00355640@@YAXXZ,0x00355640,"gen-dump placeholder retired: converted to Rva00355640Arr::addr in Code/GameEngine/Source/Common/Rva003543C0Arr.cpp"
