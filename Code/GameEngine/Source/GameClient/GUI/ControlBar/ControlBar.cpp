@@ -2597,7 +2597,16 @@ void ControlBar::updateSlotExitImage( const Image *image )
 
 }
 
-// ?updateUpDownImages@ControlBar@@QAEXPBVImage@@0000000@Z present-unmatched
+// Retail places the final two image fields at +0x2c0/+0x2c4.  The shared ZH
+// ControlBar declaration places them at +0x300/+0x304, so keep this BFME
+// layout correction local to the recovered method.
+struct BfmeControlBarUpdateImageTail
+{
+	unsigned char prefix[0x2c0];
+	const Image *generalButtonEnable;
+	const Image *generalButtonHighlight;
+};
+
 void ControlBar::updateUpDownImages( const Image *toggleButtonUpIn, const Image *toggleButtonUpOn, const Image *toggleButtonUpPushed,
 																		 const Image *toggleButtonDownIn, const Image *toggleButtonDownOn, const Image *toggleButtonDownPushed,
 																		 const Image *generalButtonEnable, const Image *generalButtonHighlight  )
@@ -2610,8 +2619,9 @@ void ControlBar::updateUpDownImages( const Image *toggleButtonUpIn, const Image 
 	m_toggleButtonDownPushed = toggleButtonDownPushed;
 
 
-	m_generalButtonEnable = generalButtonEnable;
-	m_generalButtonHighlight = generalButtonHighlight;
+	BfmeControlBarUpdateImageTail *bfme = reinterpret_cast<BfmeControlBarUpdateImageTail *>(this);
+	bfme->generalButtonEnable = generalButtonEnable;
+	bfme->generalButtonHighlight = generalButtonHighlight;
 
 	setUpDownImages();
 }
