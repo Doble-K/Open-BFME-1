@@ -161,3 +161,23 @@ int *Rva00355640Arr::addr(const Rva00355640Key *key)
 {
 	return &m_items[key->m_index].m_08;
 }
+
+struct Rva003558A0Elem
+{
+	char m_pad[0x10];
+	int m_10;
+};
+
+class Rva003558A0Arr
+{
+public:
+	int get(const Rva00355640Key *key);
+
+	char m_pad[0x18];
+	Rva003558A0Elem *m_items;
+};
+
+int Rva003558A0Arr::get(const Rva00355640Key *key)
+{
+	return m_items[key->m_index].m_10 + 4;
+}
