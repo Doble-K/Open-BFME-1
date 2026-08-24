@@ -216,3 +216,17 @@ bool Rva003558C0Arr::matches(const Rva003558C0Key *key)
 {
 	return m_items[key->m_index].m_0e == key->m_value;
 }
+
+class Rva00355950Arr
+{
+public:
+	bool matches(const Rva003558C0Key *key);
+
+	char m_pad[0x38];
+	Rva00354400Elem *m_items;
+};
+
+bool Rva00355950Arr::matches(const Rva003558C0Key *key)
+{
+	return m_items[key->m_index].m_0e == key->m_value;
+}
