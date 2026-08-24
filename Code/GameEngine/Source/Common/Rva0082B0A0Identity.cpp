@@ -89,6 +89,8 @@ public:
     int *alternateFirstPointer();
     int *lastElement();
     int *alternateLastElement();
+    int *elementAt(int index);
+    int *alternateElementAt(int index);
 
 private:
     int *m_first;
@@ -117,4 +119,16 @@ int *Rva0082B1D0PointerRange::alternateLastElement()
 {
     int *result = m_end;
     return result - 1;
+}
+
+int *Rva0082B1D0PointerRange::elementAt(int index)
+{
+    int *result = m_first;
+    return result + index;
+}
+
+int *Rva0082B1D0PointerRange::alternateElementAt(int index)
+{
+    int *result = m_first;
+    return result + index;
 }
