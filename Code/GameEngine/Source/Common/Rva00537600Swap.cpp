@@ -33,3 +33,21 @@ int Rva00537DE0Swap::replace(int value)
 	m_value = value;
 	return old;
 }
+
+class Rva00537680Or
+{
+public:
+	void orBits(int bits);
+
+private:
+	int m_pad;
+	int m_gap;
+	int m_flags;
+};
+
+void Rva00537680Or::orBits(int bits)
+{
+	int flags = m_flags;
+	flags |= bits;
+	m_flags = flags;
+}
