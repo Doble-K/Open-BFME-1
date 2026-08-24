@@ -159,3 +159,14 @@ int Rva0082B000Helpers::firstValue(int value)
 {
     return value;
 }
+
+class Rva0082BFC0Identity
+{
+public:
+    Rva0082BFC0Identity *self();
+};
+
+Rva0082BFC0Identity *Rva0082BFC0Identity::self()
+{
+    return this;
+}
