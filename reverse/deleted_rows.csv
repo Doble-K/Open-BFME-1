@@ -1,4 +1,5 @@
 name,target_rva,reason
+?GadgetListBoxSetColors@@YAXPAVGameWindow@@HHHHHHHHHHHH@Z,0x000410AB,"five-byte incremental-link thunk claim retracted so the exact BFME body at 0x004B6D40 can carry the name; the thunk bytes return to the gen-thunk pool."
 # Rows deleted on purpose because byte-evidence proved them wrong. functions.csv
 # uses git's union merge driver, which has no concept of a deletion: merging any
 # branch that forked before the delete silently resurrects the row. check_csv

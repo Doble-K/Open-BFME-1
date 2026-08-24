@@ -1839,7 +1839,10 @@ WindowMsgHandledType GadgetListBoxSystem( GameWindow *window, UnsignedInt msg,
 	* change the colors of any attached slider, slider thumb, and slider 
 	* buttons */
 //=============================================================================
-void GadgetListBoxSetColors( GameWindow *listbox,
+// The BFME body lives in GadgetListBoxSetColors.cpp, whose TU-local ABI view
+// accounts for the proven +4 retail layout. Keep this ZH-shaped reference
+// spelling only for the surrounding vendored source's declaration context.
+void GadgetListBoxSetColors_ZHReference( GameWindow *listbox,
 														 Color enabledColor, 
 														 Color enabledBorderColor,
 														 Color enabledSelectedItemColor, 
