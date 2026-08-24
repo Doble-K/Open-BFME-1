@@ -75701,3 +75701,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?TheBfmeAttributePool@@3UBfmeAttributePool@@A,0x012F1000,Open-BFME5 global attribute-entry pool read by ??1AttributeHandleStandIn@@QAE@XZ at 0x0039D550; start at +0x00 and finish at +0x04 with 0x88-byte entries whose use count is the last dword
 ?bfmeFindRecord@FontLibraryBFMERetail@@AAEPAUBfmeFontRecord@@PAVAsciiString@@M@Z,0x000035A3,Open-BFME5 ILT thunk to body 0x00476E20; FontLibraryBFMERetail::getFont at 0x004772D0 calls it on this with the name and size and reads a byte at +8 of what it returns; address-derived name
 ?bfmeBuildFont@FontLibraryBFMERetail@@AAEPAVGameFont@@PAVAsciiString@@MEH@Z,0x0000EBA6,Open-BFME5 ILT thunk to body 0x00476C50; FontLibraryBFMERetail::getFont at 0x004772D0 tail-returns its result; address-derived name
+??_7Made001E5BC0@@6B@,0x010CF058,Open-BFME5 vftable the constructor at 0x002DE130 installs over the base one
+??_7Made001E5A20@@6B@,0x010CE8FC,Open-BFME5 vftable the constructor at 0x002DAC10 installs over the base one
