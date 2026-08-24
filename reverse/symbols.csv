@@ -76298,3 +76298,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?_M_insert_overflow@?$vector@URva0077C670Element@@V?$allocator@URva0077C670Element@@@_STL@@@_STL@@IAEXPAURva0077C670Element@@ABU3@ABU__false_type@2@I_N@Z,0x00015F41,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva0077CC10Element@@V?$allocator@URva0077CC10Element@@@_STL@@@_STL@@IAEXPAURva0077CC10Element@@ABU3@ABU__false_type@2@I_N@Z,0x00043270,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva0081D280Element@@V?$allocator@URva0081D280Element@@@_STL@@@_STL@@IAEXPAURva0081D280Element@@ABU3@ABU__false_type@2@I_N@Z,0x0081D160,Open-BFME5 a callee of a vector push_back
+?bfmeErase@BfmeShroudList@@QAEXPAVBfmeListHeader@@@Z,0x00016ED2,Open-BFME5 ILT thunk; ?reset30BC@BaseHeightMapResetShroud@@QAEXXZ at 0x00727450 hands it the first node of the list at +0x44 before putting the header back to itself; address-derived name
