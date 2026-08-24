@@ -2,7 +2,7 @@
 // stlport
 
 // Open-BFME5: STLport _Rb_tree<K,V>::insert_unique(const value_type &), the
-// unsigned-keyed shape, 23 bodies of 145 bytes each.  Every one of them
+// unsigned-keyed shape, 16 bodies of 145 bytes each.  Every one of them
 // carried only a machine byte-dump row.
 //
 // insert_unique walks from the root taking the left child while the incoming
@@ -20,25 +20,13 @@
 // is modelled as the plain unsigned int the comparison proves it to be, and the
 // mapped type -- which the bytes never read -- is named for the address of the
 // body so each instantiation gets its own decorated name.
+//
+// Bodies whose _M_insert callee allocates a 20-byte node are NOT here: a node
+// that holds only four bytes of value is _Identity over the key itself, not a
+// pair, and they are spelled that way in RvaTreeInsertUniqueIdentity.cpp.
 
 #define _BFME_RETAIL_TREE_INSERT_LAYOUT
 #include <map>
-
-struct Rva00076190Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const unsigned int, Rva00076190Value> Rva00076190Pair;
-
-typedef _STL::_Rb_tree<unsigned int,
-	Rva00076190Pair,
-	_STL::_Select1st<Rva00076190Pair>,
-	_STL::less<unsigned int>,
-	_STL::allocator<Rva00076190Pair> > Rva00076190Tree;
-
-template _STL::pair<Rva00076190Tree::iterator, bool>
-Rva00076190Tree::insert_unique( const Rva00076190Pair & );
 
 struct Rva00076F80Value
 {
@@ -88,22 +76,6 @@ typedef _STL::_Rb_tree<unsigned int,
 template _STL::pair<Rva000E9850Tree::iterator, bool>
 Rva000E9850Tree::insert_unique( const Rva000E9850Pair & );
 
-struct Rva0013FA60Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const unsigned int, Rva0013FA60Value> Rva0013FA60Pair;
-
-typedef _STL::_Rb_tree<unsigned int,
-	Rva0013FA60Pair,
-	_STL::_Select1st<Rva0013FA60Pair>,
-	_STL::less<unsigned int>,
-	_STL::allocator<Rva0013FA60Pair> > Rva0013FA60Tree;
-
-template _STL::pair<Rva0013FA60Tree::iterator, bool>
-Rva0013FA60Tree::insert_unique( const Rva0013FA60Pair & );
-
 struct Rva0021BE20Value
 {
 	int m_body;
@@ -136,38 +108,6 @@ typedef _STL::_Rb_tree<unsigned int,
 template _STL::pair<Rva00223FA0Tree::iterator, bool>
 Rva00223FA0Tree::insert_unique( const Rva00223FA0Pair & );
 
-struct Rva0025BD30Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const unsigned int, Rva0025BD30Value> Rva0025BD30Pair;
-
-typedef _STL::_Rb_tree<unsigned int,
-	Rva0025BD30Pair,
-	_STL::_Select1st<Rva0025BD30Pair>,
-	_STL::less<unsigned int>,
-	_STL::allocator<Rva0025BD30Pair> > Rva0025BD30Tree;
-
-template _STL::pair<Rva0025BD30Tree::iterator, bool>
-Rva0025BD30Tree::insert_unique( const Rva0025BD30Pair & );
-
-struct Rva00296ED0Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const unsigned int, Rva00296ED0Value> Rva00296ED0Pair;
-
-typedef _STL::_Rb_tree<unsigned int,
-	Rva00296ED0Pair,
-	_STL::_Select1st<Rva00296ED0Pair>,
-	_STL::less<unsigned int>,
-	_STL::allocator<Rva00296ED0Pair> > Rva00296ED0Tree;
-
-template _STL::pair<Rva00296ED0Tree::iterator, bool>
-Rva00296ED0Tree::insert_unique( const Rva00296ED0Pair & );
-
 struct Rva002A1E90Value
 {
 	int m_body;
@@ -183,22 +123,6 @@ typedef _STL::_Rb_tree<unsigned int,
 
 template _STL::pair<Rva002A1E90Tree::iterator, bool>
 Rva002A1E90Tree::insert_unique( const Rva002A1E90Pair & );
-
-struct Rva0036ED40Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const unsigned int, Rva0036ED40Value> Rva0036ED40Pair;
-
-typedef _STL::_Rb_tree<unsigned int,
-	Rva0036ED40Pair,
-	_STL::_Select1st<Rva0036ED40Pair>,
-	_STL::less<unsigned int>,
-	_STL::allocator<Rva0036ED40Pair> > Rva0036ED40Tree;
-
-template _STL::pair<Rva0036ED40Tree::iterator, bool>
-Rva0036ED40Tree::insert_unique( const Rva0036ED40Pair & );
 
 struct Rva003DBF80Value
 {
@@ -264,22 +188,6 @@ typedef _STL::_Rb_tree<unsigned int,
 template _STL::pair<Rva0040AAD0Tree::iterator, bool>
 Rva0040AAD0Tree::insert_unique( const Rva0040AAD0Pair & );
 
-struct Rva00442AB0Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const unsigned int, Rva00442AB0Value> Rva00442AB0Pair;
-
-typedef _STL::_Rb_tree<unsigned int,
-	Rva00442AB0Pair,
-	_STL::_Select1st<Rva00442AB0Pair>,
-	_STL::less<unsigned int>,
-	_STL::allocator<Rva00442AB0Pair> > Rva00442AB0Tree;
-
-template _STL::pair<Rva00442AB0Tree::iterator, bool>
-Rva00442AB0Tree::insert_unique( const Rva00442AB0Pair & );
-
 struct Rva004B0C80Value
 {
 	int m_body;
@@ -343,22 +251,6 @@ typedef _STL::_Rb_tree<unsigned int,
 
 template _STL::pair<Rva006A4630Tree::iterator, bool>
 Rva006A4630Tree::insert_unique( const Rva006A4630Pair & );
-
-struct Rva006DE9B0Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const unsigned int, Rva006DE9B0Value> Rva006DE9B0Pair;
-
-typedef _STL::_Rb_tree<unsigned int,
-	Rva006DE9B0Pair,
-	_STL::_Select1st<Rva006DE9B0Pair>,
-	_STL::less<unsigned int>,
-	_STL::allocator<Rva006DE9B0Pair> > Rva006DE9B0Tree;
-
-template _STL::pair<Rva006DE9B0Tree::iterator, bool>
-Rva006DE9B0Tree::insert_unique( const Rva006DE9B0Pair & );
 
 struct Rva008FFE90Value
 {

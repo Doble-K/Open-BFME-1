@@ -2,7 +2,7 @@
 // stlport
 
 // Open-BFME5: STLport _Rb_tree<K,V>::insert_unique(const value_type &), the
-// signed-keyed shape, 31 bodies of 145 bytes each.  Every one of them
+// signed-keyed shape, 30 bodies of 145 bytes each.  Every one of them
 // carried only a machine byte-dump row.
 //
 // insert_unique walks from the root taking the left child while the incoming
@@ -19,6 +19,10 @@
 // is modelled as the plain int the comparison proves it to be, and the
 // mapped type -- which the bytes never read -- is named for the address of the
 // body so each instantiation gets its own decorated name.
+//
+// Bodies whose _M_insert callee allocates a 20-byte node are NOT here: a node
+// that holds only four bytes of value is _Identity over the key itself, not a
+// pair, and they are spelled that way in RvaTreeInsertUniqueIdentity.cpp.
 
 #define _BFME_RETAIL_TREE_INSERT_LAYOUT
 #include <map>
@@ -102,22 +106,6 @@ typedef _STL::_Rb_tree<int,
 
 template _STL::pair<Rva000E7930Tree::iterator, bool>
 Rva000E7930Tree::insert_unique( const Rva000E7930Pair & );
-
-struct Rva000EEC50Value
-{
-	int m_body;
-};
-
-typedef _STL::pair<const int, Rva000EEC50Value> Rva000EEC50Pair;
-
-typedef _STL::_Rb_tree<int,
-	Rva000EEC50Pair,
-	_STL::_Select1st<Rva000EEC50Pair>,
-	_STL::less<int>,
-	_STL::allocator<Rva000EEC50Pair> > Rva000EEC50Tree;
-
-template _STL::pair<Rva000EEC50Tree::iterator, bool>
-Rva000EEC50Tree::insert_unique( const Rva000EEC50Pair & );
 
 struct Rva00127850Value
 {
