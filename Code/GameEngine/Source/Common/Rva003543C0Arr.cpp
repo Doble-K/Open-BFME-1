@@ -195,3 +195,24 @@ int Rva00355930Arr::get(const Rva00355640Key *key)
 {
 	return m_items[key->m_index].m_10 + 4;
 }
+
+struct Rva003558C0Key
+{
+	int m_pad;
+	int m_index;
+	int m_value;
+};
+
+class Rva003558C0Arr
+{
+public:
+	bool matches(const Rva003558C0Key *key);
+
+	char m_pad[0x18];
+	Rva00354400Elem *m_items;
+};
+
+bool Rva003558C0Arr::matches(const Rva003558C0Key *key)
+{
+	return m_items[key->m_index].m_0e == key->m_value;
+}
