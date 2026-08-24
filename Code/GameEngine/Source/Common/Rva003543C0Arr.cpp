@@ -141,3 +141,23 @@ unsigned char Rva00355680Arr::get(int index)
 {
 	return m_items[index].m_0c;
 }
+
+struct Rva00355640Key
+{
+	int m_pad;
+	int m_index;
+};
+
+class Rva00355640Arr
+{
+public:
+	int *addr(const Rva00355640Key *key);
+
+	char m_pad[0x18];
+	Rva00354460Elem *m_items;
+};
+
+int *Rva00355640Arr::addr(const Rva00355640Key *key)
+{
+	return &m_items[key->m_index].m_08;
+}
