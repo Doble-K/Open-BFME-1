@@ -75651,3 +75651,4 @@ _ciWasJoinCallbackCalled,0x00871EF0,gamespy-chat: checks if join callback called
 _ciSetChannelTopic,0x00871F50,gamespy-chat: sets channel topic
 ?resize@?$hashtable@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@_STL@@AAEXI@Z,0x0003ECAC,Open-BFME5 ILT the GameWindow-to-WindowVideo hashtable _M_insert at 0x007871D0 calls first
 ??$_Construct@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@U12@@_STL@@YAXPAU?$pair@QBVGameWindow@@PAVWindowVideo@@@0@ABU10@@Z,0x0001FCFD,Open-BFME5 ILT the GameWindow-to-WindowVideo hashtable _M_insert at 0x007871D0 copy-constructs the node value through
+_ciGetChannelTopic,0x00871FD0,gamespy-chat: retrieves channel topic
