@@ -75825,3 +75825,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?TheBfmeCrateNameDefault@@3VAsciiString@@A,0x01336E50,Open-BFME5 global AsciiString ??0UnitCrateCollideModuleData@@QAE@XZ at 0x002F1B10 assigns into its member at +0x0C; address-derived name
 ??0?$BitFlags@$0HE@@@QAE@W4BitFlagsInitType@@HHHHH@Z,0x00031133,Open-BFME5 ILT thunk to body 0x003274A0; ?isNonFactionStructure@Object@@QBE_NXZ at 0x0032A220 builds its first function-local static mask with five flag indices through it; address-derived arity
 ??0?$BitFlags@$0HE@@@QAE@W4BitFlagsInitType@@HHH@Z,0x0003284E,Open-BFME5 ILT thunk to body 0x002BD5A0; ?isNonFactionStructure@Object@@QBE_NXZ at 0x0032A220 builds its second function-local static mask with three flag indices through it; address-derived arity
+?Bfme000BD360Construct@_STL@@YAXPAUP5Elem000BD360@@ABU2@@Z,0x0000A97A,Open-BFME5 ILT for the construct the push_back at 0x000BD360 reaches
+?_M_insert_overflow@?$vector@UP5Elem000BD360@@V?$allocator@UP5Elem000BD360@@@_STL@@@_STL@@IAEXPAUP5Elem000BD360@@ABU3@ABU__false_type@2@I_N@Z,0x00025275,Open-BFME5 ILT for the reallocating insert the push_back at 0x000BD360 reaches
