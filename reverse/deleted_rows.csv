@@ -22594,3 +22594,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_003d4bd0@@YAXXZ,0x003D4BD0,"gen-dump placeholder superseded by ?get@Rva003D4BD0@@QAEFXZ."
 ?d_003d4be0@@YAXXZ,0x003D4BE0,"gen-dump placeholder superseded by ?getWord@Rva003D4BE0@@QAEGXZ."
 ?_M_insert_overflow@?$vector@GV?$allocator@G@_STL@@@_STL@@IAEXPAGABGABU__true_type@2@I_N@Z,0x0000791E,"5-byte incremental-link thunk claim retired: the ILT at 0x0000791E jumps to 0x003C16A0 and that body now carries this name from Code/Libraries/Source/WWVegas/WWLib/VectorUnsignedShortInsertOverflowBody.cpp. One name = one address so the thunk row goes."
+??0FlightDeckBehaviorModuleData@@QAE@XZ,0x0000CC3E,"5-byte incremental-link thunk claim retracted so the real constructor body at 0x002131B0 can carry the name; the thunk bytes return to the gen-thunk pool."
