@@ -78653,3 +78653,4 @@ _bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner de
 ?classify@Rva005329Classify@@QAEXPAXH@Z,0x00047807,ILT for 15B classify wrappers at 0x005329C0/E0
 ?classify@Rva005329Classify@@QAEXPAVRva005329C0Obj@@H@Z,0x00047807,ILT for 15B classify wrappers at 0x005329C0/E0
 ?TheGameSpyInfo@@3PAVGameSpyInfo@@A,0x012F7194,GameSpyInfo* global used by the 0x0052CE60 virtual wrapper
+?test@Rva002DF100@@QAEEPAX0@Z,0x0002DB69,ILT to 0x002DF100 thiscall uchar(void*,void*) for 23B setne wrappers
