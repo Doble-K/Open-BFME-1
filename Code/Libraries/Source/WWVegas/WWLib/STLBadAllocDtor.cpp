@@ -32,4 +32,15 @@ Rva0082AE60Exc::~Rva0082AE60Exc()
 {
 }
 
+// Retail 0x0082AE80: sibling of Rva0082AE60Exc, also calls ~bad_alloc.
+class Rva0082AE80Exc : public bad_alloc
+{
+public:
+  virtual ~Rva0082AE80Exc();
+};
+
+Rva0082AE80Exc::~Rva0082AE80Exc()
+{
+}
+
 }
