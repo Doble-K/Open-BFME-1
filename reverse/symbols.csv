@@ -76099,3 +76099,26 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?resize@?$hashtable@URva006A7AD0Value@@VAsciiString@@U?$hash@VAsciiString@@@rts@@URva006A7AD0ExtractKey@@U?$equal_to@VAsciiString@@@_STL@@V?$allocator@URva006A7AD0Value@@@7@@_STL@@QAEXI@Z,0x0001CBED,Open-BFME5 the hashtable resize the _M_insert at 0x006A7AD0 calls
 ?_M_bkt_num_key@?$hashtable@URva006A7AD0Value@@VAsciiString@@U?$hash@VAsciiString@@@rts@@URva006A7AD0ExtractKey@@U?$equal_to@VAsciiString@@@_STL@@V?$allocator@URva006A7AD0Value@@@7@@_STL@@ABEIABVAsciiString@@I@Z,0x0004004D,Open-BFME5 the hashtable _M_bkt_num_key the _M_insert at 0x006A7AD0 calls
 ??$_Construct@URva006A7AD0Value@@U1@@_STL@@YAXPAURva006A7AD0Value@@ABU1@@Z,0x0001910F,Open-BFME5 the value _Construct the hashtable _M_insert at 0x006A7AD0 calls
+??$_Construct@URva0010FF90Element@@U1@@_STL@@YAXPAURva0010FF90Element@@ABU1@@Z,0x00020D2E,Open-BFME5 the element _Construct the list insert at 0x0010FF90 calls
+??$_Construct@URva00148B80Element@@U1@@_STL@@YAXPAURva00148B80Element@@ABU1@@Z,0x0002713D,Open-BFME5 the element _Construct the list insert at 0x00148B80 calls
+??$_Construct@URva0014C4C0Element@@U1@@_STL@@YAXPAURva0014C4C0Element@@ABU1@@Z,0x0004031D,Open-BFME5 the element _Construct the list insert at 0x0014C4C0 calls
+??$_Construct@URva001CB1F0Element@@U1@@_STL@@YAXPAURva001CB1F0Element@@ABU1@@Z,0x00038217,Open-BFME5 the element _Construct the list insert at 0x001CB1F0 calls
+??$_Construct@URva0021B530Element@@U1@@_STL@@YAXPAURva0021B530Element@@ABU1@@Z,0x000267F6,Open-BFME5 the element _Construct the list insert at 0x0021B530 calls
+??$_Construct@URva0022D610Element@@U1@@_STL@@YAXPAURva0022D610Element@@ABU1@@Z,0x000402C8,Open-BFME5 the element _Construct the list insert at 0x0022D610 calls
+??$_Construct@URva0033F410Element@@U1@@_STL@@YAXPAURva0033F410Element@@ABU1@@Z,0x00033FF5,Open-BFME5 the element _Construct the list insert at 0x0033F410 calls
+??$_Construct@URva003406C0Element@@U1@@_STL@@YAXPAURva003406C0Element@@ABU1@@Z,0x00048F68,Open-BFME5 the element _Construct the list insert at 0x003406C0 calls
+??$_Construct@URva00379B80Element@@U1@@_STL@@YAXPAURva00379B80Element@@ABU1@@Z,0x0002E20D,Open-BFME5 the element _Construct the list insert at 0x00379B80 calls
+??$_Construct@URva0038BA50Element@@U1@@_STL@@YAXPAURva0038BA50Element@@ABU1@@Z,0x000057E5,Open-BFME5 the element _Construct the list insert at 0x0038BA50 calls
+??$_Construct@URva00430E90Element@@U1@@_STL@@YAXPAURva00430E90Element@@ABU1@@Z,0x000404E4,Open-BFME5 the element _Construct the list insert at 0x00430E90 calls
+??$_Construct@URva00439D50Element@@U1@@_STL@@YAXPAURva00439D50Element@@ABU1@@Z,0x0000637A,Open-BFME5 the element _Construct the list insert at 0x00439D50 calls
+??$_Construct@URva004489E0Element@@U1@@_STL@@YAXPAURva004489E0Element@@ABU1@@Z,0x00033E15,Open-BFME5 the element _Construct the list insert at 0x004489E0 calls
+??$_Construct@URva00110D70Element@@U1@@_STL@@YAXPAURva00110D70Element@@ABU1@@Z,0x00020D2E,Open-BFME5 the element _Construct the list push_back at 0x00110D70 calls
+??$_Construct@URva00148BD0Element@@U1@@_STL@@YAXPAURva00148BD0Element@@ABU1@@Z,0x0002713D,Open-BFME5 the element _Construct the list push_back at 0x00148BD0 calls
+??$_Construct@URva001CFDB0Element@@U1@@_STL@@YAXPAURva001CFDB0Element@@ABU1@@Z,0x00038217,Open-BFME5 the element _Construct the list push_back at 0x001CFDB0 calls
+??$_Construct@URva0021BD70Element@@U1@@_STL@@YAXPAURva0021BD70Element@@ABU1@@Z,0x000267F6,Open-BFME5 the element _Construct the list push_back at 0x0021BD70 calls
+??$_Construct@URva0022DA10Element@@U1@@_STL@@YAXPAURva0022DA10Element@@ABU1@@Z,0x000402C8,Open-BFME5 the element _Construct the list push_back at 0x0022DA10 calls
+??$_Construct@URva00342BB0Element@@U1@@_STL@@YAXPAURva00342BB0Element@@ABU1@@Z,0x00033FF5,Open-BFME5 the element _Construct the list push_back at 0x00342BB0 calls
+??$_Construct@URva00342C30Element@@U1@@_STL@@YAXPAURva00342C30Element@@ABU1@@Z,0x00048F68,Open-BFME5 the element _Construct the list push_back at 0x00342C30 calls
+??$_Construct@URva00379D20Element@@U1@@_STL@@YAXPAURva00379D20Element@@ABU1@@Z,0x0002E20D,Open-BFME5 the element _Construct the list push_back at 0x00379D20 calls
+??$_Construct@URva0038EAD0Element@@U1@@_STL@@YAXPAURva0038EAD0Element@@ABU1@@Z,0x000057E5,Open-BFME5 the element _Construct the list push_back at 0x0038EAD0 calls
+??$_Construct@URva00431310Element@@U1@@_STL@@YAXPAURva00431310Element@@ABU1@@Z,0x000404E4,Open-BFME5 the element _Construct the list push_back at 0x00431310 calls
