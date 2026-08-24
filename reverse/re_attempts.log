@@ -5721,3 +5721,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_001c0aa0@@YAXXZ	0x001C0AA0	35	blocked	byte loop reads from absolute global address 0x012C7128, prohibited global/invented identity for structural conversion; t=1m model=gpt-5.6
 ?d_0074ac00@@YAXXZ	0x0074AC00	37	blocked	word-to-dword expansion semantics clear but compiler transforms pointer/count loop and misses retail register/loop shape; t=4m model=gpt-5.6
 ?d_0029a5e0@@YAXXZ	0x0029A5E0	33	blocked	clean signed difference /6 predicate matches arithmetic; compiler emits setl while retail uses cmp/sbb/neg boolean materialization; t=8m model=gpt-5.6
+?d_0059d900@@YAXXZ	0x0059D900	45	blocked	field-range check semantics recovered but compiler emits this-first loads and different comparison/register shape after two clean layouts; t=5m model=gpt-5.6
