@@ -5692,3 +5692,8 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_000a0800@@YAXXZ	0x000A0800	51	blocked	clean nested-record copy semantics reconstructed; compiler folds nested +0x38 pointer and emits different branch offsets; t=18m model=gpt-5.6
 ?index@Rva0082B270@@QAEPAXI@Z	0x0082B270	32	blocked	t=12m Codex; pointer-plus-index semantics proven, but retail frame stores locals and current compiler optimizes them away or emits a different volatile layout; no exact clean body
 ?clearRegion@Rva00683280@@QAEXXZ	0x00683280	42	blocked	t=10m Codex; clear-region semantics proven and stores match, but compiler orders lea/count differently and emitted object lacks target pop/ret boundary; no exact clean C++ body
+?d_002ef7b0@@YAXXZ	0x002EF7B0	41	blocked	global manager plus virtual dispatch; not plain body; t=1m model=gpt-5.6
+?d_009f0cc0@@YAXXZ	0x009F0CC0	117	blocked	SEH frame and absolute imports/global state; not plain field body; t=1m model=gpt-5.6
+?d_0046a540@@YAXXZ	0x0046A540	159	blocked	complex STL-style loop with two helper calls; not small straightforward body; t=2m model=gpt-5.6
+?d_006e9940@@YAXXZ	0x006E9940	183	blocked	global state, x87 math, and helper calls; not suitable simple clean candidate; t=2m model=gpt-5.6
+?d_00c70d90@@YAXXZ	0x00C70D90	28	blocked	absolute global state and tail jump; excluded by simple-candidate criteria; t=1m model=gpt-5.6
