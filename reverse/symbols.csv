@@ -76370,3 +76370,5 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ??0BfmeAttackNuggetBase@@QAE@XZ,0x0001B522,Open-BFME5 ILT the AttackNugget constructor at 0x0059EB00 calls its base through; it jumps to 0x00489210
 ?bfmeIterate@BfmeIterableObject@@QAEHP6AXPAVObject@@PAX@Z1@Z,0x0003DB68,Open-BFME5 ILT the per-object visit in Player::iterateObjects at 0x000CDCF0 calls; it jumps to 0x000EE770
 ?bfmeLookupPerUnitSound@BfmeOverridable@@QAEPBVAudioEventRTS@@ABVAsciiString@@@Z,0x0003B548,Open-BFME5 ILT the override-side lookup in ThingTemplate::getPerUnitSound at 0x00416FE0 goes through; it jumps to 0x001462D0
+?bfmeAllocateSorting@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F5B0,Open-BFME5 the 384-byte member the BoxDynamicVBAccessClass constructor calls when its first argument is 2
+?bfmeAllocateDynamic@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F040,Open-BFME5 the 274-byte member the BoxDynamicVBAccessClass constructor calls otherwise
