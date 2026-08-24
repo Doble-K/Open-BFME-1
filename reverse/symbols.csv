@@ -75807,3 +75807,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?bfmeGetBonus@Object@@QBE_NHPAM@Z,0x0000BECE,Open-BFME5 ILT thunk to body 0x001BFDB0; ?getAttackRange@WeaponTemplate@@QBEM... at 0x001E2730 queries bonus 6 on the source object through it with an out pointer; address-derived name
 ?bfmeApplyBonuses@WeaponBonusSet@@QBEXIAAVWeaponBonus@@@Z,0x0002272D,Open-BFME5 ILT thunk to body 0x001E1CA0; ?computeBonus@Weapon@@IBEXPBVObject@@IAAVWeaponBonus@@@Z at 0x001E2840 calls it twice on the set from TheWritableGlobalData +0xB94 and on the one at +0x4A8 of the template at this+4; address-derived name
 ?TheBfmeMixFileInfoCount@@3HA,0x012F1098,Open-BFME5 counter ?releaseInto@MixFileInfoBuffer@@QAEXPAX@Z at 0x003F6E10 decrements once per release; address-derived name
+??0BfmeRecorderStore@@QAE@XZ,0x00016D47,Open-BFME5 ILT thunk to body 0x00098EA0; ??0RecorderClass@@QAE@XZ at 0x000993E0 constructs the member at +0x20 through it; address-derived name
+?bfmeInit@RecorderClass@@AAEXXZ,0x0000B721,Open-BFME5 ILT thunk to body 0x00098050; ??0RecorderClass@@QAE@XZ at 0x000993E0 calls it on this as the last thing it does; address-derived name
