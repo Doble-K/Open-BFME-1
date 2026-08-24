@@ -23108,3 +23108,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_009c9960@@YAXXZ,0x009C9960,"gen-dump placeholder retired: converted to the plain _STL::_Rb_tree::insert_unique in Code/Libraries/Source/WWVegas/WWLib/RvaTreeInsertUniquePlain.cpp"
 ?d_009cf660@@YAXXZ,0x009CF660,"gen-dump placeholder retired: converted to the plain _STL::_Rb_tree::insert_unique in Code/Libraries/Source/WWVegas/WWLib/RvaTreeInsertUniquePlain.cpp"
 ?d_009cf860@@YAXXZ,0x009CF860,"gen-dump placeholder retired: converted to the plain _STL::_Rb_tree::insert_unique in Code/Libraries/Source/WWVegas/WWLib/RvaTreeInsertUniquePlain.cpp"
+?m@Gen_00942f20@@QAEPADXZ,0x00942F20,"generated accessor shim superseded by the proven CameraClass::Get_View_Space_Frustum identity in Code/Libraries/Source/WWVegas/WW3D2/CameraClass_Get_View_Space_Frustum.cpp"

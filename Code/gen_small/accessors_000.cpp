@@ -7,7 +7,6 @@
 
 extern volatile float g_01075954;
 struct AccessWord { unsigned value; };
-struct Gen_00942f20; struct CameraClass { protected: void Update_Frustum() const; friend struct Gen_00942f20; };
 
 struct Gen_000c9040 { bool m(); };
 bool Gen_000c9040::m() { int value = *(int *)((char *)this + 56); return value != 0; }
@@ -41,8 +40,6 @@ struct Gen_007fbbb0 { int m(int a, int b); };
 int Gen_007fbbb0::m(int a, int b) { return *(int *)((char *)a + 640); }
 struct Gen_00928ee0 { int m(int a); };
 int Gen_00928ee0::m(int a) { return ((int *)*(int **)((char *)this + 8))[a]; }
-struct Gen_00942f20 { char *m(); };
-char *Gen_00942f20::m() { ((CameraClass *)this)->Update_Frustum(); return (char *)this + 404; }
 struct Gen_005241e0 { unsigned short m(int a, int b); };
 unsigned short Gen_005241e0::m(int a, int b) { return (unsigned short)a; }
 struct Gen_0056b9e0 { unsigned short m(int a, int b); };
