@@ -4,6 +4,7 @@ class Gen0002857E
 {
 public:
 	void handle();
+	void release();
 };
 
 class Rva00690FF0Handle
@@ -50,4 +51,24 @@ Rva00691110Handle::Rva00691110Handle(const Rva00691110Handle &other)
 	m_target = target;
 	if (target)
 		target->handle();
+}
+
+class Rva00691040Handle
+{
+public:
+	Rva00691040Handle &operator=(const Rva00691040Handle &other);
+
+	Gen0002857E *m_target;
+};
+
+Rva00691040Handle &Rva00691040Handle::operator=(const Rva00691040Handle &other)
+{
+	Gen0002857E *target = other.m_target;
+	Gen0002857E *old = m_target;
+	m_target = target;
+	if (target)
+		target->handle();
+	if (old)
+		old->release();
+	return *this;
 }
