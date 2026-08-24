@@ -5668,3 +5668,4 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_007287e0@@YAXXZ	0x007287E0	21	blocked	clean C++ semantics confirmed; clang-cl emits c7 immediate and EAX pointer, target requires b8/89 and ECX pointer;  t=18m model=gpt-5.6
 ?fillPattern@Rva006994F0@@QAEXXZ	0x006994F0	21	blocked	t=18m Codex; semantics proven, but current compiler unrolls memset/fill into stores or saves ecx before rep stosd; intrinsic unavailable in configured headers and external declaration does not inline; no exact clean C++ shape landed
 ?d_005232d0@@YAXXZ	0x005232D0	20	blocked	clean C++ pointer comparison matches semantics but compiler uses caller-saved registers and omits retail ESI save/restore; t=8m model=gpt-5.6
+?d_0006c450@@YAXXZ	0x0006C450	8	blocked	candidate address is already claimed by real ContestableContain alias row; no ledger takeover permitted; t=2m model=gpt-5.6
