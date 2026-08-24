@@ -75686,3 +75686,7 @@ _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object wrappers at 0x003D57F0 and 0x003D5810 forward through; it jumps to 0x003FA5B0
 ?bfmeLookupSound@ThingTemplate@@ABEPBVAudioEventRTS@@H@Z,0x0000286A,Open-BFME5 ILT ThingTemplate::getSound at 0x00416FA0 looks the sound up through; it jumps to 0x00416F20
 ?BfmeTheEmptyAudioEvent@@3VAudioEventRTS@@A,0x012F1318,Open-BFME5 the shared empty audio event ThingTemplate::getSound at 0x00416FA0 falls back to; getPerUnitSound at 0x00416FE0 uses the same global
+?bfmeReset@BfmeMapObjectExtra@@QAEXXZ,0x00033F46,Open-BFME5 the thiscall WorldHeightMap::freeListOfMapObjects at 0x00746E90 tail-jumps into on the global object at 0x012ED5E0
+?BfmeTheMapObjectListHolder@@3PAVBfmeMapObjectListHolder@@A,0x012ED5DC,Open-BFME5 holds the map-object list head that freeListOfMapObjects at 0x00746E90 frees and clears
+?BfmeTheMapObjectExtra@@3VBfmeMapObjectExtra@@A,0x012ED5E0,Open-BFME5 the global object freeListOfMapObjects at 0x00746E90 resets; loaded as an immediate address so it is an object not a pointer
+?bfmeComputeStatus@Weapon@@ABE?AW4WeaponStatus@@PA_N@Z,0x0001E6A0,Open-BFME5 ILT Weapon::getStatus at 0x001E6EE0 computes the status through; the bool by pointer arrives pre-set to true and gates the cache write
