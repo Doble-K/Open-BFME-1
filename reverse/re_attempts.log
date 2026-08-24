@@ -5700,3 +5700,4 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_000a00b0@@YAXXZ	0x000A00B0	30	blocked	clean null-guarded three-dword copy matches data semantics but retail uses lea ecx,+0x24 and compiler folds direct stores; t=10m model=gpt-5.6
 ?d_000c9460@@YAXXZ	0x000C9460	26	blocked	clean record semantics match, but compiler loads destination before byte flag while retail loads flag first and keeps this in EAX; t=7m model=gpt-5.6
 ?configure@Rva007D87C0@@QAEXI@Z	0x007D87C0	114	blocked	t=12m Codex; branch/field semantics reproduced, but register allocation (eax vs required edx) and compare/constant lowering differ; no exact clean body
+?d_000a00e0@@YAXXZ	0x000A00E0	30	blocked	same null-guarded three-dword copy family: compiler direct stores versus retail lea destination; t=4m model=gpt-5.6
