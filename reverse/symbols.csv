@@ -75811,3 +75811,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?bfmeInit@RecorderClass@@AAEXXZ,0x0000B721,Open-BFME5 ILT thunk to body 0x00098050; ??0RecorderClass@@QAE@XZ at 0x000993E0 calls it on this as the last thing it does; address-derived name
 ?bfmeDrop@Rva003D8530Owner@@QAEXPAX@Z,0x00016DB0,Open-BFME5 ILT thunk to body 0x003D8530; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it on the sub-object at +0x0C of _TheAIParseDefinitionAI for each live slot whose kind is one of four; address-derived name
 ?bfmeFlush@Rva003D8530Owner@@QAEXXZ,0x00009787,Open-BFME5 ILT thunk to body 0x003D55C0; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it once on the same sub-object after the slot loop; address-derived name
+?bfmeClearMembers@@YAXPAVLGA_MemberObj@@@Z,0x00034DC9,Open-BFME5 ILT thunk to body 0x003D4080; ??1LGA_MemberObj@@QAE@XZ at 0x003D4490 calls it on this as a cdecl of one pointer before its member vector is released; address-derived name
