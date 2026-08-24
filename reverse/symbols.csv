@@ -78640,3 +78640,4 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeLookup_001c6340@@YAHPAX@Z,0x00026A3F,Open-BFME5 ILT the bit setter at 0x001C6340 calls
 ?bfmeLookup_001c63d0@@YAHPAX@Z,0x0004B218,Open-BFME5 ILT the bit setter at 0x001C63D0 calls
 ?finish@Rva0022BDE0Obj@@QAEXPAVObject@@@Z,0x00041E34,Open-BFME5 pin for 0x0022BDE0 finish call through ILT to 0x0022E340
+?handle@Gen0002857E@@QAEXXZ,0x0002857E,address-derived callee of Rva00690FF0Handle; ILT to 0x006BA1D0
