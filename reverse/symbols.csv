@@ -75683,3 +75683,4 @@ _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 ?bfmeTest@Rva2225E0Filter@@AAE_NPAVBfmeOverridable@@_N@Z,0x0001B437,Open-BFME5 ILT the filter test whose result Rva2225E0Filter::accepts at 0x003A04A0 returns
 ??0BfmeBinkPlayerMember@@QAE@XZ,0x0002833F,Open-BFME5 ILT the member constructor BinkVideoPlayer at 0x00691230 calls for its member at +0x0C
 ?bfmeQuery@Pathfinder@@QAEXPAVObject@@PAH1@Z,0x000461FF,Open-BFME5 ILT the TightenPathStruct constructor at 0x003E1720 queries the pathfinder through; the two pointer arguments are the outputs at +0x0C and +0x10
+_BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object wrappers at 0x003D57F0 and 0x003D5810 forward through; it jumps to 0x003FA5B0
