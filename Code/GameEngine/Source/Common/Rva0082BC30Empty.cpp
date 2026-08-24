@@ -11,3 +11,19 @@ void rva0082BC40Swap(int *a, int *b)
 	*a = *b;
 	*b = tmp;
 }
+
+class Rva0082BFD0Slot
+{
+public:
+	Rva0082BFD0Slot *assignFrom(const int *src);
+
+private:
+	int m_value;
+};
+
+Rva0082BFD0Slot *Rva0082BFD0Slot::assignFrom(const int *src)
+{
+	int tmp = *src;
+	m_value = tmp;
+	return this;
+}
