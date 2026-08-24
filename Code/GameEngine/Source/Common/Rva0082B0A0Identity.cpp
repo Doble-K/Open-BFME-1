@@ -132,3 +132,14 @@ int *Rva0082B1D0PointerRange::alternateElementAt(int index)
     int *result = m_first;
     return result + index;
 }
+
+class Rva0082B060Identity
+{
+public:
+    Rva0082B060Identity *self();
+};
+
+Rva0082B060Identity *Rva0082B060Identity::self()
+{
+    return this;
+}
