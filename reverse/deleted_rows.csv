@@ -23465,3 +23465,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_0082af60@@YAXXZ,0x0082AF60,"gen-dump placeholder retired: converted to Rva0082AF60Exc dtor in Code/Libraries/Source/WWVegas/WWLib/STLBadAllocDtor.cpp"
 ?d_0082afb0@@YAXXZ,0x0082AFB0,"gen-dump placeholder retired: converted to Rva0082AFB0Add::add in Code/GameEngine/Source/Common/Rva0082AFB0Add.cpp"
 ?d_0082afd0@@YAXXZ,0x0082AFD0,"gen-dump placeholder retired: converted to Rva0082AFD0Add::add in Code/GameEngine/Source/Common/Rva0082AFB0Add.cpp"
+?d_0082ae20@@YAXXZ,0x0082AE20,"gen-dump placeholder retired: converted to Rva0082AE20Off::field in Code/GameEngine/Source/Common/Rva0082AE20Off.cpp"
