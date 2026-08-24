@@ -14,3 +14,18 @@ Rva0082B290Slot *Rva0082B290Slot::set(int value)
 	m_value = value;
 	return this;
 }
+
+class Rva0082B2B0Slot
+{
+public:
+	Rva0082B2B0Slot *set(int value);
+
+private:
+	int m_value;
+};
+
+Rva0082B2B0Slot *Rva0082B2B0Slot::set(int value)
+{
+	m_value = value;
+	return this;
+}
