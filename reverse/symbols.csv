@@ -75717,3 +75717,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeHorzLineUninitializedFillN@_STL@@YAPAUHorzLine@@PAU2@IABU2@ABU__false_type@1@@Z,0x0002E91A,Open-BFME5 ILT for the shared 12-byte-element _STL::__uninitialized_fill_n at 0x00068CA0
 ?BfmeElementConstruct@_STL@@YAXPAU?$pair@UICoord2D@@UCoord3D@@@1@ABU21@@Z,0x0002A400,Open-BFME5 ILT for _STL::_Construct on pair<ICoord2D Coord3D> as its vector _M_insert_overflow reaches it
 ?_M_clear@?$vector@U?$pair@UICoord2D@@UCoord3D@@@_STL@@V?$allocator@U?$pair@UICoord2D@@UCoord3D@@@_STL@@@2@@_STL@@IAEXXZ,0x0002A914,Open-BFME5 ILT for the vector<pair<ICoord2D Coord3D>> teardown reached from _M_insert_overflow
+?BfmeWeaponRecoilInfoUninitializedCopy@_STL@@YAPAUWeaponRecoilInfo@W3DModelDraw@@PAU23@00ABU__false_type@1@@Z,0x00027525,Open-BFME5 ILT for _STL::__uninitialized_copy on W3DModelDraw WeaponRecoilInfo at 0x0020E2C0
+?BfmeWeaponRecoilInfoUninitializedFillN@_STL@@YAPAUWeaponRecoilInfo@W3DModelDraw@@PAU23@IABU23@ABU__false_type@1@@Z,0x00049459,Open-BFME5 ILT for _STL::__uninitialized_fill_n on W3DModelDraw WeaponRecoilInfo at 0x0020E310
