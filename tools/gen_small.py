@@ -1718,6 +1718,53 @@ SKELETONS = [
     Skeleton("vcall-null-0", "8B 09 85 C9 74 06 8B 01 6A 01 FF 10 C3", "void", "",
              "QAEXXZ", "V_ *p = *(V_ **)this; if (p) p->v(1);",
              extern="struct V_ { virtual void v(int); };"),
+    # The accessor/predicate batch below is intentionally a closed recipe set.
+    # These patterns are admitted only through accessor_population(), which
+    # checks the live gen-dump row and the retail bytes before rendering.
+    Skeleton("access-pred-ne", "8B 51 {d:s8} 33 C0 85 D2 0F 95 C0 C3", "bool", "", "QAE_NXZ",
+             "int value = *(int *)((char *)this %(d_)s); return value != 0;"),
+    Skeleton("access-pred-eq2", "8B 51 {d:s8} 33 C0 83 FA 02 0F 94 C0 C3", "bool", "", "QAE_NXZ",
+             "int value = *(int *)((char *)this %(d_)s); return value == 2;"),
+    Skeleton("access-pred-eq0", "8B 51 {d:s8} 33 C0 85 D2 0F 94 C0 C3", "bool", "", "QAE_NXZ",
+             "int value = *(int *)((char *)this %(d_)s); return value == 0;"),
+    Skeleton("access-pred-pointee", "8B 41 {d:s8} 8B 10 33 C9 3B D0 0F 95 C1 8A C1 C3", "bool", "", "QAE_NXZ",
+             "unsigned *value = *(unsigned **)((char *)this %(d_)s); return *(unsigned *)value != (unsigned)value;"),
+    Skeleton("access-byte-index", "8B 44 24 04 8A 84 08 {d:s32} C2 04 00", "unsigned char", "int a", "QAEEH@Z",
+             "return *((unsigned char *)((char *)a + (int)this %(d_)s));"),
+    Skeleton("access-adjustor-if", "8A 41 {flag:s8} 84 C0 74 04 8D 41 {ret:s8} C3 33 C0 C3", "char *", "", "QAEPADXZ",
+             "if (*((char *)this %(flag_)s)) return (char *)this %(ret_)s; return 0;"),
+    Skeleton("access-float-index", "8B 44 24 04 D9 44 81 {d:s8} C2 04 00", "float", "int a", "QAEMH@Z",
+             "return ((float *)this)[a + 0x10];"),
+    Skeleton("access-float-indirect", "8B 41 {d:s8} D9 40 {f:s8} C3", "float", "", "QAEMXZ",
+             "return *(float *)((char *)*(int **)((char *)this %(d_)s) %(f_)s);"),
+    Skeleton("access-aggregate-store", "8B 89 {d:s32} 8B 44 24 04 89 08 C2 04 00", "AccessWord", "", "QAE?AUAccessWord@@XZ",
+             "return *(AccessWord *)((char *)this %(d_)s);",
+             extern="struct AccessWord { unsigned value; };"),
+    Skeleton("access-nested-d32", "8B 81 {d:s32} 8B 80 {f:s32} C3", "int", "", "QAEHXZ",
+             "return *(int *)((char *)*(int **)((char *)this %(d_)s) %(f_)s);"),
+    Skeleton("access-float-global", "D9 81 {d:s32} D8 0D {g:u32} C3", "float", "", "QAEMXZ",
+             "float value = *(float *)((char *)this %(d_)s); return value * g_01075954;",
+             extern="extern volatile float g_01075954;"),
+    Skeleton("access-arg-nested", "8B 44 24 04 8B 80 {d:s32} C2 08 00", "int", "int a, int b", "QAEHHH@Z",
+             "return *(int *)((char *)a %(d_)s);"),
+    Skeleton("access-array-index", "8B 41 {d:s8} 8B 4C 24 04 8B 04 88 C2 04 00", "int", "int a", "QAEHH@Z",
+             "return ((int *)*(int **)((char *)this %(d_)s))[a];"),
+    Skeleton("access-frustum", "56 8B F1 E8 {t:rel32} 8D 86 {d:s32} 5E C3", "char *", "", "QAEPADXZ",
+             "((CameraClass *)this)->Update_Frustum(); return (char *)this %(d_)s;",
+             extern=("struct Gen_00942f20; struct CameraClass { protected: "
+                     "void Update_Frustum() const; friend struct Gen_00942f20; };"),
+             pin=("?Update_Frustum@CameraClass@@IBEXXZ", "t")),
+    Skeleton("access-virtual-adjust", "83 C1 {d:s8} 8B 01 FF 60 {slot:u8}", "void", "", "QAEXXZ",
+             "((AccessVTable *)((char *)this %(d_)s))->v();",
+             extern=("struct AccessVTable { virtual void a0(); virtual void a1(); "
+                     "virtual void a2(); virtual void a3(); virtual void a4(); "
+                     "virtual void a5(); virtual void a6(); virtual void a7(); "
+                     "virtual void a8(); virtual void a9(); virtual void aa(); "
+                     "virtual void v(); };")),
+    Skeleton("access-short-arg", "66 8B 44 24 04 C2 08 00", "unsigned short", "int a, int b", "QAEGHH@Z",
+             "return (unsigned short)a;"),
+    Skeleton("access-or-imm", "81 49 {d:s8} {imm:u32} C3", "void", "", "QAEXXZ",
+             "*(unsigned *)((char *)this %(d_)s) |= %(imm)u;"),
 ]
 
 
@@ -1985,6 +2032,140 @@ def cmd_gen_getters(args):
     print(f"gen-getters: {source_rel}: {len(rows)} row(s), "
           f"{len(rows)} new row(s), 0 new pin(s)"
           + (" — file unchanged" if not changed and not pending_changed else ""))
+
+
+# --------------------------------------------------------------------------
+# closed accessor/predicate batch
+# --------------------------------------------------------------------------
+
+ACCESSOR_BATCH = (
+    (0x000C9040, "access-pred-ne"), (0x0026E740, "access-pred-ne"),
+    (0x002B9E40, "access-pred-ne"), (0x00180380, "access-pred-eq2"),
+    (0x00235140, "access-pred-eq0"), (0x0009ED10, "access-pred-pointee"),
+    (0x000C9CA0, "access-byte-index"), (0x0018F0B0, "access-adjustor-if"),
+    (0x001DE210, "access-float-index"), (0x0020E860, "access-float-indirect"),
+    (0x0020FAC0, "access-aggregate-store"), (0x00233F20, "access-nested-d32"),
+    (0x002C60C0, "access-nested-d32"), (0x0073A6B0, "access-float-global"),
+    (0x007FBBB0, "access-arg-nested"), (0x00928EE0, "access-array-index"),
+    (0x00942F20, "access-frustum"), (0x002176C0, "access-virtual-adjust"),
+    (0x005241E0, "access-short-arg"), (0x0056B9E0, "access-short-arg"),
+    (0x0044F350, "access-or-imm"),
+)
+ACCESSOR_NOTE = "gen-shim;accessor-batch"
+
+
+def accessor_paths(batch):
+    if batch < 0:
+        raise FormatError(f"accessor batch must be non-negative, got {batch}")
+    return (GEN_DIR / f"accessors_{batch:03d}.cpp",
+            PENDING_DIR / f"accessors_{batch:03d}.json")
+
+
+def accessor_population(rows=None, read=None):
+    """Read the fixed batch's live dump rows and prove every recipe shape.
+
+    This is deliberately not a byte-pattern scan. A candidate remains eligible
+    only while its ledger row is a matched gen-dump with the original extent;
+    any row, size, or retail-byte drift aborts the run.
+    """
+    if rows is None:
+        rows = B.load_all_function_rows()
+    if read is None:
+        read = exe_reader()
+    by_rva = {int(row["target_rva"], 16): row for row in rows}
+    out = []
+    for rva, key in ACCESSOR_BATCH:
+        row = by_rva.get(rva)
+        if row is None:
+            raise FormatError(f"accessor batch row 0x{rva:08X} is missing")
+        if row.get("status") != "matched" or not row.get("notes", "").startswith("gen-dump;"):
+            raise FormatError(f"accessor batch row 0x{rva:08X} is not a live gen-dump")
+        source = row.get("source", "")
+        if not source.startswith("Code/gen_asm/"):
+            raise FormatError(f"accessor batch row 0x{rva:08X} moved out of gen_asm: {source}")
+        size = int(row["target_size"])
+        body = read(rva, size)
+        if len(body) != size:
+            raise FormatError(f"accessor batch row 0x{rva:08X} reads {len(body)} bytes, expected {size}")
+        skeleton = next(s for s in SKELETONS if s.key == key)
+        ops = match_pattern(PATTERNS[key], body, rva)
+        if ops is None:
+            raise FormatError(f"accessor recipe {key} no longer matches 0x{rva:08X}: {body.hex(' ')}")
+        out.append((rva, body, row, skeleton, ops))
+    return out
+
+
+def render_accessors(picked, batch=0, optimized=False):
+    lines = [
+        *(["// cl: /O1"] if optimized else []),
+        f"// Generated by: python3 tools/gen_small.py gen-accessors --batch {batch}",
+        "// Do not edit by hand; regenerate instead.",
+        "//",
+        "// This immutable TU is emitted only from the closed, byte-validated accessor",
+        "// batch. Every row remains marked gen-shim: the synthetic recipe proves bytes",
+        "// and does not claim a recovered retail identity.",
+        "",
+    ]
+    externs = []
+    rendered = []
+    for rva, _, _, skeleton, ops in picked:
+        extern, body_lines = shim_lines(rva, skeleton, ops)
+        if extern is not None and extern not in externs:
+            externs.append(extern)
+        rendered.extend(body_lines)
+    lines += sorted(externs)
+    if externs:
+        lines.append("")
+    lines += rendered
+    return "\n".join(lines) + "\n"
+
+
+def cmd_gen_accessors(args):
+    ledger_rows = B.load_all_function_rows()
+    source_path, pending_path = accessor_paths(args.batch)
+    source_rel = source_path.relative_to(ROOT).as_posix()
+    special_rel = (GEN_DIR / "accessor_002176c0.cpp").relative_to(ROOT).as_posix()
+    by_rva = {int(row["target_rva"], 16): row for row in ledger_rows}
+    if all(by_rva.get(rva, {}).get("source") in (source_rel, special_rel)
+           and by_rva.get(rva, {}).get("notes", "").startswith(ACCESSOR_NOTE)
+           for rva, _ in ACCESSOR_BATCH):
+        print(f"gen-accessors: batch {args.batch}: 0 new — immutable rows already landed")
+        return
+    picked = accessor_population()
+    special_rva = 0x002176C0
+    special_path = GEN_DIR / "accessor_002176c0.cpp"
+    special_rel = special_path.relative_to(ROOT).as_posix()
+    ordinary = [item for item in picked if item[0] != special_rva]
+    special = [item for item in picked if item[0] == special_rva]
+    text = render_accessors(ordinary, args.batch)
+    special_text = render_accessors(special, args.batch, optimized=True)
+    _, claimed_names, _ = load_claims()
+    rows, pins = [], []
+    for rva, body, ledger_row, skeleton, ops in picked:
+        name = shim_symbol(rva, skeleton)
+        existing = claimed_names.get(name)
+        if existing is not None and existing != rva:
+            raise FormatError(f"{name} already claims 0x{existing:08X}, not 0x{rva:08X}")
+        row_source = special_rel if rva == special_rva else source_rel
+        rows.append(format_row(name, rva, len(body), row_source,
+                               f"{ACCESSOR_NOTE};skeleton={skeleton.key};source={ledger_row['source']}"))
+        pin = shim_pin(skeleton, ops)
+        if pin is not None:
+            pins.append(format_pin(pin[0], pin[1], "accessor-batch call target"))
+        if skeleton.key == "access-float-global":
+            pins.append(format_pin("?g_01075954@@3MC", 0x01075954,
+                                   "accessor-batch external float"))
+    ensure_generated_text(source_path, text)
+    ensure_generated_text(special_path, special_text)
+    pending = json.dumps({"source": source_rel, "sources": [source_rel, special_rel],
+                          "rows": rows, "pins": pins}, indent=1) + "\n"
+    ensure_generated_text(pending_path, pending)
+    changed = _write_if_changed(source_path, text)
+    special_changed = _write_if_changed(special_path, special_text)
+    pending_changed = _write_if_changed(pending_path, pending)
+    print(f"gen-accessors: {source_rel}: {len(picked)} row(s), "
+          f"{sum(len(body) for _, body, _, _, _ in picked)} bytes, {len(pins)} pin(s)"
+          + (" — file unchanged" if not changed and not special_changed and not pending_changed else ""))
 
 
 def population(entries, read, blacklist):
@@ -4792,11 +4973,13 @@ def cmd_land(args):
     if batch["source"] != source_rel:
         raise SystemExit(f"gen_small: {pending_path.name} describes {batch['source']}, "
                          f"not {source_rel}")
-    source_path = ROOT / source_rel
-    if not source_path.exists():
-        raise SystemExit(f"gen_small: {source_rel} does not exist — regenerate the batch")
-    land_batch(batch["rows"], batch["pins"], [source_rel],
-               stage=(source_rel, source_path, pending_path))
+    sources = batch.get("sources", [source_rel])
+    source_paths = [ROOT / source for source in sources]
+    missing = [source for source, path in zip(sources, source_paths) if not path.exists()]
+    if missing:
+        raise SystemExit(f"gen_small: generated source(s) missing: {', '.join(missing)}")
+    land_batch(batch["rows"], batch["pins"], sources,
+               stage=(sources, source_paths, pending_path))
 
 
 def cmd_land_funclets(args):
@@ -4863,11 +5046,15 @@ def land_batch(rows, pins, selectors, stage=None):
     # here and breaks every other clone — so the batch must be staged before it can
     # be proved. It is this commit unit's own file: a specific path, never `add .`.
     staged = False
+    staged_sources = []
     if stage is not None:
-        source_rel, source_path, pending_path = stage
-        if git("ls-files", "--error-unmatch", "--", source_rel).returncode != 0:
-            git("add", "--", source_rel, check=True)
-            staged = True
+        source_rels, source_paths, pending_path = stage
+        if isinstance(source_rels, str):
+            source_rels, source_paths = [source_rels], [source_paths]
+        for source_rel, source_path in zip(source_rels, source_paths):
+            if git("ls-files", "--error-unmatch", "--", source_rel).returncode != 0:
+                git("add", "--", source_rel, check=True)
+                staged_sources.append((source_rel, source_path))
     print(f"land: appended {len(to_append)} row(s) and {len(new_pins)} pin(s) "
           f"({landed} already landed, {len(to_retract)} dump row(s) superseded)")
 
@@ -4875,13 +5062,14 @@ def land_batch(rows, pins, selectors, stage=None):
         B.FUNCTIONS.write_bytes(functions_raw)
         B.SYMBOLS.write_bytes(symbols_raw)
         DELETED.write_bytes(deleted_raw)
-        if staged:
-            git("rm", "--cached", "--quiet", "--", source_rel)
-            source_path.unlink()
+        if staged_sources:
+            for source_rel, source_path in staged_sources:
+                git("rm", "--cached", "--quiet", "--", source_rel)
+                source_path.unlink()
             pending_path.unlink()
         print(f"land: {reason} — {len(to_append)} row(s), {len(new_pins)} pin(s), "
               f"{len(to_retract)} retraction(s)"
-              + (f" and {source_rel}" if staged else "") + " REVERTED", file=sys.stderr)
+              + (f" and {len(staged_sources)} generated source(s)" if staged_sources else "") + " REVERTED", file=sys.stderr)
 
     verify = ([sys.executable, str(ROOT / "tools" / "build.py"), *selectors]
               if sys.platform == "win32" else [str(ROOT / "build.sh"), *selectors])
@@ -4965,6 +5153,11 @@ def main(argv=None):
     getters.add_argument("--dry-run", action="store_true",
                          help="report the exact population without writing files")
     getters.set_defaults(func=cmd_gen_getters)
+    accessors = sub.add_parser(
+        "gen-accessors",
+        help="write the closed byte-validated accessor/predicate batch")
+    accessors.add_argument("--batch", type=int, default=0)
+    accessors.set_defaults(func=cmd_gen_accessors)
     sub.add_parser("shim-report", help="account for every anonymous FUN_* body"
                    ).set_defaults(func=cmd_shim_report)
     named = sub.add_parser("gen-named",
