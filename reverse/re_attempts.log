@@ -5684,3 +5684,8 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_00644300@@YAXXZ	0x00644300	50	blocked	allocator/global calls and branch helper targets; not plain field body; t=1m model=gpt-5.6
 ?d_00c1eb38@@YAXXZ	0x00C1EB38	17	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
 ?d_0034f9d0@@YAXXZ	0x0034F9D0	25	blocked	pointer relink semantics recovered but MSVC argument/register/branch order does not match after two clean shapes; t=6m model=gpt-5.6
+?d_004ce910@@YAXXZ	0x004CE910	88	blocked	global state and virtual/call dispatch; not straightforward field body; t=1m model=gpt-5.6
+?d_002f4ca0@@YAXXZ	0x002F4CA0	88	blocked	global manager and virtual dispatch; not straightforward field body; t=1m model=gpt-5.6
+?d_00928620@@YAXXZ	0x00928620	76	blocked	helper calls and multi-path object logic; not plain field/arithmetic body; t=1m model=gpt-5.6
+?d_00c55d60@@YAXXZ	0x00C55D60	31	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
+?d_00383980@@YAXXZ	0x00383980	66	blocked	global managers and virtual/call dispatch; not straightforward field body; t=1m model=gpt-5.6
