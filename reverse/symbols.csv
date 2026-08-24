@@ -76385,3 +76385,16 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmePushBackAux@Gen_00369e30@@IAEXABQAX@Z,0x00036C82,Open-BFME5 ILT the deque push_back at 0x00369E30 tail-jumps through
 ?bfmePushBackAux@Gen_00647430@@IAEXABQAX@Z,0x000399D7,Open-BFME5 ILT the deque push_back at 0x00647430 tail-jumps through
 ?bfmeDefer@Gen_002d60a0@@AAE_NPAVObject@@@Z,0x0000204F,Open-BFME5 ILT the guard at 0x002D60A0 tail-jumps through; it jumps to 0x002D9D00
+?bfmeMatchRaw@Gen_002da6b0@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DA6B0 calls
+?bfmeMatchRaw@Gen_002da6d0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DA6D0 calls
+?bfmeMatchRaw@Gen_002dad40@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DAD40 calls
+?bfmeMatchRaw@Gen_002db220@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DB220 calls
+?bfmeMatchRaw@Gen_002dcc60@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DCC60 calls
+?bfmeMatchRaw@Gen_002dd290@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DD290 calls
+?bfmeMatchRaw@Gen_002ddc80@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DDC80 calls
+?bfmeMatchRaw@Gen_002ddca0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DDCA0 calls
+?bfmeMatchRaw@Gen_002de220@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DE220 calls
+?bfmeMatchRaw@Gen_002de840@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DE840 calls
+?bfmeMatchRaw@Gen_002dec00@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DEC00 calls
+?bfmeMatchRaw@Gen_002df4c0@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4C0 calls
+?bfmeMatchRaw@Gen_002df4e0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4E0 calls
