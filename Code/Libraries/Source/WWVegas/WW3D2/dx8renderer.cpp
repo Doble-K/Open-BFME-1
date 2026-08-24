@@ -43,6 +43,8 @@
 //#define ENABLE_CATEGORY_LOG
 //#define ENABLE_STRIPING
 
+#include "../WWLib/wwstring.h"
+#define MUTEX_H
 #include "dx8renderer.h"
 #include "dx8wrapper.h"
 #include "dx8polygonrenderer.h"
