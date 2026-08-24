@@ -5762,3 +5762,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00589640@@YAXXZ	0x00589640	9	no-match	t=5m model=gpt-5.6; direct byte getter omits mask, volatile masked form widens movzx/and eax; no clean exact shape
 ?d_00291bb0@@YAXXZ	0x00291BB0	26	blocked	t=10m Codex; pointer-transition semantics matched, but compiler emitted opposite branch layout, c7 -1, and full return constants versus retail dec/al shapes; reverted
 ?d_00858120@@YAXXZ	0x00858120	26	blocked	t=8m Codex; value-or-one semantics matched, but compiler constant-folded zero != 5 to immediate 1, unlike retail comparison/setne sequence; reverted
+?d_00433780@@YAXXZ	0x00433780	35	blocked	t=5m model=Codex-ocx-native--gpt-5.6-luna; state and pointer reset exact except compiler emits je for state==4 skip while retail emits jne store; alternate equivalent condition shapes not yet identity-safe
