@@ -5708,3 +5708,8 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00707000@@YAXXZ	0x00707000	28	blocked	clean pointer export/count increment semantics match, but retail preserves this via push/pop and clears saved stack slot; compiler emits direct parameter code; t=7m model=gpt-5.6
 ?d_0074ac00@@YAXXZ	0x0074AC00	37	blocked	clean signed-short expansion loop matches semantics, but compiler emits pointer-bound loop while retail computes count via subtract/sar; t=8m model=gpt-5.6
 ?notifyLauncher@CopyProtect@@SA_NXZ	0x001020D0	198	blocked	reference identity/source reproduces 188/198 non-relocation bytes; remaining conditional branch polarity/layout differs and retail extent truncates at continuation; t=12m model=gpt-5.6
+?d_00089d90@@YAXXZ	0x00089D90	32	blocked	pointer append semantics clean but compiler loads end before begin versus retail begin-first; t=4m model=gpt-5.6
+?d_0082c2a0@@YAXXZ	0x0082C2A0	34	blocked	pointer copy semantics straightforward but target has compiler-generated frame/local stack shape absent from clean expression after two shapes; t=4m model=gpt-5.6
+?d_00707000@@YAXXZ	0x00707000	28	blocked	refcounted store semantics recovered but compiler omits target this save/push and reorders field operations after two shapes; t=5m model=gpt-5.6
+?d_0068d990@@YAXXZ	0x0068D990	33	blocked	bounded byte-copy semantics recovered but compiler hoists/reduces pointer increment and misses target lea/deref order after three clean shapes; t=7m model=gpt-5.6
+?d_0082b290@@YAXXZ	0x0082B290	24	blocked	pointer store semantics straightforward but retail frame/local stack shape cannot be reproduced by clean C++ after direct and volatile-local forms; t=4m model=gpt-5.6
