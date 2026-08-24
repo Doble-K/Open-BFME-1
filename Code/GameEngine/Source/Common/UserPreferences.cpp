@@ -292,7 +292,6 @@ Bool QuickMatchPreferences::isMapSelected(const AsciiString& mapName)
 	return (ret != 0);
 }
 
-// ?setLastLadder@QuickMatchPreferences@@QAEXABVAsciiString@@G@Z present-unmatched
 void QuickMatchPreferences::setLastLadder(const AsciiString& addr, UnsignedShort port)
 {
 	AsciiString strVal;

@@ -74457,7 +74457,6 @@ name,address,notes
 ?set@NetFileProgressSetProgressShim@@QAEXH@Z,0x006740B0,NetFileProgressCommandMsg setProgress incremental-link thunk target through a TU-local forwarding shim
 ?set@ObjectSetStatusShim@@QAEXV?$BitFlags@$0CN@@@_N@Z,0x0019A470,Object setStatus incremental-link thunk target through a TU-local forwarding shim
 ?set@ParseStringData@@QAEXPBDH@Z,0x00887D20,retail call target from parseSystemCallback (0x487818): shared two-arg string setter body
-?set@QuickMatchPreferencesSetLastLadderShim@@QAEXABVAsciiString@@G@Z,0x000AD140,QuickMatchPreferences setLastLadder incremental-link thunk target through a TU-local forwarding shim
 ?set@RetailLayoutString@@QAEXPBDH@Z,0x00887D20
 ?set@Rva00802810Element@@QAEXPBVRva007F4EF0Lobby@@PAVRva007F7980Browser@@@Z,0x00802810,V2 lane: 64-byte browser lobby element fill from a lobby record
 ?set@Rva00802DF0Element@@QAEXPBVRva007F4E50Region@@PAVRva007F7980Browser@@@Z,0x00802DF0,V2 lane: 28-byte browser region element fill from a region record
@@ -74542,7 +74541,6 @@ name,address,notes
 ?setLadderIP@GameSpyStagingRoom@@QAEXVAsciiString@@@Z,0x004D4810,add ecx 0x444 then AsciiString assign 0x00887C90 from the by-value argument (released at exit); ILT 0x0003FB2F called with ecx = TheGameSpyGame 0x012F7198 at 0x004FCB97 0x0053E1A8 0x00507335 0x00507357 (ZH StagingRoomGameInfo.h:129 inline)
 ?setLadderPort@GameSpyStagingRoom@@QAEXG@Z,0x004D3E40,mov word [this+0x450] = arg; ret 4 (ZH StagingRoomGameInfo.h:131 inline); out-of-line copy with no callers (every live write is inlined: 0x0053E655 host 0x004FCBA9/0x0053EB3D/0x0053E1BA joiners 0x0050733F/0x00507365 quickmatch); ILT 0x0001F807
 ?setLastLadder@CustomMatchPreferences@@QAEXABVAsciiString@@G@Z,0x00046E43
-?setLastLadder@QuickMatchPreferences@@QAEXABVAsciiString@@G@Z,0x00029B36
 ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z,0x00035E0E,SpawnPoint exit BFME object layer setter
 ?setLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEXE@Z,0x00030C56,pinharvest x1 (thunk)
 ?setLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEXE@Z,0x0003C44D,pinharvest x1 (thunk)
