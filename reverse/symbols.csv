@@ -75726,3 +75726,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?nodeDeallocate@_STL@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 STLport node allocator deallocate as the _Rb_tree _M_erase body reaches it
 ?nodeAllocate@_STL@@YAPAXI@Z,0x0082E540,Open-BFME5 STLport node allocator allocate as the _Rb_tree _M_copy body reaches it
 ?BfmeNodeValueConstruct@_STL@@YAXPAXPBX@Z,0x000366E2,Open-BFME5 ILT for the _STL::_Construct that clones a 0x38-byte _Rb_tree node value at 0x00761A60
+?BfmeWeaponTemplateSetUninitializedCopy@_STL@@YAPAVWeaponTemplateSet@@PAV2@00ABU__false_type@1@@Z,0x0003D5C8,Open-BFME5 ILT for _STL::__uninitialized_copy on WeaponTemplateSet at 0x002E2FD0
