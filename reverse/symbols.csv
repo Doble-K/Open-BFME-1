@@ -75647,3 +75647,4 @@ _ciSetChannelPassword,0x00871D80,gamespy-chat: sets channel password
 ??$_Construct@U?$pair@$$CBW4NameKeyType@@P6APAVTransition@@XZ@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@P6APAVTransition@@XZ@0@ABU10@@Z,0x0003D122,Open-BFME5 ILT the NameKeyType-to-Transition-factory hashtable _M_insert at 0x0048B2C0 copy-constructs the node value through
 _ciGetChannelPassword,0x00871E30,gamespy-chat: retrieves channel password
 _ciJoinCallbackCalled,0x00871E90,gamespy-chat: marks join callback called
+_ciWasJoinCallbackCalled,0x00871EF0,gamespy-chat: checks if join callback called
