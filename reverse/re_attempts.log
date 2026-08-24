@@ -5853,3 +5853,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?isAvailable@Rva001B3FE0@@QBE_NXZ	0x001B3FE0	41	blocked	t=12m model=Codex; semantics recovered, but MSVC branch layout emits je-to-body/long branches instead of retail jne-to-false short layout across three clean C++ shapes
 ?set@Rva007B5C6@@QAEXI@Z	0x0007B5C6	10	no-match	target uses edx for stack parameter; MSVC emits eax after two shapes t=8m model=luna
 ?initialize@Rva001B74A0@@QAEXI@Z	0x001B74A0	28	blocked	t=5m model=Codex; constant corrected to 0x0109DF3C but compiler omits required mov eax,this when zeroing stores; clean shape mismatch
+?invert@Rva001C3D40@@QAEXXZ	0x001C3D40	34	no-match	three-word bitwise-not shape differs in register/order; t=4m model=luna
