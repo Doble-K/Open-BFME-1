@@ -75736,3 +75736,15 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeBitFlags117UninitializedCopy@_STL@@YAPAV?$BitFlags@$0HF@@@PAV2@00ABU__false_type@1@@Z,0x00018FED,Open-BFME5 ILT for _STL::__uninitialized_copy on BitFlags<117> at 0x0074AA10
 ?BfmeBitFlags117UninitializedFillN@_STL@@YAPAV?$BitFlags@$0HF@@@PAV2@IABV2@ABU__false_type@1@@Z,0x0002E32F,Open-BFME5 ILT for _STL::__uninitialized_fill_n on BitFlags<117> at 0x00749450
 ?BfmeRunwayInfoUninitializedCopy@_STL@@YAPAURunwayInfo@ParkingPlaceBehavior@@PAU23@00ABU__false_type@1@@Z,0x00021A1C,Open-BFME5 ILT for _STL::__uninitialized_copy on ParkingPlaceBehavior RunwayInfo at 0x0074AAC0
+?BfmeRva00719AF0Copy@_STL@@YAPAURva00719AF0Element@@PAU2@00ABU__false_type@1@@Z,0x000216FC,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_copy at 0x00717B80
+?BfmeRva00719AF0FillN@_STL@@YAPAURva00719AF0Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x00025018,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x00717BD0
+?BfmeRva003DDF00Copy@_STL@@YAPAURva003DDF00Element@@PAU2@00ABU__false_type@1@@Z,0x0000B938,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_copy at 0x003D72E0
+?BfmeRva003DDF00FillN@_STL@@YAPAURva003DDF00Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x00017085,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x003D7330
+?BfmeRva00531220Copy@_STL@@YAPAURva00531220Element@@PAU2@00ABU__false_type@1@@Z,0x00017B9D,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_copy at 0x0052D110
+?BfmeRva00531220FillN@_STL@@YAPAURva00531220Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x00023A0B,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x0052D160
+?BfmeRva00573DB0Copy@_STL@@YAPAURva00573DB0Element@@PAU2@00ABU__false_type@1@@Z,0x00032FBF,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_copy at 0x00570880
+?BfmeRva00573DB0FillN@_STL@@YAPAURva00573DB0Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x0002932F,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x005708D0
+?BfmeRva0076B160Copy@_STL@@YAPAURva0076B160Element@@PAU2@00ABU__false_type@1@@Z,0x00021247,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_copy at 0x007615E0
+?BfmeRva0076B160FillN@_STL@@YAPAURva0076B160Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x00044094,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x0075E8B0
+?BfmeRva00197EA0Copy@_STL@@YAPAURva00197EA0Element@@PAU2@00ABU__false_type@1@@Z,0x000475FF,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_copy at 0x00192190
+?BfmeRva00197EA0FillN@_STL@@YAPAURva00197EA0Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x0003D4C4,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x001921E0
