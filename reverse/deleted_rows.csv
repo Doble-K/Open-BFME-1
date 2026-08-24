@@ -23287,3 +23287,5 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ?j_00369a50@@YAXXZ,0x00369A50,"five-byte tail jump absorbed into the 37-byte body at 0x00369A30 that jumps to it; a gap-thunk row only because the generator saw no matched row covering it."
 ?j_00369e50@@YAXXZ,0x00369E50,"five-byte tail jump absorbed into the 37-byte body at 0x00369E30 that jumps to it; a gap-thunk row only because the generator saw no matched row covering it."
 ?j_00647450@@YAXXZ,0x00647450,"five-byte tail jump absorbed into the 37-byte body at 0x00647430 that jumps to it; a gap-thunk row only because the generator saw no matched row covering it."
+?j_00249c1f@@YAXXZ,0x00249C1F,"five-byte tail jump absorbed into the body at 0x00249C10 whose own branch targets it; a gap-thunk row only because the generator saw no matched row covering it."
+?j_002d60b9@@YAXXZ,0x002D60B9,"five-byte tail jump absorbed into the body at 0x002D60A0 whose own branch targets it; a gap-thunk row only because the generator saw no matched row covering it."
