@@ -5754,3 +5754,7 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_006dfc60@@YAXXZ	0x006DFC60	262	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; dense reset decoded, but clean loop collapses to rep stos and cannot reproduce retail sparse dword/byte store sequence
 ?d_009c4cc0@@YAXXZ	0x009C4CC0	301	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; eight-sample ushort-to-byte clamp decoded, but loop source compiles compact indexed loop instead of retail fully unrolled signed clamp sequence
 ?d_00840df0@@YAXXZ	0x00840DF0	221	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; bounded ushort sequence search decoded, but free-function ABI/decorated identity is not recovered and attempted symbol is absent from object
+?d_00402730@@YAXXZ	0x00402730	30	blocked	t=8m Codex; exact field-equality semantics reconstructed, but compiler selected opposite pointer/loaded-value registers and arithmetic compare shape; reverted
+?d_00402120@@YAXXZ	0x00402120	33	blocked	t=12m Codex; local signed-status score matched all byte/flag increments but compiler used edx/setns rather than retail eax/test/branch; reverted
+?d_006990b0@@YAXXZ	0x006990B0	28	blocked	t=15m Codex; state/delta semantics matched, but compiler generated wrong field register, branch distance, and optimized signed-shift test; reverted
+?d_001a3030@@YAXXZ	0x001A3030	37	blocked	t=18m Codex; constant initializer matched zero stores, but compiler chose edx/c7 forms instead of retail eax reload and stores; reverted
