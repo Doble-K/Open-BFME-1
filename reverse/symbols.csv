@@ -75814,3 +75814,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?bfmeClearMembers@@YAXPAVLGA_MemberObj@@@Z,0x00034DC9,Open-BFME5 ILT thunk to body 0x003D4080; ??1LGA_MemberObj@@QAE@XZ at 0x003D4490 calls it on this as a cdecl of one pointer before its member vector is released; address-derived name
 ?g_01075954@@3MC,0x01075954,accessor-batch external float
 ?Glo012F4C62@@3_NA,0x012F4C62,Open-BFME5 reentry flag ?updateMouseData@Mouse@@IAEXXZ at 0x005A42E0 sets across its event drain and clears afterwards; address-derived name
+?bfmeSetIndicatorOn@Drawable@@AAEX_N@Z,0x00018CF5,Open-BFME5 ILT thunk to body 0x004115A0; ?setIndicatorColor@Drawable@@QAEXI@Z at 0x004186E0 calls it on this from both of its arms with a true or a false; address-derived name
