@@ -42,6 +42,10 @@
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 #include "always.h"
+// FastAllocator's inline lock sites use the BFME spin-call model, not the
+// reference mutex.h class whose inline-asm constructor materializes a sentry.
+#include "../WWLib/wwstring.h"
+#define MUTEX_H
 #include "wwmemlog.h"
 #include "wwdebug.h"
 #include "vector.h"
