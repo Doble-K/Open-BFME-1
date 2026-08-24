@@ -15,3 +15,14 @@ Rva000BE720Elem *Rva000BE720Arr::at(int index)
 {
 	return ((Rva000BE720Elem *)this) + index;
 }
+
+class Rva00382950Arr
+{
+public:
+	Rva000BE720Elem *at(int index);
+};
+
+Rva000BE720Elem *Rva00382950Arr::at(int index)
+{
+	return ((Rva000BE720Elem *)this) + index;
+}
