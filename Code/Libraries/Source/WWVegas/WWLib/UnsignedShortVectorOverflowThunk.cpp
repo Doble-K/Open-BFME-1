@@ -18,23 +18,11 @@ protected:
 	void _M_insert_overflow(Type *, const Type &, const __true_type &, unsigned int, bool);
 };
 
-class UnsignedShortInsertOverflowShim
-{
-public:
-	void insert_overflow(unsigned short *pos, const unsigned short &x, const __true_type &tag, unsigned int fill_len, bool at_end);
-};
-
 class IntInsertOverflowShim
 {
 public:
 	void insert_overflow(int *pos, const int &x, const __true_type &tag, unsigned int fill_len, bool at_end);
 };
-
-void vector<unsigned short, allocator<unsigned short> >::_M_insert_overflow(
-	unsigned short *pos, const unsigned short &x, const __true_type &tag, unsigned int fill_len, bool at_end)
-{
-	((UnsignedShortInsertOverflowShim *)this)->insert_overflow(pos, x, tag, fill_len, at_end);
-}
 
 void vector<int, allocator<int> >::_M_insert_overflow(
 	int *pos, const int &x, const __true_type &tag, unsigned int fill_len, bool at_end)

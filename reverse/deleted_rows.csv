@@ -22593,3 +22593,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0082b270@@YAXXZ,0x0082B270,"gen-dump placeholder superseded by the real identity of these bytes: ?alternateElementAt@Rva0082B1D0PointerRange@@QAEPAHH@Z, byte-verified from Code/GameEngine/Source/Common/Rva0082B0A0Identity.cpp over the same 32-byte range. The gen_asm dump reproduces those bytes but carries no identity."
 ?d_003d4bd0@@YAXXZ,0x003D4BD0,"gen-dump placeholder superseded by ?get@Rva003D4BD0@@QAEFXZ."
 ?d_003d4be0@@YAXXZ,0x003D4BE0,"gen-dump placeholder superseded by ?getWord@Rva003D4BE0@@QAEGXZ."
+?_M_insert_overflow@?$vector@GV?$allocator@G@_STL@@@_STL@@IAEXPAGABGABU__true_type@2@I_N@Z,0x0000791E,"5-byte incremental-link thunk claim retired: the ILT at 0x0000791E jumps to 0x003C16A0 and that body now carries this name from Code/Libraries/Source/WWVegas/WWLib/VectorUnsignedShortInsertOverflowBody.cpp. One name = one address so the thunk row goes."

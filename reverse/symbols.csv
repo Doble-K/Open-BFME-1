@@ -75706,3 +75706,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?Rva00863C00@@YAXPAVRva00866770Owner@@@Z,0x00863C00,Open-BFME5 cdecl callee of one pointer that _peerStopGame at 0x00857E50 runs on the peer before looking at the field at +0xAF0; address-derived name
 ?Rva008667A0@@YAXPAVRva00866770Owner@@@Z,0x008667A0,Open-BFME5 cdecl callee of one pointer that _peerStopGame at 0x00857E50 runs on the peer when the field at +0x398 is set, where a clear field sends it to _piStopReporting instead; address-derived name
 ?bfmeStep@Glo012F1024Entry@@QAEXXZ,0x00015F50,Open-BFME5 ILT thunk to body 0x003A7320; ?step@Glo012F1024Type@@QAEXXZ at 0x003B3900 tail-jumps into it on the selected 32-byte entry; address-derived name
+?vectorSmallDeallocate@_STL@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 STLport vector small-block deallocator
