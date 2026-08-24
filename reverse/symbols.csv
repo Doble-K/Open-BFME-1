@@ -75690,3 +75690,6 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeTheMapObjectListHolder@@3PAVBfmeMapObjectListHolder@@A,0x012ED5DC,Open-BFME5 holds the map-object list head that freeListOfMapObjects at 0x00746E90 frees and clears
 ?BfmeTheMapObjectExtra@@3VBfmeMapObjectExtra@@A,0x012ED5E0,Open-BFME5 the global object freeListOfMapObjects at 0x00746E90 resets; loaded as an immediate address so it is an object not a pointer
 ?bfmeComputeStatus@Weapon@@ABE?AW4WeaponStatus@@PA_N@Z,0x0001E6A0,Open-BFME5 ILT Weapon::getStatus at 0x001E6EE0 computes the status through; the bool by pointer arrives pre-set to true and gates the cache write
+?bfmeGetID@BfmeDrawableWithID@@QAEIXZ,0x00009B01,Open-BFME5 ILT both drawable lookup-table wrappers at 0x00431C20 and 0x00430B50 read the id through
+?bfmeSlot@BfmeDrawableLookupTable@@QAEPAPAVDrawable@@ABI@Z,0x00034A95,Open-BFME5 ILT addDrawableToLookupTable at 0x00431C20 asks for the slot through
+?bfmeErase@BfmeDrawableLookupTable@@QAEXABI@Z,0x00043F31,Open-BFME5 ILT removeDrawableFromLookupTable at 0x00430B50 erases through
