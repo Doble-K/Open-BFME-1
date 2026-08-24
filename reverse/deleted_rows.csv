@@ -23267,5 +23267,6 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?setSize@Shadow@@QAEXMM@Z,0x0002133C,"five-byte incremental-link thunk claim retracted so the real body at 0x001E4250 can carry the name; the thunk bytes return to the gen-thunk pool."
 ?deleteAllFonts@FontLibrary@@IAEXXZ,0x000309CC,"five-byte incremental-link thunk claim retracted so the real body at 0x00722190 can carry the name; the thunk bytes return to the gen-thunk pool."
 ?makeEmpty@SimpleObjectIterator@@QAEXXZ,0x00015479,"five-byte incremental-link thunk claim retracted so the real body at 0x0040AD80 can carry the name; the thunk bytes return to the gen-thunk pool."
+?openDataChunk@DataChunkOutput@@QAEXPADG@Z,0x0003A256,"five-byte incremental-link member thunk claim retracted so the exact real body at 0x001041F0 can carry the name; the thunk bytes return to the gen-thunk pool."
 ??1PendingSurfaceStruct@Render2DSentenceClass@@QAE@XZ,0x00001F96,"five-byte incremental-link thunk claim retracted so the real body at 0x0005F5E0 can carry the name; the thunk bytes return to the gen-thunk pool."
 ??0HijackerUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003A382,"five-byte incremental-link constructor thunk claim retracted so the real body at 0x00295B20 can carry the name; the thunk bytes return to the gen-thunk pool."
