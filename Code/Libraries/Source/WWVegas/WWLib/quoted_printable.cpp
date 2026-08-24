@@ -28,7 +28,26 @@
 // Description: Quoted-printable encode/decode
 ////////////////////////////////////////////////////////////////////////////
 #include "prerts.h"
-#include "ascii_string.h"
+
+// The retail WWLib StringBase header is four fields wide: its character data
+// starts eight bytes after the object-owned data header.  Keep this TU-local
+// ABI view so the conversion bodies inline the proven retail access.
+class AsciiString
+{
+	void *m_data;
+public:
+	AsciiString();
+	AsciiString(const char *);
+	AsciiString(const AsciiString &);
+	bool hasData() const { return m_data != 0; }
+	const char *str() const
+	{
+		return m_data ? (const char *)((const char *)m_data + 8)
+		              : (const char *)0x0107388B;
+	}
+	const char *data() const { return (const char *)((const char *)m_data + 8); }
+	~AsciiString();
+};
 
 // WWLib's retail string header stores the data header at +0x00 and its UTF-16
 // payload at +0x08.  This TU only needs that proven view for the encoder; the
@@ -108,10 +127,9 @@ AsciiString UnicodeStringToQuotedPrintable(UnicodeString original)
 }
 
 // Convert ascii strings into ascii quoted-printable strings
-// ?AsciiStringToQuotedPrintable present-unmatched
 AsciiString AsciiStringToQuotedPrintable(AsciiString original)
 {
-	static char dest[1024];
+	static char *const dest = (char *)0x012EDDA8;
 	const char *src = (const char *)original.str();
 	int i=0;
 	while ( src[0]!='\0' && i<1021 )
@@ -119,8 +137,8 @@ AsciiString AsciiStringToQuotedPrintable(AsciiString original)
 		if (!isalnum(*src))
 		{
 			dest[i++] = MAGIC_CHAR;
-			dest[i++] = intToHexDigit((*src)>>4);
-			dest[i++] = intToHexDigit((*src)&0xf);
+			dest[i++] = intToHexDigit(((unsigned char)*src)>>4);
+			dest[i++] = intToHexDigit(((unsigned char)*src)&0xf);
 		} else
 		{
 			dest[i++] = *src;
@@ -186,39 +204,41 @@ UnicodeString QuotedPrintableToUnicodeString(AsciiString original)
 }
 
 // Convert ascii quoted-printable strings into ascii strings
-// ?QuotedPrintableToAsciiString present-unmatched
 AsciiString QuotedPrintableToAsciiString(AsciiString original)
 {
-	static unsigned char dest[1024];
+	static unsigned char *const dest = (unsigned char *)0x012EEC18;
 	int i=0;
 
 	unsigned char *c = (unsigned char *)dest;
-	const unsigned char *src = (const unsigned char *)original.str();
-
-	while (*src && i<1023)
+	if (original.hasData())
 	{
-		if (*src == MAGIC_CHAR)
+		const unsigned char *src = (const unsigned char *)original.data();
+
+		while (*src && i<1023)
 		{
-			if (src[1] == '\0')
+			if (*src == MAGIC_CHAR)
 			{
-				// string ends with MAGIC_CHAR
-				break;
-			}
-			*c = hexDigitToInt(src[1]);
-			src++;
-			if (src[1] != '\0')
-			{
-				*c = *c<<4;
-				*c = *c | hexDigitToInt(src[1]);
+				if (src[1] == '\0')
+				{
+					// string ends with MAGIC_CHAR
+					break;
+				}
+				*c = hexDigitToInt(src[1]);
 				src++;
+				if (src[1] != '\0')
+				{
+					*c = *c<<4;
+					*c = *c | hexDigitToInt(src[1]);
+					src++;
+				}
 			}
+			else
+			{
+				*c = *src;
+			}
+			src++;
+			c++;
 		}
-		else
-		{
-			*c = *src;
-		}
-		src++;
-		c++;
 	}
 
 	*c = 0;

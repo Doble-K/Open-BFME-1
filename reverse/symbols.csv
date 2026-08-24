@@ -19190,6 +19190,7 @@ name,address,notes
 ?b_00105f40@@YAXXZ,0x00105F40,gen-thunk body
 ?UnicodeStringToQuotedPrintable@@YA?AVAsciiString@@VUnicodeString@@@Z,0x00105F40,authoritative WWLib quoted_printable.cpp identity; BFME UnicodeString +0x08 view
 ?b_00106150@@YAXXZ,0x00106150,gen-thunk body
+?AsciiStringToQuotedPrintable@@YA?AVAsciiString@@V1@@Z,0x00106150,authoritative WWLib quoted_printable.cpp identity; retail encode buffer 0x012EDDA8
 ?b_001062c0@@YAXXZ,0x001062C0,gen-thunk body
 ?b_00106480@@YAXXZ,0x00106480,gen-thunk body
 ?b_001065f0@@YAXXZ,0x001065F0,gen-thunk body
