@@ -73912,13 +73912,13 @@ name,address,notes
 ?m@T_007ea120@@QAEXXZ,0x007EA120,gen-shim call target
 ?m@T_007ea5e0@@QAEXXZ,0x007EA5E0,gen-shim call target
 ?m@T_007eac30@@QAEXXZ,0x007EAC30,gen-shim call target
-?m@T_008811b0@@QAEXXZ,0x008811B0,gen-shim call target
+?m@T_008811b0@@QAEXH@Z,0x008811B0,gen-shim call target;ret 4 target argument
 ?m@T_00881410@@QAEXXZ,0x00881410,gen-shim call target
 ?m@T_008814a0@@QAEXXZ,0x008814A0,gen-shim call target
 ?m@T_008814c0@@QAEXXZ,0x008814C0,gen-shim call target
 ?m@T_00881b10@@QAEXXZ,0x00881B10,gen-shim call target
 ?m@T_008f8c20@@QAEXXZ,0x008F8C20,gen-shim call target
-?m@T_008f8c30@@QAEXXZ,0x008F8C30,gen-shim call target
+?m@T_008f8c30@@QAEXHP6AXHHH@Z@Z,0x008F8C30,gen-shim call target;ret 8 target arguments
 ?m@T_008f8c70@@QAEXXZ,0x008F8C70,gen-shim call target
 ?m@T_008f8d00@@QAEXXZ,0x008F8D00,gen-shim call target
 ?m@T_008f8d60@@QAEXXZ,0x008F8D60,gen-shim call target

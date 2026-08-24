@@ -25,9 +25,8 @@
 //               keeps an address-derived name until something proves one.
 //
 // The two methods are forwarders of the same shape, `mov ecx,[ecx+0x0C]; jmp`,
-// which is why they are named for their addresses rather than guessed at: the
-// body behind 0x008F7380 stores its two arguments at +0x64 and +0x6C of the
-// object hanging off +0x0C, and nothing here says what those fields mean.
+// the destination methods remain address-derived because their owning classes
+// are not identified by this call site.
 //
 // The two function pointers are the ledger's own d_001072A0 and d_001072F0,
 // 58-byte siblings 0x50 apart that each notify TheDisplay through vtable slot
@@ -73,9 +72,8 @@ public:
 };
 
 // The ledger's names for the two callbacks; see the header comment. The first
-// is now real C++ in SubsystemRefreshCallbacks.cpp and takes its three
-// arguments, so its decoration moved with it; the second is still a byte dump
-// under the no-argument name.
+// is real C++ in SubsystemRefreshCallbacks.cpp and takes its three arguments;
+// the second remains a byte dump under the no-argument name.
 void d_001072a0( Int a1, Int a2, Int a3 );
 void d_001072f0( void );
 
@@ -85,14 +83,20 @@ typedef void (*SubsystemRefreshProc)( void );
 class ShroudManager
 {
 public:
-	void m_008F7380( Int tag, SubsystemRefreshProc3 refresh );
+	__declspec(noinline) void m_008F7380( Int tag, SubsystemRefreshProc3 refresh );
 };
 
 class Gen_012ED5C0
 {
 public:
-	void m_00880E10( SubsystemRefreshProc refresh );
+	__declspec(noinline) void m_00880E10( SubsystemRefreshProc refresh );
 };
+
+// The retail forwarders tail-call these address-derived targets. Their
+// declarations preserve the incoming argument widths so the compiler emits
+// the target's `ret 4`/`ret 8`, while the target bodies own the field stores.
+struct T_008811b0 { void m( int value ); };
+struct T_008f8c30 { void m( Int tag, SubsystemRefreshProc3 refresh ); };
 
 extern ShroudManager *TheShroudManager;
 extern Gen_012ED5C0 *g_012ED5C0;
@@ -110,6 +114,18 @@ private:
 	int m_playerCount;										///< +0x10
 	Player *m_players[32];									///< +0x14
 };
+
+// ?m_00880E10@Gen_012ED5C0@@QAEXP6AXXZ@Z
+__declspec(noinline) void Gen_012ED5C0::m_00880E10( SubsystemRefreshProc refresh )
+{
+	((T_008811b0 *)*(void **)((char *)this + 12))->m( (int)refresh );
+}
+
+// ?m_008F7380@ShroudManager@@QAEXHP6AXHHH@Z@Z
+__declspec(noinline) void ShroudManager::m_008F7380( Int tag, SubsystemRefreshProc3 refresh )
+{
+	((T_008f8c30 *)*(void **)((char *)this + 12))->m( tag, refresh );
+}
 
 //-----------------------------------------------------------------------------
 // ?setLocalPlayer@PlayerList@@QAEXPAVPlayer@@@Z
@@ -168,4 +184,3 @@ Player *PlayerList::getNthPlayer(Int i)
 	}
 	return m_players[i];
 }
-
