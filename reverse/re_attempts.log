@@ -5790,3 +5790,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_00467240@@YAXXZ	0x00467240	32	blocked	t=1m compiler chose EAX zero and direct ECX-base stores; retail requires this copy to EAX and ECX zero/register-preserving byte mask
 ?copyField@Rva0082C600@@QAEPAXPAPAX@Z	0x0082C600	35	blocked	t=3m model=gpt-5; pointer copy semantics exact, but retail frame-local this layout differs under optimized clean C++
 ?assign@Rva0082BD80@@QAEPAXPAPAX@Z	0x0082BD80	26	blocked	t=4m model=gpt-5; pointer assignment semantics exact, but retail frame-local this layout differs under optimized clean C++
+?d_003b30d0@@YAXXZ	0x003B30D0	27	blocked	t=5m model=Codex-ocx-native--gpt-5.6-luna; decoded local scalar/byte field copy; clean C++ preserves operations but compiler omits retail this-to-EAX prologue and allocates source in EAX
