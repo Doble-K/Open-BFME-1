@@ -45,6 +45,7 @@
 #include "GameClient/View.h"
 #include "WW3D2/Camera.h"
 #include "WW3D2/Light.h"
+#include "../../../../../Libraries/Source/WWVegas/WW3D2/dx8wrapper.h"
 #include "WW3D2/DX8Wrapper.h"
 #include "WW3D2/HLod.h"
 #include "WW3D2/mesh.h"
@@ -4079,7 +4080,6 @@ void W3DVolumetricShadow::constructVolume( Vector3 *lightPosObject,Real shadowEx
 // the volume.
 //
 // ============================================================================
-// ?constructVolumeVB@W3DVolumetricShadow@@IAEXPAVVector3@@MHH@Z present-unmatched
 void W3DVolumetricShadow::constructVolumeVB( Vector3 *lightPosObject,Real shadowExtrudeDistance, Int volumeIndex, Int meshIndex )
 {
 	Geometry *shadowVolume;
@@ -4250,7 +4250,22 @@ void W3DVolumetricShadow::constructVolumeVB( Vector3 *lightPosObject,Real shadow
 		return; 
 	}
 
-	geomMesh = m_geometry->getMesh(meshIndex);
+	// BFME stores the active geometry pointer 0x30 bytes past the ZH layout,
+	// and its mesh records are 0x34 bytes with the mesh list at +0x14.
+	struct BFMEConstructVolumeVBMesh
+	{
+		char m_beforeVerts[0x8];
+		const Vector3 *m_verts;
+		char m_afterVerts[0x28];
+	};
+	struct BFMEConstructVolumeVBGeometry
+	{
+		char m_beforeMeshList[0x14];
+		BFMEConstructVolumeVBMesh m_meshList[MAX_SHADOW_CASTER_MESHES];
+		BFMEConstructVolumeVBMesh *getMesh(Int index) { return &m_meshList[index]; }
+	};
+	geomMesh = (W3DShadowGeometryMesh *)((BFMEConstructVolumeVBGeometry *)
+		((W3DVolumetricShadow *)((char *)this + 0x30))->m_geometry)->getMesh(meshIndex);
 
 	DX8VertexBufferClass::AppendLockClass lockVtxBuffer(vbSlot->m_VB->m_DX8VertexBuffer,vbSlot->m_start,vertexCount);
 	VertexFormatXYZ *vb = (VertexFormatXYZ*)lockVtxBuffer.Get_Vertex_Array();

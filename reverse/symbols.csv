@@ -75987,3 +75987,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??$_Construct@URva00064A30Value@@U1@@_STL@@YAXPAURva00064A30Value@@ABU1@@Z,0x0000EF6B,Open-BFME5 the value _Construct the tree _M_insert at 0x00064A30 reaches
 
 
+??0AppendLockClass@IndexBufferClass@@QAE@PAV1@II@Z,0x0091CF70,retail AppendLockClass index constructor target used by constructVolumeVB
+??1AppendLockClass@IndexBufferClass@@QAE@XZ,0x0091D020,retail AppendLockClass index destructor target used by constructVolumeVB
