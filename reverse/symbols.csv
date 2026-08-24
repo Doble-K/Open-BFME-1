@@ -76400,3 +76400,9 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeMatchRaw@Gen_002df4e0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4E0 calls
 ?m@Gen_002d9b20@@QAEXXZ,0x0002DF5B,Open-BFME5 ILT the loadPostProcess chains at 0x001EE8A0 and its family tail-jump through
 ?m@Gen_001ef410@@QAEXXZ,0x0004049E,Open-BFME5 ILT the chain at 0x001FBC40 calls first
+?bfmeAllocate@Gen_007b9e80@@AAE_NHH@Z,0x0003FC7E,Open-BFME5 the allocate the reserve at 0x007B9E80 calls
+?bfmeAllocate@Gen_009073d0@@AAE_NHH@Z,0x00905DC0,Open-BFME5 the allocate the reserve at 0x009073D0 calls
+?bfmeAllocate@Gen_00930d00@@AAE_NHH@Z,0x009304A0,Open-BFME5 the allocate the reserve at 0x00930D00 calls
+?bfmeAllocate@Gen_009408d0@@AAE_NHH@Z,0x00940450,Open-BFME5 the allocate the reserve at 0x009408D0 calls
+?bfmeAllocate@Gen_0094e310@@AAE_NHH@Z,0x009131E0,Open-BFME5 the allocate the reserve at 0x0094E310 calls
+?bfmeAllocate@Gen_0097c8e0@@AAE_NHH@Z,0x0097ADF0,Open-BFME5 the allocate the reserve at 0x0097C8E0 calls
