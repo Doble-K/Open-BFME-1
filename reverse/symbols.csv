@@ -75729,3 +75729,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeWeaponTemplateSetUninitializedCopy@_STL@@YAPAVWeaponTemplateSet@@PAV2@00ABU__false_type@1@@Z,0x0003D5C8,Open-BFME5 ILT for _STL::__uninitialized_copy on WeaponTemplateSet at 0x002E2FD0
 ?BfmeArmorTemplateSetUninitializedCopy@_STL@@YAPAVArmorTemplateSet@@PAV2@00ABU__false_type@1@@Z,0x0003047C,Open-BFME5 ILT for _STL::__uninitialized_copy on ArmorTemplateSet at 0x0013DA80
 ?BfmeArmorTemplateSetUninitializedFillN@_STL@@YAPAVArmorTemplateSet@@PAV2@IABV2@ABU__false_type@1@@Z,0x0004236B,Open-BFME5 ILT for _STL::__uninitialized_fill_n on ArmorTemplateSet at 0x0013DAD0
+?BfmeDetonatorInfoUninitializedCopy@_STL@@YAPAUDetonatorInfo@MinefieldBehavior@@PAU23@00ABU__false_type@1@@Z,0x00027782,Open-BFME5 ILT for _STL::__uninitialized_copy on MinefieldBehavior DetonatorInfo at 0x00570920
+?BfmeDetonatorInfoUninitializedFillN@_STL@@YAPAUDetonatorInfo@MinefieldBehavior@@PAU23@IABU23@ABU__false_type@1@@Z,0x00019E89,Open-BFME5 ILT for _STL::__uninitialized_fill_n on MinefieldBehavior DetonatorInfo at 0x00570970
