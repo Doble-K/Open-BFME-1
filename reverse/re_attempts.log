@@ -5730,3 +5730,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_005378c0@@YAXXZ	0x005378C0	15	blocked	pair adjust semantics recovered but compiler register allocation reverses amount/inner and emits different stores; t=2m model=gpt-5.6
 ?d_005378e0@@YAXXZ	0x005378E0	24	blocked	range setter semantics recovered but compiler uses different pointer/argument register and store order after direct field form; t=2m model=gpt-5.6
 ?d_006990b0@@YAXXZ	0x006990B0	28	blocked	Local mode/span predicate decoded; clean C++ reaches equivalent logic but target uses edx field loads, sar-by-3/test/ja shape while compiler emits eax compare or masked compare. Neighbor 0x00699030 is claimed alias; 0x006990E0 uses indirect jump table. t=8m model=gpt-5.6
+??0Rva0082B290@@QAE@PAX@Z	0x0082B290	24	blocked	t=10m Codex; local pointer constructor semantics proven but retail-only frame spill/prologue is not emitted by clean optimized C++
