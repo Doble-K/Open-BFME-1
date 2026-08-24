@@ -76410,3 +76410,7 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeAllowsBase@Gen_0026c0d0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x0026C0D0 defers through
 ?bfmeAllowsBase@Gen_0026c5d0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x0026C5D0 defers through
 ?bfmeAllowsBase@Gen_002983b0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x002983B0 defers through
+?bfmeMake_00528ef0@@YAPAXHH@Z,0x000364C6,Open-BFME5 ILT the pair at 0x00528EF0 and 0x005292A0 calls
+?bfmeMake_0054ed70@@YAPAXHH@Z,0x0000B500,Open-BFME5 ILT the pair at 0x0054ED70 and 0x0054F300 calls
+?bfmeMake_0054ee00@@YAPAXHH@Z,0x00029771,Open-BFME5 ILT the pair at 0x0054EE00 and 0x0054F390 calls
+?bfmeMake_0056e1c0@@YAPAXHH@Z,0x0003C65A,Open-BFME5 ILT the pair at 0x0056E1C0 and 0x0056E7C0 calls
