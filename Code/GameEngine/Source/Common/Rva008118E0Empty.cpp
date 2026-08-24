@@ -4,3 +4,8 @@
 void Rva008118E0()
 {
 }
+
+int Rva008118F0()
+{
+	return -1;
+}
