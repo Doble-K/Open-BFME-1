@@ -75657,3 +75657,4 @@ _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 ??$_Construct@U?$pair@$$CBHVAsciiString@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHVAsciiString@@@0@ABU10@@Z,0x0001C67A,Open-BFME5 ILT the Int-to-AsciiString _Rb_tree _M_insert at 0x000AA290 constructs the node value through
 ??$_Construct@U?$pair@$$CBIE@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBIE@0@ABU10@@Z,0x0003A319,Open-BFME5 ILT the UnsignedInt-to-UnsignedByte _Rb_tree _M_insert at 0x001A9580 constructs the node value through
 ??$_Construct@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHVGameSpyGroupRoom@@@0@ABU10@@Z,0x0001EC8B,Open-BFME5 ILT the Int-to-GameSpyGroupRoom _Rb_tree _M_insert at 0x00633AD0 constructs the node value through
+??$_Construct@U?$pair@$$CBHVBuddyInfo@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHVBuddyInfo@@@0@ABU10@@Z,0x00015F5A,Open-BFME5 ILT the Int-to-BuddyInfo _Rb_tree _M_insert at 0x004EBC90 constructs the node value through
