@@ -5808,3 +5808,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_003d4dd0@@YAXXZ	0x003D4DD0	32	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; decoded mixed scalar/byte initializer; clean C++ operations exact but compiler register/load order differs from retail prologue
 ?d_002ed510@@YAXXZ	0x002ED510	6	blocked	t=3m model=Codex-ocx-native--gpt-5.6-luna; decoded byte clear at this; clean C++ omitted redundant mov eax,this prologue
 ?d_00493e90@@YAXXZ	0x00493E90	6	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; decoded low-bit byte getter at this+0x20; clean C++ integer promotion adds xor/longer return sequence instead of byte AND
+?d_00299800@@YAXXZ	0x00299800	25	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; decoded indexed object field pair setter; clean address-derived shape mismatched retail scaled-index addressing and ret 12 calling convention
