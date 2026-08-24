@@ -1,7 +1,8 @@
 // cl: /DNDEBUG /MD /EHsc
 
 // Open-BFME5: STLport _Rb_tree<K, pair<const K, V> >::_M_insert, the
-// four-argument form, 44 bodies of 176 bytes each.  Every one of them carried
+// four-argument form, 45 bodies -- 44 of 176 bytes and one of 182.  Every one
+// of them carried
 // only a machine byte-dump row, and every one of them is the callee of an
 // insert_unique converted in RvaTreeInsertUniqueSigned.cpp or
 // RvaTreeInsertUniqueUnsigned.cpp -- that call is how these addresses were
@@ -19,6 +20,10 @@
 // _Construct, so its width is known and its contents are not.  Each mapped type
 // is therefore a byte array of the width the allocation proves, named for the
 // address of the body.
+//
+// One node is 472 bytes and so goes to the large allocator rather than the
+// small one; that swaps a push of a byte for a push of a dword twice over and
+// is the whole of the six-byte difference.
 //
 // The key is a signed or unsigned 32-bit scalar as the comparison spells it,
 // matching the insert_unique that calls in.  _Construct is left undefined: it
@@ -1001,6 +1006,24 @@ typedef _STL::_Rb_tree<unsigned int, Rva0094CCF0Pair, _STL::_Select1st<Rva0094CC
 Rva0094CCF0Tree::iterator BfmeRbTreeInsertAnchor0094CCF0( Rva0094CCF0Tree *tree,
 	_STL::_Rb_tree_node_base *x, _STL::_Rb_tree_node_base *y,
 	const Rva0094CCF0Pair &v, _STL::_Rb_tree_node_base *w )
+{
+	return BfmeRbTreeInsertAnchorHelper::run( tree, x, y, v, w );
+}
+
+struct Rva0065DC00Value
+{
+	char m_body[ 452 ];
+};
+
+typedef _STL::pair<const int, Rva0065DC00Value> Rva0065DC00Pair;
+
+typedef _STL::_Rb_tree<int, Rva0065DC00Pair, _STL::_Select1st<Rva0065DC00Pair>,
+	_STL::less<int>, _STL::allocator<Rva0065DC00Pair> > Rva0065DC00Tree;
+
+// retail 0x0065DB10, called by the insert_unique at 0x0065DC00
+Rva0065DC00Tree::iterator BfmeRbTreeInsertAnchor0065DC00( Rva0065DC00Tree *tree,
+	_STL::_Rb_tree_node_base *x, _STL::_Rb_tree_node_base *y,
+	const Rva0065DC00Pair &v, _STL::_Rb_tree_node_base *w )
 {
 	return BfmeRbTreeInsertAnchorHelper::run( tree, x, y, v, w );
 }
