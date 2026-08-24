@@ -5820,3 +5820,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_0005c450@@YAXXZ	0x0005C450	10	no-match	t=8m absolute thunk jump; generated thunk identity
 ?d_00061bd0@@YAXXZ	0x00061BD0	10	no-match	t=8m virtual/helper wrapper; no recoverable identity
 ?d_00065c70@@YAXXZ	0x00065C70	10	no-match	t=8m virtual/helper wrapper; no recoverable identity
+?d_007af400@@YAXXZ	0x007AF400	122	blocked	t=12m model=Codex-ocx-native--gpt-5.6-luna; five clean field/pointer/volatile shapes preserve all stores but MSVC emits xor eax and ECX-based this, while retail requires mov eax,ecx then xor ecx; no honest byte-true shape found
