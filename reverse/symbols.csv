@@ -9888,6 +9888,7 @@ name,address,notes
 ?_M_create_node@?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@IAEPAU?$_List_node@PAVAnimateWindow@@@2@ABQAVAnimateWindow@@@Z,0x00022D36,ILT thunk; retail call sites use the thunk
 ?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@CAXPAXI@Z,0x0082E5F0
 ?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@SAXPAXI@Z,0x0082E5F0,public-static spelling of the ledger CAXPAXI@Z private-static symbol at the same address (U3_node_allocators.cpp)
+??1?$_List_base@PAVCreditsLine@@V?$allocator@PAVCreditsLine@@@_STL@@@_STL@@QAE@XZ,0x0040C510,exact Credits.cpp STLport list-base destructor helper; concrete CreditsLine* node type and direct __node_alloc deallocation verified against retail
 ?_M_decrement@?$_Rb_global@_N@_STL@@SAPAU_Rb_tree_node_base@2@PAU32@@Z,0x0082B8E0
 ?_M_destroy_nodes@?$_Deque_base@HV?$allocator@H@_STL@@@_STL@@IAEXPAPAH0@Z,0x00088060,gen-tgrid shared callee
 ?_M_destroy_nodes@?$_Deque_base@UGen_t_00354680_p12cd@@V?$allocator@UGen_t_00354680_p12cd@@@_STL@@@_STL@@IAEXPAPAUGen_t_00354680_p12cd@@0@Z,0x00351DC0,gen-tgrid payload member
