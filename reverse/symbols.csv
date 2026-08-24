@@ -75820,3 +75820,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??0LargeGroupAudioUnusedKnownKeysBase@@QAE@ABV0@@Z,0x0001DE26,Open-BFME5 ILT thunk to body 0x000948E0; ??0LargeGroupAudioUnusedKnownKeys@@QAE@ABV0@@Z at 0x003CD590 runs it on this with the source before installing its own vtable; address-derived name
 ??0LargeGroupAudioKeyMap@@QAE@ABV0@@Z,0x0002F06D,Open-BFME5 ILT thunk to body 0x003D3BB0; ??0LargeGroupAudioUnusedKnownKeys@@QAE@ABV0@@Z at 0x003CD590 copy-constructs its member at +0x0C through it; address-derived name
 ??_7LargeGroupAudioUnusedKnownKeys@@6B@,0x010EE0FC,Open-BFME5 vftable the copy constructor at 0x003CD590 installs over the base one
+?getCRC@GameLogicBFMEShim@@QAEIH@Z,0x0000B532,ctor call target proven by the retail BFME desync-record constructor at 0x000652C0; FUN_00783150 is the CRC implementation

@@ -1,6 +1,23 @@
 // cl: /DNDEBUG /MD /GX
 
 typedef bool Bool;
+typedef int Int;
+
+typedef unsigned int UnsignedInt;
+
+class GameLogicBFMEShim
+{
+public:
+	UnsignedInt getCRC( Int mode );
+};
+
+extern GameLogicBFMEShim *TheGameLogic;
+
+struct GameLogicBFMERetailLayout
+{
+	unsigned char m_padding[0x10C];
+	Int m_gameMode;
+};
 
 // The client-side desync reporter. `this` is a caller-supplied stack record --
 // 0x0006B910 passes `lea ecx, [esp+8]` -- whose first dword holds the CRC the
@@ -10,8 +27,24 @@ typedef bool Bool;
 class BFMEDesyncCheck
 {
 public:
+	BFMEDesyncCheck();
 	void writeReportIfMismatched();
 };
+
+// ??0BFMEDesyncCheck@@QAE@XZ
+BFMEDesyncCheck::BFMEDesyncCheck()
+{
+	if (*reinterpret_cast<const unsigned char *>( 0x012ED4E4 ) != 0)
+	{
+		GameLogicBFMERetailLayout *logic = reinterpret_cast<GameLogicBFMERetailLayout *>( TheGameLogic );
+		if (logic->m_gameMode != 8 && logic->m_gameMode != 4)
+		{
+			*reinterpret_cast<UnsignedInt *>( this ) = TheGameLogic->getCRC( 0 );
+			return;
+		}
+	}
+	*reinterpret_cast<UnsignedInt *>( this ) = 0;
+}
 
 // Recomputes GameLogic::getCRC and compares it against the expected value in
 // this record's first dword. On a mismatch it formats CLIENT_DESYNC_%s.txt,
