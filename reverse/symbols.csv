@@ -76317,3 +76317,14 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker NodeAllocMutex::_M_acquire_lock forwards its this to
 ?freeAllBuffers@W3DBufferManager@@QAEXXZ,0x00023349,Open-BFME5 ILT the GenAlpha shadow-resource release tail-jumps through
 ?getFilename@WindowLayout@@QAE?AVAsciiString@@XZ,0x00019D53,BFME WindowLayout +0x04 accessor: Shell::findScreenByFilename retail callsite passes WindowLayout receiver and hidden AsciiString return; ILT 0x00019D53 targets exact 32B StringBase<char> copy-accessor body at 0x004EA450
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003D7440Struct@@@Z,0x0004ACBE,ILT thunk to the cell-space line walk at 0x003D7440 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003D7680Struct@@@Z,0x00048419,ILT thunk to the cell-space line walk at 0x003D7680 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003D79C0Struct@@@Z,0x00016103,ILT thunk to the cell-space line walk at 0x003D79C0 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003DE480Struct@@@Z,0x00005713,ILT thunk to the cell-space line walk at 0x003DE480 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAUViewAttackBlockedStruct@@@Z,0x0000CC1B,ILT thunk to the cell-space line walk at 0x003E3190 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003E33F0Struct@@@Z,0x00013DC2,ILT thunk to the cell-space line walk at 0x003E33F0 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003E3650Struct@@@Z,0x0004940E,ILT thunk to the cell-space line walk at 0x003E3650 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003E7F80Struct@@@Z,0x00029DF7,ILT thunk to the cell-space line walk at 0x003E7F80 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003E81E0Struct@@@Z,0x00023DDF,ILT thunk to the cell-space line walk at 0x003E81E0 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003E8440Struct@@@Z,0x0001DAA2,ILT thunk to the cell-space line walk at 0x003E8440 reached only from its world-space forwarder
+?iterateCellsAlongLine@Pathfinder@@QAEHABUICoord2D@@0W4PathfindLayerEnum@@PAURva003F1CA0Struct@@@Z,0x0003EBC1,ILT thunk to the cell-space line walk at 0x003F1CA0 reached only from its world-space forwarder
