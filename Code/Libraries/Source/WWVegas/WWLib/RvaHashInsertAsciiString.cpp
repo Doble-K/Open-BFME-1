@@ -1,7 +1,7 @@
 // cl: /DNDEBUG /DWIN32 /MD /D_STLP_USE_STATIC_LIB
 // stlport
 
-// Open-BFME5: STLport hashtable<V, AsciiString>::_M_insert, 18 bodies of 114
+// Open-BFME5: STLport hashtable<V, AsciiString>::_M_insert, 22 bodies of 114
 // bytes.  Every one carried only a machine byte-dump row.
 //
 // Four calls and the layout falls out of them.  resize for one more element
@@ -14,7 +14,8 @@
 //
 // Twelve bytes of node is four of next pointer and eight of value, and eight
 // bytes of value beside a four-byte AsciiString key leaves four for the mapped
-// type.  That is the whole of what these bodies say about it -- so it is a
+// type.  Four of the twenty-two allocate 0x10, 0x18 or 0x34 instead, which is
+// the same arithmetic at 8, 16 and 44 bytes of mapped type.  That is the whole of what these bodies say about it -- so it is a
 // four-byte member named for the address of the body, reached through the
 // table's own extract-key functor rather than an asserted pair.
 
@@ -438,6 +439,90 @@ typedef _STL::hashtable<Rva006A7AD0Value, AsciiString, rts::hash<AsciiString>,
 
 // retail 0x006A7AD0
 void BfmeHashInsertAnchor006A7AD0( Rva006A7AD0Table &table, const Rva006A7AD0Value &v )
+{
+	table._M_insert( v );
+}
+
+struct Rva00461360Value
+{
+	AsciiString m_key;
+	char m_mapped[ 44 ];
+};
+
+struct Rva00461360ExtractKey
+{
+	const AsciiString &operator()( const Rva00461360Value &x ) const { return x.m_key; }
+};
+
+typedef _STL::hashtable<Rva00461360Value, AsciiString, rts::hash<AsciiString>,
+	Rva00461360ExtractKey, _STL::equal_to<AsciiString>,
+	_STL::allocator<Rva00461360Value> > Rva00461360Table;
+
+// retail 0x00461360, a 0x34-byte node
+void BfmeHashInsertAnchor00461360( Rva00461360Table &table, const Rva00461360Value &v )
+{
+	table._M_insert( v );
+}
+
+struct Rva0046AC80Value
+{
+	AsciiString m_key;
+	char m_mapped[ 8 ];
+};
+
+struct Rva0046AC80ExtractKey
+{
+	const AsciiString &operator()( const Rva0046AC80Value &x ) const { return x.m_key; }
+};
+
+typedef _STL::hashtable<Rva0046AC80Value, AsciiString, rts::hash<AsciiString>,
+	Rva0046AC80ExtractKey, _STL::equal_to<AsciiString>,
+	_STL::allocator<Rva0046AC80Value> > Rva0046AC80Table;
+
+// retail 0x0046AC80, a 0x10-byte node
+void BfmeHashInsertAnchor0046AC80( Rva0046AC80Table &table, const Rva0046AC80Value &v )
+{
+	table._M_insert( v );
+}
+
+struct Rva0046C2A0Value
+{
+	AsciiString m_key;
+	char m_mapped[ 8 ];
+};
+
+struct Rva0046C2A0ExtractKey
+{
+	const AsciiString &operator()( const Rva0046C2A0Value &x ) const { return x.m_key; }
+};
+
+typedef _STL::hashtable<Rva0046C2A0Value, AsciiString, rts::hash<AsciiString>,
+	Rva0046C2A0ExtractKey, _STL::equal_to<AsciiString>,
+	_STL::allocator<Rva0046C2A0Value> > Rva0046C2A0Table;
+
+// retail 0x0046C2A0, a 0x10-byte node
+void BfmeHashInsertAnchor0046C2A0( Rva0046C2A0Table &table, const Rva0046C2A0Value &v )
+{
+	table._M_insert( v );
+}
+
+struct Rva00583B30Value
+{
+	AsciiString m_key;
+	char m_mapped[ 16 ];
+};
+
+struct Rva00583B30ExtractKey
+{
+	const AsciiString &operator()( const Rva00583B30Value &x ) const { return x.m_key; }
+};
+
+typedef _STL::hashtable<Rva00583B30Value, AsciiString, rts::hash<AsciiString>,
+	Rva00583B30ExtractKey, _STL::equal_to<AsciiString>,
+	_STL::allocator<Rva00583B30Value> > Rva00583B30Table;
+
+// retail 0x00583B30, a 0x18-byte node
+void BfmeHashInsertAnchor00583B30( Rva00583B30Table &table, const Rva00583B30Value &v )
 {
 	table._M_insert( v );
 }

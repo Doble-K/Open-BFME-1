@@ -1,6 +1,6 @@
 // cl: /DNDEBUG /MD /EHsc
 
-// Open-BFME5: STLport vector<T>::_M_allocate_and_copy, 9 bodies of 97 bytes.
+// Open-BFME5: STLport vector<T>::_M_allocate_and_copy, 23 bodies of 97 bytes.
 // Every one carried only a machine byte-dump row; the same shape is already
 // converted at 0x0076B3B0, 0x003B5E20 and 0x003B6460.
 //
@@ -11,7 +11,9 @@
 //
 // The element width is the multiply in front of the allocation and it is the
 // same multiply the loop strides by.  `lea eax,[eax+eax*4]` then `shl eax,2` is
-// twenty bytes; `lea eax,[eax+eax*8]` then `shl eax,2` is thirty-six.  Beyond
+// twenty bytes; `lea eax,[eax+eax*8]` then `shl eax,2` is thirty-six.  Seven
+// widths appear in all: 12, 20, 24, 36, 40, 48 and the loop stride confirms
+// each one.  Beyond
 // its width nothing here names the element -- the per-element copy is a call --
 // so each is a byte array named for the address of the body.
 //
@@ -195,5 +197,201 @@ namespace _STL
 template Rva003B6020Element *vector<Rva003B6020Element, allocator<Rva003B6020Element> >::
 	_M_allocate_and_copy<const Rva003B6020Element *>(
 		unsigned int, const Rva003B6020Element *, const Rva003B6020Element *);
+
+}
+
+struct Rva000E7F90Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x000E7F90, a 12-byte element
+template Rva000E7F90Element *vector<Rva000E7F90Element, allocator<Rva000E7F90Element> >::
+	_M_allocate_and_copy<const Rva000E7F90Element *>(
+		unsigned int, const Rva000E7F90Element *, const Rva000E7F90Element *);
+
+}
+
+struct Rva00135C90Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x00135C90, a 12-byte element
+template Rva00135C90Element *vector<Rva00135C90Element, allocator<Rva00135C90Element> >::
+	_M_allocate_and_copy<const Rva00135C90Element *>(
+		unsigned int, const Rva00135C90Element *, const Rva00135C90Element *);
+
+}
+
+struct Rva001508E0Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x001508E0, a 12-byte element
+template Rva001508E0Element *vector<Rva001508E0Element, allocator<Rva001508E0Element> >::
+	_M_allocate_and_copy<const Rva001508E0Element *>(
+		unsigned int, const Rva001508E0Element *, const Rva001508E0Element *);
+
+}
+
+struct Rva001A6E50Element
+{
+	unsigned char m_body[ 48 ];
+};
+
+namespace _STL
+{
+// retail 0x001A6E50, a 48-byte element
+template Rva001A6E50Element *vector<Rva001A6E50Element, allocator<Rva001A6E50Element> >::
+	_M_allocate_and_copy<const Rva001A6E50Element *>(
+		unsigned int, const Rva001A6E50Element *, const Rva001A6E50Element *);
+
+}
+
+struct Rva001E4E50Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x001E4E50, a 12-byte element
+template Rva001E4E50Element *vector<Rva001E4E50Element, allocator<Rva001E4E50Element> >::
+	_M_allocate_and_copy<const Rva001E4E50Element *>(
+		unsigned int, const Rva001E4E50Element *, const Rva001E4E50Element *);
+
+}
+
+struct Rva001EFAA0Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x001EFAA0, a 12-byte element
+template Rva001EFAA0Element *vector<Rva001EFAA0Element, allocator<Rva001EFAA0Element> >::
+	_M_allocate_and_copy<const Rva001EFAA0Element *>(
+		unsigned int, const Rva001EFAA0Element *, const Rva001EFAA0Element *);
+
+}
+
+struct Rva002E0A10Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x002E0A10, a 12-byte element
+template Rva002E0A10Element *vector<Rva002E0A10Element, allocator<Rva002E0A10Element> >::
+	_M_allocate_and_copy<const Rva002E0A10Element *>(
+		unsigned int, const Rva002E0A10Element *, const Rva002E0A10Element *);
+
+}
+
+struct Rva002E1610Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x002E1610, a 12-byte element
+template Rva002E1610Element *vector<Rva002E1610Element, allocator<Rva002E1610Element> >::
+	_M_allocate_and_copy<const Rva002E1610Element *>(
+		unsigned int, const Rva002E1610Element *, const Rva002E1610Element *);
+
+}
+
+struct Rva003B4D00Element
+{
+	unsigned char m_body[ 40 ];
+};
+
+namespace _STL
+{
+// retail 0x003B4D00, a 40-byte element
+template Rva003B4D00Element *vector<Rva003B4D00Element, allocator<Rva003B4D00Element> >::
+	_M_allocate_and_copy<const Rva003B4D00Element *>(
+		unsigned int, const Rva003B4D00Element *, const Rva003B4D00Element *);
+
+}
+
+struct Rva003B4D80Element
+{
+	unsigned char m_body[ 48 ];
+};
+
+namespace _STL
+{
+// retail 0x003B4D80, a 48-byte element
+template Rva003B4D80Element *vector<Rva003B4D80Element, allocator<Rva003B4D80Element> >::
+	_M_allocate_and_copy<const Rva003B4D80Element *>(
+		unsigned int, const Rva003B4D80Element *, const Rva003B4D80Element *);
+
+}
+
+struct Rva003B4E80Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x003B4E80, a 12-byte element
+template Rva003B4E80Element *vector<Rva003B4E80Element, allocator<Rva003B4E80Element> >::
+	_M_allocate_and_copy<const Rva003B4E80Element *>(
+		unsigned int, const Rva003B4E80Element *, const Rva003B4E80Element *);
+
+}
+
+struct Rva003B5080Element
+{
+	unsigned char m_body[ 12 ];
+};
+
+namespace _STL
+{
+// retail 0x003B5080, a 12-byte element
+template Rva003B5080Element *vector<Rva003B5080Element, allocator<Rva003B5080Element> >::
+	_M_allocate_and_copy<const Rva003B5080Element *>(
+		unsigned int, const Rva003B5080Element *, const Rva003B5080Element *);
+
+}
+
+struct Rva007417A0Element
+{
+	unsigned char m_body[ 24 ];
+};
+
+namespace _STL
+{
+// retail 0x007417A0, a 24-byte element
+template Rva007417A0Element *vector<Rva007417A0Element, allocator<Rva007417A0Element> >::
+	_M_allocate_and_copy<const Rva007417A0Element *>(
+		unsigned int, const Rva007417A0Element *, const Rva007417A0Element *);
+
+}
+
+struct Rva00769170Element
+{
+	unsigned char m_body[ 24 ];
+};
+
+namespace _STL
+{
+// retail 0x00769170, a 24-byte element
+template Rva00769170Element *vector<Rva00769170Element, allocator<Rva00769170Element> >::
+	_M_allocate_and_copy<const Rva00769170Element *>(
+		unsigned int, const Rva00769170Element *, const Rva00769170Element *);
 
 }
