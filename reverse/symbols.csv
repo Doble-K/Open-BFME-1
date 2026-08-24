@@ -78655,3 +78655,4 @@ _bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner de
 ?TheGameSpyInfo@@3PAVGameSpyInfo@@A,0x012F7194,GameSpyInfo* global used by the 0x0052CE60 virtual wrapper
 ?test@Rva002DF100@@QAEEPAX0@Z,0x0002DB69,ILT to 0x002DF100 thiscall uchar(void*,void*) for 23B setne wrappers
 ?test@Rva002DF120@@QAEEPAX0@Z,0x0001D813,ILT to 0x002DF120 thiscall uchar(void*,void*) for 23B setne wrappers
+?handle@Gen00005DF3@@QAEXH@Z,0x00005DF3,ILT e9 thunk for 18B void wrap at 0x000C95E0
