@@ -18,3 +18,14 @@ void Rva005329C0::wrap(Rva005329C0Obj *obj)
 {
 	reinterpret_cast<Rva005329Classify *>(this)->classify(obj, 2);
 }
+
+class Rva005329E0
+{
+public:
+	void wrap(Rva005329C0Obj *obj);
+};
+
+void Rva005329E0::wrap(Rva005329C0Obj *obj)
+{
+	reinterpret_cast<Rva005329Classify *>(this)->classify(obj, 3);
+}
