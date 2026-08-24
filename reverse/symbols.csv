@@ -75748,3 +75748,6 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeRva0076B160FillN@_STL@@YAPAURva0076B160Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x00044094,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x0075E8B0
 ?BfmeRva00197EA0Copy@_STL@@YAPAURva00197EA0Element@@PAU2@00ABU__false_type@1@@Z,0x000475FF,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_copy at 0x00192190
 ?BfmeRva00197EA0FillN@_STL@@YAPAURva00197EA0Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x0003D4C4,Open-BFME5 ILT for the 12-byte-element _STL::__uninitialized_fill_n at 0x001921E0
+?BfmeRva001E9020Construct@_STL@@YAXPAURva001E9020Element@@ABU2@@Z,0x00046AF1,Open-BFME5 ILT for the 8-byte-element _STL::_Construct at 0x001E21F0
+?BfmeRva002FED10Construct@_STL@@YAXPAURva002FED10Element@@ABU2@@Z,0x000060CD,Open-BFME5 ILT for the 8-byte-element _STL::_Construct at 0x000953E0
+?BfmeRva0038BAD0Construct@_STL@@YAXPAURva0038BAD0Element@@ABU2@@Z,0x0002A56D,Open-BFME5 ILT for the 8-byte-element _STL::_Construct at 0x00385CC0
