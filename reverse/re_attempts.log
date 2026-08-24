@@ -5806,3 +5806,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?d_001b49c0@@YAXXZ	0x001B49C0	25	blocked	t=5m model=Codex-ocx-native--gpt-5.6-luna; decoded nested byte predicate at object +0x208/+0x5C; clean C++ matches operations but compiler emits ret instead of retail ret 4 for byte-return method
 ?d_003d4db0@@YAXXZ	0x003D4DB0	26	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; decoded scalar/byte/flag initializer; clean C++ differs only in retail this/argument register order and zero register selection
 ?d_003d4dd0@@YAXXZ	0x003D4DD0	32	blocked	t=4m model=Codex-ocx-native--gpt-5.6-luna; decoded mixed scalar/byte initializer; clean C++ operations exact but compiler register/load order differs from retail prologue
+?d_002ed510@@YAXXZ	0x002ED510	6	blocked	t=3m model=Codex-ocx-native--gpt-5.6-luna; decoded byte clear at this; clean C++ omitted redundant mov eax,this prologue
