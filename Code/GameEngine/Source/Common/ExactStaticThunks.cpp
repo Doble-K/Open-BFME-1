@@ -34,23 +34,6 @@ __declspec(naked) AsciiString GameMessage::getCommandTypeAsAsciiString(Type)
     }
 }
 
-class AI
-{
-public:
-    __declspec(dllexport) static float getAdjustedVisionRangeForObject(const Object *, int);
-};
-
-class AIAdjustedVisionRangeForObjectShim
-{
-public:
-    static float getAdjustedVisionRangeForObject(const Object *, int);
-};
-
-float AI::getAdjustedVisionRangeForObject(const Object *object, int value)
-{
-    return AIAdjustedVisionRangeForObjectShim::getAdjustedVisionRangeForObject(object, value);
-}
-
 class W3DShaderManager
 {
 public:
