@@ -5689,3 +5689,4 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_00928620@@YAXXZ	0x00928620	76	blocked	helper calls and multi-path object logic; not plain field/arithmetic body; t=1m model=gpt-5.6
 ?d_00c55d60@@YAXXZ	0x00C55D60	31	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
 ?d_00383980@@YAXXZ	0x00383980	66	blocked	global managers and virtual/call dispatch; not straightforward field body; t=1m model=gpt-5.6
+?d_000a0800@@YAXXZ	0x000A0800	51	blocked	clean nested-record copy semantics reconstructed; compiler folds nested +0x38 pointer and emits different branch offsets; t=18m model=gpt-5.6
