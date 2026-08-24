@@ -14,16 +14,23 @@
 // sizeof(T) never appears.  The deque's buffer arithmetic lives in
 // _M_initialize_map and in _M_allocate_node, not here, so these 44 bytes are
 // the same for every element type and say nothing whatever about T -- not even
-// its width.  Each element is named for the address of the body and given a
-// nominal four bytes purely so the deque can be instantiated; the callee pinned
-// beside it is what would settle the real size.
+// its width.
+//
+// _M_initialize_map does say it, and nine of them are converted in
+// RvaDequeInitializeMap.cpp: the shift it divides the element count by is
+// 128/sizeof(T),
+// STLport's buffer size -- 128 bytes of node divided by the element -- so a
+// `shr 5` is a four-byte element and a `shr 2` a 32-byte one.  Ten elements carry the width their callee proves -- the
+// tenth callee is still a dump, but its shift is just as readable.  The five
+// whose _M_initialize_map is not a dump at all keep a nominal four bytes, which
+// is all that is needed to instantiate the deque and all that is claimed.
 
 #include <queue>
 #include <new>
 
 struct Rva00089CA0Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva00089CA0Element> Rva00089CA0Queue;
@@ -36,7 +43,7 @@ void BfmeQueueCtorAnchor00089CA0( void *place )
 
 struct Rva0035A900Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva0035A900Element> Rva0035A900Queue;
@@ -49,7 +56,7 @@ void BfmeQueueCtorAnchor0035A900( void *place )
 
 struct Rva0035A940Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva0035A940Element> Rva0035A940Queue;
@@ -62,7 +69,7 @@ void BfmeQueueCtorAnchor0035A940( void *place )
 
 struct Rva0035AF40Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva0035AF40Element> Rva0035AF40Queue;
@@ -75,7 +82,7 @@ void BfmeQueueCtorAnchor0035AF40( void *place )
 
 struct Rva0035AF80Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva0035AF80Element> Rva0035AF80Queue;
@@ -88,7 +95,7 @@ void BfmeQueueCtorAnchor0035AF80( void *place )
 
 struct Rva00369550Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva00369550Element> Rva00369550Queue;
@@ -127,7 +134,7 @@ void BfmeQueueCtorAnchor0063DFA0( void *place )
 
 struct Rva00642060Element
 {
-	int m_body;
+	char m_body[ 32 ];
 };
 
 typedef _STL::queue<Rva00642060Element> Rva00642060Queue;
@@ -140,7 +147,7 @@ void BfmeQueueCtorAnchor00642060( void *place )
 
 struct Rva006420A0Element
 {
-	int m_body;
+	char m_body[ 16 ];
 };
 
 typedef _STL::queue<Rva006420A0Element> Rva006420A0Queue;
@@ -153,7 +160,7 @@ void BfmeQueueCtorAnchor006420A0( void *place )
 
 struct Rva00647200Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva00647200Element> Rva00647200Queue;
@@ -205,7 +212,7 @@ void BfmeQueueCtorAnchor0065A950( void *place )
 
 struct Rva006AADB0Element
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::queue<Rva006AADB0Element> Rva006AADB0Queue;
