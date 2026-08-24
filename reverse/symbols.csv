@@ -76122,3 +76122,35 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??$_Construct@URva00379D20Element@@U1@@_STL@@YAXPAURva00379D20Element@@ABU1@@Z,0x0002E20D,Open-BFME5 the element _Construct the list push_back at 0x00379D20 calls
 ??$_Construct@URva0038EAD0Element@@U1@@_STL@@YAXPAURva0038EAD0Element@@ABU1@@Z,0x000057E5,Open-BFME5 the element _Construct the list push_back at 0x0038EAD0 calls
 ??$_Construct@URva00431310Element@@U1@@_STL@@YAXPAURva00431310Element@@ABU1@@Z,0x000404E4,Open-BFME5 the element _Construct the list push_back at 0x00431310 calls
+??$_Construct@URva00143CE0Element@_STL@@@_STL@@YAXPAURva00143CE0Element@0@ABU10@@Z,0x0001BE23,Open-BFME5 the element _Construct the vector insert at 0x00143CE0 calls
+?_M_clear@?$vector@URva00143CE0Element@_STL@@V?$allocator@URva00143CE0Element@_STL@@@2@@_STL@@IAEXXZ,0x00039707,Open-BFME5 the vector _M_clear the insert at 0x00143CE0 calls
+??$_Construct@URva00146940Element@_STL@@@_STL@@YAXPAURva00146940Element@0@ABU10@@Z,0x0000808F,Open-BFME5 the element _Construct the vector insert at 0x00146940 calls
+?_M_clear@?$vector@URva00146940Element@_STL@@V?$allocator@URva00146940Element@_STL@@@2@@_STL@@IAEXXZ,0x00005F42,Open-BFME5 the vector _M_clear the insert at 0x00146940 calls
+??$_Construct@URva001DFFF0Element@_STL@@@_STL@@YAXPAURva001DFFF0Element@0@ABU10@@Z,0x0000CED2,Open-BFME5 the element _Construct the vector insert at 0x001DFFF0 calls
+?_M_clear@?$vector@URva001DFFF0Element@_STL@@V?$allocator@URva001DFFF0Element@_STL@@@2@@_STL@@IAEXXZ,0x0003FB34,Open-BFME5 the vector _M_clear the insert at 0x001DFFF0 calls
+??$_Construct@URva0035AFC0Element@_STL@@@_STL@@YAXPAURva0035AFC0Element@0@ABU10@@Z,0x00036C2D,Open-BFME5 the element _Construct the vector insert at 0x0035AFC0 calls
+?_M_clear@?$vector@URva0035AFC0Element@_STL@@V?$allocator@URva0035AFC0Element@_STL@@@2@@_STL@@IAEXXZ,0x0002594B,Open-BFME5 the vector _M_clear the insert at 0x0035AFC0 calls
+??$_Construct@URva0035B130Element@_STL@@@_STL@@YAXPAURva0035B130Element@0@ABU10@@Z,0x0002DE52,Open-BFME5 the element _Construct the vector insert at 0x0035B130 calls
+?_M_clear@?$vector@URva0035B130Element@_STL@@V?$allocator@URva0035B130Element@_STL@@@2@@_STL@@IAEXXZ,0x00015E56,Open-BFME5 the vector _M_clear the insert at 0x0035B130 calls
+??$_Construct@URva003A5500Element@_STL@@@_STL@@YAXPAURva003A5500Element@0@ABU10@@Z,0x00037574,Open-BFME5 the element _Construct the vector insert at 0x003A5500 calls
+?_M_clear@?$vector@URva003A5500Element@_STL@@V?$allocator@URva003A5500Element@_STL@@@2@@_STL@@IAEXXZ,0x000325BF,Open-BFME5 the vector _M_clear the insert at 0x003A5500 calls
+??$_Construct@URva003B0760Element@_STL@@@_STL@@YAXPAURva003B0760Element@0@ABU10@@Z,0x0003D843,Open-BFME5 the element _Construct the vector insert at 0x003B0760 calls
+?_M_clear@?$vector@URva003B0760Element@_STL@@V?$allocator@URva003B0760Element@_STL@@@2@@_STL@@IAEXXZ,0x00020C34,Open-BFME5 the vector _M_clear the insert at 0x003B0760 calls
+??$_Construct@URva003B0A30Element@_STL@@@_STL@@YAXPAURva003B0A30Element@0@ABU10@@Z,0x00031DA4,Open-BFME5 the element _Construct the vector insert at 0x003B0A30 calls
+?_M_clear@?$vector@URva003B0A30Element@_STL@@V?$allocator@URva003B0A30Element@_STL@@@2@@_STL@@IAEXXZ,0x000153C0,Open-BFME5 the vector _M_clear the insert at 0x003B0A30 calls
+??$_Construct@URva003B20C0Element@_STL@@@_STL@@YAXPAURva003B20C0Element@0@ABU10@@Z,0x00032BF0,Open-BFME5 the element _Construct the vector insert at 0x003B20C0 calls
+?_M_clear@?$vector@URva003B20C0Element@_STL@@V?$allocator@URva003B20C0Element@_STL@@@2@@_STL@@IAEXXZ,0x000338B1,Open-BFME5 the vector _M_clear the insert at 0x003B20C0 calls
+??$_Construct@URva003B23D0Element@_STL@@@_STL@@YAXPAURva003B23D0Element@0@ABU10@@Z,0x000027A2,Open-BFME5 the element _Construct the vector insert at 0x003B23D0 calls
+?_M_clear@?$vector@URva003B23D0Element@_STL@@V?$allocator@URva003B23D0Element@_STL@@@2@@_STL@@IAEXXZ,0x0001FE92,Open-BFME5 the vector _M_clear the insert at 0x003B23D0 calls
+??$_Construct@URva003BB340Element@_STL@@@_STL@@YAXPAURva003BB340Element@0@ABU10@@Z,0x0003385C,Open-BFME5 the element _Construct the vector insert at 0x003BB340 calls
+?_M_clear@?$vector@URva003BB340Element@_STL@@V?$allocator@URva003BB340Element@_STL@@@2@@_STL@@IAEXXZ,0x00035788,Open-BFME5 the vector _M_clear the insert at 0x003BB340 calls
+??$_Construct@URva0061AE10Element@_STL@@@_STL@@YAXPAURva0061AE10Element@0@ABU10@@Z,0x00022395,Open-BFME5 the element _Construct the vector insert at 0x0061AE10 calls
+?_M_clear@?$vector@URva0061AE10Element@_STL@@V?$allocator@URva0061AE10Element@_STL@@@2@@_STL@@IAEXXZ,0x0000B708,Open-BFME5 the vector _M_clear the insert at 0x0061AE10 calls
+??$_Construct@URva00771B10Element@_STL@@@_STL@@YAXPAURva00771B10Element@0@ABU10@@Z,0x000334EC,Open-BFME5 the element _Construct the vector insert at 0x00771B10 calls
+?_M_clear@?$vector@URva00771B10Element@_STL@@V?$allocator@URva00771B10Element@_STL@@@2@@_STL@@IAEXXZ,0x0003774A,Open-BFME5 the vector _M_clear the insert at 0x00771B10 calls
+??$_Construct@URva007742A0Element@_STL@@@_STL@@YAXPAURva007742A0Element@0@ABU10@@Z,0x0004B26D,Open-BFME5 the element _Construct the vector insert at 0x007742A0 calls
+?_M_clear@?$vector@URva007742A0Element@_STL@@V?$allocator@URva007742A0Element@_STL@@@2@@_STL@@IAEXXZ,0x0002BD46,Open-BFME5 the vector _M_clear the insert at 0x007742A0 calls
+??$_Construct@URva00774410Element@_STL@@@_STL@@YAXPAURva00774410Element@0@ABU10@@Z,0x00016626,Open-BFME5 the element _Construct the vector insert at 0x00774410 calls
+?_M_clear@?$vector@URva00774410Element@_STL@@V?$allocator@URva00774410Element@_STL@@@2@@_STL@@IAEXXZ,0x000481E9,Open-BFME5 the vector _M_clear the insert at 0x00774410 calls
+??$_Construct@URva0077AEA0Element@_STL@@@_STL@@YAXPAURva0077AEA0Element@0@ABU10@@Z,0x00006FD2,Open-BFME5 the element _Construct the vector insert at 0x0077AEA0 calls
+?_M_clear@?$vector@URva0077AEA0Element@_STL@@V?$allocator@URva0077AEA0Element@_STL@@@2@@_STL@@IAEXXZ,0x00004B74,Open-BFME5 the vector _M_clear the insert at 0x0077AEA0 calls
