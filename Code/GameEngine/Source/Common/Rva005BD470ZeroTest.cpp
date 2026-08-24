@@ -10,3 +10,18 @@ int rva005BD470(const Rva005BD470Obj *p)
 {
 	return p->m_1C == 0;
 }
+
+class Rva005BD4D0
+{
+	unsigned char m_pad[0x0C];
+	unsigned m_C;
+
+public:
+	unsigned char isTwo() const;
+};
+
+unsigned char Rva005BD4D0::isTwo() const
+{
+	return m_C == 2;
+}
+
