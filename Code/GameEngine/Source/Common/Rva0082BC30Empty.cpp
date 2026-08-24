@@ -27,3 +27,12 @@ Rva0082BFD0Slot *Rva0082BFD0Slot::assignFrom(const int *src)
 	m_value = tmp;
 	return this;
 }
+
+int g_rva0082B120;
+
+int rva0082B120Set(int value)
+{
+	int old = g_rva0082B120;
+	g_rva0082B120 = value;
+	return old;
+}
