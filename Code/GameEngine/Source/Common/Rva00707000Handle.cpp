@@ -56,3 +56,16 @@ RefCountedHandle Rva00960080Owner::getHandle() const
 	volatile int guard = 0;
 	return RefCountedHandle( m_target );
 }
+
+class Rva00975050Owner
+{
+public:
+	RefCountedTarget *m_target;
+	RefCountedHandle getHandle() const;
+};
+
+RefCountedHandle Rva00975050Owner::getHandle() const
+{
+	volatile int guard = 0;
+	return RefCountedHandle( m_target );
+}
