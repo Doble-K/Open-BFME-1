@@ -5794,3 +5794,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ?assign@Rva004AFA80@@QAEPAXPAVRva004AFA80Source@@@Z	0x004AFA80	25	blocked	t=5m model=gpt-5; source-field assignment exact on nonnull path, but null path emits c7 store then xor-return instead of retail xor/store ordering
 ?d_00570400@@YAXXZ	0x00570400	26	blocked	t=6m model=Codex-ocx-native--gpt-5.6-luna; decoded thiscall mixed value/zero initializer; clean C++ preserved stores but compiler register allocation omitted retail this save and used opposite zero register
 ??0Rva008BD530@@QAE@XZ	0x008BD530	112	blocked	t=5m model=gpt-5; zeroing constructor semantics exact, but retail uses EAX/EDX register transfer and immediate store at +0x80 while clean C++ uses ECX-relative zero stores
+?d_00490990@@YAXXZ	0x00490990	78	blocked	t=4m retail interleaves stores at offsets 0x30/0x50 with 0x14/0x34/0x54; compiler sorts volatile member stores by offset
