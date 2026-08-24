@@ -5879,3 +5879,4 @@ Rva00581C90CopyRecords	0x00581C90	46	no-match	28-byte record copy helper recover
 ??4CommandSet@@QAEAAV0@ABV0@@Z	0x0049CDA0	64	converted	memberwise: base operator=, AsciiString at +0x0C, twenty pointers at +0x10 through a strength-reduced loop, one word at +0x60
 ?getVotesNeededToKick@DisconnectManager@@IAEHHPAVConnectionManager@@@Z	0x0066BBC0	81	converted	counts slots not in game over eight; null test guards only the first two predicates; the redundant bound test is one unsigned compare
 _peerStopGame	0x00857E50	65	converted	clears +0xB44, runs 0x00863C00 on the peer, then +0xAF0 gates a choice between 0x008667A0 and _piStopReporting on +0x398
+?step@Glo012F1024Type@@QAEXXZ	0x003B3900	56	converted	gated on TheWritableGlobalData +0x8E and an index bound test over 32-byte entries; the vector must be a nested member with its own size accessor or the start pointer is kept in esi instead of reloaded
