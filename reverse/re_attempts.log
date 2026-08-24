@@ -5669,3 +5669,14 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?fillPattern@Rva006994F0@@QAEXXZ	0x006994F0	21	blocked	t=18m Codex; semantics proven, but current compiler unrolls memset/fill into stores or saves ecx before rep stosd; intrinsic unavailable in configured headers and external declaration does not inline; no exact clean C++ shape landed
 ?d_005232d0@@YAXXZ	0x005232D0	20	blocked	clean C++ pointer comparison matches semantics but compiler uses caller-saved registers and omits retail ESI save/restore; t=8m model=gpt-5.6
 ?d_0006c450@@YAXXZ	0x0006C450	8	blocked	candidate address is already claimed by real ContestableContain alias row; no ledger takeover permitted; t=2m model=gpt-5.6
+?d_00c569d0@@YAXXZ	0x00C569D0	14	blocked	unwind funclet; jumps into parent EH body, not independently identifiable; t=2m model=gpt-5.6
+?d_0010a720@@YAXXZ	0x0010A720	6	blocked	absolute address constant return requires global identity/pin; excluded by lane criteria; t=1m model=gpt-5.6
+?d_00797000@@YAXXZ	0x00797000	14	blocked	forwarder call target unresolved; identity is not proven; t=1m model=gpt-5.6
+?d_00797570@@YAXXZ	0x00797570	6	blocked	absolute address constant return; excluded by no-global lane criteria; t=1m model=gpt-5.6
+?d_00793a70@@YAXXZ	0x00793A70	14	blocked	forwarder call target unresolved; identity not proven; t=1m model=gpt-5.6
+?d_001bf490@@YAXXZ	0x001BF490	18	blocked	conditional tail-jump thunk, target identity unresolved; t=1m model=gpt-5.6
+?d_00c0365b@@YAXXZ	0x00C0365B	17	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
+?d_00c6fd50@@YAXXZ	0x00C6FD50	20	blocked	absolute globals and call target; excluded from simple field lane; t=1m model=gpt-5.6
+?d_00c037dc@@YAXXZ	0x00C037DC	22	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
+?d_00c5ad68@@YAXXZ	0x00C5AD68	17	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
+?d_002b9ea0@@YAXXZ	0x002B9EA0	18	blocked	global interface and virtual dispatch; identity/pin not proven; t=1m model=gpt-5.6
