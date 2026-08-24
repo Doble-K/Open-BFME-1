@@ -76316,3 +76316,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??1BfmeMapChunk@@QAE@XZ,0x0002B9A4,Open-BFME5 ILT thunk; ?freeMapResources@HeightMapRenderObjClass@@UAEHXZ at 0x006D2690 hands it to the eh vector destructor iterator as the element destructor of the 0xC4-byte array at +0x30D8; address-derived name
 _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker NodeAllocMutex::_M_acquire_lock forwards its this to
 ?freeAllBuffers@W3DBufferManager@@QAEXXZ,0x00023349,Open-BFME5 ILT the GenAlpha shadow-resource release tail-jumps through
+?getFilename@WindowLayout@@QAE?AVAsciiString@@XZ,0x00019D53,BFME WindowLayout +0x04 accessor: Shell::findScreenByFilename retail callsite passes WindowLayout receiver and hidden AsciiString return; ILT 0x00019D53 targets exact 32B StringBase<char> copy-accessor body at 0x004EA450
