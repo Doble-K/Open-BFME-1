@@ -15,3 +15,19 @@ const char *Rva007BBDB0Str::str()
 		return m_data + 8;
 	return "";
 }
+
+class Rva007BBDD0Str
+{
+public:
+	const char *str();
+
+	char m_pad[0x10];
+	char *m_data;
+};
+
+const char *Rva007BBDD0Str::str()
+{
+	if (m_data)
+		return m_data + 8;
+	return "";
+}
