@@ -29,12 +29,26 @@ class SkyboxTextureSet
 {
 public:
 	SkyboxTextureSet();
+	virtual ~SkyboxTextureSet() {}
 
 	static const FieldParse m_fieldParseTable[];
 
 private:
-	char m_unmodelled[ 0x18 ];
+	AsciiString m_morningN;
+	AsciiString m_morningE;
+	AsciiString m_morningS;
+	AsciiString m_morningW;
+	AsciiString m_morningT;
 };
+
+SkyboxTextureSet::SkyboxTextureSet()
+{
+	((StringBase<char> *)&m_morningN)->set( "TSMorningN.tga", 14 );
+	((StringBase<char> *)&m_morningE)->set( "TSMorningE.tga", 14 );
+	((StringBase<char> *)&m_morningS)->set( "TSMorningS.tga", 14 );
+	((StringBase<char> *)&m_morningW)->set( "TSMorningW.tga", 14 );
+	((StringBase<char> *)&m_morningT)->set( "TSMorningT.tga", 14 );
+}
 
 typedef std::hash_map< AsciiString, SkyboxTextureSet *, rts::hash<AsciiString>, rts::equal_to<AsciiString> > SkyboxTextureSetMap;
 
