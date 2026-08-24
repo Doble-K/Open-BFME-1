@@ -148,3 +148,14 @@ Rva0082B060Identity *Rva0082B060Identity::self()
 void Rva0082B060Identity::touch()
 {
 }
+
+class Rva0082B000Helpers
+{
+public:
+    int firstValue(int value);
+};
+
+int Rva0082B000Helpers::firstValue(int value)
+{
+    return value;
+}
