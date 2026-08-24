@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD -Ireference/shims/gamespy
+// cl: /DNDEBUG /DWIN32 /MD -Ireference/shims/gamespy
 /* GameSpy SDK, 2004 vintage -- pristine upstream C source.
    Sourced from the Area 51 (Inevitable Entertainment / Midway) source release,
    github.com/bisc67/Area51, Support/NetworkMgr/GameSpy -- the only public
@@ -37,6 +37,11 @@ Please see the GameSpy Presence SDK documentation for more information
 #endif
 #include <string.h>
 #include "gpi.h"
+
+#ifdef WIN32
+__declspec(dllimport) DWORD __stdcall GetTempPathA(DWORD, LPSTR);
+#define GetTempPath GetTempPathA
+#endif
 
 #define GPI_TRANSFER_VERSION      1
 #define GPI_PEER_TIMEOUT_TIME     (1 * 60000)
