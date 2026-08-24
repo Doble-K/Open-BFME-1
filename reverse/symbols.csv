@@ -76230,3 +76230,17 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?resize@?$hashtable@URva00583B30Value@@VAsciiString@@U?$hash@VAsciiString@@@rts@@URva00583B30ExtractKey@@U?$equal_to@VAsciiString@@@_STL@@V?$allocator@URva00583B30Value@@@7@@_STL@@QAEXI@Z,0x00031B97,Open-BFME5 the hashtable resize the _M_insert at 0x00583B30 calls
 ?_M_bkt_num_key@?$hashtable@URva00583B30Value@@VAsciiString@@U?$hash@VAsciiString@@@rts@@URva00583B30ExtractKey@@U?$equal_to@VAsciiString@@@_STL@@V?$allocator@URva00583B30Value@@@7@@_STL@@ABEIABVAsciiString@@I@Z,0x0003F00D,Open-BFME5 the hashtable _M_bkt_num_key the _M_insert at 0x00583B30 calls
 ??$_Construct@URva00583B30Value@@U1@@_STL@@YAXPAURva00583B30Value@@ABU1@@Z,0x00034ED2,Open-BFME5 the value _Construct the hashtable _M_insert at 0x00583B30 calls
+??0Rva0009F820String@@QAE@ABV0@@Z,0x0009F6E0,Open-BFME5 the string copy constructor the accessor at 0x0009F820 calls
+??0Rva00537630String@@QAE@ABV0@@Z,0x00832150,Open-BFME5 the string copy constructor the accessor at 0x00537630 calls
+??0Rva00647720String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x00647720 calls
+??0Rva00647750String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x00647750 calls
+??0Rva006477B0String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x006477B0 calls
+??0Rva006477E0String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x006477E0 calls
+??0Rva00647920String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x00647920 calls
+??0?$StringBase@G@@QAE@ABV0@@Z,0x00888400,Open-BFME5 the string copy constructor a by-value accessor calls
+??0Rva0009F820String@@QAE@ABV0@@Z,0x00006320,Open-BFME5 the string copy constructor a by-value accessor calls
+??0Rva00647720String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
+??0Rva00647750String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
+??0Rva006477B0String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
+??0Rva006477E0String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
+??0Rva00647920String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
