@@ -41,3 +41,23 @@ void Rva008C5C40Buf::clear()
 	m_pad = 0;
 	m_ptr = 0;
 }
+
+class Rva008C5D00Buf
+{
+public:
+	void clear();
+
+private:
+	int m_pad;
+	unsigned int m_count;
+	void *m_ptr;
+};
+
+void Rva008C5D00Buf::clear()
+{
+	if (m_ptr)
+		operator delete(m_ptr, m_count * sizeof(unsigned int));
+	m_count = 0;
+	m_pad = 0;
+	m_ptr = 0;
+}
