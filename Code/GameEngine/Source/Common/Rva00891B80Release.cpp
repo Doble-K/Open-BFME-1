@@ -27,3 +27,18 @@ void Rva00891B80::release()
 	if (--block->m_ref == 0)
 		g_pool01337A30->free(block);
 }
+
+class Rva00892890
+{
+	Rva00891B80Block *m_block;
+
+public:
+	void release();
+};
+
+void Rva00892890::release()
+{
+	Rva00891B80Block *block = m_block;
+	if (--block->m_ref == 0)
+		g_pool01337A30->free(block);
+}
