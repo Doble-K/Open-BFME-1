@@ -75758,3 +75758,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeRva002E7C50TailCopy@_STL@@YAPAVRva002E7C50Element@@PAV2@00ABU__false_type@1@@Z,0x0001BC93,Open-BFME5 ILT for the 28-byte-element _STL::__uninitialized_copy at 0x002E3050
 ?BfmeRva00583330TailCopy@_STL@@YAPAVRva00583330Element@@PAV2@00ABU__false_type@1@@Z,0x00015019,Open-BFME5 ILT for the 28-byte-element _STL::__uninitialized_copy at 0x00581C50
 ?BfmeRva0028DAB0TailCopy@_STL@@YAPAVRva0028DAB0Element@@PAV2@00ABU__false_type@1@@Z,0x000030DA,Open-BFME5 ILT for the 48-byte-element _STL::__uninitialized_copy at 0x0028D4E0
+?BfmeRva009F56C0Copy@_STL@@YAPAURva009F56C0Element@@PAU2@00ABU__false_type@1@@Z,0x009F4580,Open-BFME5 the 24-byte-element _STL::__uninitialized_copy this body calls directly
+?BfmeRva009F56C0FillN@_STL@@YAPAURva009F56C0Element@@PAU2@IABU2@ABU__false_type@1@@Z,0x009F45D0,Open-BFME5 the 24-byte-element _STL::__uninitialized_fill_n this body calls directly
