@@ -1,0 +1,17 @@
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+
+class Rva007BBDB0Str
+{
+public:
+	const char *str();
+
+	char m_pad[8];
+	char *m_data;
+};
+
+const char *Rva007BBDB0Str::str()
+{
+	if (m_data)
+		return m_data + 8;
+	return "";
+}
