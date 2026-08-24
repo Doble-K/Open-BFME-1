@@ -5680,3 +5680,4 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_00c037dc@@YAXXZ	0x00C037DC	22	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
 ?d_00c5ad68@@YAXXZ	0x00C5AD68	17	blocked	unwind funclet; parent EH context unresolved; t=1m model=gpt-5.6
 ?d_002b9ea0@@YAXXZ	0x002B9EA0	18	blocked	global interface and virtual dispatch; identity/pin not proven; t=1m model=gpt-5.6
+?d_000652a0@@YAXXZ	0x000652A0	25	blocked	clean mode predicate semantics match values 8/4, but compiler branch polarity/layout differs from retail (je targets); t=14m model=gpt-5.6
