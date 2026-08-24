@@ -23263,3 +23263,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_0081d280@@YAXXZ,0x0081D280,"gen-dump placeholder retired: converted to _STL::vector::push_back in Code/Libraries/Source/WWVegas/WWLib/RvaVectorPushBack.cpp"
 ?getAdjustedVisionRangeForObject@AI@@SAMPBVObject@@H@Z,0x0002481B,"five-byte incremental-link static thunk claim retracted so the real body at 0x0014A620 can carry the name; the thunk bytes return to the gen-thunk pool."
 ?setSize@Shadow@@QAEXMM@Z,0x0002133C,"five-byte incremental-link thunk claim retracted so the real body at 0x001E4250 can carry the name; the thunk bytes return to the gen-thunk pool."
+?deleteAllFonts@FontLibrary@@IAEXXZ,0x000309CC,"five-byte incremental-link thunk claim retracted so the real body at 0x00722190 can carry the name; the thunk bytes return to the gen-thunk pool."

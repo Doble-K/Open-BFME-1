@@ -4,12 +4,6 @@ protected:
 	void addWaypointLink(int, int);
 };
 
-class FontLibrary
-{
-protected:
-	void deleteAllFonts();
-};
-
 class WaterTracksRenderSystem
 {
 public:
@@ -38,17 +32,6 @@ class WaterTracksRenderSystemLoadTracksShim
 public:
 	void loadTracks();
 };
-
-class FontLibraryDeleteAllFontsShim
-{
-public:
-	void deleteAllFonts();
-};
-
-void FontLibrary::deleteAllFonts()
-{
-    ((FontLibraryDeleteAllFontsShim *)this)->deleteAllFonts();
-}
 
 void WaterTracksRenderSystem::loadTracks()
 {
