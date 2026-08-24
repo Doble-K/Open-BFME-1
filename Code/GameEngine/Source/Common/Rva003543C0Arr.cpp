@@ -64,3 +64,24 @@ int Rva00354400Arr::get(int index)
 {
 	return m_items[index].m_0e;
 }
+
+struct Rva00354460Elem
+{
+	char m_pad[8];
+	int m_08;
+	char m_tail[8];
+};
+
+class Rva00354460Arr
+{
+public:
+	int *addr(int index);
+
+	char m_pad[0x0C];
+	Rva00354460Elem *m_items;
+};
+
+int *Rva00354460Arr::addr(int index)
+{
+	return &m_items[index].m_08;
+}
