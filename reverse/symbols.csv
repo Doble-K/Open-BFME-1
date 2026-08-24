@@ -74482,6 +74482,9 @@ name,address,notes
 ?setControlBarSchemeByPlayerTemplate@ControlBarSchemeManager@@QAEXPBVPlayerTemplate@@_N@Z,0x000378EE,REL32 pin: retail calls this through the incremental-link thunk at 0x378EE which jumps to 0x4ADE40
 ?setControlCommand@ControlBar@@AAEXPAVGameWindow@@PBVCommandButton@@@Z,0x00015DA7,incremental-link thunk read out of the call displacement in populateOCLTimer
 ?setCursor@Mouse@@UAEXW4MouseCursor@1@@Z,0x0000E520
+?setCursor@Win32Mouse@@UAEXW4MouseCursor@Mouse@@@Z,0x0004A1EC,retail W3DMouse::setCursor call at 0x00701908; ILT targets Win32Mouse cursor body 0x006BC190
+?releaseD3DCursorTextures@W3DMouse@@AAE_NW4MouseCursor@Mouse@@@Z,0x000484C8,retail W3DMouse::setCursor DX8 release call; ILT targets body 0x00700530 whose loop releases the 21 surface/texture slots
+?loadD3DCursorTextures@W3DMouse@@AAE_NW4MouseCursor@Mouse@@@Z,0x0000D08F,retail W3DMouse::setCursor DX8 load call; ILT targets matched body 0x00701330
 ?setCursorTooltip@Mouse@@QAEXVUnicodeString@@HPBURGBColor@@M@Z,0x000346E9,pinharvest x4 (thunk)
 ?setData@NetWrapperCommandMsg@@QAEXPAEI@Z,0x00049ECC,ILT thunk; real body 0xA73E70
 ?setDataOffset@NetWrapperCommandMsg@@QAEXI@Z,0x00023709,ILT thunk; real body 0xA73EF0

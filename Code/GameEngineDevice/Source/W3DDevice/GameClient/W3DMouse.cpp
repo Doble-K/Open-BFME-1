@@ -330,8 +330,60 @@ class BfmeInterfaceScene
 public:
 	virtual void bfme_scene_0( void ) = 0;
 	virtual void bfme_scene_4( void ) = 0;
-	virtual void bfme_scene_8( void ) = 0;
+	virtual void Add_Render_Object( RenderObjClass *obj ) = 0;
 	virtual void Remove_Render_Object( RenderObjClass *obj ) = 0;
+};
+
+// The BFME render-object ABI retains five virtual slots that the ZH header
+// omits before the animation overload used by the cursor models.
+class BfmeCursorRenderObject
+{
+public:
+	virtual void bfme_render_0( void ) = 0;
+	virtual void bfme_render_4( void ) = 0;
+	virtual void bfme_render_8( void ) = 0;
+	virtual void bfme_render_c( void ) = 0;
+	virtual void bfme_render_10( void ) = 0;
+	virtual void bfme_render_14( void ) = 0;
+	virtual void bfme_render_18( void ) = 0;
+	virtual void bfme_render_1c( void ) = 0;
+	virtual void bfme_render_20( void ) = 0;
+	virtual void bfme_render_24( void ) = 0;
+	virtual void bfme_render_28( void ) = 0;
+	virtual void bfme_render_2c( void ) = 0;
+	virtual void bfme_render_30( void ) = 0;
+	virtual void bfme_render_34( void ) = 0;
+	virtual void bfme_render_38( void ) = 0;
+	virtual void bfme_render_3c( void ) = 0;
+	virtual void bfme_render_40( void ) = 0;
+	virtual void bfme_render_44( void ) = 0;
+	virtual void bfme_render_48( void ) = 0;
+	virtual void bfme_render_4c( void ) = 0;
+	virtual void bfme_render_50( void ) = 0;
+	virtual void bfme_render_54( void ) = 0;
+	virtual void bfme_render_58( void ) = 0;
+	virtual void bfme_render_5c( void ) = 0;
+	virtual void bfme_render_60( void ) = 0;
+	virtual void bfme_render_64( void ) = 0;
+	virtual void bfme_render_68( void ) = 0;
+	virtual void bfme_render_6c( void ) = 0;
+	virtual void bfme_render_70( void ) = 0;
+	virtual void bfme_render_74( void ) = 0;
+	virtual void bfme_render_78( void ) = 0;
+	virtual void bfme_render_7c( void ) = 0;
+	virtual void bfme_render_80( void ) = 0;
+	virtual void bfme_render_84( void ) = 0;
+	virtual void bfme_render_88( void ) = 0;
+	virtual void bfme_render_8c( void ) = 0;
+	virtual void bfme_render_90( void ) = 0;
+	virtual void bfme_render_94( void ) = 0;
+	virtual void bfme_render_98( void ) = 0;
+	virtual void bfme_render_9c( void ) = 0;
+	virtual void bfme_render_a0( void ) = 0;
+	virtual void bfme_render_a4( void ) = 0;
+	virtual void bfme_render_a8( void ) = 0;
+	virtual void bfme_render_ac( void ) = 0;
+	virtual void Set_Animation( HAnimClass *anim, float frame, int mode ) = 0;
 };
 
 void W3DMouse::freeW3DAssets(void)
@@ -417,7 +469,6 @@ void W3DMouse::reset( void )
 //-------------------------------------------------------------------------------------------------
 /** Super basic simplistic cursor */
 //-------------------------------------------------------------------------------------------------
-// ?setCursor@W3DMouse@@ present-unmatched
 void W3DMouse::setCursor( MouseCursor cursor )
 {
 
@@ -432,7 +483,8 @@ void W3DMouse::setCursor( MouseCursor cursor )
 		setCursorDirection(cursor);
 		if (m_drawing)	//only allow cursor to change when drawing the cursor (once per frame) to fix flickering.
 			Win32Mouse::setCursor(cursor);
-		m_currentCursor = cursor;
+		if (m_currentCursor != cursor)
+			m_currentCursor = cursor;
 		return;
 	}
 
@@ -473,7 +525,9 @@ void W3DMouse::setCursor( MouseCursor cursor )
 			m_currentHotSpot = m_cursorInfo[cursor].hotSpotPosition;
 			m_currentFMS = m_cursorInfo[cursor].fps/1000.0f;
 			m_currentAnimFrame = 0;	//reset animation when cursor changes
-			res = m_pDev->SetCursorProperties(m_currentHotSpot.x,m_currentHotSpot.y,m_currentD3DSurface[(Int)m_currentAnimFrame]->Peek_D3D_Surface());
+			IDirect3DSurface8 *surface = (IDirect3DSurface8 *)m_currentD3DSurface[(Int)m_currentAnimFrame];
+			res = m_pDev->SetCursorProperties(m_currentHotSpot.x,m_currentHotSpot.y,
+					surface);
 			m_pDev->ShowCursor(TRUE);	//Enable DX8 cursor
 			m_currentD3DFrame=(Int)m_currentAnimFrame;
 			m_currentD3DCursor = cursor;
@@ -503,17 +557,17 @@ void W3DMouse::setCursor( MouseCursor cursor )
 			{
 				if (cursorModels[m_currentW3DCursor])
 				{
-					W3DDisplay::m_3DInterfaceScene->Remove_Render_Object(cursorModels[m_currentW3DCursor]);
+					((BfmeInterfaceScene *)W3DDisplay::m_3DInterfaceScene)->Remove_Render_Object(cursorModels[m_currentW3DCursor]);
 				}
 
 				m_currentW3DCursor=cursor;
 
 				if (cursorModels[m_currentW3DCursor])
 				{
-					W3DDisplay::m_3DInterfaceScene->Add_Render_Object(cursorModels[m_currentW3DCursor]);
+					((BfmeInterfaceScene *)W3DDisplay::m_3DInterfaceScene)->Add_Render_Object(cursorModels[m_currentW3DCursor]);
 					if (m_cursorInfo[m_currentW3DCursor].loop == FALSE && cursorAnims[m_currentW3DCursor])
 					{
-						cursorModels[m_currentW3DCursor]->Set_Animation(cursorAnims[m_currentW3DCursor], 0, RenderObjClass::ANIM_MODE_ONCE);
+						((BfmeCursorRenderObject *)cursorModels[m_currentW3DCursor])->Set_Animation(cursorAnims[m_currentW3DCursor], 0, RenderObjClass::ANIM_MODE_ONCE);
 					}
 				}
 			}
