@@ -75655,3 +75655,4 @@ _ciGetChannelTopic,0x00871FD0,gamespy-chat: retrieves channel topic
 _ciGetChannelNumUsers,0x00872030,gamespy-chat: retrieves channel user count
 ?resize@?$hashtable@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@W4NameKeyType@@U?$hash@W4NameKeyType@@@rts@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@@2@U?$equal_to@W4NameKeyType@@@5@V?$allocator@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@@2@@_STL@@AAEXI@Z,0x0003729F,Open-BFME5 ILT the NameKeyType-to-DamageFX hashtable _M_insert at 0x000675E0 calls first
 ??$_Construct@U?$pair@$$CBHVAsciiString@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBHVAsciiString@@@0@ABU10@@Z,0x0001C67A,Open-BFME5 ILT the Int-to-AsciiString _Rb_tree _M_insert at 0x000AA290 constructs the node value through
+??$_Construct@U?$pair@$$CBIE@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBIE@0@ABU10@@Z,0x0003A319,Open-BFME5 ILT the UnsignedInt-to-UnsignedByte _Rb_tree _M_insert at 0x001A9580 constructs the node value through
