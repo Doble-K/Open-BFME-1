@@ -5665,3 +5665,4 @@ _ghiThrottleSettings	0x0087C9C0	20	converted	two stores into the throttle global
 ?d_000fa0e0@@YAXXZ	0x000FA0E0	69	not-convertible	Address-derived math/iterator loop uses opaque caller arguments, 0x60 stride and unresolved target identity; no independently proven real source owner for an honest C++ body; t=2min model=gpt-5.6-luna
 ?d_0050b8e0@@YAXXZ	0x0050B8E0	57	not-convertible	Bounds-high address-derived body copies three 8-byte blocks into fixed globals 0x012F48CC/EC/0x012F490C then tail-jumps to an unresolved continuation; no proven owner or safe C++ identity; t=2min model=gpt-5.6-luna
 ?d_00381d80@@YAXXZ	0x00381D80	51	blocked	bounds-high STL list/tree allocation helper; identity unresolved from generated tgrid family; t=12m model=gpt-5.6
+?d_007287e0@@YAXXZ	0x007287E0	21	blocked	clean C++ semantics confirmed; clang-cl emits c7 immediate and EAX pointer, target requires b8/89 and ECX pointer;  t=18m model=gpt-5.6
