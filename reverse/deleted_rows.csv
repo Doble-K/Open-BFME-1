@@ -23447,3 +23447,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_005a4600@@YAXXZ,0x005A4600,"gen-dump placeholder retired: converted to Rva005A4600Arr::slot in Code/GameEngine/Source/Common/Rva005A4600Arr.cpp"
 ?d_0082bb20@@YAXXZ,0x0082BB20,"gen-dump placeholder retired: converted to _Sl_global<bool>::__reverse in Code/Libraries/Source/WWVegas/WWLib/STLSlGlobalBoolReverse.cpp"
 ?d_0082bb70@@YAXXZ,0x0082BB70,"gen-dump placeholder retired: converted to _Sl_global<bool>::__splice_after in Code/Libraries/Source/WWVegas/WWLib/STLSlGlobalBoolSpliceAfter3.cpp"
+?d_0082b970@@YAXXZ,0x0082B970,"gen-dump placeholder retired: converted to _Rb_global<bool>::_Rotate_left in Code/Libraries/Source/WWVegas/WWLib/STLRbGlobalBoolRotateLeft.cpp"
