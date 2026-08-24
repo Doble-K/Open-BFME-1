@@ -76373,3 +76373,14 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeAllocateSorting@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F5B0,Open-BFME5 the 384-byte member the BoxDynamicVBAccessClass constructor calls when its first argument is 2
 ?bfmeAllocateDynamic@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F040,Open-BFME5 the 274-byte member the BoxDynamicVBAccessClass constructor calls otherwise
 ?bfmePushBackAux@Gen_00089d90@@IAEXABQAX@Z,0x0002FF1D,Open-BFME5 ILT the deque push_back at 0x00089D90 tail-jumps through
+?bfmePushBackAux@Gen_0035b840@@IAEXABQAX@Z,0x00025284,Open-BFME5 ILT the deque push_back at 0x0035B840 tail-jumps through
+?bfmePushBackAux@Gen_0035b870@@IAEXABQAX@Z,0x00008553,Open-BFME5 ILT the deque push_back at 0x0035B870 tail-jumps through
+?bfmePushBackAux@Gen_0035bb10@@IAEXABQAX@Z,0x000179C7,Open-BFME5 ILT the deque push_back at 0x0035BB10 tail-jumps through
+?bfmePushBackAux@Gen_0035bb40@@IAEXABQAX@Z,0x0003BAD9,Open-BFME5 ILT the deque push_back at 0x0035BB40 tail-jumps through
+?bfmePushBackAux@Gen_0035c3a0@@IAEXABQAX@Z,0x00025284,Open-BFME5 ILT the deque push_back at 0x0035C3A0 tail-jumps through
+?bfmePushBackAux@Gen_0035c3d0@@IAEXABQAX@Z,0x00008553,Open-BFME5 ILT the deque push_back at 0x0035C3D0 tail-jumps through
+?bfmePushBackAux@Gen_0035c840@@IAEXABQAX@Z,0x000179C7,Open-BFME5 ILT the deque push_back at 0x0035C840 tail-jumps through
+?bfmePushBackAux@Gen_0035c870@@IAEXABQAX@Z,0x0003BAD9,Open-BFME5 ILT the deque push_back at 0x0035C870 tail-jumps through
+?bfmePushBackAux@Gen_00369a30@@IAEXABQAX@Z,0x00036C82,Open-BFME5 ILT the deque push_back at 0x00369A30 tail-jumps through
+?bfmePushBackAux@Gen_00369e30@@IAEXABQAX@Z,0x00036C82,Open-BFME5 ILT the deque push_back at 0x00369E30 tail-jumps through
+?bfmePushBackAux@Gen_00647430@@IAEXABQAX@Z,0x000399D7,Open-BFME5 ILT the deque push_back at 0x00647430 tail-jumps through
