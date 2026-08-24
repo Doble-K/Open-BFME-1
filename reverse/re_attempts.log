@@ -5901,3 +5901,4 @@ _ciFilterThink	0x0086C2D0	49	blocked	the loop calls 0x0086C0C0 with its argument
 ?freeBlocks@PathfindZoneManager@@AAEXXZ	0x00403760	92	converted	delete[] of 0x228-byte elements with a destructor at +0x23624 then a bare operator delete of the dtor-less array at +0x23628, four words cleared
 ??0W3DTerrainVisualBase@@QAE@XZ	0x00602C70	92	converted	root base vtable 0x01073744 inlined, SubsystemInterface ctor on this+4, then both derived vtables and the word at +0x0C
 ?deleteBuildTooltipLayout@ControlBar@@QAEXXZ	0x004C1450	92	converted	unguarded vslot 4 call on +0x278 then two guarded deleting-destructor deletes and a release on +0x488 of the global at 0x012F4B98
+??$__copy@PAUNamedReveal@@	0x0033A9F0	91	converted	sixteen-byte element from the shift of four; inlined compiler-generated assignment gives operator= on +0, +4 and +0xC and a dword copy at +8
