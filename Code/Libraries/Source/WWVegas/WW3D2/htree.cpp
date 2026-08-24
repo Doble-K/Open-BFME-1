@@ -282,6 +282,7 @@ bool HTreeClass::read_pivots(ChunkLoadClass & cload,bool pre30)
 		Pivot[0].BaseTransform.Make_Identity();
 		Pivot[0].Transform.Make_Identity();
 		Pivot[0].IsVisible = true;
+		Pivot[0].PivotFade = 1.0f;
 		strcpy(Pivot[0].Name,"RootTransform");
 		first_piv++;
 	}
@@ -347,6 +348,7 @@ bool HTreeClass::read_pivots(ChunkLoadClass & cload,bool pre30)
 
 	Pivot[0].Transform.Make_Identity();
 	Pivot[0].IsVisible = true;
+	Pivot[0].PivotFade = 1.0f;
 
 	return true;
 }
@@ -4613,4 +4615,3 @@ HTreeClass * HTreeClass::Create_Interpolated(const HTreeClass * tree_base,
 
 	return new_tree;
 }
-
