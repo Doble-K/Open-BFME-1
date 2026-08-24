@@ -75721,3 +75721,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ?BfmeWeaponRecoilInfoUninitializedFillN@_STL@@YAPAUWeaponRecoilInfo@W3DModelDraw@@PAU23@IABU23@ABU__false_type@1@@Z,0x00049459,Open-BFME5 ILT for _STL::__uninitialized_fill_n on W3DModelDraw WeaponRecoilInfo at 0x0020E310
 ?BfmeFlightDeckInfoUninitializedCopy@_STL@@YAPAUFlightDeckInfo@FlightDeckBehavior@@PAU23@00ABU__false_type@1@@Z,0x0002894D,Open-BFME5 ILT for _STL::__uninitialized_copy on FlightDeckBehavior FlightDeckInfo at 0x0022FE20
 ?BfmeFlightDeckInfoUninitializedFillN@_STL@@YAPAUFlightDeckInfo@FlightDeckBehavior@@PAU23@IABU23@ABU__false_type@1@@Z,0x00017E0E,Open-BFME5 ILT for _STL::__uninitialized_fill_n on FlightDeckBehavior FlightDeckInfo at 0x0022FE80
+?BfmeConnInfoUninitializedCopy@_STL@@YAPAUtConnInfoStruct@@PAU2@00ABU__false_type@1@@Z,0x00007018,Open-BFME5 ILT for _STL::__uninitialized_copy on tConnInfoStruct at 0x00637E40
+?BfmeConnInfoUninitializedFillN@_STL@@YAPAUtConnInfoStruct@@PAU2@IABU2@ABU__false_type@1@@Z,0x000099FD,Open-BFME5 ILT for _STL::__uninitialized_fill_n on tConnInfoStruct at 0x00637EA0
