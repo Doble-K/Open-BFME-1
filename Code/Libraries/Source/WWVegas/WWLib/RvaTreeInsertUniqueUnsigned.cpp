@@ -19,7 +19,10 @@
 // Identity is not recoverable from a body that touches only the key.  The key
 // is modelled as the plain unsigned int the comparison proves it to be, and the
 // mapped type -- which the bytes never read -- is named for the address of the
-// body so each instantiation gets its own decorated name.
+// body so each instantiation gets its own decorated name.  Its WIDTH is known:
+// the _M_insert each body calls -- converted in RvaTreeMInsertPair.cpp -- pushes
+// the node size to the allocator, and the mapped type is that size less the
+// sixteen-byte _Rb_tree_node_base and the four-byte key.
 //
 // Bodies whose _M_insert callee allocates a 20-byte node are NOT here: a node
 // that holds only four bytes of value is _Identity over the key itself, not a
@@ -30,7 +33,7 @@
 
 struct Rva00076F80Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva00076F80Value> Rva00076F80Pair;
@@ -46,7 +49,7 @@ Rva00076F80Tree::insert_unique( const Rva00076F80Pair & );
 
 struct Rva00077040Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva00077040Value> Rva00077040Pair;
@@ -62,7 +65,7 @@ Rva00077040Tree::insert_unique( const Rva00077040Pair & );
 
 struct Rva000E9850Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva000E9850Value> Rva000E9850Pair;
@@ -78,7 +81,7 @@ Rva000E9850Tree::insert_unique( const Rva000E9850Pair & );
 
 struct Rva0021BE20Value
 {
-	int m_body;
+	char m_body[ 8 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva0021BE20Value> Rva0021BE20Pair;
@@ -94,7 +97,7 @@ Rva0021BE20Tree::insert_unique( const Rva0021BE20Pair & );
 
 struct Rva00223FA0Value
 {
-	int m_body;
+	char m_body[ 40 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva00223FA0Value> Rva00223FA0Pair;
@@ -110,7 +113,7 @@ Rva00223FA0Tree::insert_unique( const Rva00223FA0Pair & );
 
 struct Rva002A1E90Value
 {
-	int m_body;
+	char m_body[ 16 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva002A1E90Value> Rva002A1E90Pair;
@@ -126,7 +129,7 @@ Rva002A1E90Tree::insert_unique( const Rva002A1E90Pair & );
 
 struct Rva003DBF80Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva003DBF80Value> Rva003DBF80Pair;
@@ -142,7 +145,7 @@ Rva003DBF80Tree::insert_unique( const Rva003DBF80Pair & );
 
 struct Rva003FF8D0Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva003FF8D0Value> Rva003FF8D0Pair;
@@ -158,7 +161,7 @@ Rva003FF8D0Tree::insert_unique( const Rva003FF8D0Pair & );
 
 struct Rva00405DB0Value
 {
-	int m_body;
+	char m_body[ 32 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva00405DB0Value> Rva00405DB0Pair;
@@ -174,7 +177,7 @@ Rva00405DB0Tree::insert_unique( const Rva00405DB0Pair & );
 
 struct Rva0040AAD0Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva0040AAD0Value> Rva0040AAD0Pair;
@@ -190,7 +193,7 @@ Rva0040AAD0Tree::insert_unique( const Rva0040AAD0Pair & );
 
 struct Rva004B0C80Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva004B0C80Value> Rva004B0C80Pair;
@@ -206,7 +209,7 @@ Rva004B0C80Tree::insert_unique( const Rva004B0C80Pair & );
 
 struct Rva00586710Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva00586710Value> Rva00586710Pair;
@@ -222,7 +225,7 @@ Rva00586710Tree::insert_unique( const Rva00586710Pair & );
 
 struct Rva005D2B10Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva005D2B10Value> Rva005D2B10Pair;
@@ -238,7 +241,7 @@ Rva005D2B10Tree::insert_unique( const Rva005D2B10Pair & );
 
 struct Rva006A4630Value
 {
-	int m_body;
+	char m_body[ 4 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva006A4630Value> Rva006A4630Pair;
@@ -254,7 +257,7 @@ Rva006A4630Tree::insert_unique( const Rva006A4630Pair & );
 
 struct Rva008FFE90Value
 {
-	int m_body;
+	char m_body[ 12 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva008FFE90Value> Rva008FFE90Pair;
@@ -270,7 +273,7 @@ Rva008FFE90Tree::insert_unique( const Rva008FFE90Pair & );
 
 struct Rva0094CCF0Value
 {
-	int m_body;
+	char m_body[ 16 ];
 };
 
 typedef _STL::pair<const unsigned int, Rva0094CCF0Value> Rva0094CCF0Pair;
