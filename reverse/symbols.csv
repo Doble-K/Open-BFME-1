@@ -76512,3 +76512,10 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeApply@Gen_006C89F0Target@@QAE_NPAX0_N@Z,0x000486EE,Open-BFME5 ILT the guarded delegate at 0x006C89F0 appends a false and calls through
 ?bfmeForward@Gen_006C8A20Target@@QAE_NPAX0@Z,0x0003A03A,Open-BFME5 ILT the guarded delegate at 0x006C8A20 forwards through
 ?bfmeForward@Gen_006C8A40Target@@QAE_NPAX0@Z,0x0001551E,Open-BFME5 ILT the guarded delegate at 0x006C8A40 forwards through
+?bfmeForward@Gen_001BF490Target@@QAEXPAX@Z,0x000138EF,Open-BFME5 ILT the void guarded delegate at 0x001BF490 forwards through
+?bfmeForward@Gen_001BF4B0Target@@QAEXPAX@Z,0x0003DE5B,Open-BFME5 ILT the void guarded delegate at 0x001BF4B0 forwards through
+?bfmeForward@Gen_001BF4D0Target@@QAEXPAX@Z,0x0000FD35,Open-BFME5 ILT the void guarded delegate at 0x001BF4D0 forwards through
+?bfmeForward@Gen_001BF4F0Target@@QAEXPAX@Z,0x00040E17,Open-BFME5 ILT the void guarded delegate at 0x001BF4F0 forwards through
+?bfmeApply@Gen_0037DF60Owner@@QAEXPAX@Z,0x000204F0,Open-BFME5 ILT the __stdcall wrapper at 0x0037DF60 calls through
+?bfmeApply@Gen_0052F050Owner@@QAEXPAX@Z,0x0002B210,Open-BFME5 ILT the __stdcall wrapper at 0x0052F050 calls through
+?bfmeApply@Gen_00574F40Owner@@QAEXPAX@Z,0x00013471,Open-BFME5 ILT the __stdcall wrapper at 0x00574F40 calls through
