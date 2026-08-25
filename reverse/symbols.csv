@@ -76666,3 +76666,39 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeAccept@Gen_002CFFD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002CFFD0 accepts through
 ?bfmeAccept@Gen_002D2580@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002D2580 accepts through
 ?bfmeAccept@Gen_00604760@@AAEXPAVBfmeSeedTarget@@@Z,0x0003D2A8,Open-BFME5 ILT the seeder at 0x00604760 accepts through
+?bfmeAccept@BfmeSubAccept_000061B3@@QAEXPAVBfmeSeedTarget@@@Z,0x000061B3,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_0001DE5D@@QAEXPAVBfmeSeedTarget@@@Z,0x0001DE5D,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_00029DAC@@QAEXPAVBfmeSeedTarget@@@Z,0x00029DAC,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_0002C41C@@QAEXPAVBfmeSeedTarget@@@Z,0x0002C41C,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_00031A07@@QAEXPAVBfmeSeedTarget@@@Z,0x00031A07,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_000328EE@@QAEXPAVBfmeSeedTarget@@@Z,0x000328EE,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_0003EA86@@QAEXPAVBfmeSeedTarget@@@Z,0x0003EA86,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeHandOver_0000C9B4@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0000C9B4,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_0000FFE2@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0000FFE2,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00020586@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00020586,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_0003EE32@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0003EE32,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeAccept@Gen_0016B250@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016B250 accepts through
+?bfmeAccept@Gen_0016B940@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016B940 accepts through
+?bfmeAccept@Gen_0016BB90@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016BB90 accepts through
+?bfmeAccept@Gen_0016BCF0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016BCF0 accepts through
+?bfmeAccept@Gen_0016BFC0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016BFC0 accepts through
+?bfmeAccept@Gen_0016C730@@AAEXPAVBfmeSeedTarget@@@Z,0x00033BF4,Open-BFME5 ILT the seeder at 0x0016C730 accepts through
+?bfmeAccept@Gen_0016C7F0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016C7F0 accepts through
+?bfmeAccept@Gen_0016D180@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016D180 accepts through
+?bfmeAccept@Gen_001ED0C0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001ED0C0 accepts through
+?bfmeAccept@Gen_001EE830@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001EE830 accepts through
+?bfmeAccept@Gen_001FFCA0@@AAEXPAVBfmeSeedTarget@@@Z,0x0003689A,Open-BFME5 ILT the seeder at 0x001FFCA0 accepts through
+?bfmeAccept@Gen_00202740@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00202740 accepts through
+?bfmeAccept@Gen_00202D30@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00202D30 accepts through
+?bfmeAccept@Gen_00204710@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00204710 accepts through
+?bfmeAccept@Gen_00207470@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00207470 accepts through
+?bfmeAccept@Gen_00214C60@@AAEXPAVBfmeSeedTarget@@@Z,0x00031557,Open-BFME5 ILT the seeder at 0x00214C60 accepts through
+?bfmeAccept@Gen_00214EA0@@AAEXPAVBfmeSeedTarget@@@Z,0x00031557,Open-BFME5 ILT the seeder at 0x00214EA0 accepts through
+?bfmeAccept@Gen_00268060@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the seeder at 0x00268060 accepts through
+?bfmeAccept@Gen_0028CE90@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0028CE90 accepts through
+?bfmeAccept@Gen_00292E60@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00292E60 accepts through
+?bfmeAccept@Gen_002A07E0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002A07E0 accepts through
+?bfmeAccept@Gen_002AE710@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002AE710 accepts through
+?bfmeAccept@Gen_002AF780@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002AF780 accepts through
+?bfmeAccept@Gen_002BBD40@@AAEXPAVBfmeSeedTarget@@@Z,0x0000DC24,Open-BFME5 ILT the seeder at 0x002BBD40 accepts through
+?bfmeAccept@Gen_0077F790@@AAEXPAVBfmeSeedTarget@@@Z,0x00011CBB,Open-BFME5 ILT the seeder at 0x0077F790 accepts through
