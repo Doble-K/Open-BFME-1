@@ -76542,3 +76542,9 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeHashCompareA@@YAIII@Z,0x00027BFB,Open-BFME5 ILT the hash comparisons at 0x0054ECB0 and 0x0054F200 call
 ?bfmeHashCompareB@@YAIII@Z,0x00020AA4,Open-BFME5 ILT the hash comparisons at 0x0054ECE0 and 0x0054F230 call
 ?bfmeRelease@BfmeSharedBlock@@QAEXXZ,0x009EB7A0,Open-BFME5 the shared-block release the refcounted assignments at 0x005D1E50 and its siblings call
+?bfmeCheckA@@YAHPAX@Z,0x00894D90,Open-BFME5 the guard the cleanup at 0x00783A50 calls
+?bfmeDropA@@YAXPAX@Z,0x00895320,Open-BFME5 the drop the cleanup at 0x00783A50 calls
+?bfmeCheckB@@YAHPAX@Z,0x00894DB0,Open-BFME5 the guard the cleanups at 0x008925F0 0x00892CA0 and 0x00893990 call
+?bfmeDropB@@YAXPAX@Z,0x008961C0,Open-BFME5 the drop the cleanups at 0x008925F0 0x00892CA0 and 0x00893990 call
+??1BfmeChildA@@QAE@XZ,0x008976E0,Open-BFME5 the child destructor the teardown at 0x008AB8E0 calls
+??1BfmeChildB@@QAE@XZ,0x0089CC70,Open-BFME5 the child destructor the teardowns at 0x008BD820 0x008BD880 and 0x008BD8E0 call
