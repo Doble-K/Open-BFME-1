@@ -76908,3 +76908,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?_M_insert_overflow@?$vector@URva001E9020Element@@V?$allocator@URva001E9020Element@@@_STL@@@_STL@@IAEXPAURva001E9020Element@@ABU3@ABU__false_type@2@I_N@Z,0x001E9020,existing exact STLport vector overflow body at the proven constructor target
 ??0BfmeArmyIcon@@QAE@ABVAsciiString@@@Z,0x00023ED9,retail findArmyIcon body directly encodes the BfmeArmyIcon constructor thunk
 ?_M_insert_overflow@?$vector@PAVBfmeArmyIcon@@V?$allocator@PAVBfmeArmyIcon@@@_STL@@@_STL@@IAEXPAPAVBfmeArmyIcon@@ABQAV3@ABU__true_type@2@I_N@Z,0x0001E051,retail findArmyIcon overflow call directly identifies vector<BfmeArmyIcon*> overflow helper
+_io_fromto,0x009933C0,pristine Lua 4.0.1 io_fromto target reached by io_readfrom wrapper at 0x009934D0
