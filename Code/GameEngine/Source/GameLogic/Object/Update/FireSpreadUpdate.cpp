@@ -39,8 +39,28 @@
 #include "GameLogic/Object.h"
 #include "GameLogic/ObjectCreationList.h"
 #include "GameLogic/PartitionManager.h"
-#include "GameLogic/Module/FireSpreadUpdate.h"
+#include "GameLogic/Module/UpdateModule.h"
 #include "GameLogic/Module/FlammableUpdate.h"
+
+// BFME adds the update-list sentinel immediately after the two reference
+// UpdateModule state words.  Keep that proven layout local to this TU because
+// the vendored UpdateModule header is shared by the reference-era sources.
+class FireSpreadUpdateBFMELayout : public UpdateModule
+{
+	public:
+	FireSpreadUpdateBFMELayout( Thing *thing, const ModuleData *moduleData ) :
+		UpdateModule( thing, moduleData ),
+		m_pad(-1)
+	{
+	}
+
+	protected:
+	Int m_pad;
+};
+
+#define UpdateModule FireSpreadUpdateBFMELayout
+#include "GameLogic/Module/FireSpreadUpdate.h"
+#undef UpdateModule
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
@@ -95,7 +115,7 @@ Bool PartitionFilterFlammable::allow(Object *objOther)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-FireSpreadUpdate::FireSpreadUpdate( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
+FireSpreadUpdate::FireSpreadUpdate( Thing *thing, const ModuleData* moduleData ) : FireSpreadUpdateBFMELayout( thing, moduleData )
 {
 	setWakeFrame(getObject(), UPDATE_SLEEP_FOREVER);
 }

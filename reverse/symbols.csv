@@ -1977,7 +1977,6 @@ name,address,notes
 ??0FireOCLAfterWeaponCooldownUpdateModuleData@@QAE@XZ,0x0000B997,pinharvest x1 (thunk)
 ??0FireOCLAfterWeaponCooldownUpdateModuleData@@QAE@XZ,0x00016C39,pinharvest x1 (thunk)
 ??0FireOCLAfterWeaponCooldownUpdateModuleData@@QAE@XZ,0x00025D47,pinharvest x1 (thunk)
-??0FireSpreadUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x04B510,module ctor (friend_newModuleInstance retail call target)
 ??0FireSpreadUpdateModuleData@@QAE@XZ,0x000104B5,module-glue cascade callee (from retail call site)
 ??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x00008878,pinharvest x1 (thunk)
 ??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000BAF0,pinharvest x1 (thunk)
