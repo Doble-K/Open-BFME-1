@@ -76727,3 +76727,9 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeAccept@Gen_002CEED0@@AAEXPAVBfmeSeedTarget@@@Z,0x0001D043,Open-BFME5 ILT the seeder at 0x002CEED0 accepts through
 ?bfmeAccept@Gen_002D0550@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002D0550 accepts through
 ?bfmeAccept@Gen_00603240@@AAEXPAVBfmeSeedTarget@@@Z,0x0003D2A8,Open-BFME5 ILT the seeder at 0x00603240 accepts through
+?bfmeAccept@BfmeSubAccept_00007289@@QAEXPAVBfmeSeedTarget@@@Z,0x00007289,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_00016B85@@QAEXPAVBfmeSeedTarget@@@Z,0x00016B85,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeHandOver_00001A50@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00001A50,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00012C65@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00012C65,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00044FD0@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00044FD0,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeAccept@Gen_0015E7E0@@AAEXPAVBfmeSeedTarget@@@Z,0x00022363,Open-BFME5 ILT the seeder at 0x0015E7E0 accepts through
