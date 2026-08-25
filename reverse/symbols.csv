@@ -76555,3 +76555,8 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeInitBodyA@@YAXPAUBfmeNodeBody@@PAX@Z,0x000012D5,Open-BFME5 ILT the node maker at 0x0046A070 initialises through
 ?bfmeInitBodyB@@YAXPAUBfmeNodeBody@@PAX@Z,0x0000C568,Open-BFME5 ILT the node maker at 0x0046B1C0 initialises through
 ?bfmeInitBodyC@@YAXPAUBfmeNodeBody@@PAX@Z,0x00926750,Open-BFME5 the routine the node maker at 0x00927760 initialises through
+?bfmeMakeW0@@YAIII@Z,0x0004B28B,Open-BFME5 ILT the variant ctor at 0x00390830 calls
+?bfmeMakeW1@@YAIII@Z,0x00002B8F,Open-BFME5 ILT the variant ctor at 0x003CA5F0 calls
+?bfmeMakeW2@@YAIII@Z,0x00025225,Open-BFME5 ILT the variant ctor at 0x0054F770 calls
+?bfmeMakeW3@@YAIII@Z,0x0000403E,Open-BFME5 ILT the variant ctor at 0x0054F7C0 calls
+?bfmeMakeW4@@YAIII@Z,0x000283D5,Open-BFME5 ILT the variant ctor at 0x00596C40 calls
