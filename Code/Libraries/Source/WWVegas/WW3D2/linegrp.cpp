@@ -203,11 +203,18 @@ int LineGroupClass::Get_Flag(FlagsType flag)
 	return (Flags >> flag) & 0x1;
 }
 
-// ?LineGroupClass::Set_Texture body in LineGroupClassSetTextureThunk.cpp (exact 50B retail)
 // ?LineGroupClass::Set_Texture present-unmatched
 void LineGroupClass::Set_Texture(TextureClass* texture)
 {
-	REF_PTR_SET(Texture,texture);
+	TextureClass **next = reinterpret_cast<TextureClass **>(texture);
+	if (*next)
+		++*reinterpret_cast<unsigned short *>(reinterpret_cast<char *>(*next) + 4);
+	if (Texture) {
+		Texture->Release_Ref();
+		Texture = *next;
+	} else {
+		Texture = *next;
+	}
 }
 
 // ?LineGroupClass::Get_Texture present-unmatched

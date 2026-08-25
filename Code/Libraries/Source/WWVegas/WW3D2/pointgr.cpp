@@ -590,11 +590,18 @@ int PointGroupClass::Get_Flag(FlagsType flag)
  *   11/17/1998 NH  : Created.                                            *
  *   02/08/2001 HY  : Upgraded to DX8                                     *
  *========================================================================*/
-// ?PointGroupClass::Set_Texture body in PointGroupClassSetTextureThunk.cpp (exact 50B retail)
 // ?PointGroupClass::Set_Texture present-unmatched
 void PointGroupClass::Set_Texture(TextureClass* texture)
 {
-	REF_PTR_SET(Texture,texture);
+	TextureClass **next = reinterpret_cast<TextureClass **>(texture);
+	if (*next)
+		++*reinterpret_cast<unsigned short *>(reinterpret_cast<char *>(*next) + 4);
+	if (Texture) {
+		Texture->Release_Ref();
+		Texture = *next;
+	} else {
+		Texture = *next;
+	}
 }
 
 /************************************************************************** 
