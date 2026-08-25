@@ -39,6 +39,13 @@
    retail's.  The parameter ORDER is not what decides this; moving
    paramsSize to position two changed nothing.
 
+   piAddChangeNickCallback is the one body here whose two field stores are
+   emitted in reverse.  Its params are two char * of the same width, and
+   VC7.1 schedules the pair the other way round from every neighbour whose
+   two fields differ in type; the source has to write newNick first.  Its
+   twin piAddPlayerChangedNickCallback does NOT -- same two names, three
+   fields, declaration order.  Only the bytes tell them apart.
+
    Build flags follow the rest of this SDK: /MD so libc is __imp__ indirect,
    __cdecl, NDEBUG so the asserts vanish, Win32 headers from
    reference/shims/gamespy. */
@@ -179,7 +186,9 @@ typedef struct PEERCallbacks
 
 typedef struct piConnection
 {
-	char reserved0[0x390];
+	char reserved0[0x4c];
+	void * nickErrorCallback;	/* +0x4c */
+	char reserved0b[0x390 - 0x4c - 4];
 	PEERBool inRoom[NumRooms];
 	char reserved1[0x17a4 - 0x390 - 3 * 4];
 	PEERCallbacks callbacks;
@@ -3097,6 +3106,99 @@ static int piAddCallback(PEER peer,
 	return data.ID;
 }
 
+void piAddConnectCallback(PEER peer, PEERBool success, int failureReason, void * callback, void * param, int ID)
+{
+	piConnectParams params;
+	PEER_CONNECTION;
+
+	params.failureReason = failureReason;
+
+	piAddCallback(peer, success, callback, param, PI_CONNECT_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddListGroupRoomsCallback(PEER peer, PEERBool success, int groupID, SBServer server, const char *name, int numWaiting, int maxWaiting, int numGames, int numPlaying, void * callback, void * param, int ID)
+{
+	piListGroupRoomsParams params;
+	PEER_CONNECTION;
+
+	params.groupID = groupID;
+	params.server = server;
+	params.name = (char *)name;
+	params.numWaiting = numWaiting;
+	params.maxWaiting = maxWaiting;
+	params.numGames = numGames;
+	params.numPlaying = numPlaying;
+
+	piAddCallback(peer, success, callback, param, PI_LIST_GROUP_ROOMS_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddNickErrorCallback(PEER peer, int type, const char * nick,
+		int numSuggestedNicks, char ** suggestedNicks, void * param, int ID)
+{
+	piNickErrorParams params;
+	PEER_CONNECTION;
+
+	params.type = type;
+	params.nick = (char *)nick;
+	params.numSuggestedNicks = numSuggestedNicks;
+	params.suggestedNicks = suggestedNicks;
+
+	piAddCallback(peer, PEERFalse, connection->nickErrorCallback, param,
+		PI_NICK_ERROR_CALLBACK, &params, sizeof(params), ID);
+}
+
+void piAddEnumPlayersCallback(PEER peer, PEERBool success, RoomType roomType, int index, const char *nick, int flags, void * callback, void * param, int ID)
+{
+	piEnumPlayersParams params;
+	PEER_CONNECTION;
+
+	params.roomType = roomType;
+	params.index = index;
+	params.nick = (char *)nick;
+	params.flags = flags;
+
+	piAddCallback(peer, success, callback, param, PI_ENUM_PLAYERS_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddGetPlayerInfoCallback(PEER peer, PEERBool success, const char *nick, unsigned int IP, int profileID, void * callback, void * param, int ID)
+{
+	piGetPlayerInfoParams params;
+	PEER_CONNECTION;
+
+	params.nick = (char *)nick;
+	params.IP = IP;
+	params.profileID = profileID;
+
+	piAddCallback(peer, success, callback, param, PI_GET_PLAYER_INFO_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddGetPlayerProfileIDCallback(PEER peer, PEERBool success, const char *nick, int profileID, void * callback, void * param, int ID)
+{
+	piGetPlayerProfileIDParams params;
+	PEER_CONNECTION;
+
+	params.nick = (char *)nick;
+	params.profileID = profileID;
+
+	piAddCallback(peer, success, callback, param, PI_GET_PLAYER_PROFILE_ID_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddGetPlayerIPCallback(PEER peer, PEERBool success, const char *nick, unsigned int IP, void * callback, void * param, int ID)
+{
+	piGetPlayerIPParams params;
+	PEER_CONNECTION;
+
+	params.nick = (char *)nick;
+	params.IP = IP;
+
+	piAddCallback(peer, success, callback, param, PI_GET_PLAYER_IP_CALLBACK,
+		&params, sizeof(params), ID);
+}
 void piAddRoomMessageCallback(PEER peer, RoomType roomType, const char *nick, const char *message, MessageType messageType)
 {
 	piRoomMessageParams params;
@@ -3431,4 +3533,45 @@ void piAddPlayerFlagsChangedCallback(PEER peer, RoomType roomType, const char *n
 	piAddCallback(peer, PEERTrue, connection->callbacks.playerFlagsChanged,
 		connection->callbacks.param, PI_PLAYER_FLAGS_CHANGED_CALLBACK, &params,
 		sizeof(params), -1);
+}
+
+void piAddChangeNickCallback(PEER peer, PEERBool success, const char *oldNick, const char *newNick, void * callback, void * param, int ID)
+{
+	piChangeNickParams params;
+	PEER_CONNECTION;
+
+	params.newNick = (char *)newNick;
+	params.oldNick = (char *)oldNick;
+
+	piAddCallback(peer, success, callback, param, PI_CHANGE_NICK_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddGetGlobalKeysCallback(PEER peer, PEERBool success, const char *nick, int num, char **keys, char **values, void * callback, void * param, int ID)
+{
+	piGetGlobalKeysParams params;
+	PEER_CONNECTION;
+
+	params.nick = (char *)nick;
+	params.num = num;
+	params.keys = keys;
+	params.values = values;
+
+	piAddCallback(peer, success, callback, param, PI_GET_GLOBAL_KEYS_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddGetRoomKeysCallback(PEER peer, PEERBool success, RoomType roomType, const char *nick, int num, char **keys, char **values, void * callback, void * param, int ID)
+{
+	piGetRoomKeysParams params;
+	PEER_CONNECTION;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.num = num;
+	params.keys = keys;
+	params.values = values;
+
+	piAddCallback(peer, success, callback, param, PI_GET_ROOM_KEYS_CALLBACK,
+		&params, sizeof(params), ID);
 }
