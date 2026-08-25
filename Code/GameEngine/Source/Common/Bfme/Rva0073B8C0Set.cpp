@@ -1,4 +1,31 @@
-// 24-byte setter, 15-byte subobject virtual tail-call, and 72-byte reset
+// 24-byte setter, 15-byte subobject virtual tail-call, 72-byte reset, and 58-byte property setter
+
+class GameMessage
+{
+public:
+	void appendIntegerArgument( int arg );
+};
+
+class GameMessageDispatcher
+{
+public:
+	virtual void v0();
+	virtual void v1();
+	virtual void v2();
+	virtual void v3();
+	virtual void v4();
+	virtual void v5();
+	virtual void v6();
+	virtual void v7();
+	virtual void v8();
+	virtual void v9();
+	virtual void v10();
+	virtual void v11();
+	virtual void v12();
+	virtual GameMessage *createMessage( int id );
+};
+
+extern GameMessageDispatcher *TheGameMessageDispatcher;
 
 class SubObject0073B9A0
 {
@@ -13,6 +40,7 @@ public:
 	void set( int a, int b );
 	void go();
 	void reset();
+	void setInt23BC( int arg );
 
 	char              m_pad00[ 0x58 ];
 	int               m_int58;
@@ -33,7 +61,9 @@ public:
 	int               m_int2354;
 	char              m_pad2358[ 0x60 ];
 	char              m_byte23B8;
-	char              m_pad23B9[ 0x83 ];
+	char              m_pad23B9[ 3 ];
+	int               m_int23BC;
+	char              m_pad23C0[ 0x7C ];
 	int               m_int243C;
 	int               m_int2440;
 	int               m_int2444;
@@ -68,4 +98,18 @@ void Rva0073B8C0::reset()
 	m_int58 = 0;
 	m_int5C = 0;
 	m_int68 = 0;
+}
+
+void Rva0073B8C0::setInt23BC( int arg )
+{
+	if ( arg != m_int23BC )
+	{
+		if ( TheGameMessageDispatcher )
+		{
+			GameMessage *msg = TheGameMessageDispatcher->createMessage( 0x451 );
+			msg->appendIntegerArgument( arg );
+			return;
+		}
+		m_int23BC = arg;
+	}
 }
