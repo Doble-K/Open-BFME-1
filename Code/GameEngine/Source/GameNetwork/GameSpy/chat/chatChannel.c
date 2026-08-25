@@ -282,3 +282,63 @@ int ciGetChannelNumUsers(CHAT chat, const char * channel)
 
 	return TableCount(chatChannel->users);
 }
+
+/* Three channel commands that go straight out on the socket.  Each one is
+   identified by the format literal retail hands ciSocketSendf, and each is
+   referenced from exactly one body.
+
+   chatSetChannelPasswordA reads oddly and is right: retail passes ONE
+   argument to a two-%s format.  The second comes from the incoming argument
+   block, which the tail call reuses in place -- both branches share a single
+   call site with only the format pointer differing.  That is VC7.1 merging
+   TWO calls, not one call with a chosen format: spelled as a ternary the
+   format lands in a register and the body is two bytes short. */
+
+void chatSetChannelTopicA(CHAT chat, const char *channel, const char *topic)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(!chat)
+		return;
+
+	if(!connection->connected)
+		return;
+
+	if(!topic)
+		topic = "";
+
+	ciSocketSendf(&connection->chatSocket, "TOPIC %s :%s", channel, topic);
+}
+
+void chatSetChannelPasswordA(CHAT chat, const char *channel, CHATBool enable,
+		const char *password)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(!chat)
+		return;
+
+	if(!connection->connected)
+		return;
+
+	if(enable)
+		ciSocketSendf(&connection->chatSocket, "MODE %s +k %s", channel, password);
+	else
+		ciSocketSendf(&connection->chatSocket, "MODE %s -k %s", channel, password);
+}
+
+void chatSetChannelLimitA(CHAT chat, const char *channel, int limit)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(!chat)
+		return;
+
+	if(!connection->connected)
+		return;
+
+	if(limit)
+		ciSocketSendf(&connection->chatSocket, "MODE %s +l %d", channel, limit);
+	else
+		ciSocketSendf(&connection->chatSocket, "MODE %s -l", channel);
+}

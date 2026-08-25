@@ -339,3 +339,36 @@ void ciSendNickAndUser(CHAT chat)
 		connection->name);
 	ciSendNick(chat);
 }
+
+/* Two one-liners off the same connection.  chatGetNickA returns the empty
+   string rather than NULL when there is no connection, and returns a pointer
+   INTO the connection rather than a copy -- retail computes connection+0x36C
+   and returns it, which is what fixes nick[] as an inline buffer.
+
+   chatSendRawA's guard is the pair, not the single flag every neighbour
+   tests: it goes out while still connecting, so the test is connected OR
+   connecting.  It tail-jumps into ciSocketSend with the raw buffer left
+   where it arrived. */
+
+char *chatGetNickA(CHAT chat)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(!connection->connected)
+		return "";
+
+	return connection->nick;
+}
+
+void chatSendRawA(CHAT chat, const char *raw)
+{
+	ciConnection *connection = (ciConnection *)chat;
+
+	if(!chat)
+		return;
+
+	if(!connection->connected && !connection->connecting)
+		return;
+
+	ciSocketSend(&connection->chatSocket, raw);
+}
