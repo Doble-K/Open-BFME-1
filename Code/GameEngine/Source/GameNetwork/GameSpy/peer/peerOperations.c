@@ -11,13 +11,15 @@
    The two accepted types are tested 2 before 1, which is the order the source
    writes them, and the first match returns rather than sweeping the rest. */
 
+#include <stdlib.h>
+
 typedef void *PEER;
 
 typedef struct piConnection
 {
 	unsigned char pad0[0x1798];
 	void *operationList;				/* +0x1798 */
-	unsigned char pad179c[0x17a0 - 0x179c];
+	int operationsAdded;				/* +0x179C */
 	int operationsRemoved;				/* +0x17A0 */
 } piConnection;
 
@@ -25,9 +27,15 @@ typedef struct piOperation
 {
 	unsigned char pad0[4];
 	int type;					/* +0x04 */
-	unsigned char pad8[0x1c - 0x08];
+	void *owned08;					/* +0x08 */
+	unsigned char pad0c[0x1c - 0x0c];
 	int roomID;					/* +0x1C */
-	unsigned char pad20[0x38 - 0x20];
+	void *owned20;					/* +0x20 */
+	void *owned24;					/* +0x24 */
+	unsigned char pad28[0x2c - 0x28];
+	unsigned int sock;				/* +0x2C */
+	unsigned char pad30[0x34 - 0x30];
+	int sockOpen;					/* +0x34 */
 	int cancelled;					/* +0x38 */
 } piOperation;
 
@@ -90,4 +98,67 @@ void piRemoveOperation(PEER peer, void *operation)
 			return;
 		}
 	}
+}
+
+/* The list's own lifecycle.  ArrayNew is handed an element size of 4, which
+   is the pointer width piRemoveOperation's extra dereference already implied,
+   and the free callback it is handed is the body below.
+
+   piOperationFree frees three members unconditionally -- +0x08, +0x20 and
+   +0x24 -- so those three are owned heap pointers; what they hold is not
+   determined by anything this file can see, so they are numbered rather than
+   named.  The pair behind the flag at +0x34 IS determined: the call is
+   closesocket, so +0x2C is a socket, and the winsock teardown follows it.
+
+   The counters bracket each other -- +0x179C is bumped once per operation
+   created and +0x17A0 once per operation removed -- and this is where both
+   are zeroed. */
+
+typedef enum
+{
+	PEERFalse,
+	PEERTrue
+} PEERBool;
+
+void *ArrayNew(int elemSize, int initialCount, void (*elemFree)(void *elem));
+void ArrayClear(void *array);
+int __stdcall closesocket(unsigned int s);
+int __stdcall WSACleanup(void);
+#define gsifree free
+
+static void piOperationFree(void *elem)
+{
+	piOperation *operation = *(piOperation **)elem;
+
+	gsifree(operation->owned20);
+	gsifree(operation->owned24);
+	gsifree(operation->owned08);
+
+	if(operation->sockOpen)
+	{
+		closesocket(operation->sock);
+		WSACleanup();
+	}
+
+	gsifree(operation);
+}
+
+PEERBool piOperationsInit(PEER peer)
+{
+	piConnection *connection = (piConnection *)peer;
+
+	connection->operationsAdded = 0;
+	connection->operationsRemoved = 0;
+
+	connection->operationList = ArrayNew(sizeof(piOperation *), 0, piOperationFree);
+
+	return (PEERBool)(connection->operationList != 0);
+}
+
+void piClearOperations(PEER peer)
+{
+	piConnection *connection = (piConnection *)peer;
+
+	if(connection->operationList)
+		ArrayClear(connection->operationList);
 }
