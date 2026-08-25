@@ -4,16 +4,14 @@
 
 #include <list>
 
-struct Gen_t_000800c0_p4cd
+class AsciiString
 {
 public:
-	~Gen_t_000800c0_p4cd();
+	~AsciiString();
 
 private:
 	char *m_data;
 };
-
-typedef Gen_t_000800c0_p4cd AsciiString;
 
 class CreateCrateDieModuleDataBase
 {
