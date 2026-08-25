@@ -6145,3 +6145,13 @@ Rva001BE410	0x001BE410	35	no-match	t=9m model=clean-C++-address-derived; three P
 ?func0073B540@@YGXHH@Z	0x0073B540	84	converted	exact clean C++ in R2GuardedGlobalCalls.cpp; retail global-state stores and stdcall ret 8 match; t=8m model=luna
 ?Rva00739D20@@YAHH_N@Z	0x00739D20	60	converted	exact clean C++ selector in R2GuardedGlobalCalls.cpp; paired 0x00739CC0 selector region proves common owner; switch(value-20) emits retail register/jump-table shape; t=12m model=luna
 _io_appendto	0x00993510	70	no-match	canonical Lua io_appendto source diverges in prologue/registers and unresolved _setreturn; not a clean wrapper match; t=5m model=luna
+_io_close	0x009931C0	227	no-match	pristine liolib.c source reaches pushresult branch but target retains direct Lua push sequence; t=8m model=luna
+_io_open	0x00993330	133	no-match	pristine liolib.c source diverges in final userdata/error path and target direct-call sequence; t=4m model=luna
+_io_fromto	0x009933C0	257	no-match	pristine liolib.c source requires nonmatching setreturn helper and branch/register shape; t=5m model=luna
+_io_write	0x00993A40	320	no-match	pristine liolib.c source matches main loop but final pushnumber/global-call sequence diverges; t=5m model=luna
+_io_remove	0x00993DB0	92	no-match	pristine liolib.c source requires pushresult behavior; target direct nil/string/number sequence differs; t=3m model=luna
+_io_rename	0x00993E10	109	no-match	pristine liolib.c source requires pushresult behavior; target direct nil/string/number sequence differs; t=3m model=luna
+_lua_pushcclosure	0x009903E0	45	no-match	lapi.c source emits a 5-byte tail thunk to luaV_Cclosure while retail retains the full 45-byte implementation; t=4m model=luna
+_lua_newtable	0x00990780	59	no-match	lapi.c source matches body except BFME luaH_new call/argument ABI and register setup diverge; t=4m model=luna
+_luaB_print	0x009945A0	155	no-match	lbaselib.c source has BFME layout/callee/register divergence in print loop and stack frame; t=4m model=luna
+_luaB_tostring	0x00994E40	75	no-match	lbaselib.c source differs at Lua type-tag switch: retail compares 6, current header emits 5; shared enum/layout drift, t=4m model=luna
