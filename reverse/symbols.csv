@@ -76910,3 +76910,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?_M_insert_overflow@?$vector@PAVBfmeArmyIcon@@V?$allocator@PAVBfmeArmyIcon@@@_STL@@@_STL@@IAEXPAPAVBfmeArmyIcon@@ABQAV3@ABU__true_type@2@I_N@Z,0x0001E051,retail findArmyIcon overflow call directly identifies vector<BfmeArmyIcon*> overflow helper
 _io_fromto,0x009933C0,pristine Lua 4.0.1 io_fromto target reached by io_readfrom wrapper at 0x009934D0
 _d_0088d240,0x0088D240,pin
+??_7Rva00886F60Class@@6B@,0x01132FFC,pin
+_wcscpy,0x01359520,pin
