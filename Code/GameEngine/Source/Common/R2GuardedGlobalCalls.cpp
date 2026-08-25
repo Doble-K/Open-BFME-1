@@ -240,6 +240,34 @@ void __stdcall Rva0073B540( int first, int second )
 	R2Glob01307204 = second;
 }
 
+// Paired with the adjacent retail selector at 0x00739CC0; both are
+// address-derived scalar mappings in this common R2 helper region.
+int Rva00739D20( int value, bool enabled )
+{
+	int result = 0;
+	switch ( value - 20 )
+	{
+	case 0:
+		result = enabled ? 5 : 2;
+		break;
+	case 1:
+		result = 2;
+		break;
+	case 2:
+		result = 1;
+		break;
+	case 3:
+		result = 3;
+		break;
+	case 4:
+		result = 4;
+		break;
+	default:
+		break;
+	}
+	return result;
+}
+
 class Rva00739C10Owned
 {
 public:
