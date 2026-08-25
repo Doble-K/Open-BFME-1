@@ -48,6 +48,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
+#define winSetInstanceData winSetInstanceData_ZHReference
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 // USER INCLUDES //////////////////////////////////////////////////////////////
@@ -64,6 +65,7 @@
 #include "GameClient/GadgetStaticText.h"
 #include "GameClient/Mouse.h"
 #include "GameClient/SelectionXlat.h"
+#undef winSetInstanceData
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -963,7 +965,9 @@ Color GameWindow::winGetHiliteTextBorderColor( void )
 	* such as background color. */
 //=============================================================================
 // ?winSetInstanceData@GameWindow@@QAEHPAVWinInstanceData@@@Z present-unmatched
-Int GameWindow::winSetInstanceData( WinInstanceData *data )
+// Keep the ZH reference body available for comparison; the BFME ABI slice is
+// emitted from GameWindowWinSetInstanceData.cpp.
+Int GameWindow::winSetInstanceData_ZHReference( WinInstanceData *data )
 {
 	DisplayString *text, *tooltipText;
 
