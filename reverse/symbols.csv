@@ -76774,3 +76774,29 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1Gen0035AA50@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 20-byte-stride vector at 0x0035AA50 calls
 ??1Gen00532580@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 12-byte-stride vector at 0x00532580 calls
 ??1Mem00026AB2@@QAE@XZ,0x00026AB2,Open-BFME5 ILT the subobject destructor the EH-framed member-offset vectors call
+?bfmeHash00007518@@YAIII@Z,0x00007518,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash0000DD28@@YAIII@Z,0x0000DD28,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash00010AFA@@YAIII@Z,0x00010AFA,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash00013412@@YAIII@Z,0x00013412,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash0002A473@@YAIII@Z,0x0002A473,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash0002BB70@@YAIII@Z,0x0002BB70,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeInit005DFD50@@YAXXZ,0x00015FB9,Open-BFME5 ILT the initialiser a latched-once body calls
+?bfmeInit00015FB9@@YAXXZ,0x00015FB9,Open-BFME5 ILT the initialiser the run-once latch at 0x005E83F0 calls
+?bfmeInit0002969F@@YAXXZ,0x0002969F,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8420 calls
+?bfmeInit00014088@@YAXXZ,0x00014088,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8450 calls
+?bfmeInit00011F1D@@YAXXZ,0x00011F1D,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8480 calls
+?bfmeInit00032867@@YAXXZ,0x00032867,Open-BFME5 ILT the initialiser the run-once latch at 0x005E84B0 calls
+?bfmeInit00044BFC@@YAXXZ,0x00044BFC,Open-BFME5 ILT the initialiser the run-once latch at 0x005E84E0 calls
+?bfmeInit00016595@@YAXXZ,0x00016595,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8510 calls
+?bfmeInit000124AE@@YAXXZ,0x000124AE,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8540 calls
+?bfmeInit0000B686@@YAXXZ,0x0000B686,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8570 calls
+?bfmeInit000078A1@@YAXXZ,0x000078A1,Open-BFME5 ILT the initialiser the run-once latch at 0x005E85A0 calls
+?bfmeInit0004B0F1@@YAXXZ,0x0004B0F1,Open-BFME5 ILT the initialiser the run-once latch at 0x005E85D0 calls
+?bfmeInit0003D875@@YAXXZ,0x0003D875,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8600 calls
+?bfmeInit00036458@@YAXXZ,0x00036458,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8630 calls
+?bfmeInit000101A9@@YAXXZ,0x000101A9,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8660 calls
+?bfmeInit00011B76@@YAXXZ,0x00011B76,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8690 calls
+?bfmeInit0001361F@@YAXXZ,0x0001361F,Open-BFME5 ILT the initialiser the run-once latch at 0x005E86C0 calls
+?bfmeInit00026058@@YAXXZ,0x00026058,Open-BFME5 ILT the initialiser the run-once latch at 0x005E86F0 calls
+?bfmeInit00033479@@YAXXZ,0x00033479,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8720 calls
+?bfmeInit000340FE@@YAXXZ,0x000340FE,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8750 calls
