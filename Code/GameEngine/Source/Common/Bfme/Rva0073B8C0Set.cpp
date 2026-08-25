@@ -27,6 +27,17 @@ public:
 
 extern GameMessageDispatcher *TheGameMessageDispatcher;
 
+// The retail object at 0x012ED5C8 is the established GlobalData singleton;
+// this TU-local view names only the +0x188 scalar read proven by 0x0073B9C0.
+class GlobalData
+{
+public:
+	char  m_pad00[ 0x188 ];
+	float m_field188;
+};
+
+extern GlobalData *TheWritableGlobalData;
+
 class SubObject0073B9A0
 {
 public:
@@ -41,6 +52,7 @@ public:
 	void go();
 	void reset();
 	void setInt23BC( int arg );
+	float scale( float arg );
 
 	char              m_pad00[ 0x58 ];
 	int               m_int58;
@@ -63,7 +75,9 @@ public:
 	char              m_byte23B8;
 	char              m_pad23B9[ 3 ];
 	int               m_int23BC;
-	char              m_pad23C0[ 0x7C ];
+	char              m_pad23C0[ 0x20 ];
+	float             m_float23E0;
+	char              m_pad23E4[ 0x58 ];
 	int               m_int243C;
 	int               m_int2440;
 	int               m_int2444;
@@ -112,4 +126,11 @@ void Rva0073B8C0::setInt23BC( int arg )
 		}
 		m_int23BC = arg;
 	}
+}
+
+float Rva0073B8C0::scale( float arg )
+{
+	if ( TheWritableGlobalData->m_field188 > 1.0f )
+		return arg / m_float23E0;
+	return 1.0f;
 }
