@@ -112,7 +112,13 @@ void piRemoveOperation(PEER peer, void *operation)
 
    The counters bracket each other -- +0x179C is bumped once per operation
    created and +0x17A0 once per operation removed -- and this is where both
-   are zeroed. */
+   are zeroed.
+
+   free comes from the CRT header rather than a local declaration on purpose.
+   Retail hoists __imp__free into EDI and calls through the register three
+   times; declared locally the calls go direct and the body is the right
+   length with the wrong middle.  /MD makes the header's declaration
+   dllimport, which is what lets VC7.1 common the three loads. */
 
 typedef enum
 {
