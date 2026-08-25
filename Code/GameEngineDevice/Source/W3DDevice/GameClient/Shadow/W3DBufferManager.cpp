@@ -79,7 +79,6 @@ W3DBufferManager::W3DBufferManager(void)
 		m_W3DIndexBufferSlots[j]=NULL;
 }
 
-// ??1W3DBufferManager@@ present-unmatched
 W3DBufferManager::~W3DBufferManager(void)
 {
 	freeAllSlots();
@@ -136,9 +135,20 @@ void W3DBufferManager::freeAllSlots(void)
 	DEBUG_ASSERTCRASH(m_numEmptyIndexSlotsAllocated==0, ("Failed to free all empty index buffer slots"));
 }
 
-// ?freeAllBuffers@W3DBufferManager@@ present-unmatched
 void W3DBufferManager::freeAllBuffers(void)
 {
+	struct BFMEBufferManagerView
+	{
+		unsigned char pad_to_vertex_buffers[0x9000];
+		W3DVertexBuffer *vertex_buffers[MAX_FVF];
+		unsigned char pad_to_vertex_count[0x1c384];
+		Int empty_vertex_count;
+		unsigned char pad_to_index_buffers[0x1000];
+		W3DIndexBuffer *index_buffers;
+		unsigned char pad_to_index_count[0x1c284];
+		Int empty_index_count;
+	};
+	BFMEBufferManagerView *bfme = reinterpret_cast<BFMEBufferManagerView *>(this);
 	Int i;
 
 	//Make sure all slots are free
@@ -146,24 +156,26 @@ void W3DBufferManager::freeAllBuffers(void)
 
 	for (i=0; i<MAX_FVF; i++)
 	{
-		W3DVertexBuffer *vb = m_W3DVertexBuffers[i];
+		W3DVertexBuffer *vb = bfme->vertex_buffers[i];
 		while (vb)
 		{	DEBUG_ASSERTCRASH(vb->m_usedSlots == NULL, ("Freeing Non-Empty Vertex Buffer"));
-			REF_PTR_RELEASE(vb->m_DX8VertexBuffer);
-			m_numEmptyVertexBuffersAllocated--;
+			if (vb->m_DX8VertexBuffer)
+				REF_PTR_RELEASE(vb->m_DX8VertexBuffer);
+			bfme->empty_vertex_count--;
 			vb=vb->m_nextVB;	//get next vertex buffer of this type
 		}
-		m_W3DVertexBuffers[i]=NULL;
+		bfme->vertex_buffers[i]=NULL;
 	}
 
-	W3DIndexBuffer *ib = m_W3DIndexBuffers;
+	W3DIndexBuffer *ib = bfme->index_buffers;
 	while (ib)
 	{	DEBUG_ASSERTCRASH(ib->m_usedSlots == NULL, ("Freeing Non-Empty Index Buffer"));
-		REF_PTR_RELEASE(ib->m_DX8IndexBuffer);
-		m_numEmptyIndexBuffersAllocated--;
+		if (ib->m_DX8IndexBuffer)
+			REF_PTR_RELEASE(ib->m_DX8IndexBuffer);
+		bfme->empty_index_count--;
 		ib=ib->m_nextIB;	//get next vertex buffer of this type
 	}
-	m_W3DIndexBuffers=NULL;
+	bfme->index_buffers=NULL;
 
 	DEBUG_ASSERTCRASH(m_numEmptyVertexBuffersAllocated==0, ("Failed to free all empty vertex buffers"));
 	DEBUG_ASSERTCRASH(m_numEmptyIndexBuffersAllocated==0, ("Failed to free all empty index buffers"));
