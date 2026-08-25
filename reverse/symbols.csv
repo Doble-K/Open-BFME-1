@@ -76560,3 +76560,9 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeMakeW2@@YAIII@Z,0x00025225,Open-BFME5 ILT the variant ctor at 0x0054F770 calls
 ?bfmeMakeW3@@YAIII@Z,0x0000403E,Open-BFME5 ILT the variant ctor at 0x0054F7C0 calls
 ?bfmeMakeW4@@YAIII@Z,0x000283D5,Open-BFME5 ILT the variant ctor at 0x00596C40 calls
+??0BfmeSubA@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 the sub-object copy ctor the copies at 0x003505E0 and 0x00350630 call
+??0BfmeSubB@@QAE@ABV0@@Z,0x00887B60,Open-BFME5 the sub-object copy ctor the copies at 0x00351F30 and 0x00351FB0 call
+?bfmeConstructA@@YAXPAUBfmeAppendValue@@PAX@Z,0x0004031D,Open-BFME5 ILT the list append at 0x0014C700 constructs through
+?bfmeConstructB@@YAXPAUBfmeAppendValue@@PAX@Z,0x00033FF5,Open-BFME5 ILT the list append at 0x0034E260 constructs through
+?bfmeConstructC@@YAXPAUBfmeAppendValue@@PAX@Z,0x0000637A,Open-BFME5 ILT the list append at 0x00439E00 constructs through
+?bfmeConstructD@@YAXPAUBfmeAppendValue@@PAX@Z,0x00033E15,Open-BFME5 ILT the list append at 0x004492A0 constructs through
