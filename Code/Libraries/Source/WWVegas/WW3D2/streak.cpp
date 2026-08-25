@@ -142,7 +142,6 @@ void StreakLineClass::Set_Locs( unsigned int num_points, Vector3 *locs )
 	Invalidate_Cached_Bounding_Volumes();
 }
 
-// ?Set_Widths@StreakLineClass@@ present-unmatched
 void StreakLineClass::Set_Widths( unsigned int num_points, float *widths )
 {
 	if (num_points < 2 || !widths) {
@@ -150,9 +149,13 @@ void StreakLineClass::Set_Widths( unsigned int num_points, float *widths )
 		return;
 	}
 
-	PointWidths.Delete_All();
+	// BFME's StreakLine layout places PointWidths at +0xF4; the shared
+	// Zero Hour declaration is four bytes earlier, so use the retail view here.
+	SimpleDynVecClass<float> &point_widths =
+		*reinterpret_cast<SimpleDynVecClass<float> *>(reinterpret_cast<char *>(this) + 0xF4);
+	point_widths.Delete_All();
 	for (unsigned int i=0; i<num_points; i++) {
-		PointWidths.Add(widths[i],num_points);
+		point_widths.Add(widths[i],num_points);
 	}
 
 }
@@ -676,7 +679,6 @@ void StreakLineClass::Set_LOD_Level(int lod)
 	LineRenderer.Set_Current_Subdivision_Level((unsigned int)lod);
 }
 
-// ?Get_LOD_Level@StreakLineClass@@ present-unmatched
 int StreakLineClass::Get_LOD_Level(void) const
 {
 	return (int) LineRenderer.Get_Current_Subdivision_Level();
@@ -807,5 +809,3 @@ bool StreakLineClass::Cast_Ray(RayCollisionTestClass & raytest)
 
 	return retval;
 }
-
-
