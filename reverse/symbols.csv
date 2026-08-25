@@ -76763,3 +76763,14 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1Gen00034158@@QAE@XZ,0x00034158,Open-BFME5 ILT the element destructor the 528-byte-stride vector at 0x00608C60 calls
 ??1Gen00026F35@@QAE@XZ,0x00026F35,Open-BFME5 ILT the element destructor the 120-byte-stride vector at 0x006A3930 calls
 ??1Gen0002A8BA@@QAE@XZ,0x0002A8BA,Open-BFME5 ILT the element destructor the 44-byte-stride vector at 0x00774130 calls
+??1Gen0003B8FE@@QAE@XZ,0x0003B8FE,Open-BFME5 ILT the element destructor the 36-byte-stride vector at 0x001439F0 calls
+??1Gen00026AB2@@QAE@XZ,0x00026AB2,Open-BFME5 ILT the element destructor the 44-byte-stride vector at 0x00252DA0 calls
+??1Gen000E5300@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 12-byte-stride vector at 0x000E5300 calls
+??1Gen0013C200@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 20-byte-stride vector at 0x0013C200 calls
+??1Gen001439F0@@QAE@XZ,0x0003B8FE,Open-BFME5 ILT the element destructor the 36-byte-stride vector at 0x001439F0 calls
+??1Gen00252DA0@@QAE@XZ,0x00026AB2,Open-BFME5 ILT the element destructor the 44-byte-stride vector at 0x00252DA0 calls
+??1Gen002E1260@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 12-byte-stride vector at 0x002E1260 calls
+??1Gen0035A980@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 20-byte-stride vector at 0x0035A980 calls
+??1Gen0035AA50@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 20-byte-stride vector at 0x0035AA50 calls
+??1Gen00532580@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 12-byte-stride vector at 0x00532580 calls
+??1Mem00026AB2@@QAE@XZ,0x00026AB2,Open-BFME5 ILT the subobject destructor the EH-framed member-offset vectors call

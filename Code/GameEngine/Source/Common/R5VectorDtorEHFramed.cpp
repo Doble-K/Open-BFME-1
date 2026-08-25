@@ -1,7 +1,7 @@
 // cl: -GX
 // stlport
 //
-// Open-BFME5: seven STLport vector<T> destructors WITH the exception frame
+// Open-BFME5: eight STLport vector<T> destructors WITH the exception frame
 // that R4VectorDtorWideElems.cpp's `-GX-` removes.  Same source shape, same
 // two axes -- element stride and element destructor -- and the only
 // difference between the two files is the flag.
@@ -39,7 +39,6 @@
 		T &operator=( const T & );                                            \
 	};                                                                        \
 	template class _STL::vector<T >;
-
 R5_EH_ELEM( Gen0004A1C4, 0xBC )		// 171B at 0x0013BFA0
 R5_EH_ELEM( Gen0002306F, 0x128 )		// 171B at 0x0013C640
 R5_EH_ELEM( Gen00043699, 0x88 )		// 169B at 0x0039EA90
@@ -47,3 +46,4 @@ R5_EH_ELEM( Gen000075EF, 0x1F0 )		// 171B at 0x006073F0
 R5_EH_ELEM( Gen00034158, 0x210 )		// 169B at 0x00608C60
 R5_EH_ELEM( Gen00026F35, 0x78 )		// 165B at 0x006A3930
 R5_EH_ELEM( Gen0002A8BA, 0x2C )		// 163B at 0x00774130
+R5_EH_ELEM( Gen001439F0, 0x24 )		// 166B at 0x001439F0, element dtor ILT 0x0003B8FE

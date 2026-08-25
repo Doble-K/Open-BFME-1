@@ -1,7 +1,7 @@
 // cl: /EHsc
 // stlport
 //
-// Open-BFME5: six more STLport vector<T> destructors over a POLYMORPHIC
+// Open-BFME5: fourteen more STLport vector<T> destructors over a POLYMORPHIC
 // element -- the shape Q4VectorDtorPolymorphic.cpp already lands six of, at
 // the element sizes that are NOT powers of two.
 //
@@ -17,7 +17,8 @@
 // What separates these six from Q4's is only the element size.  A power of
 // two lets the compiler turn the pointer difference into an element count
 // with a `sar`/`shl` pair; 92, 140, 180, 88, 220 and 112 do not, so each of
-// these carries a magic multiply instead.  Same source, and the divide block
+// these carries a magic multiply or a plain shift instead.  Same source, and
+// the divide block
 // is derived rather than written.
 //
 // IDENTITY IS NOT RECOVERED.  Element names come from the vector destructor's
@@ -43,3 +44,11 @@ R5_POLY_ELEM( Gen003627D0, 0xB4 )		// 174B at 0x003627D0
 R5_POLY_ELEM( Gen00363750, 0x58 )		// 166B at 0x00363750
 R5_POLY_ELEM( Gen003A9860, 0xDC )		// 172B at 0x003A9860
 R5_POLY_ELEM( Gen0049B890, 0x70 )		// 168B at 0x0049B890
+R5_POLY_ELEM( Gen003A9A90, 0x28 )		// 167B at 0x003A9A90
+R5_POLY_ELEM( Gen003A9B60, 0x30 )		// 167B at 0x003A9B60
+R5_POLY_ELEM( Gen003A9CF0, 0xC )		// 166B at 0x003A9CF0
+R5_POLY_ELEM( Gen003A9DC0, 0x24 )		// 167B at 0x003A9DC0
+R5_POLY_ELEM( Gen003A9E90, 0x14 )		// 167B at 0x003A9E90
+R5_POLY_ELEM( Gen003AA0D0, 0x18 )		// 167B at 0x003AA0D0
+R5_POLY_ELEM( Gen003AA1A0, 0x14 )		// 167B at 0x003AA1A0
+R5_POLY_ELEM( Gen0061A200, 0x24 )		// 167B at 0x0061A200
