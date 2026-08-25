@@ -1,8 +1,8 @@
 // cl: /DNDEBUG /MD /EHsc
 
 // The retail object is an UpdateModule-shaped multiple-inheritance object with
-// one RadiusDecal member.  These declarations are TU-local so the destructor
-// can be emitted without changing the shared engine headers.
+// one RadiusDecal member.  These declarations keep the BFME destructor layout
+// local to the proper source area instead of changing shared engine headers.
 
 class Gen_dtor_00113f20
 {
