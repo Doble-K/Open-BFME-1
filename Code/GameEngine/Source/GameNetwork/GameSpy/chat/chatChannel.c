@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX_CHANNEL 257
 #define MAX_TOPIC 128
@@ -72,6 +73,7 @@ int ArraySearch(void *array, const void *elem, void *comparator, int fromIndex, 
 void ArrayRemoveAt(void *array, int index);
 void *TableLookup(void *table, const void *elem);
 void TableRemove(void *table, const void *elem);
+void TableFree(void *table);
 int TableCount(void *table);
 int ciEnteringChannelComparator(const void *param1, const void *param2);
 void ciChannelLeft(CHAT chat, const char *channel);
@@ -341,4 +343,65 @@ void chatSetChannelLimitA(CHAT chat, const char *channel, int limit)
 		ciSocketSendf(&connection->chatSocket, "MODE %s +l %d", channel, limit);
 	else
 		ciSocketSendf(&connection->chatSocket, "MODE %s -l", channel);
+}
+
+/* The two hash hooks and the channel table's free hook.  Which is which is
+   not read off the shapes -- the two hashes are byte-for-byte identical --
+   but off their install sites: ciInitChannels at 0x008717B0 passes 0x008716D0
+   as the CHANNEL table's hash alongside 0x00871720 as its free, and the
+   per-channel user table built at 0x00871930 passes 0x00871750 as its hash.
+   Retail keeps both copies rather than folding them, so both are written.
+
+   Each hashes the string at the START of the element -- ciChatChannel's name
+   and the user's nick are both the first member -- and sums tolower of every
+   byte, so the table is case-insensitive.  The sum is signed and the modulus
+   is idiv, not a mask.
+
+   The loop cost two builds and both lessons are in its spelling.  It tests
+   the PROMOTED value, not the char -- written `while(*name)` the test is on
+   al and the sign extension moves to the call.  And the increment comes
+   BEFORE the accumulate: written after it, VC7.1 reloads through [esi+1] and
+   increments afterwards, which is the same work one byte longer.
+
+   ciChannelFree frees the password before the user table, and only frees the
+   table when there is one; the password goes to free unguarded. */
+
+int ciChannelHash(const void *elem, int numBuckets)
+{
+	const char *name = (const char *)elem;
+	int hash = 0;
+	int c;
+
+	while((c = *name) != 0)
+	{
+		name++;
+		hash += tolower(c);
+	}
+
+	return (hash % numBuckets);
+}
+
+void ciChannelFree(void *elem)
+{
+	ciChatChannel *channel = (ciChatChannel *)elem;
+
+	free(channel->password);
+
+	if(channel->users)
+		TableFree(channel->users);
+}
+
+int ciUserHash(const void *elem, int numBuckets)
+{
+	const char *nick = (const char *)elem;
+	int hash = 0;
+	int c;
+
+	while((c = *nick) != 0)
+	{
+		nick++;
+		hash += tolower(c);
+	}
+
+	return (hash % numBuckets);
 }
