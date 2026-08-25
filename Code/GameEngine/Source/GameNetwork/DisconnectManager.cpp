@@ -197,13 +197,11 @@ UnsignedInt DisconnectManager::getPingFrame()
 	return m_pingFrame;
 }
 
-// ?getPingsSent@DisconnectManager@@QAEHXZ present-unmatched
 Int DisconnectManager::getPingsSent()
 {
 	return m_pingsSent;
 }
 
-// ?getPingsRecieved@DisconnectManager@@QAEHXZ present-unmatched
 Int DisconnectManager::getPingsRecieved()
 {
 	return m_pingsRecieved;
