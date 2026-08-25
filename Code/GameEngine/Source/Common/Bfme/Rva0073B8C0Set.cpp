@@ -1,4 +1,4 @@
-// 24-byte setter and 15-byte subobject virtual tail-call
+// 24-byte setter, 15-byte subobject virtual tail-call, and 72-byte reset
 
 class SubObject0073B9A0
 {
@@ -12,13 +12,32 @@ class Rva0073B8C0
 public:
 	void set( int a, int b );
 	void go();
+	void reset();
 
-	char              m_pad00[ 0x60 ];
+	char              m_pad00[ 0x58 ];
+	int               m_int58;
+	int               m_int5C;
 	int               m_field60;
 	int               m_field64;
-	char              m_pad68[ 0x215 ];
+	int               m_int68;
+	char              m_pad6C[ 0x170 ];
+	char              m_byte1DC;
+	char              m_pad1DD[ 0x27 ];
+	char              m_byte204;
+	char              m_pad205[ 0x23 ];
+	char              m_byte228;
+	char              m_pad229[ 0x53 ];
+	char              m_byte27C;
 	bool              m_flag27D;
-	char              m_pad27E[ 0x223A ];
+	char              m_pad27E[ 0x20D6 ];
+	int               m_int2354;
+	char              m_pad2358[ 0x60 ];
+	char              m_byte23B8;
+	char              m_pad23B9[ 0x83 ];
+	int               m_int243C;
+	int               m_int2440;
+	int               m_int2444;
+	char              m_pad2448[ 0x70 ];
 	SubObject0073B9A0 m_subObject;
 };
 
@@ -32,4 +51,21 @@ void Rva0073B8C0::set( int a, int b )
 void Rva0073B8C0::go()
 {
 	m_subObject.handle();
+}
+
+void Rva0073B8C0::reset()
+{
+	m_int2354 = 0;
+	m_byte1DC = 0;
+	m_byte204 = 0;
+	m_byte228 = 0;
+	m_flag27D = 0;
+	m_byte27C = 0;
+	m_byte23B8 = 0;
+	m_int243C = 0;
+	m_int2440 = 0;
+	m_int2444 = 0;
+	m_int58 = 0;
+	m_int5C = 0;
+	m_int68 = 0;
 }
