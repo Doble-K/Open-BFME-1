@@ -211,7 +211,9 @@ typedef struct piConnection
 	PEERCallbacks callbacks;
 	DArray callbackList;
 	int callbackListLen;
-	char reserved2[0x18d4 - 0x181c - 4];
+	int numCallbacksCalled;		/* +0x1820 */
+	int numCallbacksInCall;		/* +0x1824 */
+	char reserved2[0x18d4 - 0x1824 - 4];
 	int autoMatchStatus;		/* +0x18d4 */
 	char reserved3[0x1ef0 - 0x18d4 - 4];
 	piOperation * autoMatchOperation;	/* +0x1ef0 */
@@ -3647,4 +3649,107 @@ void piAddJoinRoomCallback(PEER peer, PEERBool success, PEERJoinResult result,
 
 	piAddCallback(peer, success, callback, param, PI_JOIN_ROOM_CALLBACK,
 		&params, sizeof(params), ID);
+}
+
+/* The callback list's own lifecycle.  ArrayNew's element size settles the
+   element type without any help: 0x1c is sizeof(piCallbackData), the layout
+   the *Call trampolines in this file were already read against.  And the free
+   callback proves the table column: it indexes callbackFuncs[] at +8, the
+   third of the four members, which is the one this file spells gsifree. */
+
+static void piCallbackFree(void * elem)
+{
+	piCallbackData * data = (piCallbackData *)elem;
+
+	callbackFuncs[data->type].gsifree(data->params);
+	gsifree(data->params);
+}
+
+PEERBool piCallbacksInit(PEER peer)
+{
+	PEER_CONNECTION;
+
+	connection->callbackListLen = 0;
+	connection->numCallbacksCalled = 0;
+	connection->numCallbacksInCall = 0;
+
+	connection->callbackList = ArrayNew(sizeof(piCallbackData), 0, piCallbackFree);
+
+	return (PEERBool)(connection->callbackList != NULL);
+}
+
+void piCallbacksCleanup(PEER peer)
+{
+	PEER_CONNECTION;
+
+	if(connection->callbackList)
+		ArrayFree(connection->callbackList);
+}
+
+/* piCallbacksThink and the static it drives.  The two counters piCallbacksInit
+   zeroes are named here rather than there because this is where they are
+   used, and what they are is not a guess: +0x1824 is bumped immediately
+   before a callback is invoked and dropped immediately after, and +0x1820 is
+   bumped once per callback that completes.
+
+   piCallCallback is static and both its arguments arrive in registers -- it
+   has no stack parameters at all -- so it must stay static with both call
+   sites in this file.  It re-fetches the element after the callback returns,
+   which is not redundant: the callback can add callbacks, and the array can
+   have moved under it.
+
+   The ID sweep stops on the first match OR on any PI_DISCONNECTED_CALLBACK,
+   tested second, which is the order the source writes them. */
+
+static void piCallCallback(PEER peer, int index)
+{
+	piCallbackData * data;
+	PEER_CONNECTION;
+
+	data = (piCallbackData *)ArrayNth(connection->callbackList, index);
+	data->inCall = PEERTrue;
+	connection->numCallbacksInCall++;
+
+	callbackFuncs[data->type].call(peer, data);
+
+	data = (piCallbackData *)ArrayNth(connection->callbackList, index);
+	data->inCall = PEERFalse;
+	connection->numCallbacksInCall--;
+	connection->numCallbacksCalled++;
+
+	ArrayDeleteAt(connection->callbackList, index);
+}
+
+void piCallbacksThink(PEER peer, int ID)
+{
+	piCallbackData * data;
+	int len;
+	int i;
+	PEER_CONNECTION;
+
+	if(ID != -1)
+	{
+		len = ArrayLength(connection->callbackList);
+		for(i = 0 ; i < len ; i++)
+		{
+			data = (piCallbackData *)ArrayNth(connection->callbackList, i);
+			if((data->ID == ID) || (data->type == PI_DISCONNECTED_CALLBACK))
+			{
+				piCallCallback(peer, i);
+				return;
+			}
+		}
+
+		return;
+	}
+
+	i = 0;
+	while(ArrayLength(connection->callbackList) > i)
+	{
+		data = (piCallbackData *)ArrayNth(connection->callbackList, i);
+		if(data->inCall)
+			i++;
+		else
+			piCallCallback(peer, i);
+	}
 }
