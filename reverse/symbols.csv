@@ -76588,3 +76588,11 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeDispatchB@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00028501,Open-BFME5 ILT the range dispatcher at 0x00437D30 calls
 ?bfmeDispatchC@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00027138,Open-BFME5 ILT the range dispatcher at 0x00575A50 calls
 ?bfmeNewAlloc@@YAPAXI@Z,0x00881F30,Open-BFME5 the large-block allocator the allocate-and-copy bodies at 0x000A7820 and its siblings call above 0x80 bytes
+?bfmeGrab@BfmeSourceA@@QAEPAXPAPAX@Z,0x00019876,Open-BFME5 ILT the vector assignment at 0x00095A50 grabs through
+?bfmeGrab@BfmeSourceB@@QAEPAXPAPAX@Z,0x000314E9,Open-BFME5 ILT the vector assignment at 0x000B54C0 grabs through
+?bfmeGrab@BfmeSourceC@@QAEPAXPAPAX@Z,0x0002EBC2,Open-BFME5 ILT the vector assignment at 0x002F8980 grabs through
+?bfmeGrab@BfmeSourceD@@QAEPAXPAPAX@Z,0x00018697,Open-BFME5 ILT the vector assignment at 0x003A9560 grabs through
+?bfmeReserve@Gen_00095A50@@AAEXHPAX@Z,0x000472DA,Open-BFME5 ILT the vector assignment at 0x00095A50 reserves through
+?bfmeReserve@Gen_000B54C0@@AAEXHPAX@Z,0x00043E37,Open-BFME5 ILT the vector assignment at 0x000B54C0 reserves through
+?bfmeReserve@Gen_002F8980@@AAEXHPAX@Z,0x00015ABE,Open-BFME5 ILT the vector assignment at 0x002F8980 reserves through
+?bfmeReserve@Gen_003A9560@@AAEXHPAX@Z,0x00027098,Open-BFME5 ILT the vector assignment at 0x003A9560 reserves through
