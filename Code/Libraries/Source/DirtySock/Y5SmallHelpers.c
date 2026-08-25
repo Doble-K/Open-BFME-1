@@ -30,6 +30,7 @@ void Rva0080F300(void *state, unsigned char *data, int length);
 void Rva0080F200(void *state, const unsigned char *key, int length, int rounds);
 void Rva0080E500(void *object);
 void Rva007F0030(void *object);
+void Rva00812CD0(void *object);
 
 void Rva0080E410(void *crypto, unsigned char *data, int length)
 {
@@ -95,4 +96,13 @@ void Rva0080E4D0(void *object)
 {
 	Rva0080E500(object);
 	Rva007F0030(object);
+}
+
+void Rva0080F0D0(unsigned char *object)
+{
+	if (*(void **)(object + 0x64) != 0)
+	{
+		Rva00812CD0(*(void **)(object + 0x64));
+		*(void **)(object + 0x64) = 0;
+	}
 }
