@@ -17,6 +17,8 @@ typedef struct piConnection
 {
 	unsigned char pad0[0x1798];
 	void *operationList;				/* +0x1798 */
+	unsigned char pad179c[0x17a0 - 0x179c];
+	int operationsRemoved;				/* +0x17A0 */
 } piConnection;
 
 typedef struct piOperation
@@ -56,6 +58,35 @@ void piCancelJoinOperation(PEER peer, int group)
 			&& (operation->roomID == group))
 		{
 			operation->cancelled = 1;
+			return;
+		}
+	}
+}
+
+/* piRemoveOperation, retail 0x0085EFD0, 105 bytes.  Same list, same
+   dereference: the array holds piOperation pointers, so the search compares
+   what ArrayNth hands back through one indirection.  The list pointer is
+   re-read from the connection on every iteration -- cached in a local the
+   loop is shorter -- and the counter at +0x17A0 is named for the only thing
+   any body reaches it for, which is being bumped once per removal. */
+void ArrayDeleteAt(void *array, int index);
+
+void piRemoveOperation(PEER peer, void *operation)
+{
+	piConnection *connection = (piConnection *)peer;
+	int len;
+	int i;
+
+	if(!connection->operationList)
+		return;
+
+	len = ArrayLength(connection->operationList);
+	for(i = 0 ; i < len ; i++)
+	{
+		if(*(void **)ArrayNth(connection->operationList, i) == operation)
+		{
+			ArrayDeleteAt(connection->operationList, i);
+			connection->operationsRemoved++;
 			return;
 		}
 	}
