@@ -307,3 +307,8 @@ BFME_TWO_DWORD_SETTER( Rva0043ADA0PairSlot, 0x830 )
 BFME_TWO_DWORD_SETTER( Rva004784D0PairSlot, 0x1AC )
 BFME_TWO_DWORD_SETTER( Rva00493E70PairSlot, 0x30 )
 BFME_TWO_DWORD_SETTER( Rva007F8820PairSlot, 0x28 )
+
+// mov al,[ecx+<LEAD>] / and al,1 / ret -- single bit read out of a bitfield
+#define BFME_BIT0_GETTER( NAME, LEAD )                                         	struct Bits##NAME                                                         	{                                                                         		unsigned char m_bit0 : 1;                                             		unsigned char m_rest : 7;                                             	};                                                                        	class NAME                                                                	{                                                                         	public:                                                                   		unsigned char test() const;                                                                                                                         		char         m_lead[ LEAD ];                                          		Bits##NAME   m_bits;                                                  	};                                                                        	unsigned char NAME::test() const { return m_bits.m_bit0; }
+
+BFME_BIT0_GETTER( Rva00493E90Bit0, 0x20 )
