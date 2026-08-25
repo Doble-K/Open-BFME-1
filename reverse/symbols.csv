@@ -76800,3 +76800,40 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeInit00026058@@YAXXZ,0x00026058,Open-BFME5 ILT the initialiser the run-once latch at 0x005E86F0 calls
 ?bfmeInit00033479@@YAXXZ,0x00033479,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8720 calls
 ?bfmeInit000340FE@@YAXXZ,0x000340FE,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8750 calls
+??_7Gen007E9B10@@6B@,0x00D29758,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007E9B10
+??3Gen007E9B10@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen007EB140@@UAE@XZ,0x007EA6F0,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007EB140 calls
+??3Gen007EB140@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007F1BF0@@6B@,0x00D2A5F8,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F1BF0
+??3Gen007F1BF0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007F2120@@6B@,0x00D2AB34,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F2120
+??3Gen007F2120@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007F2E30@@6B@,0x00D2AC70,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F2E30
+??3Gen007F2E30@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007F33E0@@6B@,0x00D2AF04,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F33E0
+??3Gen007F33E0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007F40C0@@6B@,0x00D2B048,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F40C0
+??3Gen007F40C0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007F47E0@@6B@,0x00D2B248,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F47E0
+??3Gen007F47E0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen007F4D00@@UAE@XZ,0x007F4D20,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007F4D00 calls
+??3Gen007F4D00@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen007F86D0@@UAE@XZ,0x007F8090,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007F86D0 calls
+??3Gen007F86D0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen007FA290@@UAE@XZ,0x007F9C50,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007FA290 calls
+??3Gen007FA290@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007FBAF0@@6B@,0x00D2BCD0,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007FBAF0
+??3Gen007FBAF0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??_7Gen007FCF50@@6B@,0x00D2BEE8,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007FCF50
+??3Gen007FCF50@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen008030A0@@UAE@XZ,0x00802F50,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x008030A0 calls
+??3Gen008030A0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen00803D10@@UAE@XZ,0x00803890,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x00803D10 calls
+??3Gen00803D10@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen00808FB0@@UAE@XZ,0x007E86C0,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x00808FB0 calls
+??3Gen00808FB0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen00809750@@UAE@XZ,0x008096F0,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x00809750 calls
+??3Gen00809750@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1Gen0080ACD0@@UAE@XZ,0x0080A830,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x0080ACD0 calls
+??3Gen0080ACD0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??1BfmeDirtyBase@@UAE@XZ,0x007EB6C0,Open-BFME5 the shared base destructor nine DirtySock scalar deleting destructors call
