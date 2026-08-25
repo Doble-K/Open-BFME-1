@@ -76756,3 +76756,10 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeAccept@Gen_0016B890@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016B890 accepts through
 ?bfmeAccept@Gen_0024E710@@AAEXPAVBfmeSeedTarget@@@Z,0x00007658,Open-BFME5 ILT the version block at 0x0024E710 accepts through
 ?bfmeAccept@Gen_002D9BD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the version block at 0x002D9BD0 accepts through
+??1Gen000075EF@@QAE@XZ,0x000075EF,Open-BFME5 ILT the element destructor the 0x1F0-byte vector at 0x006073F0 calls
+??1Gen0004A1C4@@QAE@XZ,0x0004A1C4,Open-BFME5 ILT the element destructor the 188-byte-stride vector at 0x0013BFA0 calls
+??1Gen0002306F@@QAE@XZ,0x0002306F,Open-BFME5 ILT the element destructor the 296-byte-stride vector at 0x0013C640 calls
+??1Gen00043699@@QAE@XZ,0x00043699,Open-BFME5 ILT the element destructor the 136-byte-stride vector at 0x0039EA90 calls
+??1Gen00034158@@QAE@XZ,0x00034158,Open-BFME5 ILT the element destructor the 528-byte-stride vector at 0x00608C60 calls
+??1Gen00026F35@@QAE@XZ,0x00026F35,Open-BFME5 ILT the element destructor the 120-byte-stride vector at 0x006A3930 calls
+??1Gen0002A8BA@@QAE@XZ,0x0002A8BA,Open-BFME5 ILT the element destructor the 44-byte-stride vector at 0x00774130 calls

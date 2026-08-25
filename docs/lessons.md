@@ -786,3 +786,10 @@ both are worth as much as the landing would have been.
   139 bodies landed byte-exact first try this way, in four passes, each pass
   adding one rule. The rule that paid most was treating a deferred `add esp,8`
   as scheduling noise rather than structure.
+
+- A `// cl:` line REPLACES the flag list, it does not add to it. Two vector
+  destructor TUs prove the cost: `-GX` gives retail's `cmp eax,0x80` dispatch
+  between operator delete and the node allocator, while `/DNDEBUG /MD /EHsc`
+  links the DLL CRT and routes the deallocation through an imported operator
+  delete instead -- same C++, 40 bytes apart. If an STLport body is right
+  except at its allocator call, suspect the flag line before the source.
