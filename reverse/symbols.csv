@@ -76485,3 +76485,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeHandle_00799600@@YAXPAVGen_00799600@@PAX@Z,0x00023056,Open-BFME5 ILT the 22-byte submit at 0x00799600 calls
 ?bfmeHandle_00799c90@@YAXPAVGen_00799c90@@PAX@Z,0x0002C7AA,Open-BFME5 ILT the 22-byte submit at 0x00799C90 calls
 ?bfmeHandle_00799cb0@@YAXPAVGen_00799cb0@@PAX@Z,0x0003DC7B,Open-BFME5 ILT the 22-byte submit at 0x00799CB0 calls
+?filterSetup@W3DShaderManager@@SA_NW4FilterTypes@@W4FilterModes@@@Z,0x00716AA0,address-derived callee of 0x0073B650
+?filterSetup@W3DShaderManager@@SA_NW4FilterModes@@W4FilterTypes@@@Z,0x00716AA0,address-derived callee of 0x0073B650
