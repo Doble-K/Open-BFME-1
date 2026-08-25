@@ -23294,3 +23294,4 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ??0PropagandaTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000EF5C,five-byte incremental-link constructor thunk retired; the exact BFME constructor body at 0x00202F40 now carries the real identity.
 ??0SupplyCenterProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00027B06,five-byte incremental-link constructor thunk retired; the exact BFME constructor body at 0x002D22F0 now carries the real identity.
 ??0CommandButtonHuntUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00020DCE,five-byte incremental-link constructor thunk retired; exact BFME constructor body at 0x0028AB20 now carries the real identity.
+??0StructureToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00034711,five-byte incremental-link constructor thunk retired; exact BFME constructor body at 0x002AF1E0 now carries the real identity.
