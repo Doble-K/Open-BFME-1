@@ -801,3 +801,10 @@ both are worth as much as the landing would have been.
   constructor `// ??0X@@QAE@XZ present-unmatched` -- the commit hook only binds
   a marker that starts `// ?` and carries a real MANGLED name, so a readable
   `// X::X present-unmatched` is silently ignored and the commit is refused.
+
+- When a data member is the RECEIVER of a call, bind it once as a local
+  reference (`Thing &t = m_thing; t.f(x);`). Spelled `m_thing.f(x)` MSVC keeps
+  `this` in the register and reads `this+K+field`; retail keeps the MEMBER's
+  address and reads `+field`, while still folding the first read back onto ecx.
+  It also orders `add ecx,K` before the argument push instead of after. Two
+  unrelated families needed exactly this on the same day.
