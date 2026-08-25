@@ -2,10 +2,9 @@
 // stlport
 
 // The retail GarrisonContain object has OpenContain's nine polymorphic
-// subobjects followed by its 3x40 Coord3D array at offset 0x3fc.  Keeping
-// those subobjects and the non-trivial coordinate destructor here lets the
-// compiler emit the complete destructor, including its SEH cleanup and
-// base-destructor call.
+// subobjects followed by its 3x40 Coord3D array at offset 0x3fc.  Keep the
+// recovered layout in the proper source family so the SEH cleanup and base
+// destructor remain tied to the real class.
 
 class OpenContainPrimaryBase
 {
@@ -52,10 +51,10 @@ private:
 
 class Coord3D
 {
-	public:
+public:
 	~Coord3D() {}
 
-	private:
+private:
 	float m_value[3];
 };
 
