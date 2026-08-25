@@ -76902,3 +76902,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?BfmeCopy00769060@@YAXPAUBfmeValue00769060@@PBU1@@Z,0x000366E2,Open-BFME5 ILT the value copy the clone-node body at 0x00769060 calls
 ?BfmeCopy009C94C0@@YAXPAUBfmeValue009C94C0@@PBU1@@Z,0x009C9120,Open-BFME5 ILT the value copy the clone-node body at 0x009C94C0 calls
 ?BfmeCopy009D02C0@@YAXPAUBfmeValue009D02C0@@PBU1@@Z,0x009CF3C0,Open-BFME5 ILT the value copy the clone-node body at 0x009D02C0 calls
+?_M_insert_overflow@?$vector@URva000A8500Element@_STL@@V?$allocator@URva000A8500Element@_STL@@@2@@_STL@@IAEXPAURva000A8500Element@2@ABU32@ABU__false_type@2@I_N@Z,0x000A8500,existing exact STLport vector overflow body at the proven constructor target
+?_M_insert_overflow@?$vector@URva0025CB00Element@_STL@@V?$allocator@URva0025CB00Element@_STL@@@2@@_STL@@IAEXPAURva0025CB00Element@2@ABU32@ABU__false_type@2@I_N@Z,0x0025CB00,existing exact STLport vector overflow body at the proven constructor target
+?_M_insert_overflow@?$vector@URva003B0060Element@_STL@@V?$allocator@URva003B0060Element@_STL@@@2@@_STL@@IAEXPAURva003B0060Element@2@ABU32@ABU__false_type@2@I_N@Z,0x003B0060,existing exact STLport vector overflow body at the proven constructor target
+?_M_insert_overflow@?$vector@URva001E9020Element@@V?$allocator@URva001E9020Element@@@_STL@@@_STL@@IAEXPAURva001E9020Element@@ABU3@ABU__false_type@2@I_N@Z,0x001E9020,existing exact STLport vector overflow body at the proven constructor target

@@ -45,11 +45,19 @@
 // the body; `char m_body[WIDTH]` carries the width and `char m_bfmeHead[K]`
 // the offset, and neither is a claim about fields.
 
+struct Rva001E9020Element
+{
+	char m_body[ 0x08 ];
+};
+
 namespace _STL
 {
 struct __false_type
 {
 };
+
+template <class Type>
+void __cdecl _Construct( Type *destination, const Type &value );
 
 template <class Type>
 class allocator
@@ -66,6 +74,88 @@ public:
 
 	void _M_insert_overflow( Type *position, const Type &value,
 		const __false_type &, unsigned int fillLength, bool atEnd );
+};
+}
+
+namespace _STL
+{
+struct Rva000A8500Element
+{
+	char m_body[ 0x08 ];
+};
+
+struct Rva0025CB00Element
+{
+	char m_body[ 0x08 ];
+};
+
+struct Rva003B0060Element
+{
+	char m_body[ 0x08 ];
+};
+
+typedef ::Rva001E9020Element Rva001E9020Element;
+
+void __cdecl BfmeRva001E9020Construct( Rva001E9020Element *destination,
+	const Rva001E9020Element &value );
+
+template <>
+class vector<Rva000A8500Element, allocator<Rva000A8500Element> >
+{
+public:
+	Rva000A8500Element *_M_start;
+	Rva000A8500Element *_M_finish;
+	Rva000A8500Element *_M_end_of_storage;
+
+protected:
+	void _M_insert_overflow( Rva000A8500Element *, const Rva000A8500Element &,
+		const __false_type &, unsigned int, bool );
+};
+
+template <>
+class vector<Rva0025CB00Element, allocator<Rva0025CB00Element> >
+{
+public:
+	Rva0025CB00Element *_M_start;
+	Rva0025CB00Element *_M_finish;
+	Rva0025CB00Element *_M_end_of_storage;
+
+protected:
+	void _M_insert_overflow( Rva0025CB00Element *, const Rva0025CB00Element &,
+		const __false_type &, unsigned int, bool );
+};
+
+template <>
+class vector<Rva003B0060Element, allocator<Rva003B0060Element> >
+{
+public:
+	Rva003B0060Element *_M_start;
+	Rva003B0060Element *_M_finish;
+	Rva003B0060Element *_M_end_of_storage;
+
+protected:
+	void _M_insert_overflow( Rva003B0060Element *, const Rva003B0060Element &,
+		const __false_type &, unsigned int, bool );
+};
+
+template <>
+class vector<Rva001E9020Element, allocator<Rva001E9020Element> >
+{
+public:
+	Rva001E9020Element *_M_start;
+	Rva001E9020Element *_M_finish;
+	Rva001E9020Element *_M_end_of_storage;
+
+protected:
+	void _M_insert_overflow( Rva001E9020Element *, const Rva001E9020Element &,
+		const __false_type &, unsigned int, bool );
+};
+
+template <class Type, class Allocator>
+class public_vector : public vector<Type, Allocator>
+{
+public:
+	using vector<Type, Allocator>::_M_insert_overflow;
 };
 }
 
@@ -188,7 +278,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x30 ];
-	_STL::vector<P6Elem00365520, _STL::allocator<P6Elem00365520> > m_bfmeItems;	// +0x30
+	_STL::public_vector<P6Elem00365520, _STL::allocator<P6Elem00365520> > m_bfmeItems;	// +0x30
 };
 
 class Gen003AC1C0
@@ -198,7 +288,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0xC ];
-	_STL::vector<P6Elem003AC1C0, _STL::allocator<P6Elem003AC1C0> > m_bfmeItems;	// +0x0C
+	_STL::public_vector<P6Elem003AC1C0, _STL::allocator<P6Elem003AC1C0> > m_bfmeItems;	// +0x0C
 };
 
 class Gen003B18A0
@@ -208,7 +298,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x14 ];
-	_STL::vector<P6Elem003B18A0, _STL::allocator<P6Elem003B18A0> > m_bfmeItems;	// +0x14
+	_STL::public_vector<P6Elem003B18A0, _STL::allocator<P6Elem003B18A0> > m_bfmeItems;	// +0x14
 };
 
 class Gen003B18F0
@@ -218,7 +308,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x20 ];
-	_STL::vector<P6Elem003B18F0, _STL::allocator<P6Elem003B18F0> > m_bfmeItems;	// +0x20
+	_STL::public_vector<P6Elem003B18F0, _STL::allocator<P6Elem003B18F0> > m_bfmeItems;	// +0x20
 };
 
 class Gen003B1940
@@ -228,7 +318,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x2C ];
-	_STL::vector<P6Elem003B1940, _STL::allocator<P6Elem003B1940> > m_bfmeItems;	// +0x2C
+	_STL::public_vector<P6Elem003B1940, _STL::allocator<P6Elem003B1940> > m_bfmeItems;	// +0x2C
 };
 
 class Gen003B1990
@@ -238,7 +328,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x54 ];
-	_STL::vector<P6Elem003B1990, _STL::allocator<P6Elem003B1990> > m_bfmeItems;	// +0x54
+	_STL::public_vector<P6Elem003B1990, _STL::allocator<P6Elem003B1990> > m_bfmeItems;	// +0x54
 };
 
 class Gen003B19E0
@@ -248,7 +338,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x6C ];
-	_STL::vector<P6Elem003B19E0, _STL::allocator<P6Elem003B19E0> > m_bfmeItems;	// +0x6C
+	_STL::public_vector<P6Elem003B19E0, _STL::allocator<P6Elem003B19E0> > m_bfmeItems;	// +0x6C
 };
 
 class Gen003B1A30
@@ -258,7 +348,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x78 ];
-	_STL::vector<P6Elem003B1A30, _STL::allocator<P6Elem003B1A30> > m_bfmeItems;	// +0x78
+	_STL::public_vector<P6Elem003B1A30, _STL::allocator<P6Elem003B1A30> > m_bfmeItems;	// +0x78
 };
 
 class Gen003B1A80
@@ -268,7 +358,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x9C ];
-	_STL::vector<P6Elem003B1A80, _STL::allocator<P6Elem003B1A80> > m_bfmeItems;	// +0x9C
+	_STL::public_vector<P6Elem003B1A80, _STL::allocator<P6Elem003B1A80> > m_bfmeItems;	// +0x9C
 };
 
 class Gen003B1AE0
@@ -278,7 +368,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x90 ];
-	_STL::vector<P6Elem003B1AE0, _STL::allocator<P6Elem003B1AE0> > m_bfmeItems;	// +0x90
+	_STL::public_vector<P6Elem003B1AE0, _STL::allocator<P6Elem003B1AE0> > m_bfmeItems;	// +0x90
 };
 
 class Gen003B1DF0
@@ -288,7 +378,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0xB4 ];
-	_STL::vector<P6Elem003B1DF0, _STL::allocator<P6Elem003B1DF0> > m_bfmeItems;	// +0xB4
+	_STL::public_vector<P6Elem003B1DF0, _STL::allocator<P6Elem003B1DF0> > m_bfmeItems;	// +0xB4
 };
 
 class Gen003B1E50
@@ -298,7 +388,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0xCC ];
-	_STL::vector<P6Elem003B1E50, _STL::allocator<P6Elem003B1E50> > m_bfmeItems;	// +0xCC
+	_STL::public_vector<P6Elem003B1E50, _STL::allocator<P6Elem003B1E50> > m_bfmeItems;	// +0xCC
 };
 
 class Gen003B2060
@@ -308,7 +398,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0xC0 ];
-	_STL::vector<P6Elem003B2060, _STL::allocator<P6Elem003B2060> > m_bfmeItems;	// +0xC0
+	_STL::public_vector<P6Elem003B2060, _STL::allocator<P6Elem003B2060> > m_bfmeItems;	// +0xC0
 };
 
 class Gen003B2890
@@ -318,7 +408,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x84 ];
-	_STL::vector<P6Elem003B2890, _STL::allocator<P6Elem003B2890> > m_bfmeItems;	// +0x84
+	_STL::public_vector<P6Elem003B2890, _STL::allocator<P6Elem003B2890> > m_bfmeItems;	// +0x84
 };
 
 class Gen003B7030
@@ -328,7 +418,7 @@ public:
 
 private:
 	char m_bfmeHead[ 0x10 ];
-	_STL::vector<P6Elem003B7030, _STL::allocator<P6Elem003B7030> > m_bfmeItems;	// +0x10
+	_STL::public_vector<P6Elem003B7030, _STL::allocator<P6Elem003B7030> > m_bfmeItems;	// +0x10
 };
 
 class Gen003C3B50
@@ -338,13 +428,53 @@ public:
 
 private:
 	char m_bfmeHead[ 0x68 ];
-	_STL::vector<P6Elem003C3B50, _STL::allocator<P6Elem003C3B50> > m_bfmeItems;	// +0x68
+	_STL::public_vector<P6Elem003C3B50, _STL::allocator<P6Elem003C3B50> > m_bfmeItems;	// +0x68
+};
+
+class Gen000A87D0
+{
+public:
+	void bfmeAppend( const _STL::Rva000A8500Element *value );
+
+private:
+	char m_bfmeHead[ 0x24 ];
+	_STL::public_vector<_STL::Rva000A8500Element, _STL::allocator<_STL::Rva000A8500Element> > m_bfmeItems;
+};
+
+class Gen0025CD50
+{
+public:
+	void bfmeAppend( const _STL::Rva0025CB00Element *value );
+
+private:
+	char m_bfmeHead[ 0x210 ];
+	_STL::public_vector<_STL::Rva0025CB00Element, _STL::allocator<_STL::Rva0025CB00Element> > m_bfmeItems;
+};
+
+class Gen003B1850
+{
+public:
+	void bfmeAppend( const _STL::Rva003B0060Element *value );
+
+private:
+	char m_bfmeHead[ 0x08 ];
+	_STL::public_vector<_STL::Rva003B0060Element, _STL::allocator<_STL::Rva003B0060Element> > m_bfmeItems;
+};
+
+class Gen0060CF90
+{
+public:
+	void bfmeAppend( const _STL::Rva001E9020Element *value );
+
+private:
+	char m_bfmeHead[ 0x3C ];
+	_STL::public_vector<_STL::Rva001E9020Element, _STL::allocator<_STL::Rva001E9020Element> > m_bfmeItems;
 };
 
 // ?bfmeAppend@Gen00365520@@QAEXPBUP6Elem00365520@@@Z		63B
 void Gen00365520::bfmeAppend( const P6Elem00365520 *value )
 {
-	_STL::vector<P6Elem00365520, _STL::allocator<P6Elem00365520> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem00365520, _STL::allocator<P6Elem00365520> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -361,7 +491,7 @@ void Gen00365520::bfmeAppend( const P6Elem00365520 *value )
 // ?bfmeAppend@Gen003AC1C0@@QAEXPBUP6Elem003AC1C0@@@Z		63B
 void Gen003AC1C0::bfmeAppend( const P6Elem003AC1C0 *value )
 {
-	_STL::vector<P6Elem003AC1C0, _STL::allocator<P6Elem003AC1C0> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003AC1C0, _STL::allocator<P6Elem003AC1C0> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -378,7 +508,7 @@ void Gen003AC1C0::bfmeAppend( const P6Elem003AC1C0 *value )
 // ?bfmeAppend@Gen003B18A0@@QAEXPBUP6Elem003B18A0@@@Z		61B
 void Gen003B18A0::bfmeAppend( const P6Elem003B18A0 *value )
 {
-	_STL::vector<P6Elem003B18A0, _STL::allocator<P6Elem003B18A0> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B18A0, _STL::allocator<P6Elem003B18A0> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -395,7 +525,7 @@ void Gen003B18A0::bfmeAppend( const P6Elem003B18A0 *value )
 // ?bfmeAppend@Gen003B18F0@@QAEXPBUP6Elem003B18F0@@@Z		61B
 void Gen003B18F0::bfmeAppend( const P6Elem003B18F0 *value )
 {
-	_STL::vector<P6Elem003B18F0, _STL::allocator<P6Elem003B18F0> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B18F0, _STL::allocator<P6Elem003B18F0> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -412,7 +542,7 @@ void Gen003B18F0::bfmeAppend( const P6Elem003B18F0 *value )
 // ?bfmeAppend@Gen003B1940@@QAEXPBUP6Elem003B1940@@@Z		61B
 void Gen003B1940::bfmeAppend( const P6Elem003B1940 *value )
 {
-	_STL::vector<P6Elem003B1940, _STL::allocator<P6Elem003B1940> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B1940, _STL::allocator<P6Elem003B1940> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -429,7 +559,7 @@ void Gen003B1940::bfmeAppend( const P6Elem003B1940 *value )
 // ?bfmeAppend@Gen003B1990@@QAEXPBUP6Elem003B1990@@@Z		61B
 void Gen003B1990::bfmeAppend( const P6Elem003B1990 *value )
 {
-	_STL::vector<P6Elem003B1990, _STL::allocator<P6Elem003B1990> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B1990, _STL::allocator<P6Elem003B1990> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -446,7 +576,7 @@ void Gen003B1990::bfmeAppend( const P6Elem003B1990 *value )
 // ?bfmeAppend@Gen003B19E0@@QAEXPBUP6Elem003B19E0@@@Z		61B
 void Gen003B19E0::bfmeAppend( const P6Elem003B19E0 *value )
 {
-	_STL::vector<P6Elem003B19E0, _STL::allocator<P6Elem003B19E0> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B19E0, _STL::allocator<P6Elem003B19E0> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -463,7 +593,7 @@ void Gen003B19E0::bfmeAppend( const P6Elem003B19E0 *value )
 // ?bfmeAppend@Gen003B1A30@@QAEXPBUP6Elem003B1A30@@@Z		61B
 void Gen003B1A30::bfmeAppend( const P6Elem003B1A30 *value )
 {
-	_STL::vector<P6Elem003B1A30, _STL::allocator<P6Elem003B1A30> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B1A30, _STL::allocator<P6Elem003B1A30> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -480,7 +610,7 @@ void Gen003B1A30::bfmeAppend( const P6Elem003B1A30 *value )
 // ?bfmeAppend@Gen003B1A80@@QAEXPBUP6Elem003B1A80@@@Z		67B
 void Gen003B1A80::bfmeAppend( const P6Elem003B1A80 *value )
 {
-	_STL::vector<P6Elem003B1A80, _STL::allocator<P6Elem003B1A80> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B1A80, _STL::allocator<P6Elem003B1A80> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -497,7 +627,7 @@ void Gen003B1A80::bfmeAppend( const P6Elem003B1A80 *value )
 // ?bfmeAppend@Gen003B1AE0@@QAEXPBUP6Elem003B1AE0@@@Z		67B
 void Gen003B1AE0::bfmeAppend( const P6Elem003B1AE0 *value )
 {
-	_STL::vector<P6Elem003B1AE0, _STL::allocator<P6Elem003B1AE0> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B1AE0, _STL::allocator<P6Elem003B1AE0> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -514,7 +644,7 @@ void Gen003B1AE0::bfmeAppend( const P6Elem003B1AE0 *value )
 // ?bfmeAppend@Gen003B1DF0@@QAEXPBUP6Elem003B1DF0@@@Z		67B
 void Gen003B1DF0::bfmeAppend( const P6Elem003B1DF0 *value )
 {
-	_STL::vector<P6Elem003B1DF0, _STL::allocator<P6Elem003B1DF0> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B1DF0, _STL::allocator<P6Elem003B1DF0> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -531,7 +661,7 @@ void Gen003B1DF0::bfmeAppend( const P6Elem003B1DF0 *value )
 // ?bfmeAppend@Gen003B1E50@@QAEXPBUP6Elem003B1E50@@@Z		67B
 void Gen003B1E50::bfmeAppend( const P6Elem003B1E50 *value )
 {
-	_STL::vector<P6Elem003B1E50, _STL::allocator<P6Elem003B1E50> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B1E50, _STL::allocator<P6Elem003B1E50> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -548,7 +678,7 @@ void Gen003B1E50::bfmeAppend( const P6Elem003B1E50 *value )
 // ?bfmeAppend@Gen003B2060@@QAEXPBUP6Elem003B2060@@@Z		67B
 void Gen003B2060::bfmeAppend( const P6Elem003B2060 *value )
 {
-	_STL::vector<P6Elem003B2060, _STL::allocator<P6Elem003B2060> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B2060, _STL::allocator<P6Elem003B2060> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -565,7 +695,7 @@ void Gen003B2060::bfmeAppend( const P6Elem003B2060 *value )
 // ?bfmeAppend@Gen003B2890@@QAEXPBUP6Elem003B2890@@@Z		67B
 void Gen003B2890::bfmeAppend( const P6Elem003B2890 *value )
 {
-	_STL::vector<P6Elem003B2890, _STL::allocator<P6Elem003B2890> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B2890, _STL::allocator<P6Elem003B2890> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -582,7 +712,7 @@ void Gen003B2890::bfmeAppend( const P6Elem003B2890 *value )
 // ?bfmeAppend@Gen003B7030@@QAEXPBUP6Elem003B7030@@@Z		61B
 void Gen003B7030::bfmeAppend( const P6Elem003B7030 *value )
 {
-	_STL::vector<P6Elem003B7030, _STL::allocator<P6Elem003B7030> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003B7030, _STL::allocator<P6Elem003B7030> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
@@ -599,11 +729,79 @@ void Gen003B7030::bfmeAppend( const P6Elem003B7030 *value )
 // ?bfmeAppend@Gen003C3B50@@QAEXPBUP6Elem003C3B50@@@Z		61B
 void Gen003C3B50::bfmeAppend( const P6Elem003C3B50 *value )
 {
-	_STL::vector<P6Elem003C3B50, _STL::allocator<P6Elem003C3B50> > &items = m_bfmeItems;
+	_STL::public_vector<P6Elem003C3B50, _STL::allocator<P6Elem003C3B50> > &items = m_bfmeItems;
 
 	if ( items._M_finish != items._M_end_of_storage )
 	{
 		Bfme003C3B50Construct( items._M_finish, *value );
+		++items._M_finish;
+	}
+	else
+	{
+		items._M_insert_overflow( items._M_finish, *value,
+			reinterpret_cast<const _STL::__false_type &>( value ), 1, true );
+	}
+}
+
+// ?bfmeAppend@Gen000A87D0@@QAEXPBURva000A8500Element@@@Z		61B
+void Gen000A87D0::bfmeAppend( const _STL::Rva000A8500Element *value )
+{
+	_STL::public_vector<_STL::Rva000A8500Element, _STL::allocator<_STL::Rva000A8500Element> > &items = m_bfmeItems;
+
+	if ( items._M_finish != items._M_end_of_storage )
+	{
+		_STL::_Construct( items._M_finish, *value );
+		++items._M_finish;
+	}
+	else
+	{
+		items._M_insert_overflow( items._M_finish, *value,
+			reinterpret_cast<const _STL::__false_type &>( value ), 1, true );
+	}
+}
+
+// ?bfmeAppend@Gen0025CD50@@QAEXPBURva0025CB00Element@@@Z		67B
+void Gen0025CD50::bfmeAppend( const _STL::Rva0025CB00Element *value )
+{
+	_STL::public_vector<_STL::Rva0025CB00Element, _STL::allocator<_STL::Rva0025CB00Element> > &items = m_bfmeItems;
+
+	if ( items._M_finish != items._M_end_of_storage )
+	{
+		_STL::_Construct( items._M_finish, *value );
+		++items._M_finish;
+	}
+	else
+	{
+		items._M_insert_overflow( items._M_finish, *value,
+			reinterpret_cast<const _STL::__false_type &>( value ), 1, true );
+	}
+}
+
+// ?bfmeAppend@Gen003B1850@@QAEXPBURva003B0060Element@@@Z		61B
+void Gen003B1850::bfmeAppend( const _STL::Rva003B0060Element *value )
+{
+	_STL::public_vector<_STL::Rva003B0060Element, _STL::allocator<_STL::Rva003B0060Element> > &items = m_bfmeItems;
+
+	if ( items._M_finish != items._M_end_of_storage )
+	{
+		_STL::_Construct( items._M_finish, *value );
+		++items._M_finish;
+	}
+	else
+	{
+		items._M_insert_overflow( items._M_finish, *value,
+			reinterpret_cast<const _STL::__false_type &>( value ), 1, true );
+	}
+}
+
+// ?bfmeAppend@Gen0060CF90@@QAEXPBURva001E9020Element@@@Z		61B
+void Gen0060CF90::bfmeAppend( const _STL::Rva001E9020Element *value )
+{
+	_STL::public_vector<_STL::Rva001E9020Element, _STL::allocator<_STL::Rva001E9020Element> > &items = m_bfmeItems;
+
+	if ( items._M_finish != items._M_end_of_storage )
+	{
+		_STL::BfmeRva001E9020Construct( items._M_finish, *value );
 		++items._M_finish;
 	}
 	else
