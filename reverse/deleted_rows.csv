@@ -23351,3 +23351,6 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ?a_004655d2@@YAXXZ,0x004655D2,"exit arm absorbed into the body at 0x004655B0, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
 ?dup_00510b26@@YAXXZ,0x00510B26,"alias retracted: these eleven bytes are the delete expansion at the end of the seventeen-byte body at 0x00510B20, which falls straight into them. Campaign::deleteInstance keeps its primary row."
 ?dup_005f3146@@YAXXZ,0x005F3146,"alias retracted: these eleven bytes are the delete expansion at the end of the seventeen-byte body at 0x005F3140, which falls straight into them. Campaign::deleteInstance keeps its primary row."
+?dup_0059bce7@@YAXXZ,0x0059BCE7,"alias retracted: these ten bytes are the tail of the seventeen-byte body at 0x0059BCE0, which falls straight into them. The aliased symbol keeps its primary row."
+?dup_005a03c7@@YAXXZ,0x005A03C7,"alias retracted: these ten bytes are the tail of the seventeen-byte body at 0x005A03C0, which falls straight into them. The aliased symbol keeps its primary row."
+?dup_0018f2c7@@YAXXZ,0x0018F2C7,"alias retracted: these ten bytes are the tail of the seventeen-byte body at 0x0018F2C0, which falls straight into them. The aliased symbol keeps its primary row."
