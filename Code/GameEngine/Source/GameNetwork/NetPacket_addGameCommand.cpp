@@ -44,13 +44,33 @@ typedef unsigned int UnsignedInt;
 typedef unsigned short UnsignedShort;
 typedef unsigned char UnsignedByte;
 typedef bool Bool;
+typedef float Real;
+typedef UnsignedInt ObjectID;
+typedef UnsignedInt DrawableID;
+typedef unsigned short WideChar;
+enum { MAX_PACKET_SIZE = 0x1DC };
 
 typedef Int GameMessageType;
 
 enum GameMessageArgumentDataType
 {
-	ARGUMENTDATATYPE_INTEGER = 0
+	ARGUMENTDATATYPE_INTEGER = 0,
+	ARGUMENTDATATYPE_REAL,
+	ARGUMENTDATATYPE_BOOLEAN,
+	ARGUMENTDATATYPE_OBJECTID,
+	ARGUMENTDATATYPE_DRAWABLEID,
+	ARGUMENTDATATYPE_TEAMID,
+	ARGUMENTDATATYPE_SQUADID,
+	ARGUMENTDATATYPE_LOCATION,
+	ARGUMENTDATATYPE_PIXEL,
+	ARGUMENTDATATYPE_PIXELREGION,
+	ARGUMENTDATATYPE_TIMESTAMP,
+	ARGUMENTDATATYPE_WIDECHAR
 };
+
+struct Coord3D { Real x, y, z; };
+struct ICoord2D { Int x, y; };
+struct IRegion2D { Int loX, loY, hiX, hiY; };
 
 union GameMessageArgumentType
 {
@@ -172,6 +192,67 @@ public:
 	UnsignedByte m_lastCommandType;						// this+0x1FB
 	UnsignedByte m_lastRelay;						// this+0x1FC
 };
+
+Bool NetPacket::isRoomForGameMessage(NetCommandRef *msg, GameMessage *gmsg) {
+	Int msglen = 0;
+	NetGameCommandMsg *cmdMsg = (NetGameCommandMsg *)(msg->getCommand());
+	Bool needNewCommandID = FALSE;
+	if (m_lastFrame != cmdMsg->getExecutionFrame()) {
+		msglen += sizeof(UnsignedInt) + sizeof(UnsignedByte);
+	}
+	if (m_lastPlayerID != cmdMsg->getPlayerID()) {
+		msglen += sizeof(UnsignedByte) + sizeof(UnsignedByte);
+		needNewCommandID = TRUE;
+	}
+	if (m_lastRelay != msg->getRelay()) {
+		msglen += sizeof(UnsignedByte) + sizeof(UnsignedByte);
+	}
+	if (m_lastCommandType != cmdMsg->getNetCommandType()) {
+		msglen += sizeof(UnsignedByte) + sizeof(UnsignedByte);
+	}
+	if (((m_lastCommandID + 1) != (UnsignedShort)(cmdMsg->getID())) || (needNewCommandID == TRUE)) {
+		msglen += sizeof(UnsignedShort) + sizeof(UnsignedByte);
+	}
+	GameMessageParser *parser = new GameMessageParser(gmsg);
+	++msglen;
+	msglen += sizeof(GameMessageType);
+	msglen += sizeof(UnsignedByte);
+	GameMessageParserArgumentType *arg = parser->getFirstArgumentType();
+	while (arg != NULL) {
+		msglen += 2 * sizeof(UnsignedByte);
+		GameMessageArgumentDataType type = arg->getType();
+		if (type == ARGUMENTDATATYPE_INTEGER) {
+			msglen += arg->getArgCount() * sizeof(Int);
+		} else if (type == ARGUMENTDATATYPE_REAL) {
+			msglen += arg->getArgCount() * sizeof(Real);
+		} else if (type == ARGUMENTDATATYPE_BOOLEAN) {
+			msglen += arg->getArgCount() * sizeof(Bool);
+		} else if (type == ARGUMENTDATATYPE_OBJECTID) {
+			msglen += arg->getArgCount() * sizeof(ObjectID);
+		} else if (type == ARGUMENTDATATYPE_DRAWABLEID) {
+			msglen += arg->getArgCount() * sizeof(DrawableID);
+		} else if (type == ARGUMENTDATATYPE_TEAMID) {
+			msglen += arg->getArgCount() * sizeof(UnsignedInt);
+		} else if (type == ARGUMENTDATATYPE_LOCATION) {
+			msglen += arg->getArgCount() * sizeof(Coord3D);
+		} else if (type == ARGUMENTDATATYPE_PIXEL) {
+			msglen += arg->getArgCount() * sizeof(ICoord2D);
+		} else if (type == ARGUMENTDATATYPE_PIXELREGION) {
+			msglen += arg->getArgCount() * sizeof(IRegion2D);
+		} else if (type == ARGUMENTDATATYPE_TIMESTAMP) {
+			msglen += arg->getArgCount() * sizeof(UnsignedInt);
+		} else if (type == ARGUMENTDATATYPE_WIDECHAR) {
+			msglen += arg->getArgCount() * sizeof(WideChar);
+		}
+		arg = arg->getNext();
+	}
+	delete parser;
+	parser = NULL;
+	if (msglen > (MAX_PACKET_SIZE - m_packetLen)) {
+		return FALSE;
+	}
+	return TRUE;
+}
 
 Bool NetPacket::addGameCommand(NetCommandRef *msg) {
 	Bool retval = FALSE;
