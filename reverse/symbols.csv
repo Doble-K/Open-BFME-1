@@ -72400,6 +72400,8 @@ name,address,notes
 ?call_00030887@Object@@QAEXH@Z,0x00030887,unnamed body 0x001C7E60 via ILT thunk
 ?callee@Rva0060A900@@AAEXPAX@Z,0x00019010,Open-BFME5 ILT FUN_00a0a880
 ?callee@Rva0060A910@@AAEXPAX@Z,0x00019010,Open-BFME5 ILT FUN_00a0a880
+?callee@Rva008A06F0@@AAEXH@Z,0x008BDD70,Open-BFME5 thiscall callee of add-ecx-0x24 wrapper
+?callee@Rva008A06F0Inner@@AAEXH@Z,0x008BDD70,Open-BFME5 thiscall callee of add-ecx-0x24 wrapper
 ?canAffordUpgrade@UpgradeCenter@@QBE_NPAVPlayer@@PBVUpgradeTemplate@@_N2@Z,0x0001CEA9,Open-BFME5 ILT thunk to the body matched at 0x0010AF70; BFME gives it a FOURTH argument - ?queueUpgrade@AIGroup@@QAEXPBVUpgradeTemplate@@_N@Z at 0x00151170 passes its own extra flag third with the reference FALSE still last
 ?canEnterObject@BFMEActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@W4CanEnterType@@PA_N@Z,0x0002D588,retail five-argument ActionManager ABI thunk (body 0x000C5440)
 ?canGetHealedAt@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,0x0001B090,Open-BFME5 ILT thunk fronting body 0x000C5140
@@ -75919,6 +75921,7 @@ name,address,notes
 ?run@WideRunner@@QAEXPAVWideCall@@PBDHHHHHH@Z,0x00015235,incremental-link thunk to 0x004675F0; __thiscall with eight stack args (ret 0x20); address-derived name
 ?run@WinInstanceDataInitShim@@QAEXXZ,0x00499850,WinInstanceData init incremental-link thunk target through a TU-local forwarding shim
 ?run@XferRandomVariableShim@@SAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0010C4D0,xferRandomVariable incremental-link thunk target through a TU-local forwarding shim
+?rva000b2cc0@@YGXPAXH@Z,0x00025306,Open-BFME5 ILT stdcall of push0+data wrapper
 ?rva00381050@ExperienceLevelSystem@@QAEXPAVTeam@@H@Z,0x00027237,ILT doTeamSpinForFramecount tail-jumps to at 0x002F11FE; its target 0x00381050 is in the same TU as the subsystem constructor at 0x00381480
 ?rva0046ef50@@YAXXZ,0x00018E8F,Open-BFME5 ILT thunk b_0046ef50
 ?rva00536870@@YAXXZ,0x000436E9,Open-BFME5 ILT thunk b_00536870
@@ -75927,8 +75930,10 @@ name,address,notes
 ?rva00573000@@YAXXZ,0x00011464,Open-BFME5 ILT thunk b_00573000 leaveScoreScreen
 ?rva00595230@@YAXXZ,0x00012FC6,Open-BFME5 ILT thunk b_00595230
 ?rva0060a880@@YGXPAX@Z,0x00019010,Open-BFME5 ILT thunk FUN_00a0a880
+?rva006a0810@@YGXPAX@Z,0x00023A38,Open-BFME5 ILT stdcall callee of lea-esp wrapper
 ?rva006ca4f0@@YAXXZ,0x0003B309,Open-BFME5 ILT thunk b_006ca4f0
 ?rva0077d6b0@@YAXXZ,0x00046CAE,Open-BFME5 ILT thunk b_0077d6b0
+?rva00782e80@@YAXH@Z,0x0002B823,Open-BFME5 ILT cdecl of stdcall pop-ecx wrapper
 ?rva0082ADB0Fill@@YAXPAD0ABD@Z,0x0082ADB0,callee of rva0082BE60FillN; STLport fill at the ICF alias
 ?rva0082C6E0CopyValues@@YAPAURva0082C6E0Value@@PAU1@00@Z,0x00018179,0x0082C6E0 vector erase trivial-copy thunk;target=0x00065E30
 ?rva0082C760Acquire@@YAXPAVNodeAllocMutex@_STL@@@Z,0x0082C760,node_alloc real acquire called by _M_acquire_lock
@@ -75998,6 +76003,8 @@ name,address,notes
 ?set@ObjectSetStatusShim@@QAEXV?$BitFlags@$0CN@@@_N@Z,0x0019A470,Object setStatus incremental-link thunk target through a TU-local forwarding shim
 ?set@ParseStringData@@QAEXPBDH@Z,0x00887D20,retail call target from parseSystemCallback (0x487818): shared two-arg string setter body
 ?set@RetailLayoutString@@QAEXPBDH@Z,0x00887D20
+?set@Rva002EECE0@@QAEXH@Z,0x0003D069,Open-BFME5 ILT thiscall set of global wrapper
+?set@Rva002EED00@@QAEXH@Z,0x0003D069,Open-BFME5 ILT thiscall set of global wrapper
 ?set@Rva00802810Element@@QAEXPBVRva007F4EF0Lobby@@PAVRva007F7980Browser@@@Z,0x00802810,V2 lane: 64-byte browser lobby element fill from a lobby record
 ?set@Rva00802DF0Element@@QAEXPBVRva007F4E50Region@@PAVRva007F7980Browser@@@Z,0x00802DF0,V2 lane: 28-byte browser region element fill from a region record
 ?set@TerrainRoadTypeSetDamageToFXStringShim@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,0x00601B50,TerrainRoadType friend_setDamageToFXString incremental-link thunk target through a TU-local forwarding shim
@@ -76355,6 +76362,8 @@ name,address,notes
 ?updateVotes@DisconnectMenu@@QAEXHH@Z,0x00031DB8,ILT thunk to DisconnectMenu::updateVotes
 ?updateVotes@DisconnectMenu@@QAEXHH@Z,0x0050EFB0,body of the ILT 0x00031DB8 already pinned under this name; ZH updateVotes twin: AS var DisconnectScreen::VotesReceived%d := votes ? format(L%d 0x010F9F60) : empty through 0x0046CBF0; this unused; callers DisconnectManager::resetPlayersVotes 0x0066B7FE applyDisconnectVote 0x0066B957 populateDisconnectScreen 0x0066BF7C
 ?upper_bound@AsciiStringTreeUpperBoundShim@_STL@@QBEPAU?$_Rb_tree_node@VAsciiString@@@2@ABVAsciiString@@@Z,0x000804D0,incremental-link thunk target through a TU-local forwarding shim
+?use_facet@Rva005380A0@@QAEPAXPBX@Z,0x008321D0,Open-BFME5 thiscall of cdecl locale wrapper
+?use_facet@Rva005C0FD0@@QAEPAXPBX@Z,0x008321D0,Open-BFME5 thiscall of cdecl locale wrapper
 ?validMovementTerrain@Pathfinder@@QAE_NHPBVLocomotor@@PBUCoord3D@@@Z,0x0001B405,ILT thunk to the pathfinder terrain check at 0x003D85C0
 ?value00683900@Gen00683900@@QBEMXZ,0x00034AF4,S2 float getter tail-jumped to from 0x00681C10; ILT thunk to body 0x00683900
 ?value00683C00@Gen00683900@@QBEMXZ,0x0004AB79,S2 float getter tail-jumped to from 0x00681C70; ILT thunk to body 0x00683C00
