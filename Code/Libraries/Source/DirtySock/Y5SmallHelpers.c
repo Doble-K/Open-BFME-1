@@ -25,6 +25,7 @@ int Rva0080E300(const int *crypto, int length)
 }
 
 void Rva0080F300(void *state, unsigned char *data, int length);
+void Rva0080F200(void *state, const unsigned char *key, int length, int rounds);
 
 void Rva0080E410(void *crypto, unsigned char *data, int length)
 {
@@ -39,4 +40,17 @@ void Rva0080E1C0(int *crypto, unsigned char *data, int length)
 		Rva0080F300((unsigned char *)crypto + 8, data, length);
 		crypto[1] = 1;
 	}
+}
+
+int Rva0080DFC0(int *crypto, const unsigned char *key)
+{
+	crypto[0] = 0;
+	if (key != 0)
+	{
+		crypto[0] = 1;
+		crypto[1] = 0;
+		Rva0080F200((unsigned char *)crypto + 0x10A, key, 0x10, -1);
+		Rva0080F200((unsigned char *)crypto + 8, key + 0x10, 0x10, -1);
+	}
+	return crypto[0];
 }
