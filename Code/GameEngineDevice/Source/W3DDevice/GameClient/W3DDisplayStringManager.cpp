@@ -178,18 +178,39 @@ void W3DDisplayStringManager::freeDisplayString( DisplayString *string )
 	* the DisplayString will have to rebuild the rendering data before
 	* the draw will work */
 //-------------------------------------------------------------------------------------------------
-// ?update@W3DDisplayStringManager@@UAEXXZ present-unmatched
+class BFMEUpdateRenderSentence
+{
+public:
+	virtual void Reset( void );
+};
+
+struct BFMEUpdateDisplayString
+{
+	unsigned char m_unreconstructed_00[0x0C];
+	BFMEUpdateDisplayString *m_next;
+	unsigned char m_unreconstructed_10[0x14 - 0x10];
+	BFMEUpdateRenderSentence m_textRenderer;
+	unsigned char m_unreconstructed_18[0xE0 - 0x18];
+	BFMEUpdateRenderSentence m_textRendererHotKey;
+	unsigned char m_unreconstructed_E4[0x1AC - 0xE4];
+	unsigned char m_textChanged;
+	unsigned char m_unreconstructed_1AD[0x208 - 0x1AD];
+	UnsignedInt m_lastResourceFrame;
+
+};
+
+struct BFMEUpdateManagerFields
+{
+	unsigned char m_unreconstructed_00[0x08];
+	BFMEUpdateDisplayString *m_stringList;
+	BFMEUpdateDisplayString *m_currentCheckpoint;
+};
 void W3DDisplayStringManager::update( void )
 {
-	// call base in case we add something later
-	DisplayStringManager::update();
-
-	W3DDisplayString *string = static_cast<W3DDisplayString *>(m_stringList);
-	
-	// if the m_currentCheckpoint is valid, use it for the starting point for the search
-	if (m_currentCheckpoint) {
-		string = static_cast<W3DDisplayString *>(m_currentCheckpoint);
-	}
+	BFMEUpdateManagerFields *fields = reinterpret_cast<BFMEUpdateManagerFields *>(this);
+	BFMEUpdateDisplayString *string = fields->m_stringList;
+	if (fields->m_currentCheckpoint)
+		string = fields->m_currentCheckpoint;
 
 	UnsignedInt currFrame = TheGameClient->getFrame();
 	const UnsignedInt w3dCleanupTime = 60;  /** any string not rendered after
@@ -228,12 +249,13 @@ void W3DDisplayStringManager::update( void )
 		}  // end if
 
 		// move to next string
-		string = static_cast<W3DDisplayString *>(string->next());
+		string = reinterpret_cast<BFMEUpdateDisplayString *>(
+			reinterpret_cast<DisplayString *>(string)->next());
 
 	}  // end while
 	
 	// reset the starting point for our next search
-	m_currentCheckpoint = string;
+	fields->m_currentCheckpoint = string;
 }  // end update
 
 //-------------------------------------------------------------------------------------------------
