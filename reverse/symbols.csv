@@ -76464,3 +76464,24 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeNotify@Gen_005fe880Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0000B235,Open-BFME5 ILT the refresh at 0x005FE880 calls on its sub-object
 ?bfmeNotify@Gen_005ff8d0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0001F087,Open-BFME5 ILT the refresh at 0x005FF8D0 calls on its sub-object
 ?bfmeNotify@Gen_00600710Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x00018926,Open-BFME5 ILT the refresh at 0x00600710 calls on its sub-object
+?bfmeHandle_00790310@@YAXPAVGen_00790310@@PAX@Z,0x0003883E,Open-BFME5 ILT the 22-byte submit at 0x00790310 calls
+?bfmeHandle_00790330@@YAXPAVGen_00790330@@PAX@Z,0x000011A4,Open-BFME5 ILT the 22-byte submit at 0x00790330 calls
+?bfmeHandle_00790b60@@YAXPAVGen_00790b60@@PAX@Z,0x0000C036,Open-BFME5 ILT the 22-byte submit at 0x00790B60 calls
+?bfmeHandle_00790b80@@YAXPAVGen_00790b80@@PAX@Z,0x00016C02,Open-BFME5 ILT the 22-byte submit at 0x00790B80 calls
+?bfmeHandle_007916f0@@YAXPAVGen_007916f0@@PAX@Z,0x000148BC,Open-BFME5 ILT the 22-byte submit at 0x007916F0 calls
+?bfmeHandle_00791710@@YAXPAVGen_00791710@@PAX@Z,0x0001E137,Open-BFME5 ILT the 22-byte submit at 0x00791710 calls
+?bfmeHandle_00792f60@@YAXPAVGen_00792f60@@PAX@Z,0x00038311,Open-BFME5 ILT the 22-byte submit at 0x00792F60 calls
+?bfmeHandle_00792f80@@YAXPAVGen_00792f80@@PAX@Z,0x0003BB15,Open-BFME5 ILT the 22-byte submit at 0x00792F80 calls
+?bfmeHandle_00793a70@@YAXPAVGen_00793a70@@PAX@Z,0x0000CF45,Open-BFME5 ILT the 22-byte submit at 0x00793A70 calls
+?bfmeHandle_00795ec0@@YAXPAVGen_00795ec0@@PAX@Z,0x00033E1F,Open-BFME5 ILT the 22-byte submit at 0x00795EC0 calls
+?bfmeHandle_00795fd0@@YAXPAVGen_00795fd0@@PAX@Z,0x0001D6B0,Open-BFME5 ILT the 22-byte submit at 0x00795FD0 calls
+?bfmeHandle_007969c0@@YAXPAVGen_007969c0@@PAX@Z,0x00037E98,Open-BFME5 ILT the 22-byte submit at 0x007969C0 calls
+?bfmeHandle_007969e0@@YAXPAVGen_007969e0@@PAX@Z,0x00018327,Open-BFME5 ILT the 22-byte submit at 0x007969E0 calls
+?bfmeHandle_00797000@@YAXPAVGen_00797000@@PAX@Z,0x00011847,Open-BFME5 ILT the 22-byte submit at 0x00797000 calls
+?bfmeHandle_00797020@@YAXPAVGen_00797020@@PAX@Z,0x00008C2E,Open-BFME5 ILT the 22-byte submit at 0x00797020 calls
+?bfmeHandle_007983b0@@YAXPAVGen_007983b0@@PAX@Z,0x0003A684,Open-BFME5 ILT the 22-byte submit at 0x007983B0 calls
+?bfmeHandle_007983d0@@YAXPAVGen_007983d0@@PAX@Z,0x00039E55,Open-BFME5 ILT the 22-byte submit at 0x007983D0 calls
+?bfmeHandle_007995e0@@YAXPAVGen_007995e0@@PAX@Z,0x0003201F,Open-BFME5 ILT the 22-byte submit at 0x007995E0 calls
+?bfmeHandle_00799600@@YAXPAVGen_00799600@@PAX@Z,0x00023056,Open-BFME5 ILT the 22-byte submit at 0x00799600 calls
+?bfmeHandle_00799c90@@YAXPAVGen_00799c90@@PAX@Z,0x0002C7AA,Open-BFME5 ILT the 22-byte submit at 0x00799C90 calls
+?bfmeHandle_00799cb0@@YAXPAVGen_00799cb0@@PAX@Z,0x0003DC7B,Open-BFME5 ILT the 22-byte submit at 0x00799CB0 calls
