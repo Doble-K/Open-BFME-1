@@ -76506,3 +76506,9 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??4PSPlayerStats@@QAEAAV0@ABV0@@Z,0x000A5950,Open-BFME5 ILT the BFMENetworkQueueItem1 assignment at 0x00658340 copies its stats through
 ?bfmeRebuild@BFMERopeDrawableGetPositionShim@@AAEXH@Z,0x00034C3E,Open-BFME5 ILT the rope getPosition at 0x0041D090 rebuilds through
 ?bfmeVec3Hermite@@YGPAUBfmeVector3@@PAU1@PBUCoord3D@@111M@Z,0x009FA11F,Open-BFME5 import thunk (slot 0x012DBEC0) the rope getPosition at 0x0041D090 evaluates its spline through
+?bfmeForward@Gen_00730EB0Target@@QAE_NPAX0@Z,0x00049328,Open-BFME5 ILT the guarded delegate at 0x00730EB0 forwards through
+?bfmeForward@Gen_00730ED0Target@@QAE_NPAX0@Z,0x00027EE9,Open-BFME5 ILT the guarded delegate at 0x00730ED0 forwards through
+?bfmeForward@Gen_00730EF0Target@@QAE_NPAX0@Z,0x0002CAF7,Open-BFME5 ILT the guarded delegate at 0x00730EF0 forwards through
+?bfmeApply@Gen_006C89F0Target@@QAE_NPAX0_N@Z,0x000486EE,Open-BFME5 ILT the guarded delegate at 0x006C89F0 appends a false and calls through
+?bfmeForward@Gen_006C8A20Target@@QAE_NPAX0@Z,0x0003A03A,Open-BFME5 ILT the guarded delegate at 0x006C8A20 forwards through
+?bfmeForward@Gen_006C8A40Target@@QAE_NPAX0@Z,0x0001551E,Open-BFME5 ILT the guarded delegate at 0x006C8A40 forwards through
