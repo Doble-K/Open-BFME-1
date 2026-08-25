@@ -10035,6 +10035,9 @@ name,address,notes
 ?ResolveIP@@YAIVAsciiString@@@Z,0x0003DC08,ILT thunk to 0x00682EF0; the address LANAPI::SetLocalIP(AsciiString) at 0x00686C10 encodes
 ?RetailScriptVTable@@3PAPAXA,0x010E858C,Open-BFME5 retail Script vtable value
 ?Rva00066A40Construct@@YAXPAXPBX@Z,0x00066A40,plain two-pointer spelling of the STLport _Construct<pair<const NameKeyType DamageFX>> the ledger already names at this address (U3_node_allocators.cpp)
+?Rva00519C90Second@@YAXHH@Z,0x0001D561,ILT for cdecl (0 0) call of 20B wrap at 0x00519C90
+?Rva0051D990Second@@YAXHHH@Z,0x000079B4,ILT for cdecl (2 3 0) call of 22B wrap at 0x0051D990
+?Rva0051DCE0Second@@YAXXZ,0x0001285A,ILT to 0x00579440 for 13B two-call wrap at 0x0051DCE0
 ?Rva00739900Forward@@YAXPAXM@Z,0x000246A4,Open-BFME5 ILT thunk used by the 0x006FCBD0 clamped float forwarder
 ?Rva007E8640Copy@@YAXPADIPBD@Z,0x007E8640,U2 lane: bounded string copy called by the setters at 0x00801470 and 0x008014A0
 ?Rva007EB410NetConnStatus@@YAHHPAXH@Z,0x007EB410,Y2 lane: NetConnStatus -- the body names itself in its own warning string; three-argument query with the third unused
@@ -10261,6 +10264,7 @@ name,address,notes
 ?TheGameLogic@@3PAVGameLogicFrameSlice@@A,0x012F0898,game logic global used for the current frame slice in AI target dispatch
 ?TheGameLogic@@3PAVGameLogicPortraitShim@@A,0x012F0898,BFME portrait selector game-logic global
 ?TheGameSpyBuddyMessageQueue@@3PAVGameSpyBuddyMessageQueueInterface@@A,0x00EF71B4,Buddy message queue global used by independently identified callback and queue methods
+?TheGameSpyInfo@@3PAVGameSpyInfo@@A,0x012F7194,GameSpyInfo* global used by the 0x0052CE60 virtual wrapper
 ?TheGameText@@3PAVGameTextInterface@@A,0x012F147C,GameTextInterface* global read by LANAPI::OnGameStartTimer
 ?TheGarrisonContainPool@?1??getClassMemoryPool@GarrisonContain@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFA50,pool-glue cascade static (back-solved)
 ?TheGrantUpgradeCreatePool@?1??getClassMemoryPool@GrantUpgradeCreate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFB8C,pool-glue cascade static (back-solved)
@@ -72408,6 +72412,8 @@ name,address,notes
 ?check@Gen00842870@@QAEHXZ,0x00842870,address-derived REL32 callee of the node-flag updaters; thiscall on a sub-object; result compared against zero
 ?check@Gen00842A00@@QAEHXZ,0x00842A00,address-derived REL32 callee of the node-flag updaters; thiscall on a sub-object; result compared against zero
 ?chooseBestWeaponForTarget@WeaponSet@@QAE_NPBVObject@@0W4WeaponChoiceCriteria@@W4CommandSourceType@@@Z,0x001EC3F0,callee pin from Object.cpp REL32 site
+?classify@Rva005329Classify@@QAEXPAVRva005329C0Obj@@H@Z,0x00047807,ILT for 15B classify wrappers at 0x005329C0/E0
+?classify@Rva005329Classify@@QAEXPAXH@Z,0x00047807,ILT for 15B classify wrappers at 0x005329C0/E0
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x00004EE9,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002054F,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002237C,hit-decoded x3 (thunk)
@@ -73206,6 +73212,7 @@ name,address,notes
 ?findUpdateModule@Object@@QAEPAVOCLUpdate@@W4NameKeyType@@@Z,0x0002AE23,Open-BFME5 ILT; ?updateContextOCLTimer@ControlBar@@AAEXXZ at 0x004AA980 looks the OCLUpdate module up through it
 ?findUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@ABVAsciiString@@@Z,0x0002F95A
 ?findWeaponTemplate@WeaponStore@@QBEPBVWeaponTemplate@@VBFMERetailAsciiString@@@Z,0x0000D3FA,WeaponFireSpecialAbilityUpdate WeaponStore lookup ILT thunk
+?finish@Rva0022BDE0Obj@@QAEXPAVObject@@@Z,0x00041E34,Open-BFME5 pin for 0x0022BDE0 finish call through ILT to 0x0022E340
 ?finish@Rva003BEED0@@QAEXXZ,0x003BEC30,niladic member tail-jumped by the two-call forwarder at 0x003BEED0; address-derived name
 ?finish@SidesInfoSegmentShim@@QAEXPAX0@Z,0x00024C17,SidesInfo clear tail helper shim
 ?finishConstruct@BFMENetworkQueue1@@QAEXPAX@Z,0x0002E91F,native BFME queue-1 constructor helper ILT
@@ -73215,6 +73222,12 @@ name,address,notes
 ?finishState15@Rva56E070StateOwner@@QAEXXZ,0x0000C4EB,incremental-link call target in the 0x0056E070 late-state dispatcher
 ?finishState16@Rva56E070StateOwner@@QAEXXZ,0x00018A2A,incremental-link call target in the 0x0056E070 late-state dispatcher
 ?first@Rva003C0E40@@QAEHH@Z,0x003C0500,first half of the chained pair at 0x003C0E40; address-derived name
+?first@Rva005187E0@@QAEXXZ,0x0003CD94,ILT for 8B one-call wrap at 0x005187E0
+?first@Rva00519C90@@QAEXXZ,0x00048E8C,ILT for first call of 20B wrap at 0x00519C90
+?first@Rva0051D990@@QAEXXZ,0x00005F88,ILT for first call of 22B wrap at 0x0051D990
+?first@Rva0051D9B0@@QAEXXZ,0x00005F88,ILT for first call of 20B wrap at 0x0051D9B0
+?first@Rva0051DA10@@QAEXXZ,0x00005F88,ILT for first call of 22B wrap at 0x0051DA10
+?first@Rva0051DCE0@@QAEXXZ,0x00005F88,ILT to 0x0051D590 for 13B two-call wrap at 0x0051DCE0
 ?firstNamed@U4Scan@@QBE_NPAXPBVU4Filter@@@Z,0x00606D60,U4 lane: third scan entry forwarded to by the proxy at 0x00606E20; address-derived name
 ?flushConnections@ConnectionManager@@QAEXXZ,0x006636F0,ZH twin exact: doSend(FALSE) on the eight m_connections then tail-jmp Transport::doSend 0x006834B0 on +0x12024; sole caller sendRequestPlayerLeaveCommand 0x00664939 where ZH quitGame calls flushConnections; ILT 0x0004230C
 ?flushQueue@LANAPIMemberObject@@QAEXXZ,0x00001EC4,RequestLobbyLeave flag call; ILT thunk for Transport::update body 0x00684420
@@ -73990,6 +74003,8 @@ name,address,notes
 ?groupEnter@AIGroup@@QAEXPAVObject@@W4CommandSourceType@@@Z,0x0003756A,ScriptActions::doTeamGarrisonSpecificBuilding retail call target; exact ZH operation and AIGroup receiver
 ?groupGuardPosition@AIGroup@@QAEXPBUCoord3D@@W4GuardMode@1@W4CommandSourceType@1@@Z,0x0004115F,Open-BFME5 ILT at guardSupplyCenter 0x001669C0; receives the adjusted warehouse position with normal guard mode and script command source
 ?grow@Rva0005CBD0Buffer@@IAEXI@Z,0x0005CBD0,out-of-line growth routine shared by the 0x0005E200 and 0x0005EEB0 reserve() twins (U3_arena_alloc.cpp)
+?grow@Rva0082C300Buf@@AAEXXZ,0x000132CD,callee of Rva0082C300Buf::at; ILT to gen-shim ret-void at 0x006434C0
+?grow@Rva0082C330Buf@@AAEXXZ,0x000132CD,callee of Rva0082C330Buf::at; same ILT as Rva0082C300Buf::grow
 ?h000053B7@GenAlpha@@QAEXXZ,0x000053B7,S3 guarded-global-triple family callee (address-derived name)
 ?h00005592@GenBeta@@QAEXXZ,0x00005592,S3 guarded-global-triple family callee (address-derived name)
 ?h00008ACB@GenBeta@@QAEXXZ,0x00008ACB,S3 guarded-global-triple family callee (address-derived name)
@@ -74017,6 +74032,7 @@ name,address,notes
 ?handle@Gen0000123F@@QAEXXZ,0x0000123F,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00002603@@QAEXXZ,0x00002603,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen0000386E@@QAEXXZ,0x0000386E,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00005DF3@@QAEXH@Z,0x00005DF3,ILT e9 thunk for 18B void wrap at 0x000C95E0
 ?handle@Gen00006F78@@QAE_NPAVGenItem@@PA_N1@Z,0x00006F78,S3 sink-drain family callee (address-derived name)
 ?handle@Gen000085B2@@QAEXXZ,0x000085B2,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00009E35@@QAEXXZ,0x00009E35,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
@@ -74029,6 +74045,7 @@ name,address,notes
 ?handle@Gen0000DBA7@@QAEXXZ,0x0000DBA7,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen0000EAFC@@QAEXXZ,0x0000EAFC,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen0000F71D@@QAEXXZ,0x0000F71D,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen000107D5@@QAEXH@Z,0x000107D5,ILT e9 thunk for 18B void wrap at 0x000C9770; body is AIPlayer::buildUpgrade
 ?handle@Gen00010CF3@@QAEXXZ,0x00010CF3,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
 ?handle@Gen00011D5B@@QAEXXZ,0x00011D5B,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00012B70@@QAEXXZ,0x00012B70,address-derived callee of the load-ecx pointer tail-jump family; target read from the REL32 at its call sites
@@ -74057,6 +74074,7 @@ name,address,notes
 ?handle@Gen00021FC1@@QAEXXZ,0x00021FC1,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen000238A3@@QAEXXZ,0x000238A3,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00023F92@@QAEXXZ,0x00023F92,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen00024B7C@@QAEEH@Z,0x00024B7C,ILT for 20B global-null wrap at 0x005169E0
 ?handle@Gen00024C17@@QAEXHH@Z,0x00024C17,address-derived sub-object pair-call callee; target read from the REL32 at 0x00065A40
 ?handle@Gen00024EBF@@QAEXXZ,0x00024EBF,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00026175@@QAEXXZ,0x00026175,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
@@ -74065,6 +74083,7 @@ name,address,notes
 ?handle@Gen00026FC6@@QAEXXZ,0x00026FC6,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00027F2A@@QAEX_N@Z,0x00027F2A,address-derived guarded flag-forward callee; target read from the REL32 at 0x0048D1B0 and 0x0048D1D0
 ?handle@Gen0002842F@@QAEXXZ,0x0002842F,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0002857E@@QAEXXZ,0x0002857E,address-derived callee of Rva00690FF0Handle; ILT to 0x006BA1D0
 ?handle@Gen00028763@@QAEXXZ,0x00028763,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00028CE0@@QAEXXZ,0x00028CE0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00028ECA@@QAEXXZ,0x00028ECA,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
@@ -74132,6 +74151,7 @@ name,address,notes
 ?handle@Gen00049FDA@@QAE_NXZ,0x00049FDA,address-derived callee of a guarded REL32 tail call; target read from the REL32 at its call site
 ?handle@Gen0004A7A5@@QAEXXZ,0x0004A7A5,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen0004AA98@@QAEXXZ,0x0004AA98,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0004AFAC@@QAEXH@Z,0x0004AFAC,ILT e9 thunk for 18B void wrap at 0x000C9B40
 ?handle@Gen0004B227@@QAEXXZ,0x0004B227,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen0005CC00@@QAEXXZ,0x0005CC00,address-derived callee of the mov-ecx-from-stack tail-jump family; target read from the REL32 at its call site
 ?handle@Gen0005EE90@@QAEXXZ,0x0005EE90,address-derived callee of the mov-ecx-from-stack tail-jump family; target read from the REL32 at its call site
@@ -75670,6 +75690,7 @@ name,address,notes
 ?read_vertex_material_ids@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096D300,rel32 pin for read_material_pass
 ?read_vertex_materials@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,0x0096EA60,BFME bool-returning vertex-material loader called by read_prelit_material
 ?ready@GenOwner@@QAE_NXZ,0x0004425B,S3 back-step guarded virtual float family predicate (address-derived name)
+?ready@Rva00412010Inner@@QAE_NXZ,0x00019B5F,Open-BFME5 ILT callee of Rva00412010::test; gen-thunk target FUN_005c9980
 ?realMapPathToPortableMapPath@GameState@@QBE?AV?$StringBase@D@@ABV2@@Z,0x0010F280,same body as the AsciiString-typed ledger row; BFME AsciiString is StringBase<char> so the callee mangles with the instantiation
 ?reallyDoFX@ParticleSystemFXNugget@@IBEXPBUCoord3D@@PBVMatrix3D@@PBVObject@@2@Z,0x0000F105,zh-landmulti per-site callee copy (body proven byte-equal)
 ?recenterTurret@TurretAI@@QAEXXZ,0x0003B679,ILT thunk to 0x18C8D0; pinned from AIUpdateInterface::recenterTurret @0x26EA10
@@ -75685,6 +75706,7 @@ name,address,notes
 ?registerParser@DataChunkInput@@QAEXABVAsciiString@@PAUDataChunkInfo@@P6A_NAAV1@1PAX@ZH@Z,0x00015BD1,DataChunkInput::registerParser via ILT thunk
 ?release@DictReleaseDataShim@@QAEXXZ,0x000681C0,Dict releaseData incremental-link thunk target through a TU-local forwarding shim
 ?release@DistLODClassFreeShim@@QAEXXZ,0x00725B70,DistLODClass incremental-link Free target through a TU-local layout shim
+?release@Gen0002857E@@QAEXXZ,0x000442B0,address-derived Release-style callee of Rva00691040Handle; ILT to 0x006BA220
 ?release@Mem00887940@@QAEXXZ,0x00887940,StringBase releaseBuffer body called from destructor BODIES at 0x003B8450 and 0x003B8710; same address as the destructor it folds with
 ?release@Rva0005C6B0Holder@@QAEXXZ,0x0005C6B0,out-of-line release of the small-buffer conversion holder; reached from 0x0005E1E0 via ILT 0x0002F0AE
 ?release@SubPtr00739E00@@QAEXXZ,0x009EB7B0,address-derived callee of 0x00739E00
@@ -75890,7 +75912,9 @@ name,address,notes
 ?run@WinInstanceDataInitShim@@QAEXXZ,0x00499850,WinInstanceData init incremental-link thunk target through a TU-local forwarding shim
 ?run@XferRandomVariableShim@@SAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0010C4D0,xferRandomVariable incremental-link thunk target through a TU-local forwarding shim
 ?rva00381050@ExperienceLevelSystem@@QAEXPAVTeam@@H@Z,0x00027237,ILT doTeamSpinForFramecount tail-jumps to at 0x002F11FE; its target 0x00381050 is in the same TU as the subsystem constructor at 0x00381480
+?rva0082ADB0Fill@@YAXPAD0ABD@Z,0x0082ADB0,callee of rva0082BE60FillN; STLport fill at the ICF alias
 ?rva0082C6E0CopyValues@@YAPAURva0082C6E0Value@@PAU1@00@Z,0x00018179,0x0082C6E0 vector erase trivial-copy thunk;target=0x00065E30
+?rva0082C760Acquire@@YAXPAVNodeAllocMutex@_STL@@@Z,0x0082C760,node_alloc real acquire called by _M_acquire_lock
 ?rva220840Callback@@YAXXZ,0x006207F0,Open-BFME5 dispatch callback pin
 ?rva379ec0SmallDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 small-block deallocator reached by the CrateTemplate node-list destructor
 ?rva423670SmallDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 record small-block deallocator pin
@@ -76216,6 +76240,8 @@ name,address,notes
 ?test@Gen00008E68@@QAE_NPAX0@Z,0x00008E68,second range predicate of the 0x003D08F0/0x003D09A0 pair reached via incremental-link thunk; address-derived name
 ?test@Gen0003C2E5@@QAE_NPAX0@Z,0x0003C2E5,first range predicate of the 0x003D08F0/0x003D09A0 pair reached via incremental-link thunk; address-derived name
 ?test@Glo012F7048Type@@QAE_NXZ,0x00609350,niladic predicate called on the global at 0x012F7048 by 0x003BED00; address-derived name
+?test@Rva002DF100@@QAEEPAX0@Z,0x0002DB69,ILT to 0x002DF100 thiscall uchar(void*,void*) for 23B setne wrappers
+?test@Rva002DF120@@QAEEPAX0@Z,0x0001D813,ILT to 0x002DF120 thiscall uchar(void*,void*) for 23B setne wrappers
 ?test@Rva00383860@@QAE_NXZ,0x00382B50,niladic predicate called on the global at 0x012F0898 by 0x003BCC10; address-derived name
 ?test@Rva003BF540@@QAE_NXZ,0x003BEAF0,niladic predicate read by the mirrored-flag update at 0x003BF540; address-derived name
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,0x00019BCD,pinharvest x1 (thunk)
@@ -76600,6 +76626,7 @@ _Rva0081B010,0x0081B010,Y4 lane: DirtySock comm worker
 _Rva0081B830,0x0081B830,address-derived DirtySock transport release helper called by 0x00813E30
 _Rva0081B9B0,0x0081B9B0,address-derived DirtySock transport shutdown helper called by 0x00813F20
 _Rva0081B9D0,0x0081B9D0,address-derived DirtySock transport state helper called by 0x00813F90
+_Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap at 0x00813E30
 _Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
 _Rva0081BDAE@4,0x0081BDAE,Y4 lane: unnamed one-argument stdcall import thunk (IAT slot 0x01358C84); the guard at 0x00813780 calls it only for a handle that is not -1
 _Rva0081BDE4,0x0081BDE4,import thunk called at the tail of the DirtySock shutdown 0x007FD270; the ledger already names this address ?ji_0081bde4, this is the C spelling the .c TU needs
@@ -76804,8 +76831,11 @@ _atoi,0x009F6DEE,Y2 lane: atoi import thunk (gen-import ?ji_009f6dee@@YAXXZ name
 _audioManagerAddEventHelper@16,0x00020B08,AudioManager::addAudioEvent stdcall helper pin
 _bfmeDirectInput8Create@20,0x009F9AF0,undecorated alias for the DirectInput8Create import stub (see Win32DIKeyboardOpen.cpp)
 _bfmeRetailCritterDesyncLog,0x0003A17A,Open-BFME6 BFME desync trace logger (cdecl sink+message) reached from AIDockMoveToDockState onEnter
+_bfme_MallocAlloc0OomMalloc_82B820,0x0082B820,STLport __malloc_alloc<0>::_S_oom_malloc callee of allocate at 0x0082C580
 _bfme_acos,0x009F7256,internal acos helper called by ACos
 _bfme_asin,0x009F7D86,internal asin helper called by ASin
+_bfme_debugAllocInnerAllocate_82AD80,0x0082AD80,STLport __debug_alloc inner allocate callee of 0x0082B700
+_bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner deallocate callee of 0x0082B780
 _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 _bind@12,0x0081BE38,vendored=gamespy-2004
