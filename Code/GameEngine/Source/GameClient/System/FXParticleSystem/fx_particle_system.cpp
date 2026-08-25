@@ -806,98 +806,15 @@ void EmissionVolumeInfo::DoXfer(Xfer &xfer)
 {
 }
 
-#if 1
 AsciiString ParticleSystemTemplate::getName() const
 {
 	return *reinterpret_cast<const AsciiString *>(reinterpret_cast<const char *>(this) + 0x98);
 }
-#else
-__declspec(naked) AsciiString ParticleSystemTemplate::getName() const
-{
-    __asm {
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x81
-        __emit 0xc1
-        __emit 0x98
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x34
-        __emit 0x89
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
-}
-#endif
 
-#if 1
 AsciiString ParticleSystemTemplate::getTextureFilename() const
 {
 	return *reinterpret_cast<const AsciiString *>(reinterpret_cast<const char *>(this) + 0x10);
 }
-#else
-__declspec(naked) AsciiString ParticleSystemTemplate::getTextureFilename() const
-{
-    __asm {
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x83
-        __emit 0xc1
-        __emit 0x10
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x07
-        __emit 0x89
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
-}
-#endif
 
 void ParticleSystemTemplate::setTextureFilename(AsciiString &filename)
 {
