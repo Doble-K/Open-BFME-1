@@ -76879,3 +76879,14 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?_M_insert_overflow@?$vector@UP6Elem003B2890@@V?$allocator@UP6Elem003B2890@@@_STL@@@_STL@@QAEXPAUP6Elem003B2890@@ABU3@ABU__false_type@2@I_N@Z,0x00044CB5,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B2890 calls
 ?_M_insert_overflow@?$vector@UP6Elem003B7030@@V?$allocator@UP6Elem003B7030@@@_STL@@@_STL@@QAEXPAUP6Elem003B7030@@ABU3@ABU__false_type@2@I_N@Z,0x0001200D,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B7030 calls
 ?_M_insert_overflow@?$vector@UP6Elem003C3B50@@V?$allocator@UP6Elem003C3B50@@@_STL@@@_STL@@QAEXPAUP6Elem003C3B50@@ABU3@ABU__false_type@2@I_N@Z,0x000266E3,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003C3B50 calls
+?bfmeInit@Gen008FF1B0@@AAEXPAX@Z,0x008FEC90,Open-BFME5 the initialiser the zeroing constructor at 0x008FF1B0 calls
+??1BfmeOwnedMember@@QAE@XZ,0x00887940,Open-BFME5 provisional destructor for the owned member the zeroing constructors unwind
+?bfmeInit@Gen0090BE20@@AAEXPAX@Z,0x0090BCF0,Open-BFME5 the initialiser the zeroing constructor at 0x0090BE20 calls
+?bfmeInit@Gen0090DB70@@AAEXPAX@Z,0x0090DB10,Open-BFME5 the initialiser the zeroing constructor at 0x0090DB70 calls
+?bfmeInit@Gen00970940@@AAEXPAX@Z,0x00970800,Open-BFME5 the initialiser the zeroing constructor at 0x00970940 calls
+?bfmeInit@Gen00970F80@@AAEXPAX@Z,0x00970E40,Open-BFME5 the initialiser the zeroing constructor at 0x00970F80 calls
+?bfmeInit@Gen00971360@@AAEXPAX@Z,0x00971220,Open-BFME5 the initialiser the zeroing constructor at 0x00971360 calls
+?bfmeInit@Gen00971730@@AAEXPAX@Z,0x00971600,Open-BFME5 the initialiser the zeroing constructor at 0x00971730 calls
+?bfmeInit@Gen00971E40@@AAEXPAX@Z,0x00971C60,Open-BFME5 the initialiser the zeroing constructor at 0x00971E40 calls
+?bfmeInit@Gen00972540@@AAEXPAX@Z,0x00972340,Open-BFME5 the initialiser the zeroing constructor at 0x00972540 calls
+?bfmeInit@Gen00972AA0@@AAEXPAX@Z,0x009729D0,Open-BFME5 the initialiser the zeroing constructor at 0x00972AA0 calls
