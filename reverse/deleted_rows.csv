@@ -23341,3 +23341,7 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ?a_001edaba@@YAXXZ,0x001EDABA,"alias retracted: it is the return-FALSE arm of the body at 0x001EDA90, which falls straight into it. Its primary row keeps the aliased symbol claimed."
 ?dup_0042e3d5@@YAXXZ,0x0042E3D5,"exit arm absorbed into the body at 0x0042E3B0, whose own branches target it."
 ?a_0042e3dd@@YAXXZ,0x0042E3DD,"exit arm absorbed into the body at 0x0042E3B0, whose own branches target it."
+?dup_001de24a@@YAXXZ,0x001DE24A,"exit arm absorbed into the body at 0x001DE230, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
+?a_001de252@@YAXXZ,0x001DE252,"exit arm absorbed into the body at 0x001DE230, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
+?dup_001de286@@YAXXZ,0x001DE286,"exit arm absorbed into the body at 0x001DE260, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
+?a_001de28e@@YAXXZ,0x001DE28E,"exit arm absorbed into the body at 0x001DE260, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
