@@ -23300,3 +23300,5 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ?processUpgradeRemoval@GenerateMinefieldBehavior@@MAEXXZ,0x001EE900,stale alias: retail body is the independently matched performUpgradeFX ICF range; processUpgradeRemoval is an inline UpgradeMuxData call and does not define this 16-byte body.
 ?processUpgradeRemoval@UpgradeModule@@MAEXXZ,0x001F8930,stale alias: retail body is the independently matched performUpgradeFX ICF range; processUpgradeRemoval is an inline UpgradeMuxData call and does not define this 16-byte body.
 ?winSetStatus@GameWindow@@QAEXI@Z,0x00478420,stale void signature: GameWindowStatusThunk.cpp defines the proven _bfme_winSetStatus unsigned-return helper; the proper ?winSetStatus unsigned body is at 0x00840FC0.
+?doPlaySoundEffectAt@ScriptActions@@IAEXABVAsciiString@@0@Z,0x002F2120,misidentified 306-byte body: retail globals/callees contradict positional audio; the authoritative positional ScriptActions body is 179B at 0x002F2000.
+?dup_002f2000@@YAXXZ,0x002F2000,synthetic alias superseded by the independently source-backed ScriptActions::doPlaySoundEffectAt identity at this exact 179-byte range.
