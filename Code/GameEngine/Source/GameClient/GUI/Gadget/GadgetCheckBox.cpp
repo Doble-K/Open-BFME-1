@@ -336,7 +336,8 @@ WindowMsgHandledType GadgetCheckBoxSystem( GameWindow *window, UnsignedInt msg,
 		// ------------------------------------------------------------------------	
 		case GGM_SET_LABEL:
 		{
-			window->winSetText( *(UnicodeString*)mData1 );
+			// BFME dispatches this base operation directly; virtual dispatch changes the retail call shape.
+			window->GameWindow::winSetText( *(UnicodeString*)mData1 );
 			break;
 		}
 
