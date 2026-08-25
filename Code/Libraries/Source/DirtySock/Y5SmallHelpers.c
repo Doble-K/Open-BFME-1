@@ -1,5 +1,7 @@
 // cl: /Od /GZ /MD /DNDEBUG
 
+void *memcpy(void *dest, const void *src, unsigned int count);
+
 int Rva008118D0(void)
 {
 	return -1;
@@ -53,4 +55,9 @@ int Rva0080DFC0(int *crypto, const unsigned char *key)
 		Rva0080F200((unsigned char *)crypto + 8, key + 0x10, 0x10, -1);
 	}
 	return crypto[0];
+}
+
+void Rva0080F530(void *dest, const void *src, int length)
+{
+	memcpy(dest, src, length);
 }
