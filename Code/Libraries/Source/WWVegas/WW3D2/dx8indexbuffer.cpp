@@ -45,6 +45,8 @@
 #include "dx8indexbuffer.h"
 #include "dx8wrapper.h"
 #include "dx8caps.h"
+
+extern void W3DRadarResetLock(void);
 #include "sphere.h"
 #include "thread.h"
 #include "wwmemlog.h"
@@ -506,9 +508,9 @@ void DynamicIBAccessClass::_Deinit()
 
 // ??0WriteLockClass@@ present-unmatched
 DynamicIBAccessClass::WriteLockClass::WriteLockClass(DynamicIBAccessClass* ib_access_)
-	:
-	DynamicIBAccess(ib_access_)
 {
+	DynamicIBAccess = ib_access_;
+	W3DRadarResetLock();
 	DX8_THREAD_ASSERT();
 	DynamicIBAccess->IndexBuffer->Add_Ref();
 	switch (DynamicIBAccess->Get_Type()) {
@@ -516,7 +518,7 @@ DynamicIBAccessClass::WriteLockClass::WriteLockClass(DynamicIBAccessClass* ib_ac
 		WWASSERT(DynamicIBAccess);
 //		WWASSERT(!dynamic_dx8_index_buffer->Engine_Refs());
 		DX8_Assert();
-		DX8_ErrorCode(
+		BFME_DX8_ErrorCode(
 			static_cast<DX8IndexBufferClass*>(DynamicIBAccess->IndexBuffer)->Get_DX8_Index_Buffer()->Lock(
 			DynamicIBAccess->IndexBufferOffset*sizeof(WORD),
 			DynamicIBAccess->Get_Index_Count()*sizeof(WORD),
