@@ -41,6 +41,10 @@ struct Rva00409850SubObject
 	char                m_trail[0x20];
 
 	void method( unsigned char arg );
+	// The retail names are not recovered; these synthetic identities retain
+	// the independently proven receiver and neighboring boundaries.
+	void rva_004097F0( unsigned char value );
+	void rva_00409810( const Block3 &pos );
 };
 
 void Rva00409850SubObject::method( unsigned char arg )
@@ -66,6 +70,22 @@ void Rva00409850SubObject::method( unsigned char arg )
 			m_active = 0;
 			break;
 		}
+	}
+}
+
+void Rva00409850SubObject::rva_004097F0( unsigned char value )
+{
+	if ( m_flag == 1 && m_target )
+	{
+		m_target->m_flag = value;
+	}
+}
+
+void Rva00409850SubObject::rva_00409810( const Block3 &pos )
+{
+	if ( m_flag == 1 && m_target )
+	{
+		m_target->setPos( pos );
 	}
 }
 
