@@ -76837,3 +76837,13 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1Gen0080ACD0@@UAE@XZ,0x0080A830,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x0080ACD0 calls
 ??3Gen0080ACD0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
 ??1BfmeDirtyBase@@UAE@XZ,0x007EB6C0,Open-BFME5 the shared base destructor nine DirtySock scalar deleting destructors call
+??_7Gen0082AE60@@6B@,0x00D2E8C4,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AE60
+??_7Gen0082AE80@@6B@,0x00D2E8D0,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AE80
+??_7Gen0082AEA0@@6B@,0x00D2E8DC,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AEA0
+??_7Gen0082AEC0@@6B@,0x00D2E8E8,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AEC0
+??_7Gen0082AEE0@@6B@,0x00D2E8F4,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AEE0
+??_7Gen0082AF00@@6B@,0x00D2E900,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF00
+??_7Gen0082AF20@@6B@,0x00D2E90C,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF20
+??_7Gen0082AF40@@6B@,0x00D2E918,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF40
+??_7Gen0082AF60@@6B@,0x00D2E924,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF60
+??1GenRoot0082AE40@@UAE@XZ,0x0082AE40,Open-BFME5 the root destructor the /Od chain at 0x0082AE60 calls
