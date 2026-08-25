@@ -348,33 +348,34 @@ float LightEnvironmentClass::Get_Lighting_LOD_Cutoff(void)
 ** list is already full, it preempts the last and weakest light in that list.
 **
 ************************************************************************************************/
-// ?Add_Fill_Light@LightEnvironmentClass@@QAEXXZ present-unmatched
 void LightEnvironmentClass::Add_Fill_Light(void)
 {
+	LightEnvironmentClass *bfme = reinterpret_cast<LightEnvironmentClass *>(reinterpret_cast<char *>(this) + 4);
+
 	// Don't add black (or almost black) lights!
-	if (FillLight.Diffuse[0]<0.05f && FillLight.Diffuse[1]<0.05f && FillLight.Diffuse[2]<0.05f) {
-		OutputAmbient += FillLight.Ambient;
+	if (bfme->FillLight.Diffuse[0]<0.05f && bfme->FillLight.Diffuse[1]<0.05f && bfme->FillLight.Diffuse[2]<0.05f) {
+		bfme->OutputAmbient += bfme->FillLight.Ambient;
 		return;
 	}
 
 	// Get the 1st empty light slot or the very last slot regardless of whether the last slot is empty or not
 	int slot = 0;
-	if (LightCount == MAX_LIGHTS) {
+	if (bfme->LightCount == MAX_LIGHTS) {
 		slot = MAX_LIGHTS - 1;
 	} else {
-		slot = LightCount;
-		++LightCount;
+		slot = bfme->LightCount;
+		++bfme->LightCount;
 	}
 
 	/*
 	** Add in the ambient component
 	*/
-	OutputAmbient += FillLight.Ambient;
+	bfme->OutputAmbient += bfme->FillLight.Ambient;
 
 	/*
 	** Insert the fill light into the calculated slot of the InputLights
 	*/
-	InputLights[slot] = FillLight;
+	bfme->InputLights[slot] = bfme->FillLight;
 }
 
 /************************************************************************************************
