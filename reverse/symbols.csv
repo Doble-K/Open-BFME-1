@@ -76539,3 +76539,6 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeStep1@Gen_007892D0@@AAEXXZ,0x000270FC,Open-BFME5 ILT the three-step runner at 0x007892D0 calls first
 ?bfmeStep2@Gen_007892D0@@AAEXXZ,0x0003879E,Open-BFME5 ILT the three-step runner at 0x007892D0 calls second
 ?bfmeStep3@Gen_007892D0@@AAEXXZ,0x0004264A,Open-BFME5 ILT the three-step runner at 0x007892D0 tail-jumps to
+?bfmeHashCompareA@@YAIII@Z,0x00027BFB,Open-BFME5 ILT the hash comparisons at 0x0054ECB0 and 0x0054F200 call
+?bfmeHashCompareB@@YAIII@Z,0x00020AA4,Open-BFME5 ILT the hash comparisons at 0x0054ECE0 and 0x0054F230 call
+?bfmeRelease@BfmeSharedBlock@@QAEXXZ,0x009EB7A0,Open-BFME5 the shared-block release the refcounted assignments at 0x005D1E50 and its siblings call
