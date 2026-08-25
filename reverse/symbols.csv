@@ -76450,3 +76450,4 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeLookup_001c62b0@@YAHPAX@Z,0x000190F1,Open-BFME5 ILT the bit setter at 0x001C62B0 calls
 ?bfmeLookup_001c6340@@YAHPAX@Z,0x00026A3F,Open-BFME5 ILT the bit setter at 0x001C6340 calls
 ?bfmeLookup_001c63d0@@YAHPAX@Z,0x0004B218,Open-BFME5 ILT the bit setter at 0x001C63D0 calls
+?method@Rva00409850SubObject@@QAEXE@Z,0x0003207E,incremental link thunk
