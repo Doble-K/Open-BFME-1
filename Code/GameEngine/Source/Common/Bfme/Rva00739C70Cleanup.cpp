@@ -52,6 +52,9 @@ public:
 	void cleanup();
 	void reset();
 	TextureBaseClass *update( int arg );
+	// Retail identity is not recovered; the synthetic name records its exact
+	// address while keeping this small predicate attached to the proven object.
+	bool rva_00739E50();
 
 	int               m_int0;
 	int               m_int4;
@@ -105,6 +108,11 @@ TextureBaseClass *Rva00739C70::update( int arg )
 
 Rva00739C70::~Rva00739C70()
 {
+}
+
+bool Rva00739C70::rva_00739E50()
+{
+	return m_ptr08.m_ptr != 0 || m_member0c.m_obj != 0;
 }
 
 class Owner00739C90
