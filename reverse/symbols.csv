@@ -76488,3 +76488,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?filterSetup@W3DShaderManager@@SA_NW4FilterTypes@@W4FilterModes@@@Z,0x00716AA0,address-derived callee of 0x0073B650
 ?filterSetup@W3DShaderManager@@SA_NW4FilterModes@@W4FilterTypes@@@Z,0x00716AA0,address-derived callee of 0x0073B650
 ?handle@Rva00734730@@QAEXHH@Z,0x00733F50,address-derived callee of 0x00734730
+?bfmeAccepts@Gen_00684b90Holder@@QAEHPAX@Z,0x00004F6B,Open-BFME5 ILT the guard at 0x00684B90 asks its holder through
+?compare@Gen_001eda90Sub@@QBEHABVAsciiString@@@Z,0x000220C5,Open-BFME5 the AsciiString compare ILT the guard at 0x001EDA90 uses on its sub-object
