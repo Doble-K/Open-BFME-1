@@ -1,6 +1,10 @@
 // cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
 // stlport
 
+// SpecialAbilityUpdate's retail destructor has a BFME-specific multiple
+// inheritance and member layout.  Keep the recovered view in the proper
+// source family rather than changing shared module headers.
+
 #include <list>
 
 class Gen_dtor_00113f20
