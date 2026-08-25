@@ -21,10 +21,23 @@
    +0xC; and CHATChannelMode is eight ints because piRoomModeChangedCopy at
    0x0085CE50 copies its `mode` member with `mov ecx,8 / rep movsd`.
 
-   Only the 34 copy/free/call triples and the table are reproduced.  The
-   piAdd*Callback entry points and the piAddCallback/piCallbacksThink
-   machinery live in the same retail TU but need peer's DArray-backed
-   connection object, which is not reconstructed here.
+   The 34 copy/free/call triples and the table came first; piAddCallback and
+   the twenty global-callback entry points followed, once piConnection grew
+   the PEERCallbacks block the entry points read.  piCallbacksThink and the
+   operation-completion entry points (types 0..8, and 26/29/30/32/33) are
+   still outstanding: those carry the callback and ID in their own arguments
+   rather than reading them off the connection, and are a separate shape.
+
+   One thing piAddCallback cost a build to learn, worth having written down:
+   the allocated params block must be a LOCAL, not written straight into
+   data.params.  Spelled `data.params = gsimalloc(...)` the store lands
+   immediately, VC7.1 spends a stack slot keeping it, and the extra pressure
+   pushes `paramsSize` out of the private register convention -- `peer` and
+   `callback` get the registers instead of `peer` and `paramsSize`, and all
+   twenty call sites go wrong with it.  Held in a local the pointer stays in
+   ESI to the end, the struct is filled in one block, and the convention is
+   retail's.  The parameter ORDER is not what decides this; moving
+   paramsSize to position two changed nothing.
 
    Build flags follow the rest of this SDK: /MD so libc is __imp__ indirect,
    __cdecl, NDEBUG so the asserts vanish, Win32 headers from
@@ -131,12 +144,47 @@ char * goastrdup(const char *src);
    piListingGamesCall at 0x0085C7D0 passes [peer+0x1818] to ArrayLength and
    ArrayNth, and piPlayerInfoCall at 0x0085D4E0 indexes [peer+roomType*4+0x390].
    Everything else is reserved space, deliberately unnamed rather than guessed. */
+/* PEERCallbacks.  The offsets are read out of retail, not guessed: each
+   piAdd*Callback entry point below loads its own callback from a fixed
+   slot and the shared user-data from +0x1814, and the twenty slots run
+   0x17a4..0x17f0 in the callbackFuncs[] type order.  Twenty-nine dwords
+   from 0x17a4 land exactly on callbackList at 0x1818, which is where the
+   eight unnamed qr* slots in between come from -- they are counted, not
+   invented.  Widths are all that matter here, so every slot is void *. */
+typedef struct PEERCallbacks
+{
+	void * disconnected;	/* +0x17a4 */
+	void * roomMessage;
+	void * roomUTM;
+	void * roomNameChanged;
+	void * roomModeChanged;
+	void * playerMessage;
+	void * playerUTM;
+	void * readyChanged;
+	void * gameStarted;
+	void * playerJoined;
+	void * playerLeft;
+	void * kicked;
+	void * newPlayerList;
+	void * playerChangedNick;
+	void * playerInfo;
+	void * playerFlagsChanged;
+	void * ping;
+	void * crossPing;
+	void * globalKeyChanged;
+	void * roomKeyChanged;	/* +0x17f0 */
+	void * reserved[8];	/* the qr* callbacks, +0x17f4 .. +0x1810 */
+	void * param;	/* +0x1814 */
+} PEERCallbacks;
+
 typedef struct piConnection
 {
 	char reserved0[0x390];
 	PEERBool inRoom[NumRooms];
-	char reserved1[0x1818 - 0x390 - 3 * 4];
+	char reserved1[0x17a4 - 0x390 - 3 * 4];
+	PEERCallbacks callbacks;
 	DArray callbackList;
+	int callbackListLen;
 } piConnection;
 
 #define PEER_CONNECTION           piConnection * connection;\
@@ -2994,3 +3042,393 @@ static const piCallbackFuncs callbackFuncs[] =
    _piRoomNameChangedCopy present-unmatched
    _piNewPlayerListCopy present-unmatched
 */
+
+/* --- the piAddCallback machinery, the half of this retail TU the first pass
+       left out.  piAddCallback is static and every call site is in this file,
+       so VC7.1 gives it a private register convention: `peer` arrives in EBX
+       and `paramsSize` in EAX, with the remaining six arguments on the stack.
+       That is not something a declaration can ask for -- it falls out of the
+       function being static with all its callers visible -- and it is the one
+       fact each entry point below depends on.
+
+       The entry points are named by callbackFuncs[]: the type each one passes
+       to piAddCallback indexes that table, and the table's `call` column is
+       already named in this file.  Type 15 is PI_READY_CHANGED_CALLBACK, so
+       the body at 0x0085E8D0 that passes 15 is piAddReadyChangedCallback. */
+
+static int piAddCallback(PEER peer,
+						 PEERBool blocking,
+						 void * callback,
+						 void * param,
+						 piCallbackType type,
+						 void * params,
+						 int paramsSize,
+						 int ID)
+{
+	piCallbackData data;
+	void * paramsCopy;
+	PEER_CONNECTION;
+
+	if(!callback)
+		return -1;
+
+	paramsCopy = gsimalloc((unsigned int)paramsSize);
+	if(!paramsCopy)
+		return -1;
+	memset(paramsCopy, 0, (unsigned int)paramsSize);
+
+	if(!callbackFuncs[type].copy(paramsCopy, params))
+	{
+		gsifree(paramsCopy);
+		return -1;
+	}
+
+	data.type = type;
+	data.success = blocking;
+	data.callback = (PEERCBType)callback;
+	data.callbackParam = param;
+	data.params = paramsCopy;
+	data.ID = ID;
+	data.inCall = PEERFalse;
+
+	ArrayAppend(connection->callbackList, &data);
+	connection->callbackListLen++;
+
+	return data.ID;
+}
+
+void piAddRoomMessageCallback(PEER peer, RoomType roomType, const char *nick, const char *message, MessageType messageType)
+{
+	piRoomMessageParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.roomMessage)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.message = (char *)message;
+	params.messageType = messageType;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.roomMessage,
+		connection->callbacks.param, PI_ROOM_MESSAGE_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddRoomUTMCallback(PEER peer, RoomType roomType, const char *nick, const char *command, const char *parameters, PEERBool authenticated)
+{
+	piRoomUTMParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.roomUTM)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.command = (char *)command;
+	params.parameters = (char *)parameters;
+	params.authenticated = authenticated;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.roomUTM,
+		connection->callbacks.param, PI_ROOM_UTM_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddRoomNameChangedCallback(PEER peer, RoomType roomType)
+{
+	piRoomNameChangedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.roomNameChanged)
+		return;
+
+	params.roomType = roomType;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.roomNameChanged,
+		connection->callbacks.param, PI_ROOM_NAME_CHANGED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddRoomModeChangedCallback(PEER peer, RoomType roomType, CHATChannelMode * mode)
+{
+	piRoomModeChangedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.roomModeChanged)
+		return;
+
+	params.roomType = roomType;
+	params.mode = *mode;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.roomModeChanged,
+		connection->callbacks.param, PI_ROOM_MODE_CHANGED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPlayerMessageCallback(PEER peer, const char *nick, const char *message, MessageType messageType)
+{
+	piPlayerMessageParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.playerMessage)
+		return;
+
+	params.nick = (char *)nick;
+	params.message = (char *)message;
+	params.messageType = messageType;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.playerMessage,
+		connection->callbacks.param, PI_PLAYER_MESSAGE_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPlayerUTMCallback(PEER peer, const char *nick, const char *command, const char *parameters, PEERBool authenticated)
+{
+	piPlayerUTMParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.playerUTM)
+		return;
+
+	params.nick = (char *)nick;
+	params.command = (char *)command;
+	params.parameters = (char *)parameters;
+	params.authenticated = authenticated;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.playerUTM,
+		connection->callbacks.param, PI_PLAYER_UTM_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddReadyChangedCallback(PEER peer, const char *nick, PEERBool ready)
+{
+	piReadyChangedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.readyChanged)
+		return;
+
+	params.nick = (char *)nick;
+	params.ready = ready;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.readyChanged,
+		connection->callbacks.param, PI_READY_CHANGED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddGameStartedCallback(PEER peer, SBServer server, const char *message)
+{
+	piGameStartedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.gameStarted)
+		return;
+
+	params.server = server;
+	params.message = (char *)message;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.gameStarted,
+		connection->callbacks.param, PI_GAME_STARTED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPlayerJoinedCallback(PEER peer, RoomType roomType, const char *nick)
+{
+	piPlayerJoinedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.playerJoined)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.playerJoined,
+		connection->callbacks.param, PI_PLAYER_JOINED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPlayerLeftCallback(PEER peer, RoomType roomType, const char *nick, const char *reason)
+{
+	piPlayerLeftParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.playerLeft)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.reason = (char *)reason;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.playerLeft,
+		connection->callbacks.param, PI_PLAYER_LEFT_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddKickedCallback(PEER peer, RoomType roomType, const char *nick, const char *reason)
+{
+	piKickedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.kicked)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.reason = (char *)reason;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.kicked,
+		connection->callbacks.param, PI_KICKED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddNewPlayerListCallback(PEER peer, RoomType roomType)
+{
+	piNewPlayerListParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.newPlayerList)
+		return;
+
+	params.roomType = roomType;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.newPlayerList,
+		connection->callbacks.param, PI_NEW_PLAYER_LIST_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPlayerChangedNickCallback(PEER peer, RoomType roomType, const char *oldNick, const char *newNick)
+{
+	piPlayerChangedNickParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.playerChangedNick)
+		return;
+
+	params.roomType = roomType;
+	params.oldNick = (char *)oldNick;
+	params.newNick = (char *)newNick;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.playerChangedNick,
+		connection->callbacks.param, PI_PLAYER_CHANGED_NICK_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPlayerInfoCallback(PEER peer, RoomType roomType, const char *nick, unsigned int IP, int profileID)
+{
+	piPlayerInfoParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.playerInfo)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.IP = IP;
+	params.profileID = profileID;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.playerInfo,
+		connection->callbacks.param, PI_PLAYER_INFO_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddDisconnectedCallback(PEER peer, const char *reason)
+{
+	piDisconnectedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.disconnected)
+		return;
+
+	params.reason = (char *)reason;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.disconnected,
+		connection->callbacks.param, PI_DISCONNECTED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPingCallback(PEER peer, const char *nick, int ping)
+{
+	piPingParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.ping)
+		return;
+
+	params.nick = (char *)nick;
+	params.ping = ping;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.ping,
+		connection->callbacks.param, PI_PING_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddCrossPingCallback(PEER peer, const char *nick1, const char *nick2, int crossPing)
+{
+	piCrossPingParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.crossPing)
+		return;
+
+	params.nick1 = (char *)nick1;
+	params.nick2 = (char *)nick2;
+	params.crossPing = crossPing;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.crossPing,
+		connection->callbacks.param, PI_CROSS_PING_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddGlobalKeyChangedCallback(PEER peer, const char *nick, const char *key, const char *value)
+{
+	piGlobalKeyChangedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.globalKeyChanged)
+		return;
+
+	params.nick = (char *)nick;
+	params.key = (char *)key;
+	params.value = (char *)value;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.globalKeyChanged,
+		connection->callbacks.param, PI_GLOBAL_KEY_CHANGED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddRoomKeyChangedCallback(PEER peer, RoomType roomType, const char *nick, const char *key, const char *value)
+{
+	piRoomKeyChangedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.roomKeyChanged)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.key = (char *)key;
+	params.value = (char *)value;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.roomKeyChanged,
+		connection->callbacks.param, PI_ROOM_KEY_CHANGED_CALLBACK, &params,
+		sizeof(params), -1);
+}
+
+void piAddPlayerFlagsChangedCallback(PEER peer, RoomType roomType, const char *nick, int oldFlags, int newFlags)
+{
+	piPlayerFlagsChangedParams params;
+	PEER_CONNECTION;
+
+	if(!connection->callbacks.playerFlagsChanged)
+		return;
+
+	params.roomType = roomType;
+	params.nick = (char *)nick;
+	params.oldFlags = oldFlags;
+	params.newFlags = newFlags;
+
+	piAddCallback(peer, PEERTrue, connection->callbacks.playerFlagsChanged,
+		connection->callbacks.param, PI_PLAYER_FLAGS_CHANGED_CALLBACK, &params,
+		sizeof(params), -1);
+}
