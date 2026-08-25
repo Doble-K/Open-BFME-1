@@ -2306,57 +2306,40 @@ void ControlBar::showPurchaseScience( void )
 
 }
 
-__declspec(naked) void ControlBar::hidePurchaseScience( void )
+// The BFME purchase-science path uses these singleton slots directly.  The
+// ZH declarations describe a different window and Shell layout, so the
+// retail offsets stay local to this recovered body.
+struct BfmePurchaseScienceWindowView
 {
-	__asm {
-		_emit 0A1h
-		_emit 038h
-		_emit 04Ch
-		_emit 02Fh
-		_emit 001h
-		_emit 085h
-		_emit 0C0h
-		_emit 074h
-		_emit 025h
-		_emit 08Ah
-		_emit 088h
-		_emit 054h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 084h
-		_emit 0C9h
-		_emit 075h
-		_emit 01Bh
-		_emit 0B1h
-		_emit 001h
-		_emit 088h
-		_emit 088h
-		_emit 054h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 0A1h
-		_emit 058h
-		_emit 04Bh
-		_emit 02Fh
-		_emit 001h
-		_emit 088h
-		_emit 048h
-		_emit 050h
-		_emit 08Bh
-		_emit 00Dh
-		_emit 0E8h
-		_emit 019h
-		_emit 02Fh
-		_emit 001h
-		_emit 0E9h
-		_emit 074h
-		_emit 001h
-		_emit 0A9h
-		_emit 0FFh
-		_emit 0C3h
-	}
+	char m_pad000[0x254];
+	unsigned char m_hidden;
+};
+
+extern int g_Va012F4C38;
+class Shell;
+extern Shell *TheShell;
+
+struct BfmeShellStateView
+{
+	char m_pad000[0x50];
+	unsigned char m_isShellActive;
+};
+
+class BfmeGlobal_012f19e8
+{
+public:
+	void bfmeCall_000290d2();
+};
+
+void ControlBar::hidePurchaseScience( void )
+{
+	BfmePurchaseScienceWindowView *purchaseWindow =
+		reinterpret_cast<BfmePurchaseScienceWindowView *>(g_Va012F4C38);
+	if(purchaseWindow == NULL || purchaseWindow->m_hidden)
+		return;
+	purchaseWindow->m_hidden = TRUE;
+	reinterpret_cast<BfmeShellStateView *>(TheShell)->m_isShellActive = TRUE;
+	reinterpret_cast<BfmeGlobal_012f19e8 **>(0x012f19e8)[0]->bfmeCall_000290d2();
 }
 
 // ?togglePurchaseScience@ControlBar@@QAEXXZ present-unmatched
