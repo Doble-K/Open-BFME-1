@@ -76596,3 +76596,9 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeReserve@Gen_000B54C0@@AAEXHPAX@Z,0x00043E37,Open-BFME5 ILT the vector assignment at 0x000B54C0 reserves through
 ?bfmeReserve@Gen_002F8980@@AAEXHPAX@Z,0x00015ABE,Open-BFME5 ILT the vector assignment at 0x002F8980 reserves through
 ?bfmeReserve@Gen_003A9560@@AAEXHPAX@Z,0x00027098,Open-BFME5 ILT the vector assignment at 0x003A9560 reserves through
+?bfmeConstructA@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0003BAB1,Open-BFME5 ILT the hash insert at 0x0008FAB0 constructs through
+?bfmeConstructB@@YAXPAUBfmeHashValue@@PBU1@@Z,0x000079A0,Open-BFME5 ILT the hash insert at 0x005A82F0 constructs through
+?bfmeConstructC@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00001AB9,Open-BFME5 ILT the hash insert at 0x006A0A10 constructs through
+?bfmeConstructD@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0002C098,Open-BFME5 ILT the hash insert at 0x006A0BB0 constructs through
+?bfmeConstructE@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0001E696,Open-BFME5 ILT the hash insert at 0x006A0D50 constructs through
+?bfmeConstructF@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00852240,Open-BFME5 the routine the hash insert at 0x00852760 constructs through
