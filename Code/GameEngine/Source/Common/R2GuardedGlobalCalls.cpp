@@ -208,6 +208,12 @@ extern int R2Glob013071C4;
 extern void *R2Glob013071C0;
 extern int R2Glob012BC140;
 extern char R2Glob013071D0;
+extern int R2Glob013071B4;
+extern int R2Glob013071B0;
+extern int R2Glob013071AC;
+extern int R2Glob0130720C;
+extern int R2Glob01307208;
+extern int R2Glob01307204;
 
 void Rva0073A860( int unused, void *value )
 {
@@ -216,6 +222,22 @@ void Rva0073A860( int unused, void *value )
 	R2Glob013071C0 = value;
 	R2Glob012BC140 = 1;
 	R2Glob013071D0 = 0;
+}
+
+// ?Rva0073B540@@YGXHH@Z
+void __stdcall Rva0073B540( int first, int second )
+{
+	R2Glob013071B4 = 0;
+	R2Glob013071B0 = first;
+	R2Glob013071AC = second;
+	R2Glob013071C8 = 0;
+	R2Glob013071C4 = 12;
+	R2Glob013071C0 = (void *)second;
+	R2Glob012BC140 = 1;
+	R2Glob013071D0 = 0;
+	R2Glob0130720C = 0;
+	R2Glob01307208 = first;
+	R2Glob01307204 = second;
 }
 
 class Rva00739C10Owned
