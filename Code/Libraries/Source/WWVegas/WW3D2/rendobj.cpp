@@ -824,6 +824,36 @@ void RenderObjClass::Set_Visible(int onoff, int unk)
 	_bfme_unk_90 = unk;
 }
 
+void RenderObjClass::Set_Force_Visible(int onoff)
+{
+	struct BFMEForceVisibleView
+	{
+		unsigned char pad_to_bits[0x10];
+		unsigned long bits;
+		unsigned char pad_to_scene[0x6c];
+		SceneClass *scene;
+	};
+	struct BFMEVTableView
+	{
+		unsigned char pad_to_num_sub_objects[0x19c];
+		int (__fastcall *get_num_sub_objects)(RenderObjClass *);
+	};
+	BFMEForceVisibleView *bfme = reinterpret_cast<BFMEForceVisibleView *>(this);
+	BFMEVTableView *vtable = reinterpret_cast<BFMEVTableView *>(*reinterpret_cast<void **>(this));
+
+	if ((onoff != 0) != (vtable->get_num_sub_objects(this) != 0))
+	{
+		bfme->bits ^= IS_FORCE_VISIBLE;
+		if (bfme->scene != NULL)
+		{
+			if (onoff)
+				bfme->scene->Register(this, (SceneClass::RegType)4);
+			else
+				bfme->scene->Unregister(this, (SceneClass::RegType)4);
+		}
+	}
+}
+
 
 /***********************************************************************************************
  * RenderObjClass::Set_Collision_Type -- set the collision type bits                           *
