@@ -17,6 +17,15 @@ struct Rva00810060Context
 	unsigned char m_block[ 0x40 ];		/* +0x14 */
 };
 
+void Rva00810020( struct Rva00810060Context *context )
+{
+	context->m_count = 0;
+	context->m_state[ 0 ] = 0x67452301;
+	context->m_state[ 1 ] = 0xEFCDAB89;
+	context->m_state[ 2 ] = 0x98BADCFE;
+	context->m_state[ 3 ] = 0x10325476;
+}
+
 void Rva00810120( struct Rva00810060Context *context );
 
 /* 0x00810060 FEEDS BYTES INTO THE DIGEST, flushing whenever the block fills.
