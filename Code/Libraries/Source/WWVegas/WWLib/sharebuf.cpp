@@ -1,13 +1,12 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: BFME ShareBufferClass copy-constructor instantiations.
 
 void *operator new[](unsigned int size);
 
-// BFME ShareBufferClass<T> layout (see sharebuf.h): RefCountClass base (vtbl +
-// NumRefs), then RawBuffer (actual allocation), Array (aligned view handed
-// out), Count, Alignment. The 2-arg copy constructor always allocates a fresh
-// buffer sized off Count and, when Alignment is non-zero, rounds the raw
-// allocation up to that alignment for Array while keeping RawBuffer pointed
-// at the original allocation (freed later by the destructor).
+// BFME ShareBufferClass<T> layout (see sharebuf.h): RefCountClass base (vtbl
+// + NumRefs), then RawBuffer, Array, Count, and Alignment.  The copy
+// constructor allocates a fresh buffer and preserves the aligned view used by
+// the retail UInt and VertexMaterial pointer instantiations.
 class RefCountClass
 {
 public:
@@ -24,6 +23,8 @@ protected:
 private:
     int NumRefs;
 };
+
+class VertexMaterialClass;
 
 template <class Type>
 class ShareBufferClass : public RefCountClass
@@ -59,3 +60,6 @@ ShareBufferClass<Type>::ShareBufferClass(const ShareBufferClass<Type> &that) :
 
 template ShareBufferClass<unsigned int>::ShareBufferClass(
     const ShareBufferClass<unsigned int> &);
+
+template ShareBufferClass<VertexMaterialClass *>::ShareBufferClass(
+    const ShareBufferClass<VertexMaterialClass *> &);
