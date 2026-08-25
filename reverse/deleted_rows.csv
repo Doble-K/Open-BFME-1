@@ -23358,3 +23358,6 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ?dup_0007b5bc@@YAXXZ,0x0007B5BC,"tail absorbed into the body at 0x0007B5A0, which falls through or branches into it."
 ?d_0007b5c6@@YAXXZ,0x0007B5C6,"tail absorbed into the body at 0x0007B5A0, which falls through or branches into it."
 ?dup_0018ee25@@YAXXZ,0x0018EE25,"alias retracted: these eight bytes are the unlink tail of the 61-byte body at 0x0018EDF0, which falls straight into them. The aliased symbol keeps its primary row."
+?dup_0078d0e7@@YAXXZ,0x0078D0E7,"piece absorbed into the 62-byte body at 0x0078D0D0, whose own branch targets it."
+?d_0078d0ef@@YAXXZ,0x0078D0EF,"piece absorbed into the 62-byte body at 0x0078D0D0, whose own branch targets it."
+?dup_0078d106@@YAXXZ,0x0078D106,"piece absorbed into the 62-byte body at 0x0078D0D0, whose own branch targets it."
