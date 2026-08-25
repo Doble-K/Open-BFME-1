@@ -76890,3 +76890,15 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeInit@Gen00971E40@@AAEXPAX@Z,0x00971C60,Open-BFME5 the initialiser the zeroing constructor at 0x00971E40 calls
 ?bfmeInit@Gen00972540@@AAEXPAX@Z,0x00972340,Open-BFME5 the initialiser the zeroing constructor at 0x00972540 calls
 ?bfmeInit@Gen00972AA0@@AAEXPAX@Z,0x009729D0,Open-BFME5 the initialiser the zeroing constructor at 0x00972AA0 calls
+?bfmeNodeAllocSmall@@YAPAXI@Z,0x0082E540,Open-BFME5 the STLport node allocator the red-black clone-node bodies call
+?BfmeCopy00064970@@YAXPAUBfmeValue00064970@@PBU1@@Z,0x0000EF6B,Open-BFME5 ILT the value copy the clone-node body at 0x00064970 calls
+?bfmeNodeAllocLarge@@YAPAXI@Z,0x00881F30,Open-BFME5 the STLport large-block allocator the 0x84-byte clone-node body calls
+?BfmeCopy000BF3B0@@YAXPAUBfmeValue000BF3B0@@PBU1@@Z,0x00007554,Open-BFME5 ILT the value copy the clone-node body at 0x000BF3B0 calls
+?BfmeCopy000BFA00@@YAXPAUBfmeValue000BFA00@@PBU1@@Z,0x0000D71F,Open-BFME5 ILT the value copy the clone-node body at 0x000BFA00 calls
+?BfmeCopy000EFCB0@@YAXPAUBfmeValue000EFCB0@@PBU1@@Z,0x0004AA25,Open-BFME5 ILT the value copy the clone-node body at 0x000EFCB0 calls
+?BfmeCopy00136770@@YAXPAUBfmeValue00136770@@PBU1@@Z,0x00048874,Open-BFME5 ILT the value copy the clone-node body at 0x00136770 calls
+?BfmeCopy00138250@@YAXPAUBfmeValue00138250@@PBU1@@Z,0x0002289F,Open-BFME5 ILT the value copy the clone-node body at 0x00138250 calls
+?BfmeCopy004D55C0@@YAXPAUBfmeValue004D55C0@@PBU1@@Z,0x0002367D,Open-BFME5 ILT the value copy the clone-node body at 0x004D55C0 calls
+?BfmeCopy00769060@@YAXPAUBfmeValue00769060@@PBU1@@Z,0x000366E2,Open-BFME5 ILT the value copy the clone-node body at 0x00769060 calls
+?BfmeCopy009C94C0@@YAXPAUBfmeValue009C94C0@@PBU1@@Z,0x009C9120,Open-BFME5 ILT the value copy the clone-node body at 0x009C94C0 calls
+?BfmeCopy009D02C0@@YAXPAUBfmeValue009D02C0@@PBU1@@Z,0x009CF3C0,Open-BFME5 ILT the value copy the clone-node body at 0x009D02C0 calls
