@@ -76519,3 +76519,10 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeApply@Gen_0037DF60Owner@@QAEXPAX@Z,0x000204F0,Open-BFME5 ILT the __stdcall wrapper at 0x0037DF60 calls through
 ?bfmeApply@Gen_0052F050Owner@@QAEXPAX@Z,0x0002B210,Open-BFME5 ILT the __stdcall wrapper at 0x0052F050 calls through
 ?bfmeApply@Gen_00574F40Owner@@QAEXPAX@Z,0x00013471,Open-BFME5 ILT the __stdcall wrapper at 0x00574F40 calls through
+?bfmeForward@Gen_0002644FTarget@@QAEXXZ,0x0002644F,Open-BFME5 ILT the three negative-displacement forwarders at 0x001FB570 0x001FBF60 and 0x00204450 all jump to
+?bfmeStep1_004647E0@@YAXXZ,0x0002B314,Open-BFME5 ILT the pair runner at 0x004647E0 calls first
+?bfmeStep2_004647E0@@YAXXZ,0x00039F1D,Open-BFME5 ILT the pair runner at 0x004647E0 tail-jumps to
+?bfmeStep1_00589680@@YAXXZ,0x0003643A,Open-BFME5 ILT the pair runner at 0x00589680 calls first
+?bfmeStep2_00589680@@YAXXZ,0x000216D9,Open-BFME5 ILT the pair runner at 0x00589680 tail-jumps to
+?bfmeStep1_009A75E0@@YAXXZ,0x009B3A00,Open-BFME5 the routine the pair runner at 0x009A75E0 calls first
+?bfmeStep2_009A75E0@@YAXXZ,0x009B3B40,Open-BFME5 the routine the pair runner at 0x009A75E0 tail-jumps to
