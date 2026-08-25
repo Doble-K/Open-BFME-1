@@ -76450,3 +76450,11 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?handle@Callee0049AB20@@QAEXPAXHH@Z,0x0049A8F0,address-derived callee of 0x0049AB20 forwarder
+?bfmeGetAllocator@Gen_000bb890@@ABE?AVBfmeAllocator@@XZ,0x0001E2A4,Open-BFME5 ILT the copy constructor at 0x000BB890 gets its allocator through
+?bfmeAllocateAndCopy@Gen_000bb890@@AAEXHABVBfmeAllocator@@@Z,0x0001E579,Open-BFME5 ILT the copy constructor at 0x000BB890 allocates through
+?bfmeGetAllocator@Gen_000ce890@@ABE?AVBfmeAllocator@@XZ,0x00008BED,Open-BFME5 ILT the copy constructor at 0x000CE890 gets its allocator through
+?bfmeAllocateAndCopy@Gen_000ce890@@AAEXHABVBfmeAllocator@@@Z,0x000067C1,Open-BFME5 ILT the copy constructor at 0x000CE890 allocates through
+?bfmeGetAllocator@Gen_0036e170@@ABE?AVBfmeAllocator@@XZ,0x000441BB,Open-BFME5 ILT the copy constructor at 0x0036E170 gets its allocator through
+?bfmeAllocateAndCopy@Gen_0036e170@@AAEXHABVBfmeAllocator@@@Z,0x00019BF0,Open-BFME5 ILT the copy constructor at 0x0036E170 allocates through
+?bfmeGetAllocator@Gen_005862c0@@ABE?AVBfmeAllocator@@XZ,0x0003FFB7,Open-BFME5 ILT the copy constructor at 0x005862C0 gets its allocator through
+?bfmeAllocateAndCopy@Gen_005862c0@@AAEXHABVBfmeAllocator@@@Z,0x00038122,Open-BFME5 ILT the copy constructor at 0x005862C0 allocates through
