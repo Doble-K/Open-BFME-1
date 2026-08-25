@@ -79,3 +79,12 @@ int Rva0080DF70(const unsigned char *source, void *first, void *second)
 		memcpy(second, source + 0x20, 0x34);
 	return 1;
 }
+
+int Rva0080DC90(const unsigned char *first, const void *second,
+	unsigned char *combined)
+{
+	memcpy(combined, first, 0x20);
+	memcpy(combined + 0x20, second, 0x10);
+	memcpy(combined + 0x30, first, 0x20);
+	return 0x50;
+}
