@@ -76424,3 +76424,25 @@ _BfmeNodeAllocLockAcquire,0x0082C760,Open-BFME5 the 267-byte __cdecl worker Node
 ?bfmeGet_00219890@BfmeChainResult@@QAEPAXXZ,0x0002818C,Open-BFME5 ILT the lookup at 0x00219890 tail-jumps through
 ?bfmeGet_002198b0@BfmeChainResult@@QAEPAXXZ,0x00036165,Open-BFME5 ILT the lookup at 0x002198B0 tail-jumps through
 ?bfmeGet_002198d0@BfmeChainResult@@QAEPAXXZ,0x000456E2,Open-BFME5 ILT the lookup at 0x002198D0 tail-jumps through
+?bfmeCall_008f73f0@BfmeGlobal_012ed5bc@@QAEXXZ,0x008F73F0,Open-BFME5 the member the 11-byte forwarders on global 0x012ED5BC tail-jump to
+?bfmeCall_0004a7a5@BfmeGlobal_012ed62c@@QAEXXZ,0x0004A7A5,Open-BFME5 the member the 11-byte forwarders on global 0x012ED62C tail-jump to
+?bfmeCall_0000b99c@BfmeGlobal_012ed668@@QAEXXZ,0x0000B99C,Open-BFME5 the member the 11-byte forwarders on global 0x012ED668 tail-jump to
+?bfmeCall_00020f36@BfmeGlobal_012ed668@@QAEXXZ,0x00020F36,Open-BFME5 the member the 11-byte forwarders on global 0x012ED668 tail-jump to
+?bfmeCall_00041b5a@BfmeGlobal_012ed668@@QAEXXZ,0x00041B5A,Open-BFME5 the member the 11-byte forwarders on global 0x012ED668 tail-jump to
+?bfmeCall_00028ce0@BfmeGlobal_012f076c@@QAEXXZ,0x00028CE0,Open-BFME5 the member the 11-byte forwarders on global 0x012F076C tail-jump to
+?bfmeCall_0004aa98@BfmeGlobal_012f076c@@QAEXXZ,0x0004AA98,Open-BFME5 the member the 11-byte forwarders on global 0x012F076C tail-jump to
+?bfmeCall_000238a3@BfmeGlobal_012f0898@@QAEXXZ,0x000238A3,Open-BFME5 the member the 11-byte forwarders on global 0x012F0898 tail-jump to
+?bfmeCall_00045ec1@BfmeGlobal_012f142c@@QAEXXZ,0x00045EC1,Open-BFME5 the member the 11-byte forwarders on global 0x012F142C tail-jump to
+?bfmeCall_000290d2@BfmeGlobal_012f19e8@@QAEXXZ,0x000290D2,Open-BFME5 the member the 11-byte forwarders on global 0x012F19E8 tail-jump to
+?bfmeCall_0003514d@BfmeGlobal_012f4b70@@QAEXXZ,0x0003514D,Open-BFME5 the member the 11-byte forwarders on global 0x012F4B70 tail-jump to
+?bfmeCall_000131a1@BfmeGlobal_012f4b98@@QAEXXZ,0x000131A1,Open-BFME5 the member the 11-byte forwarders on global 0x012F4B98 tail-jump to
+?bfmeCall_00024ebf@BfmeGlobal_012f4b98@@QAEXXZ,0x00024EBF,Open-BFME5 the member the 11-byte forwarders on global 0x012F4B98 tail-jump to
+?bfmeCall_00040caa@BfmeGlobal_012f4b98@@QAEXXZ,0x00040CAA,Open-BFME5 the member the 11-byte forwarders on global 0x012F4B98 tail-jump to
+?bfmeCall_00045c91@BfmeGlobal_012f4b98@@QAEXXZ,0x00045C91,Open-BFME5 the member the 11-byte forwarders on global 0x012F4B98 tail-jump to
+?bfmeCall_0003cbd2@BfmeGlobal_012f4c64@@QAEXXZ,0x0003CBD2,Open-BFME5 the member the 11-byte forwarders on global 0x012F4C64 tail-jump to
+?bfmeCall_00046d1c@BfmeGlobal_012f4c64@@QAEXXZ,0x00046D1C,Open-BFME5 the member the 11-byte forwarders on global 0x012F4C64 tail-jump to
+?bfmeCall_00030832@BfmeGlobal_012f6928@@QAEXXZ,0x00030832,Open-BFME5 the member the 11-byte forwarders on global 0x012F6928 tail-jump to
+?bfmeCall_000459d5@BfmeGlobal_012f6928@@QAEXXZ,0x000459D5,Open-BFME5 the member the 11-byte forwarders on global 0x012F6928 tail-jump to
+?bfmeCall_0000386e@BfmeGlobal_012f706c@@QAEXXZ,0x0000386E,Open-BFME5 the member the 11-byte forwarders on global 0x012F706C tail-jump to
+?bfmeCall_00029532@BfmeGlobal_012f7fe0@@QAEXXZ,0x00029532,Open-BFME5 the member the 11-byte forwarders on global 0x012F7FE0 tail-jump to
+?bfmeCall_0002ec85@BfmeGlobal_012f7fe0@@QAEXXZ,0x0002EC85,Open-BFME5 the member the 11-byte forwarders on global 0x012F7FE0 tail-jump to
