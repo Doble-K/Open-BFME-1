@@ -78752,3 +78752,4 @@ _Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap
 ?rva00793de0_inner@@YAXPAX@Z,0x0003D942,Open-BFME5 fresh cdecl at ILT of return-1 wrapper
 ?bar@Rva000946B0G@@QAEXPAX@Z,0x0001A7DF,Open-BFME5 thiscall at ILT of push-this global wrapper
 ?bar@Rva007B13D0G@@QAEXPAX@Z,0x000181AB,Open-BFME5 thiscall at ILT of push-this global wrapper
+?bar@Rva007B3E60G@@QAEXPAX@Z,0x000247FD,Open-BFME5 thiscall at ILT of push-this global wrapper
