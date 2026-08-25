@@ -503,7 +503,6 @@ CustomMatchPreferences::~CustomMatchPreferences()
 {
 }
 
-// ?setLastLadder@CustomMatchPreferences@@QAEXABVAsciiString@@G@Z present-unmatched
 void CustomMatchPreferences::setLastLadder(const AsciiString& addr, UnsignedShort port)
 {
 	AsciiString strVal;
