@@ -78736,3 +78736,4 @@ _Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap
 ?rva006a0810@@YGXPAX@Z,0x00023A38,Open-BFME5 ILT stdcall callee of lea-esp wrapper
 ?set@Rva002EECE0@@QAEXH@Z,0x0003D069,Open-BFME5 ILT thiscall set of global wrapper
 ?set@Rva002EED00@@QAEXH@Z,0x0003D069,Open-BFME5 ILT thiscall set of global wrapper
+?rva00782e80@@YAXH@Z,0x0002B823,Open-BFME5 ILT cdecl of stdcall pop-ecx wrapper
