@@ -78668,3 +78668,4 @@ _bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner de
 ?Rva0051D990Second@@YAXHHH@Z,0x000079B4,ILT for cdecl (2 3 0) call of 22B wrap at 0x0051D990
 ?first@Rva0051D9B0@@QAEXXZ,0x00005F88,ILT for first call of 20B wrap at 0x0051D9B0
 ?first@Rva0051DA10@@QAEXXZ,0x00005F88,ILT for first call of 22B wrap at 0x0051DA10
+_Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap at 0x00813E30
