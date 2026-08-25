@@ -263,144 +263,77 @@ Radar::~Radar( void )
 //-------------------------------------------------------------------------------------------------
 /** Clear all radar events */
 //-------------------------------------------------------------------------------------------------
-__declspec(naked) void Radar::clearAllEvents( void )
+// BFME keeps the event ring before its four trailer indices and stores a
+// ref-counted radar payload in the last slot of each event.  The stock ZH
+// declaration has a different event shape, so this TU-local view preserves
+// the retail offsets without changing the shared ABI.
+struct BfmeRadarEventCursorView
 {
-	__asm {
-		_emit 053h
-		_emit 033h
-		_emit 0DBh
-		_emit 056h
-		_emit 083h
-		_emit 0C8h
-		_emit 0FFh
-		_emit 057h
-		_emit 089h
-		_emit 099h
-		_emit 028h
-		_emit 014h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 081h
-		_emit 02Ch
-		_emit 014h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 081h
-		_emit 030h
-		_emit 014h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 099h
-		_emit 034h
-		_emit 014h
-		_emit 000h
-		_emit 000h
-		_emit 08Dh
-		_emit 071h
-		_emit 02Ch
-		_emit 0BFh
-		_emit 040h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 0EBh
-		_emit 006h
-		_emit 08Dh
-		_emit 09Bh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 0C7h
-		_emit 046h
-		_emit 0FCh
-		_emit 00Bh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 088h
-		_emit 01Eh
-		_emit 089h
-		_emit 05Eh
-		_emit 004h
-		_emit 089h
-		_emit 05Eh
-		_emit 008h
-		_emit 089h
-		_emit 05Eh
-		_emit 00Ch
-		_emit 089h
-		_emit 05Eh
-		_emit 010h
-		_emit 089h
-		_emit 05Eh
-		_emit 014h
-		_emit 089h
-		_emit 05Eh
-		_emit 018h
-		_emit 089h
-		_emit 05Eh
-		_emit 020h
-		_emit 089h
-		_emit 05Eh
-		_emit 024h
-		_emit 089h
-		_emit 05Eh
-		_emit 028h
-		_emit 089h
-		_emit 05Eh
-		_emit 030h
-		_emit 089h
-		_emit 05Eh
-		_emit 034h
-		_emit 089h
-		_emit 05Eh
-		_emit 038h
-		_emit 089h
-		_emit 05Eh
-		_emit 03Ch
-		_emit 089h
-		_emit 05Eh
-		_emit 040h
-		_emit 088h
-		_emit 05Eh
-		_emit 044h
-		_emit 08Bh
-		_emit 04Eh
-		_emit 048h
-		_emit 03Bh
-		_emit 0CBh
-		_emit 074h
-		_emit 016h
-		_emit 08Bh
-		_emit 051h
-		_emit 004h
-		_emit 04Ah
-		_emit 08Bh
-		_emit 0C2h
-		_emit 03Bh
-		_emit 0C3h
-		_emit 089h
-		_emit 051h
-		_emit 004h
-		_emit 07Fh
-		_emit 006h
-		_emit 08Bh
-		_emit 001h
-		_emit 06Ah
-		_emit 001h
-		_emit 0FFh
-		_emit 010h
-		_emit 089h
-		_emit 05Eh
-		_emit 048h
-		_emit 083h
-		_emit 0C6h
-		_emit 050h
-		_emit 04Fh
+	volatile unsigned char m_active;
+	unsigned char m_activePad[3];
+	volatile unsigned int m_createFrame;
+	volatile unsigned int m_dieFrame;
+	volatile unsigned int m_fadeFrame;
+	volatile unsigned int m_color1;
+	volatile unsigned int m_color2;
+	volatile unsigned int m_bfme0018;
+	volatile unsigned int m_bfme001C;
+	volatile unsigned int m_bfme0020;
+	volatile unsigned int m_bfme0024;
+	volatile unsigned int m_bfme0028;
+	volatile unsigned int m_bfme002C;
+	volatile unsigned int m_bfme0030;
+	volatile unsigned int m_bfme0034;
+	volatile unsigned int m_bfme0038;
+	volatile unsigned int m_bfme003C;
+	volatile unsigned int m_bfme0040;
+	volatile unsigned char m_soundPlayed;
+	unsigned char m_soundPad[3];
+	volatile struct BfmeRadarRef *m_ref;
+	unsigned int m_tail004C;
+};
+
+struct BfmeRadarRef
+{
+	virtual void Release_Ref(bool destroy);
+	int m_refCount;
+};
+
+void Radar::clearAllEvents( void )
+{
+	int *trailer = (int *)((char *)this + 0x1428);
+	trailer[0] = 0;
+	trailer[1] = -1;
+	trailer[2] = -1;
+	trailer[3] = 0;
+	volatile BfmeRadarEventCursorView *event = (BfmeRadarEventCursorView *)((char *)this + 0x2c);
+	for (int i = 0; i < 64; ++i, ++event)
+	{
+		*(volatile int *)((char *)event - 4) = RADAR_EVENT_NUM_EVENTS;
+		event->m_active = 0;
+		event->m_createFrame = 0;
+		event->m_dieFrame = 0;
+		event->m_fadeFrame = 0;
+		event->m_color1 = 0;
+		event->m_color2 = 0;
+		event->m_bfme0018 = 0;
+		event->m_bfme0020 = 0;
+		event->m_bfme0024 = 0;
+		event->m_bfme0028 = 0;
+		event->m_bfme0030 = 0;
+		event->m_bfme0034 = 0;
+		event->m_bfme0038 = 0;
+		event->m_bfme003C = 0;
+		event->m_bfme0040 = 0;
+		event->m_soundPlayed = 0;
+		BfmeRadarRef *ref = (BfmeRadarRef *)event->m_ref;
+		if (ref)
+		{
+			int count = --ref->m_refCount;
+			if (count <= 0)
+				ref->Release_Ref(true);
+			event->m_ref = 0;
+		}
 	}
 }
 
