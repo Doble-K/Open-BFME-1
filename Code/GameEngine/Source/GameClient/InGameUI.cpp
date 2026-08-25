@@ -9674,98 +9674,147 @@ Int InGameUI::getIdleWorkerCount( void )
 	return m_idleWorkers[index].size();
 }
 
-__declspec(naked) void InGameUI::showIdleWorkerLayout( void )
+namespace {
+
+struct BfmeInGameUIIdleWorkerView {
+	unsigned char padding[0x139c];
+	GameWindow *idleWorkerWin;
+	Int currentIdleWorkerDisplay;
+};
+
+#define BFME_IN_GAME_UI_SLOT(n) virtual void bfmeSlot##n() = 0;
+
+// The BFME vtable puts getIdleWorkerCount at +0x198; keep that source-era ABI local.
+struct BfmeInGameUIVirtualView {
+	BFME_IN_GAME_UI_SLOT(0)
+	BFME_IN_GAME_UI_SLOT(1)
+	BFME_IN_GAME_UI_SLOT(2)
+	BFME_IN_GAME_UI_SLOT(3)
+	BFME_IN_GAME_UI_SLOT(4)
+	BFME_IN_GAME_UI_SLOT(5)
+	BFME_IN_GAME_UI_SLOT(6)
+	BFME_IN_GAME_UI_SLOT(7)
+	BFME_IN_GAME_UI_SLOT(8)
+	BFME_IN_GAME_UI_SLOT(9)
+	BFME_IN_GAME_UI_SLOT(10)
+	BFME_IN_GAME_UI_SLOT(11)
+	BFME_IN_GAME_UI_SLOT(12)
+	BFME_IN_GAME_UI_SLOT(13)
+	BFME_IN_GAME_UI_SLOT(14)
+	BFME_IN_GAME_UI_SLOT(15)
+	BFME_IN_GAME_UI_SLOT(16)
+	BFME_IN_GAME_UI_SLOT(17)
+	BFME_IN_GAME_UI_SLOT(18)
+	BFME_IN_GAME_UI_SLOT(19)
+	BFME_IN_GAME_UI_SLOT(20)
+	BFME_IN_GAME_UI_SLOT(21)
+	BFME_IN_GAME_UI_SLOT(22)
+	BFME_IN_GAME_UI_SLOT(23)
+	BFME_IN_GAME_UI_SLOT(24)
+	BFME_IN_GAME_UI_SLOT(25)
+	BFME_IN_GAME_UI_SLOT(26)
+	BFME_IN_GAME_UI_SLOT(27)
+	BFME_IN_GAME_UI_SLOT(28)
+	BFME_IN_GAME_UI_SLOT(29)
+	BFME_IN_GAME_UI_SLOT(30)
+	BFME_IN_GAME_UI_SLOT(31)
+	BFME_IN_GAME_UI_SLOT(32)
+	BFME_IN_GAME_UI_SLOT(33)
+	BFME_IN_GAME_UI_SLOT(34)
+	BFME_IN_GAME_UI_SLOT(35)
+	BFME_IN_GAME_UI_SLOT(36)
+	BFME_IN_GAME_UI_SLOT(37)
+	BFME_IN_GAME_UI_SLOT(38)
+	BFME_IN_GAME_UI_SLOT(39)
+	BFME_IN_GAME_UI_SLOT(40)
+	BFME_IN_GAME_UI_SLOT(41)
+	BFME_IN_GAME_UI_SLOT(42)
+	BFME_IN_GAME_UI_SLOT(43)
+	BFME_IN_GAME_UI_SLOT(44)
+	BFME_IN_GAME_UI_SLOT(45)
+	BFME_IN_GAME_UI_SLOT(46)
+	BFME_IN_GAME_UI_SLOT(47)
+	BFME_IN_GAME_UI_SLOT(48)
+	BFME_IN_GAME_UI_SLOT(49)
+	BFME_IN_GAME_UI_SLOT(50)
+	BFME_IN_GAME_UI_SLOT(51)
+	BFME_IN_GAME_UI_SLOT(52)
+	BFME_IN_GAME_UI_SLOT(53)
+	BFME_IN_GAME_UI_SLOT(54)
+	BFME_IN_GAME_UI_SLOT(55)
+	BFME_IN_GAME_UI_SLOT(56)
+	BFME_IN_GAME_UI_SLOT(57)
+	BFME_IN_GAME_UI_SLOT(58)
+	BFME_IN_GAME_UI_SLOT(59)
+	BFME_IN_GAME_UI_SLOT(60)
+	BFME_IN_GAME_UI_SLOT(61)
+	BFME_IN_GAME_UI_SLOT(62)
+	BFME_IN_GAME_UI_SLOT(63)
+	BFME_IN_GAME_UI_SLOT(64)
+	BFME_IN_GAME_UI_SLOT(65)
+	BFME_IN_GAME_UI_SLOT(66)
+	BFME_IN_GAME_UI_SLOT(67)
+	BFME_IN_GAME_UI_SLOT(68)
+	BFME_IN_GAME_UI_SLOT(69)
+	BFME_IN_GAME_UI_SLOT(70)
+	BFME_IN_GAME_UI_SLOT(71)
+	BFME_IN_GAME_UI_SLOT(72)
+	BFME_IN_GAME_UI_SLOT(73)
+	BFME_IN_GAME_UI_SLOT(74)
+	BFME_IN_GAME_UI_SLOT(75)
+	BFME_IN_GAME_UI_SLOT(76)
+	BFME_IN_GAME_UI_SLOT(77)
+	BFME_IN_GAME_UI_SLOT(78)
+	BFME_IN_GAME_UI_SLOT(79)
+	BFME_IN_GAME_UI_SLOT(80)
+	BFME_IN_GAME_UI_SLOT(81)
+	BFME_IN_GAME_UI_SLOT(82)
+	BFME_IN_GAME_UI_SLOT(83)
+	BFME_IN_GAME_UI_SLOT(84)
+	BFME_IN_GAME_UI_SLOT(85)
+	BFME_IN_GAME_UI_SLOT(86)
+	BFME_IN_GAME_UI_SLOT(87)
+	BFME_IN_GAME_UI_SLOT(88)
+	BFME_IN_GAME_UI_SLOT(89)
+	BFME_IN_GAME_UI_SLOT(90)
+	BFME_IN_GAME_UI_SLOT(91)
+	BFME_IN_GAME_UI_SLOT(92)
+	BFME_IN_GAME_UI_SLOT(93)
+	BFME_IN_GAME_UI_SLOT(94)
+	BFME_IN_GAME_UI_SLOT(95)
+	BFME_IN_GAME_UI_SLOT(96)
+	BFME_IN_GAME_UI_SLOT(97)
+	BFME_IN_GAME_UI_SLOT(98)
+	BFME_IN_GAME_UI_SLOT(99)
+	BFME_IN_GAME_UI_SLOT(100)
+	BFME_IN_GAME_UI_SLOT(101)
+	virtual Int getIdleWorkerCount() = 0;
+};
+
+#undef BFME_IN_GAME_UI_SLOT
+
+static BfmeInGameUIIdleWorkerView *bfmeIdleWorkerView(InGameUI *ui)
 {
-	__asm {
-		__emit 0x56;
-		__emit 0x8b;
-		__emit 0xf1;
-		__emit 0x8b;
-		__emit 0x8e;
-		__emit 0x9c;
-		__emit 0x13;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x85;
-		__emit 0xc9;
-		__emit 0x75;
-		__emit 0x30;
-		__emit 0xa1;
-		__emit 0x40;
-		__emit 0x1b;
-		__emit 0x2f;
-		__emit 0x01;
-		__emit 0x8b;
-		__emit 0x0d;
-		__emit 0x00;
-		__emit 0xd6;
-		__emit 0x2e;
-		__emit 0x01;
-		__emit 0x57;
-		__emit 0x8b;
-		__emit 0x38;
-		__emit 0x68;
-		__emit 0xc0;
-		__emit 0x56;
-		__emit 0x0f;
-		__emit 0x01;
-		__emit 0xe8;
-		__emit 0x42;
-		__emit 0xf4;
-		__emit 0xbf;
-		__emit 0xff;
-		__emit 0x8b;
-		__emit 0x0d;
-		__emit 0x40;
-		__emit 0x1b;
-		__emit 0x2f;
-		__emit 0x01;
-		__emit 0x50;
-		__emit 0x6a;
-		__emit 0x00;
-		__emit 0xff;
-		__emit 0x97;
-		__emit 0xdc;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x5f;
-		__emit 0x89;
-		__emit 0x86;
-		__emit 0x9c;
-		__emit 0x13;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x5e;
-		__emit 0xc3;
-		__emit 0x6a;
-		__emit 0x01;
-		__emit 0xe8;
-		__emit 0x47;
-		__emit 0xe8;
-		__emit 0xc0;
-		__emit 0xff;
-		__emit 0x8b;
-		__emit 0x16;
-		__emit 0x8b;
-		__emit 0xce;
-		__emit 0xff;
-		__emit 0x92;
-		__emit 0x98;
-		__emit 0x01;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x89;
-		__emit 0x86;
-		__emit 0xa0;
-		__emit 0x13;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x5e;
-		__emit 0xc3;
-	}
+	return reinterpret_cast<BfmeInGameUIIdleWorkerView *>(ui);
 }
-__declspec(naked) void InGameUI::hideIdleWorkerLayout( void )
+
+}
+
+void InGameUI::showIdleWorkerLayout( void )
+{
+	BfmeInGameUIIdleWorkerView *view = bfmeIdleWorkerView(this);
+	if (!view->idleWorkerWin)
+	{
+		view->idleWorkerWin = TheWindowManager->winGetWindowFromId(NULL, TheNameKeyGenerator->nameToKey("ControlBar.wnd:ButtonIdleWorker"));
+		DEBUG_ASSERTCRASH(view->idleWorkerWin, ("InGameUI::showIdleWorkerLayout could not find IdleWorker.wnd to load "));
+		return;
+	}
+
+	view->idleWorkerWin->winEnable(TRUE);
+	view->currentIdleWorkerDisplay = reinterpret_cast<BfmeInGameUIVirtualView *>(this)->getIdleWorkerCount();
+}
+
+void InGameUI::hideIdleWorkerLayout( void )
 {
 	__asm {
 		__emit 0x51;
