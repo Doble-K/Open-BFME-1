@@ -50,6 +50,10 @@
 #include "Common/File.h"
 #include "Common/PerfTimer.h"
 
+ArchiveFile::ArchiveFile() : m_file(NULL)
+{
+	m_rootDirectory.clear();
+}
 
 // checks to see if str matches searchString.  Search string is done in the
 // using * and ? as wildcards. * is used to denote any number of characters,
