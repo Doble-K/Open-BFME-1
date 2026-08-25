@@ -7378,69 +7378,35 @@ void GameLogic::setGamePaused( Bool paused, Bool pauseMusic )
 	}
 }
 
-// ------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------
-__declspec(naked) void GameLogic::processProgress(Int, Int)
+// BFME keeps these members at different offsets than the ZH GameLogic view.
+// The offsets are read directly from processProgress's retail accesses.
+struct BFMEGameLogicProcessProgressView
 {
-	__asm {
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 08Bh
-		_emit 086h
-		_emit 018h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 085h
-		_emit 0C0h
-		_emit 057h
-		_emit 08Bh
-		_emit 07Ch
-		_emit 024h
-		_emit 00Ch
-		_emit 074h
-		_emit 00Dh
-		_emit 08Bh
-		_emit 054h
-		_emit 024h
-		_emit 010h
-		_emit 08Bh
-		_emit 0C8h
-		_emit 08Bh
-		_emit 001h
-		_emit 052h
-		_emit 057h
-		_emit 0FFh
-		_emit 050h
-		_emit 010h
-		_emit 085h
-		_emit 0FFh
-		_emit 07Ch
-		_emit 011h
-		_emit 083h
-		_emit 0FFh
-		_emit 008h
-		_emit 07Dh
-		_emit 00Ch
-		_emit 0E8h
-		_emit 097h
-		_emit 02Ch
-		_emit 0CCh
-		_emit 0FFh
-		_emit 089h
-		_emit 084h
-		_emit 0BEh
-		_emit 028h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 05Fh
-		_emit 05Eh
-		_emit 0C2h
-		_emit 008h
-		_emit 000h
-	}
+	char m_pad000[0x118];
+	class BFMELoadScreenProcessProgressView *m_loadScreen;
+	char m_pad11c[0x0c];
+	UnsignedInt m_progressCompleteTimeout[MAX_SLOTS];
+};
+
+class BFMELoadScreenProcessProgressView
+{
+public:
+	virtual void _bfme_slot0();
+	virtual void _bfme_slot1();
+	virtual void _bfme_slot2();
+	virtual void _bfme_slot3();
+	virtual void processProgress(Int playerId, Int percentage);
+};
+
+extern "C" unsigned long __stdcall bfme_timeGetTime(void);
+
+void GameLogic::processProgress(Int playerId, Int percentage)
+{
+	BFMEGameLogicProcessProgressView *logic = reinterpret_cast<BFMEGameLogicProcessProgressView *>(this);
+	if (logic->m_loadScreen)
+		logic->m_loadScreen->processProgress(playerId, percentage);
+	if (playerId >= 0 && playerId < MAX_SLOTS)
+		logic->m_progressCompleteTimeout[playerId] = bfme_timeGetTime();
 }
 
 // ------------------------------------------------------------------------------------------------
