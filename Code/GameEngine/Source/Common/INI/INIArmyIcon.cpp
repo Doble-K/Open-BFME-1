@@ -14,20 +14,37 @@
 #include "PreRTS.h"
 #include "Common/INI.h"
 #include "Common/INIException.h"
+#include <vector>
 
 class BfmeArmyIcon
 {
 public:
+	BfmeArmyIcon( const AsciiString &name );
 	static const FieldParse m_fieldParseTable[];
+
+private:
+	char m_storage[ 0x18 ];
 };
 
 class BfmeLivingWorldManagerIcons
 {
 public:
 	BfmeArmyIcon *findArmyIcon( const AsciiString &name );
+
+private:
+	char m_unmodelled[ 0x264 ];
+	std::vector<BfmeArmyIcon *> m_armyIcons;
 };
 
 extern BfmeLivingWorldManagerIcons *TheLivingWorldManager;		// 0x012F706C
+
+// ?findArmyIcon@BfmeLivingWorldManagerIcons@@QAEPAVBfmeArmyIcon@@ABVAsciiString@@@Z
+BfmeArmyIcon *BfmeLivingWorldManagerIcons::findArmyIcon( const AsciiString &name )
+{
+	BfmeArmyIcon *icon = new BfmeArmyIcon( name );
+	m_armyIcons.push_back( icon );
+	return icon;
+}
 
 // ?ParseArmyIconBlock@@YAXPAVINI@@@Z
 void ParseArmyIconBlock( INI *ini )

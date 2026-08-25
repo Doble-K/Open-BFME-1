@@ -76906,3 +76906,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?_M_insert_overflow@?$vector@URva0025CB00Element@_STL@@V?$allocator@URva0025CB00Element@_STL@@@2@@_STL@@IAEXPAURva0025CB00Element@2@ABU32@ABU__false_type@2@I_N@Z,0x0025CB00,existing exact STLport vector overflow body at the proven constructor target
 ?_M_insert_overflow@?$vector@URva003B0060Element@_STL@@V?$allocator@URva003B0060Element@_STL@@@2@@_STL@@IAEXPAURva003B0060Element@2@ABU32@ABU__false_type@2@I_N@Z,0x003B0060,existing exact STLport vector overflow body at the proven constructor target
 ?_M_insert_overflow@?$vector@URva001E9020Element@@V?$allocator@URva001E9020Element@@@_STL@@@_STL@@IAEXPAURva001E9020Element@@ABU3@ABU__false_type@2@I_N@Z,0x001E9020,existing exact STLport vector overflow body at the proven constructor target
+??0BfmeArmyIcon@@QAE@ABVAsciiString@@@Z,0x00023ED9,retail findArmyIcon body directly encodes the BfmeArmyIcon constructor thunk
+?_M_insert_overflow@?$vector@PAVBfmeArmyIcon@@V?$allocator@PAVBfmeArmyIcon@@@_STL@@@_STL@@IAEXPAPAVBfmeArmyIcon@@ABQAV3@ABU__true_type@2@I_N@Z,0x0001E051,retail findArmyIcon overflow call directly identifies vector<BfmeArmyIcon*> overflow helper
