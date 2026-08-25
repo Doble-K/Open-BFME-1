@@ -12,12 +12,15 @@
    writes them, and the first match returns rather than sweeping the rest. */
 
 #include <stdlib.h>
+#include <string.h>
 
 typedef void *PEER;
 
 typedef struct piConnection
 {
-	unsigned char pad0[0x1798];
+	unsigned char pad0[4];
+	char nick[1];					/* +0x04 */
+	unsigned char pad5[0x1798 - 0x05];
 	void *operationList;				/* +0x1798 */
 	int operationsAdded;				/* +0x179C */
 	int operationsRemoved;				/* +0x17A0 */
@@ -25,10 +28,13 @@ typedef struct piConnection
 
 typedef struct piOperation
 {
-	unsigned char pad0[4];
+	PEER peer;					/* +0x00 */
 	int type;					/* +0x04 */
 	void *owned08;					/* +0x08 */
-	unsigned char pad0c[0x1c - 0x0c];
+	int ID;						/* +0x0C */
+	void *callback;					/* +0x10 */
+	unsigned char pad14[0x18 - 0x14];
+	void *param;					/* +0x18 */
 	int roomID;					/* +0x1C */
 	void *owned20;					/* +0x20 */
 	void *owned24;					/* +0x24 */
@@ -167,4 +173,52 @@ void piClearOperations(PEER peer)
 
 	if(connection->operationList)
 		ArrayClear(connection->operationList);
+}
+
+/* Two completion callbacks the chat layer calls back into.  Neither uses its
+   first argument -- the CHAT handle -- because the operation carries the PEER
+   it belongs to at +0x00, which is where that member's name comes from.
+
+   What names the pair is what each hands off to: the piAdd*Callback it calls
+   is already named off callbackFuncs[], and its argument list is the shape
+   these two feed it, down to the operation's callback, user-data and ID.
+
+   piChangeNickCallback copies the new nick into the connection at +0x04 on
+   success, inline, before deciding whether anyone is listening -- so the
+   connection's own nick is updated even when the caller passed no callback.
+   Both remove the operation last, whether or not they reported anything. */
+
+void piAddChangeNickCallback(PEER peer, int success, const char *oldNick,
+		const char *newNick, void *callback, void *param, int ID);
+void piAddAuthenticateCDKeyCallback(PEER peer, int result, const char *message,
+		void *callback, void *param, int ID);
+
+void piChangeNickCallback(void *chat, int success, const char *oldNick,
+		const char *newNick, void *param)
+{
+	piOperation *operation = (piOperation *)param;
+	PEER peer = operation->peer;
+	piConnection *connection = (piConnection *)peer;
+
+	if(success)
+		strcpy(connection->nick, newNick);
+
+	if(operation->callback)
+		piAddChangeNickCallback(peer, success, oldNick, newNick,
+			operation->callback, operation->param, operation->ID);
+
+	piRemoveOperation(peer, operation);
+}
+
+void piAuthenticateCDKeyCallback(void *chat, int result, const char *message,
+		void *param)
+{
+	piOperation *operation = (piOperation *)param;
+	PEER peer = operation->peer;
+
+	if(operation->callback)
+		piAddAuthenticateCDKeyCallback(peer, result, message,
+			operation->callback, operation->param, operation->ID);
+
+	piRemoveOperation(peer, operation);
 }
