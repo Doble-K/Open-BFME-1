@@ -183,7 +183,6 @@ __declspec(naked) Int NetCommandWrapperListNode::getPercentComplete(void)
 	}
 }
 
-// ?getCommandID@NetCommandWrapperListNode@@QAEGXZ present-unmatched
 UnsignedShort NetCommandWrapperListNode::getCommandID() {
 	return m_commandID;
 }
@@ -217,7 +216,6 @@ void NetCommandWrapperListNode::copyChunkData(NetWrapperCommandMsg *msg) {
 	++m_numChunksPresent;
 }
 
-// ?getRawData@NetCommandWrapperListNode@@QAEPAEXZ present-unmatched
 UnsignedByte * NetCommandWrapperListNode::getRawData() {
 	return m_data;
 }

@@ -23371,3 +23371,4 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ?dup_0084092b@@YAXXZ,0x0084092B,"exit arm absorbed into the 38-byte body at 0x00840910, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
 ?a_00840933@@YAXXZ,0x00840933,"exit arm absorbed into the 38-byte body at 0x00840910, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
 uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exact GameSlot UnicodeString conversion; gen_small sweep-funclets found no FuncInfo owner or reproducible body.
+?dup_00676480@@YAXXZ,0x00676480,gen-alias placeholder superseded by the byte-verified real NetCommandWrapperListNode::getCommandID identity.
