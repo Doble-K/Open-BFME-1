@@ -61,3 +61,12 @@ void Rva0080F530(void *dest, const void *src, int length)
 {
 	memcpy(dest, src, length);
 }
+
+void Rva0080F3D0(unsigned char *state, const void *first, int firstLength,
+	const void *second, int secondLength)
+{
+	*(int *)(state + 0x400) = firstLength;
+	*(int *)(state + 0x488) = secondLength;
+	memcpy(state + 0x404, first, firstLength);
+	memcpy(state + 0x48C, second, secondLength);
+}
