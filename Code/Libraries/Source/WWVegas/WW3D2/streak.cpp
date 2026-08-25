@@ -126,7 +126,6 @@ void StreakLineClass::Reset_Line(void)
 ////////////////////////////////////////////////////////////////////////////
 // These are segment points, and include the start and end point of the
 // entire line. Therefore there must be at least two.
-// ?Set_Locs@StreakLineClass@@ present-unmatched
 void StreakLineClass::Set_Locs( unsigned int num_points, Vector3 *locs )
 {
 	if (num_points < 2 || !locs) {
@@ -134,12 +133,16 @@ void StreakLineClass::Set_Locs( unsigned int num_points, Vector3 *locs )
 		return;
 	}
 
-	PointLocations.Delete_All();
+	SimpleDynVecClass<Vector3> &point_locations =
+		*reinterpret_cast<SimpleDynVecClass<Vector3> *>(reinterpret_cast<char *>(this) + 0xD4);
+	point_locations.Delete_All();
 	for (unsigned int i=0; i<num_points; i++) {
-		PointLocations.Add(locs[i],num_points);
+		point_locations.Add(locs[i],num_points);
 	}
 
-	Invalidate_Cached_Bounding_Volumes();
+	// BFME keeps RenderObjClass::Bits at +0x10 and uses bit 17 for the
+	// cached bounding volumes validity flag (the shared header is ZH-shaped).
+	*reinterpret_cast<unsigned int *>(reinterpret_cast<char *>(this) + 0x10) &= 0xFFFDFFFF;
 }
 
 void StreakLineClass::Set_Widths( unsigned int num_points, float *widths )
