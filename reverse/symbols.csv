@@ -78661,3 +78661,4 @@ _bfme_debugAllocInnerDeallocate_82AD90,0x0082AD90,STLport __debug_alloc inner de
 ?first@Rva0051DCE0@@QAEXXZ,0x00005F88,ILT to 0x0051D590 for 13B two-call wrap at 0x0051DCE0
 ?Rva0051DCE0Second@@YAXXZ,0x0001285A,ILT to 0x00579440 for 13B two-call wrap at 0x0051DCE0
 ?first@Rva005187E0@@QAEXXZ,0x0003CD94,ILT for 8B one-call wrap at 0x005187E0
+?handle@Gen00024B7C@@QAEEH@Z,0x00024B7C,ILT for 20B global-null wrap at 0x005169E0
