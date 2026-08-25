@@ -806,6 +806,12 @@ void EmissionVolumeInfo::DoXfer(Xfer &xfer)
 {
 }
 
+#if 1
+AsciiString ParticleSystemTemplate::getName() const
+{
+	return *reinterpret_cast<const AsciiString *>(reinterpret_cast<const char *>(this) + 0x98);
+}
+#else
 __declspec(naked) AsciiString ParticleSystemTemplate::getName() const
 {
     __asm {
@@ -846,7 +852,14 @@ __declspec(naked) AsciiString ParticleSystemTemplate::getName() const
         __emit 0x00
     }
 }
+#endif
 
+#if 1
+AsciiString ParticleSystemTemplate::getTextureFilename() const
+{
+	return *reinterpret_cast<const AsciiString *>(reinterpret_cast<const char *>(this) + 0x10);
+}
+#else
 __declspec(naked) AsciiString ParticleSystemTemplate::getTextureFilename() const
 {
     __asm {
@@ -884,6 +897,7 @@ __declspec(naked) AsciiString ParticleSystemTemplate::getTextureFilename() const
         __emit 0x00
     }
 }
+#endif
 
 void ParticleSystemTemplate::setTextureFilename(AsciiString &filename)
 {
