@@ -2029,61 +2029,26 @@ void ReverseSoundTransition::init( GameWindow *win )
 	m_isForward = TRUE;
 }
 
-__declspec(naked) void ReverseSoundTransition::update( Int frame )
+// BFME removed the Zero Hour audio-event body from the fire-sound case but
+// retains the transition's original fall-through state machine.
+void ReverseSoundTransition::update( Int frame )
 {
-	__asm {
-		__emit 0x8b;
-		__emit 0x44;
-		__emit 0x24;
-		__emit 0x04;
-		__emit 0x85;
-		__emit 0xc0;
-		__emit 0x7c;
-		__emit 0x29;
-		__emit 0x83;
-		__emit 0xf8;
-		__emit 0x02;
-		__emit 0x7f;
-		__emit 0x24;
-		__emit 0x83;
-		__emit 0xe8;
-		__emit 0x00;
-		__emit 0x74;
-		__emit 0x14;
-		__emit 0x48;
-		__emit 0x74;
-		__emit 0x03;
-		__emit 0x48;
-		__emit 0x75;
-		__emit 0x19;
-		__emit 0x8a;
-		__emit 0x41;
-		__emit 0x09;
-		__emit 0x84;
-		__emit 0xc0;
-		__emit 0x74;
-		__emit 0x12;
-		__emit 0xc6;
-		__emit 0x41;
-		__emit 0x08;
-		__emit 0x01;
-		__emit 0xc2;
-		__emit 0x04;
-		__emit 0x00;
-		__emit 0x8a;
-		__emit 0x41;
-		__emit 0x09;
-		__emit 0x84;
-		__emit 0xc0;
-		__emit 0x75;
-		__emit 0x04;
-		__emit 0xc6;
-		__emit 0x41;
-		__emit 0x08;
-		__emit 0x01;
-		__emit 0xc2;
-		__emit 0x04;
-		__emit 0x00;
+	if(frame < REVERSESOUNDTRANSITION_START || frame > REVERSESOUNDTRANSITION_END)
+		return;
+	switch(frame) {
+	case REVERSESOUNDTRANSITION_START:
+		if(m_isForward)
+			break;
+		m_isFinished = TRUE;
+		break;
+	case REVERSESOUNDTRANSITION_FIRESOUND:
+		if(m_isForward)
+			m_isFinished = TRUE;
+		break;
+	case REVERSESOUNDTRANSITION_END:
+		if(m_isForward)
+			m_isFinished = TRUE;
+		break;
 	}
 }
 
