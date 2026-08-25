@@ -1,8 +1,21 @@
-// 23-byte and 32-byte cleanup routines, 62-byte reset, and 109-byte update
+// 23-byte and 32-byte cleanup routines, 62-byte reset, 109-byte update, and 81-byte destructor
 class TextureBaseClass
 {
 public:
 	void Release_Ref();
+};
+
+struct TexturePtr
+{
+	TextureBaseClass *m_ptr;
+	~TexturePtr()
+	{
+		if ( m_ptr )
+			m_ptr->Release_Ref();
+	}
+	TextureBaseClass *operator->() { return m_ptr; }
+	operator bool() { return m_ptr != 0; }
+	TexturePtr& operator=( int val ) { m_ptr = (TextureBaseClass*)val; return *this; }
 };
 
 class VirtualReleaser00739E00
@@ -18,6 +31,7 @@ class Member0C00739C70
 public:
 	VirtualReleaser00739E00 *m_obj;
 
+	~Member0C00739C70();
 	void clear();
 	void reset()
 	{
@@ -34,13 +48,14 @@ public:
 class Rva00739C70
 {
 public:
+	~Rva00739C70();
 	void cleanup();
 	void reset();
 	TextureBaseClass *update( int arg );
 
 	int               m_int0;
 	int               m_int4;
-	TextureBaseClass *m_ptr08;
+	TexturePtr        m_ptr08;
 	Member0C00739C70  m_member0c;
 	int               m_flags;
 };
@@ -86,6 +101,10 @@ TextureBaseClass *Rva00739C70::update( int arg )
 		m_flags |= 1;
 	}
 	return result;
+}
+
+Rva00739C70::~Rva00739C70()
+{
 }
 
 class Owner00739C90

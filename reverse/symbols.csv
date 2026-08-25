@@ -76494,3 +76494,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?release@SubPtr00739E00@@QAEXXZ,0x009EB7B0,address-derived callee of 0x00739E00
 ?methodA@Member0C00739C70@@QAEPAVTextureBaseClass@@HHHHH@Z,0x008FC710,pinharvest
 ?methodB@Member0C00739C70@@QAEPAVTextureBaseClass@@HH@Z,0x008FC660,pinharvest
+??1Member0C00739C70@@QAE@XZ,0x008FC5B0,pinharvest
