@@ -322,7 +322,6 @@ UnsignedShort QuickMatchPreferences::getLastLadderPort( void )
 	return atoi(it->second.str());
 }
 
-// ?setMaxDisconnects@QuickMatchPreferences@@QAEXH@Z present-unmatched
 void QuickMatchPreferences::setMaxDisconnects(Int val)
 {
 	AsciiString strVal;
@@ -341,7 +340,6 @@ Int QuickMatchPreferences::getMaxDisconnects( void )
 	return atoi(it->second.str());
 }
 
-// ?setMaxPoints@QuickMatchPreferences@@QAEXH@Z present-unmatched
 void QuickMatchPreferences::setMaxPoints(Int val)
 {
 	AsciiString strVal;
@@ -360,7 +358,6 @@ Int QuickMatchPreferences::getMaxPoints( void )
 	return atoi(it->second.str());
 }
 
-// ?setMinPoints@QuickMatchPreferences@@QAEXH@Z present-unmatched
 void QuickMatchPreferences::setMinPoints(Int val)
 {
 	AsciiString strVal;
@@ -379,7 +376,6 @@ Int QuickMatchPreferences::getMinPoints( void )
 	return atoi(it->second.str());
 }
 
-// ?setWaitTime@QuickMatchPreferences@@QAEXH@Z present-unmatched
 void QuickMatchPreferences::setWaitTime(Int val)
 {
 	AsciiString strVal;
@@ -398,7 +394,6 @@ Int QuickMatchPreferences::getWaitTime( void )
 	return atoi(it->second.str());
 }
 
-// ?setNumPlayers@QuickMatchPreferences@@QAEXH@Z present-unmatched
 void QuickMatchPreferences::setNumPlayers(Int val)
 {
 	AsciiString strVal;
@@ -729,7 +724,6 @@ Bool CustomMatchPreferences::getDisallowNonAsianText( void )
 	return FALSE;
 }
 
-// ?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z present-unmatched
 void CustomMatchPreferences::setDisallowNonAsianText( Bool val )
 {
 	AsciiString s;
