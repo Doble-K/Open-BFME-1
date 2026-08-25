@@ -4617,33 +4617,6 @@ Bool NetPacket::isFrameRepeat(NetCommandRef *msg) {
 }
 
 /**
- * Add an ack "both" command.
- */
-// ?addAckBothCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
-Bool NetPacket::addAckBothCommand(NetCommandRef *msg) {
-	NetAckBothCommandMsg *ackmsg = (NetAckBothCommandMsg *)(msg->getCommand());
-	return addAckCommand(msg, ackmsg->getCommandID(), ackmsg->getOriginalPlayerID());
-}
-
-/**
- * Add an ack stage 1 command.
- */
-// ?addAckStage1Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
-Bool NetPacket::addAckStage1Command(NetCommandRef *msg) {
-	NetAckStage1CommandMsg *ackmsg = (NetAckStage1CommandMsg *)(msg->getCommand());
-	return addAckCommand(msg, ackmsg->getCommandID(), ackmsg->getOriginalPlayerID());
-}
-
-/**
- * Add an ack stage 2 command.
- */
-// ?addAckStage2Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z present-unmatched
-Bool NetPacket::addAckStage2Command(NetCommandRef *msg) {
-	NetAckStage2CommandMsg *ackmsg = (NetAckStage2CommandMsg *)(msg->getCommand());
-	return addAckCommand(msg, ackmsg->getCommandID(), ackmsg->getOriginalPlayerID());
-}
-
-/**
  * Add this ack command to the packet.  Returns true if successful.
  */
 // ?addAckCommand@NetPacket@@IAE_NPAVNetCommandRef@@GE@Z present-unmatched

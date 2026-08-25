@@ -11166,6 +11166,7 @@ name,address,notes
 ?addAckBothCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003DDA7,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
 ?addAckBothCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680290,addCommand's jump-table arm for command type 0
 ?addAckCommand@NetPacket@@IAE_NPAVNetCommandRef@@GE@Z,0x0067DEC0,decode_calls: shared third-call target of addAckBothCommand/addAckStage1Command/addAckStage2Command (0x680290/0x6802D0/0x680310); chased through thunk 0x004060BE
+?addAckCommand@NetPacket@@IAE_NPAVNetCommandRef@@GEI@Z,0x0067DEC0,BFME ABI: all three ACK callers pass ack player field at +0x20; retail callee returns 0x10 and therefore cleans four stack arguments
 ?addAckStage1Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00011810,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
 ?addAckStage1Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x006802D0,addCommand's jump-table arm for command type 1
 ?addAckStage2Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003A0AD,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
