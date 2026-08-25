@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHs-c-
+// cl: /DNDEBUG /MD /EHsc
 
 // NetPacket::GetBufferSizeNeededForCommand, 0x0067F2E0, 149 bytes -- the
 // per-command-type size dispatcher, and the counterpart of addCommand's own
@@ -40,6 +40,15 @@ typedef int Int;
 typedef unsigned int UnsignedInt;
 typedef unsigned short UnsignedShort;
 typedef unsigned char UnsignedByte;
+typedef float Real;
+typedef UnsignedInt ObjectID;
+typedef UnsignedInt DrawableID;
+typedef bool Bool;
+typedef unsigned short WideChar;
+
+struct Coord3D { Real x, y, z; };
+struct ICoord2D { Int x, y; };
+struct IRegion2D { Int loX, loY, hiX, hiY; };
 
 #define NULL 0
 #define TRUE 1
@@ -77,6 +86,29 @@ enum NetCommandType
 	NETCOMMANDTYPE_DISCONNECTSCREENOFF = 28
 };
 
+enum GameMessageArgumentDataType
+{
+	ARGUMENTDATATYPE_INTEGER = 0,
+	ARGUMENTDATATYPE_REAL,
+	ARGUMENTDATATYPE_BOOLEAN,
+	ARGUMENTDATATYPE_OBJECTID,
+	ARGUMENTDATATYPE_DRAWABLEID,
+	ARGUMENTDATATYPE_TEAMID,
+	ARGUMENTDATATYPE_SQUADID,
+	ARGUMENTDATATYPE_LOCATION,
+	ARGUMENTDATATYPE_PIXEL,
+	ARGUMENTDATATYPE_PIXELREGION,
+	ARGUMENTDATATYPE_TIMESTAMP,
+	ARGUMENTDATATYPE_WIDECHAR
+};
+
+class GameMessage
+{
+public:
+	virtual ~GameMessage();
+	typedef Int Type;
+};
+
 class NetCommandMsg
 {
 public:
@@ -88,6 +120,37 @@ public:
 	UnsignedInt m_playerID;						// this+0x0C
 	UnsignedShort m_id;						// this+0x10
 	NetCommandType m_commandType;					// this+0x14
+};
+
+class NetGameCommandMsg : public NetCommandMsg
+{
+public:
+	GameMessage *constructGameMessage();
+};
+
+class GameMessageParserArgumentType
+{
+public:
+	GameMessageParserArgumentType *getNext() { return m_next; }
+	GameMessageArgumentDataType getType() { return m_type; }
+	Int getArgCount() { return m_argCount; }
+
+	void *m_vptr;
+	GameMessageParserArgumentType *m_next;
+	GameMessageArgumentDataType m_type;
+	Int m_argCount;
+};
+
+class GameMessageParser
+{
+public:
+	GameMessageParser(GameMessage *msg);
+	virtual ~GameMessageParser();
+	GameMessageParserArgumentType *getFirstArgumentType() { return m_first; }
+
+	GameMessageParserArgumentType *m_first;
+	GameMessageParserArgumentType *m_last;
+	Int m_argTypeCount;
 };
 
 class NetPacket
@@ -123,6 +186,55 @@ protected:
 	static UnsignedInt GetRequestGameSpyStatsAuthKeyCommandSize(NetCommandMsg *msg);	// 0x0067D4B0
 	static UnsignedInt GetGameSpyStatsAuthKeyCommandSize(NetCommandMsg *msg);	// 0x0067D500
 };
+
+UnsignedInt NetPacket::GetGameCommandSize(NetCommandMsg *msg) {
+	NetGameCommandMsg *cmdMsg = (NetGameCommandMsg *)msg;
+	UnsignedShort msglen = 0;
+	msglen += sizeof(UnsignedInt) + sizeof(UnsignedByte);
+	msglen += sizeof(UnsignedByte) + sizeof(UnsignedByte);
+	msglen += sizeof(UnsignedByte) + sizeof(UnsignedByte);
+	msglen += sizeof(UnsignedByte) + sizeof(UnsignedByte);
+	msglen += sizeof(UnsignedShort) + sizeof(UnsignedByte);
+	msglen += sizeof(UnsignedByte);
+	GameMessage *gmsg = cmdMsg->constructGameMessage();
+	GameMessageParser *parser = new GameMessageParser(gmsg);
+	msglen += sizeof(GameMessage::Type);
+	msglen += sizeof(UnsignedByte);
+	GameMessageParserArgumentType *arg = parser->getFirstArgumentType();
+	while (arg != NULL) {
+		msglen += 2 * sizeof(UnsignedByte);
+		GameMessageArgumentDataType type = arg->getType();
+		if (type == ARGUMENTDATATYPE_INTEGER) {
+			msglen += arg->getArgCount() * sizeof(Int);
+		} else if (type == ARGUMENTDATATYPE_REAL) {
+			msglen += arg->getArgCount() * sizeof(Real);
+		} else if (type == ARGUMENTDATATYPE_BOOLEAN) {
+			msglen += arg->getArgCount() * sizeof(Bool);
+		} else if (type == ARGUMENTDATATYPE_OBJECTID) {
+			msglen += arg->getArgCount() * sizeof(ObjectID);
+		} else if (type == ARGUMENTDATATYPE_DRAWABLEID) {
+			msglen += arg->getArgCount() * sizeof(DrawableID);
+		} else if (type == ARGUMENTDATATYPE_TEAMID) {
+			msglen += arg->getArgCount() * sizeof(UnsignedInt);
+		} else if (type == ARGUMENTDATATYPE_LOCATION) {
+			msglen += arg->getArgCount() * sizeof(Coord3D);
+		} else if (type == ARGUMENTDATATYPE_PIXEL) {
+			msglen += arg->getArgCount() * sizeof(ICoord2D);
+		} else if (type == ARGUMENTDATATYPE_PIXELREGION) {
+			msglen += arg->getArgCount() * sizeof(IRegion2D);
+		} else if (type == ARGUMENTDATATYPE_TIMESTAMP) {
+			msglen += arg->getArgCount() * sizeof(UnsignedInt);
+		} else if (type == ARGUMENTDATATYPE_WIDECHAR) {
+			msglen += arg->getArgCount() * sizeof(WideChar);
+		}
+		arg = arg->getNext();
+	}
+	delete parser;
+	parser = NULL;
+	delete gmsg;
+	gmsg = NULL;
+	return msglen;
+}
 
 // ?GetBufferSizeNeededForCommand@NetPacket@@KAIPAVNetCommandMsg@@@Z
 UnsignedInt NetPacket::GetBufferSizeNeededForCommand(NetCommandMsg *msg) {
