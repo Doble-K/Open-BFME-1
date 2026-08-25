@@ -76459,3 +76459,8 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeGetAllocator@Gen_005862c0@@ABE?AVBfmeAllocator@@XZ,0x0003FFB7,Open-BFME5 ILT the copy constructor at 0x005862C0 gets its allocator through
 ?bfmeAllocateAndCopy@Gen_005862c0@@AAEXHABVBfmeAllocator@@@Z,0x00038122,Open-BFME5 ILT the copy constructor at 0x005862C0 allocates through
 ?method@SubObject00739E70@@QAEXPAX@Z,0x00739E70,address-derived callee of 0x00739F70 forwarder
+?bfmeNotify@Gen_005ee5a0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0002EE88,Open-BFME5 ILT the refresh at 0x005EE5A0 calls on its sub-object
+?bfmeNotify@Gen_005ef8b0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x00049D64,Open-BFME5 ILT the refresh at 0x005EF8B0 calls on its sub-object
+?bfmeNotify@Gen_005fe880Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0000B235,Open-BFME5 ILT the refresh at 0x005FE880 calls on its sub-object
+?bfmeNotify@Gen_005ff8d0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0001F087,Open-BFME5 ILT the refresh at 0x005FF8D0 calls on its sub-object
+?bfmeNotify@Gen_00600710Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x00018926,Open-BFME5 ILT the refresh at 0x00600710 calls on its sub-object
