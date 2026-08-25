@@ -74535,6 +74535,7 @@ name,address,notes
 ?handle@Gen008881D0@@QAEXXZ,0x008881D0,address-derived callee of the add-ecx offset tail-jump family; target read from the REL32 at its call sites
 ?handle@Gen00888530@@QAEXXZ,0x00888530,address-derived callee of the add-ecx offset tail-jump family; target read from the REL32 at its call sites
 ?handle@Gen0089C880@@QAEXXZ,0x0089C880,address-derived callee of the add-ecx offset tail-jump family; target read from the REL32 at its call sites
+?handle@Gen0089CC10@@QAEHXZ,0x0089CC10,int-return alias of the existing void pin; 0x00899D70 does inc eax after the call
 ?handle@Gen0089CC10@@QAEXXZ,0x0089CC10,address-derived callee of the add-ecx offset tail-jump family; target read from the REL32 at its call sites
 ?handle@Gen0089CC30@@QAEXXZ,0x0089CC30,address-derived callee of the add-ecx offset tail-jump family; target read from the REL32 at its call sites
 ?handle@Gen008B2DF0@@QAEXXZ,0x008B2DF0,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
