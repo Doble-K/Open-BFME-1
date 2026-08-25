@@ -178,7 +178,6 @@ void ghiDoHostLookup
 /***************
 ** CONNECTING **
 ***************/
-// ghiDoConnecting present-unmatched
 void ghiDoConnecting
 (
 	GHIConnection * connection
@@ -253,12 +252,20 @@ void ghiDoConnecting
 
 	// Check if the connect has completed.
 	//////////////////////////////////////
-	bResult = ghiSocketSelect(connection->socket, NULL, &writeFlag, &exceptFlag);
+	// BFME truncates the select's answer to a byte and keeps the RESULT an int:
+	// retail's `movzx eax,al` is that cast, and it is the int-typed local that
+	// keeps the value in eax afterwards.  Narrowing the local instead produces
+	// the same movzx but allocates ecx, which is two bytes wrong.
+	bResult = (unsigned char)ghiSocketSelect(connection->socket, NULL, &writeFlag, &exceptFlag);
 	if(bResult == SOCKET_ERROR || exceptFlag)
 	{
 		connection->completed = GHTTPTrue;
 		connection->result = GHTTPConnectFailed;
-		if(bResult == SOCKET_ERROR)
+		// Not a second SOCKET_ERROR test: retail re-tests the narrowed answer
+		// with `test eax,eax`, so the inner condition is the byte being FALSE.
+		// With bResult a byte the outer test can never fire, and this is the
+		// one that actually records the error.
+		if(!bResult)
 			connection->socketError = GOAGetLastError(connection->socket);
 		return;
 	}
