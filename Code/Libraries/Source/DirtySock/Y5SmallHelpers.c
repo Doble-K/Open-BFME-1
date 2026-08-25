@@ -31,3 +31,12 @@ void Rva0080E410(void *crypto, unsigned char *data, int length)
 	if (*(int *)crypto != 0)
 		Rva0080F300((unsigned char *)crypto + 0x10A, data, length);
 }
+
+void Rva0080E1C0(int *crypto, unsigned char *data, int length)
+{
+	if (crypto[0] != 0)
+	{
+		Rva0080F300((unsigned char *)crypto + 8, data, length);
+		crypto[1] = 1;
+	}
+}
