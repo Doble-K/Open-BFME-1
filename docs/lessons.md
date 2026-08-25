@@ -793,3 +793,11 @@ both are worth as much as the landing would have been.
   links the DLL CRT and routes the deallocation through an imported operator
   delete instead -- same C++, 40 bytes apart. If an STLport body is right
   except at its allocator call, suspect the flag line before the source.
+
+- MSVC emits `??_G` (the scalar deleting destructor the vtable actually points
+  at) ONLY alongside the vtable, and the vtable only where something
+  instantiates the class. Declaring the virtual destructor does not emit it;
+  neither does adding an inline virtual. A DEFINED CONSTRUCTOR does. Mark that
+  constructor `// ??0X@@QAE@XZ present-unmatched` -- the commit hook only binds
+  a marker that starts `// ?` and carries a real MANGLED name, so a readable
+  `// X::X present-unmatched` is silently ignored and the commit is refused.
