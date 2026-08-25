@@ -78757,3 +78757,5 @@ _Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap
 ?active@Rva000DF7F0Player@@QBE_NXZ,0x000179BD,Open-BFME5 fresh thiscall bool at ILT of !query 0x000DF7F0
 ?notify@Rva00589690@@AAEXXZ,0x0003643A,Open-BFME5 fresh thiscall at ILT of set-byte+notify 0x00589690
 ?rva007e8530_bar@@YGXPAX0@Z,0x000476E0,Open-BFME5 fresh stdcall at ILT of this+global 0x007E8530
+?first@Rva0051DB00@@QAEXXZ,0x00005F88,Open-BFME5 thiscall at ILT of two-call wrap 0x0051DB00
+?Rva0051DB00Second@@YAXXZ,0x0003896A,Open-BFME5 cdecl at ILT of two-call wrap 0x0051DB00
