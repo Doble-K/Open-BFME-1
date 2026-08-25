@@ -3753,3 +3753,46 @@ void piCallbacksThink(PEER peer, int ID)
 			piCallCallback(peer, i);
 	}
 }
+
+/* Two sweeps that drop queued callbacks before they run.  Both walk the list
+   BACKWARDS, which is what makes deleting as they go safe, and both re-read
+   the list pointer from the connection every pass while calling ArrayLength
+   exactly once up front.
+
+   The second one's filter is what identifies it: type 3 is
+   PI_LISTING_GAMES_CALLBACK, and it compares +4 of that entry's params, which
+   piListingGamesParams puts the SBServer at.
+
+   The two names describe what the bodies do.  No peer.h of this vintage is in
+   hand to attest them, and unlike the piAdd* family next door there is no
+   table here to read them off, so they are stated as a reading rather than a
+   recovery. */
+
+void piClearCallbacks(PEER peer, piCallbackType type)
+{
+	piCallbackData * data;
+	int i;
+	PEER_CONNECTION;
+
+	for(i = ArrayLength(connection->callbackList) - 1 ; i >= 0 ; i--)
+	{
+		data = (piCallbackData *)ArrayNth(connection->callbackList, i);
+		if(data->type == type)
+			ArrayDeleteAt(connection->callbackList, i);
+	}
+}
+
+void piClearServerCallbacks(PEER peer, SBServer server)
+{
+	piCallbackData * data;
+	int i;
+	PEER_CONNECTION;
+
+	for(i = ArrayLength(connection->callbackList) - 1 ; i >= 0 ; i--)
+	{
+		data = (piCallbackData *)ArrayNth(connection->callbackList, i);
+		if((data->type == PI_LISTING_GAMES_CALLBACK) &&
+			(((piListingGamesParams *)data->params)->server == server))
+			ArrayDeleteAt(connection->callbackList, i);
+	}
+}
