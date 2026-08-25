@@ -485,77 +485,17 @@ Bool CommandButton::isReady(const Object *sourceObj) const
 }
 
 //-------------------------------------------------------------------------------------------------
-__declspec(naked) Bool CommandButton::isValidObjectTarget(const Drawable *, const Drawable *) const
+struct BFMEDrawableObjectView
 {
-	__asm {
-		__emit 0x8b;
-		__emit 0x44;
-		__emit 0x24;
-		__emit 0x08;
-		__emit 0x85;
-		__emit 0xc0;
-		__emit 0x56;
-		__emit 0x8b;
-		__emit 0xf1;
-		__emit 0x74;
-		__emit 0x08;
-		__emit 0x8b;
-		__emit 0x80;
-		__emit 0xfc;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0xeb;
-		__emit 0x02;
-		__emit 0x33;
-		__emit 0xc0;
-		__emit 0x8b;
-		__emit 0x4c;
-		__emit 0x24;
-		__emit 0x08;
-		__emit 0x85;
-		__emit 0xc9;
-		__emit 0x74;
-		__emit 0x20;
-		__emit 0x8b;
-		__emit 0x89;
-		__emit 0xfc;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x85;
-		__emit 0xc9;
-		__emit 0x74;
-		__emit 0x16;
-		__emit 0x85;
-		__emit 0xc0;
-		__emit 0x74;
-		__emit 0x12;
-		__emit 0x50;
-		__emit 0xe8;
-		__emit 0xc8;
-		__emit 0xf8;
-		__emit 0xba;
-		__emit 0xff;
-		__emit 0x50;
-		__emit 0x8b;
-		__emit 0xce;
-		__emit 0xe8;
-		__emit 0xe6;
-		__emit 0x75;
-		__emit 0xb8;
-		__emit 0xff;
-		__emit 0x5e;
-		__emit 0xc2;
-		__emit 0x08;
-		__emit 0x00;
-		__emit 0x32;
-		__emit 0xc0;
-		__emit 0x5e;
-		__emit 0xc2;
-		__emit 0x08;
-		__emit 0x00;
-	}
+	char m_pad000[0xfc];
+	Object *m_object;
+};
+
+Bool CommandButton::isValidObjectTarget(const Drawable *source, const Drawable *target) const
+{
+	const BFMEDrawableObjectView *sourceView = reinterpret_cast<const BFMEDrawableObjectView *>(source);
+	const BFMEDrawableObjectView *targetView = reinterpret_cast<const BFMEDrawableObjectView *>(target);
+	return isValidObjectTarget(source ? sourceView->m_object : NULL, target ? targetView->m_object : NULL);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
