@@ -76587,3 +76587,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeDispatchA@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x000075D6,Open-BFME5 ILT the range dispatcher at 0x002610F0 calls
 ?bfmeDispatchB@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00028501,Open-BFME5 ILT the range dispatcher at 0x00437D30 calls
 ?bfmeDispatchC@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00027138,Open-BFME5 ILT the range dispatcher at 0x00575A50 calls
+?bfmeNewAlloc@@YAPAXI@Z,0x00881F30,Open-BFME5 the large-block allocator the allocate-and-copy bodies at 0x000A7820 and its siblings call above 0x80 bytes
