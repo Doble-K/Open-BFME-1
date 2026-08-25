@@ -1,6 +1,6 @@
 // cl: /DNDEBUG /MD /EHs-c-
-// Open-BFME-1: the operator set of the obfuscated-scalar wrappers, ten bodies
-// out of d_0005b6c0.asm.
+// Open-BFME5: the operator set of the obfuscated-scalar wrappers, ten bodies
+// recovered from the retail obfuscated-value family.
 //
 // Every one of them holds its payload at this+4 and reaches it only through one
 // of the four 100-byte __cdecl hook wrappers already in the ledger from
