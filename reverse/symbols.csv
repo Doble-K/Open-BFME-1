@@ -76458,3 +76458,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeAllocateAndCopy@Gen_0036e170@@AAEXHABVBfmeAllocator@@@Z,0x00019BF0,Open-BFME5 ILT the copy constructor at 0x0036E170 allocates through
 ?bfmeGetAllocator@Gen_005862c0@@ABE?AVBfmeAllocator@@XZ,0x0003FFB7,Open-BFME5 ILT the copy constructor at 0x005862C0 gets its allocator through
 ?bfmeAllocateAndCopy@Gen_005862c0@@AAEXHABVBfmeAllocator@@@Z,0x00038122,Open-BFME5 ILT the copy constructor at 0x005862C0 allocates through
+?method@SubObject00739E70@@QAEXPAX@Z,0x00739E70,address-derived callee of 0x00739F70 forwarder
