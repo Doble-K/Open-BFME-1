@@ -76526,3 +76526,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeStep2_00589680@@YAXXZ,0x000216D9,Open-BFME5 ILT the pair runner at 0x00589680 tail-jumps to
 ?bfmeStep1_009A75E0@@YAXXZ,0x009B3A00,Open-BFME5 the routine the pair runner at 0x009A75E0 calls first
 ?bfmeStep2_009A75E0@@YAXXZ,0x009B3B40,Open-BFME5 the routine the pair runner at 0x009A75E0 tail-jumps to
+?bfmeMake_00529B60@@YAHHH@Z,0x000364C6,Open-BFME5 ILT the short-widening ctor at 0x00529B60 calls
+?bfmeMake_0054F920@@YAHHH@Z,0x0000B500,Open-BFME5 ILT the short-widening ctor at 0x0054F920 calls
+?bfmeMake_0054FA00@@YAHHH@Z,0x00029771,Open-BFME5 ILT the short-widening ctor at 0x0054FA00 calls
+?bfmeMake_0056E900@@YAHHH@Z,0x0003C65A,Open-BFME5 ILT the short-widening ctor at 0x0056E900 calls
