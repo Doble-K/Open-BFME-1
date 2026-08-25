@@ -74078,6 +74078,7 @@ name,address,notes
 ?handle@Gen00024C17@@QAEXHH@Z,0x00024C17,address-derived sub-object pair-call callee; target read from the REL32 at 0x00065A40
 ?handle@Gen00024EBF@@QAEXXZ,0x00024EBF,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00026175@@QAEXXZ,0x00026175,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
+?handle@Gen0002644F@@QAEXXZ,0x0002644F
 ?handle@Gen00026EEF@@QAEXXZ,0x00026EEF,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00026F35@@QAEXXZ,0x00026F35,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00026FC6@@QAEXXZ,0x00026FC6,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
@@ -74613,6 +74614,7 @@ name,address,notes
 ?handle@Rva0022B980@@UAEXXZ,0x0022D590,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva002B8070@@UAEXXZ,0x002B7F80,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva002B9F70@@UAEXXZ,0x002B9E10,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
+?handle@Rva002BC210@@QAE_NXZ,0x000042BE
 ?handle@Rva002D6C50@@UAEXXZ,0x002D6E30,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva00348420@@UAEXXZ,0x0034B970,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva00378640@@UAEXXZ,0x00378890,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
