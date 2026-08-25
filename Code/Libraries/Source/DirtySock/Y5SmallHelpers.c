@@ -16,3 +16,10 @@ int Rva0080E330(void *crypto, int length)
 		length += 8;
 	return length;
 }
+
+int Rva0080E300(const int *crypto, int length)
+{
+	if (crypto[0] != 0 && crypto[1] != 0 && length >= 8)
+		length -= 8;
+	return length;
+}
