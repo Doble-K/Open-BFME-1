@@ -264,11 +264,12 @@ void StreakLineClass::Add_Point(const Vector3 & location)
 	PointLocations.Add(location);
 }
 
-// ?Delete_Point@StreakLineClass@@ present-unmatched
 void StreakLineClass::Delete_Point(unsigned int point_idx)
 {
-	if (point_idx < (unsigned int)PointLocations.Count()) {
-		PointLocations.Delete(point_idx);
+	if (point_idx < *reinterpret_cast<unsigned int *>(reinterpret_cast<char *>(this) + 0xE0)) {
+		SimpleDynVecClass<Vector3> &point_locations =
+			*reinterpret_cast<SimpleDynVecClass<Vector3> *>(reinterpret_cast<char *>(this) + 0xD4);
+		point_locations.Delete(point_idx);
 	}
 }
 
