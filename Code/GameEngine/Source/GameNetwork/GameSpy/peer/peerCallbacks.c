@@ -142,6 +142,9 @@ typedef char gsi_char;
 /* nonport.c's strdup; retail's copy lives at 0x008543B0. */
 char * goastrdup(const char *src);
 
+/* peerAutoMatch.c, retail 0x00858120. */
+PEERBool peerIsAutoMatching(PEER peer);
+
 #include "../darray.h"
 
 /* piConnection.  peerMain.h of this vintage is not in hand either, and only
@@ -158,6 +161,20 @@ char * goastrdup(const char *src);
    from 0x17a4 land exactly on callbackList at 0x1818, which is where the
    eight unnamed qr* slots in between come from -- they are counted, not
    invented.  Widths are all that matter here, so every slot is void *. */
+/* piOperation, only the three members piAddAutoMatchStatusCallback reads.
+   peerOperations.c next door names the same object's type at +0x04, room
+   at +0x1c and cancelled flag at +0x38; these three are the ones this file
+   reaches, and the +0x0c one is named ID because that is the argument the
+   single reader here hands piAddCallback. */
+typedef struct piOperation
+{
+	char reserved0[0x0c];
+	int ID;				/* +0x0c */
+	void * callback;		/* +0x10 */
+	char reserved14[0x18 - 0x10 - 4];
+	void * param;			/* +0x18 */
+} piOperation;
+
 typedef struct PEERCallbacks
 {
 	void * disconnected;	/* +0x17a4 */
@@ -194,6 +211,10 @@ typedef struct piConnection
 	PEERCallbacks callbacks;
 	DArray callbackList;
 	int callbackListLen;
+	char reserved2[0x18d4 - 0x181c - 4];
+	int autoMatchStatus;		/* +0x18d4 */
+	char reserved3[0x1ef0 - 0x18d4 - 4];
+	piOperation * autoMatchOperation;	/* +0x1ef0 */
 } piConnection;
 
 #define PEER_CONNECTION           piConnection * connection;\
@@ -3573,5 +3594,57 @@ void piAddGetRoomKeysCallback(PEER peer, PEERBool success, RoomType roomType, co
 	params.values = values;
 
 	piAddCallback(peer, success, callback, param, PI_GET_ROOM_KEYS_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddAuthenticateCDKeyCallback(PEER peer, int result, const char * message,
+		void * callback, void * param, int ID)
+{
+	piAuthenticateCDKeyParams params;
+	PEER_CONNECTION;
+
+	params.result = result;
+	params.message = (char *)message;
+
+	piAddCallback(peer, PEERTrue, callback, param, PI_AUTHENTICATE_CDKEY_CALLBACK,
+		&params, sizeof(params), ID);
+}
+
+void piAddAutoMatchStatusCallback(PEER peer)
+{
+	piAutoMatchStatusParams params;
+	piOperation * operation;
+	PEER_CONNECTION;
+
+	operation = connection->autoMatchOperation;
+	if(!operation)
+		return;
+
+	if(!operation->callback)
+		return;
+
+	params.status = (PEERAutoMatchStatus)connection->autoMatchStatus;
+
+	piAddCallback(peer, PEERTrue, operation->callback, operation->param,
+		PI_AUTO_MATCH_STATUS_CALLBACK, &params, sizeof(params), operation->ID);
+}
+
+void piAddJoinRoomCallback(PEER peer, PEERBool success, PEERJoinResult result,
+		RoomType roomType, peerJoinRoomCallback callback, void * param, int ID)
+{
+	piJoinRoomParams params;
+	PEER_CONNECTION;
+
+	/* an auto-match staging join is reported straight to the caller. */
+	if(peerIsAutoMatching(peer) && (roomType == StagingRoom))
+	{
+		callback(peer, success, result, StagingRoom, param);
+		return;
+	}
+
+	params.result = result;
+	params.roomType = roomType;
+
+	piAddCallback(peer, success, callback, param, PI_JOIN_ROOM_CALLBACK,
 		&params, sizeof(params), ID);
 }
