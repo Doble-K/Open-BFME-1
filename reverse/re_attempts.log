@@ -6155,3 +6155,4 @@ _lua_pushcclosure	0x009903E0	45	no-match	lapi.c source emits a 5-byte tail thunk
 _lua_newtable	0x00990780	59	no-match	lapi.c source matches body except BFME luaH_new call/argument ABI and register setup diverge; t=4m model=luna
 _luaB_print	0x009945A0	155	no-match	lbaselib.c source has BFME layout/callee/register divergence in print loop and stack frame; t=4m model=luna
 _luaB_tostring	0x00994E40	75	no-match	lbaselib.c source differs at Lua type-tag switch: retail compares 6, current header emits 5; shared enum/layout drift, t=4m model=luna
+?_bfme_debugRecordCallsite@@YAXH@Z	0x008896A0	33	partial	instruction scheduling mismatch, t=10min model=Gemini-3.1-Pro score=0.95 stash=reverse/attempts/0x008896a0.cpp
