@@ -19,8 +19,17 @@
 **	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// FastAllocator's inline lock sites use the BFME spin-call model, not the
+// reference mutex.h class whose inline-asm constructor materializes a sentry.
+#include "wwstring.h"
+#define MUTEX_H
 #include "fastallocator.h"
 #include <new.h>
+
+// The retail allocator keeps a standalone COMDAT for this inline member.
+// Taking its address in the owning TU preserves that real implementation.
+typedef void *(FastAllocatorGeneral::*FastAllocatorGeneralAlloc)(unsigned int);
+FastAllocatorGeneralAlloc _FastAllocatorGeneralAlloc = &FastAllocatorGeneral::Alloc;
 
 static FastAllocatorGeneral* generalAllocator; //This general allocator will do all allocations for us.
 
@@ -36,4 +45,3 @@ FastAllocatorGeneral* FastAllocatorGeneral::Get_Allocator()
 
 // ??0FastAllocatorGeneral@@ is implemented by the exact retail thunk in
 // FastAllocatorGeneralCtorThunk.cpp.
-
