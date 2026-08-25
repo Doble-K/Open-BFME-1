@@ -76930,3 +76930,6 @@ __imp_free,0x013593D4,pin
 ?d_008859d0@Rva00886A20Class@@QAEXPBDPAD@Z,0x008859D0,pin
 ?Rva0088EB30@@YAPAXPAXI@Z,0x0088EB30,pin
 ?Rva0088EB90@@YAPAXPAXI@Z,0x0088EB90,pin
+__imp__strncpy,0x013594C0,pin
+__imp__strchr,0x0135949C,pin
+__imp__strrchr,0x013594C8,pin
