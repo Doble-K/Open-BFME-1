@@ -76548,3 +76548,10 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeDropB@@YAXPAX@Z,0x008961C0,Open-BFME5 the drop the cleanups at 0x008925F0 0x00892CA0 and 0x00893990 call
 ??1BfmeChildA@@QAE@XZ,0x008976E0,Open-BFME5 the child destructor the teardown at 0x008AB8E0 calls
 ??1BfmeChildB@@QAE@XZ,0x0089CC70,Open-BFME5 the child destructor the teardowns at 0x008BD820 0x008BD880 and 0x008BD8E0 call
+?bfmeAllocNode@@YAPAXI@Z,0x0082E540,Open-BFME5 the 16-byte allocator the node makers at 0x0046A070 0x0046B1C0 and 0x00927760 call
+?bfmeHashCombineA@@YAIII@Z,0x00042FA0,Open-BFME5 ILT the combiner at 0x00528F10 calls
+?bfmeHashCombineB@@YAIII@Z,0x00023254,Open-BFME5 ILT the combiner at 0x0054ED90 calls
+?bfmeHashCombineC@@YAIII@Z,0x0003F7CE,Open-BFME5 ILT the combiner at 0x0056E1E0 calls
+?bfmeInitBodyA@@YAXPAUBfmeNodeBody@@PAX@Z,0x000012D5,Open-BFME5 ILT the node maker at 0x0046A070 initialises through
+?bfmeInitBodyB@@YAXPAUBfmeNodeBody@@PAX@Z,0x0000C568,Open-BFME5 ILT the node maker at 0x0046B1C0 initialises through
+?bfmeInitBodyC@@YAXPAUBfmeNodeBody@@PAX@Z,0x00926750,Open-BFME5 the routine the node maker at 0x00927760 initialises through
