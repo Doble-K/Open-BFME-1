@@ -231,8 +231,14 @@ public:
 	char m_leading[ 0x14 - 8 ];
 	bool m_at14;
 	void run();
+	bool isNonNegative() const;
 };
 void Rva004223B0::run() { m_at00 = -1.0f; m_at04 = -1.0f; m_at14 = false; }
+
+bool Rva004223B0::isNonNegative() const
+{
+	return m_at04 >= 0.0f;
+}
 
 class Rva0045BFD0
 {
