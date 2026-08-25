@@ -17,6 +17,17 @@ struct Rva008111D0Context
 	unsigned char m_block[ 0x40 ];		/* +0x1C */
 };
 
+void Rva00811180( struct Rva008111D0Context *context )
+{
+	context->m_count = 0;
+	context->m_fill = 0;
+	context->m_state[ 0 ] = 0x67452301;
+	context->m_state[ 1 ] = 0xEFCDAB89;
+	context->m_state[ 2 ] = 0x98BADCFE;
+	context->m_state[ 3 ] = 0x10325476;
+	context->m_state[ 4 ] = 0xC3D2E1F0;
+}
+
 void Rva00811310( struct Rva008111D0Context *context,
 	const unsigned char *block );
 
