@@ -78708,3 +78708,4 @@ _Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap
 ?handle@Gen0002644F@@QAEXXZ,0x0002644F
 ?handle@Gen0089CC10@@QAEHXZ,0x0089CC10,int-return alias of the existing void pin; 0x00899D70 does inc eax after the call
 ?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0EF@@@@Z,0x0004250A,Open-BFME5 MSVC71 BitFlags<69> ILT
+?callee@Rva0060A900@@AAEXPAX@Z,0x00019010,Open-BFME5 ILT FUN_00a0a880
