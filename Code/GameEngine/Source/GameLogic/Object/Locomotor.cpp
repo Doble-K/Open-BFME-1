@@ -369,69 +369,37 @@ LocomotorTemplate::~LocomotorTemplate()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?validate@LocomotorTemplate@@QAEXXZ present-unmatched
+extern const Real BfmeZeroRange;
+
+struct BfmeLocomotorTemplateView
+{
+	unsigned char m_pad00[0x24];
+	Real m_field24;
+	void *m_field28;
+	void *m_field2C;
+	unsigned char m_pad30[0x14];
+	Real m_field44;
+	Real m_field48;
+	unsigned char m_pad4C[4];
+	Real m_field50;
+	unsigned char m_pad54[0x1C];
+	unsigned m_appearance;
+};
+
 void LocomotorTemplate::validate()
 {
-	// this is ok; parachutes need it!
-	//DEBUG_ASSERTCRASH(m_lift == 0.0f || m_lift > fabs(TheGlobalData->m_gravity), ("Lift is too low to counteract gravity!"));
-	//DEBUG_ASSERTCRASH(m_liftDamaged == 0.0f || m_liftDamaged > fabs(TheGlobalData->m_gravity), ("LiftDamaged is too low to counteract gravity!"));
-	//DEBUG_ASSERTCRASH(m_preferredHeight == 0.0f || (m_behaviorZ == Z_SURFACE_RELATIVE_HEIGHT || m_behaviorZ == Z_ABSOLUTE_HEIGHT || m_appearance == LOCO_THRUST), 
-	//	("You must use Z_SURFACE_RELATIVE_HEIGHT or Z_ABSOLUTE_HEIGHT (or THRUST) to use preferredHeight"));
-
-	// for 'damaged' stuff that was omitted, set 'em to be the same as 'undamaged'...
-	if (m_maxSpeedDamaged < 0.0f)
-		m_maxSpeedDamaged = m_maxSpeed;
-	
-	if (m_maxTurnRateDamaged < 0.0f)
-		m_maxTurnRateDamaged = m_maxTurnRate;
-
-	if (m_accelerationDamaged < 0.0f)
-		m_accelerationDamaged = m_acceleration;
-
-	if (m_liftDamaged < 0.0f)
-		m_liftDamaged = m_lift;
-
-	if (m_appearance == LOCO_WINGS)
+	BfmeLocomotorTemplateView *view =
+		reinterpret_cast<BfmeLocomotorTemplateView *>(this);
+	if (view->m_field2C == 0)
+		view->m_field2C = view->m_field28;
+	if (view->m_field48 < BfmeZeroRange)
+		view->m_field48 = view->m_field44;
+	if (view->m_appearance == 3)
 	{
-		if (m_minSpeed <= 0.0f)
-		{
-			DEBUG_CRASH(("WINGS should always have positive minSpeeds (otherwise, they hover)"));
-			m_minSpeed = 0.01f;
-		}
-		if (m_minTurnSpeed <= 0.0f)
-		{
-			DEBUG_CRASH(("WINGS should always have positive minTurnSpeed"));
-			m_minTurnSpeed = 0.01f;
-		}
-	}
-
-	if (m_appearance == LOCO_THRUST)
-	{
-		if (m_behaviorZ != Z_NO_Z_MOTIVE_FORCE ||
-				m_lift != 0.0f ||
-				m_liftDamaged != 0.0f)
-		{
-			DEBUG_CRASH(("THRUST locos may not use ZAxisBehavior or lift!\n"));
-			throw INI_INVALID_DATA;
-		}
-		if (m_maxSpeed <= 0.0f)
-		{
-			// if one of these was omitted, it defaults to zero... just quietly heal it here, rather than crashing
-			DEBUG_LOG(("THRUST locos may not have zero m_maxSpeed; healing...\n"));
-			m_maxSpeed = 0.01f;
-		}
-		if (m_maxSpeedDamaged <= 0.0f)
-		{
-			// if one of these was omitted, it defaults to zero... just quietly heal it here, rather than crashing
-			DEBUG_LOG(("THRUST locos may not have zero m_maxSpeedDamaged; healing...\n"));
-			m_maxSpeedDamaged = 0.01f;
-		}
-		if (m_minSpeed <= 0.0f)
-		{
-			// if one of these was omitted, it defaults to zero... just quietly heal it here, rather than crashing
-			DEBUG_LOG(("THRUST locos may not have zero m_minSpeed; healing...\n"));
-			m_minSpeed = 0.01f;
-		}
+		if (view->m_field24 <= BfmeZeroRange)
+			view->m_field24 = 0.01f;
+		if (view->m_field50 <= BfmeZeroRange)
+			view->m_field50 = 0.01f;
 	}
 }
 
