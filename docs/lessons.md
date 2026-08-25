@@ -779,3 +779,10 @@ indexes it as `mov ecx,[eax*4 + 0x012B66F8]` and never touches `this` — and th
 `winGetWindowFromId` is `GameWindowManager` vtable slot `+0xDC`. Both of those
 had to be right before the transposition was the only thing left standing, and
 both are worth as much as the landing would have been.
+
+- The `Snapshot::xfer` seeder family (`mov al,1` + a slot-ten call, 198 dumps)
+  yields to a *parser*, not to eyeballing: decode each dump into (member call |
+  sub-object hand-over | __cdecl helper | guard) and emit the TU from that IR.
+  139 bodies landed byte-exact first try this way, in four passes, each pass
+  adding one rule. The rule that paid most was treating a deferred `add esp,8`
+  as scheduling noise rather than structure.
