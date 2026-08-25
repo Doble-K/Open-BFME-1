@@ -104,6 +104,21 @@ public:
 	};                                                                        \
 	NAME::NAME( void * ) {}
 
+// mov dl,[esp+8] / mov eax,ecx / mov ecx,[esp+4] / mov [eax+8],ecx /
+// mov ecx,[esp+0xC] / <head> / mov [eax+0xC],dl / mov [eax+0x10],ecx / ret 0xC
+#define BFME_VPTR_ZERO_PTR_BYTE_PTR_CTOR( NAME )                              \
+	class NAME : public VptrZeroHead                                          \
+	{                                                                         \
+	public:                                                                   \
+		NAME( void *first, unsigned char second, void *third );               \
+                                                                              \
+		void          *m_first;                                               \
+		unsigned char  m_second;                                              \
+		void          *m_third;                                               \
+	};                                                                        \
+	NAME::NAME( void *first, unsigned char second, void *third )              \
+		: m_first( first ), m_second( second ), m_third( third ) {}
+
 BFME_VPTR_ZERO_PTR_BYTE_CTOR( Rva00160BB0VptrZeroObject )
 BFME_VPTR_ZERO_PTR_BYTE_CTOR( Rva00160CA0VptrZeroObject )
 BFME_VPTR_ZERO_PTR_BYTE_CTOR( Rva0016AA20VptrZeroObject )
@@ -119,7 +134,9 @@ BFME_VPTR_ZERO_PTR_PTR_SWAPPED_CTOR( Rva00264A70VptrZeroObject )
 BFME_VPTR_ZERO_BYTE_BYTE_CTOR( Rva00149F20VptrZeroObject )
 
 BFME_VPTR_ZERO_BYTE_CTOR( Rva002ED590VptrZeroObject )
+BFME_VPTR_ZERO_PTR_BYTE_PTR_CTOR( Rva002ED5C0VptrZeroObject )
 BFME_VPTR_ZERO_BYTE_CTOR( Rva002ED600VptrZeroObject )
 
 BFME_VPTR_ZERO_UNUSED_ARG_CTOR( Rva00385E50VptrZeroObject )
+
 
