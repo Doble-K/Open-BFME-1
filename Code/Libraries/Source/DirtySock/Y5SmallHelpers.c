@@ -4,3 +4,8 @@ int Rva008118D0(void)
 {
 	return -1;
 }
+
+int Rva008118F0(void)
+{
+	return -1;
+}
