@@ -78739,3 +78739,4 @@ _Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap
 ?rva00782e80@@YAXH@Z,0x0002B823,Open-BFME5 ILT cdecl of stdcall pop-ecx wrapper
 ?rva000b2cc0@@YGXPAXH@Z,0x00025306,Open-BFME5 ILT stdcall of push0+data wrapper
 ?use_facet@Rva005C0FD0@@QAEPAXPBX@Z,0x008321D0,Open-BFME5 thiscall of cdecl locale wrapper
+?use_facet@Rva005380A0@@QAEPAXPBX@Z,0x008321D0,Open-BFME5 thiscall of cdecl locale wrapper
