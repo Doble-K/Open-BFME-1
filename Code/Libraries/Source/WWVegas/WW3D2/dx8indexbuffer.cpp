@@ -542,7 +542,7 @@ DynamicIBAccessClass::WriteLockClass::~WriteLockClass()
 	switch (DynamicIBAccess->Get_Type()) {
 	case BUFFER_TYPE_DYNAMIC_DX8:
 		DX8_Assert();
-		DX8_ErrorCode(static_cast<DX8IndexBufferClass*>(DynamicIBAccess->IndexBuffer)->Get_DX8_Index_Buffer()->Unlock());
+		BFME_DX8_ErrorCode(static_cast<DX8IndexBufferClass*>(DynamicIBAccess->IndexBuffer)->Get_DX8_Index_Buffer()->Unlock());
 		break;
 	case BUFFER_TYPE_DYNAMIC_SORTING:
 		break;
@@ -551,6 +551,7 @@ DynamicIBAccessClass::WriteLockClass::~WriteLockClass()
 		break;
 	}
 	DynamicIBAccess->IndexBuffer->Release_Ref();
+	BFME_DX8_Thread_Assert();
 }
 
 // ----------------------------------------------------------------------------
