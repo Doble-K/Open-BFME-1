@@ -217,24 +217,6 @@ ProductionUpdate::ProductionUpdate( Thing *thing, const ModuleData* moduleData )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??1ProductionUpdate@@ present-unmatched
-ProductionUpdate::~ProductionUpdate( void )
-{
-
-	// destroy any queued productions
-	ProductionEntry *production;
-	while( m_productionQueue )
-	{
-
-		production = m_productionQueue;
-		removeFromProductionQueue( production );
-
-	}  // end while
-
-}  // end ~ProductionUpdate
-
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
 // ?canQueueUpgrade@ProductionUpdate@@ present-unmatched
 CanMakeType ProductionUpdate::canQueueUpgrade( const UpgradeTemplate *upgrade ) const
 {
