@@ -412,7 +412,6 @@ Int QuickMatchPreferences::getNumPlayers( void )
 	return atoi(it->second.str());
 }
 
-// ?setMaxPing@QuickMatchPreferences@@QAEXH@Z present-unmatched
 void QuickMatchPreferences::setMaxPing(Int val)
 {
 	AsciiString strVal;
