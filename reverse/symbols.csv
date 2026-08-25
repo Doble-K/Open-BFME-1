@@ -76733,3 +76733,20 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeHandOver_00012C65@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00012C65,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
 ?bfmeHandOver_00044FD0@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00044FD0,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
 ?bfmeAccept@Gen_0015E7E0@@AAEXPAVBfmeSeedTarget@@@Z,0x00022363,Open-BFME5 ILT the seeder at 0x0015E7E0 accepts through
+?bfmeAccept@BfmeSubAccept_00002DEC@@QAEXPAVBfmeSeedTarget@@@Z,0x00002DEC,Open-BFME5 ILT a version-block sub-object accepts through
+?bfmeHandOver_00004B79@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00004B79,Open-BFME5 ILT the __cdecl hand-over helper a version block calls
+?bfmeHandOver_00020879@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00020879,Open-BFME5 ILT the __cdecl hand-over helper a version block calls
+?bfmeAccept@Gen_0016BA30@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016BA30 accepts through
+?bfmeAccept@Gen_0016C120@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016C120 accepts through
+?bfmeAccept@Gen_0016C350@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016C350 accepts through
+?bfmeAccept@Gen_001F7FE0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x001F7FE0 accepts through
+?bfmeAccept@Gen_00201B00@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x00201B00 accepts through
+?bfmeAccept@Gen_0020D2B0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x0020D2B0 accepts through
+?bfmeAccept@Gen_00212FC0@@AAEXPAVBfmeSeedTarget@@@Z,0x00031557,Open-BFME5 ILT the version block at 0x00212FC0 accepts through
+?bfmeAccept@Gen_00217810@@AAEXPAVBfmeSeedTarget@@@Z,0x00036714,Open-BFME5 ILT the version block at 0x00217810 accepts through
+?bfmeAccept@Gen_00248BE0@@AAEXPAVBfmeSeedTarget@@@Z,0x0000EAA7,Open-BFME5 ILT the version block at 0x00248BE0 accepts through
+?bfmeAccept@Gen_00250A80@@AAEXPAVBfmeSeedTarget@@@Z,0x000099CB,Open-BFME5 ILT the version block at 0x00250A80 accepts through
+?bfmeAccept@Gen_00281CD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x00281CD0 accepts through
+?bfmeAccept@Gen_002B5250@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the version block at 0x002B5250 accepts through
+?bfmeAccept@Gen_002C1740@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the version block at 0x002C1740 accepts through
+?bfmeAccept@Gen_002D4710@@AAEXPAVBfmeSeedTarget@@@Z,0x000183FE,Open-BFME5 ILT the version block at 0x002D4710 accepts through
