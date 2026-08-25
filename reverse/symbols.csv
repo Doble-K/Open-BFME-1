@@ -76602,3 +76602,11 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeConstructD@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0002C098,Open-BFME5 ILT the hash insert at 0x006A0BB0 constructs through
 ?bfmeConstructE@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0001E696,Open-BFME5 ILT the hash insert at 0x006A0D50 constructs through
 ?bfmeConstructF@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00852240,Open-BFME5 the routine the hash insert at 0x00852760 constructs through
+?bfmeAccept@Gen_00295430@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00295430 accepts through
+?bfmeAccept@Gen_002AB430@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002AB430 accepts through
+?bfmeAccept@Gen_002D84E0@@AAEXPAVBfmeSeedTarget@@@Z,0x000183FE,Open-BFME5 ILT the seeder at 0x002D84E0 accepts through
+?bfmeAccept@Gen_00213EA0@@AAEXPAVBfmeSeedTarget@@@Z,0x0003BC7D,Open-BFME5 ILT the seeder at 0x00213EA0 accepts through
+?bfmeAccept@Gen_002B2CA0@@AAEXPAVBfmeSeedTarget@@@Z,0x00033B77,Open-BFME5 ILT the seeder at 0x002B2CA0 accepts through
+?bfmeAccept@Gen_0016C430@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016C430 accepts through
+?bfmeAccept@Gen_0016E140@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016E140 accepts through
+?bfmeAccept@Gen_002CF710@@AAEXPAVBfmeSeedTarget@@@Z,0x0001D043,Open-BFME5 ILT the seeder at 0x002CF710 accepts through
