@@ -75916,6 +75916,7 @@ name,address,notes
 ?run@WinInstanceDataInitShim@@QAEXXZ,0x00499850,WinInstanceData init incremental-link thunk target through a TU-local forwarding shim
 ?run@XferRandomVariableShim@@SAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0010C4D0,xferRandomVariable incremental-link thunk target through a TU-local forwarding shim
 ?rva00381050@ExperienceLevelSystem@@QAEXPAVTeam@@H@Z,0x00027237,ILT doTeamSpinForFramecount tail-jumps to at 0x002F11FE; its target 0x00381050 is in the same TU as the subsystem constructor at 0x00381480
+?rva0060a880@@YGXPAX@Z,0x00019010,Open-BFME5 ILT thunk FUN_00a0a880
 ?rva0082ADB0Fill@@YAXPAD0ABD@Z,0x0082ADB0,callee of rva0082BE60FillN; STLport fill at the ICF alias
 ?rva0082C6E0CopyValues@@YAPAURva0082C6E0Value@@PAU1@00@Z,0x00018179,0x0082C6E0 vector erase trivial-copy thunk;target=0x00065E30
 ?rva0082C760Acquire@@YAXPAVNodeAllocMutex@_STL@@@Z,0x0082C760,node_alloc real acquire called by _M_acquire_lock
@@ -78706,3 +78707,4 @@ _Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap
 ?handle@Rva002BC210@@QAE_NXZ,0x000042BE
 ?handle@Gen0002644F@@QAEXXZ,0x0002644F
 ?handle@Gen0089CC10@@QAEHXZ,0x0089CC10,int-return alias of the existing void pin; 0x00899D70 does inc eax after the call
+?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0EF@@@@Z,0x0004250A,Open-BFME5 MSVC71 BitFlags<69> ILT
