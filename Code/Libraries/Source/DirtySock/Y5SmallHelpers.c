@@ -28,6 +28,8 @@ int Rva0080E300(const int *crypto, int length)
 
 void Rva0080F300(void *state, unsigned char *data, int length);
 void Rva0080F200(void *state, const unsigned char *key, int length, int rounds);
+void Rva0080E500(void *object);
+void Rva007F0030(void *object);
 
 void Rva0080E410(void *crypto, unsigned char *data, int length)
 {
@@ -87,4 +89,10 @@ int Rva0080DC90(const unsigned char *first, const void *second,
 	memcpy(combined + 0x20, second, 0x10);
 	memcpy(combined + 0x30, first, 0x20);
 	return 0x50;
+}
+
+void Rva0080E4D0(void *object)
+{
+	Rva0080E500(object);
+	Rva007F0030(object);
 }
