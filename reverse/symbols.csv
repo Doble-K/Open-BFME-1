@@ -76752,3 +76752,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeAccept@Gen_002B5250@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the version block at 0x002B5250 accepts through
 ?bfmeAccept@Gen_002C1740@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the version block at 0x002C1740 accepts through
 ?bfmeAccept@Gen_002D4710@@AAEXPAVBfmeSeedTarget@@@Z,0x000183FE,Open-BFME5 ILT the version block at 0x002D4710 accepts through
+?bfmeAccept@Gen_0016B7C0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016B7C0 accepts through
+?bfmeAccept@Gen_0016B890@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016B890 accepts through
+?bfmeAccept@Gen_0024E710@@AAEXPAVBfmeSeedTarget@@@Z,0x00007658,Open-BFME5 ILT the version block at 0x0024E710 accepts through
+?bfmeAccept@Gen_002D9BD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the version block at 0x002D9BD0 accepts through
