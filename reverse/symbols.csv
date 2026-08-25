@@ -76912,3 +76912,4 @@ _io_fromto,0x009933C0,pristine Lua 4.0.1 io_fromto target reached by io_readfrom
 _d_0088d240,0x0088D240,pin
 ??_7Rva00886F60Class@@6B@,0x01132FFC,pin
 _wcscpy,0x01359520,pin
+??$__copy@PAUElem00147180@@PAU1@H@_STL@@YAPAUElem00147180@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x000311EC,Open-BFME5 ILT the range copy the vector erase at 0x00147180 calls
