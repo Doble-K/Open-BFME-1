@@ -418,7 +418,6 @@ void Line3DClass::Reset(const Vector3 & new_start, const Vector3 & new_end)
  *   01/19/1998 NH  : Created.                                            * 
  *   04/21/1998 NH  : Ported to SR 1.3.                                   * 
  *========================================================================*/
-// ?Line3DClass::Reset present-unmatched
 void Line3DClass::Reset(const Vector3 & new_start, const Vector3 & new_end, float new_width)
 {
 	// Adjust length and width of line:
@@ -427,7 +426,7 @@ void Line3DClass::Reset(const Vector3 & new_start, const Vector3 & new_end, floa
 		new_length = 0.001f;			// make sure we don't have a zero length BMG
 	}
    float width_scale = new_width / Width;
-	Scale((new_length / Length), width_scale, width_scale);
+	((RetailScaleDispatch *)this)->Scale((new_length / Length), width_scale, width_scale);
 	Length = new_length;
    Width = new_width;
 
