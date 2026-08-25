@@ -70,3 +70,12 @@ void Rva0080F3D0(unsigned char *state, const void *first, int firstLength,
 	memcpy(state + 0x404, first, firstLength);
 	memcpy(state + 0x48C, second, secondLength);
 }
+
+int Rva0080DF70(const unsigned char *source, void *first, void *second)
+{
+	if (first != 0)
+		memcpy(first, source, 0x20);
+	if (second != 0)
+		memcpy(second, source + 0x20, 0x34);
+	return 1;
+}
