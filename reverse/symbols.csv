@@ -76496,3 +76496,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?methodB@Member0C00739C70@@QAEPAVTextureBaseClass@@HH@Z,0x008FC660,pinharvest
 ??1Member0C00739C70@@QAE@XZ,0x008FC5B0,pinharvest
 ?clear@DetailedArchivedDirectoryInfo@@QAEXXZ,0x009D1040,retail clear body called by ArchiveFile constructor at 0x009D10B0; direct target and map/string cleanup semantics
+?bfmeBucketNumForKey@@YAIPBXI@Z,0x00012909,Open-BFME5 ILT the hashtable iterator skips at 0x00460DA0 and 0x00461480 ask for the bucket through
