@@ -23361,3 +23361,5 @@ Gen_hashraw_00135680,0x00135680,"gen-dump placeholder superseded by the real ide
 ?dup_0078d0e7@@YAXXZ,0x0078D0E7,"piece absorbed into the 62-byte body at 0x0078D0D0, whose own branch targets it."
 ?d_0078d0ef@@YAXXZ,0x0078D0EF,"piece absorbed into the 62-byte body at 0x0078D0D0, whose own branch targets it."
 ?dup_0078d106@@YAXXZ,0x0078D106,"piece absorbed into the 62-byte body at 0x0078D0D0, whose own branch targets it."
+?dup_00253d7c@@YAXXZ,0x00253D7C,"exit arm absorbed into the 62-byte body at 0x00253D50, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
+?a_00253d84@@YAXXZ,0x00253D84,"exit arm absorbed into the 62-byte body at 0x00253D50, whose own branch targets it. Its primary row keeps the aliased symbol claimed."
