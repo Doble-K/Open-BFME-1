@@ -76952,3 +76952,4 @@ __imp__strrchr,0x013594C8,pin
 ??0?$BannerStringBase@D@@AAE@PBD@Z,0x00888BC0,BannerUI one-dword retail string constructor alias used for by-value APT window arguments
 ?registerBannerAptCallbacks@@YAXXZ,0x0003DE6F,BannerUI init ILT to the helper that registers AptBannerUI OnBttnBanner and OnInitialized callbacks
 _Rva0080E500,0x0080E500,address-derived cleanup helper invoked immediately before release by 0x0080E4D0
+_Rva00812CD0,0x00812CD0,address-derived cleanup helper invoked for the owned field at offset 0x64 by 0x0080F0D0
