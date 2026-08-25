@@ -104,13 +104,6 @@ SpawnBehavior::SpawnBehavior( Thing *thing, const ModuleData* moduleData )
 	m_selfTaskingSpawnCount = 0;
 } 
 
-//-------------------------------------------------------------------------------------------------
-// ??1SpawnBehavior@@ present-unmatched
-SpawnBehavior::~SpawnBehavior( void )
-{
-	m_replacementTimes.clear();
-} 
-
 // ------------------------------------------------------------------------------------------------
 // ?onDelete@SpawnBehavior@@ present-unmatched
 void SpawnBehavior::onDelete()
