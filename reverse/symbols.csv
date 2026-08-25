@@ -76581,3 +76581,6 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeFinish@Gen_0015BCB0@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finders at 0x0015BCB0 0x00189D00 and 0x002BC050 tail-jump to
 ?bfmeFinish@Gen_00189D00@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x00189D00 tail-jumps to
 ?bfmeFinish@Gen_002BC050@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x002BC050 tail-jumps to
+?bfmeAccept@Gen_0020CDE0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seed at 0x0020CDE0 accepts through
+?bfmeAccept@Gen_00282EA0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seed at 0x00282EA0 accepts through
+?bfmeAccept@Gen_0028A260@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seed at 0x0028A260 accepts through
