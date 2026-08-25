@@ -12,7 +12,7 @@
 // The team hangs off +0x08 of each node. The member called on it is unnamed in
 // the image; the name it is pinned under says what this loop does with it.
 
-class Team
+class TeamPrototype
 {
 public:
 	void updateState( void );
@@ -22,7 +22,7 @@ struct PlayerTeamNode
 {
 	PlayerTeamNode *m_next;					// +0x00
 	unsigned char m_unmodelled_04[4];
-	Team *m_team;							// +0x08
+	TeamPrototype *m_team;							// +0x08
 };
 
 class Player
