@@ -76497,3 +76497,8 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1Member0C00739C70@@QAE@XZ,0x008FC5B0,pinharvest
 ?clear@DetailedArchivedDirectoryInfo@@QAEXXZ,0x009D1040,retail clear body called by ArchiveFile constructor at 0x009D10B0; direct target and map/string cleanup semantics
 ?bfmeBucketNumForKey@@YAIPBXI@Z,0x00012909,Open-BFME5 ILT the hashtable iterator skips at 0x00460DA0 and 0x00461480 ask for the bucket through
+??RBfmeTreeCompare@@QBE_NPBX0@Z,0x0000A9A2,Open-BFME5 ILT the red-black tree find at 0x00141220 compares through
+?bfmeBlendTileFits@@YG_NGHPADH@Z,0x000274A8,Open-BFME5 ILT the blendTileData at 0x0074A240 tests through
+?bfmeBlendTileTouch@@YAXXZ,0x0000A88F,Open-BFME5 ILT the blendTileData at 0x0074A240 calls with no arguments
+?bfmeBlendTileOffset@BFMERetailWorldHeightMapBlendTileDataShim@@AAEHHPAUTBlendTileInfo@@@Z,0x0003D965,Open-BFME5 ILT the blendTileData at 0x0074A240 asks for its offset through
+?bfmeBlendTileEmit@@YAXPAD0HH@Z,0x00747940,Open-BFME5 the 180-byte cdecl emitter the blendTileData at 0x0074A240 finishes with
