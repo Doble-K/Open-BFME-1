@@ -290,7 +290,7 @@ DEBUG_LOG(( "%d: GetGameAudioRandomValue = %d (%d - %d), %s line %d\n",
 //
 // Real valued random value
 //
-Real GetGameLogicRandomValueReal( Real lo, Real hi, char *file, int line )
+__declspec(noinline) Real GetGameLogicRandomValueReal( Real lo, Real hi, char *file, int line )
 {
 	Real delta = hi - lo;
 	Real rval;
@@ -382,7 +382,6 @@ void GameClientRandomVariable::setRange( Real low, Real high, DistributionType t
 /**
  * Return a value from the random distribution
  */
-// ?getValue@GameClientRandomVariable@@ present-unmatched
 Real GameClientRandomVariable::getValue( void ) const
 {
 	switch( m_type )
@@ -439,7 +438,8 @@ Real GameLogicRandomVariable::getValue( void ) const
 			} // else return as though a UNIFORM.
 
 		case UNIFORM:
-			return GameLogicRandomValueReal( m_low, m_high );
+			// Retail records the original source line with deterministic logic draws.
+			return GetGameLogicRandomValueReal( m_low, m_high, "F:\\bfme\\Code\\gameengine\\Source\\Common\\RandomValue.cpp", 437 );
 
 		default:
 			/// @todo fill in support for nonuniform GameLogicRandomVariables.
@@ -447,5 +447,3 @@ Real GameLogicRandomVariable::getValue( void ) const
 			return 0.0f;
 	}
 }
-
-
