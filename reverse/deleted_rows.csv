@@ -23405,3 +23405,5 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?_M_push_back_aux_v@?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@IAEXABVGameResultsResponse@@@Z,0x0004A0B1,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x006421D0.
 ?pop_front@?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@QAEXXZ,0x0002A3C4,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x00648760.
 ?_M_insert_overflow@?$vector@HV?$allocator@H@_STL@@@_STL@@IAEXPAHABHABU__true_type@2@I_N@Z,0x0001CBFC,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x0037F7D0.
+??0BattlePlanUpdateModuleData@@QAE@XZ,0x0003025B,claim retired: that address is the five-byte incremental-link thunk and not the constructor; the real body is at 0x00204ED0.
+?d_00204ed0@@YAXXZ,0x00204ED0,gen-dump placeholder superseded by the byte-verified real BattlePlanUpdateModuleData constructor identity.
