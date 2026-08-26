@@ -3942,6 +3942,9 @@ name,address,notes
 ??1BfmeDtorBaseI@@UAE@XZ,0x0002C71E,Open-BFME5 the out-of-line base destructor the chained destructor at 0x0077DD80 calls
 ??1BfmeDtorBaseL@@QAE@XZ,0x0001E30D,Open-BFME5 the twelve-byte non-polymorphic base destructor the plain chain destructor at 0x00093CC0 calls
 ??1BfmeDtorBaseN@@QAE@XZ,0x0004A430,Open-BFME5 the 0x58-byte non-polymorphic base destructor the plain chain destructor at 0x002DEB80 calls
+??1BfmeDtorBase_00077560@@QAE@XZ,0x009A1A40,Open-BFME5 the base destructor the unwound vector destructor at 0x00077560 chains to
+??1BfmeDtorBase_0049A4B0@@QAE@XZ,0x00026AB2,Open-BFME5 the base destructor the unwound vector destructor at 0x0049A4B0 chains to
+??1BfmeDtorBase_00619F60@@QAE@XZ,0x00887940,Open-BFME5 the base destructor the unwound vector destructor at 0x00619F60 chains to
 ??1BfmeDtorMemberA@@QAE@XZ,0x00836300,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
 ??1BfmeDtorMemberB@@QAE@XZ,0x0000B109,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
 ??1BfmeDtorMemberC@@QAE@XZ,0x00887940,Open-BFME5 the member destructor the two-member destructors at 0x001031B0 and siblings call
