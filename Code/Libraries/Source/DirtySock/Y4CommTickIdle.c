@@ -15,7 +15,11 @@ unsigned int Rva007FEA00( void );
 
 struct Rva00814700Comm
 {
-	char m_head[ 0x9C ];
+	char m_head[ 0x48 ];
+	void *m_socketAlias;             /* +0x48 */
+	char m_gap4C[ 0x30 ];
+	void *m_socket;                  /* +0x7C */
+	char m_gap80[ 0x1C ];
 	/* A SECOND RING, distinct from the one in Y4CommRingIdle.c: same shape --
 	 * an offset advanced by a record size and reduced modulo a buffer size --
 	 * but at +0x9C..+0xA8 rather than +0xB0..+0xBC.  Two rings in two
@@ -27,6 +31,12 @@ struct Rva00814700Comm
 	char m_gap2[ 0x13C ];
 	char m_lock[ 4 ];               /* +0x1E8 */
 };
+
+void Rva008142B0( struct Rva00814700Comm *comm, void *socket )
+{
+	comm->m_socket = socket;
+	comm->m_socketAlias = socket;
+}
 
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
