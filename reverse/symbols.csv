@@ -72124,6 +72124,11 @@ name,address,notes
 ?bfmeConstructD@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0002C098,Open-BFME5 ILT the hash insert at 0x006A0BB0 constructs through
 ?bfmeConstructE@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0001E696,Open-BFME5 ILT the hash insert at 0x006A0D50 constructs through
 ?bfmeConstructF@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00852240,Open-BFME5 the routine the hash insert at 0x00852760 constructs through
+?bfmeCopySlotA@@YAXPAUBfmeSlotA@@PAX@Z,0x00002A8B,Open-BFME5 the copy the bounded appends call
+?bfmeCopySlotB@@YAXPAUBfmeSlotB@@PAX@Z,0x0003BB51,Open-BFME5 the copy the bounded appends call
+?bfmeCopySlotC@@YAXPAUBfmeSlotC@@PAX@Z,0x00045877,Open-BFME5 the copy the bounded appends call
+?bfmeCopySlotD@@YAXPAUBfmeSlotD@@PAX@Z,0x00026BAC,Open-BFME5 the copy the bounded appends call
+?bfmeCopySlotE@@YAXPAUBfmeSlotE@@PAX@Z,0x0001870F,Open-BFME5 the copy the bounded appends call
 ?bfmeCreateInactiveTeam@TeamFactory@@AAEPAVTeam@@ABVAsciiString@@0@Z,0x0000D15C,retail REL32 at 0x000F7CAB targets the two-name createInactiveTeam ILT at 0x0000D15C
 ?bfmeDefer@Gen_002d60a0@@AAE_NPAVObject@@@Z,0x0000204F,Open-BFME5 ILT the guard at 0x002D60A0 tail-jumps through; it jumps to 0x002D9D00
 ?bfmeDispatchA@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x000075D6,Open-BFME5 ILT the range dispatcher at 0x002610F0 calls
@@ -72328,6 +72333,15 @@ name,address,notes
 ?bfmeGrab@BfmeSourceB@@QAEPAXPAPAX@Z,0x000314E9,Open-BFME5 ILT the vector assignment at 0x000B54C0 grabs through
 ?bfmeGrab@BfmeSourceC@@QAEPAXPAPAX@Z,0x0002EBC2,Open-BFME5 ILT the vector assignment at 0x002F8980 grabs through
 ?bfmeGrab@BfmeSourceD@@QAEPAXPAPAX@Z,0x00018697,Open-BFME5 ILT the vector assignment at 0x003A9560 grabs through
+?bfmeGrow@Gen_0064C330@@AAEXPAX@Z,0x0004B646,Open-BFME5 the grow routine the bounded append at 0x0064C330 calls
+?bfmeGrow@Gen_0064C380@@AAEXPAX@Z,0x00005EB1,Open-BFME5 the grow routine the bounded append at 0x0064C380 calls
+?bfmeGrow@Gen_0064CAA0@@AAEXPAX@Z,0x0004B646,Open-BFME5 the grow routine the bounded append at 0x0064CAA0 calls
+?bfmeGrow@Gen_0065DA70@@AAEXPAX@Z,0x0004ACAF,Open-BFME5 the grow routine the bounded append at 0x0065DA70 calls
+?bfmeGrow@Gen_0065DAC0@@AAEXPAX@Z,0x0001B018,Open-BFME5 the grow routine the bounded append at 0x0065DAC0 calls
+?bfmeGrow@Gen_0065DCC0@@AAEXPAX@Z,0x0004ACAF,Open-BFME5 the grow routine the bounded append at 0x0065DCC0 calls
+?bfmeGrow@Gen_0065DD10@@AAEXPAX@Z,0x0001B018,Open-BFME5 the grow routine the bounded append at 0x0065DD10 calls
+?bfmeGrow@Gen_006AB0B0@@AAEXPAX@Z,0x0000B61D,Open-BFME5 the grow routine the bounded append at 0x006AB0B0 calls
+?bfmeGrow@Gen_006AC5D0@@AAEXPAX@Z,0x0000B61D,Open-BFME5 the grow routine the bounded append at 0x006AC5D0 calls
 ?bfmeHandOver_00001A50@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00001A50,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
 ?bfmeHandOver_0000240A@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0000240A,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
 ?bfmeHandOver_00004B79@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00004B79,Open-BFME5 ILT the __cdecl hand-over helper a version block calls
@@ -73003,6 +73017,7 @@ name,address,notes
 ?countVotersExcluding@BFMEDisconnectManager@@QAEHHPAX@Z,0x0066BBC0,(slot;conMgr): same count skipping slot; used as the vote threshold in isPlayerVotedOut body 0x0066BC30 (numVotes >= this at 0x0066BC6F setge) where ZH uses getNumPlayers()-1; also updateDisconnectStatus 0x0066C45F/0x0066C4B9 and isLocalPlayerNextPacketRouter 0x0066C2EA; ILT 0x0002FA63
 ?countVotesForPlayer@DisconnectManager@@IAEHH@Z,0x00003751,ILT thunk; real body 0x66B720 (from isPlayerVotedOut)
 ?countVotesForPlayer@DisconnectManager@@IAEHHPAVConnectionManager@@@Z,0x00003751,ILT thunk; BFME takes the ConnectionManager as a second argument unlike ZH's one-arg form
+?create@BridgeAreaEffectsOCLShim@@QBEPAVObject@@PBV2@PBUCoord3D@@1_N@Z,0x00002A59,BridgeBehavior doAreaEffects retail call at 0x001F24E6 uses the Bool ObjectCreationList overload
 ?create@LocomotorStoreNewLocomotorShim@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,0x001B6920,LocomotorStore newLocomotor incremental-link thunk target through a TU-local forwarding shim
 ?create@RadarCreateEventShim@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,0x00108140,Radar createEvent incremental-link thunk target through a TU-local forwarding shim
 ?create@ScriptEngineCreateNamedMapRevealShim@@QAEXABVAsciiString@@0M0@Z,0x0034EF80,ScriptEngine createNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
@@ -73090,6 +73105,7 @@ name,address,notes
 ?doDisableInput@ScriptActions@@IAEXXZ,0x00039595,defeat action retail ILT
 ?doDisableInput@ScriptActions@@IAEXXZ,0x002EF010,name already pinned on its ILT 0x00039595 (same function across the thunk chain); body pin completes it. ZH doDisableInput line for line: TheInGameUI->setInputEnabled(FALSE) 0x0043B280; TheMouse 0x012F4C5C ->setVisibility(FALSE) 0x005A4BA0; deselectAllDrawables = TheMessageStream 0x012ED5EC appendMessage(0x3EB); TheInGameUI vcalls +0xE8 and +0x4AC=0; TheControlBar 0x012F33F8 deleteBuildTooltipLayout 0x004C1450; TheLookAtTranslator 0x012F4C84 resetModes 0x005B5440 tail; callers doVictory 0x002F1C3C doDefeat 0x002F1DAE 0x002F1520 and 0x0030738A
 ?doFXObj@FXList@@QBEXPBVObject@@0@Z,0x00022BBA,incremental-link thunk to the 163-byte FXList object-effect body called by UpgradeMuxData::performUpgradeFX
+?doFXPos@BridgeAreaEffectsFXShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0@Z,0x0001BB21,BridgeBehavior doAreaEffects retail call at 0x001F24BA uses BFME's four-argument FX position ABI
 ?doFXPos@FXList@@IBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x0003E360
 ?doFXPos@StructureCollapseFXShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0@Z,0x0001BB21,StructureCollapse doPhaseStuff BFME four-argument FX position call thunk
 ?doFreezeTime@ScriptEngine@@QAEXXZ,0x0001FDAC,ILT freeze
@@ -75826,6 +75842,7 @@ name,address,notes
 ?perform@Gen0088C550@@QAEXXZ,0x0088C550,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
 ?perform@Gen00903090@@QAEXXZ,0x00903090,address-derived callee of the 12-byte this-returning forwarder family; target read from the REL32 at its call sites
 ?performUpgradeFX@UpgradeMuxData@@QBEXPAVObject@@@Z,0x0002EB4F,pinharvest x1 (thunk)
+?pick@BridgeAreaEffectsRandomPositionShim@@QAEXPAVTerrainRoadType@@PBVBridgeInfo@@PAUCoord3D@@@Z,0x000406FB,BridgeBehavior doAreaEffects retail call at 0x001F249D forwards through the incremental thunk to getRandomSurfacePosition
 ?playMessageReceivedSound@BFMEConnectionManager@@SAXXZ,0x00662CE0,static helper: TheAudio(0x012ED668 pinned)->slot+0x124() then slot+0x44 (= addAudioEvent; vtable 0x0111C0C0+0x44 -> 0x006B9A40) on the MiscAudio event at +0xC40; replaces ZH's GUIMessageReceived in disconnectPlayer (0x006663C9) and GUICommunicatorIncoming in processChat (0x00667211)
 ?playerChangedNickCallback@@YAXPAXW4RoomType@@PBD20@Z,0x0064B240,PeerCallbacks struct slot +0x34 (playerChangedNick) filled at 0x0064FC7A; PeerResponse type 0xc with the two nick strings (arg4 newNick then arg3 oldNick via std::string assign ILT 0x0002B297) roomType and getPlayerInfo 0x0064AA70; addResponse +0x20 on 0x012F71C8
 ?playerFromParam@ScriptConditions@@IAEPAVPlayer@@PAVParameter@@@Z,0x00025347,Open-BFME5 ILT; called by ?evaluateSkirmishSupplySourceAttacked@ScriptConditions@@IAE_NPAVParameter@@@Z at 0x000F9700
@@ -76454,6 +76471,7 @@ name,address,notes
 ?setWins@SkirmishBattleHonors@@QAEXVAsciiString@@H@Z,0x0009C5B0,BFME per-side variant of ZH SkirmishBattleHonors::setWins: concat("Wins" at VA 0x010804B4) onto the by-value AsciiString side prefix (the callers pass Gondor/Rohan/Isengard/Mordor) then setInt ILT 0x00009B3D (pinned) -> 0x000A96F0; ret 8
 ?setWorstLossStreak@SkirmishBattleHonors@@QAEXVAsciiString@@H@Z,0x0009CD30,BFME per-side variant of ZH SkirmishBattleHonors::setWorstLossStreak: concat("WorstLossStreak" at VA 0x01080514) onto the by-value AsciiString side prefix (the callers pass Gondor/Rohan/Isengard/Mordor) then setInt ILT 0x00009B3D (pinned) -> 0x000A96F0; ret 8
 ?setWrappedCommandID@NetWrapperCommandMsg@@QAEXG@Z,0x00037083,ILT thunk; real body 0xA73F70
+?shouldSkip@BridgeAreaEffectsFXShim@@QBE_NXZ,0x00011F77,BridgeBehavior doAreaEffects retail call at 0x001F24A4 invokes the BFME FX rate gate
 ?showAptWindow@WindowManager@@QAE_NH@Z,0x00012733,BannerUI::hide(FALSE) tail call; WindowManager entry 0x00465C50 marks the indexed APT window visible
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,0x00017503,pinharvest x1 (thunk)
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,0x0001DF43,pinharvest x1 (thunk)
@@ -77420,7 +77438,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-?pick@BridgeAreaEffectsRandomPositionShim@@QAEXPAVTerrainRoadType@@PBVBridgeInfo@@PAUCoord3D@@@Z,0x000406FB,BridgeBehavior doAreaEffects retail call at 0x001F249D forwards through the incremental thunk to getRandomSurfacePosition
-?shouldSkip@BridgeAreaEffectsFXShim@@QBE_NXZ,0x00011F77,BridgeBehavior doAreaEffects retail call at 0x001F24A4 invokes the BFME FX rate gate
-?doFXPos@BridgeAreaEffectsFXShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0@Z,0x0001BB21,BridgeBehavior doAreaEffects retail call at 0x001F24BA uses BFME's four-argument FX position ABI
-?create@BridgeAreaEffectsOCLShim@@QBEPAVObject@@PBV2@PBUCoord3D@@1_N@Z,0x00002A59,BridgeBehavior doAreaEffects retail call at 0x001F24E6 uses the Bool ObjectCreationList overload
