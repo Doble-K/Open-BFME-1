@@ -955,7 +955,13 @@ class W3DRadarResetTexture
 {
 public:
 	W3DRadarResetSurface getSurfaceLevel();
+	W3DRadarResetSurface getSurfaceLevel( UnsignedInt level );
 };
+
+W3DRadarResetSurface W3DRadarResetTexture::getSurfaceLevel()
+{
+	return getSurfaceLevel( 0 );
+}
 
 class W3DRadarResetVirtuals
 {
