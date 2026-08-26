@@ -889,17 +889,13 @@ void Drawable::setTerrainDecalSize(Real x, Real y)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?setTerrainDecalFadeTarget@Drawable@@QAEXMM@Z present-unmatched
 void Drawable::setTerrainDecalFadeTarget(Real target, Real rate)
 {
-	if (m_decalOpacityFadeTarget != target)
-	{
-		m_decalOpacityFadeTarget = target;
-		m_decalOpacityFadeRate = rate;
-	}
-	//else
-	//	m_decalOpacityFadeRate = 0;
-
+	// BFME's Drawable tail differs from the shared ZH layout and timestamps each fade.
+	*reinterpret_cast<Real *>( reinterpret_cast<unsigned char *>( this ) + 0xD8 ) = target;
+	*reinterpret_cast<Real *>( reinterpret_cast<unsigned char *>( this ) + 0xDC ) = rate;
+	*reinterpret_cast<UnsignedInt *>( reinterpret_cast<unsigned char *>( this ) + 0x30C ) =
+		TheGameClient->getFrame();
 }
 
 //-------------------------------------------------------------------------------------------------
