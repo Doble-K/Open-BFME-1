@@ -131,10 +131,24 @@ extern Display *TheDisplay;
 class GameEngine
 {
 public:
+	virtual void unused00();
+	virtual void unused04();
+	virtual void unused08();
+	virtual void unused0C();
+	virtual void unused10();
+	virtual void unused14();
+	virtual void unused18();
+	virtual void unused1C();
+	virtual void unused20();
+	virtual void unused24();
+	virtual void unused28();
+	virtual void unused2C();
+	virtual Int getFramesPerSecondLimit();
+
 	Real getInstantFPS() const { return m_instantFPS; }
 
 private:
-	unsigned char m_unmodelled00[ 0x54 ];
+	unsigned char m_unmodelled04[ 0x54 - 4 ];
 	Real m_instantFPS;
 };
 
@@ -144,6 +158,7 @@ class StatsCollector
 {
 public:
 	StatsCollector();
+	void writeFileEnd();
 
 private:
 	void writeInitialFileInfo();
@@ -294,5 +309,25 @@ void StatsCollector::writeStatInfo()
 	}
 
 	fprintf( f, "\n" );
+	fclose( f );
+}
+
+void StatsCollector::writeFileEnd()
+{
+	FILE *f = fopen( m_statsFileName.str(), "a" );
+	if( !f )
+		return;
+
+	m_timeCount += (TheGameLogic->getFrame() - m_lastUpdate) / 5;
+	writeStatInfo();
+	fprintf( f, "---------------------------------------------------\n" );
+
+	time_t aclock;
+	time( &aclock );
+	struct tm *newTime = localtime( &aclock );
+	fprintf( f, "End Time:\t%s\n", asctime( newTime ) );
+	fprintf( f, "* Times are in Game Seconds which are based on logic FPS: current logic FPS is %d, max update FPS (game speed) is %d\n",
+		5, TheGameEngine->getFramesPerSecondLimit() );
+
 	fclose( f );
 }
