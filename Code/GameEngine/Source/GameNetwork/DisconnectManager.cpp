@@ -384,14 +384,22 @@ void DisconnectManager::processDisconnectKeepAlive(NetCommandMsg *msg, Connectio
 	}
 }
 
-// processDisconnectPlayer lives in native_connection_timing.cpp as naked asm.
-// The reference body is only its first half -- getDisconnectSlot then
-// disconnectPlayer. BFME appends blame assignment: when m_pingsSent at +0x260 is
-// positive it divides m_pingsRecieved at +0x264 by it in x87 and, if the ratio
-// falls below the constant at 0x01075C70, sets a flag at TheGameLogic+0x290.
-// That block is x87 throughout, which docs/matching.md lists as a shaping dead
-// end, so it stays as bytes.
+void DisconnectManager::processDisconnectPlayer(NetCommandMsg *msg, ConnectionManager *conMgr) {
+	NetDisconnectPlayerCommandMsg *cmdMsg = (NetDisconnectPlayerCommandMsg *)msg;
+	sendPlayerDestruct(cmdMsg->getDisconnectSlot(), conMgr);
 
+	if ((m_pingsSent > 0)
+		&& (((Real)m_pingsRecieved / (Real)m_pingsSent) < 0.1f)) {
+		*(Int *)((char *)TheGameLogic + 0x290) = 1;
+		return;
+	}
+
+	if ((m_pingsSent > 0)
+		&& (((Real)m_pingsRecieved / (Real)m_pingsSent) < 0.25f)
+		&& (*(Int *)((char *)TheGameLogic + 0x290) != 1)) {
+		*(Int *)((char *)TheGameLogic + 0x290) = 0;
+	}
+}
 
 // ?processPacketRouterQuery@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::processPacketRouterQuery(NetCommandMsg *msg, ConnectionManager *conMgr) {
