@@ -1,185 +1,110 @@
 // cl: /DNDEBUG /MD /EHsc
+// ModuleFactory's 0x24-byte allocation proves that BFME omits Zero Hour's
+// initial-delay field while retaining the weapon setup in its constructor.
 
 class Thing;
 class ModuleData;
+class WeaponTemplate;
 
-class FireWeaponUpdate
+class Object
+{
+public:
+    unsigned int getID() const { return m_id; }
+
+private:
+    unsigned char m_pad00[0x74];
+    unsigned int m_id;
+};
+
+class FWU_ModuleData
+{
+private:
+    unsigned char m_pad00[8];
+
+public:
+    const WeaponTemplate *m_weaponTemplate;
+};
+
+class FWU_DeepBase
+{
+public:
+    FWU_DeepBase(Thing *, const ModuleData *);
+    virtual ~FWU_DeepBase();
+
+protected:
+    const FWU_ModuleData *m_moduleData;
+    Object *m_object;
+};
+
+class FWU_Iface1 { public: virtual void slot(); };
+class FWU_Iface2 { public: virtual void slot(); };
+
+class UpdateModule : public FWU_DeepBase, public FWU_Iface1, public FWU_Iface2
+{
+public:
+    UpdateModule(Thing *thing, const ModuleData *moduleData)
+        : FWU_DeepBase(thing, moduleData),
+          m_indexInLogic(-1), m_updateState(-1),
+          m_nextCallFrameAndPhase(0)
+    {
+    }
+
+protected:
+    const FWU_ModuleData *getModuleData() const { return m_moduleData; }
+    Object *getObject() const { return m_object; }
+
+private:
+    unsigned int m_nextCallFrameAndPhase;
+    int m_indexInLogic;
+    int m_updateState;
+};
+
+class Weapon
+{
+public:
+    virtual ~Weapon();
+    void setSourceID(unsigned int sourceID) { m_sourceID = sourceID; }
+    void loadAmmoNow(const Object *);
+
+private:
+    void *m_template;
+    unsigned int m_sourceID;
+};
+
+enum WeaponSlotType
+{
+    PRIMARY_WEAPON
+};
+
+class WeaponStore
+{
+public:
+    Weapon *allocateNewWeapon(
+        const WeaponTemplate *, WeaponSlotType) const;
+};
+
+extern WeaponStore *TheWeaponStore;
+
+class FireWeaponUpdate : public UpdateModule
 {
 public:
     FireWeaponUpdate(Thing *, const ModuleData *);
+
+private:
+    Weapon *m_weapon;
 };
 
 // ??0FireWeaponUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) FireWeaponUpdate::FireWeaponUpdate(Thing *, const ModuleData *)
+FireWeaponUpdate::FireWeaponUpdate(
+    Thing *thing, const ModuleData *moduleData)
+    : UpdateModule(thing, moduleData), m_weapon(0)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xd8;
-        __emit 0x1a;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0xc6;
-        __emit 0x43;
-        __emit 0xd8;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc8;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x1c;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x04;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x34;
-        __emit 0xed;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x70;
-        __emit 0xec;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x64;
-        __emit 0xec;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0x42;
-        __emit 0x08;
-        __emit 0x3b;
-        __emit 0xc1;
-        __emit 0x89;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x74;
-        __emit 0x25;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x0d;
-        __emit 0x38;
-        __emit 0xf7;
-        __emit 0x2e;
-        __emit 0x01;
-        __emit 0x50;
-        __emit 0xe8;
-        __emit 0x53;
-        __emit 0xf5;
-        __emit 0xd7;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0x51;
-        __emit 0x74;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x20;
-        __emit 0x50;
-        __emit 0xe8;
-        __emit 0x50;
-        __emit 0xd1;
-        __emit 0xd7;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
+    const WeaponTemplate *weaponTemplate = getModuleData()->m_weaponTemplate;
+    if (weaponTemplate != 0)
+    {
+        m_weapon = TheWeaponStore->allocateNewWeapon(
+            weaponTemplate, PRIMARY_WEAPON);
+        m_weapon->setSourceID(getObject()->getID());
+        m_weapon->loadAmmoNow(getObject());
     }
 }
