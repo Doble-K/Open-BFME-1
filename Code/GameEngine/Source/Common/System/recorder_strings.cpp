@@ -196,6 +196,9 @@ private:
 };
 
 class RecorderClass {
+public:
+    void stopPlayback();
+
 protected:
     AsciiString readAsciiString();
     UnicodeString readUnicodeString();
@@ -216,6 +219,18 @@ private:
     char m_padding2a9[0x2b0 - 0x2a9];
     int m_nextFrame;
 };
+
+void RecorderClass::stopPlayback()
+{
+    if (m_file != 0) {
+        fclose(m_file);
+        m_file = 0;
+    }
+    m_fileName.clear();
+    if (!m_doingAnalysis) {
+        TheMessageStream->appendMessage(GameMessage::MSG_CLEAR_GAME_DATA);
+    }
+}
 
 AsciiString RecorderClass::readAsciiString()
 {
