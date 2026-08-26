@@ -10145,6 +10145,7 @@ name,address,notes
 ?Resize@?$VectorClass@U_ENUM_VALUE@EnumParameterClass@@@@UAE_NHPBU_ENUM_VALUE@EnumParameterClass@@@Z,0x0093E4D0,pinharvest (call-site decode from ?Resize@?$DynamicVectorClass@U_ENUM_VALUE@EnumParameterClass@@@@ at 0x93E700; body not source-owned)
 ?ResolveIP@@YAIVAsciiString@@@Z,0x0003DC08,ILT thunk to 0x00682EF0; the address LANAPI::SetLocalIP(AsciiString) at 0x00686C10 encodes
 ?RetailScriptVTable@@3PAPAXA,0x010E858C,Open-BFME5 retail Script vtable value
+?ReturnToGame@AptPlayerStatus@@QAEXPBD@Z,0x0003244D,Objectives/PlayerStatus constructor 0x0052C660 binds this ILT under both ReturnToGame registration strings
 ?Rva00066A40Construct@@YAXPAXPBX@Z,0x00066A40,plain two-pointer spelling of the STLport _Construct<pair<const NameKeyType DamageFX>> the ledger already names at this address (U3_node_allocators.cpp)
 ?Rva00519C90Second@@YAXHH@Z,0x0001D561,ILT for cdecl (0 0) call of 20B wrap at 0x00519C90
 ?Rva0051D990Second@@YAXHHH@Z,0x000079B4,ILT for cdecl (2 3 0) call of 22B wrap at 0x0051D990
