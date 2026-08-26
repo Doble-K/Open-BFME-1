@@ -699,6 +699,7 @@ name,address,notes
 ??$__copy@PAV?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@PAV12@H@_STL@@YAPAV?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@0@PAV10@00ABUrandom_access_iterator_tag@0@PAH@Z,0x000112FC,resweep callee back-solved
 ??$__copy@PAVArmorTemplateSet@@PAV1@H@_STL@@YAPAVArmorTemplateSet@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00007A04,ThingTemplate armor vector clear via ILT thunk
 ??$__copy@PAVAsciiString@@PAV1@H@_STL@@YAPAVAsciiString@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00042EA6
+??$__copy@PAVLivingWorldPlayerArmy@@PAV1@H@_STL@@YAPAVLivingWorldPlayerArmy@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00002DD3,REL32 vector range-copy target from 0x003668FB
 ??$__copy@PAVProductionPrerequisite@@PAV1@H@_STL@@YAPAVProductionPrerequisite@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x000181A1,resweep callee back-solved
 ??$__copy@PAVW3DAnimationInfo@@PAV1@H@_STL@@YAPAVW3DAnimationInfo@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00024023,ILT thunk used by call site
 ??$__copy@PBUGen_t_000b0c00_p8cd@@PAU1@H@_STL@@YAPAUGen_t_000b0c00_p8cd@@PBU1@0PAU1@ABUrandom_access_iterator_tag@0@PAH@Z,0x000B0290,gen-tgrid payload member
