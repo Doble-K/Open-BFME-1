@@ -2092,8 +2092,11 @@ name,address,notes
 ??0BfmeMemberB_009CF070@@QAE@ABV0@@Z,0x009CEBF0,Open-BFME5 the second-member copy ctor the two-member ctor at 0x009CF070 calls
 ??0BfmeNamedSlot@@QAE@ABVAsciiString@@H@Z,0x00025306,Open-BFME5 ILT thunk; ??0BloodthirstyUpdateModuleData@@QAE@XZ at 0x00286EC0 constructs its two 0x70-byte members at +0x10 and +0x80 through it with the global AsciiString and a zero; address-derived name
 ??0BfmeOnlineProfileScreen@@QAE@PAX@Z,0x00035283,ILT thunk to the online profile screen constructor at 0x00557C00
+??0BfmeQMiddle@@QAE@PAX0@Z,0x0000C315,Open-BFME5 the base the multi-vftable constructor at 0x002D7770 forwards to
 ??0BfmeQuickMatchScreenBase@@QAE@PAX@Z,0x00025D7E,ILT thunk to the base screen constructor at 0x00470620
+??0BfmeRMiddle@@QAE@PAX0@Z,0x00041CBD,Open-BFME5 the base the multi-vftable constructors at 0x005F2D20 and 0x005F6530 forward to
 ??0BfmeRecorderStore@@QAE@XZ,0x00016D47,Open-BFME5 ILT thunk to body 0x00098EA0; ??0RecorderClass@@QAE@XZ at 0x000993E0 constructs the member at +0x20 through it; address-derived name
+??0BfmeSMiddle@@QAE@PAX0@Z,0x00025306,Open-BFME5 the base the multi-vftable constructor at 0x006949B0 forwards to
 ??0BfmeSortElem20Tail@@QAE@ABV0@@Z,0x000266BB,Open-BFME5 ILT the copy constructor of the twelve-byte member at S4SortElem20+8
 ??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00015C44,Open-BFME5 the incremental-link thunk those constructors encode
 ??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00268120,Open-BFME5 base constructor every SpecialPower module data forwards to; runs to +0x210. Byte-identical to and folded with RiderChangeContainModuleData so the address cannot name the class
