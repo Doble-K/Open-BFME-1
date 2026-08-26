@@ -114,8 +114,14 @@ public:
 class GameInfo
 {
 public:
+	virtual Int bfmeVtableSlot0();
+	virtual Int bfmeVtableSlot1();
+	virtual void reset();
+	virtual void startGame(Int gameID);
+	virtual Bool amIHost() const;
 	virtual Int getLocalSlotNum() const;
 	const GameSlot *getConstSlot(Int index) const;
+	virtual void resetAccepted();
 
 protected:
 	unsigned char m_body[8];
@@ -139,7 +145,9 @@ class GameSpyStagingRoom : public GameInfo
 {
 public:
 	void setPingString(AsciiString pingString);
+	virtual Bool amIHost() const;
 	virtual Int getLocalSlotNum() const;
+	virtual void resetAccepted();
 
 private:
 	// The constructor fixes the ping fields at +0x448 and +0x44C.
@@ -174,4 +182,10 @@ Int GameSpyStagingRoom::getLocalSlotNum() const
 	}
 
 	return -1;
+}
+
+void GameSpyStagingRoom::resetAccepted()
+{
+	GameInfo::resetAccepted();
+	amIHost();
 }
