@@ -76259,6 +76259,7 @@ name,address,notes
 ?rva000b2cc0@@YGXPAXH@Z,0x00025306,Open-BFME5 ILT stdcall of push0+data wrapper
 ?rva00362360UnguardedLinearInsert@@YAXPAURva00364980HeapElement@@U1@URva00364980HeapCompare@@@Z,0x000146FA,REL32 unguarded-linear-insert target from 0x00363BAA
 ?rva00362400PushHeap@@YAXPAURva00364980HeapElement@@HHU1@URva00364980HeapCompare@@@Z,0x0002DE8E,REL32 push-heap target from 0x00363D53
+?rva003624E0CopyBackward@@YAPAURva00364980HeapElement@@PAU1@00ABURva003653E0RandomAccessIteratorTag@@PAH@Z,0x000466FF,REL32 wide-element copy-backward target from 0x00365428
 ?rva00363B80UnguardedInsertionSortAuxCall@@YAXPAURva00364980HeapElement@@00URva00364980HeapCompare@@@Z,0x00034BD5,REL32 unguarded-insertion-sort target from 0x0036679F
 ?rva00363C80AdjustHeap@@YAXPAURva00364980HeapElement@@HHU1@URva00364980HeapCompare@@@Z,0x000497BA,REL32 adjust-heap target from 0x0036493D
 ?rva003647E0PopHeap@@YAXPAURva00364980HeapElement@@00U1@URva00364980HeapCompare@@PAH@Z,0x0001479F,REL32 pop-heap helper target from 0x003649B1
