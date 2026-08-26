@@ -219,6 +219,22 @@ int Rva0080FED0( unsigned short *result, int limbs, const unsigned char *bytes,
 	return iNeeded;
 }
 
+void Rva0080FFB0( const unsigned short *limbs, int limbCount,
+	unsigned char *bytes, int byteCount )
+{
+	byteCount /= 2;
+	limbs += limbCount - byteCount;
+
+	for ( ; byteCount > 0; byteCount-- )
+	{
+		*bytes = (unsigned char)( *limbs >> 8 );
+		bytes++;
+		*bytes = *(const unsigned char *)limbs;
+		bytes++;
+		limbs++;
+	}
+}
+
 unsigned int Rva007FEA00( void );
 
 /* The padded block: a fixed 0x400-byte buffer with its used length beside it. */
