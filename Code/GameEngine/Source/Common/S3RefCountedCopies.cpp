@@ -23,6 +23,7 @@ int bfmeMake_00529B60(int a, int b);				// ILT 0x000364C6
 int bfmeMake_0054F920(int a, int b);				// ILT 0x0000B500
 int bfmeMake_0054FA00(int a, int b);				// ILT 0x00029771
 int bfmeMake_0056E900(int a, int b);				// ILT 0x0003C65A
+unsigned int bfmeHashCombineA(unsigned int left, unsigned int right);	// ILT 0x00042FA0
 
 struct BfmeSharedBlock
 {
@@ -61,8 +62,11 @@ class Gen_00529B60
 {
 public:
 	Gen_00529B60(const BfmeShortSource *source);
+	Gen_00529B60 bfmeAdvance(int);
 
 private:
+	Gen_00529B60(int value) { m_bfmeResult = value; }
+
 	char m_bfmeHead[4];
 	int m_bfmeResult;					// +0x04
 };
@@ -128,6 +132,14 @@ Gen_00749E10::Gen_00749E10(const Gen_00749E10 &other)
 Gen_00529B60::Gen_00529B60(const BfmeShortSource *source)
 {
 	m_bfmeResult = bfmeMake_00529B60(source->m_bfmeValue, source->m_bfmeValue);
+}
+
+// ?bfmeAdvance@Gen_00529B60@@QAE?AV1@H@Z
+Gen_00529B60 Gen_00529B60::bfmeAdvance(int)
+{
+	int previous = m_bfmeResult;
+	m_bfmeResult = bfmeHashCombineA(m_bfmeResult, 0xE4CD9C42);
+	return Gen_00529B60(previous);
 }
 
 // ??0Gen_0054F920@@QAE@PBUBfmeShortSource@@@Z
