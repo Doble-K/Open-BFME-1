@@ -77074,3 +77074,4 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ??0DelayedDeathBodyModuleDataBase@@QAE@XZ,0x0003C556,base of DelayedDeathBodyModuleData; same ILT as the ICF-folded BaikonurLaunchPower body
 ??0DelayedDeathBodyModuleDataBase@@QAE@XZ,0x002149D0,base constructor DelayedDeathBodyModuleData forwards to
 ??0FreeLifeBodyModuleDataBase@@QAE@XZ,0x0003C556,base of FreeLifeBodyModuleData; same ILT as the ICF-folded MissileAIUpdate body
+?xferTerrainState@TerrainLogic@@IAEXPAVXfer@@@Z,0x00043ED7,TerrainLogic::xfer tail call ILT reaching the body at 0x001AD370
