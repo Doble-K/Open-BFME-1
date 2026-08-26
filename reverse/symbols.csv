@@ -77355,3 +77355,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeNext@Gen_000B56C0@@AAEXXZ,0x0001AD2A,Open-BFME5 the member the flag-then-forward wrapper at 0x000B56C0 tail-jumps to
 ?bfmeNext@Gen_000B56D0@@AAEXXZ,0x0003990A,Open-BFME5 the member the flag-then-forward wrapper at 0x000B56D0 tail-jumps to
 ?unLink@DisplayStringManager@@IAEXPAVDisplayString@@@Z,0x000288E4,W3DDisplayStringManager freeDisplayString target read from retail REL32
+?AptLivingWorldWindowIndex@@YAHHH@Z,0x000019F6,BFME APT Living World visibility helpers call the established two-int wrapper through this retail ILT
