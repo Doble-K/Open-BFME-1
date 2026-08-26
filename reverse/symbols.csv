@@ -73045,6 +73045,7 @@ name,address,notes
 ?createRadiusDecal@RadiusDecalTemplate@@QBEXABUCoord3D@@MPBVPlayer@@AAVRadiusDecal@@@Z,0x00037826,RadiusDecalUpdate::createRadiusDecal retail callee
 ?createVictoryConditions@@YAPAVVictoryConditionsInterface@@XZ,0x0035F810,ZH createVictoryConditions: new(0xC4) then ??0VictoryConditions 0x0035F430 via ILT 0x0004ADC2 at 0x0035F844; called by GameEngine::init 0x0007A0A6 whose result feeds initSubsystem<VictoryConditionsInterface> with &TheVictoryConditions 0x012F079C pushed at 0x0007A0BC
 ?create_node@AnimateWindowListCreateNodeShim@_STL@@QAEPAU?$_List_node@PAVAnimateWindow@@@2@ABQAVAnimateWindow@@@Z,0x0045DAE0,incremental-link thunk target through a TU-local forwarding shim
+?currentCommandPoints@LivingWorldPlayerArmy@@QBEHXZ,0x00033AC8,LivingWorldPlayerArmy loadPostProcess retail call at 0x00365833 uses the ILT thunk to the 0x003619C0 command-point calculation body
 ?d_00881770@@YAXHHHUSomeStruct@@@Z,0x00881770,pin
 ?d_008859d0@Rva00886A20Class@@QAEXPBDPAD@Z,0x008859D0,pin
 ?deallocate@?$__node_alloc@$00$0A@@_STL@@SAXPAXI@Z,0x0001D35E,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 frees the old block through
@@ -73419,6 +73420,7 @@ name,address,notes
 ?findAnimObject@BfmeLivingWorldManagerIcons@@QAEPAVBfmeLivingWorldAnimObject@@ABVAsciiString@@@Z,0x00614620,Open-BFME5 REL32 target of parseLivingWorldAnimObject; the LivingWorldAnimObject lookup on TheLivingWorldManager
 ?findAnimObject@BfmeLivingWorldManagerIcons@@QAEPAVLivingWorldAnimObject@@ABVAsciiString@@@Z,0x00614620,Snapshot-name literal corrects the returned animation-object identity
 ?findArmorTemplate@ArmorStore@@QBEPBVArmorTemplate@@VAsciiString@@@Z,0x00022FC5,parseArmorTemplate call target (incremental-link thunk); resolves repointed INI parser thunk-dump
+?findArmy@BfmeLivingWorldCampaignManager@@QAEPAVLivingWorldArmy@@ABVAsciiString@@@Z,0x00010302,LivingWorldPlayerArmy loadPostProcess retail call at 0x00365855 uses the ILT thunk to the 0x003B43D0 army lookup body
 ?findArmyIcon@BfmeLivingWorldManagerIcons@@QAEPAVBfmeArmyIcon@@ABVAsciiString@@@Z,0x00002C89,derived from the REL32 displacement at 0x0060B820
 ?findBestInfoSlow@?$SparseMatchFinder@VArmorTemplateSet@@V?$BitFlags@$0L@@@@@ABEPBVArmorTemplateSet@@ABV?$vector@VArmorTemplateSet@@V?$allocator@VArmorTemplateSet@@@_STL@@@_STL@@ABV?$BitFlags@$0L@@@@Z,0x00013ACA,pinharvest x1 (thunk)
 ?findBestInfoSlow@?$SparseMatchFinder@VWeaponTemplateSet@@V?$BitFlags@$0BB@@@@@ABEPBVWeaponTemplateSet@@ABV?$vector@VWeaponTemplateSet@@V?$allocator@VWeaponTemplateSet@@@_STL@@@_STL@@ABV?$BitFlags@$0BB@@@@Z,0x00013ACA,resweep callee back-solved
@@ -76054,6 +76056,7 @@ name,address,notes
 ?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,0x0003FE36
 ?render_box@BoxRenderObjClass@@IAEXAAVRenderInfoClass@@ABVVector3@@1@Z,0x00956F40,rel32 pin for exact-ambiguous landing
 ?replaceModelConditionState@Drawable@@QAEXABVModelConditionFlags@@II@Z,0x0041CCD0,Open-BFME5 the Drawable member Object::notifyModelConditionChanged pushes its condition flags at +0x110 into; unnamed in the image
+?replenish@LivingWorldArmy@@QAEXPAVLivingWorldPlayerArmy@@@Z,0x0002C66A,LivingWorldPlayerArmy loadPostProcess retail call at 0x00365861 uses the ILT thunk to the 0x00365570 replenishment body
 ?repopulateBuildTooltipLayout@ControlBar@@QAEXXZ,0x00038F4B,REL32 pin from ControlBar::setSquishedControlBarConfig @0x49D0B0
 ?report@Glo012F4B98Type@@QAEXHM@Z,0x0058C240,called on the global at 0x012F4B98 with a count and 7.0f by 0x003BCA90; address-derived name
 ?requestApproachPath@AIUpdateInterface@@QAEXPAUCoord3D@@@Z,0x00015D93,AIMoveAndTightenState::onEnter retail REL32 call target
