@@ -1,125 +1,61 @@
 // cl: /DNDEBUG /MD /EHsc
+// ModuleFactory's verified friend allocator fixes the 0xB4-byte BFME layout.
+// EA's header and the clean destructor independently locate the mux members.
 
-class FireWeaponWhenDeadBehaviorModuleData
+class FWWDead_UpgradeMuxData
+{
+public:
+    FWWDead_UpgradeMuxData();
+    ~FWWDead_UpgradeMuxData();
+
+private:
+    unsigned char m_storage[0x68];
+};
+
+class FWWDead_DieMuxData
+{
+public:
+    FWWDead_DieMuxData();
+
+private:
+    unsigned char m_storage[0x2c];
+};
+
+class FWWDead_ModuleDataBase
+{
+public:
+    virtual ~FWWDead_ModuleDataBase() {}
+
+private:
+    unsigned int m_field04;
+};
+
+class FireWeaponWhenDeadBehaviorModuleData : public FWWDead_ModuleDataBase
 {
 public:
     FireWeaponWhenDeadBehaviorModuleData();
+    virtual ~FireWeaponWhenDeadBehaviorModuleData();
+
+private:
+    FWWDead_UpgradeMuxData m_upgradeMuxData;
+    bool m_field70;
+    bool m_field71;
+    unsigned int m_field74;
+    unsigned int m_field78;
+    unsigned int m_field7c;
+    unsigned int m_field80;
+    FWWDead_DieMuxData m_dieMuxData;
+    void *m_deathWeapon;
 };
 
-__declspec(naked) FireWeaponWhenDeadBehaviorModuleData::FireWeaponWhenDeadBehaviorModuleData()
+// ??0FireWeaponWhenDeadBehaviorModuleData@@QAE@XZ
+FireWeaponWhenDeadBehaviorModuleData::FireWeaponWhenDeadBehaviorModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xb3;
-        __emit 0x20;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xd0;
-        __emit 0xf0;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xb4;
-        __emit 0x4e;
-        __emit 0xee;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x84;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xe2;
-        __emit 0xcf;
-        __emit 0xed;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x70;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x71;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x74;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0xb0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x78;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x7c;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x80;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+    m_field70 = false;
+    m_field71 = false;
+    m_field74 = 0;
+    m_deathWeapon = 0;
+    m_field78 = 0;
+    m_field7c = 0;
+    m_field80 = 0;
 }

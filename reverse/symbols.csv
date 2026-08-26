@@ -77094,3 +77094,5 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?bfme_hideBackground@WindowManager@@QAEX_N@Z,0x0000BD7F,DisconnectScreen destructor calls the established background helper through this ILT
 ?BfmeAptScreenDisconnectScreenSecondaryVftable@@3PAPBXA,0x01104DE4,secondary vftable written at offset 0x218 by the DisconnectScreen destructor
 ??0HRBMD_Buffer@@QAE@XZ,0x0003747A,HitReactionBehaviorModuleData member constructor ILT
+??0FWWDead_UpgradeMuxData@@QAE@XZ,0x0000F0A6,FireWeaponWhenDeadBehaviorModuleData UpgradeMuxData constructor ILT
+??0FWWDead_DieMuxData@@QAE@XZ,0x000071E4,FireWeaponWhenDeadBehaviorModuleData DieMuxData constructor ILT
