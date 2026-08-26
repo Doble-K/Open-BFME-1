@@ -77406,3 +77406,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??0BfmeMemberB_00632360@@QAE@ABV0@@Z,0x00028218,Open-BFME5 the second-member copy ctor the two-member ctor at 0x00632360 calls
 ??0BfmeMemberB_009CAA70@@QAE@ABV0@@Z,0x009CA8F0,Open-BFME5 the second-member copy ctor the two-member ctor at 0x009CAA70 calls
 ??0BfmeMemberB_009CF070@@QAE@ABV0@@Z,0x009CEBF0,Open-BFME5 the second-member copy ctor the two-member ctor at 0x009CF070 calls
+?find@Rva000F92B0Factory@@QAEPAVRva000F92B0Product@@PAX@Z,0x00028560,retail REL32 at 0x000F92BB targets the factory lookup ILT at 0x00028560
+?evaluate@Rva000F92B0Product@@QAEPAXPAX0@Z,0x0004B01F,retail REL32 at 0x000F92CF targets the alternate product evaluation ILT at 0x0004B01F
