@@ -31,7 +31,7 @@ int Rva0080E300(const int *crypto, int length)
 
 void Rva0080F300(void *state, unsigned char *data, int length);
 void Rva0080F200(void *state, const unsigned char *key, int length, int rounds);
-void Rva0080E500(void *object);
+void Rva0080E500(unsigned char *object);
 void Rva007F0030(void *object);
 void Rva00812CD0(void *object);
 
@@ -184,4 +184,43 @@ void *Rva0080E440(void)
 	NetGameUtilControl(object, 'minp', 0x20);
 	NetGameUtilControl(object, 'mout', 0x20);
 	return object;
+}
+
+struct Rva0080E500Callback
+{
+	void *field0;
+	void (__cdecl *cleanup)(struct Rva0080E500Callback *callback);
+};
+
+struct Rva0080E500Slot
+{
+	struct Rva0080E500Callback *callback;
+	int field4;
+	int field8;
+};
+
+void Rva0080E500(unsigned char *object)
+{
+	int i;
+
+	for (i = 0; i < 4; i++)
+	{
+		if (((struct Rva0080E500Slot *)(object + 0x90))[i].callback != 0)
+		{
+			((struct Rva0080E500Slot *)(object + 0x90))[i].callback->cleanup(
+				((struct Rva0080E500Slot *)(object + 0x90))[i].callback);
+		}
+		((struct Rva0080E500Slot *)(object + 0x90))[i].callback = 0;
+	}
+	if (*(void **)(object + 0x68) != 0)
+	{
+		Rva00812CD0(*(void **)(object + 0x68));
+		*(void **)(object + 0x68) = 0;
+	}
+	if (*(void **)(object + 0x64) != 0)
+	{
+		Rva00812CD0(*(void **)(object + 0x64));
+		*(void **)(object + 0x64) = 0;
+	}
+	*(int *)(object + 0x7C) = 0;
 }
