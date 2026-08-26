@@ -1678,12 +1678,13 @@ void Player::onUnitCreated( Object *factory, Object *unit )
 //-------------------------------------------------------------------------------------------------
 /** Is the nearest supply source safe? */
 //-------------------------------------------------------------------------------------------------
-// ?isSupplySourceSafe@Player@@QAE_NH@Z present-unmatched
 Bool Player::isSupplySourceSafe( Int minSupplies )
 {
 	// ai query
-	if( m_ai )
-		return m_ai->isSupplySourceSafe( minSupplies );
+	// BFME's Player tail is wider than the recovered Zero Hour declaration.
+	AIPlayer *ai = *reinterpret_cast<AIPlayer **>(reinterpret_cast<char *>(this) + 0x220);
+	if( ai )
+		return ai->isSupplySourceSafe( minSupplies );
 	return true;
 }  // isSupplySourceSafe
 
