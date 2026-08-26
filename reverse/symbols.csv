@@ -922,6 +922,7 @@ name,address,notes
 ??$__introsort_loop@PAHHHUQ4Sort005156D0@@@_STL@@YAXPAH00HUQ4Sort005156D0@@@Z,0x005156D0,STLport sort helper called by the 140-byte __introsort_loop family (Q4IntrosortLoop.cpp); address-derived template argument; identity not recovered
 ??$__introsort_loop@PAHHHUQ4Sort00533470@@@_STL@@YAXPAH00HUQ4Sort00533470@@@Z,0x00533470,STLport sort helper called by the 140-byte __introsort_loop family (Q4IntrosortLoop.cpp); address-derived template argument; identity not recovered
 ??$__introsort_loop@PAHHHUQ4Sort00755050@@@_STL@@YAXPAH00HUQ4Sort00755050@@@Z,0x00755050,STLport sort helper called by the 140-byte __introsort_loop family (Q4IntrosortLoop.cpp); address-derived template argument; identity not recovered
+??$__introsort_loop@PAURva00364980HeapElement@@U1@HURva00364980HeapCompare@@@_STL@@YAXPAURva00364980HeapElement@@00HURva00364980HeapCompare@@@Z,0x0000AE61,REL32 self-call target from 0x00366B03
 ??$__linear_insert@PAUS4SortElem12@@U1@US4Cmp002E1690@@@_STL@@YAXPAUS4SortElem12@@0U1@US4Cmp002E1690@@@Z,0x000219F9,Open-BFME5 ILT the S4SortElem12 insertion sort at 0x002E1170 calls; it jumps to 0x002E0FE0
 ??$__linear_insert@PAUS4SortElem12@@U1@US4Cmp00532740@@@_STL@@YAXPAUS4SortElem12@@0U1@US4Cmp00532740@@@Z,0x0002C3D1,Open-BFME5 ILT the second S4SortElem12 insertion sort at 0x00532080 calls
 ??$__linear_insert@PAUS4SortElem20@@U1@US4Cmp002EB8E0@@@_STL@@YAXPAUS4SortElem20@@0U1@US4Cmp002EB8E0@@@Z,0x0002D34E,Open-BFME5 ILT the S4SortElem20 insertion sort at 0x002EB270 calls
@@ -961,6 +962,7 @@ name,address,notes
 ??$__unguarded_partition@PAHHUQ4Sort005156D0@@@_STL@@YAPAHPAH0HUQ4Sort005156D0@@@Z,0x00512E40,STLport sort helper called by the 140-byte __introsort_loop family (Q4IntrosortLoop.cpp); address-derived template argument; identity not recovered
 ??$__unguarded_partition@PAHHUQ4Sort00533470@@@_STL@@YAPAHPAH0HUQ4Sort00533470@@@Z,0x0052EEC0,STLport sort helper called by the 140-byte __introsort_loop family (Q4IntrosortLoop.cpp); address-derived template argument; identity not recovered
 ??$__unguarded_partition@PAHHUQ4Sort00755050@@@_STL@@YAPAHPAH0HUQ4Sort00755050@@@Z,0x00753720,STLport sort helper called by the 140-byte __introsort_loop family (Q4IntrosortLoop.cpp); address-derived template argument; identity not recovered
+??$__unguarded_partition@PAURva00364980HeapElement@@U1@URva00364980HeapCompare@@@_STL@@YAPAURva00364980HeapElement@@PAU1@0U1@URva00364980HeapCompare@@@Z,0x0003FFC1,REL32 wide-element partition target from 0x00366AEF
 ??$__uninitialized_copy@PAUGen_t_0074e320_p16pod@@PAU1@@_STL@@YAPAUGen_t_0074e320_p16pod@@PAU1@00ABU__false_type@0@@Z,0x0074AA10,gen-tgrid payload member
 ??$__uninitialized_copy@PAURunwayInfo@FlightDeckBehavior@@PAU12@@_STL@@YAPAURunwayInfo@FlightDeckBehavior@@PAU12@00ABU__false_type@0@@Z,0x00038C80,Open-BFME5 the range copy the RunwayInfo vector _M_insert_overflow at 0x0039EC70 calls
 ??$__uninitialized_copy@PBUGen_t_00095d30_p8pod@@PAU1@@_STL@@YAPAUGen_t_00095d30_p8pod@@PBU1@0PAU1@ABU__false_type@0@@Z,0x00095720,gen-tgrid payload member
