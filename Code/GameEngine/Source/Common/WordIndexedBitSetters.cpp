@@ -1,3 +1,5 @@
+#include <string.h>
+
 // The four byte-identical 64-byte bit setters at 0x000D00C0, 0x000FE0E0,
 // 0x0015FC10 and 0x001C6100.  Retail:
 //
@@ -66,3 +68,20 @@ BFME_WORD_INDEXED_BIT_SETTER( Rva000D00C0 )
 BFME_WORD_INDEXED_BIT_SETTER( Rva000FE0E0 )
 BFME_WORD_INDEXED_BIT_SETTER( Rva0015FC10 )
 BFME_WORD_INDEXED_BIT_SETTER( Rva001C6100 )
+
+// Retail zeroes ten words and then sets one indexed bit.  The first argument
+// is present in the calling convention but does not participate in the body;
+// neither its meaning nor the owning type's identity is recoverable here.
+class Rva00170C70BitSet
+{
+public:
+	Rva00170C70BitSet( void *unused, unsigned index );
+
+	unsigned m_words[ 10 ];
+};
+
+Rva00170C70BitSet::Rva00170C70BitSet( void *, unsigned index )
+{
+	memset( m_words, 0, sizeof( m_words ) );
+	m_words[ index >> 5 ] |= ( 1U << ( index & 0x1F ) );
+}
