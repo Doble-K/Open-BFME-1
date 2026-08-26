@@ -12176,6 +12176,7 @@ name,address,notes
 ?applyDisconnectVote@DisconnectManager@@IAEXHIHPAVConnectionManager@@@Z,0x000215AD,ILT thunk to DisconnectManager::applyDisconnectVote at 0x0066B910
 ?applyMotiveForce@PhysicsBehavior@@QAEXPBUCoord3D@@@Z,0x0002A284,ILT thunk to PhysicsBehavior::applyMotiveForce at 0x0029AC40
 ?applyRva1C7370@Object@@QAEXABVModelConditionFlags@@_N@Z,0x000307E7,Open-BFME6 RVA 162CD0 flag-apply helper call pin
+?applySingle@Gen00587600@@QAEXH@Z,0x000489D2,Open-BFME5 fresh ILT alias for the single-argument sibling at 0x0051A820
 ?applyTopplingForce@ToppleUpdate@@QAEXPBUCoord3D@@MI@Z,0x0003FC97
 ?areAllQueuesEmpty@Network@@UAE_NXZ,0x00681A10,vtable 0x0111A968 slot 25 (+0x64) via ILT 0x000149E8; tail-jumps conMgr 0x00662DF0 without a null check; that body loops the 8 connections at conMgr+0x04 calling isQueueEmpty@Connection 0x00661C90 = ZH ConnectionManager::canILeave and ZH areAllQueuesEmpty is exactly return m_conMgr->canILeave()
 ?arrange@ControlBarArranger@@QAEXHH@Z,0x0001949D,setSquishedControlBarConfig arrange call; ILT thunk for GameWindow::winSetPosition (body 0x004780D0)
