@@ -76954,3 +76954,4 @@ __imp__strrchr,0x013594C8,pin
 _Rva0080E500,0x0080E500,address-derived cleanup helper invoked immediately before release by 0x0080E4D0
 _Rva00812CD0,0x00812CD0,address-derived cleanup helper invoked for the owned field at offset 0x64 by 0x0080F0D0
 _Rva0080F5A0,0x0080F5A0,address-derived DirtySock state operation called by the wrapper at 0x0080F550
+_Rva0080C6F0,0x0080C6F0,address-derived DirtySock buffered receive helper called by 0x0080DA50
