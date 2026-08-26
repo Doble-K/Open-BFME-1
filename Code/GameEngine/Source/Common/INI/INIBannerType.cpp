@@ -1,4 +1,5 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/campaignmanagerascii /ICode/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/campaignmanagerascii /ICode/Libraries/Source/WWVegas/WWLib
+// stlport
 
 // FILE: INIBannerType.cpp ////////////////////////////////////////////////////
 //
@@ -19,6 +20,9 @@
 
 #include <stddef.h>
 
+#define _STLP_NO_EXCEPTIONS 1
+#include <hash_map>
+
 #include "Common/AsciiString.h"
 
 struct FieldParse;
@@ -30,19 +34,43 @@ public:
 	void initFromINI( void *what, const FieldParse *parseTable );
 };
 
+class BannerTypeString
+{
+public:
+	BannerTypeString() : m_data( 0 ) {}
+	BannerTypeString( const BannerTypeString &other );
+	~BannerTypeString();
+
+private:
+	void *m_data;
+};
+
+// The missing-key path zeroes four dwords, and its cleanup calls a non-trivial
+// destructor over the same 16-byte span; their meanings are not recoverable.
 class BannerType
 {
 public:
+	BannerType() {}
+	BannerType( const BannerType &other );
+	~BannerType();
 	static const FieldParse m_fieldParseTable[];		// 0x0110B898
+
+private:
+	BannerTypeString m_field0;
+	BannerTypeString m_field1;
+	BannerTypeString m_field2;
+	BannerTypeString m_field3;
 };
 
-// The lookup at 0x00583CD0: find by name, insert a default-constructed entry
-// when it misses. Only its address is claimed here, not its shape.
-class BannerTypeStore
+namespace rts
 {
-public:
-	BannerType *findOrCreate( const AsciiString &name );
-};
+	template <class T> struct hash
+	{
+		unsigned int operator()( T value ) const;
+	};
+}
+
+typedef _STL::hash_map<AsciiString, BannerType, rts::hash<AsciiString> > BannerTypeStore;
 
 class BannerUI
 {
@@ -56,7 +84,7 @@ extern BannerUI *TheBannerUI;							// 0x012F4B70
 // ?parseBannerType@@YAXPAVINI@@@Z
 void parseBannerType( INI *ini )
 {
-	BannerType *type = TheBannerUI->m_bannerTypes.findOrCreate( AsciiString( ini->getNextToken() ) );
+	BannerType *type = &TheBannerUI->m_bannerTypes[ AsciiString( ini->getNextToken() ) ];
 
 	ini->initFromINI( type, BannerType::m_fieldParseTable );
 }
