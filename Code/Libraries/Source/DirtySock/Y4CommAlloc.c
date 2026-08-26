@@ -54,6 +54,8 @@ void Rva0080B070( void *object )
 struct Rva0080B000Comm
 {
 	void *m_socket;
+	char m_gap04[ 0x11C ];
+	int m_releaseState;
 };
 
 void *Rva007FD2D0( int family, int type, int protocol );
@@ -81,6 +83,12 @@ int Rva0080B150( struct Rva0080B000Comm *comm, const void *address,
 int Rva0080B460( struct Rva0080B000Comm *comm, int mode )
 {
 	return Rva007FD7A0( comm->m_socket, mode );
+}
+
+int Rva0080B480( struct Rva0080B000Comm *comm )
+{
+	Rva0080ADE0( comm, comm->m_releaseState != 0 );
+	return 0;
 }
 
 struct Rva00812320Module;
