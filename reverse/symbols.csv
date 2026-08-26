@@ -77027,3 +77027,39 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ??0FWWD_BaseModuleData@@QAE@XZ,0x0000F0A6,FireWeaponWhenDamagedBehaviorModuleData constructs the shared module-data base through this ILT
 ??0AHB_BaseModuleData@@QAE@XZ,0x0000F0A6,AutoHealBehaviorModuleData constructs the shared module-data base through this ILT
 ??0WUU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,WallUpgradeUpdate constructor calls the shared ObjectModule constructor ILT
+?bfmeForward@Gen_000C9770Target@@QAEXPAX@Z,0x000107D5,Open-BFME5 the callee the guarded delegate at 0x000C9770 tail-jumps to
+?bfmeForward@Gen_000C9B40Target@@QAEXPAX@Z,0x0004AFAC,Open-BFME5 the callee the guarded delegate at 0x000C9B40 tail-jumps to
+?bfmeForward@Gen_001BF950Target@@QAEHPAX0@Z,0x000044C6,Open-BFME5 the callee the guarded delegate at 0x001BF950 tail-jumps to
+?bfmeForward@Gen_001D5EE0Target@@QAEXPAX0@Z,0x0002133C,Open-BFME5 the callee the guarded delegate at 0x001D5EE0 tail-jumps to
+?bfmeForward@Gen_002DDCC0Target@@QAEXPAX0@Z,0x00022D86,Open-BFME5 the callee the guarded delegate at 0x002DDCC0 tail-jumps to
+?bfmeForward@Gen_002F1290Target@@QAEXPAX@Z,0x00005E25,Open-BFME5 the callee the guarded delegate at 0x002F1290 tail-jumps to
+?bfmeForward@Gen_003C6340Target@@QAEXPAX@Z,0x0000600F,Open-BFME5 the callee the guarded delegate at 0x003C6340 tail-jumps to
+?bfmeForward@Gen_004125F0Target@@QAEXPAX0@Z,0x0002A8D3,Open-BFME5 the callee the guarded delegate at 0x004125F0 tail-jumps to
+?bfmeForward@Gen_00429F60Target@@QAEXPAX0@Z,0x00022D86,Open-BFME5 the callee the guarded delegate at 0x00429F60 tail-jumps to
+?bfmeForward@Gen_0042E700Target@@QAEHPAX00@Z,0x0002282C,Open-BFME5 the callee the guarded delegate at 0x0042E700 tail-jumps to
+?bfmeForward@Gen_0043A570Target@@QAEXPAX@Z,0x0002B526,Open-BFME5 the callee the guarded delegate at 0x0043A570 tail-jumps to
+?bfmeForward@Gen_0043BC10Target@@QAEXPAX0@Z,0x000198B2,Open-BFME5 the callee the guarded delegate at 0x0043BC10 tail-jumps to
+?bfmeForward@Gen_005169E0Target@@QAE_NPAX@Z,0x00024B7C,Open-BFME5 the callee the guarded delegate at 0x005169E0 tail-jumps to
+?bfmeForward@Gen_0060D600Target@@QAEXPAX@Z,0x00017544,Open-BFME5 the callee the guarded delegate at 0x0060D600 tail-jumps to
+?bfmeForward@Gen_00681960Target@@QAEXPAX@Z,0x0001D1BA,Open-BFME5 the callee the guarded delegate at 0x00681960 tail-jumps to
+?bfmeForward@Gen_00681B60Target@@QAEHXZ,0x0000355D,Open-BFME5 the callee the guarded delegate at 0x00681B60 tail-jumps to
+?bfmeForward@Gen_00681B80Target@@QAEHXZ,0x0004A291,Open-BFME5 the callee the guarded delegate at 0x00681B80 tail-jumps to
+?bfmeForward@Gen_00681DD0Target@@QAE_NPAX@Z,0x000486B2,Open-BFME5 the callee the guarded delegate at 0x00681DD0 tail-jumps to
+?bfmeForward@Gen_00688AB0Target@@QAEXPAX@Z,0x00012F03,Open-BFME5 the callee the guarded delegate at 0x00688AB0 tail-jumps to
+?bfmeForward@Gen_006BC890Target@@QAEXPAX@Z,0x008F8110,Open-BFME5 the callee the guarded delegate at 0x006BC890 tail-jumps to
+?bfmeForward@Gen_006BE210Target@@QAE_NPAX0@Z,0x00020923,Open-BFME5 the callee the guarded delegate at 0x006BE210 tail-jumps to
+?bfmeForward@Gen_006C7690Target@@QAEXPAX@Z,0x0000DB11,Open-BFME5 the callee the guarded delegate at 0x006C7690 tail-jumps to
+?bfmeForward@Gen_006C8870Target@@QAEXPAX@Z,0x00014051,Open-BFME5 the callee the guarded delegate at 0x006C8870 tail-jumps to
+?bfmeForward@Gen_006C89D0Target@@QAEHPAX0@Z,0x0002E771,Open-BFME5 the callee the guarded delegate at 0x006C89D0 tail-jumps to
+?bfmeForward@Gen_006C8A60Target@@QAE_NPAX@Z,0x0001F640,Open-BFME5 the callee the guarded delegate at 0x006C8A60 tail-jumps to
+?bfmeForward@Gen_006C8A80Target@@QAE_NPAX@Z,0x00027B0B,Open-BFME5 the callee the guarded delegate at 0x006C8A80 tail-jumps to
+?bfmeForward@Gen_006C8C00Target@@QAEXPAX@Z,0x00002257,Open-BFME5 the callee the guarded delegate at 0x006C8C00 tail-jumps to
+?bfmeForward@Gen_00730E00Target@@QAEXPAX@Z,0x0001E597,Open-BFME5 the callee the guarded delegate at 0x00730E00 tail-jumps to
+?bfmeForward@Gen_00730E60Target@@QAEHPAX0@Z,0x0001847B,Open-BFME5 the callee the guarded delegate at 0x00730E60 tail-jumps to
+?bfmeForward@Gen_00730F10Target@@QAE_NPAX@Z,0x000164FF,Open-BFME5 the callee the guarded delegate at 0x00730F10 tail-jumps to
+?bfmeForward@Gen_00730F50Target@@QAEXPAX@Z,0x00047604,Open-BFME5 the callee the guarded delegate at 0x00730F50 tail-jumps to
+?bfmeForward@Gen_0075BE40Target@@QAEXPAX@Z,0x0002B526,Open-BFME5 the callee the guarded delegate at 0x0075BE40 tail-jumps to
+?bfmeForward@Gen_0094BFA0Target@@QAEXXZ,0x009EB7A0,Open-BFME5 the callee the guarded delegate at 0x0094BFA0 tail-jumps to
+?bfmeForward@Gen_0094BFB0Target@@QAEXXZ,0x009EB7A0,Open-BFME5 the callee the guarded delegate at 0x0094BFB0 tail-jumps to
+?bfmeForward@Gen_009EBB40Target@@QAEHXZ,0x009EE620,Open-BFME5 the callee the guarded delegate at 0x009EBB40 tail-jumps to
+?bfmeForward@Gen_009EBB60Target@@QAEHXZ,0x009EDE40,Open-BFME5 the callee the guarded delegate at 0x009EBB60 tail-jumps to
