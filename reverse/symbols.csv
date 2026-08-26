@@ -76967,3 +76967,10 @@ _Rva007FD7D0,0x007FD7D0,address-derived socket accept helper called by 0x0080B0A
 _g_Rva0112C8D0,0x0112C8D0,address-derived terminated lookup table read by 0x0080D890
 _Rva0080C390,0x0080C390,address-derived comm buffered-send helper called by 0x0080D980
 _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
+??1BannerSubsystemBase@@UAE@XZ,0x009A1A40,BannerUI base destructor aliases the clean SubsystemInterface destructor body
+??1BannerTypeStoreMember@@QAE@XZ,0x00022F84,BannerUI +0x08 type-store destructor ILT proven by the virtual destructor call site
+??1BannerStringMember@@QAE@XZ,0x0001A401,BannerUI +0x1C member destructor ILT proven by the virtual destructor call site
+??1BannerTimerMember@@QAE@XZ,0x0001D674,BannerUI +0x20 timer member destructor ILT proven by the virtual destructor call site
+?removeAptObject@WindowManager@@QAEXABVBFMERetailAsciiString@@@Z,0x0001E277,BannerUI destructor ILT removes each formatted APT object name
+?format@BFMERetailAsciiString@@QAAXV1@ZZ,0x00888FF0,BannerUI one-dword retail AsciiString format alias
+??_7BannerUI@@6B@,0x00D0B828,BannerUI vtable independently identified by SubsystemInterface slots and adjacent BannerUI strings

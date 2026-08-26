@@ -36,10 +36,85 @@ private:
 	int m_id;
 };
 
-class BannerUI
+namespace _STL
+{
+	void vectorLargeDeallocate( void *memory );
+	void vectorSmallDeallocate( void *memory, unsigned int bytes );
+}
+
+class BannerMovieEntryVector
+{
+public:
+	typedef BannerMovieEntry *iterator;
+	iterator begin() { return m_start; }
+	iterator end() { return m_finish; }
+	void clear() { m_finish = std::copy( m_finish, m_finish, m_start ); }
+	iterator erase( iterator entry )
+	{
+		if( entry + 1 != m_finish )
+			std::copy( entry + 1, m_finish, entry );
+		--m_finish;
+		return entry;
+	}
+	__forceinline ~BannerMovieEntryVector()
+	{
+		if( m_start )
+		{
+			unsigned int bytes = ( m_capacity - m_start ) * sizeof( BannerMovieEntry );
+			if( bytes > 128 )
+				_STL::vectorLargeDeallocate( m_start );
+			else
+				_STL::vectorSmallDeallocate( m_start, bytes );
+		}
+	}
+
+private:
+	BannerMovieEntry *m_start;
+	BannerMovieEntry *m_finish;
+	BannerMovieEntry *m_capacity;
+};
+
+class BannerSubsystemBase
+{
+public:
+	virtual ~BannerSubsystemBase();
+
+private:
+	void *m_name;
+};
+
+class BannerTypeStoreMember
+{
+public:
+	~BannerTypeStoreMember();
+
+private:
+	unsigned char m_data[ 0x14 ];
+};
+
+class BannerStringMember
+{
+public:
+	~BannerStringMember();
+
+private:
+	void *m_data;
+};
+
+class BannerTimerMember
+{
+public:
+	~BannerTimerMember();
+
+private:
+	unsigned char m_data[ 0x0C ];
+};
+
+class BannerUI : public BannerSubsystemBase
 {
 public:
 	static const FieldParse m_fieldParseTable[];
+	virtual ~BannerUI();
 	virtual void init();
 	virtual void reset();
 	void removeMovieBanner( int id );
@@ -47,10 +122,14 @@ public:
 	void hide( bool immediate );
 
 private:
-	unsigned char m_unmodelled[ 0x28 ];
+	BannerTypeStoreMember m_bannerTypes;
+	BannerStringMember m_unmodelledString;
+	BannerTimerMember m_bannerTimer;
 	int m_windowIndex;
-	std::vector<BannerMovieEntry> m_movieEntries;
+	BannerMovieEntryVector m_movieEntries;
 	bool m_hidden;
+	unsigned char m_unmodelled_3D[ 3 ];
+	int m_currentLocation;
 };
 
 extern BannerUI *TheBannerUI;
@@ -110,13 +189,16 @@ private:
 class BFMERetailAsciiString
 {
 public:
+	BFMERetailAsciiString() : m_data( 0 ) {}
 	BFMERetailAsciiString( const char *text )
 	{
 		((BannerStringBase<char> *)this)->BannerStringBase<char>::BannerStringBase( text );
 	}
-	~BFMERetailAsciiString();
+	~BFMERetailAsciiString() { releaseBuffer(); }
+	void __cdecl format( BFMERetailAsciiString format, ... );
 
 private:
+	void releaseBuffer();
 	void *m_data;
 };
 
@@ -132,6 +214,7 @@ public:
 	#undef WINDOW_MANAGER_SLOT
 	virtual int loadAptWindow( BFMERetailAsciiString directory, BFMERetailAsciiString file,
 		int unknown1, int unknown2, int unknown3 ) = 0;
+	void removeAptObject( const BFMERetailAsciiString &name );
 	bool hideAptWindow( int index );
 	bool showAptWindow( int index );
 };
@@ -182,12 +265,12 @@ void BannerUI::removeMovieBanner( int id )
 	if( TheCurrentBannerMovie == id )
 		return;
 
-	std::vector<BannerMovieEntry>::iterator entry =
+	BannerMovieEntryVector::iterator entry =
 		std::find_if( m_movieEntries.begin(), m_movieEntries.end(), BannerMovieEntryMatches( id ) );
 	if( entry != m_movieEntries.end() )
 	{
 		DeleteBanner( id );
-		m_movieEntries.erase( entry );
+		reinterpret_cast<std::vector<BannerMovieEntry> &>( m_movieEntries ).erase( entry );
 	}
 }
 
@@ -222,6 +305,23 @@ void BannerUI::reset()
 {
 	hide( true );
 	m_movieEntries.clear();
+}
+
+BannerUI::~BannerUI()
+{
+	if( g_theWindowManager )
+	{
+		for( unsigned int location = 0; location < 2; ++location )
+		{
+			BFMERetailAsciiString name;
+			name.format( "BannerUI/~Location%d/Banner/AvailableBttn/", location );
+			g_theWindowManager->removeAptObject( name );
+			name.format( "BannerUI/~Location%d/Banner/WaitingBttn/", location );
+			g_theWindowManager->removeAptObject( name );
+			name.format( "BannerUI/~Location%d/Banner/Background", location );
+			g_theWindowManager->removeAptObject( name );
+		}
+	}
 }
 
 template void std::vector<BannerMovieEntry>::push_back( const BannerMovieEntry &entry );
