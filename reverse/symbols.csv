@@ -77359,3 +77359,10 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeInvoke@Gen_006CDF70Target@@QAEXPAX0@Z,0x0000560A,Open-BFME5 the member the guarded dispatcher at 0x006CDF70 calls
 ?bfmeInvoke@Gen_009EBA60Target@@QAEXPAX0@Z,0x009EEAC0,Open-BFME5 the member the guarded dispatcher at 0x009EBA60 calls
 ?bfmeInvoke@Gen_0064C6A0Target@@QAEXPAX0@Z,0x0001F785,Open-BFME5 the member the guarded dispatcher at 0x0064C6A0 calls
+?bfmeInit@Gen_00072B10@@AAEXPA_NH@Z,0x0004636C,Open-BFME5 the member the allocate-and-initialise ctor at 0x00072B10 calls
+?bfmeInit@Gen_00126570@@AAEXPA_NH@Z,0x0001015E,Open-BFME5 the member the allocate-and-initialise ctor at 0x00126570 calls
+?bfmeInit@Gen_00586170@@AAEXPA_NH@Z,0x00014F79,Open-BFME5 the member the allocate-and-initialise ctor at 0x00586170 calls
+?bfmeInit@Gen_006051A0@@AAEXPA_NH@Z,0x0000D60C,Open-BFME5 the member the allocate-and-initialise ctor at 0x006051A0 calls
+?bfmeInit@Gen_00631BB0@@AAEXPA_NH@Z,0x00047159,Open-BFME5 the member the allocate-and-initialise ctor at 0x00631BB0 calls
+?bfmeInit@Gen_00652C60@@AAEXPA_NH@Z,0x0001548D,Open-BFME5 the member the allocate-and-initialise ctor at 0x00652C60 calls
+?bfmeInit@Gen_00764DA0@@AAEXPA_NH@Z,0x00043306,Open-BFME5 the member the allocate-and-initialise ctor at 0x00764DA0 calls
