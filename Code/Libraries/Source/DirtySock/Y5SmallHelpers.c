@@ -1,6 +1,7 @@
 // cl: /Od /GZ /MD /DNDEBUG
 
 void *memcpy(void *dest, const void *src, unsigned int count);
+void *memset(void *dest, int value, unsigned int count);
 unsigned int strlen(const char *text);
 char *strcpy(char *dest, const char *src);
 
@@ -168,4 +169,19 @@ void Rva0080DCE0(unsigned char *dest, const char *source,
 			j = (j + 1) % 0x20;
 		}
 	}
+}
+
+int NetGameUtilControl(void *object, int selector, int value);
+
+void *Rva0080E440(void)
+{
+	void *object;
+
+	object = Rva007F0000(0xC0);
+	if (object != 0)
+		memset(object, 0, 0xC0);
+	NetGameUtilControl(object, 'mwid', 0xF0);
+	NetGameUtilControl(object, 'minp', 0x20);
+	NetGameUtilControl(object, 'mout', 0x20);
+	return object;
 }
