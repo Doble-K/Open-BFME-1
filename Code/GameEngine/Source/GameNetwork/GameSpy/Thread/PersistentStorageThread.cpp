@@ -661,13 +661,13 @@ PSThreadClass* GameSpyPSMessageQueue::getThread( void )
 	return m_thread;
 }
 
-// ?trackPlayerStats@GameSpyPSMessageQueue@@ present-unmatched
 void GameSpyPSMessageQueue::trackPlayerStats( PSPlayerStats stats )
 {
 #ifdef DEBUG_LOGGING
 	debugDumpPlayerStats( stats );
 	DEBUG_ASSERTCRASH(stats.id != 0, ("Tracking stats with ID of 0\n"));
 #endif
+	MutexClass::LockClass m(m_requestMutex);
 	PSPlayerStats newStats;
 	std::map<Int, PSPlayerStats>::iterator it = m_playerStats.find(stats.id);
 	if (it != m_playerStats.end())
@@ -682,9 +682,9 @@ void GameSpyPSMessageQueue::trackPlayerStats( PSPlayerStats stats )
 	}
 }
 
-// ?findPlayerStatsByID@GameSpyPSMessageQueue@@ present-unmatched
 PSPlayerStats GameSpyPSMessageQueue::findPlayerStatsByID( Int id )
 {
+	MutexClass::LockClass m(m_requestMutex);
 	std::map<Int, PSPlayerStats>::iterator it = m_playerStats.find(id);
 	if (it != m_playerStats.end())
 	{

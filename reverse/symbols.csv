@@ -76938,3 +76938,5 @@ __imp__strrchr,0x013594C8,pin
 ?_M_push_back_aux_v@?$deque@VBFMENetworkQueueItem@@V?$allocator@VBFMENetworkQueueItem@@@_STL@@@_STL@@IAEXABVBFMENetworkQueueItem@@@Z,0x0004ACAF,BFMENetwork dispatcher deque growth-helper ILT
 ??0BFMENetworkQueueItem1@@QAE@ABV0@@Z,0x000206E4,BFMENetwork callback deque placement-copy constructor ILT
 ?_M_push_back_aux_v@?$deque@VBFMENetworkQueueItem1@@V?$allocator@VBFMENetworkQueueItem1@@@_STL@@@_STL@@IAEXABVBFMENetworkQueueItem1@@@Z,0x0001B018,BFMENetwork callback deque growth-helper ILT
+??$find@H@?$_Rb_tree@HU?$pair@$$CBHVPSPlayerStats@@@_STL@@U?$_Select1st@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@@1@ABH@Z,0x00018007,GameSpyPSMessageQueue player-stats map find ILT; caller shape and target node layout
+??A?$map@HVPSPlayerStats@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@3@@_STL@@QAEAAVPSPlayerStats@@ABH@Z,0x0002D64B,GameSpyPSMessageQueue player-stats map subscript ILT; caller branches assign stats or merged stats
