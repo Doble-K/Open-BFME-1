@@ -3889,11 +3889,16 @@ name,address,notes
 ??1BfmeChildB@@QAE@XZ,0x0089CC70,Open-BFME5 the child destructor the teardowns at 0x008BD820 0x008BD880 and 0x008BD8E0 call
 ??1BfmeDelayedLuaEvent@@QAE@XZ,0x00041362,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element destructor
 ??1BfmeDirtyBase@@UAE@XZ,0x007EB6C0,Open-BFME5 the shared base destructor nine DirtySock scalar deleting destructors call
+??1BfmeDtorBaseF@@UAE@XZ,0x009A1A40,Open-BFME5 the out-of-line base destructor the chained destructor at 0x00076C80 calls
+??1BfmeDtorBaseG@@UAE@XZ,0x0004243D,Open-BFME5 the out-of-line base destructor the chained destructor at 0x000B5240 calls
+??1BfmeDtorBaseH@@UAE@XZ,0x000033F0,Open-BFME5 the out-of-line base destructor the chained destructor at 0x00428730 calls
+??1BfmeDtorBaseI@@UAE@XZ,0x0002C71E,Open-BFME5 the out-of-line base destructor the chained destructor at 0x0077DD80 calls
 ??1BfmeDtorMemberA@@QAE@XZ,0x00836300,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
 ??1BfmeDtorMemberB@@QAE@XZ,0x0000B109,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
 ??1BfmeDtorMemberC@@QAE@XZ,0x00887940,Open-BFME5 the member destructor the two-member destructors at 0x001031B0 and siblings call
 ??1BfmeDtorMemberD@@QAE@XZ,0x0001A401,Open-BFME5 the member destructor the two-member destructor at 0x00427390 calls
 ??1BfmeDtorMemberE@@QAE@XZ,0x008881D0,Open-BFME5 the member destructor the two-member destructor at 0x0043DB30 calls first
+??1BfmeDtorMemberF@@QAE@XZ,0x00013AFC,Open-BFME5 the member destructor the chained destructors at 0x00076C80 and siblings call
 ??1BfmeElementA@@QAE@XZ,0x00030652,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementB@@QAE@XZ,0x0001AAD2,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementC@@QAE@XZ,0x00937390,Open-BFME5 the element destructor the array-owning destructors call
