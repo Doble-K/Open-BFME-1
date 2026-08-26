@@ -23391,3 +23391,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0004A345,claim retired: 0x0004A345 is the five-byte incremental-link thunk and not the constructor; the real body is at 0x002AE200.
 ??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x000328C6,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x0029A880.
 ??0RainOfFireUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000A0E2,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x002A0920.
+??0DeletionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00016C52,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x0028C520.
