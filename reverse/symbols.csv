@@ -77696,3 +77696,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??4Rva00698DD0Base@@QAEAAV0@ABV0@@Z,0x0001F753,Open-BFME5 fresh thiscall assign at ILT of derived assign 0x00698DD0
 ??0Rva0060FD30Base@@QAE@ABV0@@Z,0x0000FA3D,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x0060FD30
 ??0Rva0036CA00Str@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 fresh thiscall copy ctor for 0x0036CA00 string members
+??0Rva00630D00UStr@@QAE@ABV0@@Z,0x00888530,Open-BFME5 fresh thiscall copy ctor for 0x00630D00 unicode-string member
