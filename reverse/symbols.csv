@@ -77089,3 +77089,7 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ??0HRB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HitReactionBehavior constructor calls the shared ObjectModule constructor ILT
 ??0BFU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,BoneFXUpdate constructor calls the shared ObjectModule constructor ILT
 ??0PPB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ParkingPlaceBehavior constructor calls the shared ObjectModule constructor ILT
+?_bfme_closeAptScreen@@YAXABVAsciiString@@@Z,0x00036485,DisconnectScreen destructor calls the established close-screen helper through this ILT
+??1_bfme_AptGameWindow@@UAE@XZ,0x000204C3,DisconnectScreen destructor chains through the established APT base destructor ILT
+?bfme_hideBackground@WindowManager@@QAEX_N@Z,0x0000BD7F,DisconnectScreen destructor calls the established background helper through this ILT
+?BfmeAptScreenDisconnectScreenSecondaryVftable@@3PAPBXA,0x01104DE4,secondary vftable written at offset 0x218 by the DisconnectScreen destructor

@@ -144,6 +144,16 @@ private:
 	UnicodeStringData *m_data;
 };
 
+class AsciiString
+{
+public:
+	AsciiString( const char *text );
+	~AsciiString();
+
+private:
+	char *m_data;
+};
+
 extern "C" __declspec(dllimport) unsigned int __cdecl wcslen( const unsigned short *text );
 extern "C" __declspec(dllimport) int __cdecl atoi( const char *text );
 extern "C" int __cdecl strcmp( const char *left, const char *right );
@@ -204,10 +214,33 @@ public:
 	void sendChat( UnicodeString text );
 };
 
-class BfmeAptScreenDisconnectScreen
+class WindowManager
+{
+public:
+	void bfme_hideBackground( bool hide );
+};
+
+extern WindowManager *g_theWindowManager;
+extern DisconnectMenu *TheDisconnectMenu;
+void _bfme_closeAptScreen( const AsciiString &name );
+
+class _bfme_AptGameWindow
+{
+public:
+	_bfme_AptGameWindow( void *context );
+	virtual ~_bfme_AptGameWindow();
+
+private:
+	char m_unmodelled[ 0x254 ];
+};
+
+extern const void *BfmeAptScreenDisconnectScreenSecondaryVftable[];
+
+class BfmeAptScreenDisconnectScreen : public _bfme_AptGameWindow
 {
 public:
 	BfmeAptScreenDisconnectScreen( void *context );
+	virtual ~BfmeAptScreenDisconnectScreen();
 	void _bfme_getPlayerColor( const char *name, void *value, bool setting );
 	void _bfme_onChatEnterText( const char *argument );
 	void _bfme_onInitGadget( const char *name, void *argument, GameWindow *window );
@@ -215,13 +248,28 @@ public:
 	void _bfme_onQuit( const char *argument );
 
 private:
-	char m_unmodelled[ 0x258 ];
 	GameWindow *m_textDisplayControl;
 	GameWindow *m_textEntryWindow;
 	char m_unmodelledState;
 	bool m_isQuitting;
 	char m_unmodelledTail[ 0xA ];
 };
+
+BfmeAptScreenDisconnectScreen::~BfmeAptScreenDisconnectScreen()
+{
+	*(const void ***)( (char *)this + 0x218 ) = BfmeAptScreenDisconnectScreenSecondaryVftable;
+
+	if( TheDisconnectMenu == (DisconnectMenu *)this )
+	{
+		TheDisconnectMenu = 0;
+		if( !m_isQuitting )
+			g_theWindowManager->bfme_hideBackground( false );
+
+		AsciiString name( "DisconnectScreen::InitGadgets" );
+		_bfme_closeAptScreen( name );
+	}
+
+}
 
 // ?_bfme_onQuit@BfmeAptScreenDisconnectScreen@@QAEXPBD@Z
 void BfmeAptScreenDisconnectScreen::_bfme_onQuit( const char * )
