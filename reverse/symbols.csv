@@ -77096,3 +77096,5 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ??0HRBMD_Buffer@@QAE@XZ,0x0003747A,HitReactionBehaviorModuleData member constructor ILT
 ??0FWWDead_UpgradeMuxData@@QAE@XZ,0x0000F0A6,FireWeaponWhenDeadBehaviorModuleData UpgradeMuxData constructor ILT
 ??0FWWDead_DieMuxData@@QAE@XZ,0x000071E4,FireWeaponWhenDeadBehaviorModuleData DieMuxData constructor ILT
+?reset@GameInfo@@UAEXXZ,0x00049D14,GameSpyStagingRoom reset calls the GameInfo reset incremental-link thunk
+_FreeGame,0x009D2B70,Official gstats.c FreeGame identity; GameSpyStagingRoom reset releases its statsgame pointer at +0x464

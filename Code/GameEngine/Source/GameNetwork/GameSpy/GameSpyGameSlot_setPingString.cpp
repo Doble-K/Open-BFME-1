@@ -5,6 +5,11 @@
 typedef int Int;
 typedef bool Bool;
 
+struct statsgame_s;
+typedef statsgame_s *statsgame_t;
+
+extern "C" void FreeGame(statsgame_t game);
+
 class AsciiString
 {
 public:
@@ -145,6 +150,7 @@ class GameSpyStagingRoom : public GameInfo
 {
 public:
 	void setPingString(AsciiString pingString);
+	virtual void reset();
 	virtual Bool amIHost() const;
 	virtual Int getLocalSlotNum() const;
 	virtual void resetAccepted();
@@ -154,6 +160,8 @@ private:
 	unsigned char m_derivedBody[0x438];
 	AsciiString m_pingString;
 	Int m_ping;
+	unsigned char m_tail[0x14];
+	statsgame_t m_statsGame;
 };
 
 void GameSpyGameSlot::setPingString(AsciiString pingString)
@@ -188,4 +196,12 @@ void GameSpyStagingRoom::resetAccepted()
 {
 	GameInfo::resetAccepted();
 	amIHost();
+}
+
+void GameSpyStagingRoom::reset()
+{
+	GameInfo::reset();
+	if (m_statsGame != 0)
+		FreeGame(m_statsGame);
+	m_statsGame = 0;
 }
