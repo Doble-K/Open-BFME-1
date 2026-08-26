@@ -902,6 +902,7 @@ name,address,notes
 ??$__find@U?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@_STL@@VAsciiString@@@_STL@@YA?AU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@0@U10@0ABVAsciiString@@ABUinput_iterator_tag@0@@Z,0x00027BAB,pinharvest x1 (thunk)
 ??$__find@U?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@_STL@@VAsciiString@@@_STL@@YA?AU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@0@U10@0ABVAsciiString@@ABUinput_iterator_tag@0@@Z,0x0002D66E,pinharvest x1 (thunk)
 ??$__find@U?$_Rb_tree_iterator@HU?$_Const_traits@H@_STL@@@_STL@@H@_STL@@YA?AU?$_Rb_tree_iterator@HU?$_Const_traits@H@_STL@@@0@U10@0ABHABUinput_iterator_tag@0@@Z,0x0004093A
+??$__find_if@PAUBannerMovieEntry@@VBannerMovieEntryMatches@@@_STL@@YAPAUBannerMovieEntry@@PAU1@0VBannerMovieEntryMatches@@ABUrandom_access_iterator_tag@0@@Z,0x00581CE0,BannerUI 28-byte entry search; predicate compares the id at entry+4
 ??$__find_if@PADU?$_Eq_char_bound@V?$char_traits@D@_STL@@@_STL@@@_STL@@YAPADPAD0U?$_Eq_char_bound@V?$char_traits@D@_STL@@@0@ABUrandom_access_iterator_tag@0@@Z,0x0000C379,REL32 call via ILT thunk
 ??$__find_if@PBDU?$_Eq_char_bound@V?$char_traits@D@_STL@@@_STL@@@_STL@@YAPBDPBD0U?$_Eq_char_bound@V?$char_traits@D@_STL@@@0@ABUrandom_access_iterator_tag@0@@Z,0x006528B0,gen-tgrid shared callee
 ??$__find_if@V?$reverse_iterator@PBD@_STL@@U?$_Eq_char_bound@V?$char_traits@D@_STL@@@2@@_STL@@YA?AV?$reverse_iterator@PBD@0@V10@0U?$_Eq_char_bound@V?$char_traits@D@_STL@@@0@ABUrandom_access_iterator_tag@0@@Z,0x004C4530,gen-tgrid shared callee
@@ -9271,6 +9272,7 @@ name,address,notes
 ?DebugFreeMemory@@YAXPAX@Z,0x0088EAD0
 ?DecompressMemory@@YA_NPAXH0AAH@Z,0x0081EB80,the callee of CompressionManager::decompressData's COMPRESSION_NOXLZH arm (compression type 2 at 0x0081E890) called with the reference's four arguments in order including outSize by reference; the LZH library declares exactly one function with that shape
 ?DeinitLanGameGadgets@@YAXXZ,0x00024613,ILT thunk to body 0x004CB010
+?DeleteBanner@@YAXH@Z,0x00026CE2,ILT to the BannerUI.apt DeleteBanner helper at 0x0050D4F0
 ?Delete@?$DynamicVectorClass@VModelNodeClass@HLodClass@@@@QAE_NH@Z,0x0097B0F0,DynamicVectorClass<HLodClass::ModelNodeClass>::Delete pin for HLod Remove_Sub_Object
 ?Delete@?$List@PAUINISection@@@@QAEXXZ,0x009E2630
 ?Determine_Tail_Diffuse@ParticleBufferClass@@IAE?AW4TailDiffuseTypeEnum@1@XZ,0x0098B750

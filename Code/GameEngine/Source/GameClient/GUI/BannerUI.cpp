@@ -16,11 +16,24 @@
 // recovered retail spelling.
 #include "PreRTS.h"
 #include "Common/INI.h"
+#include <algorithm>
 #include <vector>
 
 struct BannerMovieEntry
 {
-	unsigned char m_unmodelled[ 28 ];
+	int m_unmodelled;
+	int m_id;
+	unsigned char m_unmodelled_08[ 20 ];
+};
+
+class BannerMovieEntryMatches
+{
+public:
+	BannerMovieEntryMatches( int id ) : m_id( id ) {}
+	bool operator()( const BannerMovieEntry &entry ) const { return entry.m_id == m_id; }
+
+private:
+	int m_id;
 };
 
 class BannerUI
@@ -92,6 +105,7 @@ public:
 };
 
 extern WindowManager *g_theWindowManager;
+extern void DeleteBanner( int id );
 
 void parseBannerUI( INI *ini )
 {
@@ -127,6 +141,20 @@ void BannerUI::removeCurrentBannerMovie()
 		int id = TheCurrentBannerMovie;
 		TheCurrentBannerMovie = -1;
 		removeMovieBanner( id );
+	}
+}
+
+void BannerUI::removeMovieBanner( int id )
+{
+	if( TheCurrentBannerMovie == id )
+		return;
+
+	std::vector<BannerMovieEntry>::iterator entry =
+		std::find_if( m_movieEntries.begin(), m_movieEntries.end(), BannerMovieEntryMatches( id ) );
+	if( entry != m_movieEntries.end() )
+	{
+		DeleteBanner( id );
+		m_movieEntries.erase( entry );
 	}
 }
 
