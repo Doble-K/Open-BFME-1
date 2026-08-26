@@ -232,7 +232,7 @@ public:
 		VertexFormatXYZNDUV2 *Vertices;
 
 	public:
-		WriteLockClass(BoxDynamicVBAccessClass *vb_access);
+		__declspec(noinline) WriteLockClass(BoxDynamicVBAccessClass *vb_access);
 		__declspec(noinline) ~WriteLockClass();
 		VertexFormatXYZNDUV2 *Get_Formatted_Vertex_Array() { return Vertices; }
 	};
@@ -266,6 +266,32 @@ class BoxDX8VertexBufferClass : public BoxVertexBufferClass
 public:
 	IDirect3DVertexBuffer8 * Get_DX8_Vertex_Buffer() const { return VertexBuffer; }
 };
+
+BoxDynamicVBAccessClass::WriteLockClass::WriteLockClass(BoxDynamicVBAccessClass * dynamic_vb_access)
+	: DynamicVBAccess(dynamic_vb_access)
+{
+	W3DRadarResetLock();
+	switch (DynamicVBAccess->Type) {
+	case BUFFER_TYPE_DYNAMIC_DX8:
+	{
+		DX8_Assert();
+		// BFME fetches the ABI buffer before the count; preserve that observable load order.
+		BoxVertexBufferClass * volatile *vertex_buffer_slot = &DynamicVBAccess->VertexBuffer;
+		BoxDX8VertexBufferClass *vertex_buffer = static_cast<BoxDX8VertexBufferClass *>(*vertex_buffer_slot);
+		unsigned short vertex_count = DynamicVBAccess->VertexCount;
+		BFME_DX8_ErrorCode(vertex_buffer->Get_DX8_Vertex_Buffer()->Lock(
+			DynamicVBAccess->VertexBufferOffset * DynamicVBAccess->VertexBuffer->FVF_Info().Get_FVF_Size(),
+			vertex_count * DynamicVBAccess->VertexBuffer->FVF_Info().Get_FVF_Size(),
+			(unsigned char **)&Vertices,
+			D3DLOCK_NOSYSLOCK | (!DynamicVBAccess->VertexBufferOffset ? D3DLOCK_DISCARD : D3DLOCK_NOOVERWRITE)));
+		break;
+	}
+	case BUFFER_TYPE_DYNAMIC_SORTING:
+		Vertices = static_cast<BoxSortingVertexBufferClass *>(DynamicVBAccess->VertexBuffer)->Get_Vertex_Buffer();
+		Vertices += DynamicVBAccess->VertexBufferOffset;
+		break;
+	}
+}
 
 BoxDynamicVBAccessClass::WriteLockClass::~WriteLockClass()
 {
