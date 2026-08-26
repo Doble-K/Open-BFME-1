@@ -23389,3 +23389,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_0029a880@@YAXXZ,0x0029A880,gen-dump placeholder superseded by the byte-verified real PhysicsBehavior constructor identity.
 ?d_002d32b0@@YAXXZ,0x002D32B0,gen-dump placeholder superseded by the byte-verified real AudioLoopUpgrade constructor identity.
 ??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0004A345,claim retired: 0x0004A345 is the five-byte incremental-link thunk and not the constructor; the real body is at 0x002AE200.
+??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x000328C6,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x0029A880.
