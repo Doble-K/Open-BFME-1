@@ -87,7 +87,7 @@ class BfmeUserPreferencesVirtualView
 {
 public:
 	virtual void unused00() = 0;
-	virtual void unused04() = 0;
+	virtual Bool load( const UnicodeString &fname ) = 0;
 	virtual void unused08() = 0;
 	virtual void unused0C() = 0;
 	virtual void unused10() = 0;
@@ -106,6 +106,7 @@ struct BfmeAsciiStringView
 {
 	BfmeAsciiStringDataView *m_data;
 	Bool isEmpty() const { return !m_data || m_data->m_length == 0; }
+	const char *str() const { return m_data ? reinterpret_cast<const char *>( m_data ) + 8 : ""; }
 };
 
 //-----------------------------------------------------------------------------
@@ -163,41 +164,11 @@ UserPreferences::~UserPreferences( void )
 {
 }
 
-#define LINE_LEN 2048
-// ?load@UserPreferences@@UAE_NVAsciiString@@@Z present-unmatched
 Bool UserPreferences::load(AsciiString fname)
 {
-//	if (strstr(fname.str(), "\\"))
-//		throw INI_INVALID_DATA;	// must be a leaf name
-
-	m_filename = TheGlobalData->getPath_UserData();
-	m_filename.concat(fname);
-
-	FILE *fp = fopen(m_filename.str(), "r");
-	if (fp)
-	{
-		char buf[LINE_LEN];
-		while( fgets( buf, LINE_LEN, fp ) != NULL )
-		{
-			AsciiString line = buf;
-			line.trim();
-
-			AsciiString key, val;
-			line.nextToken(&key, "=");
-			val = line.str() + 1;
-
-			key.trim();
-			val.trim();
-
-			if (key.isEmpty() || val.isEmpty())
-				continue;
-
-			(*this)[key] = val;
-		}  // end while
-		fclose(fp);
-		return true;
-	}
-	return false;
+	UnicodeString unicodeFilename;
+	unicodeFilename.translate( reinterpret_cast<const BfmeAsciiStringView *>( &fname )->str() );
+	return reinterpret_cast<BfmeUserPreferencesVirtualView *>( this )->load( unicodeFilename );
 }
 
 // ?write@UserPreferences@@UAE_NXZ
