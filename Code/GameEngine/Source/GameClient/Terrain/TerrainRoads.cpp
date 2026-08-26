@@ -180,8 +180,7 @@ const FieldParse TerrainRoadType::m_terrainBridgeFieldParseTable[] =
 	else
 	{
 
-		DEBUG_CRASH(( "Expected Damage/Repair transition keyword\n" ));
-		throw INI_INVALID_DATA;
+		throw INIException( 3, "Expected Damage/Repair transition keyword\n" );
 
 	}  // end else
 
@@ -200,8 +199,7 @@ const FieldParse TerrainRoadType::m_terrainBridgeFieldParseTable[] =
 	if( effectNum < 0 || effectNum >= MAX_BRIDGE_BODY_FX )
 	{
 
-		DEBUG_CRASH(( "Effect number max on bridge transitions is '%d'\n", MAX_BRIDGE_BODY_FX ));
-		throw INI_INVALID_DATA;
+		throw INIException( 3, "Effect number max on bridge transitions is '%d'\n", MAX_BRIDGE_BODY_FX );
 
 	}  // end if
 
