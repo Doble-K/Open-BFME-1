@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
 /* EA DirtySock -- a second /Od /GZ comm transport, distinguished from the ring
  * one in Y4CommRingIdle.c by its LOCK OFFSET: +0x1E8 here against +0x1EC
  * there.  Four bytes is a whole field, so these are different objects and
@@ -348,6 +348,32 @@ int Rva00813E50( struct Rva00813E50Comm *comm, char *text )
 
 	strcpy( comm->m_host, text + 1 );
 	comm->m_state = 3;
+	Rva00813100( comm->m_port, 2, comm, 0x4000, 0, 0 );
+	return 0;
+}
+
+void Rva00813A50( struct Rva00813E50Comm *comm, const char *text,
+	char *output, int size, int flags );
+
+int Rva00813D00( struct Rva00813E50Comm *comm, char *text )
+{
+	char address[ 64 ];
+
+	if ( comm->m_state != 2 )
+		return -2;
+
+	if ( *text < '0' || *text > '9' )
+	{
+		Rva00813A50( comm, text, address, 64, 0 );
+		text = address;
+	}
+
+	comm->m_port = 0;
+	for ( ; *text >= '0' && *text <= '9'; text++ )
+		comm->m_port = comm->m_port * 10 + ( *text & 15 );
+
+	comm->m_host[ 0 ] = 0;
+	comm->m_state = 4;
 	Rva00813100( comm->m_port, 2, comm, 0x4000, 0, 0 );
 	return 0;
 }
