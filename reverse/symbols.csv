@@ -77019,3 +77019,6 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?setWakeFrame@HordeWorkerAIUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ??0GBB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,GettingBuiltBehavior ModuleFactory body calls the shared ObjectModule constructor ILT
 ?setWakeFrame@GBB_UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
+??0ALU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,AudioLoopUpgrade ModuleFactory body calls the shared ObjectModule constructor ILT
+??0ALU_UpgradeMux@@QAE@XZ,0x0003D24E,AudioLoopUpgrade calls the independently matched UpgradeMux constructor ILT
+?setWakeFrame@ALU_UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
