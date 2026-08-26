@@ -3954,12 +3954,12 @@ Real Player::getProductionCostChangeBasedOnKindOf( KindOfMaskType kindOf ) const
 //-------------------------------------------------------------------------------------------------
 /** setAttackedBy */
 //-------------------------------------------------------------------------------------------------
-// ?setAttackedBy@Player@@QAEXH@Z present-unmatched
 void Player::setAttackedBy( Int playerNdx )
 {
 	DEBUG_ASSERTCRASH(playerNdx >= 0, ("Player::setAttackedBy Player index is %d", playerNdx));
-	m_attackedBy[playerNdx] = true;
-	m_attackedFrame = TheGameLogic->getFrame();
+	// BFME's Player tail is wider than the recovered Zero Hour declaration.
+	reinterpret_cast<Bool *>(reinterpret_cast<char *>(this) + 0x29f)[playerNdx] = true;
+	*reinterpret_cast<UnsignedInt *>(reinterpret_cast<char *>(this) + 0x2c0) = TheGameLogic->getFrame();
 
 }
 
