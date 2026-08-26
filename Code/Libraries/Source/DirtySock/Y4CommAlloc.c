@@ -37,6 +37,13 @@ void *Rva0080B000( void )
 	return pObject;
 }
 
+void Rva0080ADE0( void *object, int releaseState );
+
+void Rva0080B050( void *object )
+{
+	Rva0080ADE0( object, 0 );
+}
+
 struct Rva00812320Module;
 
 struct Rva00812320Module *Rva00812320( int iEntries );
