@@ -3942,6 +3942,8 @@ name,address,notes
 ??1BfmeDtorBaseI@@UAE@XZ,0x0002C71E,Open-BFME5 the out-of-line base destructor the chained destructor at 0x0077DD80 calls
 ??1BfmeDtorBaseL@@QAE@XZ,0x0001E30D,Open-BFME5 the twelve-byte non-polymorphic base destructor the plain chain destructor at 0x00093CC0 calls
 ??1BfmeDtorBaseN@@QAE@XZ,0x0004A430,Open-BFME5 the 0x58-byte non-polymorphic base destructor the plain chain destructor at 0x002DEB80 calls
+??1BfmeDtorBaseV@@QAE@XZ,0x00887940,Open-BFME5 the base destructor the list-member destructor at 0x00080950 chains to
+??1BfmeDtorBaseW@@UAE@XZ,0x0003F25B,Open-BFME5 the base destructor the list-member destructor at 0x0009F7A0 chains to
 ??1BfmeDtorBase_00077560@@QAE@XZ,0x009A1A40,Open-BFME5 the base destructor the unwound vector destructor at 0x00077560 chains to
 ??1BfmeDtorBase_0049A4B0@@QAE@XZ,0x00026AB2,Open-BFME5 the base destructor the unwound vector destructor at 0x0049A4B0 chains to
 ??1BfmeDtorBase_00619F60@@QAE@XZ,0x00887940,Open-BFME5 the base destructor the unwound vector destructor at 0x00619F60 chains to
@@ -72195,6 +72197,8 @@ name,address,notes
 ?bfmeCheckA@@YAHPAX@Z,0x00894D90,Open-BFME5 the guard the cleanup at 0x00783A50 calls
 ?bfmeCheckB@@YAHPAX@Z,0x00894DB0,Open-BFME5 the guard the cleanups at 0x008925F0 0x00892CA0 and 0x00893990 call
 ?bfmeCleanup@INIMemberA@@AAEXXZ,0x009CBF50,Open-BFME5 the call INIMemberA's destructor at 0x009CBFE0 makes on this before releasing its vector member
+?bfmeClear@BfmeListA@@QAEXXZ,0x00021CD3,Open-BFME5 the out-of-line list clear the destructor at 0x0009F7A0 calls
+?bfmeClear@BfmeListB@@QAEXXZ,0x0001900B,Open-BFME5 the out-of-line list clear the destructor at 0x00080950 calls
 ?bfmeClearMembers@@YAXPAVLGA_MemberObj@@@Z,0x00034DC9,Open-BFME5 ILT thunk to body 0x003D4080; ??1LGA_MemberObj@@QAE@XZ at 0x003D4490 calls it on this as a cdecl of one pointer before its member vector is released; address-derived name
 ?bfmeCompare@AsciiString@@QBEHABV1@@Z,0x000220C5,Open-BFME5 ILT less<AsciiString> calls in the AsciiString-keyed _Rb_tree _M_insert at 0x005B2EF0; it jumps to 0x0005FEB0 and its result is tested against zero
 ?bfmeComputeStatus@Weapon@@ABE?AW4WeaponStatus@@PA_N@Z,0x0001E6A0,Open-BFME5 ILT Weapon::getStatus at 0x001E6EE0 computes the status through; the bool by pointer arrives pre-set to true and gates the cache write
@@ -72245,7 +72249,7 @@ name,address,notes
 ?bfmeCopySlotD@@YAXPAUBfmeSlotD@@PAX@Z,0x00026BAC,Open-BFME5 the copy the bounded appends call
 ?bfmeCopySlotE@@YAXPAUBfmeSlotE@@PAX@Z,0x0001870F,Open-BFME5 the copy the bounded appends call
 ?bfmeCreateInactiveTeam@TeamFactory@@AAEPAVTeam@@ABVAsciiString@@0@Z,0x0000D15C,retail REL32 at 0x000F7CAB targets the two-name createInactiveTeam ILT at 0x0000D15C
-?bfmeDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 the node deallocator the holding-list clears at 0x0043F5D0 and 0x0043FBB0 call
+?bfmeDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 the sentinel deallocator the list-member destructors at 0x0009F7A0 and 0x00080950 call
 ?bfmeDefer@Gen_002d60a0@@AAE_NPAVObject@@@Z,0x0000204F,Open-BFME5 ILT the guard at 0x002D60A0 tail-jumps through; it jumps to 0x002D9D00
 ?bfmeDestroyRange12@@YAXPAUBfmeElem12@@0PAD@Z,0x00014AA1,Open-BFME5 the element destroy helper the vector destroy at 0x006FA4E0 hands its range to
 ?bfmeDestroyRange2@@YAXPAH0PAD@Z,0x000096FB,Open-BFME5 the element destroy helper the vector destroy at 0x006A76E0 hands its range to
