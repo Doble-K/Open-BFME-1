@@ -1724,12 +1724,13 @@ void Player::guardSupplyCenter( Team *team, Int minSupplies  )
 //-------------------------------------------------------------------------------------------------
 /** A team is about to be destroyed */
 //-------------------------------------------------------------------------------------------------
-// ?preTeamDestroy@Player@@QAEXPBVTeam@@@Z present-unmatched
 void Player::preTeamDestroy( const Team *team )
 {
 	// ai notification callback
-	if( m_ai )
-		m_ai->aiPreTeamDestroy( team );
+	// BFME's Player tail is wider than the recovered Zero Hour declaration.
+	AIPlayer *ai = *reinterpret_cast<AIPlayer **>(reinterpret_cast<char *>(this) + 0x220);
+	if( ai )
+		ai->aiPreTeamDestroy( team );
 }  // preTeamDestroy
 
 //-------------------------------------------------------------------------------------------------
