@@ -23409,3 +23409,5 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_00204ed0@@YAXXZ,0x00204ED0,gen-dump placeholder superseded by the byte-verified real BattlePlanUpdateModuleData constructor identity.
 ?pop_front@?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@QAEXXZ,0x0002A3C4,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x00648760.
 ?setLogin@LANPlayer@@QAEXVAsciiString@@@Z,0x000ACFF0,wrong identity retracted: the 30-byte prefix has no retail function boundary; UserPreferences::setAsciiString owns the 101-byte body through its vtable slot +0x1C.
+??0FireWeaponWhenDamagedBehaviorModuleData@@QAE@XZ,0x00852130,alias retracted: 0x00852130 is INI::initFromINIMultiProc which the data-create proc CALLS; the constructor body is at 0x0012A100.
+?d_0012a100@@YAXXZ,0x0012A100,gen-dump placeholder superseded by the byte-verified real FireWeaponWhenDamagedBehaviorModuleData constructor identity.
