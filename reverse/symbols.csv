@@ -77383,3 +77383,12 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?find@Rva000F72B0AsciiHash@@QAEHABVAsciiString@@@Z,0x000043FE,retail REL32 at 0x000F72B9 targets the ILT for the AsciiString hashtable lookup at 0x000F2010
 ?loadPostProcess@UpdateModule@@MAEXXZ,0x0002D600,Rva0036BAE0 retail base-call thunk to the same no-op UpdateModule body at 0x001EF410
 ?refresh@Rva000F72D0FrameCachedValue@@AAEXPAX@Z,0x0004154C,retail REL32 at 0x000F72EC targets the frame-cache refresh ILT at 0x0004154C
+?bfmeNotify@Gen_000946D0Manager@@QAEXPAX@Z,0x0001A7DF,Open-BFME5 the manager member the notify-setter at 0x000946D0 tail-jumps to
+?bfmeNotify@Gen_00094700Manager@@QAEXPAX@Z,0x0001A7DF,Open-BFME5 the manager member the notify-setter at 0x00094700 tail-jumps to
+?bfmeNotify@Gen_00094730Manager@@QAEXPAX@Z,0x0001A7DF,Open-BFME5 the manager member the notify-setter at 0x00094730 tail-jumps to
+?bfmeChanged@Gen_00411DD0@@AAEXXZ,0x000200D1,Open-BFME5 the member the change-setter at 0x00411DD0 calls
+?bfmeChanged@Gen_0041B0D0@@AAEXXZ,0x0002E564,Open-BFME5 the member the change-setter at 0x0041B0D0 calls
+?bfmeChanged@Gen_00505530@@AAEXXZ,0x00023A29,Open-BFME5 the member the change-setter at 0x00505530 calls
+?bfmeChanged@Gen_00505550@@AAEXXZ,0x00023A29,Open-BFME5 the member the change-setter at 0x00505550 calls
+?bfmeChanged@Gen_005899B0@@AAEXXZ,0x0001D354,Open-BFME5 the member the change-setter at 0x005899B0 calls
+?bfmeChanged@Gen_005899D0@@AAEXXZ,0x0000271B,Open-BFME5 the member the change-setter at 0x005899D0 calls
