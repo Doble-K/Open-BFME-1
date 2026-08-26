@@ -104,6 +104,25 @@ int Rva00814040( struct Rva00814700Comm *comm, const void *payload,
 	return Rva0081BA60( comm->m_transport, payload, length );
 }
 
+int Rva0081B9D0( void *transport );
+
+int Rva00813F90( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 3 || comm->m_state == 4 )
+		return 2;
+
+	if ( comm->m_state == 2 || comm->m_state == 8 )
+		return 1;
+
+	if ( comm->m_state == 7 || comm->m_state == 6 )
+		return 3;
+
+	if ( comm->m_state == 5 )
+		return Rva0081B9D0( comm->m_transport );
+
+	return 4;
+}
+
 int Rva0081BC80( void *transport, void *buffer, int size,
 	unsigned int *when );
 
