@@ -72241,6 +72241,8 @@ name,address,notes
 ?bfmeCreateInactiveTeam@TeamFactory@@AAEPAVTeam@@ABVAsciiString@@0@Z,0x0000D15C,retail REL32 at 0x000F7CAB targets the two-name createInactiveTeam ILT at 0x0000D15C
 ?bfmeDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 the node deallocator the holding-list clears at 0x0043F5D0 and 0x0043FBB0 call
 ?bfmeDefer@Gen_002d60a0@@AAE_NPAVObject@@@Z,0x0000204F,Open-BFME5 ILT the guard at 0x002D60A0 tail-jumps through; it jumps to 0x002D9D00
+?bfmeDestroyRange2@@YAXPAH0PAD@Z,0x000096FB,Open-BFME5 the element destroy helper the vector destroy at 0x006A76E0 hands its range to
+?bfmeDestroyRange@@YAXPAH0PAD@Z,0x000247E9,Open-BFME5 the element destroy helper the vector destroy at 0x000BCBC0 hands its range to
 ?bfmeDispatchA@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x000075D6,Open-BFME5 ILT the range dispatcher at 0x002610F0 calls
 ?bfmeDispatchB@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00028501,Open-BFME5 ILT the range dispatcher at 0x00437D30 calls
 ?bfmeDispatchC@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00027138,Open-BFME5 ILT the range dispatcher at 0x00575A50 calls
