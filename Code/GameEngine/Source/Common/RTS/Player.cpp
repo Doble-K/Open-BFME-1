@@ -1715,12 +1715,13 @@ void Player::setTeamDelaySeconds(Int delay  )
 //-------------------------------------------------------------------------------------------------
 /** Guard supply center */
 //-------------------------------------------------------------------------------------------------
-// ?guardSupplyCenter@Player@@QAEXPAVTeam@@H@Z present-unmatched
 void Player::guardSupplyCenter( Team *team, Int minSupplies  )
 {
 	// ai action
-	if( m_ai )
-		m_ai->guardSupplyCenter( team, minSupplies );
+	// BFME's Player tail is wider than the recovered Zero Hour declaration.
+	AIPlayer *ai = *reinterpret_cast<AIPlayer **>(reinterpret_cast<char *>(this) + 0x220);
+	if( ai )
+		ai->guardSupplyCenter( team, minSupplies );
 }  // guardSupplyCenter
 
 //-------------------------------------------------------------------------------------------------
