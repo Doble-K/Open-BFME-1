@@ -43,20 +43,3 @@ void HideDiplomacy(void)
 
 	(*(WindowManager **)0x012F19E8)->hideQuitMenu();
 }
-
-// ?HideDiplomacy@@YGXH@Z
-void __stdcall HideDiplomacy(int)
-{
-	DiplomacyWindow *window = *(DiplomacyWindow **)0x012F49E4;
-
-	if (!window)
-		return;
-
-	if (window->m_hidden)
-		return;
-
-	window->m_hidden = true;
-	(*(InGameUI **)0x012F4B58)->m_diplomacyHidden = true;
-
-	(*(WindowManager **)0x012F19E8)->hideQuitMenu();
-}
