@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/campaignmanagerascii /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -36,6 +36,17 @@
 #define DEFINE_BODYDAMAGETYPE_NAMES
 #include "Common/INI.h"
 #include "GameClient/TerrainRoads.h"
+
+class INIException
+{
+public:
+	INIException(Int code, const char *message, ...);
+	INIException(const INIException &other);
+
+private:
+	Int m_code;
+	const char *m_message;
+};
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////////////////////////
 TerrainRoadCollection *TheTerrainRoads = NULL;
@@ -115,8 +126,7 @@ const FieldParse TerrainRoadType::m_terrainBridgeFieldParseTable[] =
 	else
 	{
 
-		DEBUG_CRASH(( "Expected Damage/Repair transition keyword\n" ));
-		throw INI_INVALID_DATA;
+		throw INIException( 3, "Expected Damage/Repair transition keyword\n" );
 
 	}  // end else
 
@@ -135,8 +145,7 @@ const FieldParse TerrainRoadType::m_terrainBridgeFieldParseTable[] =
 	if( effectNum < 0 || effectNum >= MAX_BRIDGE_BODY_FX )
 	{
 
-		DEBUG_CRASH(( "Effect number max on bridge transitions is '%d'\n", MAX_BRIDGE_BODY_FX ));
-		throw INI_INVALID_DATA;
+		throw INIException( 3, "Effect number max on bridge transitions is '%d'\n", MAX_BRIDGE_BODY_FX );
 
 	}  // end if
 
@@ -448,4 +457,3 @@ TerrainRoadType *TerrainRoadCollection::nextBridge( TerrainRoadType *bridge )
 	return bridge->friend_getNext();
 
 }  // end nextBridge
-
