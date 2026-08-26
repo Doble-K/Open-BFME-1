@@ -1,4 +1,4 @@
-// Four allocate-and-delegate copies.
+// Six allocate-and-delegate copies.
 //
 // Each sizes a block for the count, allocates it through the size-dispatch
 // helper with the usual zero arm, and hands the range plus the block plus the
@@ -6,8 +6,10 @@
 // callee-saved register across that call and comes back as the result.
 //
 // The fourth argument is the address of the first parameter slot, not a value:
-// a lea of the incoming count. The element widths are 0x0C, 0x18 and 0xEC --
-// the first two fold into a scaled address, the last needs an imul.
+// a lea of the incoming count. The element widths are 0x0C, 0x10, 0x18 and
+// 0xEC -- all but the last fold into a scaled address, and the three bytes
+// that saves are the whole difference between a seventy-six byte body and a
+// seventy-nine byte one.
 
 void *bfmeNewAlloc(unsigned int bytes);				// retail 0x00881F30
 void *bfmeAllocNode(unsigned int bytes);			// retail 0x0082E540
@@ -100,6 +102,48 @@ BfmeCopyElem_00230120 * __stdcall bfmeMakeCopy_00230120(unsigned int count,
 		block = 0;
 
 	bfmeCopyInto_00230120(first, last, block, &count);
+
+	return block;
+}
+
+struct BfmeCopyElem_003B3E00 { char m_bfmeBytes[0x10]; };
+
+void __cdecl bfmeCopyInto_003B3E00(const BfmeCopyElem_003B3E00 *first, const BfmeCopyElem_003B3E00 *last,
+	BfmeCopyElem_003B3E00 *result, unsigned int *counter);	// retail 0x0002846B
+
+// ?bfmeMakeCopy_003B3E00@@YGPAUBfmeCopyElem_003B3E00@@IPBU1@0@Z
+BfmeCopyElem_003B3E00 * __stdcall bfmeMakeCopy_003B3E00(unsigned int count,
+	const BfmeCopyElem_003B3E00 *first, const BfmeCopyElem_003B3E00 *last)
+{
+	BfmeCopyElem_003B3E00 *block;
+
+	if (count)
+		block = (BfmeCopyElem_003B3E00 *)bfmeAllocate(count * sizeof(BfmeCopyElem_003B3E00));
+	else
+		block = 0;
+
+	bfmeCopyInto_003B3E00(first, last, block, &count);
+
+	return block;
+}
+
+struct BfmeCopyElem_005716D0 { char m_bfmeBytes[0x10]; };
+
+void __cdecl bfmeCopyInto_005716D0(const BfmeCopyElem_005716D0 *first, const BfmeCopyElem_005716D0 *last,
+	BfmeCopyElem_005716D0 *result, unsigned int *counter);	// retail 0x00027782
+
+// ?bfmeMakeCopy_005716D0@@YGPAUBfmeCopyElem_005716D0@@IPBU1@0@Z
+BfmeCopyElem_005716D0 * __stdcall bfmeMakeCopy_005716D0(unsigned int count,
+	const BfmeCopyElem_005716D0 *first, const BfmeCopyElem_005716D0 *last)
+{
+	BfmeCopyElem_005716D0 *block;
+
+	if (count)
+		block = (BfmeCopyElem_005716D0 *)bfmeAllocate(count * sizeof(BfmeCopyElem_005716D0));
+	else
+		block = 0;
+
+	bfmeCopyInto_005716D0(first, last, block, &count);
 
 	return block;
 }
