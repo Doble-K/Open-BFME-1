@@ -1,155 +1,96 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /Ivendor/stlport
+// ModuleFactory reaches this body through ILT 0x0001002D. The 0x60-byte
+// allocation and EA constructor source fix its compact BFME layout.
+
+#include <vector>
 
 class Thing;
 class ModuleData;
+class Object;
 
-class ParkingPlaceBehavior
+class PPB_DeepBase
+{
+public:
+    PPB_DeepBase(Thing *, const ModuleData *);
+    virtual ~PPB_DeepBase();
+
+protected:
+    const ModuleData *m_moduleData;
+    Object *m_object;
+};
+
+class PPB_Iface1 { public: virtual void slot(); };
+class PPB_Iface2 { public: virtual void slot(); };
+
+class UpdateModule : public PPB_DeepBase, public PPB_Iface1, public PPB_Iface2
+{
+public:
+    UpdateModule(Thing *thing, const ModuleData *moduleData)
+        : PPB_DeepBase(thing, moduleData),
+          m_nextCallFrameAndPhase(0), m_indexInLogic(-1), m_updateState(-1)
+    {
+    }
+
+private:
+    unsigned int m_nextCallFrameAndPhase;
+    int m_indexInLogic;
+    int m_updateState;
+};
+
+class PPB_DieInterface
+{
+public:
+    virtual void slot();
+};
+
+class PPB_InterfaceState
+{
+public:
+    PPB_InterfaceState() : m_state(0) {}
+
+private:
+    unsigned int m_state;
+};
+
+class PPB_Coord3D
+{
+public:
+    void zero()
+    {
+        x = 0.0f;
+        y = 0.0f;
+        z = 0.0f;
+    }
+
+private:
+    float x;
+    float y;
+    float z;
+};
+
+class ParkingPlaceBehavior : public UpdateModule,
+                             public PPB_DieInterface,
+                             public PPB_InterfaceState
 {
 public:
     ParkingPlaceBehavior(Thing *, const ModuleData *);
+    virtual ~ParkingPlaceBehavior();
+
+private:
+    std::vector<unsigned int> m_spaces;
+    std::vector<unsigned int> m_runways;
+    std::vector<unsigned int> m_healing;
+    float m_field4c;
+    float m_field50;
+    PPB_Coord3D m_rallyPoint;
 };
 
 // ??0ParkingPlaceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) ParkingPlaceBehavior::ParkingPlaceBehavior(Thing *, const ModuleData *)
+ParkingPlaceBehavior::ParkingPlaceBehavior(
+    Thing *thing, const ModuleData *moduleData)
+    : UpdateModule(thing, moduleData)
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0xe0;
-        __emit 0x16;
-        __emit 0xe2;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x83;
-        __emit 0xc9;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x1c;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0x10;
-        __emit 0x29;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x1c;
-        __emit 0x2a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x58;
-        __emit 0x29;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x48;
-        __emit 0x29;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0x2c;
-        __emit 0x29;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x28;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x2c;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x30;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x34;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x38;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x3c;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x40;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x44;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x48;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x54;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x58;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x5c;
-        __emit 0xb8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x3f;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x4c;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x50;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+    m_rallyPoint.zero();
+    m_field4c = 1.0f;
+    m_field50 = 1.0f;
 }
