@@ -20,7 +20,9 @@ struct Rva00814700Comm
 	char m_gap4C[ 0x2C ];
 	void *m_transport;               /* +0x78 */
 	void *m_socket;                  /* +0x7C */
-	char m_gap80[ 0x1C ];
+	char m_gap80[ 0x10 ];
+	int m_state;                     /* +0x90 */
+	char m_gap94[ 0x08 ];
 	/* A SECOND RING, distinct from the one in Y4CommRingIdle.c: same shape --
 	 * an offset advanced by a record size and reduced modulo a buffer size --
 	 * but at +0x9C..+0xA8 rather than +0xB0..+0xBC.  Two rings in two
@@ -79,6 +81,20 @@ int Rva008140A0( struct Rva00814700Comm *comm, void *buffer, int size,
 	unsigned int *when )
 {
 	return Rva0081BD40( comm->m_transport, buffer, size, when );
+}
+
+int Rva008144C0( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 2 || comm->m_state == 3 )
+		return 2;
+
+	if ( comm->m_state == 1 || comm->m_state == 5 )
+		return 1;
+
+	if ( comm->m_state == 4 )
+		return 3;
+
+	return 4;
 }
 
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
