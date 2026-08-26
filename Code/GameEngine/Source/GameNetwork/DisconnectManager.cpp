@@ -36,7 +36,12 @@
 #undef countVotesForPlayer
 
 #include "Common/Recorder.h"
+#define showPlayerControls(slot) showPlayerControls(slot); \
+	void _bfme_showPlayerControls(Int, Bool); \
+	Bool _bfme_arePlayerControlsShown(Int); \
+	void setPlayerTimeoutTime(Int, Int)
 #include "GameClient/DisconnectMenu.h"
+#undef showPlayerControls
 #include "GameClient/InGameUI.h"
 #include "GameLogic/GameLogic.h"
 #include "GameNetwork/NetworkInterface.h"
@@ -48,8 +53,33 @@
 class BFMEConnectionManager : public ConnectionManager
 {
 public:
+	Bool isPlayerInGame(Int slot);
 	Bool isPlayerSlotActive(Int slot);
+	void sendDisconnectFrameCommand();
 };
+
+class BFMEDisconnectManager : public DisconnectManager
+{
+public:
+	Bool hasPingSuccessRatioAtLeast(Real ratio);
+};
+
+// BFME's NetworkInterface puts voteForPlayerDisconnect at vtable slot 31.
+class BFMENetworkVoteFacade
+{
+public:
+	virtual void slot00(); virtual void slot01(); virtual void slot02(); virtual void slot03();
+	virtual void slot04(); virtual void slot05(); virtual void slot06(); virtual void slot07();
+	virtual void slot08(); virtual void slot09(); virtual void slot10(); virtual void slot11();
+	virtual void slot12(); virtual void slot13(); virtual void slot14(); virtual void slot15();
+	virtual void slot16(); virtual void slot17(); virtual void slot18(); virtual void slot19();
+	virtual void slot20(); virtual void slot21(); virtual void slot22(); virtual void slot23();
+	virtual void slot24(); virtual void slot25(); virtual void slot26(); virtual void slot27();
+	virtual void slot28(); virtual void slot29(); virtual void slot30();
+	virtual void voteForPlayerDisconnect(Int slot);
+};
+
+extern Int g_bfmeDisconnectPingResult;
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -221,8 +251,79 @@ Int DisconnectManager::getPingsRecieved()
 }
 
 
-// ?updateDisconnectStatus@DisconnectManager@@IAEXPAVConnectionManager@@@Z
-// Body in Code/masm_dumps/DisconnectManager_updateDisconnectStatus.asm (exact 750B retail @ 0x0066C3B0).
+void DisconnectManager::updateDisconnectStatus(ConnectionManager *conMgr) {
+	Int i = 0;
+	UnsignedShort *playerState = (UnsignedShort *)((char *)this + 0x272);
+	for (; i < MAX_SLOTS; ++i, ++playerState) {
+		if (conMgr->isPlayerConnected(i)) {
+			Int slot = translatedSlotPosition(i, conMgr->getLocalPlayerID());
+			if (slot != -1) {
+				time_t curTime = timeGetTime();
+				time_t newTime = *(UnsignedInt *)((char *)TheGlobalData + 0xcc0)
+					- (curTime - m_playerTimeouts[slot]);
+
+				if ((newTime < *(UnsignedInt *)((char *)TheGlobalData + 0xcc0) / 3)
+					|| (isPlayerVotedOut(slot, conMgr) == TRUE)) {
+					if (TheGameLogic->getFrame() != *(UnsignedInt *)((char *)this + 0x258)) {
+						((BFMEConnectionManager *)conMgr)->sendDisconnectFrameCommand();
+						*(UnsignedInt *)((char *)this + 0x258) = TheGameLogic->getFrame();
+					}
+				}
+
+				if ((newTime < 0) || (isPlayerVotedOut(slot, conMgr) == TRUE)
+					|| ((BFMEConnectionManager *)conMgr)->isPlayerInGame(i)
+					|| (*playerState >= 5)) {
+					newTime = 0;
+					if ((allOnSameFrame(conMgr) == TRUE)
+						&& (isLocalPlayerNextPacketRouter(conMgr) == TRUE)
+						&& ((((BFMEConnectionManager *)conMgr)->isPlayerSlotActive(i) == FALSE)
+							|| (i == conMgr->getPacketRouterSlot()))) {
+						if ((m_pingsSent > 0)
+							&& (((Real)m_pingsRecieved / (Real)m_pingsSent) < 0.1f)) {
+							if (g_bfmeDisconnectPingResult != 1)
+								g_bfmeDisconnectPingResult = 1;
+						} else {
+							BFMEDisconnectManager *bfmeManager = (BFMEDisconnectManager *)this;
+							if ((bfmeManager->hasPingSuccessRatioAtLeast(0.25f) == FALSE)
+								&& bfmeManager->hasPingSuccessRatioAtLeast(0.1f)) {
+								*(Int *)((char *)TheGameLogic + 0x290) = 0;
+							} else if (*(Int *)((char *)TheGameLogic + 0x290) == 0) {
+								*(Int *)((char *)TheGameLogic + 0x290) = 2;
+							}
+
+							((BFMEConnectionManager *)conMgr)->sendDisconnectFrameCommand();
+							sendDisconnectCommand(i, conMgr);
+							disconnectPlayer(i, conMgr);
+							sendPlayerDestruct(i, conMgr);
+						}
+					}
+				}
+
+				if (TheDisconnectMenu) {
+					UnsignedInt timeout = *(UnsignedInt *)((char *)TheGlobalData + 0xcc0);
+					if (timeout != 0)
+						newTime = newTime * 100 / timeout;
+					else
+						newTime = 0;
+					TheDisconnectMenu->setPlayerTimeoutTime(slot, (Int)newTime);
+
+					if ((UnsignedInt)newTime < 90) {
+						if (TheDisconnectMenu->_bfme_arePlayerControlsShown(slot) == FALSE)
+							TheDisconnectMenu->_bfme_showPlayerControls(slot, TRUE);
+					} else if ((UnsignedInt)newTime > 95) {
+						if (TheDisconnectMenu->_bfme_arePlayerControlsShown(slot))
+							TheDisconnectMenu->_bfme_showPlayerControls(slot, FALSE);
+					}
+
+					if ((newTime == 0) && (isPlayerVotedOut(slot, conMgr) == FALSE)) {
+						((BFMENetworkVoteFacade *)TheNetwork)->voteForPlayerDisconnect(i);
+					}
+				}
+			}
+		}
+	}
+}
+
 // ?updateWaitForPacketRouter@DisconnectManager@@IAEXPAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::updateWaitForPacketRouter(ConnectionManager *conMgr) {
 /*
