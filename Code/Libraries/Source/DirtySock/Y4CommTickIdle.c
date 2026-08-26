@@ -160,6 +160,17 @@ void Rva00816910( struct Rva00814700Comm *comm )
 	comm->m_status = -1;
 }
 
+void Rva008155F0( struct Rva00814700Comm *comm, int status );
+
+void Rva00815D40( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 3 && comm->m_countA == comm->m_countB
+		&& Rva007FEA00() > comm->m_lastTick + 5000 )
+	{
+		Rva008155F0( comm, 19 );
+	}
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event
