@@ -1,6 +1,12 @@
 // cl: /DNDEBUG /MD /GX
 
+#include <new>
+
 typedef bool Bool;
+
+class BFMENetworkQueue;
+class BFMENetworkQueue1;
+class BFMENetwork;
 
 namespace _STL
 {
@@ -13,6 +19,22 @@ public:
 	 basic_string(const basic_string &that);
 	 ~basic_string();
 };
+
+template <class T, class Allocator>
+class deque
+{
+protected:
+	void _M_push_back_aux_v(const T &value);
+	friend class ::BFMENetworkQueue;
+	friend class ::BFMENetworkQueue1;
+	friend class ::BFMENetwork;
+};
+
+template <class T1, class T2>
+inline void _Construct(T1 *destination, const T2 &value)
+{
+	new (destination) T1(value);
+}
 }
 
 typedef _STL::basic_string<char, _STL::char_traits<char>, _STL::allocator<char> > BFMENetworkString;
@@ -110,13 +132,23 @@ private:
 class BFMENetworkQueueItem
 {
 public:
+	BFMENetworkQueueItem(const BFMENetworkQueueItem &that);
 	void copyFromQueueNode(void *node);
 };
 
 class BFMENetworkQueueItem1
 {
 public:
+	BFMENetworkQueueItem1(const BFMENetworkQueueItem1 &that);
 	void copyFromQueueNode(void *node);
+};
+
+struct BFMENetworkQueuePushFields
+{
+	char m_padding[0x10];
+	char *m_end;
+	char *m_first;
+	char *m_storageEnd;
 };
 
 class BFMENetworkListPayload
@@ -145,6 +177,16 @@ public:
 	~BFMENetworkQueue();
 
 	Bool empty() const { return m_end == m_begin; }
+	__forceinline void pushBack(const BFMENetworkQueueItem &item)
+	{
+		BFMENetworkQueuePushFields *fields = reinterpret_cast<BFMENetworkQueuePushFields *>(this);
+		if (fields->m_end != fields->m_storageEnd - 0x210) {
+			_STL::_Construct(reinterpret_cast<BFMENetworkQueueItem *>(fields->m_end), item);
+			fields->m_end += 0x210;
+		} else {
+			reinterpret_cast<_STL::deque<BFMENetworkQueueItem, _STL::allocator<BFMENetworkQueueItem> > *>(this)->_M_push_back_aux_v(item);
+		}
+	}
 	void popFront();
 	void finishConstruct(void *unused);
 
@@ -180,6 +222,16 @@ public:
 	~BFMENetworkQueue1();
 
 	Bool empty() const { return m_end == m_begin; }
+	__forceinline void pushBack(const BFMENetworkQueueItem1 &item)
+	{
+		BFMENetworkQueuePushFields *fields = reinterpret_cast<BFMENetworkQueuePushFields *>(this);
+		if (fields->m_end != fields->m_storageEnd - 0x1f0) {
+			_STL::_Construct(reinterpret_cast<BFMENetworkQueueItem1 *>(fields->m_end), item);
+			fields->m_end += 0x1f0;
+		} else {
+			reinterpret_cast<_STL::deque<BFMENetworkQueueItem1, _STL::allocator<BFMENetworkQueueItem1> > *>(this)->_M_push_back_aux_v(item);
+		}
+	}
 	void popFront();
 	void finishConstruct(void *unused);
 
@@ -888,74 +940,12 @@ doneInit:
 	}
 }
 
-__declspec(naked) void BFMENetwork::pushQueue0(BFMENetworkQueueItem *item)
+void BFMENetwork::pushQueue0(BFMENetworkQueueItem *item)
 {
-	__asm {
-		push 0ffffffffh
-		push 01043a39h
-		mov eax, fs:[0]
-		push eax
-		mov fs:[0], esp
-		sub esp, 10h
-		push esi
-		mov esi, ecx
-		push 0ffffffffh
-		lea eax, [esi+4]
-		push eax
-		lea ecx, [esp+14h]
-		__emit 0xe8
-		__emit 0x36
-		__emit 0xd3
-		__emit 0x37
-		__emit 0x00
-		mov al, [esp+10h]
-		test al, al
-		mov dword ptr [esp+1ch], 0
-		jne done
-		mov ecx, [esi+2ch]
-		mov eax, [esi+24h]
-		add esi, 14h
-		sub ecx, 210h
-		cmp eax, ecx
-		je slow
-		mov [esp+4], eax
-		mov [esp+8], eax
-		test eax, eax
-		mov byte ptr [esp+1ch], 1
-		je fastDone
-		mov edx, [esp+24h]
-		push edx
-		mov ecx, eax
-		__emit 0xe8
-		__emit 0x70
-		__emit 0xae
-		__emit 0x9b
-		__emit 0xff
-fastDone:
-		add dword ptr [esi+10h], 210h
-		jmp done
-slow:
-		mov eax, [esp+24h]
-		push eax
-		mov ecx, esi
-		__emit 0xe8
-		__emit 0xe0
-		__emit 0xcb
-		__emit 0x9e
-		__emit 0xff
-done:
-		lea ecx, [esp+0ch]
-		mov dword ptr [esp+1ch], 0ffffffffh
-		__emit 0xe8
-		__emit 0x20
-		__emit 0xd3
-		__emit 0x37
-		__emit 0x00
-		mov ecx, [esp+14h]
-		pop esi
-		mov fs:[0], ecx
-		add esp, 1ch
-		ret 4
+	BFMEAutoLockRef lock(&m_lock0, -1);
+
+	if (!lock.failed()) {
+		m_queue0.pushBack(*item);
 	}
 }
 
@@ -978,74 +968,12 @@ Bool BFMENetwork::popQueue0(BFMENetworkQueueItem *item)
 	return true;
 }
 
-__declspec(naked) void BFMENetwork::pushQueue1(BFMENetworkQueueItem1 *item)
+void BFMENetwork::pushQueue1(BFMENetworkQueueItem1 *item)
 {
-	__asm {
-		push 0ffffffffh
-		push 01043a69h
-		mov eax, fs:[0]
-		push eax
-		mov fs:[0], esp
-		sub esp, 10h
-		push esi
-		mov esi, ecx
-		push 0ffffffffh
-		lea eax, [esi+0ch]
-		push eax
-		lea ecx, [esp+14h]
-		__emit 0xe8
-		__emit 0x66
-		__emit 0xd2
-		__emit 0x37
-		__emit 0x00
-		mov al, [esp+10h]
-		test al, al
-		mov dword ptr [esp+1ch], 0
-		jne done1
-		mov ecx, [esi+54h]
-		mov eax, [esi+4ch]
-		add esi, 3ch
-		sub ecx, 1f0h
-		cmp eax, ecx
-		je slow1
-		mov [esp+4], eax
-		mov [esp+8], eax
-		test eax, eax
-		mov byte ptr [esp+1ch], 1
-		je fastDone1
-		mov edx, [esp+24h]
-		push edx
-		mov ecx, eax
-		__emit 0xe8
-		__emit 0x5a
-		__emit 0x25
-		__emit 0x9c
-		__emit 0xff
-fastDone1:
-		add dword ptr [esi+10h], 1f0h
-		jmp done1
-slow1:
-		mov eax, [esp+24h]
-		push eax
-		mov ecx, esi
-		__emit 0xe8
-		__emit 0x79
-		__emit 0xce
-		__emit 0x9b
-		__emit 0xff
-done1:
-		lea ecx, [esp+0ch]
-		mov dword ptr [esp+1ch], 0ffffffffh
-		__emit 0xe8
-		__emit 0x50
-		__emit 0xd2
-		__emit 0x37
-		__emit 0x00
-		mov ecx, [esp+14h]
-		pop esi
-		mov fs:[0], ecx
-		add esp, 1ch
-		ret 4
+	BFMEAutoLockRef lock(&m_lock1, -1);
+
+	if (!lock.failed()) {
+		m_queue1.pushBack(*item);
 	}
 }
 
