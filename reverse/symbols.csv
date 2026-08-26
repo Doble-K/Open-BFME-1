@@ -76225,6 +76225,7 @@ name,address,notes
 ?rva00362360UnguardedLinearInsert@@YAXPAURva00364980HeapElement@@U1@URva00364980HeapCompare@@@Z,0x000146FA,REL32 unguarded-linear-insert target from 0x00363BAA
 ?rva00363B80UnguardedInsertionSortAuxCall@@YAXPAURva00364980HeapElement@@00URva00364980HeapCompare@@@Z,0x00034BD5,REL32 unguarded-insertion-sort target from 0x0036679F
 ?rva003647E0PopHeap@@YAXPAURva00364980HeapElement@@00U1@URva00364980HeapCompare@@PAH@Z,0x0001479F,REL32 pop-heap helper target from 0x003649B1
+?rva00364980PopHeapAuxCall@@YAXPAURva00364980HeapElement@@00URva00364980HeapCompare@@@Z,0x0001CEB8,REL32 pop-heap-auxiliary target from 0x003663C5
 ?rva003653E0LinearInsert@@YAXPAURva00364980HeapElement@@0U1@URva00364980HeapCompare@@@Z,0x0000328D,REL32 linear-insert target from 0x00366358
 ?rva00366320InsertionSortCall@@YAXPAURva00364980HeapElement@@0URva00364980HeapCompare@@@Z,0x0002AA4F,REL32 insertion-sort target from 0x00366795
 ?rva00366760FinalInsertionSort@@YAXPAURva00364980HeapElement@@0URva00364980HeapCompare@@@Z,0x000390A4,REL32 final-insertion-sort target from 0x00366FEE
