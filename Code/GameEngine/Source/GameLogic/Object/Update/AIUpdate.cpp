@@ -78,6 +78,35 @@
 
 #define SLEEPY_AI
 
+extern unsigned char g_012F0239;
+extern void *g_012ED4FC;
+extern void j_0003a17a( void );
+
+typedef void (__cdecl *BFMEPathDebugLogFunction)( void *, const char *, ... );
+
+// The Zero Hour shim omits BFME members before these fields, so its declared offsets cannot be used here.
+struct BFMEApproachPathFields
+{
+	char m_unreconstructed_000[0x08];
+	Object *m_object;
+	char m_unreconstructed_00C[0x140 - 0x00C];
+	Path *m_path;
+	ObjectID m_requestedVictimID;
+	Coord3D m_requestedDestination;
+	Coord3D m_requestedDestination2;
+	UnsignedInt m_pathTimestamp;
+	char m_unreconstructed_164[0x17C - 0x164];
+	UnsignedInt m_queueForPathFrame;
+	char m_unreconstructed_180[0x31E - 0x180];
+	Bool m_waitingForPath;
+	Bool m_isAttackPath;
+	Bool m_isFinalGoal;
+	Bool m_isApproachPath;
+	Bool m_isSafePath;
+	char m_unreconstructed_323[0x330 - 0x323];
+	Bool m_isInUpdate;
+};
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -561,27 +590,36 @@ void AIUpdateInterface::requestAttackPath( ObjectID victimID, const Coord3D* vic
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?requestApproachPath@AIUpdateInterface@@ present-unmatched
 void AIUpdateInterface::requestApproachPath( Coord3D *destination ) 
 {
-	if (m_locomotorSet.getValidSurfaces() == 0) {
-		DEBUG_CRASH(("Attempting to path immobile unit."));
+	BFMEApproachPathFields *retail = reinterpret_cast<BFMEApproachPathFields *>( this );
+
+	if (g_012F0239 && g_012ED4FC)
+	{
+		((BFMEPathDebugLogFunction)j_0003a17a)( g_012ED4FC,
+			"CritterDesync: requestApproachPath1 -- m_requestedDestination changing from %g,%g,%g to %g,%g,%g",
+			retail->m_requestedDestination.x, retail->m_requestedDestination.y, retail->m_requestedDestination.z,
+			destination->x, destination->y, destination->z );
 	}
-	m_requestedDestination = *destination;
-	m_isFinalGoal = TRUE;
-	CRCDEBUG_LOG(("AIUpdateInterface::requestApproachPath() - m_isAttackPath = FALSE for object %d\n", getObject()->getID()));
-	m_isAttackPath = FALSE;	
-	m_requestedVictimID = INVALID_ID;	
-	m_isApproachPath = TRUE;
-	m_isSafePath = FALSE;
-	m_waitingForPath = TRUE;
-	if (m_pathTimestamp > TheGameLogic->getFrame()-3) {
-		/* Requesting path very quickly.  Can cause a spin. */
-		//DEBUG_LOG(("%d Pathfind - repathing in less than 3 frames.  Waiting 2 second\n",TheGameLogic->getFrame()));
-		setQueueForPathTime(2*LOGICFRAMES_PER_SECOND);
+
+	retail->m_requestedDestination = *destination;
+	retail->m_isFinalGoal = TRUE;
+	retail->m_isAttackPath = FALSE;
+	retail->m_requestedVictimID = INVALID_ID;
+	retail->m_isApproachPath = TRUE;
+	retail->m_isSafePath = FALSE;
+
+	if (retail->m_pathTimestamp > TheGameLogic->getFrame() - 2)
+	{
+		if (getWakeFrame() > UPDATE_SLEEP( 10 ) && !retail->m_isInUpdate)
+			setWakeFrame( retail->m_object, UPDATE_SLEEP( 10 ) );
+		retail->m_queueForPathFrame = TheGameLogic->getFrame() + 10;
+		destroyPath();
 		return;
 	}
-	TheAI->pathfinder()->queueForPath(getObject()->getID());
+
+	retail->m_waitingForPath = TRUE;
+	TheAI->pathfinder()->queueForPath( retail->m_object->getID() );
 }
 
 //-------------------------------------------------------------------------------------------------

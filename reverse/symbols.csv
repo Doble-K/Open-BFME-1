@@ -76995,3 +76995,4 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?disconnectPlayer@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,0x000201F3,DisconnectManager status update player removal through ILT to the existing 0x0066C040 body
 ?sendPlayerDestruct@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,0x0004B0B0,DisconnectManager status update destruction dispatch through ILT to the existing 0x0066B550 body
 ?g_bfmeDisconnectPingResult@@3HA,0x012B9810,standalone disconnect ping-result state read and set by updateDisconnectStatus after the sub-ten-percent ratio check
+?destroyPath@AIUpdateInterface@@QAEXXZ,0x000065E1,requestApproachPath retail ILT reaches the 0x0026F080 path destructor body
