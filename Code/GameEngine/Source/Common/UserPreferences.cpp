@@ -104,6 +104,7 @@ struct BfmeAsciiStringDataView
 struct BfmeAsciiStringView
 {
 	BfmeAsciiStringDataView *m_data;
+	Bool isEmpty() const { return !m_data || m_data->m_length == 0; }
 };
 
 //-----------------------------------------------------------------------------
@@ -228,16 +229,16 @@ Real UserPreferences::getReal(AsciiString key, Real defaultValue) const
 	return (Real)atof( reinterpret_cast<const char *>( data ) + 8 );
 }
 
-// ?getInt@UserPreferences@@QBEHVAsciiString@@H@Z present-unmatched
 Int UserPreferences::getInt(AsciiString key, Int defaultValue) const
 {
-	AsciiString val = getAsciiString(key, AsciiString::TheEmptyString);
-	if (val.isEmpty())
+	AsciiString val = reinterpret_cast<const BfmeUserPreferencesVirtualView *>( this )->getAsciiString( key, AsciiString::TheEmptyString );
+	BfmeAsciiStringView *view = reinterpret_cast<BfmeAsciiStringView *>( &val );
+	if (view->isEmpty())
 	{
 		return defaultValue;
 	}
 
-	return atoi(val.str());
+	return atoi( reinterpret_cast<const char *>( view->m_data ) + 8 );
 }
 
 // ?getAsciiString@UserPreferences@@QBE?AVAsciiString@@V2@0@Z present-unmatched
