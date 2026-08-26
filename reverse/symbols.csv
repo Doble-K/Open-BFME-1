@@ -77025,3 +77025,4 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?setWakeFrame@ALU_UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ??0BPU_BaseModuleData@@QAE@XZ,0x0000F0A6,BattlePlanUpdateModuleData constructs the shared module-data base through this ILT
 ??0FWWD_BaseModuleData@@QAE@XZ,0x0000F0A6,FireWeaponWhenDamagedBehaviorModuleData constructs the shared module-data base through this ILT
+??0AHB_BaseModuleData@@QAE@XZ,0x0000F0A6,AutoHealBehaviorModuleData constructs the shared module-data base through this ILT
