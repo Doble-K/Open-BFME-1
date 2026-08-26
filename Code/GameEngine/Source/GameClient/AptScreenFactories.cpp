@@ -102,13 +102,26 @@ template <typename T> class StringBase
 {
 	friend class UnicodeString;
 
+public:
+	void set( const StringBase<T> &other );
+	void trim();
+
 private:
 	StringBase( const StringBase<T> &other );
+};
+
+struct UnicodeStringData
+{
+	unsigned int m_refCount;
+	unsigned short m_length;
 };
 
 class UnicodeString
 {
 public:
+	static UnicodeString TheEmptyString;
+
+	UnicodeString() : m_data( 0 ) {}
 	UnicodeString( const UnicodeString &other )
 	{
 		((StringBase<unsigned short> *)this)->StringBase<unsigned short>::StringBase(
@@ -116,12 +129,26 @@ public:
 	}
 	~UnicodeString();
 	void concat( const unsigned short *text, int length );
+	void set( const UnicodeString &other )
+	{
+		((StringBase<unsigned short> *)this)->set(
+			*(const StringBase<unsigned short> *)&other );
+	}
+	void trim()
+	{
+		((StringBase<unsigned short> *)this)->trim();
+	}
+	bool isEmpty() const { return !m_data || m_data->m_length == 0; }
 
 private:
-	unsigned short *m_data;
+	UnicodeStringData *m_data;
 };
 
 extern "C" __declspec(dllimport) unsigned int __cdecl wcslen( const unsigned short *text );
+
+class GameWindow;
+UnicodeString GadgetTextEntryGetText( GameWindow *textEntry );
+void GadgetTextEntrySetText( GameWindow *textEntry, UnicodeString text );
 
 class NetworkInterface
 {
@@ -155,18 +182,20 @@ class DisconnectMenu
 {
 public:
 	void sendChat( UnicodeString text );
-
-protected:
-	char m_unmodelled[ 0x261 ];
 };
 
-class BfmeAptScreenDisconnectScreen : public DisconnectMenu
+class BfmeAptScreenDisconnectScreen
 {
 public:
 	BfmeAptScreenDisconnectScreen( void *context );
+	void _bfme_onChatEnterText( const char *argument );
 	void _bfme_onQuit( const char *argument );
 
 private:
+	char m_unmodelled[ 0x258 ];
+	GameWindow *m_textDisplayControl;
+	GameWindow *m_textEntryWindow;
+	char m_unmodelledState;
 	bool m_isQuitting;
 	char m_unmodelledTail[ 0xA ];
 };
@@ -178,7 +207,7 @@ void BfmeAptScreenDisconnectScreen::_bfme_onQuit( const char * )
 
 	UnicodeString message = TheNetwork->getPlayerName( TheNetwork->getLocalPlayerID() );
 	message.concat( L" has left the game", wcslen( L" has left the game" ) );
-	sendChat( message );
+	((DisconnectMenu *)this)->sendChat( message );
 
 	for( int slot = 0; slot < 8; ++slot )
 	{
@@ -187,6 +216,20 @@ void BfmeAptScreenDisconnectScreen::_bfme_onQuit( const char * )
 	}
 
 	TheNetwork->quitGame();
+}
+
+// ?_bfme_onChatEnterText@BfmeAptScreenDisconnectScreen@@QAEXPBD@Z
+void BfmeAptScreenDisconnectScreen::_bfme_onChatEnterText( const char * )
+{
+	UnicodeString text;
+	if( m_textEntryWindow )
+	{
+		text.set( GadgetTextEntryGetText( m_textEntryWindow ) );
+		GadgetTextEntrySetText( m_textEntryWindow, UnicodeString::TheEmptyString );
+		text.trim();
+		if( !text.isEmpty() )
+			((DisconnectMenu *)this)->sendChat( text );
+	}
 }
 
 // ?createAptScreenDisconnectScreen@@YGPAXPAX@Z
