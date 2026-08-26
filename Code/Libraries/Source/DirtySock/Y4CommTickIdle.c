@@ -20,7 +20,7 @@ struct Rva00814700Comm
 	char m_gap4C[ 0x2C ];
 	void *m_transport;               /* +0x78 */
 	void *m_socket;                  /* +0x7C */
-	char m_gap80[ 0x08 ];
+	unsigned char m_endpoint[ 0x08 ]; /* +0x80 */
 	unsigned int m_handle;           /* +0x88 */
 	char m_gap8C[ 0x04 ];
 	int m_state;                     /* +0x90 */
@@ -210,6 +210,22 @@ void Rva00815170( struct Rva00814700Comm *comm )
 }
 
 void Rva008155F0( struct Rva00814700Comm *comm, int status );
+
+void Rva00815C90( struct Rva00814700Comm *comm )
+{
+	if ( !( ( ( ( ( comm->m_endpoint[ 4 ] << 8 ) | comm->m_endpoint[ 5 ] )
+		<< 8 | comm->m_endpoint[ 6 ] ) << 8 | comm->m_endpoint[ 7 ] ) )
+		|| !( ( comm->m_endpoint[ 2 ] << 8 ) | comm->m_endpoint[ 3 ] ) )
+		return;
+
+	if ( Rva007FEA00() - comm->m_lastTick >= 1000 )
+	{
+		if ( comm->m_state == 1 )
+			Rva008155F0( comm, 16 );
+		else if ( comm->m_state == 2 )
+			Rva008155F0( comm, 17 );
+	}
+}
 
 void Rva00815D40( struct Rva00814700Comm *comm )
 {
