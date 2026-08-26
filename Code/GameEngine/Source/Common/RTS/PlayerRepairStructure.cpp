@@ -1,36 +1,48 @@
-// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
-#include "PreRTS.h"
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: Player::repairStructure, retail 0x000C9720, 20 bytes.
+//
+// The Zero Hour body verbatim -- forward to the AI player when there is one.
+// The AI pointer is at this+0x220 and the forwarded method is vftable slot
+// 0x3C, so the whole function is a null test and a tail jump.
 
 enum ObjectID { OBJECT_ID_INVALID = 0 };
+
+class AIPlayer
+{
+public:
+	virtual void aiSlot00();
+	virtual void aiSlot04();
+	virtual void aiSlot08();
+	virtual void aiSlot0c();
+	virtual void aiSlot10();
+	virtual void aiSlot14();
+	virtual void aiSlot18();
+	virtual void aiSlot1c();
+	virtual void aiSlot20();
+	virtual void aiSlot24();
+	virtual void aiSlot28();
+	virtual void aiSlot2c();
+	virtual void aiSlot30();
+	virtual void aiSlot34();
+	virtual void aiSlot38();
+	virtual void repairStructure(ObjectID structureID);
+};
 
 class Player
 {
 public:
-    virtual void repairStructure(ObjectID structureID);
+	virtual void repairStructure(ObjectID structureID);
+
+private:
+	unsigned char m_unmodelled_004[0x21c];
+	AIPlayer *m_ai;						// this+0x220
 };
 
-__declspec(naked) void Player::repairStructure(ObjectID)
+// ?repairStructure@Player@@UAEXW4ObjectID@@@Z
+void Player::repairStructure(ObjectID structureID)
 {
-    __asm {
-        _emit 08Bh
-        _emit 081h
-        _emit 020h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 085h
-        _emit 0C0h
-        _emit 074h
-        _emit 007h
-        _emit 08Bh
-        _emit 0C8h
-        _emit 08Bh
-        _emit 001h
-        _emit 0FFh
-        _emit 060h
-        _emit 03Ch
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+	if (m_ai)
+	{
+		m_ai->repairStructure(structureID);
+	}
 }
