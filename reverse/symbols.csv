@@ -72576,6 +72576,9 @@ name,address,notes
 ?bfmeMatchRaw@Gen_002dec00@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DEC00 calls
 ?bfmeMatchRaw@Gen_002df4c0@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4C0 calls
 ?bfmeMatchRaw@Gen_002df4e0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4E0 calls
+?bfmeMoveTo@Gen_0023E120@@QAEPAUBfmeElem_0023E120@@IPAU2@0@Z,0x00041D85,Open-BFME5 the element move the vector reserve at 0x0023E120 calls when it already holds storage
+?bfmeMoveTo@Gen_00359A80@@QAEPAUBfmeElem_00359A80@@IPAU2@0@Z,0x00014687,Open-BFME5 the element move the vector reserve at 0x00359A80 calls when it already holds storage
+?bfmeMoveTo@Gen_00359B50@@QAEPAUBfmeElem_00359B50@@IPAU2@0@Z,0x00004FD9,Open-BFME5 the element move the vector reserve at 0x00359B50 calls when it already holds storage
 ?bfmeNewAlloc@@YAPAXI@Z,0x00881F30,Open-BFME5 the large-block allocator the allocate-and-copy bodies at 0x000A7820 and its siblings call above 0x80 bytes
 ?bfmeNewMap@BfmePlayerMapState@@QAEXH_N@Z,0x00018679,Open-BFME5 ILT Player::newMap calls for the subobject at Player+0x30; it jumps to 0x000C7A30
 ?bfmeNext@Gen_00088B60@@AAEXXZ,0x00031FCF,Open-BFME5 the member the flag-then-forward wrapper at 0x00088B60 tail-jumps to
@@ -72617,6 +72620,9 @@ name,address,notes
 ?bfmeRegisterHouseColor@@YAXPBD0@Z,0x00900D70,the two-argument __cdecl function the HouseColor parser hands its two strings to; unnamed in the image
 ?bfmeRelease@BfmeSharedBlock@@QAEXXZ,0x009EB7A0,Open-BFME5 the shared-block release the refcounted assignments at 0x005D1E50 and its siblings call
 ?bfmeRelease@BfmeTagged@@QAEXXZ,0x009EB7A0,Open-BFME5 the shared release the tag-checked assignments call
+?bfmeReleaseOld@Gen_0023E120@@QAEXXZ,0x00045557,Open-BFME5 the release of the old block the vector reserve at 0x0023E120 calls after moving
+?bfmeReleaseOld@Gen_00359A80@@QAEXXZ,0x0002594B,Open-BFME5 the release of the old block the vector reserve at 0x00359A80 calls after moving
+?bfmeReleaseOld@Gen_00359B50@@QAEXXZ,0x00015E56,Open-BFME5 the release of the old block the vector reserve at 0x00359B50 calls after moving
 ?bfmeReserve@Gen_00095A50@@AAEXHPAX@Z,0x000472DA,Open-BFME5 ILT the vector assignment at 0x00095A50 reserves through
 ?bfmeReserve@Gen_000B54C0@@AAEXHPAX@Z,0x00043E37,Open-BFME5 ILT the vector assignment at 0x000B54C0 reserves through
 ?bfmeReserve@Gen_002F8980@@AAEXHPAX@Z,0x00015ABE,Open-BFME5 ILT the vector assignment at 0x002F8980 reserves through
