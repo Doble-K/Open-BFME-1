@@ -1703,12 +1703,13 @@ Bool Player::isSupplySourceAttacked( void )
 //-------------------------------------------------------------------------------------------------
 /** Set delay between team production */
 //-------------------------------------------------------------------------------------------------
-// ?setTeamDelaySeconds@Player@@QAEXH@Z present-unmatched
 void Player::setTeamDelaySeconds(Int delay  )
 {
 	// ai action
-	if( m_ai )
-		m_ai->setTeamDelaySeconds( delay );
+	// BFME places both fields earlier than the recovered Zero Hour declarations.
+	AIPlayer *ai = *reinterpret_cast<AIPlayer **>(reinterpret_cast<char *>(this) + 0x220);
+	if( ai )
+		*reinterpret_cast<Int *>(reinterpret_cast<char *>(ai) + 0x1c) = delay;
 }  // guardSupplyCenter
 
 //-------------------------------------------------------------------------------------------------
