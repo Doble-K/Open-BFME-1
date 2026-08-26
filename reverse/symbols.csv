@@ -75666,6 +75666,7 @@ name,address,notes
 ?unloadNext@RailedTransportDockUpdateUnloadNextShim@@QAEXXZ,0x002CE600,RailedTransportDockUpdate::unloadNext incremental-link thunk target through a TU-local forwarding shim
 ?unregister@AnimationSoundClientBehaviorGlobal@@QAEXPAVAnimationSoundClientBehavior@@@Z,0x0000D765,AnimationSoundClientBehavior dtor global unregister call; ILT thunk for body 0x00409140
 ?unregisterCave@CaveSystem@@QAEXH@Z,0x0001BC5C,Open-BFME5 retail cave unregister pin
+?untranslatedSlotPosition@@YAHHH@Z,0x000156D6,DisconnectScreen Kick handler maps its displayed slot back around the local-player gap before voting; ILT to 0x0066B3E0
 ?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,0x000488F6
 ?update@AIInternalMoveToStateUpdateShim@@QAE?AW4StateReturnType@@XZ,0x00172E70,AIInternalMoveToState::update incremental-link thunk target through a TU-local forwarding shim
 ?update@AIMoveOutOfTheWayStateUpdateShim@@QAE?AW4StateReturnType@@XZ,0x000488F6,AIMoveOutOfTheWayState::update incremental-link thunk target through a TU-local forwarding shim

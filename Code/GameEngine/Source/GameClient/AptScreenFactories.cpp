@@ -145,7 +145,10 @@ private:
 };
 
 extern "C" __declspec(dllimport) unsigned int __cdecl wcslen( const unsigned short *text );
+extern "C" __declspec(dllimport) int __cdecl atoi( const char *text );
 extern "C" int __cdecl strcmp( const char *left, const char *right );
+
+int untranslatedSlotPosition( int slot, int localSlot );
 
 class GameWindow;
 UnicodeString GadgetTextEntryGetText( GameWindow *textEntry );
@@ -206,6 +209,7 @@ public:
 	BfmeAptScreenDisconnectScreen( void *context );
 	void _bfme_onChatEnterText( const char *argument );
 	void _bfme_onInitGadget( const char *name, void *argument, GameWindow *window );
+	void _bfme_onKick( const char *argument );
 	void _bfme_onQuit( const char *argument );
 
 private:
@@ -272,6 +276,18 @@ void BfmeAptScreenDisconnectScreen::_bfme_onInitGadget(
 		BfmeGadgetListBoxSetAudioFeedback( window, true );
 		GadgetListBoxAddEntryText( window,
 			TheGameText->fetch( "APT:DisconnectRules" ), -1, -1, -1, true );
+	}
+}
+
+// ?_bfme_onKick@BfmeAptScreenDisconnectScreen@@QAEXPBD@Z
+void BfmeAptScreenDisconnectScreen::_bfme_onKick( const char *argument )
+{
+	if( argument && *argument )
+	{
+		int slot = atoi( argument );
+		int localSlot = TheNetwork->getLocalPlayerID();
+		slot = untranslatedSlotPosition( slot, localSlot );
+		TheNetwork->voteForPlayerDisconnect( slot );
 	}
 }
 
