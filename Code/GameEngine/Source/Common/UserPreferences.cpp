@@ -83,6 +83,29 @@ public:
 	virtual Int getLocalProfileID() = 0;
 };
 
+class BfmeUserPreferencesVirtualView
+{
+public:
+	virtual void unused00() = 0;
+	virtual void unused04() = 0;
+	virtual void unused08() = 0;
+	virtual void unused0C() = 0;
+	virtual void unused10() = 0;
+	virtual void unused14() = 0;
+	virtual AsciiString getAsciiString( AsciiString key, AsciiString defaultValue ) const = 0;
+};
+
+struct BfmeAsciiStringDataView
+{
+	UnsignedInt m_refCount;
+	UnsignedShort m_length;
+};
+
+struct BfmeAsciiStringView
+{
+	BfmeAsciiStringDataView *m_data;
+};
+
 //-----------------------------------------------------------------------------
 // PRIVATE DATA ///////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
@@ -178,17 +201,19 @@ Bool UserPreferences::load(AsciiString fname)
 // ?write@UserPreferences@@UAE_NXZ
 // Body in UserPreferences_write.asm (exact 162B retail).
 
-// ?getBool@UserPreferences@@QBE_NVAsciiString@@_N@Z present-unmatched
 Bool UserPreferences::getBool(AsciiString key, Bool defaultValue) const
 {
-	AsciiString val = getAsciiString(key, AsciiString::TheEmptyString);
-	if (val.isEmpty())
+	// BFME made the preference accessors virtual; the ZH header retained here did not.
+	AsciiString val = reinterpret_cast<const BfmeUserPreferencesVirtualView *>( this )->getAsciiString( key, AsciiString::TheEmptyString );
+	BfmeAsciiStringDataView *data = reinterpret_cast<BfmeAsciiStringView *>( &val )->m_data;
+	if (!data || data->m_length == 0)
 	{
 		return defaultValue;
 	}
 
 	val.toLower();
-	return (val == "1" || val == "t" || val == "true" || val == "y" || val == "yes" || val == "ok");
+	return (val.compare( "1" ) == 0 || val.compare( "t" ) == 0 || val.compare( "true" ) == 0 ||
+		val.compare( "y" ) == 0 || val.compare( "yes" ) == 0 || val.compare( "ok" ) == 0);
 }
 
 // ?getReal@UserPreferences@@QBEMVAsciiString@@M@Z present-unmatched
