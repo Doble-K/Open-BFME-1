@@ -59,6 +59,7 @@ struct Rva0080B000Comm
 void *Rva007FD2D0( int family, int type, int protocol );
 void Rva007FD3F0( void *socket );
 int Rva007FD510( void *socket, const void *address, int addressLength );
+int Rva007FD7A0( void *socket, int mode );
 
 int Rva0080B150( struct Rva0080B000Comm *comm, const void *address,
 	int addressLength )
@@ -75,6 +76,11 @@ int Rva0080B150( struct Rva0080B000Comm *comm, const void *address,
 	}
 
 	return Rva007FD510( comm->m_socket, address, addressLength );
+}
+
+int Rva0080B460( struct Rva0080B000Comm *comm, int mode )
+{
+	return Rva007FD7A0( comm->m_socket, mode );
 }
 
 struct Rva00812320Module;

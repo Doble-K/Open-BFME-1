@@ -76962,3 +76962,4 @@ _Rva0080FDD0,0x0080FDD0,address-derived multi-precision subtraction helper calle
 _Rva0080ADE0,0x0080ADE0,address-derived comm object state release helper called by 0x0080B050
 _Rva007FD2D0,0x007FD2D0,address-derived socket creation helper called by 0x0080B150
 _Rva007FD510,0x007FD510,address-derived socket bind helper called by 0x0080B150
+_Rva007FD7A0,0x007FD7A0,address-derived socket mode helper called by 0x0080B460
