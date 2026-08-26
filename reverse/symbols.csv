@@ -72500,6 +72500,7 @@ name,address,notes
 ?bfmeInit00044BFC@@YAXXZ,0x00044BFC,Open-BFME5 ILT the initialiser the run-once latch at 0x005E84E0 calls
 ?bfmeInit0004B0F1@@YAXXZ,0x0004B0F1,Open-BFME5 ILT the initialiser the run-once latch at 0x005E85D0 calls
 ?bfmeInit005DFD50@@YAXXZ,0x00015FB9,Open-BFME5 ILT the initialiser a latched-once body calls
+?bfmeInit@BfmeSub@@QAEXPAX@Z,0x0000DF49,Open-BFME5 the sub-object initialiser the entry append at 0x000D5E90 calls
 ?bfmeInit@Gen008FF1B0@@AAEXPAX@Z,0x008FEC90,Open-BFME5 the initialiser the zeroing constructor at 0x008FF1B0 calls
 ?bfmeInit@Gen0090BE20@@AAEXPAX@Z,0x0090BCF0,Open-BFME5 the initialiser the zeroing constructor at 0x0090BE20 calls
 ?bfmeInit@Gen0090DB70@@AAEXPAX@Z,0x0090DB10,Open-BFME5 the initialiser the zeroing constructor at 0x0090DB70 calls
