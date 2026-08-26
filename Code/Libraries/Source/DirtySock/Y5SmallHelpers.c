@@ -3,6 +3,7 @@
 void *memcpy(void *dest, const void *src, unsigned int count);
 void *memset(void *dest, int value, unsigned int count);
 int memcmp(const void *first, const void *second, unsigned int count);
+int sprintf(char *buffer, const char *format, ...);
 unsigned int strlen(const char *text);
 char *strcpy(char *dest, const char *src);
 
@@ -261,4 +262,36 @@ int Rva0080E200(const int *crypto, const unsigned char *data, int length)
 	if (memcmp(data + length - 8, digest, 8) != 0)
 		return -2;
 	return 0;
+}
+
+void Rva0080DD80(unsigned char *output, const unsigned char *key,
+	int value, const char *name)
+{
+	unsigned char context[0x54];
+	unsigned char rc4[0x102];
+	char text[0x100];
+	int combinedLength;
+
+	sprintf(text, "send-%s-send", name);
+	Rva00810020(context);
+	Rva00810060(context, (const unsigned char *)text, -1);
+	Rva00810FF0(context, (char *)output, 0x10);
+
+	sprintf(text, "recv-%s-recv", name);
+	Rva00810020(context);
+	Rva00810060(context, (const unsigned char *)text, -1);
+	Rva00810FF0(context, (char *)output + 0x10, 0x10);
+
+	memcpy(output + 0x30, output, 0x20);
+	*(int *)(output + 0x50) = value;
+
+	sprintf(text, "iv-%s-iv", name);
+	Rva00810020(context);
+	Rva00810060(context, (const unsigned char *)text, -1);
+	Rva00810FF0(context, (char *)output + 0x20, 0x10);
+
+	combinedLength = Rva0080DC90(key, output + 0x20,
+		(unsigned char *)text);
+	Rva0080F200(rc4, (const unsigned char *)text, combinedLength, -1);
+	Rva0080F300(rc4, output + 0x30, 0x24);
 }
