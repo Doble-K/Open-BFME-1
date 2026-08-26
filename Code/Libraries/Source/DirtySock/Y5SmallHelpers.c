@@ -128,3 +128,24 @@ void Rva0080EEF0(char **slot, const char *text)
 	*slot = (char *)Rva007F0000(strlen(text) + 1);
 	strcpy(*slot, text);
 }
+
+int Rva007FDB60(void *socket, int selector, void *buffer, int bufferSize);
+
+int Rva0080DBF0(unsigned char *object, int selector, void *buffer,
+	int bufferSize)
+{
+	int result;
+
+	result = -1;
+	if (*(void **)object != 0)
+	{
+		result = Rva007FDB60(*(void **)object, selector, buffer, bufferSize);
+		if (selector == 'stat' && *(int *)(object + 0x118) == 1)
+			result = 0;
+		if (selector == 'stat' && result > 0
+			&& *(int *)(object + 0x118) != 0x14
+			&& *(int *)(object + 0x118) != 0x10)
+			result = 0;
+	}
+	return result;
+}
