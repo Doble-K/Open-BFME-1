@@ -77348,3 +77348,9 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeForward@Gen_00C71580Target@@QAEXXZ,0x009DB7A0,Open-BFME5 the member the singleton forwarder at 0x00C71580 tail-jumps to
 ?addRect006e@BfmeRender2D@@QAEXABUBfmeFloatRect@@H@Z,0x00019D67,W3DDisplay clipped fill-rectangle target read from retail REL32
 ?removeTerrainBib@BaseHeightMapRenderObjClass@@QAEXW4ObjectID@@@Z,0x0002B9E5,W3DTerrainVisual removeFactionBib target read from retail REL32
+?bfmeNext@Gen_00088B60@@AAEXXZ,0x00031FCF,Open-BFME5 the member the flag-then-forward wrapper at 0x00088B60 tail-jumps to
+?bfmeNext@Gen_000B5690@@AAEXXZ,0x000242A3,Open-BFME5 the member the flag-then-forward wrapper at 0x000B5690 tail-jumps to
+?bfmeNext@Gen_000B56A0@@AAEXXZ,0x0002F699,Open-BFME5 the member the flag-then-forward wrapper at 0x000B56A0 tail-jumps to
+?bfmeNext@Gen_000B56B0@@AAEXXZ,0x00016455,Open-BFME5 the member the flag-then-forward wrapper at 0x000B56B0 tail-jumps to
+?bfmeNext@Gen_000B56C0@@AAEXXZ,0x0001AD2A,Open-BFME5 the member the flag-then-forward wrapper at 0x000B56C0 tail-jumps to
+?bfmeNext@Gen_000B56D0@@AAEXXZ,0x0003990A,Open-BFME5 the member the flag-then-forward wrapper at 0x000B56D0 tail-jumps to
