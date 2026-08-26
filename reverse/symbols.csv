@@ -77220,3 +77220,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?notifyShroudChanged006e@BaseHeightMapRenderObjClass@@QAEXXZ,0x00036F43,W3DDisplay terrain shroud-notification target read from retail REL32
 ?TheTaintManager@@3PAVBfmeTaintManager@@A,0x012ED5C0,BFME TheTaintManager global named by its subsystem registration string
 ?getTaintLevelByte006e@BfmeTaintManager@@QAEEHH@Z,0x00880E50,W3DDisplay BFME taint-level byte target read from retail REL32
+?structureCollapseBuildNonDupRandomIndexList@@YAXHHQAH@Z,0x002AE160,StructureCollapse doPhaseStuff retail file-local index builder
+?isEmpty@StructureCollapseFXShim@@QBE_NXZ,0x00011F77,StructureCollapse doPhaseStuff FXList emptiness call thunk
+?doFXPos@StructureCollapseFXShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0@Z,0x0001BB21,StructureCollapse doPhaseStuff BFME four-argument FX position call thunk
+?create@StructureCollapseOCLShim@@QBEPAVObject@@PBV2@PBUCoord3D@@1I@Z,0x00002A59,StructureCollapse doPhaseStuff BFME OCL creation call thunk

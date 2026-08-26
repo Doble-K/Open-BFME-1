@@ -344,7 +344,7 @@ inline Bool inList(Int value, Int count, const Int idxList[])
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-static void buildNonDupRandomIndexList(Int range, Int count, Int idxList[])
+static void structureCollapseBuildNonDupRandomIndexList(Int range, Int count, Int idxList[])
 {
 	for (Int i = 0; i < count; ++i)
 	{
@@ -358,44 +358,104 @@ static void buildNonDupRandomIndexList(Int range, Int count, Int idxList[])
 	}
 }
 
+template<typename T> struct StructureCollapseRetailVector
+{
+	const T **m_begin;
+	const T **m_end;
+	const T **m_capacity;
+
+	Int size() const { return m_end - m_begin; }
+	const T *operator[](Int index) const { return m_begin[index]; }
+};
+
+struct StructureCollapseRetailModuleData
+{
+	unsigned char m_beforeOCLs[0x50];
+	StructureCollapseRetailVector<ObjectCreationList> m_ocls[4];
+	unsigned char m_beforeFXs[0x0c];
+	StructureCollapseRetailVector<FXList> m_fxs[4];
+	unsigned char m_beforeOCLCounts[0x0c];
+	Int m_oclCounts[4];
+	Int m_beforeFXCounts;
+	Int m_fxCounts[4];
+};
+
+class StructureCollapseFXShim
+{
+public:
+	Bool isEmpty() const;
+	void doFXPos(const Coord3D *position, const Matrix3D *transform,
+		Real speed, const Coord3D *velocity) const;
+};
+
+class StructureCollapseOCLShim
+{
+public:
+	Object *create(const Object *primaryObject, const Coord3D *primaryPosition,
+		const Coord3D *secondaryPosition, UnsignedInt lifetimeFrames) const;
+};
+
+class StructureCollapseThisShim
+{
+public:
+	unsigned char m_beforeObject[8];
+	Object *m_object;
+
+	Object *getObject() const { return m_object; }
+};
+
+typedef void (*StructureCollapseFXWrapper)(const FXList *, const Coord3D *,
+	const Matrix3D *, const Real, const Coord3D *, const Real);
+
+// Keep the already-ledgered ZH inline wrapper emitted after the BFME body stops calling it.
+static StructureCollapseFXWrapper volatile s_structureCollapseFXWrapper =
+	static_cast<StructureCollapseFXWrapper>(&FXList::doFXPos);
+
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?doPhaseStuff@StructureCollapseUpdate@@IAEXW4StructureCollapsePhaseType@@PBUCoord3D@@@Z present-unmatched
 void StructureCollapseUpdate::doPhaseStuff(StructureCollapsePhaseType scphase, const Coord3D *target)
 {
-	DEBUG_LOG(("Firing phase %d on frame %d\n", scphase, TheGameLogic->getFrame()));
-
-	const StructureCollapseUpdateModuleData* d = getStructureCollapseUpdateModuleData();
+	const StructureCollapseRetailModuleData *d =
+		*reinterpret_cast<const StructureCollapseRetailModuleData *const *>(
+			reinterpret_cast<const char *>(this) + 4);
 	Int i, idx, count, listSize;
 	Int idxList[MAX_IDX];
 
 	listSize = d->m_fxs[scphase].size();
 	if (listSize > 0)
 	{
-		count = d->m_fxCount[scphase];
-		buildNonDupRandomIndexList(listSize, count, idxList);
+		count = d->m_fxCounts[scphase];
+		structureCollapseBuildNonDupRandomIndexList(listSize, count, idxList);
 		for (i = 0; i < count; ++i)
 		{
 			idx = idxList[i];
-			const FXVec& v = d->m_fxs[scphase];
-			DEBUG_ASSERTCRASH(idx>=0&&idx<v.size(),("bad idx"));
-			const FXList* fxl = v[idx];
-			FXList::doFXPos(fxl, target);
+			const StructureCollapseRetailVector<FXList> &fxs = d->m_fxs[scphase];
+			const FXList *fxl = fxs[idx];
+			const StructureCollapseFXShim *fx =
+				reinterpret_cast<const StructureCollapseFXShim *>(fxl);
+			if (fx != NULL && !fx->isEmpty())
+			{
+				fx->doFXPos(target, NULL, 0.0f, NULL);
+			}
 		}
 	}
 
 	listSize = d->m_ocls[scphase].size();
 	if (listSize > 0)
 	{
-		count = d->m_oclCount[scphase];
-		buildNonDupRandomIndexList(listSize, count, idxList);
+		count = d->m_oclCounts[scphase];
+		structureCollapseBuildNonDupRandomIndexList(listSize, count, idxList);
 		for (i = 0; i < count; ++i)
 		{
 			idx = idxList[i];
-			const OCLVec& v = d->m_ocls[scphase];
-			DEBUG_ASSERTCRASH(idx>=0&&idx<v.size(),("bad idx"));
-			const ObjectCreationList* ocl = v[idx];
-			ObjectCreationList::create(ocl, getObject(), target, NULL, getObject()->getOrientation() );
+			const StructureCollapseRetailVector<ObjectCreationList> &ocls = d->m_ocls[scphase];
+			const ObjectCreationList *ocl = ocls[idx];
+			if (ocl != NULL)
+			{
+				reinterpret_cast<const StructureCollapseOCLShim *>(ocl)->create(
+					reinterpret_cast<const StructureCollapseThisShim *>(this)->getObject(),
+					target, NULL, 0);
+			}
 		}
 	}
 }
