@@ -77344,3 +77344,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeForward@Gen_00C71560Target@@QAEXXZ,0x009DB7A0,Open-BFME5 the member the singleton forwarder at 0x00C71560 tail-jumps to
 ?bfmeForward@Gen_00C71570Target@@QAEXXZ,0x009DB7A0,Open-BFME5 the member the singleton forwarder at 0x00C71570 tail-jumps to
 ?bfmeForward@Gen_00C71580Target@@QAEXXZ,0x009DB7A0,Open-BFME5 the member the singleton forwarder at 0x00C71580 tail-jumps to
+?addRect006e@BfmeRender2D@@QAEXABUBfmeFloatRect@@H@Z,0x00019D67,W3DDisplay clipped fill-rectangle target read from retail REL32
