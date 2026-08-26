@@ -2019,6 +2019,12 @@ name,address,notes
 ??0BeaconClientUpdateModuleData@@QAE@XZ,0x000286C3,module-glue cascade callee (from retail call site)
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00113C60,Open-BFME5 base constructor the Collide and Damage module constructors forward to
 ??0BezierSegment@@QAE@XZ,0x00043A9A
+??0BfmeAllocProxy_000FD230@@QAE@PAXPAUBfmeElem_000FD230@@@Z,0x00026B9D,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x000FD230 runs
+??0BfmeAllocProxy_003A7A30@@QAE@PAXPAUBfmeElem_003A7A30@@@Z,0x0002DE07,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x003A7A30 runs
+??0BfmeAllocProxy_003A7B10@@QAE@PAXPAUBfmeElem_003A7B10@@@Z,0x0003B278,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x003A7B10 runs
+??0BfmeAllocProxy_003A7DC0@@QAE@PAXPAUBfmeElem_003A7DC0@@@Z,0x0002BD78,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x003A7DC0 runs
+??0BfmeAllocProxy_00760B20@@QAE@PAXPAUBfmeElem_00760B20@@@Z,0x0001572B,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x00760B20 runs
+??0BfmeAllocProxy_00760BE0@@QAE@PAXPAUBfmeElem_00760BE0@@@Z,0x0002FB85,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x00760BE0 runs
 ??0BfmeAptScreenBase@@QAE@PAX@Z,0x0001B9FA,ILT thunk to the common 0x218-byte APT screen base constructor used by BfmeAptScreenQuickMatchMenu
 ??0BfmeAptScreenCampaignReview@@QAE@PAX@Z,0x0003D09B,ILT thunk to the CampaignReview.apt screen constructor
 ??0BfmeAptScreenDisconnectScreen@@QAE@PAX@Z,0x0000BFB9,ILT thunk to the DisconnectScreen.apt screen constructor
@@ -76976,9 +76982,9 @@ _Rva00813A50,0x00813A50,address-derived DirtySock address lookup helper called b
 _Rva008143F0,0x008143F0,address-derived DirtySock operation table entry stored by 0x008140D0
 _Rva00814520,0x00814520,address-derived DirtySock operation table entry stored by 0x008140D0
 _Rva00814540,0x00814540,address-derived DirtySock operation table entry stored by 0x008140D0
-_Rva00814FE0,0x00814FE0,address-derived DirtySock operation table entry stored by 0x008140D0
 _Rva00814770,0x00814770,Y4 lane: DirtySock comm pump taking a tick; the socket callback at 0x00814700 samples the clock once and passes it in
 _Rva00814EA0,0x00814EA0,Y4 lane: DirtySock comm operation wrapped by 0x00814F70; negative returns are errors and non-negative ones counts
+_Rva00814FE0,0x00814FE0,address-derived DirtySock operation table entry stored by 0x008140D0
 _Rva008155F0,0x008155F0,address-derived DirtySock timeout handler called by 0x00815D40
 _Rva00815BB0,0x00815BB0,Y4 lane: DirtySock ring transport pump; the socket callback at 0x00815B50 calls it under the try-lock
 _Rva00815DA0,0x00815DA0,address-derived DirtySock queue pump called by 0x00815BB0
