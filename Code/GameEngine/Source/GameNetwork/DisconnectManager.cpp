@@ -56,6 +56,7 @@ public:
 	Bool isPlayerInGame(Int slot);
 	Bool isPlayerSlotActive(Int slot);
 	void sendDisconnectFrameCommand();
+	void resendFrameRangeToPlayer(Int playerID, UnsignedInt startFrame, UnsignedInt endFrame);
 };
 
 class BFMEDisconnectManager : public DisconnectManager
@@ -458,15 +459,38 @@ void DisconnectManager::processDisconnectVote(NetCommandMsg *msg, ConnectionMana
 	applyDisconnectVote(cmdMsg->getSlot(), cmdMsg->getVoteFrame(), cmdMsg->getPlayerID(), conMgr);
 }
 
-// processDisconnectFrame lives in native_connection_timing.cpp as naked asm.
-// BFME's version differs from ZH's in two places: it calls
-// conMgr->sendFrameDataToPlayer(playerID, frame) unconditionally right after
-// setting m_disconnectFramesReceived, and in the remote branch it uses the
-// three-argument resend at 0x00664B40 -- (playerID, m_disconnectFrames[playerID],
-// TheGameLogic->getFrame()) -- rather than ZH's two-argument call. Writing it as
-// C++ from this TU needs that three-argument method declared on
-// ConnectionManager, which the real header does not have.
+void DisconnectManager::processDisconnectFrame(NetCommandMsg *msg, ConnectionManager *conMgr) {
+	NetDisconnectFrameCommandMsg *cmdMsg = (NetDisconnectFrameCommandMsg *)msg;
+	UnsignedInt playerID = cmdMsg->getPlayerID();
+	if (m_disconnectFrames[playerID] >= cmdMsg->getDisconnectFrame()) {
+		return;
+	}
 
+	resetPlayersVotes(playerID, cmdMsg->getDisconnectFrame() - 1, conMgr);
+	m_disconnectFrames[playerID] = cmdMsg->getDisconnectFrame();
+	m_disconnectFramesReceived[playerID] = TRUE;
+	conMgr->sendFrameDataToPlayer(playerID, cmdMsg->getDisconnectFrame());
+
+	BFMEConnectionManager *bfmeConMgr = (BFMEConnectionManager *)conMgr;
+	if (playerID == conMgr->getLocalPlayerID()) {
+		for (Int i = 0; i < MAX_SLOTS; ++i) {
+			if (i != playerID) {
+				Int transSlot = translatedSlotPosition(i, conMgr->getLocalPlayerID());
+				if ((isPlayerInGame(transSlot, conMgr) == TRUE)
+					&& (m_disconnectFrames[i] < m_disconnectFrames[playerID])
+					&& (m_disconnectFramesReceived[i] == TRUE)) {
+					bfmeConMgr->resendFrameRangeToPlayer(
+						i, m_disconnectFrames[i], TheGameLogic->getFrame());
+				}
+			}
+		}
+	} else if ((m_disconnectFrames[playerID]
+			< m_disconnectFrames[conMgr->getLocalPlayerID()])
+		&& (m_disconnectFramesReceived[playerID] == TRUE)) {
+		bfmeConMgr->resendFrameRangeToPlayer(
+			playerID, m_disconnectFrames[playerID], TheGameLogic->getFrame());
+	}
+}
 
 __declspec(noinline) void DisconnectManager::processDisconnectScreenOff(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectScreenOffCommandMsg *cmdMsg = (NetDisconnectScreenOffCommandMsg *)msg;
