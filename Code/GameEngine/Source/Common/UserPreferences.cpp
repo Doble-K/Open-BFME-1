@@ -270,7 +270,6 @@ void UserPreferences::setInt(AsciiString key, Int val)
 	(*this)[key] = intAsStr(val);
 }
 
-// ?setAsciiString@UserPreferences@@QAEXVAsciiString@@0@Z present-unmatched
 void UserPreferences::setAsciiString(AsciiString key, AsciiString val)
 {
 	(*this)[key] = val;
