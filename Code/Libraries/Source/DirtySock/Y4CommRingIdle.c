@@ -100,6 +100,12 @@ void Rva008154F0( struct Rva00815B50Comm *comm,
 	comm->m_socketAlias = socket;
 }
 
+void Rva00815730( struct Rva00815B50Comm *comm, void *value )
+{
+	comm->m_value = value;
+	comm->m_flags |= 2;
+}
+
 void Rva00815BB0( struct Rva00815B50Comm *comm );
 
 /* The socket callback.  Its first two arguments -- the handle and the event
