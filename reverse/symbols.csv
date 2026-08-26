@@ -3117,6 +3117,7 @@ name,address,notes
 ??0Rva002E9E70Mid@@QAE@ABV0@@Z,0x00033640,Open-BFME5 fresh thiscall copy ctor at ILT of mid member of 0x002E9E70
 ??0Rva0033CopyBase@@QAE@ABV0@@Z,0x0001AB86,Open-BFME5 fresh thiscall copy ctor at ILT of 33B copy twins 0x0033A4C0 and 0x0033ACA0
 ??0Rva003525E0Pair@@QAE@ABV0@@Z,0x00024C12,Open-BFME5 fresh thiscall copy ctor at ILT of SEH 0x003525E0
+??0Rva00364980HeapElement@@QAE@ABU0@@Z,0x0001FE6F,REL32 copy-constructor target from 0x003649A2
 ??0Rva0036CA00Str@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 fresh thiscall copy ctor for 0x0036CA00 string members
 ??0Rva004B2300Base@@QAE@ABV0@@Z,0x0004AAD4,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x004B2300
 ??0Rva004C1590Base@@QAE@ABV0@@Z,0x0003FAF8,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x004C1590
@@ -3893,12 +3894,17 @@ name,address,notes
 ??1BfmeDtorBaseG@@UAE@XZ,0x0004243D,Open-BFME5 the out-of-line base destructor the chained destructor at 0x000B5240 calls
 ??1BfmeDtorBaseH@@UAE@XZ,0x000033F0,Open-BFME5 the out-of-line base destructor the chained destructor at 0x00428730 calls
 ??1BfmeDtorBaseI@@UAE@XZ,0x0002C71E,Open-BFME5 the out-of-line base destructor the chained destructor at 0x0077DD80 calls
+??1BfmeDtorBaseL@@QAE@XZ,0x0001E30D,Open-BFME5 the twelve-byte non-polymorphic base destructor the plain chain destructor at 0x00093CC0 calls
+??1BfmeDtorBaseN@@QAE@XZ,0x0004A430,Open-BFME5 the 0x58-byte non-polymorphic base destructor the plain chain destructor at 0x002DEB80 calls
 ??1BfmeDtorMemberA@@QAE@XZ,0x00836300,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
 ??1BfmeDtorMemberB@@QAE@XZ,0x0000B109,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
 ??1BfmeDtorMemberC@@QAE@XZ,0x00887940,Open-BFME5 the member destructor the two-member destructors at 0x001031B0 and siblings call
 ??1BfmeDtorMemberD@@QAE@XZ,0x0001A401,Open-BFME5 the member destructor the two-member destructor at 0x00427390 calls
 ??1BfmeDtorMemberE@@QAE@XZ,0x008881D0,Open-BFME5 the member destructor the two-member destructor at 0x0043DB30 calls first
 ??1BfmeDtorMemberF@@QAE@XZ,0x00013AFC,Open-BFME5 the member destructor the chained destructors at 0x00076C80 and siblings call
+??1BfmeDtorMemberJ@@QAE@XZ,0x009CF1E0,Open-BFME5 the twelve-byte member destructor the plain chain destructor at 0x009D0730 calls second
+??1BfmeDtorMemberK@@QAE@XZ,0x009CFB40,Open-BFME5 the member destructor the plain chain destructor at 0x009D0730 calls first
+??1BfmeDtorMemberM@@QAE@XZ,0x0000E5D9,Open-BFME5 the member destructor the plain chain destructor at 0x00093CC0 calls twice
 ??1BfmeElementA@@QAE@XZ,0x00030652,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementB@@QAE@XZ,0x0001AAD2,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementC@@QAE@XZ,0x00937390,Open-BFME5 the element destructor the array-owning destructors call
@@ -76203,6 +76209,7 @@ name,address,notes
 ?run@WinInstanceDataInitShim@@QAEXXZ,0x00499850,WinInstanceData init incremental-link thunk target through a TU-local forwarding shim
 ?run@XferRandomVariableShim@@SAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0010C4D0,xferRandomVariable incremental-link thunk target through a TU-local forwarding shim
 ?rva000b2cc0@@YGXPAXH@Z,0x00025306,Open-BFME5 ILT stdcall of push0+data wrapper
+?rva003647E0PopHeap@@YAXPAURva00364980HeapElement@@00U1@URva00364980HeapCompare@@PAH@Z,0x0001479F,REL32 pop-heap helper target from 0x003649B1
 ?rva00381050@ExperienceLevelSystem@@QAEXPAVTeam@@H@Z,0x00027237,ILT doTeamSpinForFramecount tail-jumps to at 0x002F11FE; its target 0x00381050 is in the same TU as the subsystem constructor at 0x00381480
 ?rva0046ef50@@YAXXZ,0x00018E8F,Open-BFME5 ILT thunk b_0046ef50
 ?rva00536870@@YAXXZ,0x000436E9,Open-BFME5 ILT thunk b_00536870
@@ -77451,8 +77458,6 @@ _strstr,0x009F709C,Y2 lane: strstr import thunk (gen-import ?ji_009f709c@@YAXXZ 
 _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXXZ names the same address)
 _strzcpy,0x008EC880,vendored=gamespy-2004
 _subexpr,0x0099CA60,vendored=lua-4.0.1
-??0Rva00364980HeapElement@@QAE@ABU0@@Z,0x0001FE6F,REL32 copy-constructor target from 0x003649A2
-?rva003647E0PopHeap@@YAXPAURva00364980HeapElement@@00U1@URva00364980HeapCompare@@PAH@Z,0x0001479F,REL32 pop-heap helper target from 0x003649B1
 _test_then_block,0x0099CEA0,vendored=lua-4.0.1
 _time,0x009F6F52,Y4 lane: time import thunk (gen-import ?ji_009f6f52@@YAXXZ names the same address)
 _var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
