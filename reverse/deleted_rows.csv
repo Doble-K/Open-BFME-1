@@ -23383,3 +23383,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_002a0920@@YAXXZ,0x002A0920,gen-dump placeholder superseded by the byte-verified real RainOfFireUpdate constructor identity.
 ?d_002ae200@@YAXXZ,0x002AE200,gen-dump placeholder superseded by the byte-verified real StructureCollapseUpdate constructor identity.
 ?initFromDict@Player@@QAEXPBVDict@@@Z,0x000A2D40,wrong identity retracted: the body iterates GameLogic objects and updates StatsCollector unit counters; the source was a naked __emit lift and not Player::initFromDict.
+?d_0028c2d0@@YAXXZ,0x0028C2D0,gen-dump placeholder superseded by the byte-verified real DelayedWeaponSetUpgradeUpdate constructor identity.
