@@ -28,6 +28,7 @@ class BannerUI
 public:
 	static const FieldParse m_fieldParseTable[];
 	void removeMovieBanner( int id );
+	void removeCurrentBannerMovie();
 	void hide( bool immediate );
 
 private:
@@ -117,6 +118,16 @@ int finishBannerMovie()
 	}
 
 	return result;
+}
+
+void BannerUI::removeCurrentBannerMovie()
+{
+	if( TheCurrentBannerMovie != -1 )
+	{
+		int id = TheCurrentBannerMovie;
+		TheCurrentBannerMovie = -1;
+		removeMovieBanner( id );
+	}
 }
 
 void BannerUI::hide( bool immediate )
