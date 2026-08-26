@@ -26,51 +26,55 @@ struct Rva00359330Record
 	Rva00359330Node *m_nodes;
 };
 
-class Rva00359330StringRecordTable
-{
-public:
-	void release( int index );
-
-private:
-	int findNameIndex( AsciiString *name );
-
-	int *m_nameIndexesBegin;
-	int *m_nameIndexesEnd;
-	int *m_nameIndexesCapacity;
-	Rva00359330Record *m_records;
-	int m_10;
-	int m_14;
-	int m_freeHead;
-	int m_activeTail;
-};
-
-void Rva00359330StringRecordTable::release( int index )
-{
-	Rva00359330Record *record = &m_records[index];
-	--record->m_references;
-	record->m_released = 1;
-
-	if ( record->m_nodes == 0 )
-	{
-		int nameIndex = findNameIndex( &record->m_name );
-
-		if ( record->m_previous != -1 )
-			m_records[record->m_previous].m_next = record->m_next;
-
-		if ( record->m_next != -1 )
-			m_records[record->m_next].m_previous = record->m_previous;
-		else
-			m_activeTail = record->m_previous;
-
-		record->m_previous = m_freeHead;
-		m_freeHead = index;
-		record->m_name.~AsciiString();
-
-		int *position = m_nameIndexesBegin + nameIndex;
-		int *next = position + 1;
-		if ( m_nameIndexesEnd != next )
-			memmove( position, next,
-				(char *)m_nameIndexesEnd - (char *)next );
-		--m_nameIndexesEnd;
+#define BFME_STRING_RECORD_TABLE( NAME )                                  \
+	class NAME                                                            \
+	{                                                                     \
+	public:                                                               \
+		void release( int index );                                         \
+	                                                                      \
+	private:                                                              \
+		int findNameIndex( AsciiString *name );                            \
+	                                                                      \
+		int *m_nameIndexesBegin;                                           \
+		int *m_nameIndexesEnd;                                             \
+		int *m_nameIndexesCapacity;                                        \
+		Rva00359330Record *m_records;                                      \
+		int m_10;                                                          \
+		int m_14;                                                          \
+		int m_freeHead;                                                    \
+		int m_activeTail;                                                  \
+	};                                                                    \
+	                                                                      \
+	void NAME::release( int index )                                       \
+	{                                                                     \
+		Rva00359330Record *record = &m_records[index];                     \
+		--record->m_references;                                            \
+		record->m_released = 1;                                            \
+	                                                                      \
+		if ( record->m_nodes == 0 )                                       \
+		{                                                                 \
+			int nameIndex = findNameIndex( &record->m_name );               \
+	                                                                      \
+			if ( record->m_previous != -1 )                                \
+				m_records[record->m_previous].m_next = record->m_next;       \
+	                                                                      \
+			if ( record->m_next != -1 )                                    \
+				m_records[record->m_next].m_previous = record->m_previous;   \
+			else                                                          \
+				m_activeTail = record->m_previous;                           \
+	                                                                      \
+			record->m_previous = m_freeHead;                               \
+			m_freeHead = index;                                            \
+			record->m_name.~AsciiString();                                 \
+	                                                                      \
+			int *position = m_nameIndexesBegin + nameIndex;                \
+			int *next = position + 1;                                      \
+			if ( m_nameIndexesEnd != next )                                \
+				memmove( position, next,                                     \
+					(char *)m_nameIndexesEnd - (char *)next );                 \
+			--m_nameIndexesEnd;                                           \
+		}                                                                 \
 	}
-}
+
+BFME_STRING_RECORD_TABLE( Rva00359330StringRecordTable )
+BFME_STRING_RECORD_TABLE( Rva00359530StringRecordTable )

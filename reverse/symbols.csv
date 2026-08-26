@@ -77212,3 +77212,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?findNameIndex@Rva00359330StringRecordTable@@AAEHPAVAsciiString@@@Z,0x000329FC,retail call target from the 0x00359330 string-record release body
+?findNameIndex@Rva00359530StringRecordTable@@AAEHPAVAsciiString@@@Z,0x000072F7,retail call target from the 0x00359530 string-record release body
