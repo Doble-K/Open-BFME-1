@@ -72185,6 +72185,26 @@ name,address,notes
 ?bfmeConstructE@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0001E696,Open-BFME5 ILT the hash insert at 0x006A0D50 constructs through
 ?bfmeConstructE@@YAXPAX0@Z,0x00040AE3,Open-BFME5 the in-place payload constructor the circular-list appends at 0x000BF340 and siblings call
 ?bfmeConstructF@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00852240,Open-BFME5 the routine the hash insert at 0x00852760 constructs through
+?bfmeConstruct_000656F0@@YAXPAUBfmeCopy_000656F0@@PBU1@@Z,0x00007554,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x000656F0 calls per pass
+?bfmeConstruct_00095760@@YAXPAUBfmeCopy_00095760@@PBU1@@Z,0x000060CD,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x00095760 calls per pass
+?bfmeConstruct_000B06B0@@YAXPAUBfmeCopy_000B06B0@@PBU1@@Z,0x00039F86,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x000B06B0 calls per pass
+?bfmeConstruct_000DE0E0@@YAXPAUBfmeCopy_000DE0E0@@PBU1@@Z,0x00007554,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x000DE0E0 calls per pass
+?bfmeConstruct_000DE5D0@@YAXPAUBfmeCopy_000DE5D0@@PBU1@@Z,0x0001B275,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x000DE5D0 calls per pass
+?bfmeConstruct_000FD9E0@@YAXPAUBfmeCopy_000FD9E0@@PBU1@@Z,0x0000F86C,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x000FD9E0 calls per pass
+?bfmeConstruct_00138C40@@YAXPAUBfmeCopy_00138C40@@PBU1@@Z,0x00018D04,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x00138C40 calls per pass
+?bfmeConstruct_001E3D20@@YAXPAUBfmeCopy_001E3D20@@PBU1@@Z,0x00046AF1,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x001E3D20 calls per pass
+?bfmeConstruct_00233960@@YAXPAUBfmeCopy_00233960@@PBU1@@Z,0x0001476D,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x00233960 calls per pass
+?bfmeConstruct_002349D0@@YAXPAUBfmeCopy_002349D0@@PBU1@@Z,0x000128DC,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x002349D0 calls per pass
+?bfmeConstruct_00364730@@YAXPAUBfmeCopy_00364730@@PBU1@@Z,0x00003193,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x00364730 calls per pass
+?bfmeConstruct_003B3D20@@YAXPAUBfmeCopy_003B3D20@@PBU1@@Z,0x0000F9A2,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x003B3D20 calls per pass
+?bfmeConstruct_003B3FF0@@YAXPAUBfmeCopy_003B3FF0@@PBU1@@Z,0x00013B79,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x003B3FF0 calls per pass
+?bfmeConstruct_003B4E00@@YAXPAUBfmeCopy_003B4E00@@PBU1@@Z,0x0003CA24,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x003B4E00 calls per pass
+?bfmeConstruct_003B68A0@@YAXPAUBfmeCopy_003B68A0@@PBU1@@Z,0x00015C85,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x003B68A0 calls per pass
+?bfmeConstruct_00426140@@YAXPAUBfmeCopy_00426140@@PBU1@@Z,0x000339A1,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x00426140 calls per pass
+?bfmeConstruct_0049F580@@YAXPAUBfmeCopy_0049F580@@PBU1@@Z,0x0000A97A,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x0049F580 calls per pass
+?bfmeConstruct_0069F080@@YAXPAUBfmeCopy_0069F080@@PBU1@@Z,0x00026503,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x0069F080 calls per pass
+?bfmeConstruct_007653C0@@YAXPAUBfmeCopy_007653C0@@PBU1@@Z,0x0003B7E6,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x007653C0 calls per pass
+?bfmeConstruct_007690F0@@YAXPAUBfmeCopy_007690F0@@PBU1@@Z,0x0002B7AB,Open-BFME5 the element copy constructor the allocate-and-copy-range body at 0x007690F0 calls per pass
 ?bfmeCopyInto_00134BB0@@YAXPBUBfmeCopyElem_00134BB0@@0PAU1@PAI@Z,0x0002C14C,Open-BFME5 the copier the allocate-and-delegate body at 0x00134BB0 hands its range and block to
 ?bfmeCopyInto_00134C20@@YAXPBUBfmeCopyElem_00134C20@@0PAU1@PAI@Z,0x00031E4E,Open-BFME5 the copier the allocate-and-delegate body at 0x00134C20 hands its range and block to
 ?bfmeCopyInto_0020E8D0@@YAXPBUBfmeCopyElem_0020E8D0@@0PAU1@PAI@Z,0x00024528,Open-BFME5 the copier the allocate-and-delegate body at 0x0020E8D0 hands its range and block to
