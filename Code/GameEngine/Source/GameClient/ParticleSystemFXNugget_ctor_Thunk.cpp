@@ -1,364 +1,114 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: clean C++ reconstruction of the BFME particle-system FX nugget.
 
-class ParticleSystemFXNugget {
+typedef float Real;
+typedef bool Bool;
+
+class AsciiString
+{
 public:
-	ParticleSystemFXNugget();
+	AsciiString() : m_text(0) {}
+	~AsciiString();
+	void clear();
+
+private:
+	char *m_text;
 };
 
-// ??0ParticleSystemFXNugget@@QAE@XZ
-__declspec(naked) ParticleSystemFXNugget::ParticleSystemFXNugget()
+struct Coord3D
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x30
-		__emit 0x14
-		__emit 0x02
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x53
-		__emit 0x55
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x10
-		__emit 0xe8
-		__emit 0x3b
-		__emit 0x87
-		__emit 0xc1
-		__emit 0xff
-		__emit 0x33
-		__emit 0xdb
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xb4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x20
-		__emit 0x35
-		__emit 0x0f
-		__emit 0x01
-		__emit 0x89
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x89
-		__emit 0x19
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xc8
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xcc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xd0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8d
-		__emit 0xbe
-		__emit 0xc8
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8d
-		__emit 0xae
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x5d
-		__emit 0x00
-		__emit 0x89
-		__emit 0x5d
-		__emit 0x04
-		__emit 0x89
-		__emit 0x5d
-		__emit 0x08
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xe0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xe4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xe8
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xfc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x04
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x08
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x04
-		__emit 0xe8
-		__emit 0x32
-		__emit 0xd9
-		__emit 0x45
-		__emit 0x00
-		__emit 0x53
-		__emit 0x53
-		__emit 0x53
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xc7
-		__emit 0x86
-		__emit 0xb8
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x36
-		__emit 0xcc
-		__emit 0xbd
-		__emit 0xff
-		__emit 0x53
-		__emit 0x53
-		__emit 0x53
-		__emit 0x8b
-		__emit 0xcd
-		__emit 0xe8
-		__emit 0x2c
-		__emit 0xcc
-		__emit 0xbd
-		__emit 0xff
-		__emit 0x53
-		__emit 0x68
-		__emit 0x00
-		__emit 0x00
-		__emit 0x80
-		__emit 0xbf
-		__emit 0x68
-		__emit 0x00
-		__emit 0x00
-		__emit 0x80
-		__emit 0xbf
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xe0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x16
-		__emit 0xcc
-		__emit 0xbd
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x14
-		__emit 0x5f
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xc4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xc0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xbc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0xf8
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0xf9
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0x00
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xf4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xf0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0xec
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0x0c
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0x18
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x24
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x20
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x1c
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0x19
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0x1a
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0x1b
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x9e
-		__emit 0x01
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x04
-		__emit 0x08
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x86
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x80
-		__emit 0x3f
-		__emit 0xc7
-		__emit 0x86
-		__emit 0x14
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
+	Real x;
+	Real y;
+	Real z;
+};
+
+class GameClientRandomVariable
+{
+public:
+	enum DistributionType
+	{
+		CONSTANT
+	};
+
+	GameClientRandomVariable() : m_min(0.0f), m_max(0.0f), m_type(CONSTANT) {}
+	void setRange(Real min, Real max, DistributionType type);
+
+private:
+	Real m_min;
+	Real m_max;
+	DistributionType m_type;
+};
+
+class FXNugget
+{
+public:
+	FXNugget();
+	virtual ~FXNugget();
+
+protected:
+	int m_nuggetType;
+
+private:
+	unsigned char m_bfmeBaseData[0xAC];
+};
+
+class ParticleSystemFXNugget : public FXNugget
+{
+public:
+	ParticleSystemFXNugget();
+	virtual ~ParticleSystemFXNugget();
+
+private:
+	// Retail proves these BFME-only tail offsets; neutral names avoid inventing semantics.
+	AsciiString m_name;
+	int m_count;
+	Coord3D m_offset;
+	GameClientRandomVariable m_radius;
+	GameClientRandomVariable m_height;
+	GameClientRandomVariable m_delay;
+	Real m_rotateX;
+	Real m_rotateY;
+	Real m_rotateZ;
+	Bool m_orientToObject;
+	Bool m_attachToObject;
+	unsigned char m_padFA[2];
+	AsciiString m_bfmeNameFC;
+	Bool m_createAtGroundHeight;
+	Bool m_ricochet;
+	unsigned char m_pad102[2];
+	AsciiString m_bfmeName104;
+	AsciiString m_bfmeName108;
+	Bool m_useCallersRadius;
+	unsigned char m_pad10D[3];
+	Real m_bfmeScale;
+	int m_bfmeIndex;
+	Bool m_bfmeFlag118;
+	Bool m_bfmeFlag119;
+	Bool m_bfmeFlag11A;
+	Bool m_bfmeFlag11B;
+	Coord3D m_bfmeOffset;
+};
+
+ParticleSystemFXNugget::ParticleSystemFXNugget()
+{
+	m_name.clear();
+	m_count = 1;
+	m_radius.setRange(0.0f, 0.0f, GameClientRandomVariable::CONSTANT);
+	m_height.setRange(0.0f, 0.0f, GameClientRandomVariable::CONSTANT);
+	m_delay.setRange(-1.0f, -1.0f, GameClientRandomVariable::CONSTANT);
+	m_offset.x = m_offset.y = m_offset.z = 0.0f;
+	m_orientToObject = false;
+	m_attachToObject = false;
+	m_createAtGroundHeight = false;
+	m_rotateX = m_rotateY = m_rotateZ = 0.0f;
+	m_useCallersRadius = false;
+	m_bfmeFlag118 = false;
+	m_bfmeOffset.x = m_bfmeOffset.y = m_bfmeOffset.z = 0.0f;
+	m_bfmeFlag119 = false;
+	m_bfmeFlag11A = false;
+	m_bfmeFlag11B = false;
+	m_ricochet = false;
+	m_nuggetType = 8;
+	m_bfmeScale = 1.0f;
+	m_bfmeIndex = -1;
 }
