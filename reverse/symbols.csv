@@ -77064,3 +77064,4 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?bfmeForward@Gen_009EBB40Target@@QAEHXZ,0x009EE620,Open-BFME5 the callee the guarded delegate at 0x009EBB40 tail-jumps to
 ?bfmeForward@Gen_009EBB60Target@@QAEHXZ,0x009EDE40,Open-BFME5 the callee the guarded delegate at 0x009EBB60 tail-jumps to
 ??0GiantBirdAIUpdateModuleDataBase@@QAE@XZ,0x00048A3B,GiantBirdAIUpdateModuleData base ctor (same ILT as the ICF-folded Firestorm body)
+??0TU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ToppleUpdate constructor calls the shared ObjectModule constructor ILT

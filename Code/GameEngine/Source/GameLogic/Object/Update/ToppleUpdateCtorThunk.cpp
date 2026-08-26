@@ -1,205 +1,82 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump ToppleUpdate ctor to C++ thunk.
+// ModuleFactory's 0x58-byte allocation proves the BFME layout. The fields
+// through +0x50 follow the Zero Hour source; +0x54 is BFME-only state that
+// retail initializes in the same zeroing run.
 
 class Thing;
 class ModuleData;
-class ToppleUpdate
+class Object;
+enum UpdateSleepTime { UPDATE_SLEEP_FOREVER = 0x3fffffff };
+
+class TU_DeepBase
 {
 public:
-	ToppleUpdate(Thing *, const ModuleData *);
+    TU_DeepBase(Thing *, const ModuleData *);
+    virtual ~TU_DeepBase();
+
+protected:
+    const ModuleData *m_moduleData;
+    Object *m_object;
+};
+
+class TU_Iface1 { public: virtual void slot(); };
+class TU_Iface2 { public: virtual void slot(); };
+
+class UpdateModule : public TU_DeepBase, public TU_Iface1, public TU_Iface2
+{
+public:
+    UpdateModule(Thing *thing, const ModuleData *moduleData)
+        : TU_DeepBase(thing, moduleData), m_f14(0), m_f18(-1), m_f1c(-1) {}
+
+protected:
+    void setWakeFrame(Object *, UpdateSleepTime);
+    Object *getObject() const { return m_object; }
+
+private:
+    unsigned int m_f14;
+    int m_f18;
+    int m_f1c;
+};
+
+class CollideModuleInterface { public: virtual void slot(); };
+
+class ToppleUpdate : public UpdateModule, public CollideModuleInterface
+{
+public:
+    ToppleUpdate(Thing *, const ModuleData *);
+
+private:
+    float m_angularVelocity;
+    float m_angularAcceleration;
+    float m_toppleDirectionX;
+    float m_toppleDirectionY;
+    float m_toppleDirectionZ;
+    int m_toppleState;
+    float m_angularAccumulation;
+    float m_angleDeltaX;
+    int m_numAngleDeltaX;
+    bool m_doBounceFX;
+    unsigned int m_options;
+    unsigned int m_stumpID;
+    unsigned int m_bfmeState;
 };
 
 // ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) ToppleUpdate::ToppleUpdate(Thing *, const ModuleData *)
+ToppleUpdate::ToppleUpdate(Thing *thing, const ModuleData *moduleData)
+    : UpdateModule(thing, moduleData)
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x98
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x18
-		__emit 0x50
-		__emit 0x51
-		__emit 0x8b
-		__emit 0xce
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xe8
-		__emit 0x56
-		__emit 0x60
-		__emit 0xd6
-		__emit 0xff
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x0c
-		__emit 0xd0
-		__emit 0xc9
-		__emit 0x09
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x10
-		__emit 0xa0
-		__emit 0xcb
-		__emit 0x09
-		__emit 0x01
-		__emit 0x83
-		__emit 0xc9
-		__emit 0xff
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x89
-		__emit 0x46
-		__emit 0x14
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x18
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x1c
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x20
-		__emit 0xe4
-		__emit 0x1d
-		__emit 0x0a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x56
-		__emit 0x08
-		__emit 0x68
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0x3f
-		__emit 0x52
-		__emit 0x8b
-		__emit 0xce
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x24
-		__emit 0x51
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x0c
-		__emit 0x60
-		__emit 0x50
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x10
-		__emit 0x54
-		__emit 0x50
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x20
-		__emit 0x20
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0x01
-		__emit 0x89
-		__emit 0x46
-		__emit 0x40
-		__emit 0x88
-		__emit 0x46
-		__emit 0x48
-		__emit 0x89
-		__emit 0x46
-		__emit 0x44
-		__emit 0x89
-		__emit 0x46
-		__emit 0x24
-		__emit 0x89
-		__emit 0x46
-		__emit 0x3c
-		__emit 0x89
-		__emit 0x46
-		__emit 0x28
-		__emit 0x89
-		__emit 0x46
-		__emit 0x2c
-		__emit 0x89
-		__emit 0x46
-		__emit 0x30
-		__emit 0x89
-		__emit 0x46
-		__emit 0x34
-		__emit 0x89
-		__emit 0x46
-		__emit 0x38
-		__emit 0x89
-		__emit 0x46
-		__emit 0x4c
-		__emit 0x89
-		__emit 0x46
-		__emit 0x50
-		__emit 0x89
-		__emit 0x46
-		__emit 0x54
-		__emit 0xe8
-		__emit 0xd3
-		__emit 0x46
-		__emit 0xd6
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-	}
+    m_angleDeltaX = 0.0f;
+    m_doBounceFX = false;
+    m_numAngleDeltaX = 0;
+    m_angularVelocity = 0.0f;
+    m_angularAccumulation = 0.0f;
+    m_angularAcceleration = 0.0f;
+    m_toppleDirectionX = 0.0f;
+    m_toppleDirectionY = 0.0f;
+    m_toppleDirectionZ = 0.0f;
+    m_toppleState = 0;
+    m_options = 0;
+    m_stumpID = 0;
+    m_bfmeState = 0;
+    setWakeFrame(getObject(), UPDATE_SLEEP_FOREVER);
 }
-
