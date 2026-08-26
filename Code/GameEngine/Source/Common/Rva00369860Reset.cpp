@@ -82,6 +82,7 @@ public:
 
 	void reset(int mode);
 	int primaryValueFor(const Object *object) const;
+	int secondaryValueFor(const Object *object) const;
 };
 
 void Rva00369860State::reset(int mode)
@@ -121,3 +122,20 @@ int Rva00369860State::primaryValueFor(const Object *object) const
 }
 
 // @?primaryValueFor@Rva00369860State@@QBEHPBVObject@@@Z 0x003690A0
+
+int Rva00369860State::secondaryValueFor(const Object *object) const
+{
+	if( !m_flag8C || object == 0 )
+		return m_secondaryValues[0];
+
+	Rva00368C10Values *values =
+		(Rva00368C10Values *)object->bfmeGetBonusSource();
+	if( values == 0 )
+		return m_secondaryValues[0];
+
+	int index = values->valueFor(&m_mask) - 1;
+	index = Rva003690A0Min(index, 2);
+	return index >= 0 ? m_secondaryValues[index] : m_secondaryValues[0];
+}
+
+// @?secondaryValueFor@Rva00369860State@@QBEHPBVObject@@@Z 0x00369120
