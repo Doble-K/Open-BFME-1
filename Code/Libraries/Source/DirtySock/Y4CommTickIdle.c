@@ -432,6 +432,39 @@ int Rva008151E0( struct Rva008151E0Comm *comm, const char *text )
 	return 0;
 }
 
+struct Rva00814D60Comm
+{
+	char m_head[ 0x6C ];
+	unsigned int m_bindAddress;      /* +0x6C */
+	unsigned int m_peerAddress;      /* +0x70 */
+	unsigned short m_portA;          /* +0x74 */
+	unsigned short m_portB;          /* +0x76 */
+	char m_gap78[ 0x04 ];
+	void *m_socket;                  /* +0x7C */
+};
+
+void Rva007FDB60( void *socket, int selector, void *address, int size );
+int Rva007FE780( const char *format, ... );
+extern char Rva012C4A80[];
+
+void Rva00814D60( struct Rva00814D60Comm *comm )
+{
+	unsigned char address[ 16 ];
+
+	Rva007FDB60( comm->m_socket, 0x70656572, address, 16 );
+	comm->m_peerAddress = ( ( ( ( address[ 4 ] << 8 ) | address[ 5 ] )
+		<< 8 | address[ 6 ] ) << 8 ) | address[ 7 ];
+	comm->m_portA = ( address[ 2 ] << 8 ) | address[ 3 ];
+
+	Rva007FDB60( comm->m_socket, 0x62696E64, address, 16 );
+	comm->m_bindAddress = ( ( ( ( address[ 4 ] << 8 ) | address[ 5 ] )
+		<< 8 | address[ 6 ] ) << 8 ) | address[ 7 ];
+	comm->m_portA = ( address[ 2 ] << 8 ) | address[ 3 ];
+
+	Rva007FE780( Rva012C4A80, comm->m_peerAddress, comm->m_portB,
+		comm->m_bindAddress, comm->m_portA );
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event

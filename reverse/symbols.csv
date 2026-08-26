@@ -76996,6 +76996,7 @@ _Rva0081BDE4,0x0081BDE4,import thunk called at the tail of the DirtySock shutdow
 _Rva0081BDEA,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; address read from the REL32 at that call site
 _Rva0081BDEA@4,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; the @4 is the stdcall decoration for its one argument
 _Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by the translator at 0x007FD540; the ledger names this address ?ji_0081be08, this is the C spelling
+_Rva012C4A80,0x012C4A80,address-derived DirtySock endpoint diagnostic format used by 0x00814D60
 _SBLastListErrorA,0x008680B0,adjacency-lane pin: jmp target of _ServerBrowserListQueryErrorA tail-call
 _SBQueryEngineUpdateServer,0x00869930,vendored=gamespy-2004
 _SBReleaseStr,0x008676D0,vendored=gamespy-2004
