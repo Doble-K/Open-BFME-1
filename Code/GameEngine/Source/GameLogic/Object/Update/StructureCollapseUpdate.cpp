@@ -351,7 +351,9 @@ static void structureCollapseBuildNonDupRandomIndexList(Int range, Int count, In
 		Int idx;
 		do
 		{
-			idx = GameLogicRandomValue(0, range-1);
+			idx = StructureCollapseRandom(0, range - 1,
+				"F:\\bfme\\Code\\gameengine\\Source\\GameLogic\\Object\\Update\\StructureCollapseUpdate.cpp",
+				315);
 		} 
 		while (inList(idx, i, idxList));
 		idxList[i] = idx;
