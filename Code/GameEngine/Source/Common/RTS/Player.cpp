@@ -1616,14 +1616,15 @@ Int Player::countReadyShortcutSpecialPowersOfType( SpecialPowerType spType )
 //-------------------------------------------------------------------------------------------------
 /** Difficulty level for this player */
 //-------------------------------------------------------------------------------------------------
-// ?getPlayerDifficulty@Player@@QBE?AW4GameDifficulty@@XZ present-unmatched
 GameDifficulty Player::getPlayerDifficulty(void) const
 {
-	if (m_ai) 
+	// BFME's Player and ScriptEngine tails differ from the recovered Zero Hour declarations.
+	AIPlayer *ai = *reinterpret_cast<AIPlayer *const *>(reinterpret_cast<const char *>(this) + 0x220);
+	if (ai)
 	{
-		return m_ai->getAIDifficulty();
+		return ai->getAIDifficulty();
 	}
-	return TheScriptEngine->getGlobalDifficulty();
+	return *reinterpret_cast<const GameDifficulty *>(reinterpret_cast<const char *>(TheScriptEngine) + 0x17620);
 }
 
 //-------------------------------------------------------------------------------------------------

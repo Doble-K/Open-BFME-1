@@ -1,5 +1,6 @@
 name,address,notes
 ?aiPreTeamDestroy@AIPlayer@@QAEXPBVTeam@@@Z,0x00161430,Player preTeamDestroy tail target; canonical AIPlayer queue-removal body matches retail structure
+?getAIDifficulty@AIPlayer@@QBE?AW4GameDifficulty@@XZ,0x00160EC0,Player difficulty tail target; named AIPlayer getter compiles to this four-byte BFME field access
 ?$S103@?1??getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ@4IA,0x00EEFE34,pool-glue cascade static (back-solved)
 ?$S105@?1??getClassMemoryPool@PoisonedBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF830,pool-glue cascade static (back-solved)
 ?$S107@?1??getClassMemoryPool@SupplyWarehouseCripplingBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF91C,pool-glue cascade static (back-solved)
