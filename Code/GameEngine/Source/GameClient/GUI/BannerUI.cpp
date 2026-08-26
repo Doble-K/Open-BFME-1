@@ -16,12 +16,25 @@
 // recovered retail spelling.
 #include "PreRTS.h"
 #include "Common/INI.h"
+#include <vector>
+
+struct BannerMovieEntry
+{
+	unsigned char m_unmodelled[ 28 ];
+};
 
 class BannerUI
 {
 public:
 	static const FieldParse m_fieldParseTable[];
 	void removeMovieBanner( int id );
+	void hide( bool immediate );
+
+private:
+	unsigned char m_unmodelled[ 0x2C ];
+	int m_windowIndex;
+	std::vector<BannerMovieEntry> m_movieEntries;
+	bool m_hidden;
 };
 
 extern BannerUI *TheBannerUI;
@@ -70,6 +83,15 @@ extern Display *TheDisplay;
 extern GlobalData *TheWritableGlobalData;
 extern int TheCurrentBannerMovie;
 
+class WindowManager
+{
+public:
+	bool hideAptWindow( int index );
+	bool showAptWindow( int index );
+};
+
+extern WindowManager *g_theWindowManager;
+
 void parseBannerUI( INI *ini )
 {
 	ini->initFromINI( TheBannerUI, BannerUI::m_fieldParseTable );
@@ -95,4 +117,21 @@ int finishBannerMovie()
 	}
 
 	return result;
+}
+
+void BannerUI::hide( bool immediate )
+{
+	if( g_theWindowManager )
+	{
+		m_hidden = immediate;
+		if( immediate )
+		{
+			g_theWindowManager->hideAptWindow( m_windowIndex );
+			m_movieEntries.clear();
+		}
+		else
+		{
+			g_theWindowManager->showAptWindow( m_windowIndex );
+		}
+	}
 }

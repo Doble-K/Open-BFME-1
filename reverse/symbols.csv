@@ -659,6 +659,7 @@ name,address,notes
 ??$__copy@PAUGen_t_003dde30_p12pod@@PAU1@H@_STL@@YAPAUGen_t_003dde30_p12pod@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x003D7C90,gen-tgrid payload member
 ??$__copy@PAUGen_t_00424a20_p128pod@@PAU1@H@_STL@@YAPAUGen_t_00424a20_p128pod@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00422A20,gen-tgrid payload member
 ??$__copy@PAUGen_t_00434fa0_p8cd@@PAU1@H@_STL@@YAPAUGen_t_00434fa0_p8cd@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00434D20,gen-tgrid payload member
+??$__copy@PAUBannerMovieEntry@@PAU1@H@_STL@@YAPAUBannerMovieEntry@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00581DB0,BannerUI movie-entry vector clear; 28-byte POD copy helper shared with the retail template body
 ??$__copy@PAUGen_t_00582db0_p128pod@@PAU1@H@_STL@@YAPAUGen_t_00582db0_p128pod@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00581DB0,gen-tgrid payload member
 ??$__copy@PAUGen_t_00583300_p128pod@@PAU1@H@_STL@@YAPAUGen_t_00583300_p128pod@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00581DB0,gen-tgrid payload member
 ??$__copy@PAUGen_t_006ac770_p4cd@@PAU1@H@_STL@@YAPAUGen_t_006ac770_p4cd@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00698D10,gen-tgrid payload member
@@ -74297,6 +74298,7 @@ name,address,notes
 ?hide@AptPalantir@@QAEX_N@Z,0x0001420E,ILT to body 0x00592CD0; the AptPalantir callback table at 0x00565F30 names its RenderRadar RenderRadarViewBox ClipRadar and OnInitialized methods; HideControlBar passes TRUE and ShowControlBar passes FALSE
 ?hide@BannerUI@@QAEX_N@Z,0x0003A062,ILT to body 0x005839D0; BannerUI is independently identified by its existing parser and constructor sources; HideControlBar passes TRUE and ShowControlBar passes FALSE
 ?hide@Shell@@QAEX_N@Z,0x000428ED,GameLogic::prepareNewGame direct-call ILT thunk
+?hideAptWindow@WindowManager@@QAE_NH@Z,0x0002144A,BannerUI::hide(TRUE) call; WindowManager entry 0x00467460 hides the indexed APT window when its slot is active
 ?hidePurchaseScience@ControlBar@@QAEXXZ,0x00020347
 ?hideQuitMenu@WindowManager@@QAEXXZ,0x000290D2,HideQuitMenu tail-call target
 ?hideScreen@DisconnectMenu@@QAEXXZ,0x00024D6B,ILT thunk; real body 0x50E5A0 (from DisconnectManager::turnOffScreen)
@@ -75546,6 +75548,7 @@ name,address,notes
 ?showBuildTooltipLayout@ControlBarshowBuildTooltipLayoutShim@@QAEXPAVGameWindow@@@Z,0x000E7240,ControlBar::showBuildTooltipLayout incremental-link thunk target through a TU-local forwarding shim
 ?showChat@DisconnectMenu@@QAEXVUnicodeString@@@Z,0x00023E1B,ILT thunk; the DisconnectMenu chat sink ConnectionManager::processDisconnectChat ends on
 ?showChat@DisconnectMenu@@QAEXVUnicodeString@@@Z,0x0050EF20,body of the ILT 0x00023E1B already pinned under this name; ZH showChat twin: GadgetListBoxAddEntryText(this+0x258 text colour 0x012B73F8 -1 -1 TRUE); sole caller ConnectionManager::processDisconnectChat 0x00665696
+?showAptWindow@WindowManager@@QAE_NH@Z,0x00012733,BannerUI::hide(FALSE) tail call; WindowManager entry 0x00465C50 marks the indexed APT window visible
 ?showNamedTimerDisplay@InGameUI@@QAEX_N@Z,0x0001E1A0,ILT thunk for ScriptActions timer display
 ?showNamedTimerDisplay@InGameUI@@QAEX_N@Z,0x0043AA90,body showNamedTimerDisplay InGameUI+0x7a1
 ?showScreen@DisconnectMenu@@QAEXXZ,0x0050E9A0,ZH DisconnectMenu::showScreen twin: HideDiplomacy 0x0052ADE0 / HideInGameChat 0x00512670 / 0x00598F30 (ZH HideQuitMenu position; ledger name hidePurchaseScience is suspect) / HideSaveLoadMenu 0x005696D0 then UI singleton 0x012F148C slot +0x150(1) then TheWindowManager 0x012F1B40 slot +0x6C (winCreateLayout position) with literal DisconnectScreen.apt 0x01087A9C stored to 0x012F4960 and layout slot 0(0); this-less like hideScreen; sole caller DisconnectManager::turnOnScreen 0x0066BFE4; ILT 0x00020144
