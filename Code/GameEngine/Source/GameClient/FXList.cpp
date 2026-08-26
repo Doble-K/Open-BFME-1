@@ -118,11 +118,10 @@ public:
 	// Retail: name@+0xB4, AudioEventRTS 2-arg, addAudioEvent vtbl+0x44 (not ZH m_soundName@+4).
 	virtual void doFXObj(const Object* primary, const Object* secondary = NULL) const;
 
-	// Body: Code/masm_dumps/SoundFXNugget_parse_42BBE0.asm (BFME rewrite @ 0x42BBE0/240B)
 	// Retail: global new(0xB8)+filters MultiIniFieldParse; Name@+0xB4; queue 0x9A15F7 was parseSideInfo@AI interior.
 	static void parse(INI *ini, void *instance, void* store, const void* userData);
 
-	// Keep matched ctor/pool COMDATs live after parse moved to MASM.
+	// The BFME-layout facade inlines a different ctor, so retain this TU's Zero Hour COMDATs.
 	static void bfmeRetainSymbols()
 	{
 		SoundFXNugget *n = newInstance(SoundFXNugget);
