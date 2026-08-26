@@ -1,6 +1,8 @@
 extern "C" void _ReadWriteBarrier(void);
 #pragma intrinsic(_ReadWriteBarrier)
 
+class Object;
+
 struct Rva00367DC0Pair
 {
 	unsigned int m_key;
@@ -24,6 +26,8 @@ public:
 	char m_unreconstructed08[ 0x0C ];
 	int m_key;
 	int m_value;
+
+	int primaryValueFor(const Object *object) const;
 };
 
 class Rva0036AF30ItemRange
@@ -45,6 +49,7 @@ public:
 	int indexOf(int key) const;
 	int valueAt(int index) const;
 	bool findPairAt(int index, unsigned int key, unsigned int *value) const;
+	int primaryValueAt(int index, const Object *object) const;
 };
 
 int Rva0036AF30ItemCollection::indexOf(int key) const
@@ -93,3 +98,16 @@ bool Rva0036AF30ItemCollection::findPairAt(
 }
 
 // @?findPairAt@Rva0036AF30ItemCollection@@QBE_NHIPAI@Z 0x0036AFB0
+
+int Rva0036AF30ItemCollection::primaryValueAt(
+	int index,
+	const Object *object) const
+{
+	if( index < 0 || (unsigned int)index > m_items.size() - 1 )
+		return 0;
+
+	Rva0036AF30Item *item = m_items[index];
+	return item ? item->primaryValueFor(object) : 0;
+}
+
+// @?primaryValueAt@Rva0036AF30ItemCollection@@QBEHHPBVObject@@@Z 0x0036B000

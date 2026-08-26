@@ -77377,3 +77377,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?find@Rva00367DC0PairRange@@QBE_NIPAI@Z,0x00014C18,retail jump thunk to the byte-verified pair-range lookup at 0x00367DC0
 ?valueFor@Rva00368C10Values@@QBEHPBVRva00368C10Mask@@@Z,0x00021323,retail jump thunk to the byte-verified seven-bit value lookup at 0x00368C10
 ?initializeBuckets@TeamRelationHashTable@@AAEXI@Z,0x00016A59,retail REL32 at 0x000F7726 targets the ILT for STLport hashtable _M_initialize_buckets
+?primaryValueFor@Rva0036AF30Item@@QBEHPBVObject@@@Z,0x00025D92,retail jump thunk to the byte-verified primary state lookup at 0x003690A0
