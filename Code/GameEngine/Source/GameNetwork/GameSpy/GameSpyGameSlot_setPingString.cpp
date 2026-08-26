@@ -3,10 +3,18 @@
 #include "string_base.h"
 
 typedef int Int;
+typedef bool Bool;
 
 class AsciiString
 {
 public:
+	__forceinline AsciiString() : m_data(0) {}
+
+	__forceinline AsciiString(const AsciiString &other)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(*(const StringBase<char> *)&other);
+	}
+
 	~AsciiString();
 
 	__forceinline AsciiString &operator=(const AsciiString &other)
@@ -48,7 +56,7 @@ public:
 	virtual void slot23();
 	virtual void slot24();
 	virtual void slot25();
-	virtual void slot26();
+	virtual AsciiString getLocalName();
 	virtual void slot27();
 	virtual void slot28();
 	virtual void slot29();
@@ -97,6 +105,24 @@ public:
 
 extern GameSpyInfoInterface *TheGameSpyInfo;
 
+class GameSlot
+{
+public:
+	Bool isPlayer(AsciiString userName) const;
+};
+
+class GameInfo
+{
+public:
+	virtual Int getLocalSlotNum() const;
+	const GameSlot *getConstSlot(Int index) const;
+
+protected:
+	unsigned char m_body[8];
+	Bool m_inGame;
+	unsigned char m_pad[3];
+};
+
 class GameSpyGameSlot
 {
 public:
@@ -109,14 +135,15 @@ private:
 	Int m_ping;
 };
 
-class GameSpyStagingRoom
+class GameSpyStagingRoom : public GameInfo
 {
 public:
 	void setPingString(AsciiString pingString);
+	virtual Int getLocalSlotNum() const;
 
 private:
 	// The constructor fixes the ping fields at +0x448 and +0x44C.
-	unsigned char m_body[0x448];
+	unsigned char m_derivedBody[0x438];
 	AsciiString m_pingString;
 	Int m_ping;
 };
@@ -131,4 +158,20 @@ void GameSpyStagingRoom::setPingString(AsciiString pingString)
 {
 	m_pingString = pingString;
 	m_ping = TheGameSpyInfo->getPingValue(pingString);
+}
+
+Int GameSpyStagingRoom::getLocalSlotNum() const
+{
+	if (!m_inGame)
+		return -1;
+
+	AsciiString localName = TheGameSpyInfo->getLocalName();
+	for (Int i = 0; i < 8; ++i)
+	{
+		const GameSlot *slot = getConstSlot(i);
+		if (slot != 0 && slot->isPlayer(localName))
+			return i;
+	}
+
+	return -1;
 }
