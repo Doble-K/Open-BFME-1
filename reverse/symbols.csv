@@ -2174,6 +2174,7 @@ name,address,notes
 ??0DX8IndexBufferClass@@QAE@IW4UsageType@0@@Z,0x0091D0A0,BFME DynamicIB uint-width call-site ABI alias for the unsigned-short constructor
 ??0DU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DeletionUpdate ModuleFactory body calls the shared ObjectModule constructor ILT
 ??0DPEU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DefaultProductionExitUpdate ModuleFactory body calls the shared ObjectModule constructor ILT
+??0DRU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DetachableRiderUpdate ModuleFactory body calls the shared ObjectModule constructor ILT
 ??0SPEU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,SpawnPointProductionExitUpdate ModuleFactory body calls the shared ObjectModule constructor ILT
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001D3AE,pinharvest x1 (thunk)
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001F5C3,pinharvest x1 (thunk)
