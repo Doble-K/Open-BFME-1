@@ -76596,6 +76596,7 @@ _Rva0081A3B0,0x0081A3B0,Y4 lane: DirtySock comm record transmit for the fourth o
 _Rva0081A8C0,0x0081A8C0,Y4 lane: DirtySock comm send kick for the fourth object; the ack handler at 0x0081AA20 calls it after rewinding the transmit cursor
 _Rva0081B010,0x0081B010,Y4 lane: DirtySock comm worker
 _Rva0081B830,0x0081B830,address-derived DirtySock transport release helper called by 0x00813E30
+_Rva0081B9B0,0x0081B9B0,address-derived DirtySock transport shutdown helper called by 0x00813F20
 _Rva0081B9D0,0x0081B9D0,address-derived DirtySock transport state helper called by 0x00813F90
 _Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
 _Rva0081BDAE@4,0x0081BDAE,Y4 lane: unnamed one-argument stdcall import thunk (IAT slot 0x01358C84); the guard at 0x00813780 calls it only for a handle that is not -1

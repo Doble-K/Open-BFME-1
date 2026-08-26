@@ -20,7 +20,9 @@ struct Rva00814700Comm
 	char m_gap4C[ 0x2C ];
 	void *m_transport;               /* +0x78 */
 	void *m_socket;                  /* +0x7C */
-	char m_gap80[ 0x10 ];
+	char m_gap80[ 0x08 ];
+	unsigned int m_handle;           /* +0x88 */
+	char m_gap8C[ 0x04 ];
 	int m_state;                     /* +0x90 */
 	char m_gap94[ 0x08 ];
 	/* A SECOND RING, distinct from the one in Y4CommRingIdle.c: same shape --
@@ -105,6 +107,19 @@ int Rva00814040( struct Rva00814700Comm *comm, const void *payload,
 }
 
 int Rva0081B9D0( void *transport );
+void Rva0081B9B0( void *transport );
+int __stdcall Rva0081BDAE( unsigned int handle );
+
+int Rva00813F20( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 5 || comm->m_state == 8 )
+		Rva0081B9B0( comm->m_transport );
+
+	if ( comm->m_state == 3 || comm->m_state == 5 || comm->m_state == 8 )
+		Rva0081BDAE( comm->m_handle );
+
+	return 0;
+}
 
 int Rva00813F90( struct Rva00814700Comm *comm )
 {
@@ -227,8 +242,6 @@ int Rva00814700( unsigned int socket, int flags, struct Rva00814700Comm *ref )
  * nothing cleaned at the call site, so __stdcall -- and that its result is
  * returned unchanged.
  */
-int __stdcall Rva0081BDAE( unsigned int handle );
-
 int Rva00813780( unsigned int handle )
 {
 	int iResult;
