@@ -13,6 +13,7 @@
 void *Rva007F0000( unsigned int size );
 
 void * __cdecl memset( void *dest, int c, unsigned int count );
+void * __cdecl memcpy( void *dest, const void *source, unsigned int count );
 
 /* 0x0080B000 ALLOCATES AND ZEROES A 0x124-BYTE OBJECT.  The size is a literal
  * in two places -- once for the allocation and once for the clear -- so the
@@ -54,7 +55,10 @@ void Rva0080B070( void *object )
 struct Rva0080B000Comm
 {
 	void *m_socket;
-	char m_gap04[ 0x11C ];
+	char m_gap04[ 0x104 ];
+	char m_address[ 0x10 ];
+	int m_addressLength;
+	char m_gap11C[ 4 ];
 	int m_releaseState;
 };
 
@@ -62,6 +66,7 @@ void *Rva007FD2D0( int family, int type, int protocol );
 void Rva007FD3F0( void *socket );
 int Rva007FD510( void *socket, const void *address, int addressLength );
 int Rva007FD7A0( void *socket, int mode );
+void *Rva007FD7D0( void *socket, void *address, int *addressLength );
 
 int Rva0080B150( struct Rva0080B000Comm *comm, const void *address,
 	int addressLength )
@@ -89,6 +94,36 @@ int Rva0080B480( struct Rva0080B000Comm *comm )
 {
 	Rva0080ADE0( comm, comm->m_releaseState != 0 );
 	return 0;
+}
+
+struct Rva0080B000Comm *Rva0080B0A0( struct Rva0080B000Comm *comm,
+	int unsupported, void *address, int *addressLength )
+{
+	struct Rva0080B000Comm *accepted;
+	void *socket;
+
+	if ( unsupported != 0 )
+	{
+		return 0;
+	}
+
+	socket = Rva007FD7D0( comm->m_socket, address, addressLength );
+	if ( socket == 0 )
+	{
+		return 0;
+	}
+
+	accepted = (struct Rva0080B000Comm *)Rva0080B000();
+	if ( accepted == 0 )
+	{
+		Rva007FD3F0( socket );
+		return 0;
+	}
+
+	accepted->m_socket = socket;
+	memcpy( accepted->m_address, address, *addressLength );
+	accepted->m_addressLength = 0x14;
+	return accepted;
 }
 
 struct Rva00812320Module;
