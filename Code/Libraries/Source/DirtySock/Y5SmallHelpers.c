@@ -1,6 +1,8 @@
 // cl: /Od /GZ /MD /DNDEBUG
 
 void *memcpy(void *dest, const void *src, unsigned int count);
+unsigned int strlen(const char *text);
+char *strcpy(char *dest, const char *src);
 
 int Rva008118D0(void)
 {
@@ -105,4 +107,14 @@ void Rva0080F0D0(unsigned char *object)
 		Rva00812CD0(*(void **)(object + 0x64));
 		*(void **)(object + 0x64) = 0;
 	}
+}
+
+void *Rva007F0000(unsigned int size);
+
+void Rva0080EEF0(char **slot, const char *text)
+{
+	if (*slot != 0)
+		Rva007F0030(*slot);
+	*slot = (char *)Rva007F0000(strlen(text) + 1);
+	strcpy(*slot, text);
 }
