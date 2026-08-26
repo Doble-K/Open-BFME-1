@@ -9162,6 +9162,7 @@ name,address,notes
 ?BfmeElementConstruct@_STL@@YAXPAXABVW3DAnimationInfo@@@Z,0x0000927D,Open-BFME5 ILT the W3DAnimationInfo allocate-and-copy uses for its per-element construct
 ?BfmeFlightDeckInfoUninitializedCopy@_STL@@YAPAUFlightDeckInfo@FlightDeckBehavior@@PAU23@00ABU__false_type@1@@Z,0x0002894D,Open-BFME5 ILT for _STL::__uninitialized_copy on FlightDeckBehavior FlightDeckInfo at 0x0022FE20
 ?BfmeFlightDeckInfoUninitializedFillN@_STL@@YAPAUFlightDeckInfo@FlightDeckBehavior@@PAU23@IABU23@ABU__false_type@1@@Z,0x00017E0E,Open-BFME5 ILT for _STL::__uninitialized_fill_n on FlightDeckBehavior FlightDeckInfo at 0x0022FE80
+?BfmeGadgetListBoxSetAudioFeedback@@YAXPAVGameWindow@@_N@Z,0x00014EDE,BFME list-box audio-feedback setter variant writes the enabled byte at user data +0x10; Apt disconnect rules initialization calls it with true
 ?BfmeHideShowSubObjInfoConstruct@_STL@@YAXPAXABUHideShowSubObjInfo@ModelConditionInfo@@@Z,0x00033FF0,Open-BFME5 ILT this allocate-and-copy uses for the 8-byte _Construct at 0x003A9110
 ?BfmeHorzLineUninitializedCopy@_STL@@YAPAUHorzLine@@PAU2@00ABU__false_type@1@@Z,0x0000C61C,Open-BFME5 ILT for the shared 12-byte-element _STL::__uninitialized_copy at 0x00068C50
 ?BfmeHorzLineUninitializedFillN@_STL@@YAPAUHorzLine@@PAU2@IABU2@ABU__false_type@1@@Z,0x0002E91A,Open-BFME5 ILT for the shared 12-byte-element _STL::__uninitialized_fill_n at 0x00068CA0

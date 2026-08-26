@@ -145,10 +145,26 @@ private:
 };
 
 extern "C" __declspec(dllimport) unsigned int __cdecl wcslen( const unsigned short *text );
+extern "C" int __cdecl strcmp( const char *left, const char *right );
 
 class GameWindow;
 UnicodeString GadgetTextEntryGetText( GameWindow *textEntry );
 void GadgetTextEntrySetText( GameWindow *textEntry, UnicodeString text );
+void GadgetListBoxReset( GameWindow *listBox );
+void BfmeGadgetListBoxSetAudioFeedback( GameWindow *listBox, bool enabled );
+int GadgetListBoxAddEntryText( GameWindow *listBox, UnicodeString text, int color,
+	int row, int column = -1, bool overwrite = true );
+
+class GameTextInterface
+{
+public:
+	virtual void slot00(); virtual void slot01(); virtual void slot02(); virtual void slot03();
+	virtual void slot04(); virtual void slot05(); virtual void slot06(); virtual void slot07();
+	virtual void slot08(); virtual void slot09();
+	virtual UnicodeString fetch( const char *label, bool *exists = 0 );
+};
+
+extern GameTextInterface *TheGameText;
 
 class NetworkInterface
 {
@@ -189,6 +205,7 @@ class BfmeAptScreenDisconnectScreen
 public:
 	BfmeAptScreenDisconnectScreen( void *context );
 	void _bfme_onChatEnterText( const char *argument );
+	void _bfme_onInitGadget( const char *name, void *argument, GameWindow *window );
 	void _bfme_onQuit( const char *argument );
 
 private:
@@ -229,6 +246,32 @@ void BfmeAptScreenDisconnectScreen::_bfme_onChatEnterText( const char * )
 		text.trim();
 		if( !text.isEmpty() )
 			((DisconnectMenu *)this)->sendChat( text );
+	}
+}
+
+// ?_bfme_onInitGadget@BfmeAptScreenDisconnectScreen@@QAEXPBDPAXPAVGameWindow@@@Z
+void BfmeAptScreenDisconnectScreen::_bfme_onInitGadget(
+	const char *name, void *, GameWindow *window )
+{
+	if( strcmp( name, "ChatBox" ) == 0 )
+	{
+		m_textDisplayControl = window;
+		return;
+	}
+
+	if( strcmp( name, "ChatEntry" ) == 0 )
+	{
+		m_textEntryWindow = window;
+		GadgetTextEntrySetText( window, UnicodeString::TheEmptyString );
+		return;
+	}
+
+	if( strcmp( name, "RulesBox" ) == 0 )
+	{
+		GadgetListBoxReset( window );
+		BfmeGadgetListBoxSetAudioFeedback( window, true );
+		GadgetListBoxAddEntryText( window,
+			TheGameText->fetch( "APT:DisconnectRules" ), -1, -1, -1, true );
 	}
 }
 
