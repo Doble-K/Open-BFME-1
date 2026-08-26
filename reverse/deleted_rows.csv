@@ -23380,3 +23380,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_0028d580@@YAXXZ,0x0028D580,gen-dump placeholder superseded by the byte-verified real DetachableRiderUpdate constructor identity.
 ?d_00212ec0@@YAXXZ,0x00212EC0,gen-dump placeholder superseded by the byte-verified real DetachableRiderBody constructor identity.
 ?d_002a1510@@YAXXZ,0x002A1510,gen-dump placeholder superseded by the byte-verified real RespawnUpdate constructor identity.
+?initFromDict@Player@@QAEXPBVDict@@@Z,0x000A2D40,wrong identity retracted: the body iterates GameLogic objects and updates StatsCollector unit counters; the source was a naked __emit lift and not Player::initFromDict.
