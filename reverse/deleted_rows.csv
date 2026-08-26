@@ -23378,3 +23378,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_002cfd40@@YAXXZ,0x002CFD40,gen-dump placeholder superseded by the byte-verified real DefaultProductionExitUpdate constructor identity.
 ?d_002d1480@@YAXXZ,0x002D1480,gen-dump placeholder superseded by the byte-verified real SpawnPointProductionExitUpdate constructor identity.
 ?d_0028d580@@YAXXZ,0x0028D580,gen-dump placeholder superseded by the byte-verified real DetachableRiderUpdate constructor identity.
+?d_00212ec0@@YAXXZ,0x00212EC0,gen-dump placeholder superseded by the byte-verified real DetachableRiderBody constructor identity.
