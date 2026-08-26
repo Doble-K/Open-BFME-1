@@ -12063,6 +12063,7 @@ name,address,notes
 ?accept@T1Sink_005C8D40@@QAEPAXPAX0@Z,0x005C8D40,callee of the 18-byte receiver-swapping forwarders at 0x005C98A0 and 0x005CACC0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
 ?accept@T1Sink_005C8E90@@QAEPAXPAX0@Z,0x005C8E90,callee of the 18-byte receiver-swapping forwarders at 0x005C98C0 and 0x005CACE0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
 ?accepts@Rva2225E0Filter@@QAE_NPAVObject@@PAVPlayer@@@Z,0x0001DA34,Open-BFME5 filter predicate call pin
+?accepts@Rva001DB720Predicate@@QAE_NPAVThingTemplate@@@Z,0x00007B4E,incremental-link thunk called by the 0x001DB720 template-name scan
 ?accepts@U4Filter@@QBE_NPBUU4Elem@@@Z,0x00606BF0,U4 lane: element predicate called by both scan loops at 0x00606DC0 and 0x00607000; address-derived name
 ?active@Rva000DF7F0Player@@QBE_NXZ,0x000179BD,Open-BFME5 fresh thiscall bool at ILT of !query 0x000DF7F0
 ?add@DynamicVectorAddPtrPairShim@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,0x000D0AE0,DynamicVectorClass Add PtrPair incremental-link thunk target through a TU-local forwarding shim
