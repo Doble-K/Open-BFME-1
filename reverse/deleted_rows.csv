@@ -23376,3 +23376,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?m@Gen_0066b140@@QAEHXZ,0x0066B140,gen-shim getter placeholder superseded by the byte-verified real DisconnectManager getter identity.
 ?d_002cf890@@YAXXZ,0x002CF890,gen-dump placeholder superseded by the byte-verified real SupplyWarehouseDockUpdate::onObjectCreated identity.
 ?d_002cfd40@@YAXXZ,0x002CFD40,gen-dump placeholder superseded by the byte-verified real DefaultProductionExitUpdate constructor identity.
+?d_002d1480@@YAXXZ,0x002D1480,gen-dump placeholder superseded by the byte-verified real SpawnPointProductionExitUpdate constructor identity.
