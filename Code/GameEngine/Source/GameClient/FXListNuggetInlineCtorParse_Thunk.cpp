@@ -1,6 +1,6 @@
 // cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
 // stlport
-// Open-BFME5: four more FXList nugget parse callbacks, the ones whose derived
+// Open-BFME5: five more FXList nugget parse callbacks, the ones whose derived
 // constructor is INLINE.  Same body as FXListNuggetParse_Thunk.cpp -- allocate,
 // build a MultiIniFieldParse from the derived table then FXNugget's shared one,
 // initFromINIMulti, push_back onto the FXList -- with the constructor spelled
@@ -13,11 +13,10 @@
 //   [ mov [<this>+4],<N> ]                          ; a BASE field, so last
 //     ...
 //
-// THE INI KEYWORD TABLE NAMES ALL FOUR.  Their five-byte incremental-link
+// THE INI KEYWORD TABLE NAMES ALL FIVE.  Their five-byte incremental-link
 // thunks appear in FXList's own FieldParse table at 0x00CF2130 under the
-// keywords EvaEvent, CameraShakerVolume, AttachedModel and Laser; Zero Hour
-// spells every nugget class <keyword>FXNugget and the ledger already carries
-// seven siblings that way.
+// keywords EvaEvent, CameraShakerVolume, AttachedModel, Laser and TerrainScorch;
+// Zero Hour spells every nugget class <keyword>FXNugget.
 //
 // THE BASE CONSTRUCTOR IS 0x00428590, NOT THE 9-BYTE BODY THE LEDGER NAMES.
 // `??0FXNugget@@QAE@XZ` currently sits on 0x00061D90, which is
@@ -25,7 +24,7 @@
 // shares with hundreds of other one-pointer constructors, and which is the Zero
 // Hour FXNugget the ported FXList.cpp describes.  BFME's is 225 bytes at
 // 0x00428590: an EH frame, its own vftable at 0x010F23A0, and subobjects from
-// +8 on.  All eleven nugget parse callbacks reach it, and the shared FieldParse
+// +8 on.  All thirteen nugget parse callbacks reach it, and the shared FieldParse
 // table they add runs 0x8..0xB3, so that is the constructor of the 0xB4-wide
 // base these classes derive from.  A second symbols.csv pin records it; the
 // existing row is left alone.
@@ -53,6 +52,7 @@ extern const FieldParse EvaEventFXNuggetFieldParse[];
 extern const FieldParse CameraShakerVolumeFXNuggetFieldParse[];
 extern const FieldParse AttachedModelFXNuggetFieldParse[];
 extern const FieldParse LaserFXNuggetFieldParse[];
+extern const FieldParse TerrainScorchFXNuggetFieldParse[];
 
 class MultiIniFieldParse
 {
@@ -204,3 +204,28 @@ void LaserFXNugget::parse( INI *ini, void *instance, void *, const void * )
 	( (FXList *)instance )->addFXNugget( nugget );
 }
 
+// "TerrainScorch", parse at 0x0042C600, 0xBC bytes wide
+class TerrainScorchFXNugget : public FXNugget
+{
+public:
+	TerrainScorchFXNugget() : m_scorch( -1 ), m_radius( 0 )
+	{
+		m_field04 = 7;
+	}
+
+	static void parse( INI *, void *, void *, const void * );
+
+private:
+	int m_scorch;
+	float m_radius;
+};
+
+void TerrainScorchFXNugget::parse( INI *ini, void *instance, void *, const void * )
+{
+	TerrainScorchFXNugget *nugget = new TerrainScorchFXNugget;
+	MultiIniFieldParse fields;
+	fields.add( TerrainScorchFXNuggetFieldParse );
+	fields.add( FXNuggetFieldParse );
+	ini->initFromINIMulti( nugget, fields );
+	( (FXList *)instance )->addFXNugget( nugget );
+}

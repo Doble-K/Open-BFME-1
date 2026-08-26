@@ -460,10 +460,9 @@ public:
 		}
 	}
 
-	// Body: Code/masm_dumps/TerrainScorchFXNugget_parse_42C600.asm (BFME rewrite @ 0x42C600)
 	static void parse(INI *ini, void *instance, void* store, const void* userData);
 
-	// Keep matched ctor/pool/parseScorchType COMDATs live after parse moved to MASM.
+	// The BFME-layout parse facade cannot keep the Zero Hour COMDATs claimed by this TU alive.
 	static void bfmeRetainSymbols()
 	{
 		TerrainScorchFXNugget *n = newInstance(TerrainScorchFXNugget);
