@@ -72185,6 +72185,10 @@ name,address,notes
 ?bfmeConstructE@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0001E696,Open-BFME5 ILT the hash insert at 0x006A0D50 constructs through
 ?bfmeConstructE@@YAXPAX0@Z,0x00040AE3,Open-BFME5 the in-place payload constructor the circular-list appends at 0x000BF340 and siblings call
 ?bfmeConstructF@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00852240,Open-BFME5 the routine the hash insert at 0x00852760 constructs through
+?bfmeCopyInto_00134BB0@@YAXPBUBfmeCopyElem_00134BB0@@0PAU1@PAI@Z,0x0002C14C,Open-BFME5 the copier the allocate-and-delegate body at 0x00134BB0 hands its range and block to
+?bfmeCopyInto_00134C20@@YAXPBUBfmeCopyElem_00134C20@@0PAU1@PAI@Z,0x00031E4E,Open-BFME5 the copier the allocate-and-delegate body at 0x00134C20 hands its range and block to
+?bfmeCopyInto_0020E8D0@@YAXPBUBfmeCopyElem_0020E8D0@@0PAU1@PAI@Z,0x00024528,Open-BFME5 the copier the allocate-and-delegate body at 0x0020E8D0 hands its range and block to
+?bfmeCopyInto_00230120@@YAXPBUBfmeCopyElem_00230120@@0PAU1@PAI@Z,0x0002894D,Open-BFME5 the copier the allocate-and-delegate body at 0x00230120 hands its range and block to
 ?bfmeCopySlotA@@YAXPAUBfmeSlotA@@PAX@Z,0x00002A8B,Open-BFME5 the copy the bounded appends call
 ?bfmeCopySlotB@@YAXPAUBfmeSlotB@@PAX@Z,0x0003BB51,Open-BFME5 the copy the bounded appends call
 ?bfmeCopySlotC@@YAXPAUBfmeSlotC@@PAX@Z,0x00045877,Open-BFME5 the copy the bounded appends call
