@@ -86,6 +86,25 @@ void LivingWorldPlayerArmy::clearArmies()
 	m_isActive = false;
 }
 
+class BfmeLivingWorldPlayerArmyCollection
+{
+public:
+	void clearModeFourArmies();
+
+private:
+	char m_unmodelled[ 0x18 ];
+	std::vector<LivingWorldPlayerArmy> m_playerArmies;
+};
+
+void BfmeLivingWorldPlayerArmyCollection::clearModeFourArmies()
+{
+	for( UnsignedInt i = 0; i < m_playerArmies.size(); ++i )
+	{
+		if( m_playerArmies[ i ].m_startingCommandPoints == 4 )
+			m_playerArmies[ i ].clearArmies();
+	}
+}
+
 class BfmeLivingWorldCampaignManager
 {
 public:
