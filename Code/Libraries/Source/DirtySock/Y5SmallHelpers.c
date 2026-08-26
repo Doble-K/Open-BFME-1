@@ -372,3 +372,42 @@ int Rva0080DA50(unsigned char *object, char *output, int length)
 		output[result] = 0;
 	return result;
 }
+
+char *strchr(const char *text, int character);
+char *strstr(const char *text, const char *find);
+void *Rva00812320(int entries);
+void Rva008119A0(void *table, const char *name, const char *alias,
+	int value, const char *templates, int extra);
+extern char *g_Rva012C47A4;
+
+void Rva0080EF50(unsigned char *object, const char *name, char *alias,
+	int value)
+{
+	char *found;
+	char *dest;
+	char defaultName[0x100];
+	const char *source;
+
+	if (*(void **)(object + 0x64) == 0)
+		*(void **)(object + 0x64) = Rva00812320(0x10);
+	if (alias == 0 || *alias == 0)
+	{
+		sprintf(defaultName, "Default Name");
+		if (*(char **)object != 0)
+			source = *(char **)object;
+		else
+			source = g_Rva012C47A4;
+		found = strstr(source, defaultName);
+		if (found != 0)
+		{
+			found = strchr(found, ':') + 1;
+			for (dest = defaultName; *found >= ' '; found++, dest++)
+				*dest = *found;
+			*dest = 0;
+		}
+		alias = defaultName;
+	}
+	strcpy((char *)object + 4, name);
+	Rva008119A0(*(void **)(object + 0x64), name, alias, value,
+		"TCP:~1:1024\tUDP:~1:1024", *(int *)(object + 0x8C));
+}
