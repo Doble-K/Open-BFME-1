@@ -76957,3 +76957,5 @@ _Rva0080F5A0,0x0080F5A0,address-derived DirtySock state operation called by the 
 _Rva0080C6F0,0x0080C6F0,address-derived DirtySock buffered receive helper called by 0x0080DA50
 _Rva008119A0,0x008119A0,address-derived DirtySock table insertion helper called by 0x0080EF50
 _g_Rva012C47A4,0x012C47A4,DirtySock default alias-list pointer used by 0x0080EF50
+_Rva0080FD30,0x0080FD30,address-derived multi-precision addition helper called by 0x0080FB40
+_Rva0080FDD0,0x0080FDD0,address-derived multi-precision subtraction helper called by 0x0080FB40
