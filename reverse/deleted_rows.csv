@@ -23709,3 +23709,8 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_008155a0@@YAXXZ,0x008155a0,"gen-dump placeholder superseded by the real identity of these bytes: _Rva008155A0, byte-verified from Code/Libraries/Source/DirtySock/Y4CommRingIdle.c over the same target range. The dump reproduces bytes but carries no identity."
 ?d_00815790@@YAXXZ,0x00815790,"gen-dump placeholder superseded by the real identity of these bytes: _Rva00815790, byte-verified from Code/Libraries/Source/DirtySock/Y4CommRingIdle.c over the same target range. The dump reproduces bytes but carries no identity."
 ?d_008157e0@@YAXXZ,0x008157e0,"gen-dump placeholder superseded by the real identity of these bytes: _Rva008157E0, byte-verified from Code/Libraries/Source/DirtySock/Y4CommRingIdle.c over the same target range. The dump reproduces bytes but carries no identity."
+?d_00202980@@YAXXZ,0x00202980,gen-dump placeholder superseded by a real identity over the same target range after union rebase
+?d_002029f0@@YAXXZ,0x002029F0,gen-dump placeholder superseded by a real identity over the same target range after union rebase
+??0Rva006C54C0Handle@@QAE@ABV0@@Z,0x006C54C0,missing-source ghost after union rebase; kept S3RefCountedCopies.cpp matched 21B row at this address
+??0Rva006C5630Handle@@QAE@ABV0@@Z,0x006C5630,missing-source ghost after union rebase; kept S3RefCountedCopies.cpp matched 21B row at this address
+??0Rva00749E10Handle@@QAE@ABV0@@Z,0x00749E10,missing-source ghost after union rebase; kept S3RefCountedCopies.cpp matched 21B row at this address
