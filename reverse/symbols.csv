@@ -77707,3 +77707,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??4Rva000A8490Mid24@@QAEAAV0@ABV0@@Z,0x000303B4,Open-BFME5 assign of the mid at +0x24 used by 0x000A8490
 ??4Rva00630D00UStr@@QAEAAV0@ABV0@@Z,0x00888530,Open-BFME5 assign of the unicode-string member used by firstpush copies
 ??4Rva0039C830Mid@@QAEAAV0@ABV0@@Z,0x000163BA,Open-BFME5 assign of the mid at +0x14 used by 0x0039C830
+?Rva01336E50Str@@3VRva0036CA00Str@@A,0x01336E50,Open-BFME5 global Rva0036CA00Str immediate used by 0x00385180/0x003855C0 reset
