@@ -31,6 +31,7 @@ public:
 	LivingWorldPlayerArmy();
 	LivingWorldPlayerArmy( const LivingWorldPlayerArmy &other );
 	~LivingWorldPlayerArmy();
+	void clearArmies();
 	virtual void crc( Xfer *xfer );
 	virtual void xfer( Xfer *xfer );
 	virtual void loadPostProcess();
@@ -77,6 +78,12 @@ LivingWorldPlayerArmy::LivingWorldPlayerArmy() :
 	m_nightColor = 0xFF000000;
 	m_unmodelled3C = 0;
 	m_unmodelled40 = 0;
+}
+
+void LivingWorldPlayerArmy::clearArmies()
+{
+	m_armies.clear();
+	m_isActive = false;
 }
 
 class BfmeLivingWorldCampaignManager
