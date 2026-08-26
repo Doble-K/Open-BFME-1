@@ -9486,6 +9486,7 @@ name,address,notes
 ?Cast_OBBox_Recursive@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxCollisionTestClass@@@Z,0x0096B100,derived-ICF
 ?Cast_OBBox_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxCollisionTestClass@@@Z,0x0096AEE0,derived-ICF
 ?Cast_Ray_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVRayCollisionTestClass@@@Z,0x0096ADC0
+?ChangeBuffer@EAStringC@@AAEXIIIW4CBPushZero@1@I@Z,0x0089E570,EA Apt 2.00.00 string buffer helper
 ?Check_Is_Transform_Identity@@YI_NABVMatrix3D@@@Z,0x0091FF40,register-convention alias of the static inline Check_Is_Transform_Identity; same body as the cdecl-mangled row
 ?Clear@?$VectorClass@M@@UAEXXZ,0x0000B9CE,pinharvest x1 (thunk)
 ?Clear@?$VectorClass@M@@UAEXXZ,0x0000DBA7,pinharvest x1 (thunk)
@@ -77275,6 +77276,7 @@ __stringbase_isnone_cmp_wchar,0x0041F3D,internal wide-char string none-compariso
 __stringbase_isnotnone_cmp_char,0x00405E8,internal char string not-none comparison helper
 __stringbase_isnotnone_cmp_wchar,0x0041F3D,internal wide-char string not-none comparison helper
 __strlwr,0x009F7D7A,Y4 lane: _strlwr import thunk (gen-import ?ji_009f7d7a@@YAXXZ names the same address)
+__strupr,0x00B02898,EA Apt MakeUpper import thunk
 _accept@12,0x0081BE6E,decode_calls pin for _gpiProcessPeers callee (accept)
 _assignment,0x0099CB80,vendored=lua-4.0.1
 _atexit,0x009F6E26,CRT atexit (registers static destructors)
