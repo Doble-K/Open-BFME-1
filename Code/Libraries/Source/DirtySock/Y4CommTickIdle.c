@@ -890,3 +890,32 @@ int Rva008137C0( int line )
 
 	return iReturn;
 }
+
+struct Rva008136C0ExtensionId
+{
+	int m_words[ 4 ];
+};
+
+int __stdcall Rva0081BDBA( int lineApplication, int deviceId,
+	int apiLowVersion, int apiHighVersion, int *apiVersion,
+	struct Rva008136C0ExtensionId *extensionId );
+int __stdcall Rva0081BDB4( int lineApplication, int deviceId, void *line,
+	int apiVersion, int extensionVersion, int callbackInstance,
+	int privileges, int mediaModes, void *callParameters );
+
+int Rva008136C0( int lineApplication, int deviceId, void *line,
+	int callbackInstance, int privileges, int mediaModes )
+{
+	int iResult;
+	int apiVersion;
+	struct Rva008136C0ExtensionId extensionId;
+
+	apiVersion = 0;
+	iResult = Rva0081BDBA( lineApplication, deviceId, 0x10004, 0x20002,
+		&apiVersion, &extensionId );
+	if ( iResult != 0 )
+		return iResult;
+
+	return Rva0081BDB4( lineApplication, deviceId, line, apiVersion, 0,
+		callbackInstance, privileges, mediaModes, 0 );
+}

@@ -77016,6 +77016,8 @@ _Rva0081B9B0,0x0081B9B0,address-derived DirtySock transport shutdown helper call
 _Rva0081B9D0,0x0081B9D0,address-derived DirtySock transport state helper called by 0x00813F90
 _Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
 _Rva0081BDAE@4,0x0081BDAE,Y4 lane: unnamed one-argument stdcall import thunk (IAT slot 0x01358C84); the guard at 0x00813780 calls it only for a handle that is not -1
+_Rva0081BDB4@36,0x0081BDB4,Y4 lane: nine-argument stdcall line-open import thunk called by the DirtySock wrapper at 0x008136C0
+_Rva0081BDBA@24,0x0081BDBA,Y4 lane: six-argument stdcall API-version negotiation import thunk called by the DirtySock wrapper at 0x008136C0
 _Rva0081BDC0@24,0x0081BDC0,Y4 lane: six-argument stdcall import thunk called by the DirtySock capability query wrapper at 0x008137C0
 _Rva0081BDC6@20,0x0081BDC6,Y4 lane: five-argument stdcall import thunk called by the DirtySock line-call setup wrapper at 0x00813890
 _Rva0081BDE4,0x0081BDE4,import thunk called at the tail of the DirtySock shutdown 0x007FD270; the ledger already names this address ?ji_0081bde4, this is the C spelling the .c TU needs
