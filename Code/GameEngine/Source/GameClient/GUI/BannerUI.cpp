@@ -40,12 +40,13 @@ class BannerUI
 {
 public:
 	static const FieldParse m_fieldParseTable[];
+	virtual void reset();
 	void removeMovieBanner( int id );
 	void removeCurrentBannerMovie();
 	void hide( bool immediate );
 
 private:
-	unsigned char m_unmodelled[ 0x2C ];
+	unsigned char m_unmodelled[ 0x28 ];
 	int m_windowIndex;
 	std::vector<BannerMovieEntry> m_movieEntries;
 	bool m_hidden;
@@ -173,6 +174,12 @@ void BannerUI::hide( bool immediate )
 			g_theWindowManager->showAptWindow( m_windowIndex );
 		}
 	}
+}
+
+void BannerUI::reset()
+{
+	hide( true );
+	m_movieEntries.clear();
 }
 
 template void std::vector<BannerMovieEntry>::push_back( const BannerMovieEntry &entry );
