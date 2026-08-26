@@ -72431,6 +72431,7 @@ name,address,notes
 ?bfmeForward@Gen_00C71580Target@@QAEXXZ,0x009DB7A0,Open-BFME5 the member the singleton forwarder at 0x00C71580 tail-jumps to
 ?bfmeFreeBlock@@YAXPAX@Z,0x00881EF0,Open-BFME5 the free the derived destructors at 0x00924090 and its siblings call
 ?bfmeFreeScalar@@YAXPAX@Z,0x00881EB0,Open-BFME5 the scalar free the holding-list clears at 0x0043F5D0 and 0x0043FBB0 call
+?bfmeGen00018C1E@Gen_005291F0@@QAEXH@Z,0x00018C1E,address-derived helper; target read from the guarded eight-index loop REL32 at 0x00529237
 ?bfmeGen00029C35@Gen_00529B10@@QAEXH@Z,0x00029C35,address-derived helper; target read from the first REL32 in the guarded eight-index loop at 0x00529B10
 ?bfmeGen0002D38A@Gen_00529B10@@QAEXH@Z,0x0002D38A,address-derived helper; target read from the third REL32 in the guarded eight-index loop at 0x00529B10
 ?bfmeGen0002EA91@Gen_00529B10@@QAEXH_N@Z,0x0002EA91,address-derived helper; target read from the second REL32 in the guarded eight-index loop at 0x00529B10
