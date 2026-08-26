@@ -322,3 +322,53 @@ int Rva0080E030(int *crypto, const unsigned char *input,
 	crypto[1] = 0;
 	return 1;
 }
+
+unsigned char *Rva0080C6F0(unsigned char *object);
+int Rva007FDA50(void *socket, char *buffer, int length, int flags,
+	void *from, int *fromLength);
+
+int Rva0080DA50(unsigned char *object, char *output, int length)
+{
+	int result;
+	unsigned char *state;
+
+	result = -1;
+	state = *(unsigned char **)(object + 0x120);
+	if (*(int *)(object + 0x118) == 0x10)
+	{
+		result = 0;
+		if (*(void **)(state + 0x801C) == 0)
+		{
+			if (*(int *)(state + 0x400C) == *(int *)(state + 0x4010))
+			{
+				if (*(int *)(state + 0x4010) > 4)
+				{
+					*(int *)(state + 0x4014) = 0;
+					*(unsigned char **)(state + 0x801C) = Rva0080C6F0(object);
+				}
+				else if (*(int *)(object + 0x11C) != 0)
+					result = -1;
+			}
+		}
+		if (*(void **)(state + 0x801C) != 0)
+		{
+			result = *(int *)(state + 0x4010) - *(int *)(state + 0x4014);
+			if (length < result)
+				result = length;
+			memcpy(output, *(unsigned char **)(state + 0x801C)
+				+ *(int *)(state + 0x4014), result);
+			*(int *)(state + 0x4014) += result;
+			if (*(int *)(state + 0x4014) >= *(int *)(state + 0x4010))
+			{
+				*(int *)(state + 0x4010) = 0;
+				*(int *)(state + 0x400C) = 0;
+				*(void **)(state + 0x801C) = 0;
+			}
+		}
+	}
+	if (*(int *)(object + 0x118) == 0x14)
+		result = Rva007FDA50(*(void **)object, output, length, 0, 0, 0);
+	if (result > 0 && result < length)
+		output[result] = 0;
+	return result;
+}
