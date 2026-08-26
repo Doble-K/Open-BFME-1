@@ -2,6 +2,7 @@
 
 void *memcpy(void *dest, const void *src, unsigned int count);
 void *memset(void *dest, int value, unsigned int count);
+int memcmp(const void *first, const void *second, unsigned int count);
 unsigned int strlen(const char *text);
 char *strcpy(char *dest, const char *src);
 
@@ -242,5 +243,22 @@ int Rva0080E350(const int *crypto, unsigned char *data, int length)
 	Rva00810020(context);
 	Rva00810060(context, data, payloadLength);
 	Rva00810FF0(context, (char *)data + payloadLength, 8);
+	return 0;
+}
+
+int Rva0080E200(const int *crypto, const unsigned char *data, int length)
+{
+	unsigned char context[0x54];
+	char digest[0x10];
+
+	if (crypto[0] == 0 || crypto[1] == 0)
+		return 0;
+	if (length < 8)
+		return -1;
+	Rva00810020(context);
+	Rva00810060(context, data, length - 8);
+	Rva00810FF0(context, digest, 0x10);
+	if (memcmp(data + length - 8, digest, 8) != 0)
+		return -2;
 	return 0;
 }
