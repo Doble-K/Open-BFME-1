@@ -29,9 +29,16 @@ struct Rva00814700Comm
 	 * transports, not one struct seen twice. */
 	int m_recordSize;               /* +0x9C */
 	int m_bufferSize;               /* +0xA0 */
-	char m_gap[ 0x04 ];
+	int m_readOffset;               /* +0xA4 */
 	int m_writeOffset;              /* +0xA8 */
-	char m_gap2[ 0x13C ];
+	char m_gapAC[ 0x0C ];
+	int m_countA;                   /* +0xB8 */
+	int m_countB;                   /* +0xBC */
+	char m_gapC0[ 0x04 ];
+	unsigned int m_lastTick;        /* +0xC4 */
+	char m_gapC8[ 0x10 ];
+	int m_status;                   /* +0xD8 */
+	char m_gapDC[ 0x10C ];
 	char m_lock[ 4 ];               /* +0x1E8 */
 	char m_gap1EC[ 0x24 ];
 	int m_flags;                    /* +0x210 */
@@ -141,6 +148,16 @@ int Rva00815830( struct Rva00814700Comm *comm )
 		return 3;
 
 	return 4;
+}
+
+void Rva00816910( struct Rva00814700Comm *comm )
+{
+	comm->m_countA = 0;
+	comm->m_countB = 0;
+	comm->m_readOffset = 0;
+	comm->m_writeOffset = 0;
+	comm->m_lastTick = Rva007FEA00() - 5000;
+	comm->m_status = -1;
 }
 
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
