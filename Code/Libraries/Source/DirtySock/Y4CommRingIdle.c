@@ -63,7 +63,7 @@ struct Rva00815B50Comm
 	 * type implies.  1 and 2 are the two halves of an unfinished connect, 3 is
 	 * established, 4 is closing. */
 	int m_state;                    /* +0x90 */
-	char m_gapA[ 0x04 ];
+	int m_sessionValue;             /* +0x94 */
 	/* THE RECEIVE QUEUE.  The dequeue at 0x00816520 compares +0xA8 against
 	 * +0xA4 to decide whether anything is waiting and reads the record at
 	 * +0xAC plus +0xA8, which is what identifies the base and the two
@@ -88,6 +88,9 @@ struct Rva00815B50Comm
 	unsigned int m_lastRecvTick;    /* +0xC8 */
 	char m_gap2[ 0x120 ];
 	char m_lock[ 4 ];               /* +0x1EC */
+	char m_gap1F0[ 0x24 ];
+	int m_flags;                    /* +0x214 */
+	void *m_value;                  /* +0x218 */
 };
 
 void Rva008154F0( struct Rva00815B50Comm *comm,
@@ -261,6 +264,19 @@ int Rva008155F0( struct Rva00815B50Comm *comm, char kind )
 	packet.m_data[ 0 ] = kind;
 
 	return Rva00815680( comm, &packet );
+}
+
+int Rva008155A0( struct Rva00815B50Comm *comm )
+{
+	if ( comm->m_state != 3 )
+	{
+		return 0;
+	}
+
+	Rva008155F0( comm, 0x14 );
+	comm->m_sessionValue = 0;
+	comm->m_state = 4;
+	return 0;
 }
 
 void *__cdecl memcpy( void *destination, const void *source,
