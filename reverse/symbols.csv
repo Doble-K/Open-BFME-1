@@ -74378,6 +74378,8 @@ name,address,notes
 ?handle@Gen00366C80@@QAEXXZ,0x00366C80,address-derived callee of the add-ecx offset tail-jump family; target read from the REL32 at its call sites
 ?handle@Gen003677B0@@QAEXXZ,0x003677B0,address-derived callee of the add-ecx offset tail-jump family; target read from the REL32 at its call sites
 ?finish@Rva003677B0Entry@@QAEXPAX_N@Z,0x0003FE09,REL32 target read from the retail call at RVA 0x003677E3; ILT thunk to RVA 0x00367010
+?update@Rva00367810Entry@@QAEXXZ,0x0000E0AC,REL32 target read from the retail call at RVA 0x0036786D; ILT thunk to RVA 0x00367330
+?isLivingWorld@Rva00367810GameLogic@@QAE_NXZ,0x0001D1C9,REL32 target read from the retail call at RVA 0x0036782F; ILT thunk to RVA 0x00382B50
 ?handle@Gen0036CC00@@QAEXXZ,0x0036CC00,address-derived callee of the mov-ecx-from-stack tail-jump family; target read from the REL32 at its call site
 ?handle@Gen0036CC30@@QAEXXZ,0x0036CC30,address-derived callee of the mov-ecx-from-stack tail-jump family; target read from the REL32 at its call site
 ?handle@Gen0036CCB0@@QAEXXZ,0x0036CCB0,address-derived callee of the mov-ecx-from-stack tail-jump family; target read from the REL32 at its call site
