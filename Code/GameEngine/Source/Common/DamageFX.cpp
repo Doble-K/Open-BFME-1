@@ -57,6 +57,9 @@
 #include "GameClient/GameClient.h"
 #include "GameClient/InGameUI.h"
 
+// Keep the Zero Hour COMDAT available for the existing verified helper claim.
+template Int DamageTypeFlags::getSingleBitFromName(const char *);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PUBLIC DATA ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,7 +183,7 @@ static void parseCommonStuff(
 	}
 	else
 	{
-		damageFirst = (DamageType)DamageTypeFlags::getSingleBitFromName(damageName);
+		damageFirst = (DamageType)INI::scanIndexList(damageName, DamageTypeFlags::getBitNames());
 		damageLast = damageFirst;
 	}
 }
