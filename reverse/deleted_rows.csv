@@ -23413,3 +23413,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?d_0012a100@@YAXXZ,0x0012A100,gen-dump placeholder superseded by the byte-verified real FireWeaponWhenDamagedBehaviorModuleData constructor identity.
 ??0AutoHealBehaviorModuleData@@QAE@XZ,0x000287C7,claim retired: that address is the five-byte incremental-link thunk and not the constructor; the real body is at 0x00129D50.
 ?d_00129d50@@YAXXZ,0x00129D50,gen-dump placeholder superseded by the byte-verified real AutoHealBehaviorModuleData constructor identity.
+??$__uninitialized_copy@PBUParticleSysBoneInfo@@PAU1@@_STL@@YAPAUParticleSysBoneInfo@@PBU1@0PAU1@ABU__false_type@0@@Z,0x0002AF86,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x000A7AA0.
