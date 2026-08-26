@@ -352,6 +352,60 @@ int Rva00813E50( struct Rva00813E50Comm *comm, char *text )
 	return 0;
 }
 
+struct Rva008151E0Address
+{
+	unsigned short m_family;
+	unsigned short m_port;
+	unsigned int m_address;
+	unsigned int m_zeroA;
+	unsigned int m_zeroB;
+};
+
+struct Rva008151E0Comm
+{
+	char m_head[ 0x48 ];
+	void *m_socketAlias;             /* +0x48 */
+	char m_gap4C[ 0x30 ];
+	void *m_socket;                  /* +0x7C */
+	struct Rva008151E0Address m_address; /* +0x80 */
+	int m_state;                     /* +0x90 */
+};
+
+int Rva007FFCB0( struct Rva008151E0Address *address, const char *text );
+void *Rva007FD2D0( int family, int type, int protocol );
+int Rva007FD5C0( void *socket, struct Rva008151E0Address *address, int size );
+int Rva007FDE80( void *socket, int flags, int interval, void *ref,
+	int ( *callback )( unsigned int, int, struct Rva00814700Comm * ) );
+int Rva00814700( unsigned int socket, int flags,
+	struct Rva00814700Comm *ref );
+
+int Rva008151E0( struct Rva008151E0Comm *comm, const char *text )
+{
+	void *socket;
+
+	if ( comm->m_state != 1 || comm->m_socket != 0 )
+		return -2;
+
+	comm->m_address.m_family = 2;
+	comm->m_address.m_port = 0;
+	comm->m_address.m_address = 0;
+	comm->m_address.m_zeroA = 0;
+	comm->m_address.m_zeroB = 0;
+	if ( Rva007FFCB0( &comm->m_address, text ) != 3 )
+		return -3;
+
+	Rva00815170( (struct Rva00814700Comm *)comm );
+	socket = Rva007FD2D0( 2, 1, 0 );
+	Rva008142B0( (struct Rva00814700Comm *)comm, socket );
+	if ( comm->m_socket == 0 )
+		return -4;
+
+	Rva007FD5C0( comm->m_socket, &comm->m_address, 16 );
+	Rva007FDE80( comm->m_socket, 2, 100, comm, Rva00814700 );
+	comm->m_state = 2;
+	return 0;
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event
