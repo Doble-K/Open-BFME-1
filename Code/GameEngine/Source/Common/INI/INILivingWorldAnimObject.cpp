@@ -32,14 +32,40 @@ public:
 	void initFromINI( void *what, const FieldParse *parseTable );
 };
 
-class BfmeLivingWorldAnimObject
+class BfmeLivingWorldAnimObjectBase
+{
+public:
+	BfmeLivingWorldAnimObjectBase() {}
+	virtual ~BfmeLivingWorldAnimObjectBase();
+};
+
+class BfmeLivingWorldAnimObjectMember0C
+{
+public:
+	BfmeLivingWorldAnimObjectMember0C() : m_value( 0 ) {}
+	~BfmeLivingWorldAnimObjectMember0C();
+
+private:
+	void *m_value;
+};
+
+class BfmeLivingWorldAnimObject : public BfmeLivingWorldAnimObjectBase
 {
 public:
 	BfmeLivingWorldAnimObject( const AsciiString &name );
+	virtual ~BfmeLivingWorldAnimObject();
 	static const FieldParse m_fieldParseTable[];		// 0x01115B60
 
 private:
-	char m_storage[ 40 ];
+	int m_zero04;
+	int m_zero08;
+	BfmeLivingWorldAnimObjectMember0C m_member0C;
+	bool m_zero10;
+	bool m_zero11;
+	unsigned char m_pad12[ 2 ];
+	int m_zero14;
+	AsciiString m_name;
+	unsigned char m_unmodelled1C[ 0x0C ];
 };
 
 class BfmeLivingWorldManagerIcons
@@ -53,6 +79,16 @@ private:
 };
 
 extern BfmeLivingWorldManagerIcons *TheLivingWorldManager;		// 0x012F706C
+
+BfmeLivingWorldAnimObject::BfmeLivingWorldAnimObject( const AsciiString &name ) :
+	m_zero10( false ),
+	m_zero11( false ),
+	m_zero14( 0 ),
+	m_name( name )
+{
+	m_zero04 = 0;
+	m_zero08 = 0;
+}
 
 BfmeLivingWorldAnimObject *BfmeLivingWorldManagerIcons::findAnimObject(
 	const AsciiString &name )
