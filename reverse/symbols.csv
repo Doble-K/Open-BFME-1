@@ -2038,6 +2038,7 @@ name,address,notes
 ??0BfmeAptScreenSpellStore@@QAE@PAX@Z,0x00036647,ILT thunk to the SpellStore.apt screen constructor
 ??0BfmeArmyIcon@@QAE@ABVAsciiString@@@Z,0x00023ED9,retail findArmyIcon body directly encodes the BfmeArmyIcon constructor thunk
 ??0BfmeAttackNuggetBase@@QAE@XZ,0x0001B522,Open-BFME5 ILT the AttackNugget constructor at 0x0059EB00 calls its base through; it jumps to 0x00489210
+??0BfmeBaseP0@@QAE@PAX0@Z,0x000170E4,Open-BFME5 the two-argument first base the triple-base constructors at 0x00200AE0 and siblings forward to
 ??0BfmeBinkPlayerMember@@QAE@XZ,0x0002833F,Open-BFME5 ILT the member constructor BinkVideoPlayer at 0x00691230 calls for its member at +0x0C
 ??0BfmeCellGrid@@QAE@HHMM@Z,0x001B1830,thiscall ret 0x10 (width height cellSize offset) into a 0x1C-byte object: +0 w +4 h +8 w*h +0xC cellSize +0x10 offset +0x14 vector-new of w*h 0x88-byte cells +0x18 w*h dwords; assert text Could not create Cell Grid for VictorySystem! 0x0109C958; both callers are VictorySystem::newMap 0x001DF5DF/0x001DF628
 ??0BfmeDelayedLuaEvent@@QAE@XZ,0x0003A1C5,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element constructor; DIR32 sites are masked by the byte gate so this records the address
