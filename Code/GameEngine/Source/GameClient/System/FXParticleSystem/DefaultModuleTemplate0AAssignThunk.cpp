@@ -1,66 +1,44 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: DefaultModuleTemplate<0>::operator= -- null-check the source, take its
+// info sub-object at +8, and let DefaultColorModuleInfo's own operator= (ILT 0x000111C6) copy it.
+// Replaces the naked lift of the same body.
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+class DefaultColorModuleInfo
+{
+public:
+	DefaultColorModuleInfo &operator=(const DefaultColorModuleInfo &other);
+};
+
+template <int Category>
 class DefaultModuleTemplate
 {
 public:
-    DefaultModuleTemplate<Category> &operator=(const DefaultModuleTemplate<Category> &);
+	DefaultModuleTemplate &operator=(const DefaultModuleTemplate &other);
+
+private:
+	unsigned char m_pad[8];
+	DefaultColorModuleInfo m_info;
 };
 
-template<int Category>
-__declspec(naked) DefaultModuleTemplate<Category> &DefaultModuleTemplate<Category>::operator=(const DefaultModuleTemplate<Category> &)
+template <int Category>
+DefaultModuleTemplate<Category> &DefaultModuleTemplate<Category>::operator=(const DefaultModuleTemplate &other)
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 074h
-        _emit 012h
-        _emit 083h
-        _emit 0C0h
-        _emit 008h
-        _emit 050h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 008h
-        _emit 0E8h
-        _emit 0FFh
-        _emit 0BBh
-        _emit 0A3h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-        _emit 033h
-        _emit 0C0h
-        _emit 050h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 008h
-        _emit 0E8h
-        _emit 0EEh
-        _emit 0BBh
-        _emit 0A3h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+	const DefaultModuleTemplate *o = &other;
+	const DefaultColorModuleInfo *p;
+
+	if (o)
+		p = (const DefaultColorModuleInfo *)((const char *)o + 8);
+	else
+		p = 0;
+
+	m_info = *p;
+	return *this;
 }
 
 template class DefaultModuleTemplate<0>;
+
 }
