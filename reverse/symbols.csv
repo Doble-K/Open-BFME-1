@@ -2019,6 +2019,7 @@ name,address,notes
 ??0BeaconClientUpdateModuleData@@QAE@XZ,0x000286C3,module-glue cascade callee (from retail call site)
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00113C60,Open-BFME5 base constructor the Collide and Damage module constructors forward to
 ??0BezierSegment@@QAE@XZ,0x00043A9A
+??0BfmeAllocProxy_000F9F70@@QAE@PAXPAUBfmeElem_000F9F70@@@Z,0x00006F5F,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x000F9F70 runs
 ??0BfmeAllocProxy_000FD230@@QAE@PAXPAUBfmeElem_000FD230@@@Z,0x00026B9D,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x000FD230 runs
 ??0BfmeAllocProxy_0013B110@@QAE@PAXPAUBfmeElem_0013B110@@@Z,0x00002FF4,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x0013B110 runs
 ??0BfmeAllocProxy_0013B200@@QAE@PAXPAUBfmeElem_0013B200@@@Z,0x0000675D,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x0013B200 runs

@@ -1,4 +1,4 @@
-// Six sized-vector constructors.
+// Seven sized-vector constructors.
 //
 // Each zeroes its two pointers, builds the proxy that holds the end pointer
 // alongside the allocator, then allocates room for the requested count and
@@ -13,7 +13,7 @@
 //
 // The element width shows up twice: once in the multiply that sizes the
 // allocation and once in the scaled address that sets the end pointer. Four of
-// the six are twenty bytes wide and two are thirty-six.
+// the seven are twenty bytes wide, two are thirty-six and one is ninety-six.
 
 void *bfmeNewAlloc(unsigned int bytes);				// retail 0x00881F30
 void *bfmeAllocNode(unsigned int bytes);			// retail 0x0082E540
@@ -240,6 +240,43 @@ Gen_00760BE0::Gen_00760BE0(unsigned int count, void *allocator)
 
 	if (count)
 		block = (BfmeElem_00760BE0 *)bfmeAllocate(count * sizeof(BfmeElem_00760BE0));
+	else
+		block = 0;
+
+	m_bfmeStart = block;
+	m_bfmeFinish = block;
+	m_bfmeStorage.m_bfmeEnd = block + count;
+}
+
+struct BfmeElem_000F9F70 { int m_bfmeWords[24]; };
+
+class BfmeAllocProxy_000F9F70
+{
+public:
+	BfmeAllocProxy_000F9F70(void *allocator, BfmeElem_000F9F70 *data);	// retail 0x00006F5F
+
+	BfmeElem_000F9F70 *m_bfmeEnd;				// +0x00
+};
+
+class Gen_000F9F70
+{
+public:
+	Gen_000F9F70(unsigned int count, void *allocator);
+
+private:
+	BfmeElem_000F9F70 *m_bfmeStart;				// +0x00
+	BfmeElem_000F9F70 *m_bfmeFinish;				// +0x04
+	BfmeAllocProxy_000F9F70 m_bfmeStorage;			// +0x08
+};
+
+// ??0Gen_000F9F70@@QAE@IPAX@Z
+Gen_000F9F70::Gen_000F9F70(unsigned int count, void *allocator)
+	: m_bfmeStart(0), m_bfmeFinish(0), m_bfmeStorage(allocator, 0)
+{
+	BfmeElem_000F9F70 *block;
+
+	if (count)
+		block = (BfmeElem_000F9F70 *)bfmeAllocate(count * sizeof(BfmeElem_000F9F70));
 	else
 		block = 0;
 
