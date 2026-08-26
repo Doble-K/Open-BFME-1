@@ -77215,3 +77215,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?findNameIndex@Rva00359530StringRecordTable@@AAEHPAVAsciiString@@@Z,0x000072F7,retail call target from the 0x00359530 string-record release body
 ?getBackBufferSurface006e@@YA?AVW3DRadarResetSurface@@H@Z,0x00905070,W3DDisplay drawImage direct-surface path target read from retail REL32
 ?copySurfaceRects006e@@YAXVW3DRadarResetSurface@@PBUBfmeRect@@01H@Z,0x00904D20,W3DDisplay drawImage direct-surface copy target read from retail REL32
+?setShroudLevel30BC@BaseHeightMapResetShroud@@QAEXHHE_N@Z,0x0003D1DB,W3DDisplay 0x006EA700 direct +0x30BC shroud update target read from retail REL32
