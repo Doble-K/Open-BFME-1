@@ -76,6 +76,16 @@ void Rva0080F3D0(unsigned char *state, const void *first, int firstLength,
 	memcpy(state + 0x48C, second, secondLength);
 }
 
+void Rva0080F5A0(unsigned char *state, unsigned char *owner,
+	const unsigned char *first, int firstLength,
+	const unsigned char *second, int secondLength);
+
+void Rva0080F550(unsigned char *state)
+{
+	Rva0080F5A0(state, state, state + 0x404, *(int *)(state + 0x400),
+		state + 0x48C, *(int *)(state + 0x488));
+}
+
 int Rva0080DF70(const unsigned char *source, void *first, void *second)
 {
 	if (first != 0)
