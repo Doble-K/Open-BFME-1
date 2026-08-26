@@ -46,7 +46,9 @@ struct Rva00814700Comm
 	unsigned int m_timeoutTick;     /* +0xD0 */
 	char m_gapD4[ 0x04 ];
 	int m_status;                   /* +0xD8 */
-	char m_gapDC[ 0x10C ];
+	char m_gapDC[ 0xBC ];
+	unsigned int m_workerId;          /* +0x198 */
+	char m_gap19C[ 0x4C ];
 	char m_lock[ 4 ];               /* +0x1E8 */
 	char m_gap1EC[ 0x24 ];
 	int m_flags;                    /* +0x210 */
@@ -918,4 +920,27 @@ int Rva008136C0( int lineApplication, int deviceId, void *line,
 
 	return Rva0081BDB4( lineApplication, deviceId, line, apiVersion, 0,
 		callbackInstance, privileges, mediaModes, 0 );
+}
+
+void Rva0081ACD0( void *transport );
+void __stdcall Rva0081BDCC( int lineApplication );
+__declspec(dllimport) int __stdcall Rva0135904CPostWorkerMessage(
+	unsigned int workerId, unsigned int message, int first, int second );
+__declspec(dllimport) void __stdcall Rva01358F30WorkerYield( int interval );
+typedef void *( __stdcall *Rva008139A0WorkerHandleProc )( void );
+typedef int ( __stdcall *Rva008139A0ReleaseHandleProc )( void *handle,
+	int value, struct Rva00814700Comm *comm );
+
+void Rva008139A0( struct Rva00814700Comm *comm )
+{
+	Rva0081ACD0( comm->m_transport );
+	Rva0081BDCC( *(int *)( comm->m_endpoint + 4 ) );
+	comm->m_state = 9;
+	Rva0135904CPostWorkerMessage( comm->m_workerId, 0x12, 0, 0 );
+
+	while ( comm->m_state == 9 )
+		Rva01358F30WorkerYield( 0 );
+
+	( *(Rva008139A0ReleaseHandleProc *)0x01358E44 )(
+		( *(Rva008139A0WorkerHandleProc *)0x01358DDC )(), 0, comm );
 }
