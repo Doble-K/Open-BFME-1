@@ -44,6 +44,23 @@ void Rva008142B0( struct Rva00814700Comm *comm, void *socket )
 	comm->m_socketAlias = socket;
 }
 
+void Rva007FD3F0( void *socket );
+
+int Rva00814400( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 3 )
+		Rva008142B0( comm, 0 );
+
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008142B0( comm, 0 );
+	}
+
+	comm->m_state = 1;
+	return 0;
+}
+
 void Rva008143A0( struct Rva00814700Comm *comm, void *value )
 {
 	comm->m_value = value;
