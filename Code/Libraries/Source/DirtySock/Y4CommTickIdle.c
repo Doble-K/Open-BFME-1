@@ -316,6 +316,42 @@ void Rva00815510( struct Rva00815510Comm *comm )
 	Rva007F0030( comm );
 }
 
+struct Rva00813E50Comm
+{
+	char m_head[ 0x7C ];
+	int m_port;                      /* +0x7C */
+	char m_gap80[ 0x10 ];
+	int m_state;                     /* +0x90 */
+	char m_gap94[ 0x04 ];
+	char m_host[ 1 ];                /* +0x98 */
+};
+
+char *strchr( const char *text, int value );
+char *strcpy( char *dest, const char *source );
+void __stdcall Rva00813100( int port, int kind, struct Rva00813E50Comm *comm,
+	int size, int a, int b );
+
+int Rva00813E50( struct Rva00813E50Comm *comm, char *text )
+{
+	if ( comm->m_state != 2 )
+		return -2;
+
+	comm->m_port = 0;
+	for ( ; *text >= '0' && *text <= '9'; text++ )
+	{
+		comm->m_port = comm->m_port * 10 + ( *text & 15 );
+	}
+
+	text = strchr( text, ':' );
+	if ( text == 0 )
+		return -3;
+
+	strcpy( comm->m_host, text + 1 );
+	comm->m_state = 3;
+	Rva00813100( comm->m_port, 2, comm, 0x4000, 0, 0 );
+	return 0;
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event
