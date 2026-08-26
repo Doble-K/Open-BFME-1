@@ -39,6 +39,7 @@
 #include "Common/CRC.h"
 #include "Common/Debug.h"
 #include "GameLogic/GameLogic.h"
+#include "realcrc.h"
 
 //#define DETERMINISTIC				// to allow repetition for debugging
 
@@ -153,9 +154,7 @@ UnsignedInt GetGameLogicRandomSeed( void )
 
 UnsignedInt GetGameLogicRandomSeedCRC( void )
 {
-	CRC c;
-	c.computeCRC(theGameLogicSeed, 6*sizeof(UnsignedInt));
-	return c.get();
+	return CRC_Memory( reinterpret_cast<const UnsignedByte *>( theGameLogicSeed ), sizeof( theGameLogicSeed ), 0 );
 }
 
 void InitRandom( void )
