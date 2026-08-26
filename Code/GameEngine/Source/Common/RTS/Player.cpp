@@ -1639,10 +1639,16 @@ Bool Player::checkBridges(Object *unit, Waypoint *way)
 //-------------------------------------------------------------------------------------------------
 /** Do any bridges need repair, and if so repair them. */
 //-------------------------------------------------------------------------------------------------
-// ?getAiBaseCenter@Player@@UAE_NPAUCoord3D@@@Z present-unmatched
 Bool Player::getAiBaseCenter(Coord3D *pos)
 {
-	return m_ai?m_ai->getBaseCenter(pos):false; 
+	// BFME places the AI pointer and base-center pair earlier than the Zero Hour declarations.
+	AIPlayer *ai = *reinterpret_cast<AIPlayer **>(reinterpret_cast<char *>(this) + 0x220);
+	if (ai)
+	{
+		*pos = *reinterpret_cast<Coord3D *>(reinterpret_cast<char *>(ai) + 0x34);
+		return *reinterpret_cast<Bool *>(reinterpret_cast<char *>(ai) + 0x40);
+	}
+	return false;
 }
 
 //-------------------------------------------------------------------------------------------------
