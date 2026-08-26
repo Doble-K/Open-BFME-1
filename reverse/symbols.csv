@@ -77081,3 +77081,4 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ??0RRU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,RubbleRiseUpdate constructor calls the shared ObjectModule constructor ILT
 ??0HDU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HeightDieUpdate constructor calls the shared ObjectModule constructor ILT
 ??0SESU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,SpecialEnemySenseUpdate constructor calls the shared ObjectModule constructor ILT
+??0BB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,BuildingBehavior constructor calls the shared ObjectModule constructor ILT
