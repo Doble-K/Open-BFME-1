@@ -282,6 +282,40 @@ void Rva00815BB0( struct Rva00814700Comm *comm )
 	}
 }
 
+struct Rva00815510Comm
+{
+	char m_head[ 0x7C ];
+	void *m_socket;                  /* +0x7C */
+	char m_gap80[ 0x10 ];
+	int m_state;                     /* +0x90 */
+	char m_gap94[ 0x18 ];
+	void *m_allocA;                  /* +0xAC */
+	char m_gapB0[ 0x10 ];
+	void *m_allocB;                  /* +0xC0 */
+	char m_gapC4[ 0x128 ];
+	char m_lock[ 4 ];                /* +0x1EC */
+};
+
+int Rva008155A0( struct Rva00815510Comm *comm );
+void Rva008154F0( struct Rva00815510Comm *comm, void *socket );
+
+void Rva00815510( struct Rva00815510Comm *comm )
+{
+	if ( comm->m_state == 3 )
+		Rva008155A0( comm );
+
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008154F0( comm, 0 );
+	}
+
+	Rva007FEAA0( comm->m_lock );
+	Rva007F0030( comm->m_allocA );
+	Rva007F0030( comm->m_allocB );
+	Rva007F0030( comm );
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event
