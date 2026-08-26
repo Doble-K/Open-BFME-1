@@ -72,12 +72,14 @@ private:
 class Player
 {
 public:
+	Int getPlayerIndex() const { return m_playerIndex; }
 	const AsciiString &getSide() const { return m_side; }
 	Money *getMoney() { return &m_money; }
 	ScoreKeeper *getScoreKeeper() { return &m_scoreKeeper; }
 
 private:
-	unsigned char m_unmodelled00[ 0x28 ];
+	unsigned char m_unmodelled00[ 0x24 ];
+	Int m_playerIndex;
 	AsciiString m_side;
 	unsigned char m_unmodelled2C[ 0x48 - 0x2C ];
 	Money m_money;
@@ -96,6 +98,18 @@ private:
 };
 
 extern PlayerList *ThePlayerList;
+
+class GameMessage
+{
+public:
+	Int getType() const { return m_type; }
+	Int getPlayerIndex() const { return m_playerIndex; }
+
+private:
+	unsigned char m_unmodelled00[ 0x10 ];
+	Int m_type;
+	Int m_playerIndex;
+};
 
 class Display
 {
@@ -161,6 +175,7 @@ public:
 	void writeFileEnd();
 	void startScrollTime();
 	void endScrollTime();
+	void collectMsgStats( const GameMessage *msg );
 
 private:
 	void writeInitialFileInfo();
@@ -348,4 +363,18 @@ void StatsCollector::endScrollTime()
 
 	m_isScrolling = FALSE;
 	m_scrollTime += TheGameLogic->getFrame() - m_scrollBeginTime;
+}
+
+void StatsCollector::collectMsgStats( const GameMessage *msg )
+{
+	if( ThePlayerList->getLocalPlayer()->getPlayerIndex() != msg->getPlayerIndex() )
+		return;
+
+	switch( msg->getType() )
+	{
+		case 0x416:
+		case 0x418:
+			++m_buildCommands;
+			break;
+	}
 }
