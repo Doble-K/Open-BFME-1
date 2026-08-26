@@ -1,5 +1,5 @@
 // cl: /DNDEBUG /MD -Ireference/shims/gamespy
-/* GameSpy Chat SDK -- three small helpers from chatCallbacks.c, reconstructed
+/* GameSpy Chat SDK -- small helpers from chatCallbacks.c, reconstructed
    from the retail bytes rather than from the SDK text: the declarations here
    are local for the same reason chatMain.c's are, and the connection layout is
    read off the offsets these bodies touch.
@@ -7,6 +7,8 @@
      0x0086C310  ciGetNextID           38 bytes
      0x0086C340  ciCheckFiltersForID   39 bytes
      0x008702C0  ciInitCallbacks       40 bytes
+     0x008715E0  ciGetCallbackIndexByID 73 bytes
+     0x00871630  ciCheckCallbacksForID 30 bytes
      0x008717B0  ciInitChannels       100 bytes
      0x00871820  ciCleanupChannels     45 bytes
 
@@ -46,7 +48,9 @@ typedef struct ciConnection
 /* the callback array element; only its size reaches this file */
 typedef struct ciCallback
 {
-	unsigned char pad0[0x18];
+	unsigned char pad0[0x10];
+	int ID;
+	unsigned char pad14[0x18 - 0x14];
 } ciCallback;
 
 /* likewise the channel element */
@@ -57,6 +61,8 @@ typedef struct ciChannel
 
 void *ArrayNew(int elemsize, int initialcount, void (*elemfreefn)(void *elem));
 void ArrayFree(void *array);
+int ArrayLength(void *array);
+void *ArrayNth(void *array, int index);
 void *TableNew2(int elemsize, int nbuckets, int nchains, void *hashfn, void *comparefn, void *elemfreefn);
 void TableFree(void *table);
 
@@ -90,6 +96,32 @@ CHATBool ciCheckFiltersForID(CHAT chat, int ID)
 			return CHATTrue;
 
 	return CHATFalse;
+}
+
+static int ciGetCallbackIndexByID(CHAT chat, int ID)
+{
+	ciConnection *connection = (ciConnection *)chat;
+	ciCallback *data;
+	int i;
+	int len;
+
+	len = ArrayLength(connection->callbackList);
+	for(i = 0 ; i < len ; i++)
+	{
+		data = (ciCallback *)ArrayNth(connection->callbackList, i);
+		if(data->ID == ID)
+			return i;
+	}
+
+	return -1;
+}
+
+CHATBool ciCheckCallbacksForID(CHAT chat, int ID)
+{
+	if(ciGetCallbackIndexByID(chat, ID) == -1)
+		return CHATFalse;
+
+	return CHATTrue;
 }
 
 CHATBool ciInitCallbacks(CHAT chat)
