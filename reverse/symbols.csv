@@ -76960,3 +76960,5 @@ _g_Rva012C47A4,0x012C47A4,DirtySock default alias-list pointer used by 0x0080EF5
 _Rva0080FD30,0x0080FD30,address-derived multi-precision addition helper called by 0x0080FB40
 _Rva0080FDD0,0x0080FDD0,address-derived multi-precision subtraction helper called by 0x0080FB40
 _Rva0080ADE0,0x0080ADE0,address-derived comm object state release helper called by 0x0080B050
+_Rva007FD2D0,0x007FD2D0,address-derived socket creation helper called by 0x0080B150
+_Rva007FD510,0x007FD510,address-derived socket bind helper called by 0x0080B150
