@@ -2042,6 +2042,12 @@ name,address,notes
 ??0BfmeBaseP0@@QAE@PAX0@Z,0x000170E4,Open-BFME5 the two-argument first base the triple-base constructors at 0x00200AE0 and siblings forward to
 ??0BfmeBinkPlayerMember@@QAE@XZ,0x0002833F,Open-BFME5 ILT the member constructor BinkVideoPlayer at 0x00691230 calls for its member at +0x0C
 ??0BfmeCellGrid@@QAE@HHMM@Z,0x001B1830,thiscall ret 0x10 (width height cellSize offset) into a 0x1C-byte object: +0 w +4 h +8 w*h +0xC cellSize +0x10 offset +0x14 vector-new of w*h 0x88-byte cells +0x18 w*h dwords; assert text Could not create Cell Grid for VictorySystem! 0x0109C958; both callers are VictorySystem::newMap 0x001DF5DF/0x001DF628
+??0BfmeCreated_0035B680@@QAE@PAVGen_0035B680@@@Z,0x0002F333,Open-BFME5 the constructor the make-and-return body at 0x0035B680 runs on its fresh block
+??0BfmeCreated_0091A5A0@@QAE@PAVGen_0091A5A0@@@Z,0x00919F40,Open-BFME5 the constructor the make-and-return body at 0x0091A5A0 runs on its fresh block
+??0BfmeCreated_0092CEF0@@QAE@PAVGen_0092CEF0@@@Z,0x0092CD00,Open-BFME5 the constructor the make-and-return body at 0x0092CEF0 runs on its fresh block
+??0BfmeCreated_009513E0@@QAE@PAVGen_009513E0@@@Z,0x009510A0,Open-BFME5 the constructor the make-and-return body at 0x009513E0 runs on its fresh block
+??0BfmeCreated_00957FB0@@QAE@PAVGen_00957FB0@@@Z,0x00957F40,Open-BFME5 the constructor the make-and-return body at 0x00957FB0 runs on its fresh block
+??0BfmeCreated_0097D920@@QAE@PAVGen_0097D920@@@Z,0x0097D850,Open-BFME5 the constructor the make-and-return body at 0x0097D920 runs on its fresh block
 ??0BfmeDelayedLuaEvent@@QAE@XZ,0x0003A1C5,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element constructor; DIR32 sites are masked by the byte gate so this records the address
 ??0BfmeLegendString@@QAE@ABU0@@Z,0x00887B60,SubsystemLegend.cpp AsciiString stand-in copy ctor (StringBase<char> copy ctor body)
 ??0BfmeLegendString@@QAE@PBD@Z,0x00888BC0,SubsystemLegend.cpp AsciiString stand-in ctor from const char*
@@ -12062,8 +12068,8 @@ name,address,notes
 ?accept@Rva00809500Sink@@QAEXPAURva00809500Entry@@@Z,0x00808ED0,U2 lane: thiscall member called on the lookup result at 0x00809500
 ?accept@T1Sink_005C8D40@@QAEPAXPAX0@Z,0x005C8D40,callee of the 18-byte receiver-swapping forwarders at 0x005C98A0 and 0x005CACC0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
 ?accept@T1Sink_005C8E90@@QAEPAXPAX0@Z,0x005C8E90,callee of the 18-byte receiver-swapping forwarders at 0x005C98C0 and 0x005CACE0 (T1ReceiverSwappingThunks.cpp); address-derived name; identity not recovered
-?accepts@Rva2225E0Filter@@QAE_NPAVObject@@PAVPlayer@@@Z,0x0001DA34,Open-BFME5 filter predicate call pin
 ?accepts@Rva001DB720Predicate@@QAE_NPAVThingTemplate@@@Z,0x00007B4E,incremental-link thunk called by the 0x001DB720 template-name scan
+?accepts@Rva2225E0Filter@@QAE_NPAVObject@@PAVPlayer@@@Z,0x0001DA34,Open-BFME5 filter predicate call pin
 ?accepts@U4Filter@@QBE_NPBUU4Elem@@@Z,0x00606BF0,U4 lane: element predicate called by both scan loops at 0x00606DC0 and 0x00607000; address-derived name
 ?active@Rva000DF7F0Player@@QBE_NXZ,0x000179BD,Open-BFME5 fresh thiscall bool at ILT of !query 0x000DF7F0
 ?add@DynamicVectorAddPtrPairShim@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,0x000D0AE0,DynamicVectorClass Add PtrPair incremental-link thunk target through a TU-local forwarding shim
