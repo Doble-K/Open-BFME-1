@@ -68,3 +68,21 @@ Rva00366060 &Rva00366060::operator=(const Rva00366060 &other)
 	m_54 = other.m_54;
 	return *this;
 }
+
+extern "C" Rva00366060 *__cdecl Rva003662C0CopyRange(
+	const Rva00366060 *first,
+	const Rva00366060 *last,
+	Rva00366060 *result)
+{
+	int count = last - first;
+	while( count > 0 )
+	{
+		*result = *first;
+		++first;
+		++result;
+		--count;
+	}
+	return result;
+}
+
+// @_Rva003662C0CopyRange 0x003662C0
