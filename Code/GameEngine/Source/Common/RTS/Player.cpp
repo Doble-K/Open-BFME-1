@@ -113,6 +113,36 @@
 //Grey for neutral.  
 #define NEUTRAL_PLAYER_COLOR 0xffffffff
 
+namespace {
+
+// BFME's AIPlayer query slots precede their recovered Zero Hour positions by one entry.
+class BFMEAIPlayerVirtuals
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot04() = 0;
+	virtual void slot08() = 0;
+	virtual void slot0c() = 0;
+	virtual void slot10() = 0;
+	virtual void slot14() = 0;
+	virtual void slot18() = 0;
+	virtual void slot1c() = 0;
+	virtual void slot20() = 0;
+	virtual void slot24() = 0;
+	virtual void slot28() = 0;
+	virtual Bool isSkirmishAI() = 0;
+	virtual Player *getAiEnemy() = 0;
+	virtual Bool checkBridges(Object *unit, Waypoint *way) = 0;
+};
+
+struct BFMEPlayerAIView
+{
+	char data[0x220];
+	BFMEAIPlayerVirtuals *ai;
+};
+
+} // namespace
+
 // ------------------------------------------------------------------------------------------------
 class ClosestKindOfData
 {
@@ -1630,10 +1660,10 @@ GameDifficulty Player::getPlayerDifficulty(void) const
 //-------------------------------------------------------------------------------------------------
 /** Do any bridges need repair, and if so repair them. */
 //-------------------------------------------------------------------------------------------------
-// ?checkBridges@Player@@UAE_NPAVObject@@PAVWaypoint@@@Z present-unmatched
 Bool Player::checkBridges(Object *unit, Waypoint *way)
 {
-	return m_ai?m_ai->checkBridges(unit, way):false; 
+	BFMEPlayerAIView *player = reinterpret_cast<BFMEPlayerAIView *>(this);
+	return player->ai ? player->ai->checkBridges(unit, way) : false;
 }
 
 //-------------------------------------------------------------------------------------------------
