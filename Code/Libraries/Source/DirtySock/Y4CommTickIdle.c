@@ -30,12 +30,21 @@ struct Rva00814700Comm
 	int m_writeOffset;              /* +0xA8 */
 	char m_gap2[ 0x13C ];
 	char m_lock[ 4 ];               /* +0x1E8 */
+	char m_gap1EC[ 0x24 ];
+	int m_flags;                    /* +0x210 */
+	void *m_value;                  /* +0x214 */
 };
 
 void Rva008142B0( struct Rva00814700Comm *comm, void *socket )
 {
 	comm->m_socket = socket;
 	comm->m_socketAlias = socket;
+}
+
+void Rva008143A0( struct Rva00814700Comm *comm, void *value )
+{
+	comm->m_value = value;
+	comm->m_flags |= 2;
 }
 
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
