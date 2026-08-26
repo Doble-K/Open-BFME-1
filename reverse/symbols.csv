@@ -72118,13 +72118,18 @@ name,address,notes
 ?bfmeComputeStatus@Weapon@@ABE?AW4WeaponStatus@@PA_N@Z,0x0001E6A0,Open-BFME5 ILT Weapon::getStatus at 0x001E6EE0 computes the status through; the bool by pointer arrives pre-set to true and gates the cache write
 ?bfmeConstructA@@YAXPAUBfmeAppendValue@@PAX@Z,0x0004031D,Open-BFME5 ILT the list append at 0x0014C700 constructs through
 ?bfmeConstructA@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0003BAB1,Open-BFME5 ILT the hash insert at 0x0008FAB0 constructs through
+?bfmeConstructA@@YAXPAX0@Z,0x0003FDA5,Open-BFME5 the in-place payload constructor the circular-list appends at 0x000BF340 and siblings call
 ?bfmeConstructB@@YAXPAUBfmeAppendValue@@PAX@Z,0x00033FF5,Open-BFME5 ILT the list append at 0x0034E260 constructs through
 ?bfmeConstructB@@YAXPAUBfmeHashValue@@PBU1@@Z,0x000079A0,Open-BFME5 ILT the hash insert at 0x005A82F0 constructs through
+?bfmeConstructB@@YAXPAX0@Z,0x00030DAA,Open-BFME5 the in-place payload constructor the circular-list appends at 0x000BF340 and siblings call
 ?bfmeConstructC@@YAXPAUBfmeAppendValue@@PAX@Z,0x0000637A,Open-BFME5 ILT the list append at 0x00439E00 constructs through
 ?bfmeConstructC@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00001AB9,Open-BFME5 ILT the hash insert at 0x006A0A10 constructs through
+?bfmeConstructC@@YAXPAX0@Z,0x00007554,Open-BFME5 the in-place payload constructor the circular-list appends at 0x000BF340 and siblings call
 ?bfmeConstructD@@YAXPAUBfmeAppendValue@@PAX@Z,0x00033E15,Open-BFME5 ILT the list append at 0x004492A0 constructs through
 ?bfmeConstructD@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0002C098,Open-BFME5 ILT the hash insert at 0x006A0BB0 constructs through
+?bfmeConstructD@@YAXPAX0@Z,0x00030EF4,Open-BFME5 the in-place payload constructor the circular-list appends at 0x000BF340 and siblings call
 ?bfmeConstructE@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0001E696,Open-BFME5 ILT the hash insert at 0x006A0D50 constructs through
+?bfmeConstructE@@YAXPAX0@Z,0x00040AE3,Open-BFME5 the in-place payload constructor the circular-list appends at 0x000BF340 and siblings call
 ?bfmeConstructF@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00852240,Open-BFME5 the routine the hash insert at 0x00852760 constructs through
 ?bfmeCopySlotA@@YAXPAUBfmeSlotA@@PAX@Z,0x00002A8B,Open-BFME5 the copy the bounded appends call
 ?bfmeCopySlotB@@YAXPAUBfmeSlotB@@PAX@Z,0x0003BB51,Open-BFME5 the copy the bounded appends call
