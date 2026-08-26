@@ -21,6 +21,7 @@ int bfmeMake_00529B60(int a, int b);					// ILT 0x000364C6
 int bfmeMake_0054F920(int a, int b);					// ILT 0x0000B500
 int bfmeMake_0054FA00(int a, int b);					// ILT 0x00029771
 int bfmeMake_0056E900(int a, int b);					// ILT 0x0003C65A
+unsigned int bfmeHashCombineA(unsigned int left, unsigned int right);	// ILT 0x00042FA0
 
 enum { BFME_KIND_MADE = 1, BFME_KIND_GIVEN = 2 };
 
@@ -79,8 +80,11 @@ class Gen_00529340
 {
 public:
 	Gen_00529340(int kind, short made, unsigned int given);
+	Gen_00529340 bfmeAdvance();
 
 private:
+	Gen_00529340(unsigned int value) { m_bfmeValue = value; }
+
 	char m_bfmeHead[4];
 	unsigned int m_bfmeValue;				// +0x04
 };
@@ -167,6 +171,13 @@ Gen_00529340::Gen_00529340(int kind, short made, unsigned int given)
 		m_bfmeValue = given;
 	else if (kind == BFME_KIND_MADE)
 		m_bfmeValue = bfmeMake_00529B60(made, made);
+}
+
+// ?bfmeAdvance@Gen_00529340@@QAE?AV1@XZ
+Gen_00529340 Gen_00529340::bfmeAdvance()
+{
+	m_bfmeValue = bfmeHashCombineA(m_bfmeValue, 0xE4CD9C42);
+	return Gen_00529340(m_bfmeValue);
 }
 
 // ??0Gen_0054F720@@QAE@HFI@Z
