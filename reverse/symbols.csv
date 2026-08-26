@@ -77699,3 +77699,4 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??0Rva00630D00UStr@@QAE@ABV0@@Z,0x00888530,Open-BFME5 fresh thiscall copy ctor for 0x00630D00 unicode-string member
 ??0Rva0076F980Mid@@QAE@ABV0@@Z,0x00007A63,Open-BFME5 fresh thiscall copy ctor at ILT of 12-byte mid member of 0x0076F980
 ??0Rva002E9E70Mid@@QAE@ABV0@@Z,0x00033640,Open-BFME5 fresh thiscall copy ctor at ILT of mid member of 0x002E9E70
+??4Rva0036CA00Str@@QAEAAV0@ABV0@@Z,0x00887C90,Open-BFME5 assign of the 0x00887C90 string member used by skip-vptr operator=
