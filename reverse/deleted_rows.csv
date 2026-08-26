@@ -23399,3 +23399,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,0x00023D49,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x00132350.
 ?addWaypointLink@TerrainLogic@@IAEXHH@Z,0x00038B77,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x001A60F0.
 ?addUpgrade@Player@@QAEPAVUpgrade@@PBVUpgradeTemplate@@W4UpgradeStatusType@@@Z,0x00040327,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x000D24C0.
+?messageCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyMessageArg@@@Z,0x0000E43A,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x0063C910.
