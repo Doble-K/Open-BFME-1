@@ -77216,3 +77216,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?getBackBufferSurface006e@@YA?AVW3DRadarResetSurface@@H@Z,0x00905070,W3DDisplay drawImage direct-surface path target read from retail REL32
 ?copySurfaceRects006e@@YAXVW3DRadarResetSurface@@PBUBfmeRect@@01H@Z,0x00904D20,W3DDisplay drawImage direct-surface copy target read from retail REL32
 ?setShroudLevel30BC@BaseHeightMapResetShroud@@QAEXHHE_N@Z,0x0003D1DB,W3DDisplay 0x006EA700 direct +0x30BC shroud update target read from retail REL32
+?setShroudLevel30B8@BaseHeightMapResetShroud@@QAEXHHE_N@Z,0x000029F5,W3DDisplay primary shroud update target read from retail REL32
+?notifyShroudChanged006e@BaseHeightMapRenderObjClass@@QAEXXZ,0x00036F43,W3DDisplay terrain shroud-notification target read from retail REL32
+?TheTaintManager@@3PAVBfmeTaintManager@@A,0x012ED5C0,BFME TheTaintManager global named by its subsystem registration string
+?getTaintLevelByte006e@BfmeTaintManager@@QAEEHH@Z,0x00880E50,W3DDisplay BFME taint-level byte target read from retail REL32
