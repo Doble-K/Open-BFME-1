@@ -128,6 +128,7 @@ public:
 	static UnicodeString TheEmptyString;
 
 	UnicodeString() : m_data( 0 ) {}
+	UnicodeString( const unsigned short *text );
 	UnicodeString( const UnicodeString &other )
 	{
 		((StringBase<unsigned short> *)this)->StringBase<unsigned short>::StringBase(
@@ -165,6 +166,8 @@ extern "C" __declspec(dllimport) int __cdecl atoi( const char *text );
 extern "C" int __cdecl strcmp( const char *left, const char *right );
 extern "C" char * __cdecl strcpy( char *destination, const char *source );
 extern "C" void * __cdecl memset( void *destination, int value, unsigned int count );
+extern "C" __declspec(dllimport) int __cdecl sprintf(
+	char *destination, const char *format, ... );
 
 int untranslatedSlotPosition( int slot, int localSlot );
 
@@ -220,6 +223,8 @@ class DisconnectMenu
 public:
 	void removePlayer( int slot, UnicodeString playerName );
 	void sendChat( UnicodeString text );
+	void setPlayerName( int slot, UnicodeString playerName );
+	void setPlayerTimeoutTime( int slot, int percent );
 };
 
 class WindowManager
@@ -227,6 +232,9 @@ class WindowManager
 public:
 	void bfme_hideBackground( bool hide );
 	void bfme_showBackground( int kind );
+	void bfme_setAptText( const AsciiString &name, const UnicodeString &text );
+	void unidentified_00015235( int movie, const char *function, int argumentCount,
+		const void *argument, int unused1, int unused2, int unused3, int unused4 );
 };
 
 extern WindowManager *g_theWindowManager;
@@ -412,6 +420,33 @@ BfmeAptScreenDisconnectScreen::BfmeAptScreenDisconnectScreen( void *context )
 				FunctorBinding( playerColorCallback, (FunctorTarget *)this ) );
 			((DisconnectMenu *)this)->removePlayer( slot, UnicodeString::TheEmptyString );
 		}
+	}
+}
+
+void DisconnectMenu::setPlayerName( int slot, UnicodeString playerName )
+{
+	AsciiString variableName;
+	char slotText[ 32 ];
+	variableName.format( (AsciiString)"DisconnectScreen::PlayerName%d", slot );
+
+	if( playerName.isEmpty() )
+	{
+		{
+			UnicodeString blank( L" " );
+			g_theWindowManager->bfme_setAptText( variableName, blank );
+		}
+		setPlayerTimeoutTime( slot, 0 );
+	}
+	else
+	{
+		g_theWindowManager->bfme_setAptText( variableName, playerName );
+		sprintf( slotText, "%d", slot );
+
+		int movie = *(int *)( (char *)this + 0x250 );
+		g_theWindowManager->unidentified_00015235(
+			movie, "HideKickButton", 1, slotText, 0, 0, 0, 0 );
+		*(char *)( (char *)this + 0x262 + slot ) = 0;
+		setPlayerTimeoutTime( slot, 100 );
 	}
 }
 

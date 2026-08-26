@@ -77106,3 +77106,5 @@ _FreeGame,0x009D2B70,Official gstats.c FreeGame identity; GameSpyStagingRoom res
 ?_bfme_setAptScreenRef@@YAXABVAsciiString@@VRva0050F840FunctorHolder@@@Z,0x0003DF14,DisconnectScreen constructor registers InitGadgets through this ILT
 ?_bfme_showAptScreen@_bfme_AptGameWindow@@QAEXABVAsciiString@@VRva0050F8B0FunctorHolder@@@Z,0x000338ED,DisconnectScreen constructor registers its fscommand callbacks through this ILT
 ?_bfme_showAptScreenWithArg@_bfme_AptGameWindow@@QAEXABVAsciiString@@PAXVRva0050F920FunctorHolder@@@Z,0x0000ACFE,DisconnectScreen constructor registers its player-color providers through this ILT
+?bfme_setAptText@WindowManager@@QAEXABVAsciiString@@ABVUnicodeString@@@Z,0x0000BDCA,DisconnectMenu setPlayerName calls the established APT text setter through this ILT
+?unidentified_00015235@WindowManager@@QAEXHPBDHPBXHHHH@Z,0x00015235,DisconnectMenu setPlayerName invokes HideKickButton through the established scripted-UI dispatcher ILT
