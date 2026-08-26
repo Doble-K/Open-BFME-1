@@ -306,7 +306,6 @@ void Thing::setOrientation( Real angle )
 //=============================================================================
 /** Set the world transformation matrix */
 //=============================================================================
-// ?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z present-unmatched
 void Thing::setTransformMatrix( const Matrix3D *mx )
 {
 	//USE_PERF_TIMER(ThingMatrixStuff)

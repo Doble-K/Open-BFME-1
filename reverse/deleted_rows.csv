@@ -23395,3 +23395,5 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ??0SpawnPointProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00023858,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x002D1480.
 ?evaluateBezSegmentAtT@BezierSegment@@QBEXMPAUCoord3D@@@Z,0x000059ED,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x000B69A0.
 ??0BezierSegment@@QAE@XZ,0x00043A9A,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x000B6D00.
+?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,0x00023D49,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x00132350.
+?addWaypointLink@TerrainLogic@@IAEXHH@Z,0x00038B77,claim retired: that address is the five-byte incremental-link thunk and not the function; the real body is at 0x001A60F0.
