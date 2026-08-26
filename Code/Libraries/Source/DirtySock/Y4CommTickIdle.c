@@ -844,3 +844,27 @@ int Rva00814F70( struct Rva00814700Comm *comm, void *buffer, int size,
 
 	return iResult;
 }
+
+unsigned int strlen( const char *text );
+int __stdcall Rva0081BDC6( int line, int address, char *destination,
+	int countryCode, void *callParameters );
+
+int Rva00813890( int line, int address, const char *destination,
+	int countryCode )
+{
+	unsigned char callParameters[ 0x470 ];
+
+	memset( callParameters, 0, sizeof( callParameters ) );
+	*(int *)( callParameters + 0x00 ) = sizeof( callParameters );
+	*(int *)( callParameters + 0x04 ) = 1;
+	*(int *)( callParameters + 0x10 ) = 0x10;
+	*(int *)( callParameters + 0x14 ) = 2;
+	*(int *)( callParameters + 0x18 ) = 1;
+	*(int *)( callParameters + 0x1C ) = 0;
+	*(int *)( callParameters + 0x3C ) = 0x70;
+	strcpy( (char *)callParameters + 0x70, destination );
+	*(int *)( callParameters + 0x38 ) = strlen( (char *)callParameters + 0x70 );
+
+	return Rva0081BDC6( line, address, (char *)callParameters + 0x70,
+		countryCode, callParameters );
+}
