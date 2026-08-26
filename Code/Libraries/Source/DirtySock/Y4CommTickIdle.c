@@ -24,7 +24,8 @@ struct Rva00814700Comm
 	unsigned int m_handle;           /* +0x88 */
 	char m_gap8C[ 0x04 ];
 	int m_state;                     /* +0x90 */
-	char m_gap94[ 0x08 ];
+	char m_gap94[ 0x04 ];
+	int m_sequence;                  /* +0x98 */
 	/* A SECOND RING, distinct from the one in Y4CommRingIdle.c: same shape --
 	 * an offset advanced by a record size and reduced modulo a buffer size --
 	 * but at +0x9C..+0xA8 rather than +0xB0..+0xBC.  Two rings in two
@@ -33,12 +34,15 @@ struct Rva00814700Comm
 	int m_bufferSize;               /* +0xA0 */
 	int m_readOffset;               /* +0xA4 */
 	int m_writeOffset;              /* +0xA8 */
-	char m_gapAC[ 0x0C ];
+	char m_gapAC[ 0x08 ];
+	int m_pending;                   /* +0xB4 */
 	int m_countA;                   /* +0xB8 */
 	int m_countB;                   /* +0xBC */
-	char m_gapC0[ 0x04 ];
+	int m_countC;                   /* +0xC0 */
 	unsigned int m_lastTick;        /* +0xC4 */
-	char m_gapC8[ 0x10 ];
+	char m_gapC8[ 0x08 ];
+	unsigned int m_timeoutTick;     /* +0xD0 */
+	char m_gapD4[ 0x04 ];
 	int m_status;                   /* +0xD8 */
 	char m_gapDC[ 0x10C ];
 	char m_lock[ 4 ];               /* +0x1E8 */
@@ -192,6 +196,17 @@ void Rva00816910( struct Rva00814700Comm *comm )
 	comm->m_writeOffset = 0;
 	comm->m_lastTick = Rva007FEA00() - 5000;
 	comm->m_status = -1;
+}
+
+void Rva00815170( struct Rva00814700Comm *comm )
+{
+	comm->m_countC = 0;
+	comm->m_lastTick = 0;
+	comm->m_pending = -1;
+	comm->m_readOffset = 0;
+	comm->m_writeOffset = 0;
+	comm->m_sequence = 0;
+	comm->m_timeoutTick = Rva007FEA00() - 5000;
 }
 
 void Rva008155F0( struct Rva00814700Comm *comm, int status );
