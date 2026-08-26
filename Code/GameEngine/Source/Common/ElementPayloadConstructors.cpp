@@ -3,6 +3,9 @@
 // slot, while the fixed first store distinguishes construction from copying.
 
 extern int R2Data010EC764;
+extern int R2Data010EC768;
+
+extern "C" __declspec(dllimport) long __stdcall InterlockedIncrement(long *addend);
 
 struct Elem32
 {
@@ -30,4 +33,26 @@ void gen003A84E0( Elem32 * slot, const Elem32 * source )
 	slot->m_at14 = source->m_at14;
 	slot->m_at18 = source->m_at18;
 	slot->m_at1C = source->m_at1C;
+}
+
+struct Elem16
+{
+	void * m_at00;
+	int m_at04;
+	void * m_at08;
+	char m_at0C;
+	char m_pad0D[ 3 ];
+};
+
+void gen003A85C0( Elem16 * slot, const Elem16 * source )
+{
+	if ( slot == 0 )
+		return;
+
+	slot->m_at00 = &R2Data010EC768;
+	slot->m_at04 = source->m_at04;
+	slot->m_at08 = source->m_at08;
+	if ( slot->m_at08 != 0 )
+		InterlockedIncrement( (long *)((char *)slot->m_at08 + 4) );
+	slot->m_at0C = source->m_at0C;
 }
