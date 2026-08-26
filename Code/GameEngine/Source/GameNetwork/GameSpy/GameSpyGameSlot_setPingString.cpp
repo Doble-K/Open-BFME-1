@@ -109,7 +109,25 @@ private:
 	Int m_ping;
 };
 
+class GameSpyStagingRoom
+{
+public:
+	void setPingString(AsciiString pingString);
+
+private:
+	// The constructor fixes the ping fields at +0x448 and +0x44C.
+	unsigned char m_body[0x448];
+	AsciiString m_pingString;
+	Int m_ping;
+};
+
 void GameSpyGameSlot::setPingString(AsciiString pingString)
+{
+	m_pingString = pingString;
+	m_ping = TheGameSpyInfo->getPingValue(pingString);
+}
+
+void GameSpyStagingRoom::setPingString(AsciiString pingString)
 {
 	m_pingString = pingString;
 	m_ping = TheGameSpyInfo->getPingValue(pingString);
