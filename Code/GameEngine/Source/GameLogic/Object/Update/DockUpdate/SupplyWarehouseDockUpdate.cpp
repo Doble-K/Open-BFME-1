@@ -86,13 +86,41 @@ SupplyWarehouseDockUpdate::~SupplyWarehouseDockUpdate()
 {
 }
 
-// ?onObjectCreated@SupplyWarehouseDockUpdate@@UAEXXZ present-unmatched
+class SupplyWarehouseCreatedObject
+{
+public:
+	virtual void unused00();
+	virtual void unused04();
+	virtual void unused08();
+	virtual void unused0c();
+	virtual void unused10();
+	virtual void unused14();
+	virtual void unused18();
+	virtual void unused1c();
+	virtual void unused20();
+	virtual void unused24();
+	virtual Drawable *getDrawable();
+};
+
+class SupplyWarehouseCreatedModuleData
+{
+public:
+	unsigned char m_unmodelled00[ 0x10 ];
+	Int m_startingBoxes;
+};
+
 void SupplyWarehouseDockUpdate::onObjectCreated()
 {
-	Drawable *draw = getObject()->getDrawable();
+	char *rawThis = reinterpret_cast<char *>( this );
+	SupplyWarehouseCreatedObject *object =
+		*reinterpret_cast<SupplyWarehouseCreatedObject **>( rawThis + 8 );
+	Drawable *draw = object->getDrawable();
 	if( draw )
 	{
-		draw->updateDrawableSupplyStatus( getSupplyWarehouseDockUpdateModuleData()->m_startingBoxesData, m_boxesStored );
+		SupplyWarehouseCreatedModuleData *moduleData =
+			*reinterpret_cast<SupplyWarehouseCreatedModuleData **>( rawThis + 4 );
+		draw->updateDrawableSupplyStatus( moduleData->m_startingBoxes,
+			*reinterpret_cast<Int *>( rawThis + 0x88 ) );
 	}
 }
 
