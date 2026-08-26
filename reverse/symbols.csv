@@ -77451,6 +77451,8 @@ _strstr,0x009F709C,Y2 lane: strstr import thunk (gen-import ?ji_009f709c@@YAXXZ 
 _strtoul,0x009F6DE8,Y2 lane: strtoul import thunk (gen-import ?ji_009f6de8@@YAXXZ names the same address)
 _strzcpy,0x008EC880,vendored=gamespy-2004
 _subexpr,0x0099CA60,vendored=lua-4.0.1
+??0Rva00364980HeapElement@@QAE@ABU0@@Z,0x0001FE6F,REL32 copy-constructor target from 0x003649A2
+?rva003647E0PopHeap@@YAXPAURva00364980HeapElement@@00U1@URva00364980HeapCompare@@PAH@Z,0x0001479F,REL32 pop-heap helper target from 0x003649B1
 _test_then_block,0x0099CEA0,vendored=lua-4.0.1
 _time,0x009F6F52,Y4 lane: time import thunk (gen-import ?ji_009f6f52@@YAXXZ names the same address)
 _var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
