@@ -51,6 +51,7 @@ struct Rva00814700Comm
 	char m_gap1EC[ 0x24 ];
 	int m_flags;                    /* +0x210 */
 	void *m_value;                  /* +0x214 */
+	void ( *m_callback )( struct Rva00814700Comm *, void * ); /* +0x218 */
 };
 
 void Rva008142B0( struct Rva00814700Comm *comm, void *socket )
@@ -256,6 +257,28 @@ void Rva00815D40( struct Rva00814700Comm *comm )
 		&& Rva007FEA00() > comm->m_lastTick + 5000 )
 	{
 		Rva008155F0( comm, 19 );
+	}
+}
+
+void Rva00815DA0( struct Rva00814700Comm *comm );
+void Rva00816490( struct Rva00814700Comm *comm );
+
+void Rva00815BB0( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 1 || comm->m_state == 2 )
+		Rva00815C90( comm );
+
+	Rva00815DA0( comm );
+	Rva00815D40( comm );
+	Rva00816490( comm );
+
+	if ( comm->m_flags == 0 && comm->m_value != 0 )
+	{
+		comm->m_flags++;
+		if ( comm->m_callback != 0 )
+			comm->m_callback( comm, comm->m_value );
+		comm->m_flags--;
+		comm->m_value = 0;
 	}
 }
 
