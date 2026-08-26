@@ -30,6 +30,7 @@ class Gen00587600
 {
 public:
 	void apply( int value, int which );
+	void applySingle( int value );
 };
 
 extern Gen00587600 *TheGen00587600;
@@ -52,3 +53,9 @@ BFME_ATOI_MEMBER_CALL( Rva0051A790, 3 )
 BFME_ATOI_MEMBER_CALL( Rva0051A7C0, 4 )
 // @?Rva0051A7F0@@YAXPBD@Z 0x0051A7F0
 BFME_ATOI_MEMBER_CALL( Rva0051A7F0, 5 )
+
+// @?Rva0051A820@@YAXPBD@Z 0x0051A820
+void Rva0051A820( const char *text )
+{
+	TheGen00587600->applySingle( atoi( text ) );
+}
