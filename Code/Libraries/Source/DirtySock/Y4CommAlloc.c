@@ -38,10 +38,17 @@ void *Rva0080B000( void )
 }
 
 void Rva0080ADE0( void *object, int releaseState );
+void Rva007F0030( void *object );
 
 void Rva0080B050( void *object )
 {
 	Rva0080ADE0( object, 0 );
+}
+
+void Rva0080B070( void *object )
+{
+	Rva0080ADE0( object, 0 );
+	Rva007F0030( object );
 }
 
 struct Rva00812320Module;
