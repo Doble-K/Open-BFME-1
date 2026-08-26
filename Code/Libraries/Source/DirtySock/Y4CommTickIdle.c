@@ -34,13 +34,15 @@ struct Rva00814700Comm
 	int m_bufferSize;               /* +0xA0 */
 	int m_readOffset;               /* +0xA4 */
 	int m_writeOffset;              /* +0xA8 */
-	char m_gapAC[ 0x08 ];
+	void *m_allocA;                  /* +0xAC */
+	char m_gapB0[ 0x04 ];
 	int m_pending;                   /* +0xB4 */
 	int m_countA;                   /* +0xB8 */
 	int m_countB;                   /* +0xBC */
 	int m_countC;                   /* +0xC0 */
 	unsigned int m_lastTick;        /* +0xC4 */
-	char m_gapC8[ 0x08 ];
+	void *m_allocB;                  /* +0xC8 */
+	char m_gapCC[ 0x04 ];
 	unsigned int m_timeoutTick;     /* +0xD0 */
 	char m_gapD4[ 0x04 ];
 	int m_status;                   /* +0xD8 */
@@ -87,6 +89,27 @@ int Rva00814460( struct Rva00814700Comm *comm )
 
 	comm->m_state = 1;
 	return 0;
+}
+
+int CommTCPUnlisten( struct Rva00814700Comm *comm );
+void Rva007FEAA0( void *list );
+void Rva007F0030( void *block );
+
+void Rva008142D0( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 4 )
+		CommTCPUnlisten( comm );
+
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008142B0( comm, 0 );
+	}
+
+	Rva007FEAA0( comm->m_lock );
+	Rva007F0030( comm->m_allocA );
+	Rva007F0030( comm->m_allocB );
+	Rva007F0030( comm );
 }
 
 void Rva008143A0( struct Rva00814700Comm *comm, void *value )
