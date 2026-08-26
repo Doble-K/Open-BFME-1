@@ -40,6 +40,7 @@ class BannerUI
 {
 public:
 	static const FieldParse m_fieldParseTable[];
+	virtual void init();
 	virtual void reset();
 	void removeMovieBanner( int id );
 	void removeCurrentBannerMovie();
@@ -98,15 +99,46 @@ extern Display *TheDisplay;
 extern GlobalData *TheWritableGlobalData;
 extern int TheCurrentBannerMovie;
 
+template <typename T> class BannerStringBase
+{
+	friend class BFMERetailAsciiString;
+
+private:
+	BannerStringBase( const T *text );
+};
+
+class BFMERetailAsciiString
+{
+public:
+	BFMERetailAsciiString( const char *text )
+	{
+		((BannerStringBase<char> *)this)->BannerStringBase<char>::BannerStringBase( text );
+	}
+	~BFMERetailAsciiString();
+
+private:
+	void *m_data;
+};
+
 class WindowManager
 {
 public:
+	#define WINDOW_MANAGER_SLOT( n ) virtual void windowManagerSlot##n() = 0
+	WINDOW_MANAGER_SLOT( 0 ); WINDOW_MANAGER_SLOT( 1 ); WINDOW_MANAGER_SLOT( 2 );
+	WINDOW_MANAGER_SLOT( 3 ); WINDOW_MANAGER_SLOT( 4 ); WINDOW_MANAGER_SLOT( 5 );
+	WINDOW_MANAGER_SLOT( 6 ); WINDOW_MANAGER_SLOT( 7 ); WINDOW_MANAGER_SLOT( 8 );
+	WINDOW_MANAGER_SLOT( 9 ); WINDOW_MANAGER_SLOT( 10 ); WINDOW_MANAGER_SLOT( 11 );
+	WINDOW_MANAGER_SLOT( 12 ); WINDOW_MANAGER_SLOT( 13 ); WINDOW_MANAGER_SLOT( 14 );
+	#undef WINDOW_MANAGER_SLOT
+	virtual int loadAptWindow( BFMERetailAsciiString directory, BFMERetailAsciiString file,
+		int unknown1, int unknown2, int unknown3 ) = 0;
 	bool hideAptWindow( int index );
 	bool showAptWindow( int index );
 };
 
 extern WindowManager *g_theWindowManager;
 extern void DeleteBanner( int id );
+extern void registerBannerAptCallbacks();
 
 void parseBannerUI( INI *ini )
 {
@@ -173,6 +205,16 @@ void BannerUI::hide( bool immediate )
 		{
 			g_theWindowManager->showAptWindow( m_windowIndex );
 		}
+	}
+}
+
+void BannerUI::init()
+{
+	if( TheBannerUI )
+	{
+		m_windowIndex = g_theWindowManager->loadAptWindow(
+			"Apt\\", "BannerUI.apt", 0, 0, -1 );
+		registerBannerAptCallbacks();
 	}
 }
 

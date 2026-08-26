@@ -76949,3 +76949,5 @@ __imp__strrchr,0x013594C8,pin
 ?_M_push_back_aux_v@?$deque@VBFMENetworkQueueItem1@@V?$allocator@VBFMENetworkQueueItem1@@@_STL@@@_STL@@IAEXABVBFMENetworkQueueItem1@@@Z,0x0001B018,BFMENetwork callback deque growth-helper ILT
 ??$find@H@?$_Rb_tree@HU?$pair@$$CBHVPSPlayerStats@@@_STL@@U?$_Select1st@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@2@@1@ABH@Z,0x00018007,GameSpyPSMessageQueue player-stats map find ILT; caller shape and target node layout
 ??A?$map@HVPSPlayerStats@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@3@@_STL@@QAEAAVPSPlayerStats@@ABH@Z,0x0002D64B,GameSpyPSMessageQueue player-stats map subscript ILT; caller branches assign stats or merged stats
+??0?$BannerStringBase@D@@AAE@PBD@Z,0x00888BC0,BannerUI one-dword retail string constructor alias used for by-value APT window arguments
+?registerBannerAptCallbacks@@YAXXZ,0x0003DE6F,BannerUI init ILT to the helper that registers AptBannerUI OnBttnBanner and OnInitialized callbacks
