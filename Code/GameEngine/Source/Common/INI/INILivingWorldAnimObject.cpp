@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/campaignmanagerascii /ICode/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/campaignmanagerascii /ICode/GameEngine/Source /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 
 // FILE: INILivingWorldAnimObject.cpp /////////////////////////////////////////
@@ -14,7 +14,9 @@
 //
 // The manager keeps the stand-in class name INIArmyIcon.cpp gave it. That is
 // not a claim about what BFME calls it; it is so the one global at 0x012F706C
-// keeps one decorated name across both translation units.
+// keeps one decorated name across both translation units. The record itself is
+// named by its Snapshot vtable: its GetSnapshotName slot returns the adjacent
+// "LivingWorldAnimObject" literal.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -22,6 +24,7 @@
 #include <vector>
 
 #include "Common/AsciiString.h"
+#include "Common/System/xfer.h"
 
 struct FieldParse;
 
@@ -32,68 +35,85 @@ public:
 	void initFromINI( void *what, const FieldParse *parseTable );
 };
 
-class BfmeLivingWorldAnimObjectBase
+struct Coord3DBase
 {
-public:
-	BfmeLivingWorldAnimObjectBase() {}
-	virtual ~BfmeLivingWorldAnimObjectBase();
+	float x;
+	float y;
+	float z;
 };
 
-class BfmeLivingWorldAnimObjectMember0C
+class Snapshot
 {
 public:
-	BfmeLivingWorldAnimObjectMember0C() : m_value( 0 ) {}
-	~BfmeLivingWorldAnimObjectMember0C();
-
-private:
-	void *m_value;
+	Snapshot() {}
+	virtual ~Snapshot() {}
+	virtual void LoadPostProcess() = 0;
+	virtual const char *GetSnapshotName() = 0;
+	virtual void DoXfer( Xfer &xfer ) = 0;
 };
 
-class BfmeLivingWorldAnimObject : public BfmeLivingWorldAnimObjectBase
+class LivingWorldAnimObject : public Snapshot
 {
 public:
-	BfmeLivingWorldAnimObject( const AsciiString &name );
-	virtual ~BfmeLivingWorldAnimObject();
+	LivingWorldAnimObject( const AsciiString &name );
+	virtual ~LivingWorldAnimObject();
+	virtual void LoadPostProcess();
+	virtual const char *GetSnapshotName() { return "LivingWorldAnimObject"; }
+	virtual void DoXfer( Xfer &xfer );
 	static const FieldParse m_fieldParseTable[];		// 0x01115B60
 
 private:
 	int m_zero04;
 	int m_zero08;
-	BfmeLivingWorldAnimObjectMember0C m_member0C;
-	bool m_zero10;
-	bool m_zero11;
+	AsciiString m_model;
+	bool m_hasAnim;
+	bool m_xfer;
 	unsigned char m_pad12[ 2 ];
-	int m_zero14;
+	float m_orientAngle;
 	AsciiString m_name;
-	unsigned char m_unmodelled1C[ 0x0C ];
+	Coord3DBase m_position;
 };
 
 class BfmeLivingWorldManagerIcons
 {
 public:
-	BfmeLivingWorldAnimObject *findAnimObject( const AsciiString &name );
+	LivingWorldAnimObject *findAnimObject( const AsciiString &name );
 
 private:
 	char m_unmodelled[ 0x258 ];
-	std::vector<BfmeLivingWorldAnimObject *> m_animObjects;
+	std::vector<LivingWorldAnimObject *> m_animObjects;
 };
 
 extern BfmeLivingWorldManagerIcons *TheLivingWorldManager;		// 0x012F706C
 
-BfmeLivingWorldAnimObject::BfmeLivingWorldAnimObject( const AsciiString &name ) :
-	m_zero10( false ),
-	m_zero11( false ),
-	m_zero14( 0 ),
+LivingWorldAnimObject::LivingWorldAnimObject( const AsciiString &name ) :
+	m_hasAnim( false ),
+	m_xfer( false ),
+	m_orientAngle( 0 ),
 	m_name( name )
 {
 	m_zero04 = 0;
 	m_zero08 = 0;
 }
 
-BfmeLivingWorldAnimObject *BfmeLivingWorldManagerIcons::findAnimObject(
+LivingWorldAnimObject::~LivingWorldAnimObject()
+{
+}
+
+void LivingWorldAnimObject::LoadPostProcess()
+{
+}
+
+void LivingWorldAnimObject::DoXfer( Xfer &xfer )
+{
+	xfer == m_name;
+	xfer == m_position;
+}
+
+LivingWorldAnimObject *BfmeLivingWorldManagerIcons::findAnimObject(
 	const AsciiString &name )
 {
-	BfmeLivingWorldAnimObject *object = new BfmeLivingWorldAnimObject( name );
+	LivingWorldAnimObject *object = new LivingWorldAnimObject( name );
 	m_animObjects.push_back( object );
 	return object;
 }
@@ -105,7 +125,7 @@ void parseLivingWorldAnimObject( INI *ini )
 	if( !token )
 		return;
 
-	BfmeLivingWorldAnimObject *object = TheLivingWorldManager->findAnimObject( AsciiString( token ) );
+	LivingWorldAnimObject *object = TheLivingWorldManager->findAnimObject( AsciiString( token ) );
 
-	ini->initFromINI( object, BfmeLivingWorldAnimObject::m_fieldParseTable );
+	ini->initFromINI( object, LivingWorldAnimObject::m_fieldParseTable );
 }
