@@ -30,7 +30,9 @@ void Rva007FECB0( void *lock );
 
 struct Rva00815B50Comm
 {
-	char m_head[ 0x5C ];
+	char m_head[ 0x48 ];
+	struct Rva007FD4E0Socket *m_socketAlias; /* +0x48 */
+	char m_gapHead[ 0x10 ];
 	/* Byte and packet counters, both incremented by the send at 0x00815680
 	 * and by nothing else here. */
 	int m_bytesSent;                /* +0x5C */
@@ -87,6 +89,13 @@ struct Rva00815B50Comm
 	char m_gap2[ 0x120 ];
 	char m_lock[ 4 ];               /* +0x1EC */
 };
+
+void Rva008154F0( struct Rva00815B50Comm *comm,
+	struct Rva007FD4E0Socket *socket )
+{
+	comm->m_socket = socket;
+	comm->m_socketAlias = socket;
+}
 
 void Rva00815BB0( struct Rva00815B50Comm *comm );
 
