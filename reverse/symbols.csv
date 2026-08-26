@@ -77366,3 +77366,11 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeInit@Gen_00631BB0@@AAEXPA_NH@Z,0x00047159,Open-BFME5 the member the allocate-and-initialise ctor at 0x00631BB0 calls
 ?bfmeInit@Gen_00652C60@@AAEXPA_NH@Z,0x0001548D,Open-BFME5 the member the allocate-and-initialise ctor at 0x00652C60 calls
 ?bfmeInit@Gen_00764DA0@@AAEXPA_NH@Z,0x00043306,Open-BFME5 the member the allocate-and-initialise ctor at 0x00764DA0 calls
+?bfmeInit@Gen_00072840@@AAEXPA_NH@Z,0x0003FA0D,Open-BFME5 the member the allocate-and-ring ctor at 0x00072840 calls
+?bfmeInit@Gen_00222BD0@@AAEXPA_NH@Z,0x00031B6F,Open-BFME5 the member the allocate-and-ring ctor at 0x00222BD0 calls
+?bfmeInit@Gen_0037E2B0@@AAEXPA_NH@Z,0x0000D715,Open-BFME5 the member the allocate-and-ring ctor at 0x0037E2B0 calls
+?bfmeInit@Gen_004FA1D0@@AAEXPA_NH@Z,0x00034446,Open-BFME5 the member the allocate-and-ring ctor at 0x004FA1D0 calls
+?bfmeInit@Gen_0056CC60@@AAEXPA_NH@Z,0x000208B0,Open-BFME5 the member the allocate-and-ring ctor at 0x0056CC60 calls
+?bfmeInit@Gen_00627050@@AAEXPA_NH@Z,0x0001F04B,Open-BFME5 the member the allocate-and-ring ctor at 0x00627050 calls
+?bfmeInit@Gen_00631A90@@AAEXPA_NH@Z,0x0001EF06,Open-BFME5 the member the allocate-and-ring ctor at 0x00631A90 calls
+?bfmeInit@Gen_00764C70@@AAEXPA_NH@Z,0x0002F018,Open-BFME5 the member the allocate-and-ring ctor at 0x00764C70 calls
