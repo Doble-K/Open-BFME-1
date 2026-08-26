@@ -2031,6 +2031,7 @@ name,address,notes
 ??0BfmeAllocProxy_003B3B40@@QAE@PAXPAUBfmeElem_003B3B40@@@Z,0x0003A0E9,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x003B3B40 runs
 ??0BfmeAllocProxy_00760B20@@QAE@PAXPAUBfmeElem_00760B20@@@Z,0x0001572B,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x00760B20 runs
 ??0BfmeAllocProxy_00760BE0@@QAE@PAXPAUBfmeElem_00760BE0@@@Z,0x0002FB85,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x00760BE0 runs
+??0BfmeAllocProxy_00760CA0@@QAE@PAXPAUBfmeElem_00760CA0@@@Z,0x00025478,Open-BFME5 the end-pointer proxy constructor the sized-vector constructor at 0x00760CA0 runs
 ??0BfmeAptScreenBase@@QAE@PAX@Z,0x0001B9FA,ILT thunk to the common 0x218-byte APT screen base constructor used by BfmeAptScreenQuickMatchMenu
 ??0BfmeAptScreenCampaignReview@@QAE@PAX@Z,0x0003D09B,ILT thunk to the CampaignReview.apt screen constructor
 ??0BfmeAptScreenDisconnectScreen@@QAE@PAX@Z,0x0000BFB9,ILT thunk to the DisconnectScreen.apt screen constructor

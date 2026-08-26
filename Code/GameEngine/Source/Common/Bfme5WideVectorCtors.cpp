@@ -1,4 +1,4 @@
-// Five more sized-vector constructors, over widths a scaled address cannot
+// Six more sized-vector constructors, over widths a scaled address cannot
 // express.
 //
 // Same shape as the ones whose element width folds into a lea: zero the two
@@ -8,6 +8,10 @@
 // the end offset come out of an imul, and the end pointer is stored before the
 // other two rather than after -- the multiply is what the scheduler works
 // around.
+//
+// The narrowest of them, at 0x38, is thirty bytes longer than the rest: its
+// multiply is small enough that MSVC duplicates the whole tail into each arm
+// instead of jumping to a shared one. That falls out of the same source.
 
 void *bfmeNewAlloc(unsigned int bytes);				// retail 0x00881F30
 void *bfmeAllocNode(unsigned int bytes);			// retail 0x0082E540
@@ -197,6 +201,43 @@ Gen_003B3B40::Gen_003B3B40(unsigned int count, void *allocator)
 
 	if (count)
 		block = (BfmeElem_003B3B40 *)bfmeAllocate(count * sizeof(BfmeElem_003B3B40));
+	else
+		block = 0;
+
+	m_bfmeStart = block;
+	m_bfmeFinish = block;
+	m_bfmeStorage.m_bfmeEnd = block + count;
+}
+
+struct BfmeElem_00760CA0 { char m_bfmeBytes[0x38]; };
+
+class BfmeAllocProxy_00760CA0
+{
+public:
+	BfmeAllocProxy_00760CA0(void *allocator, BfmeElem_00760CA0 *data);	// retail 0x00025478
+
+	BfmeElem_00760CA0 *m_bfmeEnd;				// +0x00
+};
+
+class Gen_00760CA0
+{
+public:
+	Gen_00760CA0(unsigned int count, void *allocator);
+
+private:
+	BfmeElem_00760CA0 *m_bfmeStart;				// +0x00
+	BfmeElem_00760CA0 *m_bfmeFinish;				// +0x04
+	BfmeAllocProxy_00760CA0 m_bfmeStorage;			// +0x08
+};
+
+// ??0Gen_00760CA0@@QAE@IPAX@Z
+Gen_00760CA0::Gen_00760CA0(unsigned int count, void *allocator)
+	: m_bfmeStart(0), m_bfmeFinish(0), m_bfmeStorage(allocator, 0)
+{
+	BfmeElem_00760CA0 *block;
+
+	if (count)
+		block = (BfmeElem_00760CA0 *)bfmeAllocate(count * sizeof(BfmeElem_00760CA0));
 	else
 		block = 0;
 
