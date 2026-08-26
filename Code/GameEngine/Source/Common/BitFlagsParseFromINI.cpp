@@ -15,6 +15,35 @@
 typedef int Int;
 typedef bool Bool;
 
+extern "C" unsigned int __cdecl strlen(const char *text);
+#pragma intrinsic(strlen)
+
+class AsciiString
+{
+public:
+	void clear();
+	void concat(const char *text, Int length);
+	void concat(const char *text)
+	{
+		concat(text, text ? strlen(text) : 0);
+	}
+
+	Bool isNotEmpty() const
+	{
+		return m_data != 0 && m_data->length != 0;
+	}
+
+private:
+	struct Data
+	{
+		Int referenceCount;
+		unsigned short length;
+		unsigned short capacity;
+	};
+
+	Data *m_data;
+};
+
 class INI
 {
 public:
@@ -35,15 +64,47 @@ public:
 	Bool parseToken(const char *token, Bool *foundNormal, Bool *foundAddOrSub);
 };
 
+class GenItem;
+
+class Gen00049A2B
+{
+public:
+	Bool handle(GenItem *item, Bool *foundNormal, Bool *foundAddOrSub);
+};
+
 template <int NUMBITS>
 class BitFlags
 {
 public:
+	void parse(INI *ini, AsciiString *description);
 	static void parseFromINI(INI *ini, void *instance, void *store, const void *userData);
 
 private:
 	unsigned int m_bits[(NUMBITS + 31) / 32];
 };
+
+template <>
+void BitFlags<17>::parse(INI *ini, AsciiString *description)
+{
+	if (description)
+		description->clear();
+
+	Bool foundNormal = false;
+	Bool foundAddOrSub = false;
+
+	for (const char *token = ini->getNextTokenOrNull(); token != 0; token = ini->getNextTokenOrNull())
+	{
+		if (description)
+		{
+			if (description->isNotEmpty())
+				description->concat(" ", 1);
+			description->concat(token);
+		}
+
+		if (!((Gen00049A2B *)this)->handle((GenItem *)token, &foundNormal, &foundAddOrSub))
+			break;
+	}
+}
 
 template <>
 void BitFlags<116>::parseFromINI(INI *ini, void *instance, void *store, const void *userData)
