@@ -542,7 +542,8 @@ public:
 		if (primary)
 		{
 
-			if (m_ricochet && secondary)
+			// BFME's extended nugget keeps Ricochet at +0x101, beyond the ZH layout retained here.
+			if (*(const Bool *)((const char *)this + 0x101) && secondary)
 			{
 				// HERE WE MUST BUILD A MATRIX WHICH WILL ORIENT THE NEW PARTICLE SYSTEM TO FACE AWAY FROM THE SECONDARY OBJECT
 				// THE RESULT SHOULD LOOK LIKE THE DIRECTION OF THE "ATTACK" IS CARRIED THROUGH LIKE A RICOCHET
@@ -552,12 +553,12 @@ public:
 				Matrix3D aimingMatrix(1);
 				aimingMatrix.Rotate_Z( aimingAngle );
 
-				reallyDoFX(primary->getPosition(), &aimingMatrix, primary, 0.0f);
+				reallyDoFX(primary->getPosition(), &aimingMatrix, primary, secondary);
 			}
 			else
 				// if we have an object, then adjust the offset and direction by the object's transformation
 				// matrix, so that (say) an offset of +10 in the z axis "follows" the orientation of the object.
-				reallyDoFX(primary->getPosition(), primary->getTransformMatrix(), primary, 0.0f);
+				reallyDoFX(primary->getPosition(), primary->getTransformMatrix(), primary, secondary);
 		}
 		else
 		{
@@ -592,6 +593,7 @@ public:
 	}
 
 protected:
+	void reallyDoFX(const Coord3D *, const Matrix3D *, const Object *, const Object *) const;
 
 	void reallyDoFX(const Coord3D *primary, const Matrix3D* mtx, const Object* thingToAttachTo, Real overrideRadius ) const
 	{
