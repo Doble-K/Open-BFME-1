@@ -37,3 +37,21 @@ Int rva000D46E0CountVisit( Rva000D46E0Object *object, void *userData )
 
 	return 1;
 }
+
+class Object;
+typedef void ( *PlayerObjectVisit )( Object *object, void *userData );
+
+class Player
+{
+public:
+	void iterateObjects( PlayerObjectVisit visit, void *userData ) const;
+	Int rva000D4730CountObjects( UnsignedInt bitIndex, Int limit ) const;
+};
+
+Int Player::rva000D4730CountObjects( UnsignedInt bitIndex, Int limit ) const
+{
+	Rva000D46E0CountContext context = { bitIndex, 0, limit };
+	iterateObjects(
+		reinterpret_cast<PlayerObjectVisit>( rva000D46E0CountVisit ), &context );
+	return context.m_count;
+}
