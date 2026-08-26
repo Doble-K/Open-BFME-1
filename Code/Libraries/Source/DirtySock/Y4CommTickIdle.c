@@ -260,7 +260,8 @@ void Rva00815D40( struct Rva00814700Comm *comm )
 	}
 }
 
-void Rva00815DA0( struct Rva00814700Comm *comm );
+struct Rva00815DA0Comm;
+void Rva00815DA0( struct Rva00815DA0Comm *comm );
 void Rva00816490( struct Rva00814700Comm *comm );
 
 void Rva00815BB0( struct Rva00814700Comm *comm )
@@ -268,7 +269,7 @@ void Rva00815BB0( struct Rva00814700Comm *comm )
 	if ( comm->m_state == 1 || comm->m_state == 2 )
 		Rva00815C90( comm );
 
-	Rva00815DA0( comm );
+	Rva00815DA0( (struct Rva00815DA0Comm *)comm );
 	Rva00815D40( comm );
 	Rva00816490( comm );
 
@@ -575,6 +576,88 @@ int Rva00814540( struct Rva00814540Comm *comm, const void *payload,
 		- comm->m_readOffset ) % comm->m_bufferSize )
 		/ comm->m_recordSize;
 	return count > 0 ? count : 1;
+}
+
+struct Rva00815DA0Record
+{
+	unsigned int m_address;
+	int m_length;
+	unsigned char m_type;
+};
+
+struct Rva00815DA0Comm
+{
+	char m_head[ 0x7C ];
+	void *m_socket;                  /* +0x7C */
+	char m_gap80[ 0x10 ];
+	int m_state;                     /* +0x90 */
+	char m_gap94[ 0x04 ];
+	int m_receiveSize;               /* +0x98 */
+	char m_gap9C[ 0x08 ];
+	int m_readOffset;                /* +0xA4 */
+	char m_gapA8[ 0x04 ];
+	void *m_buffer;                  /* +0xAC */
+};
+
+int Rva007FDA50( void *socket, char *buffer, int length, int flags,
+	char *from, int *fromLength );
+void Rva00816020( struct Rva00815DA0Comm *comm,
+	struct Rva00815DA0Record *record, const void *from );
+void Rva00815FA0( struct Rva00815DA0Comm *comm,
+	struct Rva00815DA0Record *record );
+int Rva00816280( struct Rva00815DA0Comm *comm,
+	struct Rva00815DA0Record *record );
+extern char Rva012C4C24[];
+
+void Rva00815DA0( struct Rva00815DA0Comm *comm )
+{
+	int result;
+	int addressLength;
+	int status;
+	char *payload;
+	unsigned char address[ 16 ];
+	struct Rva00815DA0Record *record;
+
+	status = 0;
+	while ( comm->m_state >= 1 && comm->m_state <= 3 && status >= 0 )
+	{
+		record = (struct Rva00815DA0Record *)( (char *)comm->m_buffer
+			+ comm->m_readOffset );
+		payload = (char *)record + 8;
+		addressLength = 16;
+		result = Rva007FDA50( comm->m_socket, payload,
+			comm->m_receiveSize, 0, (char *)address, &addressLength );
+		if ( result > 0 )
+		{
+			record->m_length = result;
+			record->m_address = ( ( ( ( address[ 8 ] << 8 ) | address[ 9 ] )
+				<< 8 | address[ 10 ] ) << 8 ) | address[ 11 ];
+			if ( record->m_type >= 0x10 && record->m_type <= 0x3F )
+				Rva00816020( comm, record, address );
+			else if ( record->m_type >= 0xC0 )
+				Rva00815FA0( comm, record );
+			else
+			{
+				status = Rva00816280( comm, record );
+				if ( status == 1 && record->m_type >= 0x80
+					&& record->m_type < 0xC0 )
+				{
+					Rva008155F0( (struct Rva00814700Comm *)comm,
+						record->m_type + 0x40 );
+				}
+			}
+		}
+		else
+		{
+			if ( result < 0 )
+			{
+				Rva007FE780( Rva012C4C24, result );
+				comm->m_state = 4;
+				break;
+			}
+			break;
+		}
+	}
 }
 
 struct Rva008140D0Comm

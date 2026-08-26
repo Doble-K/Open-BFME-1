@@ -76980,6 +76980,7 @@ _Rva008155F0,0x008155F0,address-derived DirtySock timeout handler called by 0x00
 _Rva00815BB0,0x00815BB0,Y4 lane: DirtySock ring transport pump; the socket callback at 0x00815B50 calls it under the try-lock
 _Rva00815DA0,0x00815DA0,address-derived DirtySock queue pump called by 0x00815BB0
 _Rva00816160,0x00816160,Y4 lane: DirtySock comm connect-completion helper; the handshake at 0x00816020 calls it on the two transitions that reach the established state
+_Rva00816280,0x00816280,address-derived DirtySock received-record handler called by 0x00815DA0
 _Rva00816520,0x00816520,Y4 lane: DirtySock comm enqueue wrapped by 0x008165F0; non-negative means the slot was consumed
 _Rva00816DF0,0x00816DF0,Y4 lane: DirtySock transport socket attach/detach
 _Rva00816E10,0x00816E10,Y4 lane: DirtySock transport registration
@@ -77006,6 +77007,7 @@ _Rva012C4A80,0x012C4A80,address-derived DirtySock endpoint diagnostic format use
 _Rva012C4AAC,0x012C4AAC,address-derived DirtySock transport name copied by 0x008140D0
 _Rva012C4AF0,0x012C4AF0,address-derived DirtySock queue-full diagnostic used by 0x00814540
 _Rva012C4B0C,0x012C4B0C,address-derived DirtySock oversized-record diagnostic used by 0x00814540
+_Rva012C4C24,0x012C4C24,address-derived DirtySock receive-error diagnostic used by 0x00815DA0
 _SBLastListErrorA,0x008680B0,adjacency-lane pin: jmp target of _ServerBrowserListQueryErrorA tail-call
 _SBQueryEngineUpdateServer,0x00869930,vendored=gamespy-2004
 _SBReleaseStr,0x008676D0,vendored=gamespy-2004
