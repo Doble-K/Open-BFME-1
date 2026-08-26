@@ -1,78 +1,45 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: ParticleSystem::getPosition, retail 0x005BDDB0, 63 bytes.
+//
+// The three components are read out of three 0x10-strided members into a local
+// Coord3D and copied out only when the caller passed one. MSVC keeps x on the
+// x87 stack across the null test, which is why the miss path has a bare
+// fstp st(0).
 
-struct Coord3D;
+struct Coord3D
+{
+	float x;
+	float y;
+	float z;
+};
 
 class ParticleSystem
 {
 public:
-    void getPosition(Coord3D *);
+	void getPosition(Coord3D *pos);
+
+private:
+	unsigned char m_unmodelled_000[0xcc];
+	float m_posX;						// this+0xCC
+	unsigned char m_unmodelled_0d0[0xc];
+	float m_posY;						// this+0xDC
+	unsigned char m_unmodelled_0e0[0xc];
+	float m_posZ;						// this+0xEC
 };
 
-__declspec(naked) void ParticleSystem::getPosition(Coord3D *)
+// ?getPosition@ParticleSystem@@QAEXPAUCoord3D@@@Z
+void ParticleSystem::getPosition(Coord3D *pos)
 {
-    __asm {
-        __emit 0x83;
-        __emit 0xec;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0x81;
-        __emit 0xdc;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xd9;
-        __emit 0x81;
-        __emit 0xcc;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x89;
-        __emit 0xec;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x74;
-        __emit 0x12;
-        __emit 0x8b;
-        __emit 0x54;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0xd9;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x08;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x0c;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-        __emit 0xdd;
-        __emit 0xd8;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x0c;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+	Coord3D p;
+
+	p.x = m_posX;
+	p.y = m_posY;
+	p.z = m_posZ;
+
+	if (pos)
+	{
+		pos->x = p.x;
+		pos->y = p.y;
+		pos->z = p.z;
+	}
 }
