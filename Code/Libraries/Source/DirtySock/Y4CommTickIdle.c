@@ -414,13 +414,46 @@ int Rva00813780( unsigned int handle )
  * look inside any of them, so their types are not recoverable here; they are
  * declared as plain words rather than guessed at.
  */
-int Rva00814EA0( struct Rva00814700Comm *comm, int a, int b, int c );
+struct Rva00814EA0Record
+{
+	unsigned int m_tick;
+	short m_length;
+	char m_data[ 1 ];
+};
 
-int Rva00814F70( struct Rva00814700Comm *comm, int a, int b, int c )
+void *memcpy( void *dest, const void *source, unsigned int size );
+
+int Rva00814EA0( struct Rva00814700Comm *comm, void *buffer, int size,
+	unsigned int *when )
+{
+	struct Rva00814EA0Record *record;
+	int copyLength;
+
+	if ( comm->m_writeOffset == comm->m_readOffset )
+		Rva00814700( 0, 0, comm );
+
+	if ( comm->m_writeOffset == comm->m_readOffset )
+		return -7;
+
+	record = (struct Rva00814EA0Record *)( (char *)comm->m_allocA
+		+ comm->m_writeOffset );
+	if ( record->m_length < size )
+		copyLength = record->m_length;
+	else
+		copyLength = size;
+	memcpy( buffer, record->m_data, copyLength );
+	if ( when != 0 )
+		*when = record->m_tick;
+
+	return record->m_length;
+}
+
+int Rva00814F70( struct Rva00814700Comm *comm, void *buffer, int size,
+	unsigned int *when )
 {
 	int iResult;
 
-	iResult = Rva00814EA0( comm, a, b, c );
+	iResult = Rva00814EA0( comm, buffer, size, when );
 
 	if ( iResult >= 0 )
 	{
