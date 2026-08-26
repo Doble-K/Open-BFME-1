@@ -93,6 +93,7 @@ public:
 	virtual void unused10() = 0;
 	virtual void unused14() = 0;
 	virtual AsciiString getAsciiString( AsciiString key, AsciiString defaultValue ) const = 0;
+	virtual void setAsciiString( AsciiString key, AsciiString val ) = 0;
 };
 
 struct BfmeAsciiStringDataView
@@ -258,10 +259,9 @@ void UserPreferences::setBool(AsciiString key, Bool val)
 	(*this)[key] = boolAsStr(val);
 }
 
-// ?setReal@UserPreferences@@QAEXVAsciiString@@M@Z present-unmatched
 void UserPreferences::setReal(AsciiString key, Real val)
 {
-	(*this)[key] = realAsStr(val);
+	reinterpret_cast<BfmeUserPreferencesVirtualView *>( this )->setAsciiString( key, realAsStr( val ) );
 }
 
 // ?setInt@UserPreferences@@QAEXVAsciiString@@H@Z present-unmatched
