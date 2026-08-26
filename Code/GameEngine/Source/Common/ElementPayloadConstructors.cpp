@@ -2,6 +2,7 @@
 // Their destination null checks explain why the wrappers may pass an empty
 // slot, while the fixed first store distinguishes construction from copying.
 
+extern int R2Data010EC760;
 extern int R2Data010EC764;
 extern int R2Data010EC768;
 
@@ -56,3 +57,36 @@ void gen003A85C0( Elem16 * slot, const Elem16 * source )
 		InterlockedIncrement( (long *)((char *)slot->m_at08 + 4) );
 	slot->m_at0C = source->m_at0C;
 }
+
+struct Gen_t_003b4b60_p16cd
+{
+	void * m_at00;
+	int m_at04;
+	char m_at08;
+	char m_pad09[ 3 ];
+	int m_at0C;
+};
+
+namespace _STL
+{
+struct __false_type {};
+
+template <class Input, class Output>
+Output __uninitialized_copy( Input first, Input last, Output result, const __false_type & )
+{
+	for ( ; first != last; ++first, ++result )
+	{
+		if ( result != 0 )
+		{
+			result->m_at00 = &R2Data010EC760;
+			result->m_at04 = first->m_at04;
+			result->m_at08 = first->m_at08;
+			result->m_at0C = first->m_at0C;
+		}
+	}
+	return result;
+}
+}
+
+template Gen_t_003b4b60_p16cd * _STL::__uninitialized_copy<const Gen_t_003b4b60_p16cd *, Gen_t_003b4b60_p16cd *>(
+	const Gen_t_003b4b60_p16cd *, const Gen_t_003b4b60_p16cd *, Gen_t_003b4b60_p16cd *, const _STL::__false_type & );
