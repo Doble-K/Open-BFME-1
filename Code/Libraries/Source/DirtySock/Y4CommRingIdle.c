@@ -93,6 +93,8 @@ struct Rva00815B50Comm
 	void *m_value;                  /* +0x218 */
 };
 
+void Rva007FD3F0( struct Rva007FD4E0Socket *socket );
+
 void Rva008154F0( struct Rva00815B50Comm *comm,
 	struct Rva007FD4E0Socket *socket )
 {
@@ -104,6 +106,17 @@ void Rva00815730( struct Rva00815B50Comm *comm, void *value )
 {
 	comm->m_value = value;
 	comm->m_flags |= 2;
+}
+
+int Rva00815790( struct Rva00815B50Comm *comm )
+{
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008154F0( comm, 0 );
+	}
+	comm->m_state = 0;
+	return 0;
 }
 
 void Rva00815BB0( struct Rva00815B50Comm *comm );
