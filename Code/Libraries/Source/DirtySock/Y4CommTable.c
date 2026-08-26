@@ -221,6 +221,42 @@ void __cdecl Rva00812690( struct Rva007FD4E0Socket *socket, int reason,
 extern struct Rva00812320Module *g_Rva0130AD00Module;
 extern int g_Rva0130ACFCRefCount;
 
+struct Rva00811D70Entry
+{
+	char m_gap0[ 0x08 ];
+	char m_nameA[ 0x20 ];
+	char m_nameB[ 0x20 ];
+	char m_gap48[ 0x138 ];
+	int m_value;
+	char m_gap184[ 0x1C ];
+	struct Rva00811D70Entry *m_next;
+};
+
+struct Rva00811D70List
+{
+	char m_gap0[ 0x24 ];
+	struct Rva00811D70Entry *m_first;
+};
+
+int Rva00811D70( struct Rva00811D70List *list, const char *keyA,
+	const char *keyB )
+{
+	struct Rva00811D70Entry *entry;
+
+	Rva007FEBD0( list );
+	for ( entry = list->m_first; entry != 0; entry = entry->m_next )
+	{
+		if ( ( keyA == 0 || Rva00811CE0( keyA, entry->m_nameA ) == 0 )
+			&& ( keyB == 0 || Rva00811CE0( keyB, entry->m_nameB ) == 0 ) )
+		{
+			entry->m_value = 0;
+			break;
+		}
+	}
+	Rva007FECB0( list );
+	return entry != 0 ? 0 : -1;
+}
+
 /* 0x00812320 CREATES THE MODULE, OR SHARES THE ONE THAT EXISTS.  Retail's own
  * names for the two address buffers, from the /GZ frame descriptor, are
  * bindaddr and peeraddr.

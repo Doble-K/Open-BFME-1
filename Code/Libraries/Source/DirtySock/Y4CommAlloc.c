@@ -13,6 +13,8 @@
 void *Rva007F0000( unsigned int size );
 
 void * __cdecl memset( void *dest, int c, unsigned int count );
+void * __cdecl memcpy( void *dest, const void *source, unsigned int count );
+unsigned int __cdecl strlen( const char *text );
 
 /* 0x0080B000 ALLOCATES AND ZEROES A 0x124-BYTE OBJECT.  The size is a literal
  * in two places -- once for the allocation and once for the clear -- so the
@@ -35,6 +37,140 @@ void *Rva0080B000( void )
 	}
 
 	return pObject;
+}
+
+void Rva0080ADE0( void *object, int releaseState );
+void Rva007F0030( void *object );
+
+void Rva0080B050( void *object )
+{
+	Rva0080ADE0( object, 0 );
+}
+
+void Rva0080B070( void *object )
+{
+	Rva0080ADE0( object, 0 );
+	Rva007F0030( object );
+}
+
+struct Rva0080B000Comm
+{
+	void *m_socket;
+	char m_gap04[ 0x104 ];
+	char m_address[ 0x10 ];
+	int m_addressLength;
+	char m_gap11C[ 4 ];
+	void *m_backend;
+};
+
+void *Rva007FD2D0( int family, int type, int protocol );
+void Rva007FD3F0( void *socket );
+int Rva007FD510( void *socket, const void *address, int addressLength );
+int Rva007FD7A0( void *socket, int mode );
+void *Rva007FD7D0( void *socket, void *address, int *addressLength );
+
+int Rva0080B150( struct Rva0080B000Comm *comm, const void *address,
+	int addressLength )
+{
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+	}
+
+	comm->m_socket = Rva007FD2D0( 2, 1, 0 );
+	if ( comm->m_socket == 0 )
+	{
+		return -7;
+	}
+
+	return Rva007FD510( comm->m_socket, address, addressLength );
+}
+
+int Rva0080B460( struct Rva0080B000Comm *comm, int mode )
+{
+	return Rva007FD7A0( comm->m_socket, mode );
+}
+
+int Rva0080B480( struct Rva0080B000Comm *comm )
+{
+	Rva0080ADE0( comm, comm->m_backend != 0 );
+	return 0;
+}
+
+struct Rva0080B000Comm *Rva0080B0A0( struct Rva0080B000Comm *comm,
+	int unsupported, void *address, int *addressLength )
+{
+	struct Rva0080B000Comm *accepted;
+	void *socket;
+
+	if ( unsupported != 0 )
+	{
+		return 0;
+	}
+
+	socket = Rva007FD7D0( comm->m_socket, address, addressLength );
+	if ( socket == 0 )
+	{
+		return 0;
+	}
+
+	accepted = (struct Rva0080B000Comm *)Rva0080B000();
+	if ( accepted == 0 )
+	{
+		Rva007FD3F0( socket );
+		return 0;
+	}
+
+	accepted->m_socket = socket;
+	memcpy( accepted->m_address, address, *addressLength );
+	accepted->m_addressLength = 0x14;
+	return accepted;
+}
+
+struct Rva0080D980Backend
+{
+	int m_field00;
+	int m_field04;
+};
+
+int Rva0080C390( struct Rva0080B000Comm *comm, const void *data, int length );
+int Rva007FD920( void *socket, const void *data, int length, int flags,
+	const void *address, int addressLength );
+
+int Rva0080D980( struct Rva0080B000Comm *comm, const char *data, int length )
+{
+	int result;
+	struct Rva0080D980Backend *backend;
+
+	result = -1;
+	backend = (struct Rva0080D980Backend *)comm->m_backend;
+	if ( length < 0 )
+	{
+		length = strlen( data );
+	}
+	if ( length > 16000 )
+	{
+		length = 16000;
+	}
+
+	if ( comm->m_addressLength == 0x10 )
+	{
+		result = 0;
+		if ( backend->m_field04 == 0 )
+		{
+			result = Rva0080C390( comm, data, length );
+			if ( result >= 0 )
+			{
+				result = length;
+			}
+		}
+	}
+
+	if ( comm->m_addressLength == 0x14 )
+	{
+		result = Rva007FD920( comm->m_socket, data, length, 0, 0, 0 );
+	}
+	return result;
 }
 
 struct Rva00812320Module;

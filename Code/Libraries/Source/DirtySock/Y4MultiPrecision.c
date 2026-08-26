@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
 /* MULTI-PRECISION INTEGER PRIMITIVES, built /Od with /GZ.
  *
  * The representation is read out of the bodies here rather than assumed: LIMBS
@@ -217,6 +217,69 @@ int Rva0080FED0( unsigned short *result, int limbs, const unsigned char *bytes,
 	}
 
 	return iNeeded;
+}
+
+void Rva0080FFB0( const unsigned short *limbs, int limbCount,
+	unsigned char *bytes, int byteCount )
+{
+	byteCount /= 2;
+	limbs += limbCount - byteCount;
+
+	for ( ; byteCount > 0; byteCount-- )
+	{
+		*bytes = (unsigned char)( *limbs >> 8 );
+		bytes++;
+		*bytes = *(const unsigned char *)limbs;
+		bytes++;
+		limbs++;
+	}
+}
+
+int Rva0080FD30( unsigned short *result, int count,
+	const unsigned short *a, const unsigned short *b );
+int Rva0080FDD0( unsigned short *result, int count,
+	const unsigned short *a, const unsigned short *b );
+void *memset( void *dest, int value, unsigned int count );
+void *memcpy( void *dest, const void *src, unsigned int count );
+
+void Rva0080FB40( unsigned short *result, int count,
+	const unsigned short *bits, const unsigned short *addend,
+	const unsigned short *modulus )
+{
+	int i;
+	int carry;
+	unsigned short first[ 0x100 ];
+	unsigned short second[ 0x100 ];
+	unsigned short *current;
+	unsigned short *other;
+
+	current = first;
+	other = second;
+	memset( current, 0, count * 2 );
+	for ( i = count * 2 * 8 - 1; i >= 0; i-- )
+	{
+		carry = Rva0080FD30( current, count, current, current );
+		if ( Rva0080FDD0( other, count, current, modulus ) == 0
+			|| carry != 0 )
+		{
+			unsigned short *swap = current;
+			current = other;
+			other = swap;
+		}
+
+		if ( Rva0080FE70( bits, count, i ) != 0 )
+		{
+			carry = Rva0080FD30( current, count, current, addend );
+			if ( Rva0080FDD0( other, count, current, modulus ) == 0
+				|| carry != 0 )
+			{
+				unsigned short *swap = current;
+				current = other;
+				other = swap;
+			}
+		}
+	}
+	memcpy( result, current, count * 2 );
 }
 
 unsigned int Rva007FEA00( void );

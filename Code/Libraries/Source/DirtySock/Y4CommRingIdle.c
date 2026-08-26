@@ -30,7 +30,9 @@ void Rva007FECB0( void *lock );
 
 struct Rva00815B50Comm
 {
-	char m_head[ 0x5C ];
+	char m_head[ 0x48 ];
+	struct Rva007FD4E0Socket *m_socketAlias; /* +0x48 */
+	char m_gapHead[ 0x10 ];
 	/* Byte and packet counters, both incremented by the send at 0x00815680
 	 * and by nothing else here. */
 	int m_bytesSent;                /* +0x5C */
@@ -61,7 +63,7 @@ struct Rva00815B50Comm
 	 * type implies.  1 and 2 are the two halves of an unfinished connect, 3 is
 	 * established, 4 is closing. */
 	int m_state;                    /* +0x90 */
-	char m_gapA[ 0x04 ];
+	int m_sessionValue;             /* +0x94 */
 	/* THE RECEIVE QUEUE.  The dequeue at 0x00816520 compares +0xA8 against
 	 * +0xA4 to decide whether anything is waiting and reads the record at
 	 * +0xAC plus +0xA8, which is what identifies the base and the two
@@ -86,7 +88,47 @@ struct Rva00815B50Comm
 	unsigned int m_lastRecvTick;    /* +0xC8 */
 	char m_gap2[ 0x120 ];
 	char m_lock[ 4 ];               /* +0x1EC */
+	char m_gap1F0[ 0x24 ];
+	int m_flags;                    /* +0x214 */
+	void *m_value;                  /* +0x218 */
 };
+
+void Rva007FD3F0( struct Rva007FD4E0Socket *socket );
+
+void Rva008154F0( struct Rva00815B50Comm *comm,
+	struct Rva007FD4E0Socket *socket )
+{
+	comm->m_socket = socket;
+	comm->m_socketAlias = socket;
+}
+
+void Rva00815730( struct Rva00815B50Comm *comm, void *value )
+{
+	comm->m_value = value;
+	comm->m_flags |= 2;
+}
+
+int Rva00815790( struct Rva00815B50Comm *comm )
+{
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008154F0( comm, 0 );
+	}
+	comm->m_state = 0;
+	return 0;
+}
+
+int Rva008157E0( struct Rva00815B50Comm *comm )
+{
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008154F0( comm, 0 );
+	}
+	comm->m_state = 0;
+	return 0;
+}
 
 void Rva00815BB0( struct Rva00815B50Comm *comm );
 
@@ -252,6 +294,19 @@ int Rva008155F0( struct Rva00815B50Comm *comm, char kind )
 	packet.m_data[ 0 ] = kind;
 
 	return Rva00815680( comm, &packet );
+}
+
+int Rva008155A0( struct Rva00815B50Comm *comm )
+{
+	if ( comm->m_state != 3 )
+	{
+		return 0;
+	}
+
+	Rva008155F0( comm, 0x14 );
+	comm->m_sessionValue = 0;
+	comm->m_state = 4;
+	return 0;
 }
 
 void *__cdecl memcpy( void *destination, const void *source,

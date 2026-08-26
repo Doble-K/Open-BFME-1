@@ -76951,3 +76951,19 @@ __imp__strrchr,0x013594C8,pin
 ??A?$map@HVPSPlayerStats@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHVPSPlayerStats@@@_STL@@@3@@_STL@@QAEAAVPSPlayerStats@@ABH@Z,0x0002D64B,GameSpyPSMessageQueue player-stats map subscript ILT; caller branches assign stats or merged stats
 ??0?$BannerStringBase@D@@AAE@PBD@Z,0x00888BC0,BannerUI one-dword retail string constructor alias used for by-value APT window arguments
 ?registerBannerAptCallbacks@@YAXXZ,0x0003DE6F,BannerUI init ILT to the helper that registers AptBannerUI OnBttnBanner and OnInitialized callbacks
+_Rva0080E500,0x0080E500,address-derived cleanup helper invoked immediately before release by 0x0080E4D0
+_Rva00812CD0,0x00812CD0,address-derived cleanup helper invoked for the owned field at offset 0x64 by 0x0080F0D0
+_Rva0080F5A0,0x0080F5A0,address-derived DirtySock state operation called by the wrapper at 0x0080F550
+_Rva0080C6F0,0x0080C6F0,address-derived DirtySock buffered receive helper called by 0x0080DA50
+_Rva008119A0,0x008119A0,address-derived DirtySock table insertion helper called by 0x0080EF50
+_g_Rva012C47A4,0x012C47A4,DirtySock default alias-list pointer used by 0x0080EF50
+_Rva0080FD30,0x0080FD30,address-derived multi-precision addition helper called by 0x0080FB40
+_Rva0080FDD0,0x0080FDD0,address-derived multi-precision subtraction helper called by 0x0080FB40
+_Rva0080ADE0,0x0080ADE0,address-derived comm object state release helper called by 0x0080B050
+_Rva007FD2D0,0x007FD2D0,address-derived socket creation helper called by 0x0080B150
+_Rva007FD510,0x007FD510,address-derived socket bind helper called by 0x0080B150
+_Rva007FD7A0,0x007FD7A0,address-derived socket mode helper called by 0x0080B460
+_Rva007FD7D0,0x007FD7D0,address-derived socket accept helper called by 0x0080B0A0
+_g_Rva0112C8D0,0x0112C8D0,address-derived terminated lookup table read by 0x0080D890
+_Rva0080C390,0x0080C390,address-derived comm buffered-send helper called by 0x0080D980
+_Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
