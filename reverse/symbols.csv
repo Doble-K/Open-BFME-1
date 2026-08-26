@@ -2063,6 +2063,12 @@ name,address,notes
 ??0BfmeSortElem20Tail@@QAE@ABV0@@Z,0x000266BB,Open-BFME5 ILT the copy constructor of the twelve-byte member at S4SortElem20+8
 ??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00015C44,Open-BFME5 the incremental-link thunk those constructors encode
 ??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00268120,Open-BFME5 base constructor every SpecialPower module data forwards to; runs to +0x210. Byte-identical to and folded with RiderChangeContainModuleData so the address cannot name the class
+??0BfmeStaticThingA@@QAE@XZ,0x0002AEC8,Open-BFME5 the constructor the function-local static at 0x005D9AE0 runs
+??0BfmeStaticThingB@@QAE@XZ,0x0004912A,Open-BFME5 the constructor the function-local static at 0x005D9B50 runs
+??0BfmeStaticThingC@@QAE@XZ,0x00039108,Open-BFME5 the constructor the function-local static at 0x005D9BC0 runs
+??0BfmeStaticThingD@@QAE@XZ,0x0003DB0E,Open-BFME5 the constructor the function-local static at 0x005D9C30 runs
+??0BfmeStaticThingE@@QAE@XZ,0x000022D9,Open-BFME5 the constructor the function-local static at 0x005D9CA0 runs
+??0BfmeStaticThingF@@QAE@XZ,0x0000A533,Open-BFME5 the constructor the function-local static at 0x005D9D10 runs
 ??0BfmeSubA@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 the sub-object copy ctor the copies at 0x003505E0 and 0x00350630 call
 ??0BfmeSubB@@QAE@ABV0@@Z,0x00887B60,Open-BFME5 the sub-object copy ctor the copies at 0x00351F30 and 0x00351FB0 call
 ??0BinkVideoPlayer@@QAE@XZ,0x0000B0A5,pinharvest x1 (thunk)
