@@ -34,14 +34,55 @@ public:
 
 extern GlobalData *TheWritableGlobalData;
 
+class Money
+{
+public:
+	UnsignedInt countMoney() const { return m_money; }
+
+private:
+	void *m_vtable;
+	UnsignedInt m_money;
+	Int m_playerIndex;
+};
+
+class ScoreKeeper
+{
+public:
+	Int getTotalMoneyEarned() const { return m_totalMoneyEarned; }
+	Int getTotalMoneySpent() const { return m_totalMoneySpent; }
+	Int getTotalUnitsDestroyed();
+	Int getTotalUnitsBuilt() const { return m_totalUnitsBuilt; }
+	Int getTotalUnitsLost() const { return m_totalUnitsLost; }
+	Int getTotalBuildingsDestroyed();
+	Int getTotalBuildingsBuilt() const { return m_totalBuildingsBuilt; }
+	Int getTotalBuildingsLost() const { return m_totalBuildingsLost; }
+
+private:
+	void *m_vtable;
+	Int m_totalMoneyEarned;
+	Int m_totalMoneySpent;
+	Int m_totalUnitsDestroyed[ 32 ];
+	Int m_totalUnitsBuilt;
+	Int m_totalUnitsLost;
+	Int m_totalBuildingsDestroyed[ 32 ];
+	Int m_totalBuildingsBuilt;
+	Int m_totalBuildingsLost;
+};
+
 class Player
 {
 public:
 	const AsciiString &getSide() const { return m_side; }
+	Money *getMoney() { return &m_money; }
+	ScoreKeeper *getScoreKeeper() { return &m_scoreKeeper; }
 
 private:
 	unsigned char m_unmodelled00[ 0x28 ];
 	AsciiString m_side;
+	unsigned char m_unmodelled2C[ 0x48 - 0x2C ];
+	Money m_money;
+	unsigned char m_unmodelled54[ 0x348 - 0x54 ];
+	ScoreKeeper m_scoreKeeper;
 };
 
 class PlayerList
@@ -56,6 +97,49 @@ private:
 
 extern PlayerList *ThePlayerList;
 
+class Display
+{
+public:
+#define BFME_DISPLAY_SLOT( n ) virtual void unused##n();
+	BFME_DISPLAY_SLOT( 00 ) BFME_DISPLAY_SLOT( 01 ) BFME_DISPLAY_SLOT( 02 ) BFME_DISPLAY_SLOT( 03 )
+	BFME_DISPLAY_SLOT( 04 ) BFME_DISPLAY_SLOT( 05 ) BFME_DISPLAY_SLOT( 06 ) BFME_DISPLAY_SLOT( 07 )
+	BFME_DISPLAY_SLOT( 08 ) BFME_DISPLAY_SLOT( 09 ) BFME_DISPLAY_SLOT( 10 ) BFME_DISPLAY_SLOT( 11 )
+	BFME_DISPLAY_SLOT( 12 ) BFME_DISPLAY_SLOT( 13 ) BFME_DISPLAY_SLOT( 14 ) BFME_DISPLAY_SLOT( 15 )
+	BFME_DISPLAY_SLOT( 16 ) BFME_DISPLAY_SLOT( 17 ) BFME_DISPLAY_SLOT( 18 ) BFME_DISPLAY_SLOT( 19 )
+	BFME_DISPLAY_SLOT( 20 ) BFME_DISPLAY_SLOT( 21 ) BFME_DISPLAY_SLOT( 22 ) BFME_DISPLAY_SLOT( 23 )
+	BFME_DISPLAY_SLOT( 24 ) BFME_DISPLAY_SLOT( 25 ) BFME_DISPLAY_SLOT( 26 ) BFME_DISPLAY_SLOT( 27 )
+	BFME_DISPLAY_SLOT( 28 ) BFME_DISPLAY_SLOT( 29 ) BFME_DISPLAY_SLOT( 30 ) BFME_DISPLAY_SLOT( 31 )
+	BFME_DISPLAY_SLOT( 32 ) BFME_DISPLAY_SLOT( 33 ) BFME_DISPLAY_SLOT( 34 ) BFME_DISPLAY_SLOT( 35 )
+	BFME_DISPLAY_SLOT( 36 ) BFME_DISPLAY_SLOT( 37 ) BFME_DISPLAY_SLOT( 38 ) BFME_DISPLAY_SLOT( 39 )
+	BFME_DISPLAY_SLOT( 40 ) BFME_DISPLAY_SLOT( 41 ) BFME_DISPLAY_SLOT( 42 ) BFME_DISPLAY_SLOT( 43 )
+	BFME_DISPLAY_SLOT( 44 ) BFME_DISPLAY_SLOT( 45 ) BFME_DISPLAY_SLOT( 46 ) BFME_DISPLAY_SLOT( 47 )
+	BFME_DISPLAY_SLOT( 48 ) BFME_DISPLAY_SLOT( 49 ) BFME_DISPLAY_SLOT( 50 ) BFME_DISPLAY_SLOT( 51 )
+	BFME_DISPLAY_SLOT( 52 ) BFME_DISPLAY_SLOT( 53 ) BFME_DISPLAY_SLOT( 54 ) BFME_DISPLAY_SLOT( 55 )
+	BFME_DISPLAY_SLOT( 56 ) BFME_DISPLAY_SLOT( 57 ) BFME_DISPLAY_SLOT( 58 ) BFME_DISPLAY_SLOT( 59 )
+	BFME_DISPLAY_SLOT( 60 ) BFME_DISPLAY_SLOT( 61 ) BFME_DISPLAY_SLOT( 62 ) BFME_DISPLAY_SLOT( 63 )
+	BFME_DISPLAY_SLOT( 64 ) BFME_DISPLAY_SLOT( 65 ) BFME_DISPLAY_SLOT( 66 ) BFME_DISPLAY_SLOT( 67 )
+	BFME_DISPLAY_SLOT( 68 ) BFME_DISPLAY_SLOT( 69 ) BFME_DISPLAY_SLOT( 70 ) BFME_DISPLAY_SLOT( 71 )
+	BFME_DISPLAY_SLOT( 72 ) BFME_DISPLAY_SLOT( 73 ) BFME_DISPLAY_SLOT( 74 ) BFME_DISPLAY_SLOT( 75 )
+	BFME_DISPLAY_SLOT( 76 ) BFME_DISPLAY_SLOT( 77 ) BFME_DISPLAY_SLOT( 78 ) BFME_DISPLAY_SLOT( 79 )
+	BFME_DISPLAY_SLOT( 80 ) BFME_DISPLAY_SLOT( 81 )
+#undef BFME_DISPLAY_SLOT
+	virtual Real getAverageFPS();
+};
+
+extern Display *TheDisplay;
+
+class GameEngine
+{
+public:
+	Real getInstantFPS() const { return m_instantFPS; }
+
+private:
+	unsigned char m_unmodelled00[ 0x54 ];
+	Real m_instantFPS;
+};
+
+extern GameEngine *TheGameEngine;
+
 class StatsCollector
 {
 public:
@@ -63,9 +147,10 @@ public:
 
 private:
 	void writeInitialFileInfo();
+	void writeStatInfo();
 	AsciiString m_statsFileName;
-	UnsignedInt m_moneyDeposited;
 	UnsignedInt m_moneyWithdrawn;
+	UnsignedInt m_moneyDeposited;
 	UnsignedInt m_buildCommands;
 	UnsignedInt m_moveCommands;
 	UnsignedInt m_attackCommands;
@@ -73,16 +158,16 @@ private:
 	UnsignedInt m_aiUnits;
 	UnsignedInt m_playerUnits;
 	UnsignedInt m_alliesKilled;
-	UnsignedInt m_enemiesKilled;
 	UnsignedInt m_neutralsKilled;
-	UnsignedInt m_scoreKeeperBuildingsLost;
-	UnsignedInt m_scoreKeeperBuildingsBuilt;
-	UnsignedInt m_scoreKeeperBuildingsDestroyed;
-	UnsignedInt m_scoreKeeperUnitsLost;
-	UnsignedInt m_scoreKeeperUnitsBuilt;
-	UnsignedInt m_scoreKeeperUnitsDestroyed;
-	UnsignedInt m_scoreKeeperMoneyEarned;
+	UnsignedInt m_enemiesKilled;
 	UnsignedInt m_scoreKeeperMoneySpent;
+	UnsignedInt m_scoreKeeperMoneyEarned;
+	UnsignedInt m_scoreKeeperUnitsDestroyed;
+	UnsignedInt m_scoreKeeperUnitsBuilt;
+	UnsignedInt m_scoreKeeperUnitsLost;
+	UnsignedInt m_scoreKeeperBuildingsDestroyed;
+	UnsignedInt m_scoreKeeperBuildingsBuilt;
+	UnsignedInt m_scoreKeeperBuildingsLost;
 	UnsignedInt m_scrollBeginTime;
 	UnsignedInt m_scrollTime;
 	Bool m_isScrolling;
@@ -93,8 +178,8 @@ private:
 
 StatsCollector::StatsCollector()
 {
-	m_moneyDeposited = 0;
 	m_moneyWithdrawn = 0;
+	m_moneyDeposited = 0;
 	m_buildCommands = 0;
 	m_moveCommands = 0;
 	m_attackCommands = 0;
@@ -102,16 +187,16 @@ StatsCollector::StatsCollector()
 	m_aiUnits = 0;
 	m_playerUnits = 0;
 	m_alliesKilled = 0;
-	m_enemiesKilled = 0;
 	m_neutralsKilled = 0;
-	m_scoreKeeperBuildingsLost = 0;
-	m_scoreKeeperBuildingsBuilt = 0;
-	m_scoreKeeperBuildingsDestroyed = 0;
-	m_scoreKeeperUnitsLost = 0;
-	m_scoreKeeperUnitsBuilt = 0;
-	m_scoreKeeperUnitsDestroyed = 0;
-	m_scoreKeeperMoneyEarned = 0;
+	m_enemiesKilled = 0;
 	m_scoreKeeperMoneySpent = 0;
+	m_scoreKeeperMoneyEarned = 0;
+	m_scoreKeeperUnitsDestroyed = 0;
+	m_scoreKeeperUnitsBuilt = 0;
+	m_scoreKeeperUnitsLost = 0;
+	m_scoreKeeperBuildingsDestroyed = 0;
+	m_scoreKeeperBuildingsBuilt = 0;
+	m_scoreKeeperBuildingsLost = 0;
 	m_scrollBeginTime = 0;
 	m_scrollTime = 0;
 	m_isScrolling = FALSE;
@@ -162,5 +247,52 @@ void StatsCollector::writeInitialFileInfo()
 	fprintf( f, "ScoreKeeper_BuildingsLost\t" );
 	fprintf( f, "\n" );
 
+	fclose( f );
+}
+
+void StatsCollector::writeStatInfo()
+{
+	FILE *f = fopen( m_statsFileName.str(), "a" );
+	if( !f )
+		return;
+
+	Player *player = ThePlayerList->getLocalPlayer();
+	Money *money = player->getMoney();
+	fprintf( f, "%d\t", m_timeCount );
+	fprintf( f, "%.1f\t", TheDisplay ? TheDisplay->getAverageFPS() : 0.0f );
+	fprintf( f, "%.1f\t", TheGameEngine ? TheGameEngine->getInstantFPS() : 0.0f );
+	fprintf( f, "%d\t", m_buildCommands );
+	fprintf( f, "%d\t", m_moveCommands );
+	fprintf( f, "%d\t", m_attackCommands );
+	fprintf( f, "%d\t", m_scrollMapCommands );
+	fprintf( f, "%d\t", m_scrollTime / 5 );
+	fprintf( f, "%d\t", 0 );
+	fprintf( f, "%d\t", money->countMoney() );
+	fprintf( f, "%d\t", m_moneyWithdrawn );
+	fprintf( f, "%d\t", m_moneyDeposited );
+	fprintf( f, "%d\t", m_playerUnits );
+	fprintf( f, "%d\t", m_aiUnits );
+	fprintf( f, "%d\t", m_alliesKilled );
+	fprintf( f, "%d\t", m_enemiesKilled );
+	fprintf( f, "%d\t", m_neutralsKilled );
+
+	player = ThePlayerList->getLocalPlayer();
+	if( player )
+	{
+		ScoreKeeper *scoreKeeper = player->getScoreKeeper();
+		if( scoreKeeper )
+		{
+			fprintf( f, "%d\t", scoreKeeper->getTotalMoneySpent() - m_scoreKeeperMoneySpent );
+			fprintf( f, "%d\t", scoreKeeper->getTotalMoneyEarned() - m_scoreKeeperMoneyEarned );
+			fprintf( f, "%d\t", scoreKeeper->getTotalUnitsDestroyed() - m_scoreKeeperUnitsDestroyed );
+			fprintf( f, "%d\t", scoreKeeper->getTotalUnitsBuilt() - m_scoreKeeperUnitsBuilt );
+			fprintf( f, "%d\t", scoreKeeper->getTotalUnitsLost() - m_scoreKeeperUnitsLost );
+			fprintf( f, "%d\t", scoreKeeper->getTotalBuildingsDestroyed() - m_scoreKeeperBuildingsDestroyed );
+			fprintf( f, "%d\t", scoreKeeper->getTotalBuildingsBuilt() - m_scoreKeeperBuildingsBuilt );
+			fprintf( f, "%d\t", scoreKeeper->getTotalBuildingsLost() - m_scoreKeeperBuildingsLost );
+		}
+	}
+
+	fprintf( f, "\n" );
 	fclose( f );
 }
