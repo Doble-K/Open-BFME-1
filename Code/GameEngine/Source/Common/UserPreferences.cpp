@@ -216,16 +216,16 @@ Bool UserPreferences::getBool(AsciiString key, Bool defaultValue) const
 		val.compare( "y" ) == 0 || val.compare( "yes" ) == 0 || val.compare( "ok" ) == 0);
 }
 
-// ?getReal@UserPreferences@@QBEMVAsciiString@@M@Z present-unmatched
 Real UserPreferences::getReal(AsciiString key, Real defaultValue) const
 {
-	AsciiString val = getAsciiString(key, AsciiString::TheEmptyString);
-	if (val.isEmpty())
+	AsciiString val = reinterpret_cast<const BfmeUserPreferencesVirtualView *>( this )->getAsciiString( key, AsciiString::TheEmptyString );
+	BfmeAsciiStringDataView *data = reinterpret_cast<BfmeAsciiStringView *>( &val )->m_data;
+	if (!data || data->m_length == 0)
 	{
 		return defaultValue;
 	}
 
-	return (Real)atof(val.str());
+	return (Real)atof( reinterpret_cast<const char *>( data ) + 8 );
 }
 
 // ?getInt@UserPreferences@@QBEHVAsciiString@@H@Z present-unmatched
