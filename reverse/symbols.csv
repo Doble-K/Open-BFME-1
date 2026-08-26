@@ -3104,6 +3104,12 @@ name,address,notes
 ??0Rva0009F820String@@QAE@ABV0@@Z,0x0009F6E0,Open-BFME5 the string copy constructor the accessor at 0x0009F820 calls
 ??0Rva000A19E0StateBase@@QAE@PAXVAsciiString@@@Z,0x000035B2,base constructor thunk address decoded from the retail REL32 call site; name is address-derived
 ??0Rva0014F280StateBase@@QAE@PAXVAsciiString@@@Z,0x00032182,base constructor thunk address decoded from the retail REL32 call site; name is address-derived
+??0Rva002E9E70Mid@@QAE@ABV0@@Z,0x00033640,Open-BFME5 fresh thiscall copy ctor at ILT of mid member of 0x002E9E70
+??0Rva0033CopyBase@@QAE@ABV0@@Z,0x0001AB86,Open-BFME5 fresh thiscall copy ctor at ILT of 33B copy twins 0x0033A4C0 and 0x0033ACA0
+??0Rva003525E0Pair@@QAE@ABV0@@Z,0x00024C12,Open-BFME5 fresh thiscall copy ctor at ILT of SEH 0x003525E0
+??0Rva0036CA00Str@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 fresh thiscall copy ctor for 0x0036CA00 string members
+??0Rva004B2300Base@@QAE@ABV0@@Z,0x0004AAD4,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x004B2300
+??0Rva004C1590Base@@QAE@ABV0@@Z,0x0003FAF8,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x004C1590
 ??0Rva0050F840FunctorHolder@@QAE@UFunctorBinding@@@Z,0x0003C9D9,DisconnectScreen InitGadgets binding calls the established holder constructor through this ILT
 ??0Rva0050F840FunctorRef@@QAE@PAVFunctorTarget@@IP8FunctorTarget@@AEXXZ@Z,0x0050F840,address-derived per FunctorBindConstructors.cpp convention (no RTTI for the template): news the 0x18-byte functor wrapper with vtable 0x01104D9C (slot 1 = ?invoke@Rva0050E8F0FunctorInvoke) fills object/ctx/code/delta at +8..+0x14 stores it through ecx and addrefs; sole caller ctor 0x0050FA55 binding DisconnectScreen::InitGadgets; ILT 0x0003C9D9
 ??0Rva0050F8B0FunctorHolder@@QAE@UFunctorBinding@@@Z,0x000180C5,DisconnectScreen fscommand bindings call the established holder constructor through this ILT
@@ -3159,6 +3165,8 @@ name,address,notes
 ??0Rva005FED10@@QAE@PAXPAVV3HostRva005E82A0@@@Z,0x005FED10,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
 ??0Rva005FFAC0@@QAE@PAXPAVV3HostRva005E76E0@@@Z,0x005FFAC0,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
 ??0Rva006008D0@@QAE@PAXPAVV3HostRva005E7AD0@@@Z,0x006008D0,base constructor forwarded to by the new-plus-inline-ctor factory family (V3NewInlineCtorFactories.cpp); target read from the REL32 at its call site; address-derived name; identity not recovered
+??0Rva0060FD30Base@@QAE@ABV0@@Z,0x0000FA3D,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x0060FD30
+??0Rva00630D00UStr@@QAE@ABV0@@Z,0x00888530,Open-BFME5 fresh thiscall copy ctor for 0x00630D00 unicode-string member
 ??0Rva00647720String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
 ??0Rva00647720String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x00647720 calls
 ??0Rva00647750String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
@@ -3169,6 +3177,12 @@ name,address,notes
 ??0Rva006477E0String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x006477E0 calls
 ??0Rva00647920String@@QAE@ABV0@@Z,0x0001CB11,Open-BFME5 the string copy constructor a by-value accessor calls
 ??0Rva00647920String@@QAE@ABV0@@Z,0x004FB1B0,Open-BFME5 the string copy constructor the accessor at 0x00647920 calls
+??0Rva006E1700Base@@QAE@XZ,0x0002ACD4,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x006E1700
+??0Rva006E6C10Base@@QAE@XZ,0x00032F1F,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x006E6C10
+??0Rva006FB500Base@@QAE@XZ,0x00020004,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x006FB500
+??0Rva00722120Base@@QAE@XZ,0x000354E5,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x00722120
+??0Rva0076F980Mid@@QAE@ABV0@@Z,0x00007A63,Open-BFME5 fresh thiscall copy ctor at ILT of 12-byte mid member of 0x0076F980
+??0Rva007B12F0Base@@QAE@XZ,0x0000AF38,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x007B12F0
 ??0Rva007FBC30GameKey@@QAE@PAVRva007E8810Message@@@Z,0x007FBC30,V2 lane: FESL Aries LID/GID base constructor; base of the three derived record ctors in V2FeslAriesRecords.cpp
 ??0Rva007FF700FeslString@@QAE@XZ,0x007FF700,address-derived default constructor for two FESL string members in the 0x007F0CB0 blob record
 ??0Rva00802D00Element@@QAE@XZ,0x00802D00,V2 lane: 64-byte element constructor placement-new'd by ?allocate@Rva007F7810Block@@QAEXH@Z
@@ -8942,6 +8956,18 @@ name,address,notes
 ??4ProxyClass@@QAEAAV0@ABV0@@Z,0x00933C60,packet 00934630 pin
 ??4RankInfo@@QAEAAV0@ABV0@@Z,0x0002E53C,harvested from friend_parseRankDefinition (thunk)
 ??4RenderObjClass@@QAEAAV0@ABV0@@Z,0x0091F790
+??4Rva000A8490Mid10@@QAEAAV0@ABV0@@Z,0x0002114D,Open-BFME5 assign of the 12-byte mid at +0x10 used by 0x000A8490
+??4Rva000A8490Mid24@@QAEAAV0@ABV0@@Z,0x000303B4,Open-BFME5 assign of the mid at +0x24 used by 0x000A8490
+??4Rva002E9E70Mid@@QAEAAV0@ABV0@@Z,0x00033640,Open-BFME5 assign of the mid member used by 0x002E17F0
+??4Rva00365070Blk@@QAEAAV0@ABV0@@Z,0x00002B44
+??4Rva0036CA00Str@@QAEAAV0@ABV0@@Z,0x00887C90,Open-BFME5 assign of the 0x00887C90 string member used by skip-vptr operator=
+??4Rva0039C830Mid@@QAEAAV0@ABV0@@Z,0x000163BA,Open-BFME5 assign of the mid at +0x14 used by 0x0039C830
+??4Rva003B6C40Mid@@QAEAAV0@ABV0@@Z,0x0002BABC,Open-BFME5 assign of the 12-byte mid member used by 0x003B6C40
+??4Rva005672C0Map@@QAEAAV0@ABV0@@Z,0x00013403
+??4Rva005673A0Vec@@QAEAAV0@ABV0@@Z,0x0002099B
+??4Rva00630D00UStr@@QAEAAV0@ABV0@@Z,0x00888530,Open-BFME5 assign of the unicode-string member used by firstpush copies
+??4Rva00698DD0Base@@QAEAAV0@ABV0@@Z,0x0001F753,Open-BFME5 fresh thiscall assign at ILT of derived assign 0x00698DD0
+??4Rva0076F980Mid@@QAEAAV0@ABV0@@Z,0x00007A63,Open-BFME5 assign of the 12-byte mid member used by 0x0034F780
 ??4ScienceInfoBase@@QAEAAV0@ABV0@@Z,0x00048725,Open-BFME5 ScienceInfo overridable-base assignment
 ??4ScienceVecStorage@@QAEAAV0@ABV0@@Z,0x0002A185,Open-BFME5 ScienceInfo prerequisite-vector assignment ILT
 ??4SegLineRendererClass@@QAEAAV0@ABV0@@Z,0x009600F0
@@ -10111,6 +10137,7 @@ name,address,notes
 ?Rva00897330NotifyFree@@YAXPAX@Z,0x00897330,address decoded from the retail REL32 call site; name is address-derived
 ?Rva009F8878Notify@@YGXPAX0@Z,0x009F8878,address-derived stdcall notification target called by 0x0048CDD0
 ?Rva012ED238Global@@3PAXA,0x012ED238,address-derived global used by 0x0048CDD0 notification pair
+?Rva01336E50Str@@3VRva0036CA00Str@@A,0x01336E50,Open-BFME5 global Rva0036CA00Str immediate used by 0x00385180/0x003855C0 reset
 ?Rva01358E54@@YGXPAX@Z,0x01358E54,pin
 ?Rva01358EA8@@YGXPAX@Z,0x01358EA8,pin
 ?Rva01358ECC@@YGXPAX@Z,0x01358ECC,pin
@@ -72000,8 +72027,6 @@ name,address,notes
 ?bfmeAccept@Gen_0077F790@@AAEXPAVBfmeSeedTarget@@@Z,0x00011CBB,Open-BFME5 ILT the seeder at 0x0077F790 accepts through
 ?bfmeAccepts@Gen_00684b90Holder@@QAEHPAX@Z,0x00004F6B,Open-BFME5 ILT the guard at 0x00684B90 asks its holder through
 ?bfmeAllocNode@@YAPAXI@Z,0x0082E540,Open-BFME5 the 16-byte allocator the node makers at 0x0046A070 0x0046B1C0 and 0x00927760 call
-?bfmeAccepts@Gen_00684b90Holder@@QAEHPAX@Z,0x00004F6B,Open-BFME5 ILT the guard at 0x00684B90 asks its holder through
-?bfmeAllocNode@@YAPAXI@Z,0x0082E540,Open-BFME5 the 16-byte allocator the node makers at 0x0046A070 0x0046B1C0 and 0x00927760 call
 ?bfmeAllocate@Gen_007b9e80@@AAE_NHH@Z,0x0003FC7E,Open-BFME5 the allocate the reserve at 0x007B9E80 calls
 ?bfmeAllocate@Gen_009073d0@@AAE_NHH@Z,0x00905DC0,Open-BFME5 the allocate the reserve at 0x009073D0 calls
 ?bfmeAllocate@Gen_00930d00@@AAE_NHH@Z,0x009304A0,Open-BFME5 the allocate the reserve at 0x00930D00 calls
@@ -72136,11 +72161,6 @@ name,address,notes
 ?bfmeForward@Gen_0094BFB0Target@@QAEXXZ,0x009EB7A0,Open-BFME5 the callee the guarded delegate at 0x0094BFB0 tail-jumps to
 ?bfmeForward@Gen_009EBB40Target@@QAEHXZ,0x009EE620,Open-BFME5 the callee the guarded delegate at 0x009EBB40 tail-jumps to
 ?bfmeForward@Gen_009EBB60Target@@QAEHXZ,0x009EDE40,Open-BFME5 the callee the guarded delegate at 0x009EBB60 tail-jumps to
-?bfmeForward@Gen_006C8A20Target@@QAE_NPAX0@Z,0x0003A03A,Open-BFME5 ILT the guarded delegate at 0x006C8A20 forwards through
-?bfmeForward@Gen_006C8A40Target@@QAE_NPAX0@Z,0x0001551E,Open-BFME5 ILT the guarded delegate at 0x006C8A40 forwards through
-?bfmeForward@Gen_00730EB0Target@@QAE_NPAX0@Z,0x00049328,Open-BFME5 ILT the guarded delegate at 0x00730EB0 forwards through
-?bfmeForward@Gen_00730ED0Target@@QAE_NPAX0@Z,0x00027EE9,Open-BFME5 ILT the guarded delegate at 0x00730ED0 forwards through
-?bfmeForward@Gen_00730EF0Target@@QAE_NPAX0@Z,0x0002CAF7,Open-BFME5 ILT the guarded delegate at 0x00730EF0 forwards through
 ?bfmeGetAllocator@Gen_000bb890@@ABE?AVBfmeAllocator@@XZ,0x0001E2A4,Open-BFME5 ILT the copy constructor at 0x000BB890 gets its allocator through
 ?bfmeGetAllocator@Gen_000ce890@@ABE?AVBfmeAllocator@@XZ,0x00008BED,Open-BFME5 ILT the copy constructor at 0x000CE890 gets its allocator through
 ?bfmeGetAllocator@Gen_0036e170@@ABE?AVBfmeAllocator@@XZ,0x000441BB,Open-BFME5 ILT the copy constructor at 0x0036E170 gets its allocator through
@@ -72593,6 +72613,7 @@ name,address,notes
 ?clear@RadiusDecal@@QAEXXZ,0x00046344,pinharvest x2 (thunk)
 ?clear@RadiusDecal@@QAEXXZ,0x0004A8A9,RadiusDecalUpdate::createRadiusDecal retail callee
 ?clear@RadiusDecal@@QAEXXZ,0x00458310,RadiusDecal::clear body at 0x00458310; callee of assigned RadiusDecalUpdate destructor
+?clear@Rva0036CA00Str@@QAEXXZ,0x00887940
 ?clear@TeamFactory@@QAEXXZ,0x000284A7
 ?clear@UnicodeString@@QAEXXZ,0x008881D0,retail UnicodeString::clear body called from DictPair::clear
 ?clear@W3DAnimationInfoAllocateAndCopyShim@_STL@@QAEXXZ,0x003B0E90,_STL vector _M_clear W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
@@ -76269,6 +76290,8 @@ name,address,notes
 ?strtrim@@YAPADPAD@Z,0x009E7EB0
 ?substr@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QBE?AV12@II@Z,0x006550F0,STLport basic_string<char>::substr(pos; n): constructs the hidden return string from [begin+pos; begin+pos+min(n; size-pos)) through the range ctor ILT 0x0002648B; four callers in parsePlayerKVPairs@GameSpyPSMessageQueueInterface 0x00659888..0x00659A25; ILT 0x0003D60E
 ?supportTextureFormat@W3DRadarFormatCaps@@QAE_NW4WW3DFormat@@@Z,0x0091B4F0,W3DRadar BFME caps query ABI shim
+?swap@Rva00356830Blk@@QAEXAAV1@@Z,0x00040372
+?swap@Rva003569D0Blk@@QAEXAAV1@@Z,0x0000EFE3
 ?switchToContext@ControlBar@@IAEXW4ControlBarContext@@PAVDrawable@@@Z,0x000329D4,Open-BFME7: incremental-link thunk for the real body at 0x0049E780 (int3-bounded start; reads m_currContext at +0x60 and m_currentSelectedDrawable at +0x5C); the ledger row for this name sits at 0x0049E901 which is inside that body
 ?tail@Gen_00417cb0@@QAEXPAX@Z,0x00417A70,Open-BFME5 address-derived name; tail-jmp target of 0x00417CB0 via ILT 0x000294B5; identity not asserted
 ?take0046DBB0@S4Holder0046DBB0@@QAEXABVAsciiString@@@Z,0x0046DBB0,S4 holder method of the string-vector drain family (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
@@ -77189,142 +77212,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-?sendDisconnectFrameCommand@BFMEConnectionManager@@QAEXXZ,0x000402D7,DisconnectManager status update notification call through ILT to the existing 0x00663910 body
-?isPlayerInGame@BFMEConnectionManager@@QAE_NH@Z,0x0004A87C,DisconnectManager status update live-state test through ILT to the existing 0x00662BE0 body
-?getPacketRouterSlot@ConnectionManager@@QAEIXZ,0x000374B1,DisconnectManager status update packet-router gate through ILT to the existing 0x00662DE0 body
-?hasPingSuccessRatioAtLeast@BFMEDisconnectManager@@QAE_NM@Z,0x0003E3AB,DisconnectManager status update ratio check through ILT to the existing 0x0066B150 body
-?_bfme_arePlayerControlsShown@DisconnectMenu@@QAE_NH@Z,0x0001AF28,DisconnectManager status update visibility query through ILT to the existing 0x0050E6D0 body
-?_bfme_showPlayerControls@DisconnectMenu@@QAEXH_N@Z,0x000135C0,DisconnectManager status update visibility setter through ILT to the existing 0x0050E650 body
-?setPlayerTimeoutTime@DisconnectMenu@@QAEXHH@Z,0x00020EB4,DisconnectManager status update percentage setter through ILT to the existing 0x0050ED70 body
-?allOnSameFrame@DisconnectManager@@IAE_NPAVConnectionManager@@@Z,0x00020DB5,DisconnectManager status update frame-alignment gate through ILT to the existing 0x0066C160 body
-?isLocalPlayerNextPacketRouter@DisconnectManager@@IAE_NPAVConnectionManager@@@Z,0x0003904F,DisconnectManager status update local-router gate through ILT to the existing 0x0066C260 body
-?sendDisconnectCommand@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,0x000407EB,DisconnectManager status update command dispatch through ILT to the existing 0x0066B9F0 body
-?disconnectPlayer@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,0x000201F3,DisconnectManager status update player removal through ILT to the existing 0x0066C040 body
-?sendPlayerDestruct@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,0x0004B0B0,DisconnectManager status update destruction dispatch through ILT to the existing 0x0066B550 body
-?g_bfmeDisconnectPingResult@@3HA,0x012B9810,standalone disconnect ping-result state read and set by updateDisconnectStatus after the sub-ten-percent ratio check
-?destroyPath@AIUpdateInterface@@QAEXXZ,0x000065E1,requestApproachPath retail ILT reaches the 0x0026F080 path destructor body
-?resetPlayersVotes@DisconnectManager@@IAEXHIPAVConnectionManager@@@Z,0x000333E3,DisconnectManager frame processing resets stale votes through the ILT to the existing 0x0066B7B0 body
-?resendFrameRangeToPlayer@BFMEConnectionManager@@QAEXHII@Z,0x0000D8CD,DisconnectManager frame processing requests the BFME three-argument resend through the ILT to the existing 0x00664B40 body
-?getDistanceSquared@SupplyWarehouseActionObject@@QBEMPBV1@@Z,0x00043CED,SupplyWarehouse action TU-local semantic shim; ILT reaches the 0x000ED3B0 object separation-squared body whose layout and sole Object argument prove the call
-?GetGameLogicRandomValue@@YAHHHPADH@Z,0x00001BAE,SupplyWarehouse action random-position twitch calls the retail ILT before the existing 0x00096CF0 body
-??0DWSU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DelayedWeaponSetUpgradeUpdate calls the shared ObjectModule constructor ILT
-?reallyDoFX@ParticleSystemFXNugget@@IBEXPBUCoord3D@@PBVMatrix3D@@PBVObject@@2@Z,0x0000F105,zh-landmulti per-site callee copy (body proven byte-equal)
-??0HordeWorkerAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000254A0,HordeWorkerAIUpdate ModuleFactory body calls this base constructor ILT
-?setWakeFrame@HordeWorkerAIUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
-??0GBB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,GettingBuiltBehavior ModuleFactory body calls the shared ObjectModule constructor ILT
-?setWakeFrame@GBB_UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
-??0ALU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,AudioLoopUpgrade ModuleFactory body calls the shared ObjectModule constructor ILT
-??0ALU_UpgradeMux@@QAE@XZ,0x0003D24E,AudioLoopUpgrade calls the independently matched UpgradeMux constructor ILT
-??0LightPulseFXNugget@@QAE@XZ,0x00021175,LightPulse parser calls this constructor ILT; target resolves to the 0x00828E10 body
-?setWakeFrame@ALU_UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
-??0BPU_BaseModuleData@@QAE@XZ,0x0000F0A6,BattlePlanUpdateModuleData constructs the shared module-data base through this ILT
-??0FWWD_BaseModuleData@@QAE@XZ,0x0000F0A6,FireWeaponWhenDamagedBehaviorModuleData constructs the shared module-data base through this ILT
-??0AHB_BaseModuleData@@QAE@XZ,0x0000F0A6,AutoHealBehaviorModuleData constructs the shared module-data base through this ILT
-??0WUU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,WallUpgradeUpdate constructor calls the shared ObjectModule constructor ILT
-?bfmeForward@Gen_000C9770Target@@QAEXPAX@Z,0x000107D5,Open-BFME5 the callee the guarded delegate at 0x000C9770 tail-jumps to
-?bfmeForward@Gen_000C9B40Target@@QAEXPAX@Z,0x0004AFAC,Open-BFME5 the callee the guarded delegate at 0x000C9B40 tail-jumps to
-?bfmeForward@Gen_001BF950Target@@QAEHPAX0@Z,0x000044C6,Open-BFME5 the callee the guarded delegate at 0x001BF950 tail-jumps to
-?bfmeForward@Gen_001D5EE0Target@@QAEXPAX0@Z,0x0002133C,Open-BFME5 the callee the guarded delegate at 0x001D5EE0 tail-jumps to
-?bfmeForward@Gen_002DDCC0Target@@QAEXPAX0@Z,0x00022D86,Open-BFME5 the callee the guarded delegate at 0x002DDCC0 tail-jumps to
-?bfmeForward@Gen_002F1290Target@@QAEXPAX@Z,0x00005E25,Open-BFME5 the callee the guarded delegate at 0x002F1290 tail-jumps to
-?bfmeForward@Gen_003C6340Target@@QAEXPAX@Z,0x0000600F,Open-BFME5 the callee the guarded delegate at 0x003C6340 tail-jumps to
-?bfmeForward@Gen_004125F0Target@@QAEXPAX0@Z,0x0002A8D3,Open-BFME5 the callee the guarded delegate at 0x004125F0 tail-jumps to
-?bfmeForward@Gen_00429F60Target@@QAEXPAX0@Z,0x00022D86,Open-BFME5 the callee the guarded delegate at 0x00429F60 tail-jumps to
-?bfmeForward@Gen_0042E700Target@@QAEHPAX00@Z,0x0002282C,Open-BFME5 the callee the guarded delegate at 0x0042E700 tail-jumps to
-?bfmeForward@Gen_0043A570Target@@QAEXPAX@Z,0x0002B526,Open-BFME5 the callee the guarded delegate at 0x0043A570 tail-jumps to
-?bfmeForward@Gen_0043BC10Target@@QAEXPAX0@Z,0x000198B2,Open-BFME5 the callee the guarded delegate at 0x0043BC10 tail-jumps to
-?bfmeForward@Gen_005169E0Target@@QAE_NPAX@Z,0x00024B7C,Open-BFME5 the callee the guarded delegate at 0x005169E0 tail-jumps to
-?bfmeForward@Gen_0060D600Target@@QAEXPAX@Z,0x00017544,Open-BFME5 the callee the guarded delegate at 0x0060D600 tail-jumps to
-?bfmeForward@Gen_00681960Target@@QAEXPAX@Z,0x0001D1BA,Open-BFME5 the callee the guarded delegate at 0x00681960 tail-jumps to
-?bfmeForward@Gen_00681B60Target@@QAEHXZ,0x0000355D,Open-BFME5 the callee the guarded delegate at 0x00681B60 tail-jumps to
-?bfmeForward@Gen_00681B80Target@@QAEHXZ,0x0004A291,Open-BFME5 the callee the guarded delegate at 0x00681B80 tail-jumps to
-?bfmeForward@Gen_00681DD0Target@@QAE_NPAX@Z,0x000486B2,Open-BFME5 the callee the guarded delegate at 0x00681DD0 tail-jumps to
-?bfmeForward@Gen_00688AB0Target@@QAEXPAX@Z,0x00012F03,Open-BFME5 the callee the guarded delegate at 0x00688AB0 tail-jumps to
-?bfmeForward@Gen_006BC890Target@@QAEXPAX@Z,0x008F8110,Open-BFME5 the callee the guarded delegate at 0x006BC890 tail-jumps to
-?bfmeForward@Gen_006BE210Target@@QAE_NPAX0@Z,0x00020923,Open-BFME5 the callee the guarded delegate at 0x006BE210 tail-jumps to
-?bfmeForward@Gen_006C7690Target@@QAEXPAX@Z,0x0000DB11,Open-BFME5 the callee the guarded delegate at 0x006C7690 tail-jumps to
-?bfmeForward@Gen_006C8870Target@@QAEXPAX@Z,0x00014051,Open-BFME5 the callee the guarded delegate at 0x006C8870 tail-jumps to
-?bfmeForward@Gen_006C89D0Target@@QAEHPAX0@Z,0x0002E771,Open-BFME5 the callee the guarded delegate at 0x006C89D0 tail-jumps to
-?bfmeForward@Gen_006C8A60Target@@QAE_NPAX@Z,0x0001F640,Open-BFME5 the callee the guarded delegate at 0x006C8A60 tail-jumps to
-?bfmeForward@Gen_006C8A80Target@@QAE_NPAX@Z,0x00027B0B,Open-BFME5 the callee the guarded delegate at 0x006C8A80 tail-jumps to
-?bfmeForward@Gen_006C8C00Target@@QAEXPAX@Z,0x00002257,Open-BFME5 the callee the guarded delegate at 0x006C8C00 tail-jumps to
-?bfmeForward@Gen_00730E00Target@@QAEXPAX@Z,0x0001E597,Open-BFME5 the callee the guarded delegate at 0x00730E00 tail-jumps to
-?bfmeForward@Gen_00730E60Target@@QAEHPAX0@Z,0x0001847B,Open-BFME5 the callee the guarded delegate at 0x00730E60 tail-jumps to
-?bfmeForward@Gen_00730F10Target@@QAE_NPAX@Z,0x000164FF,Open-BFME5 the callee the guarded delegate at 0x00730F10 tail-jumps to
-?bfmeForward@Gen_00730F50Target@@QAEXPAX@Z,0x00047604,Open-BFME5 the callee the guarded delegate at 0x00730F50 tail-jumps to
-?bfmeForward@Gen_0075BE40Target@@QAEXPAX@Z,0x0002B526,Open-BFME5 the callee the guarded delegate at 0x0075BE40 tail-jumps to
-?bfmeForward@Gen_0094BFA0Target@@QAEXXZ,0x009EB7A0,Open-BFME5 the callee the guarded delegate at 0x0094BFA0 tail-jumps to
-?bfmeForward@Gen_0094BFB0Target@@QAEXXZ,0x009EB7A0,Open-BFME5 the callee the guarded delegate at 0x0094BFB0 tail-jumps to
-?bfmeForward@Gen_009EBB40Target@@QAEHXZ,0x009EE620,Open-BFME5 the callee the guarded delegate at 0x009EBB40 tail-jumps to
-?bfmeForward@Gen_009EBB60Target@@QAEHXZ,0x009EDE40,Open-BFME5 the callee the guarded delegate at 0x009EBB60 tail-jumps to
-??0GiantBirdAIUpdateModuleDataBase@@QAE@XZ,0x00048A3B,GiantBirdAIUpdateModuleData base ctor (same ILT as the ICF-folded Firestorm body)
-??0TU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ToppleUpdate constructor calls the shared ObjectModule constructor ILT
-??0FU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,FlammableUpdate constructor calls the shared ObjectModule constructor ILT
-??0LGAU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,LargeGroupAudioUpdate constructor calls the shared ObjectModule constructor ILT
-??0FWU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,FireWeaponUpdate constructor calls the shared ObjectModule constructor ILT
-??0RetailLayoutString@@QAE@XZ,0x00017BD9,BFME layout-string default constructor ILT read out of the eh vector constructor argument
-??1RetailLayoutString@@QAE@XZ,0x0000D828,BFME layout-string destructor ILT read out of the eh vector constructor argument
-??0HordeTransportContainModuleDataBase@@QAE@XZ,0x0003D055,base of HordeTransportContainModuleData; same ILT as the ICF-folded HordeGarrisonContain body
-??0HordeTransportContainModuleDataBase@@QAE@XZ,0x0022E820,base constructor HordeTransportContainModuleData forwards to
-??0DelayedDeathBodyModuleDataBase@@QAE@XZ,0x0003C556,base of DelayedDeathBodyModuleData; same ILT as the ICF-folded BaikonurLaunchPower body
-??0DelayedDeathBodyModuleDataBase@@QAE@XZ,0x002149D0,base constructor DelayedDeathBodyModuleData forwards to
-??0FreeLifeBodyModuleDataBase@@QAE@XZ,0x0003C556,base of FreeLifeBodyModuleData; same ILT as the ICF-folded MissileAIUpdate body
-?xferTerrainState@TerrainLogic@@IAEXPAVXfer@@@Z,0x00043ED7,TerrainLogic::xfer tail call ILT reaching the body at 0x001AD370
-?intersect_obbox_brute_force@MeshGeometryClass@@AAE_NAAVOBBoxIntersectionTestClass@@@Z,0x00926BE0,MeshGeometryClass brute-force OBBox arm reached by the tail jump at 0x0092793D
-??0RRU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,RubbleRiseUpdate constructor calls the shared ObjectModule constructor ILT
-??0HDU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HeightDieUpdate constructor calls the shared ObjectModule constructor ILT
-??0SESU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,SpecialEnemySenseUpdate constructor calls the shared ObjectModule constructor ILT
-??0BB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,BuildingBehavior constructor calls the shared ObjectModule constructor ILT
-??0DWB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DualWeaponBehavior constructor calls the shared ObjectModule constructor ILT
-??0HRB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HitReactionBehavior constructor calls the shared ObjectModule constructor ILT
-??0BFU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,BoneFXUpdate constructor calls the shared ObjectModule constructor ILT
-??0PPB_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ParkingPlaceBehavior constructor calls the shared ObjectModule constructor ILT
-?_bfme_closeAptScreen@@YAXABVAsciiString@@@Z,0x00036485,DisconnectScreen destructor calls the established close-screen helper through this ILT
-??1_bfme_AptGameWindow@@UAE@XZ,0x000204C3,DisconnectScreen destructor chains through the established APT base destructor ILT
-?bfme_hideBackground@WindowManager@@QAEX_N@Z,0x0000BD7F,DisconnectScreen destructor calls the established background helper through this ILT
-?BfmeAptScreenDisconnectScreenSecondaryVftable@@3PAPBXA,0x01104DE4,secondary vftable written at offset 0x218 by the DisconnectScreen destructor
-??0HRBMD_Buffer@@QAE@XZ,0x0003747A,HitReactionBehaviorModuleData member constructor ILT
-??0FWWDead_UpgradeMuxData@@QAE@XZ,0x0000F0A6,FireWeaponWhenDeadBehaviorModuleData UpgradeMuxData constructor ILT
-??0FWWDead_DieMuxData@@QAE@XZ,0x000071E4,FireWeaponWhenDeadBehaviorModuleData DieMuxData constructor ILT
-?reset@GameInfo@@UAEXXZ,0x00049D14,GameSpyStagingRoom reset calls the GameInfo reset incremental-link thunk
-_FreeGame,0x009D2B70,Official gstats.c FreeGame identity; GameSpyStagingRoom reset releases its statsgame pointer at +0x464
-?bfme_showBackground@WindowManager@@QAEXH@Z,0x00009494,DisconnectScreen constructor calls the established background helper through this ILT
-??0Rva0050F840FunctorHolder@@QAE@UFunctorBinding@@@Z,0x0003C9D9,DisconnectScreen InitGadgets binding calls the established holder constructor through this ILT
-??0Rva0050F8B0FunctorHolder@@QAE@UFunctorBinding@@@Z,0x000180C5,DisconnectScreen fscommand bindings call the established holder constructor through this ILT
-?_bfme_setAptScreenRef@@YAXABVAsciiString@@VRva0050F840FunctorHolder@@@Z,0x0003DF14,DisconnectScreen constructor registers InitGadgets through this ILT
-?_bfme_showAptScreen@_bfme_AptGameWindow@@QAEXABVAsciiString@@VRva0050F8B0FunctorHolder@@@Z,0x000338ED,DisconnectScreen constructor registers its fscommand callbacks through this ILT
-?_bfme_showAptScreenWithArg@_bfme_AptGameWindow@@QAEXABVAsciiString@@PAXVRva0050F920FunctorHolder@@@Z,0x0000ACFE,DisconnectScreen constructor registers its player-color providers through this ILT
-?bfme_setAptText@WindowManager@@QAEXABVAsciiString@@ABVUnicodeString@@@Z,0x0000BDCA,DisconnectMenu setPlayerName calls the established APT text setter through this ILT
-?unidentified_00015235@WindowManager@@QAEXHPBDHPBXHHHH@Z,0x00015235,DisconnectMenu setPlayerName invokes HideKickButton through the established scripted-UI dispatcher ILT
-
-
-??0Rva00722120Base@@QAE@XZ,0x000354E5,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x00722120
-??0Rva006E6C10Base@@QAE@XZ,0x00032F1F,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x006E6C10
-??0Rva007B12F0Base@@QAE@XZ,0x0000AF38,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x007B12F0
-??0Rva006E1700Base@@QAE@XZ,0x0002ACD4,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x006E1700
-??0Rva006FB500Base@@QAE@XZ,0x00020004,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x006FB500
-??0Rva0033CopyBase@@QAE@ABV0@@Z,0x0001AB86,Open-BFME5 fresh thiscall copy ctor at ILT of 33B copy twins 0x0033A4C0 and 0x0033ACA0
-??0Rva004B2300Base@@QAE@ABV0@@Z,0x0004AAD4,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x004B2300
-??0Rva004C1590Base@@QAE@ABV0@@Z,0x0003FAF8,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x004C1590
-??4Rva00698DD0Base@@QAEAAV0@ABV0@@Z,0x0001F753,Open-BFME5 fresh thiscall assign at ILT of derived assign 0x00698DD0
-??0Rva0060FD30Base@@QAE@ABV0@@Z,0x0000FA3D,Open-BFME5 fresh thiscall copy ctor at ILT of derived copy 0x0060FD30
-??0Rva0036CA00Str@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 fresh thiscall copy ctor for 0x0036CA00 string members
-??0Rva00630D00UStr@@QAE@ABV0@@Z,0x00888530,Open-BFME5 fresh thiscall copy ctor for 0x00630D00 unicode-string member
-??0Rva0076F980Mid@@QAE@ABV0@@Z,0x00007A63,Open-BFME5 fresh thiscall copy ctor at ILT of 12-byte mid member of 0x0076F980
-??0Rva002E9E70Mid@@QAE@ABV0@@Z,0x00033640,Open-BFME5 fresh thiscall copy ctor at ILT of mid member of 0x002E9E70
-??4Rva0036CA00Str@@QAEAAV0@ABV0@@Z,0x00887C90,Open-BFME5 assign of the 0x00887C90 string member used by skip-vptr operator=
-??4Rva0076F980Mid@@QAEAAV0@ABV0@@Z,0x00007A63,Open-BFME5 assign of the 12-byte mid member used by 0x0034F780
-??4Rva002E9E70Mid@@QAEAAV0@ABV0@@Z,0x00033640,Open-BFME5 assign of the mid member used by 0x002E17F0
-??4Rva003B6C40Mid@@QAEAAV0@ABV0@@Z,0x0002BABC,Open-BFME5 assign of the 12-byte mid member used by 0x003B6C40
-??4Rva000A8490Mid10@@QAEAAV0@ABV0@@Z,0x0002114D,Open-BFME5 assign of the 12-byte mid at +0x10 used by 0x000A8490
-??4Rva000A8490Mid24@@QAEAAV0@ABV0@@Z,0x000303B4,Open-BFME5 assign of the mid at +0x24 used by 0x000A8490
-??4Rva00630D00UStr@@QAEAAV0@ABV0@@Z,0x00888530,Open-BFME5 assign of the unicode-string member used by firstpush copies
-??4Rva0039C830Mid@@QAEAAV0@ABV0@@Z,0x000163BA,Open-BFME5 assign of the mid at +0x14 used by 0x0039C830
-?Rva01336E50Str@@3VRva0036CA00Str@@A,0x01336E50,Open-BFME5 global Rva0036CA00Str immediate used by 0x00385180/0x003855C0 reset
-??4Rva005672C0Map@@QAEAAV0@ABV0@@Z,0x00013403
-?clear@Rva0036CA00Str@@QAEXXZ,0x00887940
-??4Rva005673A0Vec@@QAEAAV0@ABV0@@Z,0x0002099B
-??0Rva003525E0Pair@@QAE@ABV0@@Z,0x00024C12,Open-BFME5 fresh thiscall copy ctor at ILT of SEH 0x003525E0
-?swap@Rva00356830Blk@@QAEXAAV1@@Z,0x00040372
-?swap@Rva003569D0Blk@@QAEXAAV1@@Z,0x0000EFE3
-??4Rva00365070Blk@@QAEAAV0@ABV0@@Z,0x00002B44
