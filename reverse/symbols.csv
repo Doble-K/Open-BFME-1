@@ -2177,6 +2177,7 @@ name,address,notes
 ??0DRB_BodyModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00025509,DetachableRiderBody calls the factory-proven ActiveBody constructor ILT
 ??0DRB_UpgradeMux@@QAE@XZ,0x0003D24E,DetachableRiderBody calls the independently matched UpgradeMux constructor ILT
 ??0DRU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DetachableRiderUpdate ModuleFactory body calls the shared ObjectModule constructor ILT
+??0RU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,RespawnUpdate ModuleFactory body calls the shared ObjectModule constructor ILT
 ??0SPEU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,SpawnPointProductionExitUpdate ModuleFactory body calls the shared ObjectModule constructor ILT
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001D3AE,pinharvest x1 (thunk)
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001F5C3,pinharvest x1 (thunk)
