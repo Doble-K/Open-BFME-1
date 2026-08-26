@@ -10048,6 +10048,7 @@ name,address,notes
 ?TheCreateCrateDiePool@?1??getClassMemoryPool@CreateCrateDie@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFBF4,pool-glue cascade static (back-solved)
 ?TheCreateObjectDiePool@?1??getClassMemoryPool@CreateObjectDie@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFBFC,pool-glue cascade static (back-solved)
 ?TheCrushDiePool@?1??getClassMemoryPool@CrushDie@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFC04,pool-glue cascade static (back-solved)
+?TheCurrentBannerMovie@@3HA,0x00EB8188,BannerUI movie-operation selection read and cleared by the callback installed at 0x0058327D
 ?TheDefaultProductionExitUpdatePool@?1??getClassMemoryPool@DefaultProductionExitUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EF04F4,pool-glue cascade static (back-solved)
 ?TheDefectorSpecialPowerPool@?1??getClassMemoryPool@DefectorSpecialPower@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFC74,pool-glue cascade static (back-solved)
 ?TheDeletionUpdatePool@?1??getClassMemoryPool@DeletionUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFF00,pool-glue cascade static (back-solved)
@@ -75121,6 +75122,7 @@ name,address,notes
 ?removeObjectFromLookupTable@GameLogic@@QAEXPAVObject@@@Z,0x00388A90,Open-BFME5 callee of ?setID@Object@@IAEXW4ObjectID@@@Z at 0x001BEC70 via ILT 0x00031656; body erases the m_id key from the GameLogic+0xb0 lookup map
 ?removeObjectFromPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,0x00006D7F,Open-BFME5 retail pathfinder removal thunk
 ?removeOverrideTeamRelationship@Team@@QAEXI@Z,0x0001A48D,Open-BFME5 ILT thunk to body 0x000F2530; ?teamAboutToBeDeleted@TeamPrototype@@QAEXPAVTeam@@@Z at 0x000F4090 calls it on every team with the departing team id or zero
+?removeMovieBanner@BannerUI@@QAEXH@Z,0x00033F50,BannerUI movie-operation cleanup call through the ILT to body 0x00582960; the selected id at 0x012B8188 is its sole argument
 ?removePlayer@DisconnectMenu@@QAEXHVUnicodeString@@@Z,0x0003F233,DisconnectManager::disconnectPlayer direct-call ILT thunk
 ?removePlayer@DisconnectMenu@@QAEXHVUnicodeString@@@Z,0x0050EB00,body of the ILT 0x0003F233 already pinned under this name; ZH removePlayer twin: AS var DisconnectScreen::PlayerName%d := name then TheGameText->fetch(Network:PlayerLeftGame) formatted into the ChatBox listbox this+0x258 via GadgetListBoxAddEntryText 0x004BB4B0 then HideKickButton(slot) and VotesReceived%d := empty; callers DisconnectManager::disconnectPlayer 0x0066C0F5 and the ctor 0x0050FC82 (8 slots with the empty string)
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0001D9DA,Open-BFME5 ILT; called by ?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z at 0x001BEBB0 on TheAI+0x0C before the layer store
