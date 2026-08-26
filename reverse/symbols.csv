@@ -77379,3 +77379,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?initializeBuckets@TeamRelationHashTable@@AAEXI@Z,0x00016A59,retail REL32 at 0x000F7726 targets the ILT for STLport hashtable _M_initialize_buckets
 ?primaryValueFor@Rva0036AF30Item@@QBEHPBVObject@@@Z,0x00025D92,retail jump thunk to the byte-verified primary state lookup at 0x003690A0
 ?bfmeFreeBlock@@YAXPAX@Z,0x00881EF0,Open-BFME5 the free the derived destructors at 0x00924090 and its siblings call
+?secondaryValueFor@Rva0036AF30Item@@QBEHPBVObject@@@Z,0x0003E1A3,retail jump thunk to the byte-verified secondary state lookup at 0x00369120

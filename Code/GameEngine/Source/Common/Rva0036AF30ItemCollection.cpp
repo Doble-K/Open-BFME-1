@@ -28,6 +28,7 @@ public:
 	int m_value;
 
 	int primaryValueFor(const Object *object) const;
+	int secondaryValueFor(const Object *object) const;
 };
 
 class Rva0036AF30ItemRange
@@ -50,6 +51,7 @@ public:
 	int valueAt(int index) const;
 	bool findPairAt(int index, unsigned int key, unsigned int *value) const;
 	int primaryValueAt(int index, const Object *object) const;
+	int secondaryValueAt(int index, const Object *object) const;
 };
 
 int Rva0036AF30ItemCollection::indexOf(int key) const
@@ -111,3 +113,16 @@ int Rva0036AF30ItemCollection::primaryValueAt(
 }
 
 // @?primaryValueAt@Rva0036AF30ItemCollection@@QBEHHPBVObject@@@Z 0x0036B000
+
+int Rva0036AF30ItemCollection::secondaryValueAt(
+	int index,
+	const Object *object) const
+{
+	if( index < 0 || (unsigned int)index > m_items.size() - 1 )
+		return 0;
+
+	Rva0036AF30Item *item = m_items[index];
+	return item ? item->secondaryValueFor(object) : 0;
+}
+
+// @?secondaryValueAt@Rva0036AF30ItemCollection@@QBEHHPBVObject@@@Z 0x0036B040
