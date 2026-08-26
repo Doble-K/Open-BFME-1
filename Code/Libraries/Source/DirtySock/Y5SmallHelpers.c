@@ -295,3 +295,30 @@ void Rva0080DD80(unsigned char *output, const unsigned char *key,
 	Rva0080F200(rc4, (const unsigned char *)text, combinedLength, -1);
 	Rva0080F300(rc4, output + 0x30, 0x24);
 }
+
+int Rva0080E030(int *crypto, const unsigned char *input,
+	const unsigned char *key, unsigned int totalLength)
+{
+	unsigned char rc4[0x102];
+	unsigned char header[0x34];
+	int combinedLength;
+	unsigned char combined[0x100];
+
+	if (input == 0)
+	{
+		crypto[0] = 0;
+		return 0;
+	}
+	memcpy(header, input, 0x34);
+	combinedLength = Rva0080DC90(key, header, combined);
+	Rva0080F200(rc4, combined, combinedLength, -1);
+	Rva0080F300(rc4, header + 0x10, 0x24);
+	if (*(unsigned int *)(header + 0x30) > totalLength
+		|| totalLength - *(unsigned int *)(header + 0x30) > 0xE10)
+		return -1;
+	Rva0080F200((unsigned char *)crypto + 8, header + 0x10, 0x10, -1);
+	Rva0080F200((unsigned char *)crypto + 0x10A, header + 0x20, 0x10, -1);
+	crypto[0] = 1;
+	crypto[1] = 0;
+	return 1;
+}
