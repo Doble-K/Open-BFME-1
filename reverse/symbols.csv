@@ -77703,3 +77703,5 @@ _BfmePathfindMapUpdate@12,0x0000BF28,Open-BFME5 ILT the two pathfind-map object 
 ??4Rva0076F980Mid@@QAEAAV0@ABV0@@Z,0x00007A63,Open-BFME5 assign of the 12-byte mid member used by 0x0034F780
 ??4Rva002E9E70Mid@@QAEAAV0@ABV0@@Z,0x00033640,Open-BFME5 assign of the mid member used by 0x002E17F0
 ??4Rva003B6C40Mid@@QAEAAV0@ABV0@@Z,0x0002BABC,Open-BFME5 assign of the 12-byte mid member used by 0x003B6C40
+??4Rva000A8490Mid10@@QAEAAV0@ABV0@@Z,0x0002114D,Open-BFME5 assign of the 12-byte mid at +0x10 used by 0x000A8490
+??4Rva000A8490Mid24@@QAEAAV0@ABV0@@Z,0x000303B4,Open-BFME5 assign of the mid at +0x24 used by 0x000A8490
