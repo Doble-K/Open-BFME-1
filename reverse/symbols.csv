@@ -77015,3 +77015,5 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?GetGameLogicRandomValue@@YAHHHPADH@Z,0x00001BAE,SupplyWarehouse action random-position twitch calls the retail ILT before the existing 0x00096CF0 body
 ??0DWSU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DelayedWeaponSetUpgradeUpdate calls the shared ObjectModule constructor ILT
 ?reallyDoFX@ParticleSystemFXNugget@@IBEXPBUCoord3D@@PBVMatrix3D@@PBVObject@@2@Z,0x0000F105,zh-landmulti per-site callee copy (body proven byte-equal)
+??0HordeWorkerAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000254A0,HordeWorkerAIUpdate ModuleFactory body calls this base constructor ILT
+?setWakeFrame@HordeWorkerAIUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
