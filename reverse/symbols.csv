@@ -3953,6 +3953,10 @@ name,address,notes
 ??1BfmeElementB@@QAE@XZ,0x0001AAD2,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementC@@QAE@XZ,0x00937390,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementD@@QAE@XZ,0x00018FCF,Open-BFME5 the element destructor the array-owning destructors call
+??1BfmeErasedValue_004EBC10@@QAE@XZ,0x00021445,Open-BFME5 the value destructor the list erase at 0x004EBC10 runs before freeing the node
+??1BfmeErasedValue_00627200@@QAE@XZ,0x0003F95E,Open-BFME5 the value destructor the list erase at 0x00627200 runs before freeing the node
+??1BfmeErasedValue_0076A810@@QAE@XZ,0x0001C954,Open-BFME5 the value destructor the list erase at 0x0076A810 runs before freeing the node
+??1BfmeErasedValue_0076B2F0@@QAE@XZ,0x000205A9,Open-BFME5 the value destructor the list erase at 0x0076B2F0 runs before freeing the node
 ??1BfmeEvaCheckInfoTail@@QAE@XZ,0x00011FDB,ILT thunk to the retail _Rb_tree<int,...> destructor at 0x004247C0, the per-record map subobject the EvaCheckInfoRecord vector destructor tears down at +0x10
 ??1BfmeEvaSideSoundsArray@@QAE@XZ,0x0089CC70,provisional structural name: incremental-link thunk fronting 0x0089C900 the dtor of EvaCheckInfo member at +0x8; count-plus-array container not an STLport vector
 ??1BfmeLegendString@@QAE@XZ,0x00887940,SubsystemLegend.cpp AsciiString stand-in dtor; folds with StringBase<char>::releaseBuffer
@@ -72229,6 +72233,7 @@ name,address,notes
 ?bfmeCopySlotD@@YAXPAUBfmeSlotD@@PAX@Z,0x00026BAC,Open-BFME5 the copy the bounded appends call
 ?bfmeCopySlotE@@YAXPAUBfmeSlotE@@PAX@Z,0x0001870F,Open-BFME5 the copy the bounded appends call
 ?bfmeCreateInactiveTeam@TeamFactory@@AAEPAVTeam@@ABVAsciiString@@0@Z,0x0000D15C,retail REL32 at 0x000F7CAB targets the two-name createInactiveTeam ILT at 0x0000D15C
+?bfmeDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 the node deallocator the list erases at 0x004EBC10 and siblings call
 ?bfmeDefer@Gen_002d60a0@@AAE_NPAVObject@@@Z,0x0000204F,Open-BFME5 ILT the guard at 0x002D60A0 tail-jumps through; it jumps to 0x002D9D00
 ?bfmeDispatchA@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x000075D6,Open-BFME5 ILT the range dispatcher at 0x002610F0 calls
 ?bfmeDispatchB@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00028501,Open-BFME5 ILT the range dispatcher at 0x00437D30 calls
