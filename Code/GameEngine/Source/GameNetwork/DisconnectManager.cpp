@@ -87,33 +87,35 @@ extern Int g_bfmeDisconnectPingResult;
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-// ??0DisconnectManager@@QAE@XZ present-unmatched
 DisconnectManager::DisconnectManager() 
 {
-	// Added By Sadullah Nader	
-	// Initializations missing and needed
-	Int i;
-	m_currentPacketRouterIndex = 0;
 	m_lastFrame = 0;
 	m_lastFrameTime = 0;
+	m_disconnectState = DISCONNECTSTATETYPE_SCREENON;
 	m_lastKeepAliveSendTime = 0;
-	m_haveNotifiedOtherPlayersOfCurrentFrame = FALSE;
+	// BFME packs this flag and adds tail state absent from the published ZH layout.
+	*(Int *)((char *)this + 0x258) = 0;
 	m_timeOfDisconnectScreenOn = 0;
+	m_pingsSent = 0;
+	m_pingsRecieved = 0;
+	m_pingFrame = 0;
+	*(Int *)((char *)this + 0x26c) = 0;
+	*(UnsignedByte *)((char *)this + 0x270) = 0;
 
-	for( i = 0; i < MAX_SLOTS; ++i) {
-		m_packetRouterFallback[i] = 0;
-	}
-	
-	m_packetRouterTimeout = 0;
-	for( i = 0; i < MAX_SLOTS -1; ++i) {
+	Int i;
+	for (i = 0; i < MAX_SLOTS - 1; ++i) {
 		m_playerTimeouts[i] = 0;
 	}
 
-	for( i = 0; i < MAX_SLOTS; ++i) {
+	for (i = 0; i < MAX_SLOTS; ++i) {
 		for (Int j = 0; j < MAX_SLOTS; ++j) {
 			m_playerVotes[i][j].vote = FALSE;
 			m_playerVotes[i][j].frame = 0;
 		}
+		m_disconnectFrames[i] = 0;
+		m_disconnectFramesReceived[i] = FALSE;
+		((UnsignedShort *)((char *)this + 0x272))[i] = 0;
+		((UnsignedByte *)((char *)this + 0x282))[i] = 0;
 	}
 }
 
