@@ -147,6 +147,7 @@ private:
 extern "C" __declspec(dllimport) unsigned int __cdecl wcslen( const unsigned short *text );
 extern "C" __declspec(dllimport) int __cdecl atoi( const char *text );
 extern "C" int __cdecl strcmp( const char *left, const char *right );
+extern "C" char * __cdecl strcpy( char *destination, const char *source );
 
 int untranslatedSlotPosition( int slot, int localSlot );
 
@@ -207,6 +208,7 @@ class BfmeAptScreenDisconnectScreen
 {
 public:
 	BfmeAptScreenDisconnectScreen( void *context );
+	void _bfme_getPlayerColor( const char *name, void *value, bool setting );
 	void _bfme_onChatEnterText( const char *argument );
 	void _bfme_onInitGadget( const char *name, void *argument, GameWindow *window );
 	void _bfme_onKick( const char *argument );
@@ -289,6 +291,14 @@ void BfmeAptScreenDisconnectScreen::_bfme_onKick( const char *argument )
 		slot = untranslatedSlotPosition( slot, localSlot );
 		TheNetwork->voteForPlayerDisconnect( slot );
 	}
+}
+
+// ?_bfme_getPlayerColor@BfmeAptScreenDisconnectScreen@@QAEXPBDPAX_N@Z
+void BfmeAptScreenDisconnectScreen::_bfme_getPlayerColor(
+	const char *, void *value, bool setting )
+{
+	if( !setting )
+		strcpy( (char *)value, "0xFFFFFFFF" );
 }
 
 // ?createAptScreenDisconnectScreen@@YGPAXPAX@Z
