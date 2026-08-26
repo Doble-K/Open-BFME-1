@@ -72431,6 +72431,9 @@ name,address,notes
 ?bfmeForward@Gen_00C71580Target@@QAEXXZ,0x009DB7A0,Open-BFME5 the member the singleton forwarder at 0x00C71580 tail-jumps to
 ?bfmeFreeBlock@@YAXPAX@Z,0x00881EF0,Open-BFME5 the free the derived destructors at 0x00924090 and its siblings call
 ?bfmeFreeScalar@@YAXPAX@Z,0x00881EB0,Open-BFME5 the scalar free the holding-list clears at 0x0043F5D0 and 0x0043FBB0 call
+?bfmeGen00029C35@Gen_00529B10@@QAEXH@Z,0x00029C35,address-derived helper; target read from the first REL32 in the guarded eight-index loop at 0x00529B10
+?bfmeGen0002D38A@Gen_00529B10@@QAEXH@Z,0x0002D38A,address-derived helper; target read from the third REL32 in the guarded eight-index loop at 0x00529B10
+?bfmeGen0002EA91@Gen_00529B10@@QAEXH_N@Z,0x0002EA91,address-derived helper; target read from the second REL32 in the guarded eight-index loop at 0x00529B10
 ?bfmeGetAllocator@Gen_000bb890@@ABE?AVBfmeAllocator@@XZ,0x0001E2A4,Open-BFME5 ILT the copy constructor at 0x000BB890 gets its allocator through
 ?bfmeGetAllocator@Gen_000ce890@@ABE?AVBfmeAllocator@@XZ,0x00008BED,Open-BFME5 ILT the copy constructor at 0x000CE890 gets its allocator through
 ?bfmeGetAllocator@Gen_0036e170@@ABE?AVBfmeAllocator@@XZ,0x000441BB,Open-BFME5 ILT the copy constructor at 0x0036E170 gets its allocator through
