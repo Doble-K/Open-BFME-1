@@ -1,15 +1,40 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /ICode/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /GX /D_STLP_USE_STATIC_LIB
 // stlport
 
-#include "PreRTS.h"
-
 #include <vector>
+
+typedef int Int;
+
+template <typename T> class StringBase
+{
+public:
+	~StringBase() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+	void *m_data;
+};
+
+struct Rva003691A0Pair
+{
+	void *m_first;
+	void *m_second;
+};
 
 class Rva003691A0OwnedRecord
 {
 public:
 	~Rva003691A0OwnedRecord();
+
+private:
+	std::vector<Rva003691A0Pair> m_pairs;
+	Int m_unmodelled0C;
+	StringBase<char> m_name;
 };
+
+Rva003691A0OwnedRecord::~Rva003691A0OwnedRecord()
+{
+}
 
 class Rva0036B6B0OwnedPointerCollection
 {
