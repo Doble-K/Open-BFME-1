@@ -1,7 +1,7 @@
 // cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
 // stlport
-// Open-BFME5: the seven FXList nugget parse callbacks BFME registers but the
-// ported FXList.cpp does not carry.  All seven are 224 bytes and identical bar
+// Open-BFME5: the FXList nugget parse callbacks whose Zero Hour layouts differ
+// from BFME.  The out-of-line-constructor bodies are identical bar
 // three fields -- an allocation size, a constructor and one FieldParse table:
 //
 //     push -1 ; push <__ehhandler> ; ... ; sub esp,0x88 ; push ebx,esi,edi
@@ -18,20 +18,20 @@
 //     lea ecx,[eax+8] ; cmp ecx,ebx ; je + ; mov [ecx],edi
 //     <splice the node in front of esi> ; epilogue
 //
-// THE INI KEYWORD TABLE NAMES ALL SEVEN.  Each parse function is reached from
+// THE INI KEYWORD TABLE NAMES ALL EIGHT.  Each parse function is reached from
 // .rdata at 0x00CF2130 through its five-byte incremental-link thunk, and that
 // table is FXList's own FieldParse: sixteen `{ keyword, parse, 0, 0 }` rows plus
 // `{ "PlayEvenIfShrouded", <proc>, 0, 0x10 }`.  The rows this file converts are
-// RayEffect, DynamicDecal, TintDrawable, FXListAtBonePos, ParticleSystem,
-// CursorParticleSystem and BuffNugget.  Zero Hour spells every one of its eight
-// nugget classes as <keyword>FXNugget, the ledger already carries seven of them
-// under that spelling, and one of these seven constructors -- 0x00429F80 --
+// LightPulse, RayEffect, DynamicDecal, TintDrawable, FXListAtBonePos,
+// ParticleSystem, CursorParticleSystem and BuffNugget.  Zero Hour spells every
+// one of its eight nugget classes as <keyword>FXNugget, and one of these eight
+// constructors -- 0x00429F80 --
 // is ALREADY claimed as ??0ParticleSystemFXNugget@@QAE@XZ by an unrelated body.
 // The keyword is the evidence; the FXNugget suffix on the four BFME-only names
 // is that convention, not a separate proof.
 //
 // THE BASE IS 0xB4 WIDE AND EVERY ROW AGREES.  The second table each row adds
-// is the SAME address in all seven, and its fields -- ObjectFilter,
+// is the SAME address in all eight, and its fields -- ObjectFilter,
 // SourceObjectFilter, Required/ExcludedSecondaryModelConditions,
 // Required/ExcludedSourceModelConditions, StopIfNuggetPlayed -- run from 0x8 to
 // 0xB0, a Bool ending at 0xB3.  Every derived table starts at 0xB4.  So the
@@ -61,6 +61,7 @@
 struct FieldParse;
 
 extern const FieldParse FXNuggetFieldParse[];
+extern const FieldParse LightPulseFXNuggetFieldParse[];
 extern const FieldParse RayEffectFXNuggetFieldParse[];
 extern const FieldParse DynamicDecalFXNuggetFieldParse[];
 extern const FieldParse TintDrawableFXNuggetFieldParse[];
@@ -108,6 +109,27 @@ public:
 
 	void addFXNugget( FXNugget *fxn ) { m_nuggets.push_back( fxn ); }
 };
+
+// "LightPulse", parse at 0x0042BE30, 0xD0 bytes wide
+class LightPulseFXNugget : public FXNugget
+{
+public:
+	LightPulseFXNugget();
+	static void parse( INI *, void *, void *, const void * );
+
+private:
+	char m_unreconstructed_b4[ 0x1c ];
+};
+
+void LightPulseFXNugget::parse( INI *ini, void *instance, void *, const void * )
+{
+	LightPulseFXNugget *nugget = new LightPulseFXNugget;
+	MultiIniFieldParse fields;
+	fields.add( LightPulseFXNuggetFieldParse );
+	fields.add( FXNuggetFieldParse );
+	ini->initFromINIMulti( nugget, fields );
+	( (FXList *)instance )->addFXNugget( nugget );
+}
 
 // "RayEffect", parse at 0x0042BD10, 208 bytes wide
 class RayEffectFXNugget : public FXNugget
@@ -255,4 +277,3 @@ void BuffNuggetFXNugget::parse( INI *ini, void *instance, void *, const void * )
 	ini->initFromINIMulti( nugget, fields );
 	( (FXList *)instance )->addFXNugget( nugget );
 }
-

@@ -77021,4 +77021,5 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?setWakeFrame@GBB_UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ??0ALU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,AudioLoopUpgrade ModuleFactory body calls the shared ObjectModule constructor ILT
 ??0ALU_UpgradeMux@@QAE@XZ,0x0003D24E,AudioLoopUpgrade calls the independently matched UpgradeMux constructor ILT
+??0LightPulseFXNugget@@QAE@XZ,0x00021175,LightPulse parser calls this constructor ILT; target resolves to the 0x00828E10 body
 ?setWakeFrame@ALU_UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
