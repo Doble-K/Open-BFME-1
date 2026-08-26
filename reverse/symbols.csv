@@ -77002,3 +77002,5 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?destroyPath@AIUpdateInterface@@QAEXXZ,0x000065E1,requestApproachPath retail ILT reaches the 0x0026F080 path destructor body
 ?resetPlayersVotes@DisconnectManager@@IAEXHIPAVConnectionManager@@@Z,0x000333E3,DisconnectManager frame processing resets stale votes through the ILT to the existing 0x0066B7B0 body
 ?resendFrameRangeToPlayer@BFMEConnectionManager@@QAEXHII@Z,0x0000D8CD,DisconnectManager frame processing requests the BFME three-argument resend through the ILT to the existing 0x00664B40 body
+?getDistanceSquared@SupplyWarehouseActionObject@@QBEMPBV1@@Z,0x00043CED,SupplyWarehouse action TU-local semantic shim; ILT reaches the 0x000ED3B0 object separation-squared body whose layout and sole Object argument prove the call
+?GetGameLogicRandomValue@@YAHHHPADH@Z,0x00001BAE,SupplyWarehouse action random-position twitch calls the retail ILT before the existing 0x00096CF0 body

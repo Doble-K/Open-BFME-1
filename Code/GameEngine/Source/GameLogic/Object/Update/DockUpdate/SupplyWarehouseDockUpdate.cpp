@@ -96,52 +96,198 @@ void SupplyWarehouseDockUpdate::onObjectCreated()
 	}
 }
 
-// ?action@SupplyWarehouseDockUpdate@@UAE_NPAVObject@@0@Z present-unmatched
+class SupplyWarehouseActionTruckAI
+{
+public:
+	virtual void unused00();
+	virtual void unused04();
+	virtual void unused08();
+	virtual Bool gainOneBox( Int boxesRemaining );
+};
+
+class SupplyWarehouseActionAI
+{
+public:
+	virtual void unused000();
+	virtual void unused004();
+	virtual void unused008();
+	virtual void unused00c();
+	virtual void unused010();
+	virtual void unused014();
+	virtual void unused018();
+	virtual void unused01c();
+	virtual void unused020();
+	virtual void unused024();
+	virtual void unused028();
+	virtual void unused02c();
+	virtual void unused030();
+	virtual void unused034();
+	virtual void unused038();
+	virtual void unused03c();
+	virtual void unused040();
+	virtual void unused044();
+	virtual void unused048();
+	virtual void unused04c();
+	virtual void unused050();
+	virtual void unused054();
+	virtual void unused058();
+	virtual void unused05c();
+	virtual void unused060();
+	virtual void unused064();
+	virtual void unused068();
+	virtual void unused06c();
+	virtual void unused070();
+	virtual void unused074();
+	virtual void unused078();
+	virtual void unused07c();
+	virtual void unused080();
+	virtual void unused084();
+	virtual void unused088();
+	virtual void unused08c();
+	virtual void unused090();
+	virtual void unused094();
+	virtual void unused098();
+	virtual void unused09c();
+	virtual void unused0a0();
+	virtual void unused0a4();
+	virtual void unused0a8();
+	virtual void unused0ac();
+	virtual void unused0b0();
+	virtual void unused0b4();
+	virtual void unused0b8();
+	virtual void unused0bc();
+	virtual void unused0c0();
+	virtual void unused0c4();
+	virtual void unused0c8();
+	virtual void unused0cc();
+	virtual void unused0d0();
+	virtual void unused0d4();
+	virtual void unused0d8();
+	virtual void unused0dc();
+	virtual void unused0e0();
+	virtual void unused0e4();
+	virtual void unused0e8();
+	virtual void unused0ec();
+	virtual void unused0f0();
+	virtual void unused0f4();
+	virtual void unused0f8();
+	virtual void unused0fc();
+	virtual void unused100();
+	virtual void unused104();
+	virtual void unused108();
+	virtual void unused10c();
+	virtual void unused110();
+	virtual void unused114();
+	virtual void unused118();
+	virtual void unused11c();
+	virtual void unused120();
+	virtual void unused124();
+	virtual void unused128();
+	virtual void unused12c();
+	virtual void unused130();
+	virtual void unused134();
+	virtual void unused138();
+	virtual void unused13c();
+	virtual void unused140();
+	virtual SupplyWarehouseActionTruckAI *getSupplyTruckAIInterface();
+};
+
+class SupplyWarehouseActionObject
+{
+public:
+	virtual void unused00();
+	virtual void unused04();
+	virtual void unused08();
+	virtual void unused0c();
+	virtual void unused10();
+	virtual void unused14();
+	virtual void unused18();
+	virtual void unused1c();
+	virtual void unused20();
+	virtual void unused24();
+	virtual Drawable *getDrawable();
+
+	Real getDistanceSquared( const SupplyWarehouseActionObject *other ) const;
+
+	Real getBoundingCircleRadius() const { return m_boundingCircleRadius; }
+	SupplyWarehouseActionAI *getAI() const { return m_ai; }
+
+public:
+	unsigned char m_unmodelled04[ 0x38 - 4 ];
+	Coord3D m_position;
+
+private:
+	unsigned char m_unmodelled44[ 0xBC - 0x44 ];
+	Real m_boundingCircleRadius;
+	unsigned char m_unmodelledC0[ 0x204 - 0xC0 ];
+	SupplyWarehouseActionAI *m_ai;
+};
+
+class SupplyWarehouseActionModuleData
+{
+public:
+	unsigned char m_unmodelled00[ 0x10 ];
+	Int m_startingBoxes;
+	Bool m_deleteWhenEmpty;
+};
+
 Bool SupplyWarehouseDockUpdate::action( Object* docker, Object *drone )
 {
-	if( m_boxesStored == 0 )
+	char *rawThis = reinterpret_cast<char *>( this );
+	Int &boxesStored = *reinterpret_cast<Int *>( rawThis + 0x88 );
+	Int boxes = boxesStored;
+	SupplyWarehouseActionObject *retailDocker = reinterpret_cast<SupplyWarehouseActionObject *>( docker );
+
+	if( boxes == 0 )
 		return FALSE;
 
-	// Make sure that the docker is at least reasonably close to the dock.
-	// Basically, one bounding diameter of space or less between us.
-	Real closeEnoughSqr = sqr(docker->getGeometryInfo().getBoundingCircleRadius()*2);
-	Real curDistSqr = ThePartitionManager->getDistanceSquared(docker, getObject(), FROM_BOUNDINGSPHERE_2D);
+	Real closeEnoughSqr = sqr(retailDocker->getBoundingCircleRadius() * 2);
+	Real curDistSqr = retailDocker->getDistanceSquared(
+		*reinterpret_cast<SupplyWarehouseActionObject **>( rawThis + 8 ) );
 	if (curDistSqr > closeEnoughSqr) {
 		DEBUG_LOG(("Failing dock, dist %f, not close enough(%f).\n", sqrt(curDistSqr), sqrt(closeEnoughSqr)));
-		// Make it twitch a little.
-		Coord3D newPos = *docker->getPosition();
+		Coord3D newPos;
+		newPos.x = retailDocker->m_position.x;
+		newPos.y = retailDocker->m_position.y;
+		newPos.z = retailDocker->m_position.z;
 		Real range = 0.4*PATHFIND_CELL_SIZE_F;
+		#line 87 "F:\\bfme\\Code\\gameengine\\Source\\GameLogic\\Object\\Update\\DockUpdate\\SupplyWarehouseDockUpdate.cpp"
 		newPos.x += GameLogicRandomValue(-range, range);
 		newPos.y += GameLogicRandomValue(-range, range);
+		#line 235 "Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdate.cpp"
 		docker->setPosition(&newPos);
-		return FALSE;  //not close enough.
+		return FALSE;
 	}
 	
-	--m_boxesStored;// so the docker sees that I am shy by one box (or empty) from within his gainOneBox()
+	--boxes;
+	boxesStored = boxes;
 
-	SupplyTruckAIInterface *ai = docker->getAIUpdateInterface()->getSupplyTruckAIInterface();
-	if( ai && ai->gainOneBox( m_boxesStored ) )
+	SupplyWarehouseActionTruckAI *ai = retailDocker->getAI()->getSupplyTruckAIInterface();
+	if( ai && ai->gainOneBox( boxesStored ) )
 	{
-		if( m_boxesStored == 0 && getSupplyWarehouseDockUpdateModuleData()->m_deleteWhenEmpty )
+		if( boxesStored == 0 &&
+			(*reinterpret_cast<SupplyWarehouseActionModuleData **>( rawThis + 4 ))->m_deleteWhenEmpty )
 		{
-			TheGameLogic->destroyObject( getObject() );
-			return FALSE; //Yer done.  And so am I.
+			TheGameLogic->destroyObject( *reinterpret_cast<Object **>( rawThis + 8 ) );
+			return FALSE;
 		}
 		else
 		{
-			Drawable *draw = getObject()->getDrawable();
+			SupplyWarehouseActionObject *retailObject =
+				*reinterpret_cast<SupplyWarehouseActionObject **>( rawThis + 8 );
+			Drawable *draw = retailObject->getDrawable();
 			if( draw )
 			{
-				draw->updateDrawableSupplyStatus( getSupplyWarehouseDockUpdateModuleData()->m_startingBoxesData, m_boxesStored );
+				SupplyWarehouseActionModuleData *moduleData =
+					*reinterpret_cast<SupplyWarehouseActionModuleData **>( rawThis + 4 );
+				draw->updateDrawableSupplyStatus( moduleData->m_startingBoxes, boxesStored );
 			}
 		}
 
 		return TRUE;
 	}
 	else 
-		++m_boxesStored; //take it back, since there was noone to gain the box
-  									 //this is important so that I have one less boxes as perceived by the docker when he gains one
-
+		++boxesStored;
 
 	return FALSE;
 }
