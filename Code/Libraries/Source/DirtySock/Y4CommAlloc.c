@@ -51,6 +51,32 @@ void Rva0080B070( void *object )
 	Rva007F0030( object );
 }
 
+struct Rva0080B000Comm
+{
+	void *m_socket;
+};
+
+void *Rva007FD2D0( int family, int type, int protocol );
+void Rva007FD3F0( void *socket );
+int Rva007FD510( void *socket, const void *address, int addressLength );
+
+int Rva0080B150( struct Rva0080B000Comm *comm, const void *address,
+	int addressLength )
+{
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+	}
+
+	comm->m_socket = Rva007FD2D0( 2, 1, 0 );
+	if ( comm->m_socket == 0 )
+	{
+		return -7;
+	}
+
+	return Rva007FD510( comm->m_socket, address, addressLength );
+}
+
 struct Rva00812320Module;
 
 struct Rva00812320Module *Rva00812320( int iEntries );
