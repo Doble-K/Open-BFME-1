@@ -123,31 +123,30 @@ DisconnectManager::DisconnectManager()
 DisconnectManager::~DisconnectManager() {
 }
 
-// ?init@DisconnectManager@@QAEXXZ present-unmatched
 void DisconnectManager::init() {
-	TheDisconnectMenu->hideScreen(); // make sure the screen starts out hidden.
 	m_lastFrame = 0;
 	m_lastFrameTime = -1;
 	m_lastKeepAliveSendTime = -1;
+	*(Int *)((char *)this + 0x258) = 0;
 	m_disconnectState = DISCONNECTSTATETYPE_SCREENOFF;
-	m_currentPacketRouterIndex = 0;
 	m_timeOfDisconnectScreenOn = 0;
+	m_pingFrame = 0;
 
 	for (Int i = 0; i < MAX_SLOTS; ++i) {
 		for (Int j = 0; j < MAX_SLOTS; ++j) {
 			m_playerVotes[i][j].vote = FALSE;
 			m_playerVotes[i][j].frame = 0;
 		}
-	}
-
-	for (i = 0; i < MAX_SLOTS; ++i) {
 		m_disconnectFrames[i] = 0;
 		m_disconnectFramesReceived[i] = FALSE;
+		((UnsignedShort *)((char *)this + 0x272))[i] = 0;
+		((UnsignedByte *)((char *)this + 0x282))[i] = 0;
 	}
-	
-	m_pingFrame = 0;
+
+	*(Int *)((char *)this + 0x26c) = 0;
 	m_pingsSent = 0;
 	m_pingsRecieved = 0;
+	*(UnsignedByte *)((char *)this + 0x270) = 0;
 }
 
 // ?update@DisconnectManager@@ present-unmatched
