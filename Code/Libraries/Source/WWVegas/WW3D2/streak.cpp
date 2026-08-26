@@ -427,10 +427,13 @@ void StreakLineClass::Set_Subdivision_Levels(unsigned int levels)
 	Invalidate_Cached_Bounding_Volumes();
 }
 
-// ?Set_Texture_Mapping_Mode@StreakLineClass@@ present-unmatched
 void StreakLineClass::Set_Texture_Mapping_Mode(SegLineRendererClass::TextureMapMode mode)
 {
-	LineRenderer.Set_Texture_Mapping_Mode(mode);
+	// BFME's renderer members sit later than the GeneralsMD layout supplied by the reference header.
+	StreakLineClass *bfme_line_layout = reinterpret_cast<StreakLineClass *>(reinterpret_cast<char *>(this) + 0x38);
+	StreakLineClass *bfme_streak_layout = reinterpret_cast<StreakLineClass *>(reinterpret_cast<char *>(this) + 0x50);
+	bfme_line_layout->LineRenderer.Set_Texture_Mapping_Mode(mode);
+	bfme_streak_layout->StreakRenderer.Set_Texture_Mapping_Mode(static_cast<StreakRendererClass::TextureMapMode>(mode));
 }
 
 // ?Set_Texture_Tile_Factor@StreakLineClass@@ present-unmatched
