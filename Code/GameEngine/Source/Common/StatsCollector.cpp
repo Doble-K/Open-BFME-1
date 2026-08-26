@@ -3,20 +3,34 @@
 #include "PreRTS.h"
 #include <time.h>
 
+#pragma intrinsic( memcmp )
+
 class AsciiString
 {
 public:
 	AsciiString() : m_data( 0 ) {}
 	const char *str() const { return m_data ? m_data + 8 : ""; }
+	Int compare( const char *other ) const
+	{
+		Int otherLength = strlen( other );
+		Int thisLength = m_data ? *reinterpret_cast<const UnsignedShort *>( m_data + 4 ) : 0;
+		const char *thisData = str();
+		Int length = thisLength < otherLength ? thisLength : otherLength;
+		Int result = memcmp( thisData, other, length );
+		return result ? result : thisLength - otherLength;
+	}
 
 private:
 	char *m_data;
 };
 
+class Object;
+
 class GameLogic
 {
 public:
 	UnsignedInt getFrame() const { return m_frame; }
+	Object *getFirstObject();
 
 private:
 	unsigned char m_unmodelled00[ 0x3C ];
@@ -69,6 +83,24 @@ private:
 	Int m_totalBuildingsLost;
 };
 
+class Overridable
+{
+public:
+	virtual ~Overridable();
+	const Overridable *getFinalOverride() const;
+
+	Overridable *m_nextOverride;
+};
+
+class ThingTemplate : public Overridable
+{
+public:
+	Bool isKindOf( Int kind ) const { return (m_kindOf & (1U << kind)) != 0; }
+
+	unsigned char m_unmodelled08[ 0xC0 ];
+	UnsignedInt m_kindOf;
+};
+
 class Player
 {
 public:
@@ -76,6 +108,7 @@ public:
 	const AsciiString &getSide() const { return m_side; }
 	Money *getMoney() { return &m_money; }
 	ScoreKeeper *getScoreKeeper() { return &m_scoreKeeper; }
+	Bool isLocalPlayer() const;
 
 private:
 	unsigned char m_unmodelled00[ 0x24 ];
@@ -98,6 +131,29 @@ private:
 };
 
 extern PlayerList *ThePlayerList;
+
+class Object
+{
+public:
+	const ThingTemplate *getTemplate() const
+	{
+		const ThingTemplate *thing = m_thingTemplate;
+		if( thing && thing->m_nextOverride )
+			thing = static_cast<const ThingTemplate *>( thing->m_nextOverride->getFinalOverride() );
+		return thing;
+	}
+
+	Bool isKindOf( Int kind ) const { return getTemplate()->isKindOf( kind ); }
+	Bool isNeutralControlled() const;
+	Player *getControllingPlayer() const;
+	Object *getNextObject() const { return m_nextObject; }
+
+private:
+	unsigned char m_unmodelled00[ 4 ];
+	ThingTemplate *m_thingTemplate;
+	unsigned char m_unmodelled08[ 0x88 - 8 ];
+	Object *m_nextObject;
+};
 
 class GameMessage
 {
@@ -176,6 +232,7 @@ public:
 	void startScrollTime();
 	void endScrollTime();
 	void collectMsgStats( const GameMessage *msg );
+	void collectUnitCountStats();
 
 private:
 	void writeInitialFileInfo();
@@ -376,5 +433,21 @@ void StatsCollector::collectMsgStats( const GameMessage *msg )
 		case 0x418:
 			++m_buildCommands;
 			break;
+	}
+}
+
+void StatsCollector::collectUnitCountStats()
+{
+	for( Object *obj = TheGameLogic->getFirstObject(); obj; obj = obj->getNextObject() )
+	{
+		if( !(obj->isKindOf( 8 ) || obj->isKindOf( 9 )) ||
+			obj->isNeutralControlled() ||
+			obj->getControllingPlayer()->getSide().compare( "Civilian" ) == 0 )
+			continue;
+
+		if( obj->getControllingPlayer()->isLocalPlayer() )
+			++m_playerUnits;
+		else
+			++m_aiUnits;
 	}
 }
