@@ -23423,3 +23423,4 @@ uw_000970d0,0x000970D0,gen-funclet no longer has an emitting owner after the exa
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,0x00852130,alias retracted: 0x00852130 is INI::initFromINIMultiProc which the data-create proc CALLS; the constructor this registration reaches is at 0x002BC190.
 ??0AIUpdateInterfaceModuleData@@QAE@XZ,0x00852130,alias retracted: 0x00852130 is INI::initFromINIMultiProc which the data-create proc CALLS; the constructor this registration reaches is at 0x0027EAE0.
 ??0StatusBitsUpgradeModuleData@@QAE@XZ,0x00852130,alias retracted: 0x00852130 is INI::initFromINIMultiProc which the data-create proc CALLS; the constructor this registration reaches is at 0x00129C10.
+?d_001f6c70@@YAXXZ,0x001F6C70,gen-dump placeholder superseded by the byte-verified real BuildingBehaviorModuleData constructor identity.
