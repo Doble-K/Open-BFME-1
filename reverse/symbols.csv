@@ -3930,6 +3930,8 @@ name,address,notes
 ??1BfmeAptScreenDisconnectScreen@@UAE@XZ,0x0050EA10,virtual dtor of the class whose ctor is pinned ??0BfmeAptScreenDisconnectScreen@@QAE@PAX@Z: resets vtables 0x01104DE8 and 0x01104DE4(+0x218) clears TheDisconnectMenu 0x012F4964 when it is this calls g_theWindowManager 0x00468090(0) unless the Quit flag this+0x261 is set unregisters DisconnectScreen::InitGadgets via 0x004629A0 then base dtor 0x00465430; called by the deleting dtor at 0x0050F633; ILT 0x00011C84
 ??1BfmeAptScreenQuitMenu@@UAE@XZ,0x00569720,E tier 1 via the corrected TheNetwork vcall seed: virtual dtor of the QuitMenu APT screen whose ctor is pinned ??0BfmeAptScreenQuitMenu@@QAE@PAX@Z (ILT 0x00025153 -> 0x0056A2F0 installs vtable 0x0110A388 at 0x0056A324 and publishes this to 0x012F4B40 at 0x0056A361): resets vtables 0x0110A388 / 0x0110A384 (+0x218) compares this with 0x012F4B40 (0x0056974F) and clears it then UI singleton 0x012F148C slot +0x150(0); carries the ZH QuitMenu.cpp:151 exit: if TheNetwork (0x012F7714 at 0x0056981F) TheNetwork->quitGame vslot +0x78 at 0x0056982C else 0x003839E0 (posts MSG_CLEAR_GAME_DATA at 0x00383A2C) via ILT 0x000238A3; then Shell::showShell 0x00580150 bfme_hideBackground 0x00468090 APT:Pause text via 0x0046CBF0 and the APT screen base dtor 0x00465430 (the base ??1BfmeAptScreenDisconnectScreen also calls); called by the deleting dtor ??_GGen_dtor_00569de0 at 0x00569DE3 via ILT 0x000271F6 = vtable 0x0110A388 slot 0
 ??1BfmeAptScreenScoreScreen@@UAE@XZ,0x00575050,virtual dtor: resets vtables 0x0110AAB8/0x0110AAB4 unregisters AptScoreScreen::InitGadgets via 0x004629A0; if +0x25c==0 (single-player screen) && TheShell 0x012F4B58 -> TheShell->0x0057F5B0(FALSE) (ILT 0x000428ED); clears TheScoreScreen 0x012F4B50; AsciiString dtors at +0x330 +0x320 +0x300; frees the bit-vector buffer +0x2e8; vector<pair<Int AsciiString>> dtor 0x00574BC0 on +0x264; base dtor 0x00465430; ILT 0x00006F28; sole caller the deleting dtor 0x00575883
+??1BfmeChainValue2@@QAE@XZ,0x000014D8,Open-BFME5 the carried value destructor the chain disposal at 0x00605820 runs
+??1BfmeChainValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the chain disposal at 0x005876D0 runs
 ??1BfmeChildA@@QAE@XZ,0x008976E0,Open-BFME5 the child destructor the teardown at 0x008AB8E0 calls
 ??1BfmeChildB@@QAE@XZ,0x0089CC70,Open-BFME5 the child destructor the teardowns at 0x008BD820 0x008BD880 and 0x008BD8E0 call
 ??1BfmeDelayedLuaEvent@@QAE@XZ,0x00041362,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element destructor
@@ -72607,11 +72609,13 @@ name,address,notes
 ?bfmeNotify@Gen_000946D0Manager@@QAEXPAX@Z,0x0001A7DF,Open-BFME5 the manager member the notify-setter at 0x000946D0 tail-jumps to
 ?bfmeNotify@Gen_00094700Manager@@QAEXPAX@Z,0x0001A7DF,Open-BFME5 the manager member the notify-setter at 0x00094700 tail-jumps to
 ?bfmeNotify@Gen_00094730Manager@@QAEXPAX@Z,0x0001A7DF,Open-BFME5 the manager member the notify-setter at 0x00094730 tail-jumps to
+?bfmeNotify@Gen_005876D0@@QAEXPAX@Z,0x00037353,Open-BFME5 the owner notify the chain disposal at 0x005876D0 calls per node
 ?bfmeNotify@Gen_005ee5a0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0002EE88,Open-BFME5 ILT the refresh at 0x005EE5A0 calls on its sub-object
 ?bfmeNotify@Gen_005ef8b0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x00049D64,Open-BFME5 ILT the refresh at 0x005EF8B0 calls on its sub-object
 ?bfmeNotify@Gen_005fe880Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0000B235,Open-BFME5 ILT the refresh at 0x005FE880 calls on its sub-object
 ?bfmeNotify@Gen_005ff8d0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0001F087,Open-BFME5 ILT the refresh at 0x005FF8D0 calls on its sub-object
 ?bfmeNotify@Gen_00600710Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x00018926,Open-BFME5 ILT the refresh at 0x00600710 calls on its sub-object
+?bfmeNotify@Gen_00605820@@QAEXPAX@Z,0x000082D3,Open-BFME5 the owner notify the chain disposal at 0x00605820 calls per node
 ?bfmeNotify@Glo012F1028Sub@@QAEXXZ,0x0002DE89,Open-BFME5 ILT thunk to body 0x003CAD20; ?bfmeStep@Glo012F1024Entry@@QAEXXZ at 0x003A7320 tail-jumps into it from both arms on the sub-object at +0x28 of the global at 0x012F1028; address-derived name
 ?bfmeNotifyBridge@PathfindLayer@@AAEXXZ,0x0003B250,Open-BFME5 the notification PathfindLayer::setDestroyed at 0x003FCEC0 makes when the bridge at +0x38 is set
 ?bfmeNotifyPlain@PathfindLayer@@AAEXXZ,0x0003A03F,Open-BFME5 the notification PathfindLayer::setDestroyed at 0x003FCEC0 makes when the bridge at +0x38 is null
