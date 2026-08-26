@@ -17,7 +17,8 @@ struct Rva00814700Comm
 {
 	char m_head[ 0x48 ];
 	void *m_socketAlias;             /* +0x48 */
-	char m_gap4C[ 0x30 ];
+	char m_gap4C[ 0x2C ];
+	void *m_transport;               /* +0x78 */
 	void *m_socket;                  /* +0x7C */
 	char m_gap80[ 0x1C ];
 	/* A SECOND RING, distinct from the one in Y4CommRingIdle.c: same shape --
@@ -45,6 +46,13 @@ void Rva008143A0( struct Rva00814700Comm *comm, void *value )
 {
 	comm->m_value = value;
 	comm->m_flags |= 2;
+}
+
+void Rva0081B830( void *transport );
+
+void Rva00813E30( struct Rva00814700Comm *comm )
+{
+	Rva0081B830( comm->m_transport );
 }
 
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
