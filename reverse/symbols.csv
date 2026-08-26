@@ -77382,3 +77382,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?secondaryValueFor@Rva0036AF30Item@@QBEHPBVObject@@@Z,0x0003E1A3,retail jump thunk to the byte-verified secondary state lookup at 0x00369120
 ?find@Rva000F72B0AsciiHash@@QAEHABVAsciiString@@@Z,0x000043FE,retail REL32 at 0x000F72B9 targets the ILT for the AsciiString hashtable lookup at 0x000F2010
 ?loadPostProcess@UpdateModule@@MAEXXZ,0x0002D600,Rva0036BAE0 retail base-call thunk to the same no-op UpdateModule body at 0x001EF410
+?refresh@Rva000F72D0FrameCachedValue@@AAEXPAX@Z,0x0004154C,retail REL32 at 0x000F72EC targets the frame-cache refresh ILT at 0x0004154C
