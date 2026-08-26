@@ -507,6 +507,76 @@ void Rva00814D60( struct Rva00814D60Comm *comm )
 		comm->m_bindAddress, comm->m_portA );
 }
 
+struct Rva00814540Record
+{
+	unsigned int m_tick;
+	short m_length;
+	char m_data[ 1 ];
+};
+
+struct Rva00814540Comm
+{
+	char m_head[ 0x7C ];
+	void *m_socket;                  /* +0x7C */
+	char m_gap80[ 0x10 ];
+	int m_state;                     /* +0x90 */
+	char m_gap94[ 0x24 ];
+	int m_recordSize;                /* +0xB8 */
+	int m_bufferSize;                /* +0xBC */
+	int m_writeOffset;               /* +0xC0 */
+	int m_readOffset;                /* +0xC4 */
+	void *m_buffer;                  /* +0xC8 */
+};
+
+extern char Rva012C4AF0[];
+extern char Rva012C4B0C[];
+void *memcpy( void *dest, const void *source, unsigned int size );
+
+int Rva00814540( struct Rva00814540Comm *comm, const void *payload,
+	int length )
+{
+	int count;
+	struct Rva00814540Record *record;
+
+	if ( comm->m_state != 4 )
+		return -2;
+
+	if ( ( comm->m_writeOffset + comm->m_recordSize )
+		% comm->m_bufferSize == comm->m_readOffset )
+	{
+		Rva007FE780( Rva012C4AF0 );
+		return 0;
+	}
+
+	if ( length > comm->m_recordSize - 8 )
+	{
+		Rva007FE780( Rva012C4B0C, length );
+		return -6;
+	}
+
+	if ( length == 0 )
+	{
+		count = ( ( comm->m_writeOffset + comm->m_bufferSize
+			- comm->m_readOffset ) % comm->m_bufferSize )
+			/ comm->m_recordSize;
+		return count + 1;
+	}
+
+	record = (struct Rva00814540Record *)( (char *)comm->m_buffer
+		+ comm->m_writeOffset );
+	record->m_length = (short)length;
+	memcpy( record->m_data, payload, length );
+	record->m_tick = Rva007FEA00();
+	comm->m_writeOffset = ( comm->m_writeOffset + comm->m_recordSize )
+		% comm->m_bufferSize;
+	Rva00814700( (unsigned int)comm->m_socket, 0,
+		(struct Rva00814700Comm *)comm );
+	count = ( ( comm->m_writeOffset + comm->m_bufferSize
+		- comm->m_readOffset ) % comm->m_bufferSize )
+		/ comm->m_recordSize;
+	return count > 0 ? count : 1;
+}
+
 struct Rva008140D0Comm
 {
 	void *m_ops[ 14 ];               /* +0x00 */
@@ -534,7 +604,6 @@ void Rva007FEA20( void *lock );
 void CommTCPResolve( void );
 void Rva008143F0( void );
 void Rva00814520( void );
-void Rva00814540( void );
 extern char Rva012C4AAC[];
 void *memset( void *dest, int value, unsigned int size );
 int Rva00814EA0( struct Rva00814700Comm *comm, void *buffer, int size,
@@ -651,8 +720,6 @@ struct Rva00814EA0Record
 	short m_length;
 	char m_data[ 1 ];
 };
-
-void *memcpy( void *dest, const void *source, unsigned int size );
 
 int Rva00814EA0( struct Rva00814700Comm *comm, void *buffer, int size,
 	unsigned int *when )
