@@ -10404,6 +10404,7 @@ name,address,notes
 ?TheLockWeaponCreatePool@?1??getClassMemoryPool@LockWeaponCreate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFB94,pool-glue cascade static (back-solved)
 ?TheLocomotorSetUpgradePool@?1??getClassMemoryPool@LocomotorSetUpgrade@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EF0580,pool-glue cascade static (back-solved)
 ?TheLookAtTranslator@@3PAVLookAtTranslator@@A,0x012F4C84,Open-BFME5 the object doDisableInput tail-calls resetModes on
+?TheMapCache@@3PAVMapCache@@A,0x012F1594,GameClient MapCache global; absolute load in the map-metadata refresh at 0x00525F35 and source definition in MapUtil.cpp
 ?TheMappedImageCollection@@3PAVMappedImageCollectionPortraitShim@@A,0x012F6924,BFME portrait selector mapped-image global
 ?TheMaxHealthUpgradePool@?1??getClassMemoryPool@MaxHealthUpgrade@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EF0588,pool-glue cascade static (back-solved)
 ?TheMemoryPoolFactory@@3PAVMemoryPoolFactory@@A,0x00EED600,pool-glue cascade static (back-solved)
