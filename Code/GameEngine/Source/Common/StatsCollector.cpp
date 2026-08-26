@@ -160,6 +160,7 @@ public:
 	StatsCollector();
 	void writeFileEnd();
 	void startScrollTime();
+	void endScrollTime();
 
 private:
 	void writeInitialFileInfo();
@@ -338,4 +339,13 @@ void StatsCollector::startScrollTime()
 	m_isScrolling = TRUE;
 	m_scrollBeginTime = TheGameLogic->getFrame();
 	++m_scrollMapCommands;
+}
+
+void StatsCollector::endScrollTime()
+{
+	if( !m_isScrolling )
+		return;
+
+	m_isScrolling = FALSE;
+	m_scrollTime += TheGameLogic->getFrame() - m_scrollBeginTime;
 }
