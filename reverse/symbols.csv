@@ -629,6 +629,7 @@ name,address,notes
 ??$__adjust_heap@PAUS4SortElem8@@HU1@US4Cmp009F34B0@@@_STL@@YAXPAUS4SortElem8@@HHU1@US4Cmp009F34B0@@@Z,0x009F3190,S4 STLport sort-layer callee (address-derived name; target read from the REL32 at its call site and followed through its ILT thunk)
 ??$__bfme_find_impl@U?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@_STL@@VAsciiString@@@_STL@@YA?AU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@0@U10@0ABVAsciiString@@ABUinput_iterator_tag@0@@Z,0x004C4530,Open-BFME5 AsciiString list find implementation target
 ??$__copy@PAUCoord3D@@PAU1@H@_STL@@YAPAUCoord3D@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x0013DF60,zhstl per-site callee copy (body proven byte-equal)
+??$__copy@PAUElem00147180@@PAU1@H@_STL@@YAPAUElem00147180@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x000311EC,Open-BFME5 ILT the range copy the vector erase at 0x00147180 calls
 ??$__copy@PAUFXBoneInfo@@PAU1@H@_STL@@YAPAUFXBoneInfo@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00003378,resweep callee back-solved
 ??$__copy@PAUFactionVictoryParameters@@PAU1@H@_STL@@YAPAUFactionVictoryParameters@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x001DE760,STLport random-access __copy over the 0x18-byte FactionVictoryParameters (AsciiString::set + 5 dwords per element; n=(last-first)/0x18); callers vector::erase 0x001DFE7B and ??0VictorySystem 0x001E025F; the element type is the retail struct name from the assert string at 0x000C32CB (iniParseFactionVictoryDefinition) rather than a Gen_t_ tag, which the closure predicate counts as anonymous; the two gen-tgrid pins on this address are placeholders for the same body
 ??$__copy@PAUGen_t_00065960_p4cd@@PAU1@H@_STL@@YAPAUGen_t_00065960_p4cd@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x000653C0,gen-tgrid payload member
@@ -2025,6 +2026,7 @@ name,address,notes
 ??0BfmeAptScreenScoreScreen@@QAE@PAX@Z,0x00578160,body of the ILT 0x00017233 already pinned under this name; ctor of the 0x334-byte ScoreScreen.apt class created by createAptScreenScoreScreen 0x00104FC0 (push 0x334 call ILT 0x00017233 at 0x00104FF9): base ctor 0x00465310 vtables 0x0110AAB8 / 0x0110AAB4 at +0x218; zeroes +0x258..+0x32c and APT:NULL at +0x330; if TheScoreScreen 0x012F4B50 is NULL publishes this and binds fscommands AptScoreScreen::OnInitialized->0x005701D0 Exit->0x005731C0 Save->0x00570200 Continue->0x005780E0 RestartGame->0x005731D0 RenameAccept->0x005710A0 RenameCancel->0x00570220 (functor 0x00572CA0 + binder 0x00464ED0) then AS providers via 0x00464FE0: the 11-name table 0x012B7F9C (NumOfPlayers ShowSaveReplay ShowCampaign ScoreGrandTotal heroVetCount unitsVetCount PlayerFaction numberOfObjectives ShowVictory objectivesPerScore NumberFormatter) -> 0x005731E0; 8x ScoreScreen:PlayerColor:%d -> 0x00571DF0 ScoreScreen:PlayerFaction:%d -> 0x00571E50 Separator%d (i>=1) -> 0x00570260; ScoreBattleStat ScoreBonusObjectives ScoreHeroVeterancy ScoreUnitVeterancy ScoreTerritoryBonus -> 0x005702B0; battleStat%c%d (A..G x 1..3) -> 0x00570300; objectiveChecked%d x8 -> 0x005703A0; heroVetUpgrade%d x12 -> 0x005729C0; AptScoreScreen::InitGadgets -> 0x00571EC0 via 0x004628E0; then g_theWindowManager 0x012F19E8 -> 0x00469A10(1)
 ??0BfmeAptScreenSkirmish@@QAE@PAX@Z,0x000025C7,ILT thunk to the Skirmish.apt screen constructor
 ??0BfmeAptScreenSpellStore@@QAE@PAX@Z,0x00036647,ILT thunk to the SpellStore.apt screen constructor
+??0BfmeArmyIcon@@QAE@ABVAsciiString@@@Z,0x00023ED9,retail findArmyIcon body directly encodes the BfmeArmyIcon constructor thunk
 ??0BfmeAttackNuggetBase@@QAE@XZ,0x0001B522,Open-BFME5 ILT the AttackNugget constructor at 0x0059EB00 calls its base through; it jumps to 0x00489210
 ??0BfmeBinkPlayerMember@@QAE@XZ,0x0002833F,Open-BFME5 ILT the member constructor BinkVideoPlayer at 0x00691230 calls for its member at +0x0C
 ??0BfmeCellGrid@@QAE@HHMM@Z,0x001B1830,thiscall ret 0x10 (width height cellSize offset) into a 0x1C-byte object: +0 w +4 h +8 w*h +0xC cellSize +0x10 offset +0x14 vector-new of w*h 0x88-byte cells +0x18 w*h dwords; assert text Could not create Cell Grid for VictorySystem! 0x0109C958; both callers are VictorySystem::newMap 0x001DF5DF/0x001DF628
@@ -2041,6 +2043,8 @@ name,address,notes
 ??0BfmeSortElem20Tail@@QAE@ABV0@@Z,0x000266BB,Open-BFME5 ILT the copy constructor of the twelve-byte member at S4SortElem20+8
 ??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00015C44,Open-BFME5 the incremental-link thunk those constructors encode
 ??0BfmeSpecialPowerModuleDataBase@@QAE@XZ,0x00268120,Open-BFME5 base constructor every SpecialPower module data forwards to; runs to +0x210. Byte-identical to and folded with RiderChangeContainModuleData so the address cannot name the class
+??0BfmeSubA@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 the sub-object copy ctor the copies at 0x003505E0 and 0x00350630 call
+??0BfmeSubB@@QAE@ABV0@@Z,0x00887B60,Open-BFME5 the sub-object copy ctor the copies at 0x00351F30 and 0x00351FB0 call
 ??0BinkVideoPlayer@@QAE@XZ,0x0000B0A5,pinharvest x1 (thunk)
 ??0BinkVideoPlayer@@QAE@XZ,0x00045AF7,pinharvest x1 (thunk)
 ??0Bitmap2DObjClass@@QAE@ABV0@@Z,0x00956140,Open-BFME5 retail bitmap copy constructor pin
@@ -3813,12 +3817,16 @@ name,address,notes
 ??1BfmeAptScreenDisconnectScreen@@UAE@XZ,0x0050EA10,virtual dtor of the class whose ctor is pinned ??0BfmeAptScreenDisconnectScreen@@QAE@PAX@Z: resets vtables 0x01104DE8 and 0x01104DE4(+0x218) clears TheDisconnectMenu 0x012F4964 when it is this calls g_theWindowManager 0x00468090(0) unless the Quit flag this+0x261 is set unregisters DisconnectScreen::InitGadgets via 0x004629A0 then base dtor 0x00465430; called by the deleting dtor at 0x0050F633; ILT 0x00011C84
 ??1BfmeAptScreenQuitMenu@@UAE@XZ,0x00569720,E tier 1 via the corrected TheNetwork vcall seed: virtual dtor of the QuitMenu APT screen whose ctor is pinned ??0BfmeAptScreenQuitMenu@@QAE@PAX@Z (ILT 0x00025153 -> 0x0056A2F0 installs vtable 0x0110A388 at 0x0056A324 and publishes this to 0x012F4B40 at 0x0056A361): resets vtables 0x0110A388 / 0x0110A384 (+0x218) compares this with 0x012F4B40 (0x0056974F) and clears it then UI singleton 0x012F148C slot +0x150(0); carries the ZH QuitMenu.cpp:151 exit: if TheNetwork (0x012F7714 at 0x0056981F) TheNetwork->quitGame vslot +0x78 at 0x0056982C else 0x003839E0 (posts MSG_CLEAR_GAME_DATA at 0x00383A2C) via ILT 0x000238A3; then Shell::showShell 0x00580150 bfme_hideBackground 0x00468090 APT:Pause text via 0x0046CBF0 and the APT screen base dtor 0x00465430 (the base ??1BfmeAptScreenDisconnectScreen also calls); called by the deleting dtor ??_GGen_dtor_00569de0 at 0x00569DE3 via ILT 0x000271F6 = vtable 0x0110A388 slot 0
 ??1BfmeAptScreenScoreScreen@@UAE@XZ,0x00575050,virtual dtor: resets vtables 0x0110AAB8/0x0110AAB4 unregisters AptScoreScreen::InitGadgets via 0x004629A0; if +0x25c==0 (single-player screen) && TheShell 0x012F4B58 -> TheShell->0x0057F5B0(FALSE) (ILT 0x000428ED); clears TheScoreScreen 0x012F4B50; AsciiString dtors at +0x330 +0x320 +0x300; frees the bit-vector buffer +0x2e8; vector<pair<Int AsciiString>> dtor 0x00574BC0 on +0x264; base dtor 0x00465430; ILT 0x00006F28; sole caller the deleting dtor 0x00575883
+??1BfmeChildA@@QAE@XZ,0x008976E0,Open-BFME5 the child destructor the teardown at 0x008AB8E0 calls
+??1BfmeChildB@@QAE@XZ,0x0089CC70,Open-BFME5 the child destructor the teardowns at 0x008BD820 0x008BD880 and 0x008BD8E0 call
 ??1BfmeDelayedLuaEvent@@QAE@XZ,0x00041362,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element destructor
+??1BfmeDirtyBase@@UAE@XZ,0x007EB6C0,Open-BFME5 the shared base destructor nine DirtySock scalar deleting destructors call
 ??1BfmeEvaCheckInfoTail@@QAE@XZ,0x00011FDB,ILT thunk to the retail _Rb_tree<int,...> destructor at 0x004247C0, the per-record map subobject the EvaCheckInfoRecord vector destructor tears down at +0x10
 ??1BfmeEvaSideSoundsArray@@QAE@XZ,0x0089CC70,provisional structural name: incremental-link thunk fronting 0x0089C900 the dtor of EvaCheckInfo member at +0x8; count-plus-array container not an STLport vector
 ??1BfmeLegendString@@QAE@XZ,0x00887940,SubsystemLegend.cpp AsciiString stand-in dtor; folds with StringBase<char>::releaseBuffer
 ??1BfmeLegendStringVec@@QAE@XZ,0x000658A0,SubsystemLegend.cpp vector<AsciiString> stand-in dtor
 ??1BfmeMapChunk@@QAE@XZ,0x0002B9A4,Open-BFME5 ILT thunk; ?freeMapResources@HeightMapRenderObjClass@@UAEHXZ at 0x006D2690 hands it to the eh vector destructor iterator as the element destructor of the 0xC4-byte array at +0x30D8; address-derived name
+??1BfmeOwnedMember@@QAE@XZ,0x00887940,Open-BFME5 provisional destructor for the owned member the zeroing constructors unwind
 ??1BfmeParticleSystemHandle@@QAE@XZ,0x00013994,Open-BFME5 ILT; the value ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 gets back from its lookup is released through it
 ??1BoxDynamicVBAccessClass@@QAE@XZ,0x0091D9E0,TU-local DynamicVB ABI for BoxRenderObjClass::render_box
 ??1BroadcastStealthUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
@@ -3961,32 +3969,49 @@ name,address,notes
 ??1GateProxyBehaviorModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 pin
 ??1GateProxyBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1GateProxyBehaviorModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1Gen000075EF@@QAE@XZ,0x000075EF,Open-BFME5 ILT the element destructor the 0x1F0-byte vector at 0x006073F0 calls
 ??1Gen0000D33C@@QAE@XZ,0x0000D33C,S3 delete-and-clear family callee destructor (address-derived name)
+??1Gen0002306F@@QAE@XZ,0x0002306F,Open-BFME5 ILT the element destructor the 296-byte-stride vector at 0x0013C640 calls
+??1Gen00026AB2@@QAE@XZ,0x00026AB2,Open-BFME5 ILT the element destructor the 44-byte-stride vector at 0x00252DA0 calls
+??1Gen00026F35@@QAE@XZ,0x00026F35,Open-BFME5 ILT the element destructor the 120-byte-stride vector at 0x006A3930 calls
+??1Gen0002A8BA@@QAE@XZ,0x0002A8BA,Open-BFME5 ILT the element destructor the 44-byte-stride vector at 0x00774130 calls
 ??1Gen0002AB5D@@QAE@XZ,0x0002AB5D,S2 non-virtual destructor called directly by the delete-argument body at 0x007889D0
+??1Gen00034158@@QAE@XZ,0x00034158,Open-BFME5 ILT the element destructor the 528-byte-stride vector at 0x00608C60 calls
+??1Gen0003B8FE@@QAE@XZ,0x0003B8FE,Open-BFME5 ILT the element destructor the 36-byte-stride vector at 0x001439F0 calls
 ??1Gen0003FA7B@@QAE@XZ,0x0003FA7B,S3 delete-and-clear family callee destructor (address-derived name)
+??1Gen00043699@@QAE@XZ,0x00043699,Open-BFME5 ILT the element destructor the 136-byte-stride vector at 0x0039EA90 calls
+??1Gen0004A1C4@@QAE@XZ,0x0004A1C4,Open-BFME5 ILT the element destructor the 188-byte-stride vector at 0x0013BFA0 calls
 ??1Gen000658A0@@QAE@XZ,0x000658A0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
 ??1Gen000A1B30@@UAE@XZ,0x000A1B30,base class destructor tail-called by the guarded-delete destructor family (R4OwnedPointerDestructors.cpp); address-derived name; identity not recovered
 ??1Gen000C3410@@QAE@XZ,0x000C3410,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen000E5300@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 12-byte-stride vector at 0x000E5300 calls
 ??1Gen000FF700@@QAE@XZ,0x000FF700,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
 ??1Gen000FF7D0@@QAE@XZ,0x000FF7D0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
 ??1Gen00129C80@@QAE@XZ,0x00129C80,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
 ??1Gen00134590@@QAE@XZ,0x00134590,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
 ??1Gen0013B8E0@@QAE@XZ,0x0013B8E0,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
+??1Gen0013C200@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 20-byte-stride vector at 0x0013C200 calls
 ??1Gen0013C3F0@@QAE@XZ,0x0013C3F0,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen001439F0@@QAE@XZ,0x0003B8FE,Open-BFME5 ILT the element destructor the 36-byte-stride vector at 0x001439F0 calls
 ??1Gen00172430@@UAE@XZ,0x00172430,base class destructor tail-called by the guarded-delete destructor family (R4OwnedPointerDestructors.cpp); address-derived name; identity not recovered
 ??1Gen00196F30@@QAE@XZ,0x00196F30,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
 ??1Gen002237F0@@QAE@XZ,0x002237F0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
 ??1Gen002360C0@@QAE@XZ,0x002360C0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
+??1Gen00252DA0@@QAE@XZ,0x00026AB2,Open-BFME5 ILT the element destructor the 44-byte-stride vector at 0x00252DA0 calls
 ??1Gen002BC7A0@@QAE@XZ,0x002BC7A0,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen002E1260@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 12-byte-stride vector at 0x002E1260 calls
 ??1Gen002E9E10@@QAE@XZ,0x002E9E10,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
 ??1Gen00351970@@QAE@XZ,0x00351970,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
 ??1Gen00351980@@QAE@XZ,0x00351980,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
+??1Gen0035A980@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 20-byte-stride vector at 0x0035A980 calls
+??1Gen0035AA50@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 20-byte-stride vector at 0x0035AA50 calls
 ??1Gen0037B4D0@@QAE@XZ,0x0037B4D0,destructible member destroyed by the two-member destructor families (R4TwoMemberDestructors.cpp / R4VptrTailDestructors.cpp); address-derived name; identity not recovered
 ??1Gen003A4310@@QAE@XZ,0x003A4310,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
 ??1Gen003B9270@@QAE@XZ,0x003B9270,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
 ??1Gen003CDE30@@QAE@XZ,0x003CDE30,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
 ??1Gen003D1380Elem@@QAE@XZ,0x00036A9D,EH vector element destructor callee for 0x003D1380
 ??1Gen00425060@@QAE@XZ,0x00425060,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen00532580@@QAE@XZ,0x00887940,Open-BFME5 ILT the element destructor the 12-byte-stride vector at 0x00532580 calls
 ??1Gen0053AC40@@QAE@XZ,0x0053AC40,member destroyed by the virtual-base destructor family (R4VirtualBaseDestructors.cpp); address-derived name; identity not recovered
 ??1Gen00606F70@@QAE@XZ,0x00606F70,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
 ??1Gen00695630@@QAE@XZ,0x00695630,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
@@ -3994,6 +4019,15 @@ name,address,notes
 ??1Gen00762250@@QAE@XZ,0x00762250,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
 ??1Gen007701C0@@QAE@XZ,0x007701C0,element destructor called by the 98-byte no-exceptions vector<T> destructor family (Q4VectorDtorPlain.cpp); address-derived name; identity not recovered
 ??1Gen00774D40@@QAE@XZ,0x00774D40,element destructor called by the no-exceptions vector<T> destructor family (R4VectorDtorWideElems.cpp); address-derived name; identity not recovered
+??1Gen007EB140@@UAE@XZ,0x007EA6F0,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007EB140 calls
+??1Gen007F4D00@@UAE@XZ,0x007F4D20,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007F4D00 calls
+??1Gen007F86D0@@UAE@XZ,0x007F8090,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007F86D0 calls
+??1Gen007FA290@@UAE@XZ,0x007F9C50,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x007FA290 calls
+??1Gen008030A0@@UAE@XZ,0x00802F50,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x008030A0 calls
+??1Gen00803D10@@UAE@XZ,0x00803890,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x00803D10 calls
+??1Gen00808FB0@@UAE@XZ,0x007E86C0,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x00808FB0 calls
+??1Gen00809750@@UAE@XZ,0x008096F0,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x00809750 calls
+??1Gen0080ACD0@@UAE@XZ,0x0080A830,Open-BFME5 the out-of-line destructor the scalar deleting destructor at 0x0080ACD0 calls
 ??1Gen00825550@@QAE@XZ,0x00825550,S2 non-virtual destructor called directly by the delete-argument body at 0x00823210
 ??1Gen008267E0@@QAE@XZ,0x008267E0,S2 non-virtual destructor called directly by the delete-argument body at 0x00823230
 ??1Gen008427F0@@QAE@XZ,0x008427F0,member destroyed by the virtual-base destructor family (R4VirtualBaseDestructors.cpp); address-derived name; identity not recovered
@@ -4004,6 +4038,7 @@ name,address,notes
 ??1Gen009DB400@@QAE@XZ,0x009DB400,S3 delete-and-clear family callee destructor (address-derived name)
 ??1Gen009DB4D0@@QAE@XZ,0x009DB4D0,S3 delete-and-clear family callee destructor (address-derived name)
 ??1GenBase003BB1E0@@QAE@XZ,0x003BB260,base destructor tail-jumped by the vptr-only derived destructors in V4VptrDestructorTails.cpp; counterpart of the base constructor pinned at 0x003BB1E0
+??1GenRoot0082AE40@@UAE@XZ,0x0082AE40,Open-BFME5 the root destructor the /Od chain at 0x0082AE60 calls
 ??1Gen_dtor_0005fa60@@UAE@XZ,0x00031160,gen-dtor class destructor
 ??1Gen_dtor_0005fe80@@UAE@XZ,0x00007CB1,gen-dtor class destructor
 ??1Gen_dtor_00062240@@UAE@XZ,0x0000D828,gen-dtor class destructor
@@ -8227,6 +8262,7 @@ name,address,notes
 ??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,0x00045CA5,pinharvest x1 (thunk)
 ??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,0x00AFF130,pinharvest x1 (body)
 ??1MaterialRemapperClass@@QAE@XZ,0x0092FF90,callee of the byte-proven clone_materials 0x96DDC0; same stack temp as ecx under EH state -1
+??1Mem00026AB2@@QAE@XZ,0x00026AB2,Open-BFME5 ILT the subobject destructor the EH-framed member-offset vectors call
 ??1Mem000658A0@@QAE@XZ,0x000658A0,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
 ??1Mem00078B80@@QAE@XZ,0x00078B80,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
 ??1Mem000B31F0@@QAE@XZ,0x000B31F0,subobject destructor called by the 79-byte two-subobject destructor family (Q4PairSubobjectDtors.cpp); address-derived name; the address is an ICF fold so no one recovered name can be chosen
@@ -8253,6 +8289,7 @@ name,address,notes
 ??1Mem0090D090@@QAE@XZ,0x0090D090,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
 ??1Mem009A1A40@@QAE@XZ,0x009A1A40,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
 ??1Mem009DB7A0@@QAE@XZ,0x009DB7A0,subobject destructor called by the 76-byte pair destructors in BigPairMemberDtors.cpp
+??1Member0C00739C70@@QAE@XZ,0x008FC5B0,pinharvest
 ??1Member4@@QAE@XZ,0x00887940,Open-BFME5 pin Buffer-like
 ??1Member8@@QAE@XZ,0x00887940,Open-BFME5 pin Buffer-like
 ??1MemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
@@ -8717,6 +8754,24 @@ name,address,notes
 ??3@YAXPAX@Z,0x009F6C3A,pool-delete callsite target (thunk)
 ??3@YAXPAXPAUGen_uwt_0002aaa9@@@Z,0x0002AAA9,gen-uw-pin dtor target read from the retail funclet bytes
 ??3@YAXPAXPAUGen_uwt_00033d3e@@@Z,0x00033D3E,gen-uw-pin dtor target read from the retail funclet bytes
+??3Gen007E9B10@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007EB140@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F1BF0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F2120@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F2E30@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F33E0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F40C0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F47E0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F4D00@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007F86D0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007FA290@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007FBAF0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen007FCF50@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen008030A0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen00803D10@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen00808FB0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen00809750@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
+??3Gen0080ACD0@@SAXPAXI@Z,0x007F0170,Open-BFME5 the sized member operator delete the DirtySock scalar deleting destructors call
 ??3Gen_uws100_00891650@@SAXPAXI@Z,0x00891650,gen-uw-pin dtor target read from the retail funclet bytes
 ??3Gen_uws16_00891a80@@SAXPAXI@Z,0x00891A80,gen-uw-pin dtor target read from the retail funclet bytes
 ??3Gen_uws16_008976d0@@SAXPAXI@Z,0x008976D0,gen-uw-pin dtor target read from the retail funclet bytes
@@ -8801,6 +8856,7 @@ name,address,notes
 ??4AsciiString@@QAEAAV0@ABV0@@Z,0x00887C90,folded with UnicodeString::set per-TU copy
 ??4AudioEventRTS@@QAEAAV0@ABV0@@Z,0x0001F753,pinharvest x1 (thunk)
 ??4AudioEventRTS@@QAEAAV0@ABV0@@Z,0x00887C90,pinharvest x1 (body)
+??4BFMENetworkQueueItem1@@QAEAAV0@ABV0@@Z,0x00658340,Open-BFME5 the copy-assignment operator the copyFromQueueNode thunk actually reaches
 ??4BfmeIntMap@@QAEAAV0@ABV0@@Z,0x00048013,Open-BFME5 operator= of the 12-byte member at ProductionPrerequisite+0x0C; the ILT here jumps to the _Rb_tree<int> assignment at 0x00064E90
 ??4BfmeLegendString@@QAEAAU0@ABU0@@Z,0x00887C90,SubsystemLegend.cpp AsciiString stand-in operator=; retail AsciiString::operator= body
 ??4BfmeRendererListBase@@QAEAAV0@ABV0@@Z,0x00887B60,provisional structural name: the four-byte base half of Render2DSentenceClass::PendingSurfaceStruct::Renderers; the address is an ICF group the ledger leads with StringBase<char>?s copy ctor
@@ -8830,6 +8886,7 @@ name,address,notes
 ??4MeshMatDescClass@@QAEAAV0@ABV0@@Z,0x0092BB00,MeshMatDesc copy constructor direct same-TU call target
 ??4MultiplayerColorDefinition@@QAEAAV0@ABV0@@Z,0x00027B56,ILT thunk for MultiplayerColorDefinition::operator= found via decode_calls at newMultiplayerColorDefinition call site
 ??4OBBoxClass@@QAEAAV0@ABV0@@Z,0x009316A0
+??4PSPlayerStats@@QAEAAV0@ABV0@@Z,0x000A5950,Open-BFME5 ILT the BFMENetworkQueueItem1 assignment at 0x00658340 copies its stats through
 ??4PSRequest@@QAEAAV0@ABV0@@Z,0x000336A4,derived-ICF
 ??4Parameter@@QAEAAV0@ABV0@@Z,0x00887C90,ICF-folded with the shared AsciiString::set body; Parameter copy in Condition::duplicate
 ??4PeerRequest@@QAEAAV0@ABV0@@Z,0x000336A4
@@ -8900,7 +8957,12 @@ name,address,notes
 ??R?$less@UGen_t_00093990_mc4@@@_STL@@QBE_NABUGen_t_00093990_mc4@@0@Z,0x00093170,family-emit payload member
 ??R?$less@V?$StringBase@G@@@_STL@@QBE_NABV?$StringBase@G@@0@Z,0x000036F7,ILT thunk to the wide-string tree comparator at 0x0054ED50
 ??R?$less@VAsciiString@@@_STL@@QBE_NABVAsciiString@@0@Z,0x00043D42,Open-BFME5 the callee the hinted insert_unique reaches
+??RBfmeInsertCompareA@@QAE_NPAX0@Z,0x00024B81,Open-BFME5 ILT the linear insert at 0x00340860 compares through
+??RBfmeInsertCompareB@@QAE_NPAX0@Z,0x00024055,Open-BFME5 ILT the linear insert at 0x00452910 compares through
+??RBfmeInsertCompareC@@QAE_NPAX0@Z,0x00039CB1,Open-BFME5 ILT the linear insert at 0x00452970 compares through
+??RBfmeInsertCompareD@@QAE_NPAX0@Z,0x0002952D,Open-BFME5 ILT the linear insert at 0x00753460 compares through
 ??RBfmeScoreEntryLess@@QBE_NPBUBfmeScoreEntry@@0@Z,0x00570420,thiscall ret 8 functor operator()(a b) used by the STL sort/heap helpers of the AptScoreScreen (0x005724D0 0x00575450 ... 20 call sites): orders by TheVictoryConditions->hasAchievedVictory(entry+4 player) then getRelationship against entry player +0x230 team == ALLIES then isPlayerDead 0x000C9D00 then the +0x0C +0x08 ints and (*entry)+0x18
+??RBfmeTreeCompare@@QBE_NPBX0@Z,0x0000A9A2,Open-BFME5 ILT the red-black tree find at 0x00141220 compares through
 ??RGameSortStruct@@QAE_NPAVGameSpyStagingRoom@@0@Z,0x000317D7
 ??RGameSortStruct@@QBE_NPAVGameSpyStagingRoom@@0@Z,0x000317D7,ILT the staging-room tree insert calls at 0x0053F80B on its comparator subobject at this+8
 ??RHotKeyAsciiStringLess@@QBE_NABVAsciiString@@0@Z,0x00043D42,HotKey retail AsciiString comparator thunk
@@ -8939,6 +9001,24 @@ name,address,notes
 ??_7FireWeaponCollideModuleData@@6B@,0x00C8EB50,vptr stored by ?friend_newModuleData@FireWeaponCollide 0x00127D00 into the object it allocates
 ??_7FlightDeckBehaviorModuleData@@6B@,0x010A8268,Open-BFME5 vftable the constructor at 0x002131B0 installs over the base one
 ??_7GateProxyBehaviorModuleDataVtbl@@6B@,0x0108A2A0,GateProxyBehavior ModuleData vtbl
+??_7Gen007E9B10@@6B@,0x00D29758,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007E9B10
+??_7Gen007F1BF0@@6B@,0x00D2A5F8,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F1BF0
+??_7Gen007F2120@@6B@,0x00D2AB34,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F2120
+??_7Gen007F2E30@@6B@,0x00D2AC70,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F2E30
+??_7Gen007F33E0@@6B@,0x00D2AF04,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F33E0
+??_7Gen007F40C0@@6B@,0x00D2B048,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F40C0
+??_7Gen007F47E0@@6B@,0x00D2B248,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007F47E0
+??_7Gen007FBAF0@@6B@,0x00D2BCD0,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007FBAF0
+??_7Gen007FCF50@@6B@,0x00D2BEE8,Open-BFME5 vtable stored by the inline destructor folded into the scalar deleting destructor at 0x007FCF50
+??_7Gen0082AE60@@6B@,0x00D2E8C4,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AE60
+??_7Gen0082AE80@@6B@,0x00D2E8D0,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AE80
+??_7Gen0082AEA0@@6B@,0x00D2E8DC,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AEA0
+??_7Gen0082AEC0@@6B@,0x00D2E8E8,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AEC0
+??_7Gen0082AEE0@@6B@,0x00D2E8F4,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AEE0
+??_7Gen0082AF00@@6B@,0x00D2E900,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF00
+??_7Gen0082AF20@@6B@,0x00D2E90C,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF20
+??_7Gen0082AF40@@6B@,0x00D2E918,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF40
+??_7Gen0082AF60@@6B@,0x00D2E924,Open-BFME5 vtable restored at the head of the /Od destructor at 0x0082AF60
 ??_7HordeContainModuleDataBase@@6B@,0x01073744,Open-BFME5 HordeContain base vtable
 ??_7LargeGroupAudioUnusedKnownKeys@@6B@,0x010EE0FC,Open-BFME5 vftable the copy constructor at 0x003CD590 installs over the base one
 ??_7LargeGroupBonusIface1@@6B@,0x0109C9D0,LargeGroupBonus first update interface vtable
@@ -8959,6 +9039,8 @@ name,address,notes
 ??_7RetailCollideModuleData@@6B@,0x0108A350,CollideModule factory vtable target
 ??_7RetailDamageModuleData@@6B@,0x0108A350,DamageModule factory vtable target
 ??_7RetailUpdateModuleData@@6B@,0x0108A350,UpdateModule factory vtable target
+??_7Rva00885AF0Class@@6B@,0x01132ECC,pin
+??_7Rva00886F60Class@@6B@,0x01132FFC,pin
 ??_7StatusBitsUpgradeModuleData@@6B@,0x00C8F4F0,vptr stored by the factory at 0x0012B650 whose field-parse pointer resolves to ?buildFieldParse@StatusBitsUpgradeModuleData
 ??_7VirtualMinusOneConstructorThunk@@6B@,0x010F6F58,Open-BFME5 virtual minus one constructor vftable
 ??_7VirtualZeroDerivedAlternateThunk@@6B@,0x010F6F68,Open-BFME5 alternate virtual zero derived vftable
@@ -9143,12 +9225,38 @@ name,address,notes
 ?Base_Update@HTreeClass@@QAEXABVMatrix3D@@@Z,0x009528D0
 ?Begin_Chunk@ChunkSaveClass@@QAE_NK@Z,0x009E16F0
 ?Bfme000BD360Construct@_STL@@YAXPAUP5Elem000BD360@@ABU2@@Z,0x0000A97A,Open-BFME5 ILT for the construct the push_back at 0x000BD360 reaches
+?Bfme00365520Construct@@YAXPAUP6Elem00365520@@ABU1@@Z,0x00003193,Open-BFME5 ILT the element construct the inlined push_back at 0x00365520 calls
+?Bfme003AC1C0Construct@@YAXPAUP6Elem003AC1C0@@ABU1@@Z,0x00015C85,Open-BFME5 ILT the element construct the inlined push_back at 0x003AC1C0 calls
+?Bfme003B18A0Construct@@YAXPAUP6Elem003B18A0@@ABU1@@Z,0x000181A6,Open-BFME5 ILT the element construct the inlined push_back at 0x003B18A0 calls
+?Bfme003B18F0Construct@@YAXPAUP6Elem003B18F0@@ABU1@@Z,0x000200BD,Open-BFME5 ILT the element construct the inlined push_back at 0x003B18F0 calls
+?Bfme003B1940Construct@@YAXPAUP6Elem003B1940@@ABU1@@Z,0x0003CA24,Open-BFME5 ILT the element construct the inlined push_back at 0x003B1940 calls
+?Bfme003B1990Construct@@YAXPAUP6Elem003B1990@@ABU1@@Z,0x000140E2,Open-BFME5 ILT the element construct the inlined push_back at 0x003B1990 calls
+?Bfme003B19E0Construct@@YAXPAUP6Elem003B19E0@@ABU1@@Z,0x0003D843,Open-BFME5 ILT the element construct the inlined push_back at 0x003B19E0 calls
+?Bfme003B1A30Construct@@YAXPAUP6Elem003B1A30@@ABU1@@Z,0x0000F9A2,Open-BFME5 ILT the element construct the inlined push_back at 0x003B1A30 calls
+?Bfme003B1A80Construct@@YAXPAUP6Elem003B1A80@@ABU1@@Z,0x00013B79,Open-BFME5 ILT the element construct the inlined push_back at 0x003B1A80 calls
+?Bfme003B1AE0Construct@@YAXPAUP6Elem003B1AE0@@ABU1@@Z,0x00031DA4,Open-BFME5 ILT the element construct the inlined push_back at 0x003B1AE0 calls
+?Bfme003B1DF0Construct@@YAXPAUP6Elem003B1DF0@@ABU1@@Z,0x0000927D,Open-BFME5 ILT the element construct the inlined push_back at 0x003B1DF0 calls
+?Bfme003B1E50Construct@@YAXPAUP6Elem003B1E50@@ABU1@@Z,0x00049F49,Open-BFME5 ILT the element construct the inlined push_back at 0x003B1E50 calls
+?Bfme003B2060Construct@@YAXPAUP6Elem003B2060@@ABU1@@Z,0x0003C1A0,Open-BFME5 ILT the element construct the inlined push_back at 0x003B2060 calls
+?Bfme003B2890Construct@@YAXPAUP6Elem003B2890@@ABU1@@Z,0x000027A2,Open-BFME5 ILT the element construct the inlined push_back at 0x003B2890 calls
+?Bfme003B7030Construct@@YAXPAUP6Elem003B7030@@ABU1@@Z,0x00031791,Open-BFME5 ILT the element construct the inlined push_back at 0x003B7030 calls
+?Bfme003C3B50Construct@@YAXPAUP6Elem003C3B50@@ABU1@@Z,0x0002E3BB,Open-BFME5 ILT the element construct the inlined push_back at 0x003C3B50 calls
 ?BfmeArmorTemplateSetUninitializedCopy@_STL@@YAPAVArmorTemplateSet@@PAV2@00ABU__false_type@1@@Z,0x0003047C,Open-BFME5 ILT for _STL::__uninitialized_copy on ArmorTemplateSet at 0x0013DA80
 ?BfmeArmorTemplateSetUninitializedFillN@_STL@@YAPAVArmorTemplateSet@@PAV2@IABV2@ABU__false_type@1@@Z,0x0004236B,Open-BFME5 ILT for _STL::__uninitialized_fill_n on ArmorTemplateSet at 0x0013DAD0
 ?BfmeBitFlags117UninitializedCopy@_STL@@YAPAV?$BitFlags@$0HF@@@PAV2@00ABU__false_type@1@@Z,0x00018FED,Open-BFME5 ILT for _STL::__uninitialized_copy on BitFlags<117> at 0x0074AA10
 ?BfmeBitFlags117UninitializedFillN@_STL@@YAPAV?$BitFlags@$0HF@@@PAV2@IABV2@ABU__false_type@1@@Z,0x0002E32F,Open-BFME5 ILT for _STL::__uninitialized_fill_n on BitFlags<117> at 0x00749450
 ?BfmeConnInfoUninitializedCopy@_STL@@YAPAUtConnInfoStruct@@PAU2@00ABU__false_type@1@@Z,0x00007018,Open-BFME5 ILT for _STL::__uninitialized_copy on tConnInfoStruct at 0x00637E40
 ?BfmeConnInfoUninitializedFillN@_STL@@YAPAUtConnInfoStruct@@PAU2@IABU2@ABU__false_type@1@@Z,0x000099FD,Open-BFME5 ILT for _STL::__uninitialized_fill_n on tConnInfoStruct at 0x00637EA0
+?BfmeCopy00064970@@YAXPAUBfmeValue00064970@@PBU1@@Z,0x0000EF6B,Open-BFME5 ILT the value copy the clone-node body at 0x00064970 calls
+?BfmeCopy000BF3B0@@YAXPAUBfmeValue000BF3B0@@PBU1@@Z,0x00007554,Open-BFME5 ILT the value copy the clone-node body at 0x000BF3B0 calls
+?BfmeCopy000BFA00@@YAXPAUBfmeValue000BFA00@@PBU1@@Z,0x0000D71F,Open-BFME5 ILT the value copy the clone-node body at 0x000BFA00 calls
+?BfmeCopy000EFCB0@@YAXPAUBfmeValue000EFCB0@@PBU1@@Z,0x0004AA25,Open-BFME5 ILT the value copy the clone-node body at 0x000EFCB0 calls
+?BfmeCopy00136770@@YAXPAUBfmeValue00136770@@PBU1@@Z,0x00048874,Open-BFME5 ILT the value copy the clone-node body at 0x00136770 calls
+?BfmeCopy00138250@@YAXPAUBfmeValue00138250@@PBU1@@Z,0x0002289F,Open-BFME5 ILT the value copy the clone-node body at 0x00138250 calls
+?BfmeCopy004D55C0@@YAXPAUBfmeValue004D55C0@@PBU1@@Z,0x0002367D,Open-BFME5 ILT the value copy the clone-node body at 0x004D55C0 calls
+?BfmeCopy00769060@@YAXPAUBfmeValue00769060@@PBU1@@Z,0x000366E2,Open-BFME5 ILT the value copy the clone-node body at 0x00769060 calls
+?BfmeCopy009C94C0@@YAXPAUBfmeValue009C94C0@@PBU1@@Z,0x009C9120,Open-BFME5 ILT the value copy the clone-node body at 0x009C94C0 calls
+?BfmeCopy009D02C0@@YAXPAUBfmeValue009D02C0@@PBU1@@Z,0x009CF3C0,Open-BFME5 ILT the value copy the clone-node body at 0x009D02C0 calls
 ?BfmeDetonatorInfoUninitializedCopy@_STL@@YAPAUDetonatorInfo@MinefieldBehavior@@PAU23@00ABU__false_type@1@@Z,0x00027782,Open-BFME5 ILT for _STL::__uninitialized_copy on MinefieldBehavior DetonatorInfo at 0x00570920
 ?BfmeDetonatorInfoUninitializedFillN@_STL@@YAPAUDetonatorInfo@MinefieldBehavior@@PAU23@IABU23@ABU__false_type@1@@Z,0x00019E89,Open-BFME5 ILT for _STL::__uninitialized_fill_n on MinefieldBehavior DetonatorInfo at 0x00570970
 ?BfmeDynamicDX8VertexBufferInUse@@3PA_NA,0x01346740,Open-BFME5 per-slot in-use flags the BoxDynamicVBAccessClass destructor at 0x0091D9E0 clears; DIR32 sites are masked by the byte gate so this records which global it is
@@ -9939,9 +10047,18 @@ name,address,notes
 ?Rva0084B210Run@@YAHPAURva00841540Owner@@@Z,0x0084B210,U2 lane: cdecl callee of the 10-byte member at 0x00841540; unnamed dump elsewhere
 ?Rva00863C00@@YAXPAVRva00866770Owner@@@Z,0x00863C00,Open-BFME5 cdecl callee of one pointer that _peerStopGame at 0x00857E50 runs on the peer before looking at the field at +0xAF0; address-derived name
 ?Rva008667A0@@YAXPAVRva00866770Owner@@@Z,0x008667A0,Open-BFME5 cdecl callee of one pointer that _peerStopGame at 0x00857E50 runs on the peer when the field at +0x398 is set, where a clear field sends it to _piStopReporting instead; address-derived name
+?Rva0088EA50@@YAPAXI@Z,0x0088EA50,pin
+?Rva0088EAB0@@YAXPAX@Z,0x0088EAB0,pin
+?Rva0088EAD0@@YAXPAX@Z,0x0088EAD0,pin
+?Rva0088EB30@@YAPAXI@Z,0x0088EB30,pin
+?Rva0088EB30@@YAPAXPAXI@Z,0x0088EB30,pin
+?Rva0088EB90@@YAPAXPAXI@Z,0x0088EB90,pin
 ?Rva00897330NotifyFree@@YAXPAX@Z,0x00897330,address decoded from the retail REL32 call site; name is address-derived
 ?Rva009F8878Notify@@YGXPAX0@Z,0x009F8878,address-derived stdcall notification target called by 0x0048CDD0
 ?Rva012ED238Global@@3PAXA,0x012ED238,address-derived global used by 0x0048CDD0 notification pair
+?Rva01358E54@@YGXPAX@Z,0x01358E54,pin
+?Rva01358EA8@@YGXPAX@Z,0x01358EA8,pin
+?Rva01358ECC@@YGXPAX@Z,0x01358ECC,pin
 ?Scale@MeshGeometryClass@@QAEXABVVector3@@@Z,0x00925610
 ?Scale@SegLineRendererClass@@QAEXM@Z,0x0095FF30
 ?ScoreScreenInit@@YAXPAVWindowLayout@@PAX@Z,0x004E8DC0,FunctionLexicon triple at 0x00EA9AD8 {name 0x01086A20 ScoreScreenInit callback 0x004274F8 = ILT 0x000274F8 -> this body}; ZH ScoreScreenInit: g_playMusic(0x012F45D4)=1 buttonIsFinishCampaign(0x012F4183)=0 then nameToKey of ParentScoreScreen ButtonOk TextEntryChat ButtonEmote ListboxChatWindowScoreScreen ChatBoxBorder ButtonBuddy ButtonContinue ButtonSaveReplay into 0x012F4138..0x012F4158 and winGetWindowFromId into 0x012F415C..0x012F417C (listbox also stored to [0x012F7730]+0x5c) StaticTextGameSaveComplete -> 0x012F4178; LastReplayFileName = TheRecorder->getLastReplayFileName; TheShell->getPopupReplayLayout()->hide; canSaveReplay(0x012F4181) from getMode()==RECORD; then dispatch on TheGameLogic+0x10c: 3 REPLAY -> isMultiplayer ? initReplayMultiPlayer 0x004E929A : initReplaySinglePlayer 0x004E92C5 (overide=1); 5 INTERNET -> 0x004E92D1; 1 LAN -> 0x004E92DD; 2 SKIRMISH -> initSkirmish 0x004E92E9; else overide=1 initSinglePlayer 0x004E92F7 without the ScoreScreenShow transition; layout->hide(FALSE) winSetFocus(parent) ReplayWasPressed(0x012F4188)=0 s_blankLayout(0x012F4184) hide(FALSE)+bringForward
@@ -11132,6 +11249,7 @@ name,address,notes
 ?_M_insert_overflow@?$vector@HV?$allocator@H@_STL@@@_STL@@IAEXPAHABHABU__true_type@2@I_N@Z,0x0003B075,pinharvest x1 (thunk)
 ?_M_insert_overflow@?$vector@HV?$allocator@H@_STL@@@_STL@@IAEXPAHABHABU__true_type@2@I_N@Z,0x000486BC,pinharvest x1 (thunk)
 ?_M_insert_overflow@?$vector@MV?$allocator@M@_STL@@@_STL@@IAEXPAMABMABU__true_type@2@I_N@Z,0x000264D1,Open-BFME5 ILT thunk to 0x000D32E0 - the overflow arm of _M_fill_insert at 0x00459D90. That body already carries a generated four-byte-POD _M_insert_overflow identity (Gen_t_000d6300_m4pod) which agrees the element is four bytes wide
+?_M_insert_overflow@?$vector@PAVBfmeArmyIcon@@V?$allocator@PAVBfmeArmyIcon@@@_STL@@@_STL@@IAEXPAPAVBfmeArmyIcon@@ABQAV3@ABU__true_type@2@I_N@Z,0x0001E051,retail findArmyIcon overflow call directly identifies vector<BfmeArmyIcon*> overflow helper
 ?_M_insert_overflow@?$vector@PAVBfmeLivingWorldAnimObject@@V?$allocator@PAVBfmeLivingWorldAnimObject@@@_STL@@@_STL@@IAEXPAPAVBfmeLivingWorldAnimObject@@ABQAV3@ABU__true_type@2@I_N@Z,0x000094D5,STL vector overflow helper ILT decoded from findAnimObject retail callsite
 ?_M_insert_overflow@?$vector@PAVLivingWorldAnimObject@@V?$allocator@PAVLivingWorldAnimObject@@@_STL@@@_STL@@IAEXPAPAVLivingWorldAnimObject@@ABQAV3@ABU__true_type@2@I_N@Z,0x000094D5,LivingWorldAnimObject vector helper ILT decoded from exact findAnimObject body
 ?_M_insert_overflow@?$vector@PAVDrawable@@V?$allocator@PAVDrawable@@@_STL@@@_STL@@IAEXPAPAVDrawable@@ABQAV3@ABU__true_type@2@I_N@Z,0x0001CBFC,pinharvest x1 (thunk)
@@ -11340,20 +11458,40 @@ name,address,notes
 ?_M_insert_overflow@?$vector@UNamedReveal@@V?$allocator@UNamedReveal@@@_STL@@@_STL@@IAEXPAUNamedReveal@@ABU3@ABU__false_type@2@I_N@Z,0x0002EC58,Open-BFME5 ILT; the grow path of the same push_back
 ?_M_insert_overflow@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@IAEXPAUNugget@ModuleInfo@@ABU34@ABU__false_type@2@I_N@Z,0x0001ADBB,resweep callee back-solved
 ?_M_insert_overflow@?$vector@UP5Elem000BD360@@V?$allocator@UP5Elem000BD360@@@_STL@@@_STL@@IAEXPAUP5Elem000BD360@@ABU3@ABU__false_type@2@I_N@Z,0x00025275,Open-BFME5 ILT for the reallocating insert the push_back at 0x000BD360 reaches
+?_M_insert_overflow@?$vector@UP6Elem00365520@@V?$allocator@UP6Elem00365520@@@_STL@@@_STL@@QAEXPAUP6Elem00365520@@ABU3@ABU__false_type@2@I_N@Z,0x0002C331,Open-BFME5 ILT the overflow insert the inlined push_back at 0x00365520 calls
+?_M_insert_overflow@?$vector@UP6Elem003AC1C0@@V?$allocator@UP6Elem003AC1C0@@@_STL@@@_STL@@QAEXPAUP6Elem003AC1C0@@ABU3@ABU__false_type@2@I_N@Z,0x00005D08,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003AC1C0 calls
+?_M_insert_overflow@?$vector@UP6Elem003B18A0@@V?$allocator@UP6Elem003B18A0@@@_STL@@@_STL@@QAEXPAUP6Elem003B18A0@@ABU3@ABU__false_type@2@I_N@Z,0x00024A00,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B18A0 calls
+?_M_insert_overflow@?$vector@UP6Elem003B18F0@@V?$allocator@UP6Elem003B18F0@@@_STL@@@_STL@@QAEXPAUP6Elem003B18F0@@ABU3@ABU__false_type@2@I_N@Z,0x000043CC,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B18F0 calls
+?_M_insert_overflow@?$vector@UP6Elem003B1940@@V?$allocator@UP6Elem003B1940@@@_STL@@@_STL@@QAEXPAUP6Elem003B1940@@ABU3@ABU__false_type@2@I_N@Z,0x0001E54C,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B1940 calls
+?_M_insert_overflow@?$vector@UP6Elem003B1990@@V?$allocator@UP6Elem003B1990@@@_STL@@@_STL@@QAEXPAUP6Elem003B1990@@ABU3@ABU__false_type@2@I_N@Z,0x0002541E,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B1990 calls
+?_M_insert_overflow@?$vector@UP6Elem003B19E0@@V?$allocator@UP6Elem003B19E0@@@_STL@@@_STL@@QAEXPAUP6Elem003B19E0@@ABU3@ABU__false_type@2@I_N@Z,0x00018421,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B19E0 calls
+?_M_insert_overflow@?$vector@UP6Elem003B1A30@@V?$allocator@UP6Elem003B1A30@@@_STL@@@_STL@@QAEXPAUP6Elem003B1A30@@ABU3@ABU__false_type@2@I_N@Z,0x0002CCE1,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B1A30 calls
+?_M_insert_overflow@?$vector@UP6Elem003B1A80@@V?$allocator@UP6Elem003B1A80@@@_STL@@@_STL@@QAEXPAUP6Elem003B1A80@@ABU3@ABU__false_type@2@I_N@Z,0x0003C5E2,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B1A80 calls
+?_M_insert_overflow@?$vector@UP6Elem003B1AE0@@V?$allocator@UP6Elem003B1AE0@@@_STL@@@_STL@@QAEXPAUP6Elem003B1AE0@@ABU3@ABU__false_type@2@I_N@Z,0x0000DB25,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B1AE0 calls
+?_M_insert_overflow@?$vector@UP6Elem003B1DF0@@V?$allocator@UP6Elem003B1DF0@@@_STL@@@_STL@@QAEXPAUP6Elem003B1DF0@@ABU3@ABU__false_type@2@I_N@Z,0x000330AA,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B1DF0 calls
+?_M_insert_overflow@?$vector@UP6Elem003B1E50@@V?$allocator@UP6Elem003B1E50@@@_STL@@@_STL@@QAEXPAUP6Elem003B1E50@@ABU3@ABU__false_type@2@I_N@Z,0x00037439,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B1E50 calls
+?_M_insert_overflow@?$vector@UP6Elem003B2060@@V?$allocator@UP6Elem003B2060@@@_STL@@@_STL@@QAEXPAUP6Elem003B2060@@ABU3@ABU__false_type@2@I_N@Z,0x0000F047,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B2060 calls
+?_M_insert_overflow@?$vector@UP6Elem003B2890@@V?$allocator@UP6Elem003B2890@@@_STL@@@_STL@@QAEXPAUP6Elem003B2890@@ABU3@ABU__false_type@2@I_N@Z,0x00044CB5,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B2890 calls
+?_M_insert_overflow@?$vector@UP6Elem003B7030@@V?$allocator@UP6Elem003B7030@@@_STL@@@_STL@@QAEXPAUP6Elem003B7030@@ABU3@ABU__false_type@2@I_N@Z,0x0001200D,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B7030 calls
+?_M_insert_overflow@?$vector@UP6Elem003C3B50@@V?$allocator@UP6Elem003C3B50@@@_STL@@@_STL@@QAEXPAUP6Elem003C3B50@@ABU3@ABU__false_type@2@I_N@Z,0x000266E3,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003C3B50 calls
 ?_M_insert_overflow@?$vector@UParticleSysBoneInfo@@V?$allocator@UParticleSysBoneInfo@@@_STL@@@_STL@@IAEXPAUParticleSysBoneInfo@@ABU3@ABU__false_type@2@I_N@Z,0x00004F93,retail REL32 pin for W3DModelDraw particle-system-bone vector push_back
 ?_M_insert_overflow@?$vector@UPayload@DeliverPayloadNugget@@V?$allocator@UPayload@DeliverPayloadNugget@@@_STL@@@_STL@@IAEXPAUPayload@DeliverPayloadNugget@@ABU34@ABU__false_type@2@I_N@Z,0x0002F022,parsePayload overflow call proves the name-first Payload instantiation
 ?_M_insert_overflow@?$vector@UPrereqUnitRec@ProductionPrerequisite@@V?$allocator@UPrereqUnitRec@ProductionPrerequisite@@@_STL@@@_STL@@IAEXPAUPrereqUnitRec@ProductionPrerequisite@@ABU34@ABU__false_type@2@I_N@Z,0x0000F277,rel32 pin for exact-ambiguous landing
 ?_M_insert_overflow@?$vector@URunwayInfo@FlightDeckBehavior@@V?$allocator@URunwayInfo@FlightDeckBehavior@@@_STL@@@_STL@@IAEXPAURunwayInfo@FlightDeckBehavior@@ABU34@ABU__false_type@2@I_N@Z,0x00025C89,
+?_M_insert_overflow@?$vector@URva000A8500Element@_STL@@V?$allocator@URva000A8500Element@_STL@@@2@@_STL@@IAEXPAURva000A8500Element@2@ABU32@ABU__false_type@2@I_N@Z,0x000A8500,existing exact STLport vector overflow body at the proven constructor target
 ?_M_insert_overflow@?$vector@URva000FB210Element@@V?$allocator@URva000FB210Element@@@_STL@@@_STL@@IAEXPAURva000FB210Element@@ABU3@ABU__false_type@2@I_N@Z,0x000266E3,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva00146FD0Element@@V?$allocator@URva00146FD0Element@@@_STL@@@_STL@@IAEXPAURva00146FD0Element@@ABU3@ABU__false_type@2@I_N@Z,0x0001AEB0,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva001999C0Element@@V?$allocator@URva001999C0Element@@@_STL@@@_STL@@IAEXPAURva001999C0Element@@ABU3@ABU__false_type@2@I_N@Z,0x000312A5,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva001D28F0Element@@V?$allocator@URva001D28F0Element@@@_STL@@@_STL@@IAEXPAURva001D28F0Element@@ABU3@ABU__false_type@2@I_N@Z,0x0002AA8B,Open-BFME5 a callee of a vector push_back
+?_M_insert_overflow@?$vector@URva001E9020Element@@V?$allocator@URva001E9020Element@@@_STL@@@_STL@@IAEXPAURva001E9020Element@@ABU3@ABU__false_type@2@I_N@Z,0x001E9020,existing exact STLport vector overflow body at the proven constructor target
 ?_M_insert_overflow@?$vector@URva00244A80Element@@V?$allocator@URva00244A80Element@@@_STL@@@_STL@@IAEXPAURva00244A80Element@@ABU3@ABU__false_type@2@I_N@Z,0x0000C5D6,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva00253630Element@@V?$allocator@URva00253630Element@@@_STL@@@_STL@@IAEXPAURva00253630Element@@ABU3@ABU__false_type@2@I_N@Z,0x000492AB,Open-BFME5 a callee of a vector push_back
+?_M_insert_overflow@?$vector@URva0025CB00Element@_STL@@V?$allocator@URva0025CB00Element@_STL@@@2@@_STL@@IAEXPAURva0025CB00Element@2@ABU32@ABU__false_type@2@I_N@Z,0x0025CB00,existing exact STLport vector overflow body at the proven constructor target
 ?_M_insert_overflow@?$vector@URva00365020Element@@V?$allocator@URva00365020Element@@@_STL@@@_STL@@IAEXPAURva00365020Element@@ABU3@ABU__false_type@2@I_N@Z,0x0002C331,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva00366890Element@@V?$allocator@URva00366890Element@@@_STL@@@_STL@@IAEXPAURva00366890Element@@ABU3@ABU__false_type@2@I_N@Z,0x000345B8,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva003A35A0Element@@V?$allocator@URva003A35A0Element@@@_STL@@@_STL@@IAEXPAURva003A35A0Element@@ABU3@ABU__false_type@2@I_N@Z,0x0002798F,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva003AC170Element@@V?$allocator@URva003AC170Element@@@_STL@@@_STL@@IAEXPAURva003AC170Element@@ABU3@ABU__false_type@2@I_N@Z,0x00005D08,Open-BFME5 a callee of a vector push_back
+?_M_insert_overflow@?$vector@URva003B0060Element@_STL@@V?$allocator@URva003B0060Element@_STL@@@2@@_STL@@IAEXPAURva003B0060Element@2@ABU32@ABU__false_type@2@I_N@Z,0x003B0060,existing exact STLport vector overflow body at the proven constructor target
 ?_M_insert_overflow@?$vector@URva003B1230Element@@V?$allocator@URva003B1230Element@@@_STL@@@_STL@@IAEXPAURva003B1230Element@@ABU3@ABU__false_type@2@I_N@Z,0x0000DB25,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva003B2380Element@@V?$allocator@URva003B2380Element@@@_STL@@@_STL@@IAEXPAURva003B2380Element@@ABU3@ABU__false_type@2@I_N@Z,0x00038424,Open-BFME5 a callee of a vector push_back
 ?_M_insert_overflow@?$vector@URva003BB540Element@@V?$allocator@URva003BB540Element@@@_STL@@@_STL@@IAEXPAURva003BB540Element@@ABU3@ABU__false_type@2@I_N@Z,0x00006BA4,Open-BFME5 a callee of a vector push_back
@@ -11817,6 +11955,7 @@ name,address,notes
 ?addCampaign@BfmeLivingWorldCampaignManager@@QAEXPAVLivingWorldCampaign@@@Z,0x003B7030,Open-BFME5 the manager call ParseLivingWorldCampaignBlock ends with
 ?addChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00031115,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
 ?addChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067FF20,addCommand's jump-table arm for command type 14
+?addChatLog@Rva007F1F60Feedback@@QAEXPAVRva007E8810Message@@PBURva007F2080ChatLog@@H@Z,0x007F2080,V2 lane: FESL feedback request chat-log array serializer
 ?addCommand@NetPacket@@QAE_NPAVNetCommandRef@@@Z,0x006811B0,the jump-table dispatcher doSend calls; identified from the call site
 ?addConditionTemplate@BfmeScriptEngineTemplates@@QAEXPAVTemplate@@@Z,0x00040B8D,ILT thunk to the body at 0x0033D790
 ?addDestroyPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000365AC,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
@@ -11831,7 +11970,6 @@ name,address,notes
 ?addDisconnectPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B750,addCommand's jump-table arm for command type 25
 ?addDisconnectScreenOffCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00023079,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
 ?addDisconnectScreenOffCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00679810,addCommand's jump-table arm for command type 28
-?addChatLog@Rva007F1F60Feedback@@QAEXPAVRva007E8810Message@@PBURva007F2080ChatLog@@H@Z,0x007F2080,V2 lane: FESL feedback request chat-log array serializer
 ?addDisconnectVoteCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000422F8,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
 ?addDisconnectVoteCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B480,addCommand's jump-table arm for command type 26
 ?addDrawableToLookupTable@GameClient@@QAEXPAVDrawable@@@Z,0x0003CC4A,Open-BFME5 setID retail REL32 pin
@@ -71640,21 +71778,182 @@ name,address,notes
 ?begin@?$hashtable@U?$pair@$$CBHUGen_t_007a4d20_m12pod@@@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHUGen_t_007a4d20_m12pod@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHUGen_t_007a4d20_m12pod@@@_STL@@@2@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@$$CBHUGen_t_007a4d20_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHUGen_t_007a4d20_m12pod@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHUGen_t_007a4d20_m12pod@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHUGen_t_007a4d20_m12pod@@@_STL@@@2@@2@XZ,0x007A4670,family-emit payload member
 ?begin@?$hashtable@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@U?$_Nonconst_traits@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@2@XZ,0x0003EE14
 ?begin@FirewallHelperDetectionBeginUpdateShim@@QAE_NXZ,0x0066EFA0,FirewallHelperClass detectionBeginUpdate incremental-link thunk target through a TU-local forwarding shim
+?bfmeAccept@BfmeSinkA@@QAEXPAVBfmeFlagTarget@@@Z,0x008815A0,Open-BFME5 the sink the describe at 0x00881040 hands its target to
+?bfmeAccept@BfmeSinkB@@QAEXPAVBfmeFlagTarget@@@Z,0x008FB0B0,Open-BFME5 the sink the describe at 0x008F7650 hands its target to
+?bfmeAccept@BfmeSinkC@@QAEXPAVBfmeFlagTarget@@@Z,0x009A2FC0,Open-BFME5 the sink the describe at 0x009A2700 hands its target to
+?bfmeAccept@BfmeSinkD@@QAEXPAVBfmeFlagTarget@@@Z,0x009F49F0,Open-BFME5 the sink the describe at 0x009F2880 hands its target to
+?bfmeAccept@BfmeSubAccept_00002DEC@@QAEXPAVBfmeSeedTarget@@@Z,0x00002DEC,Open-BFME5 ILT a version-block sub-object accepts through
+?bfmeAccept@BfmeSubAccept_000061B3@@QAEXPAVBfmeSeedTarget@@@Z,0x000061B3,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_00007289@@QAEXPAVBfmeSeedTarget@@@Z,0x00007289,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_00016B85@@QAEXPAVBfmeSeedTarget@@@Z,0x00016B85,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_0001DE5D@@QAEXPAVBfmeSeedTarget@@@Z,0x0001DE5D,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_00029DAC@@QAEXPAVBfmeSeedTarget@@@Z,0x00029DAC,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_0002C41C@@QAEXPAVBfmeSeedTarget@@@Z,0x0002C41C,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_00031A07@@QAEXPAVBfmeSeedTarget@@@Z,0x00031A07,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_000328EE@@QAEXPAVBfmeSeedTarget@@@Z,0x000328EE,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@BfmeSubAccept_0003EA86@@QAEXPAVBfmeSeedTarget@@@Z,0x0003EA86,Open-BFME5 ILT a seeder sub-object accepts through
+?bfmeAccept@Gen_0014F150@@AAEXPAVBfmeSeedTarget@@@Z,0x00022363,Open-BFME5 ILT the seeder at 0x0014F150 accepts through
+?bfmeAccept@Gen_0015E7E0@@AAEXPAVBfmeSeedTarget@@@Z,0x00022363,Open-BFME5 ILT the seeder at 0x0015E7E0 accepts through
+?bfmeAccept@Gen_00168910@@AAEXPAVBfmeSeedTarget@@@Z,0x0004B53D,Open-BFME5 ILT the seeder at 0x00168910 accepts through
+?bfmeAccept@Gen_0016B250@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016B250 accepts through
+?bfmeAccept@Gen_0016B320@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016B320 accepts through
+?bfmeAccept@Gen_0016B7C0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016B7C0 accepts through
+?bfmeAccept@Gen_0016B890@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016B890 accepts through
+?bfmeAccept@Gen_0016B940@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016B940 accepts through
+?bfmeAccept@Gen_0016BA30@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016BA30 accepts through
+?bfmeAccept@Gen_0016BB90@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016BB90 accepts through
+?bfmeAccept@Gen_0016BC50@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016BC50 accepts through
+?bfmeAccept@Gen_0016BCF0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016BCF0 accepts through
+?bfmeAccept@Gen_0016BFC0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016BFC0 accepts through
+?bfmeAccept@Gen_0016C040@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016C040 accepts through
+?bfmeAccept@Gen_0016C120@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016C120 accepts through
+?bfmeAccept@Gen_0016C300@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016C300 accepts through
+?bfmeAccept@Gen_0016C350@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the version block at 0x0016C350 accepts through
+?bfmeAccept@Gen_0016C430@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016C430 accepts through
+?bfmeAccept@Gen_0016C730@@AAEXPAVBfmeSeedTarget@@@Z,0x00033BF4,Open-BFME5 ILT the seeder at 0x0016C730 accepts through
+?bfmeAccept@Gen_0016C790@@AAEXPAVBfmeSeedTarget@@@Z,0x00033BF4,Open-BFME5 ILT the seeder at 0x0016C790 accepts through
+?bfmeAccept@Gen_0016C7F0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016C7F0 accepts through
+?bfmeAccept@Gen_0016C860@@AAEXPAVBfmeSeedTarget@@@Z,0x00033BF4,Open-BFME5 ILT the seeder at 0x0016C860 accepts through
+?bfmeAccept@Gen_0016D180@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016D180 accepts through
+?bfmeAccept@Gen_0016D210@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016D210 accepts through
+?bfmeAccept@Gen_0016E0C0@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016E0C0 accepts through
+?bfmeAccept@Gen_0016E140@@AAEXPAVBfmeSeedTarget@@@Z,0x00002379,Open-BFME5 ILT the seeder at 0x0016E140 accepts through
+?bfmeAccept@Gen_00189FA0@@AAEXPAVBfmeSeedTarget@@@Z,0x0001C3FA,Open-BFME5 ILT the seeder at 0x00189FA0 accepts through
+?bfmeAccept@Gen_001ED0C0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001ED0C0 accepts through
+?bfmeAccept@Gen_001ED5F0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001ED5F0 accepts through
+?bfmeAccept@Gen_001EE830@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001EE830 accepts through
+?bfmeAccept@Gen_001F61B0@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the seeder at 0x001F61B0 accepts through
+?bfmeAccept@Gen_001F6900@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001F6900 accepts through
+?bfmeAccept@Gen_001F7A70@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001F7A70 accepts through
+?bfmeAccept@Gen_001F7FE0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x001F7FE0 accepts through
+?bfmeAccept@Gen_001FADA0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x001FADA0 accepts through
+?bfmeAccept@Gen_001FFCA0@@AAEXPAVBfmeSeedTarget@@@Z,0x0003689A,Open-BFME5 ILT the seeder at 0x001FFCA0 accepts through
+?bfmeAccept@Gen_00200380@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00200380 accepts through
+?bfmeAccept@Gen_00201B00@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x00201B00 accepts through
+?bfmeAccept@Gen_00202740@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00202740 accepts through
+?bfmeAccept@Gen_00202D30@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00202D30 accepts through
+?bfmeAccept@Gen_00203DF0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00203DF0 accepts through
+?bfmeAccept@Gen_00204710@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00204710 accepts through
+?bfmeAccept@Gen_00207470@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00207470 accepts through
+?bfmeAccept@Gen_002077D0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002077D0 accepts through
+?bfmeAccept@Gen_0020CDE0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seed at 0x0020CDE0 accepts through
+?bfmeAccept@Gen_0020D2B0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x0020D2B0 accepts through
+?bfmeAccept@Gen_0020D890@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0020D890 accepts through
+?bfmeAccept@Gen_00212790@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the seeder at 0x00212790 accepts through
+?bfmeAccept@Gen_00212B40@@AAEXPAVBfmeSeedTarget@@@Z,0x00017A49,Open-BFME5 ILT the seeder at 0x00212B40 accepts through
+?bfmeAccept@Gen_00212FC0@@AAEXPAVBfmeSeedTarget@@@Z,0x00031557,Open-BFME5 ILT the version block at 0x00212FC0 accepts through
+?bfmeAccept@Gen_00213440@@AAEXPAVBfmeSeedTarget@@@Z,0x00017A49,Open-BFME5 ILT the seeder at 0x00213440 accepts through
+?bfmeAccept@Gen_00213EA0@@AAEXPAVBfmeSeedTarget@@@Z,0x0003BC7D,Open-BFME5 ILT the seeder at 0x00213EA0 accepts through
+?bfmeAccept@Gen_00214C60@@AAEXPAVBfmeSeedTarget@@@Z,0x00031557,Open-BFME5 ILT the seeder at 0x00214C60 accepts through
+?bfmeAccept@Gen_00214EA0@@AAEXPAVBfmeSeedTarget@@@Z,0x00031557,Open-BFME5 ILT the seeder at 0x00214EA0 accepts through
+?bfmeAccept@Gen_00215AF0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00215AF0 accepts through
+?bfmeAccept@Gen_00217810@@AAEXPAVBfmeSeedTarget@@@Z,0x00036714,Open-BFME5 ILT the version block at 0x00217810 accepts through
+?bfmeAccept@Gen_0022A170@@AAEXPAVBfmeSeedTarget@@@Z,0x00016027,Open-BFME5 ILT the seeder at 0x0022A170 accepts through
+?bfmeAccept@Gen_0022CD40@@AAEXPAVBfmeSeedTarget@@@Z,0x000489DC,Open-BFME5 ILT the seeder at 0x0022CD40 accepts through
+?bfmeAccept@Gen_0022F410@@AAEXPAVBfmeSeedTarget@@@Z,0x000489DC,Open-BFME5 ILT the seeder at 0x0022F410 accepts through
+?bfmeAccept@Gen_00248BE0@@AAEXPAVBfmeSeedTarget@@@Z,0x0000EAA7,Open-BFME5 ILT the version block at 0x00248BE0 accepts through
+?bfmeAccept@Gen_0024B870@@AAEXPAVBfmeSeedTarget@@@Z,0x0003D37A,Open-BFME5 ILT the seeder at 0x0024B870 accepts through
+?bfmeAccept@Gen_0024E710@@AAEXPAVBfmeSeedTarget@@@Z,0x00007658,Open-BFME5 ILT the version block at 0x0024E710 accepts through
+?bfmeAccept@Gen_0024F500@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the seeder at 0x0024F500 accepts through
+?bfmeAccept@Gen_00250A80@@AAEXPAVBfmeSeedTarget@@@Z,0x000099CB,Open-BFME5 ILT the version block at 0x00250A80 accepts through
+?bfmeAccept@Gen_00255F60@@AAEXPAVBfmeSeedTarget@@@Z,0x00001681,Open-BFME5 ILT the seeder at 0x00255F60 accepts through
+?bfmeAccept@Gen_00256360@@AAEXPAVBfmeSeedTarget@@@Z,0x00003AEE,Open-BFME5 ILT the seeder at 0x00256360 accepts through
+?bfmeAccept@Gen_00257D10@@AAEXPAVBfmeSeedTarget@@@Z,0x000289F7,Open-BFME5 ILT the seeder at 0x00257D10 accepts through
+?bfmeAccept@Gen_0025A590@@AAEXPAVBfmeSeedTarget@@@Z,0x00033B77,Open-BFME5 ILT the seeder at 0x0025A590 accepts through
+?bfmeAccept@Gen_0025D0E0@@AAEXPAVBfmeSeedTarget@@@Z,0x000289F7,Open-BFME5 ILT the seeder at 0x0025D0E0 accepts through
+?bfmeAccept@Gen_0025DA40@@AAEXPAVBfmeSeedTarget@@@Z,0x000289F7,Open-BFME5 ILT the seeder at 0x0025DA40 accepts through
+?bfmeAccept@Gen_0025EF10@@AAEXPAVBfmeSeedTarget@@@Z,0x000289F7,Open-BFME5 ILT the seeder at 0x0025EF10 accepts through
+?bfmeAccept@Gen_00268060@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the seeder at 0x00268060 accepts through
+?bfmeAccept@Gen_0026A980@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0026A980 accepts through
+?bfmeAccept@Gen_0026C210@@AAEXPAVBfmeSeedTarget@@@Z,0x000289F7,Open-BFME5 ILT the seeder at 0x0026C210 accepts through
+?bfmeAccept@Gen_0026E160@@AAEXPAVBfmeSeedTarget@@@Z,0x000289F7,Open-BFME5 ILT the seeder at 0x0026E160 accepts through
+?bfmeAccept@Gen_00280CF0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00280CF0 accepts through
+?bfmeAccept@Gen_002815B0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002815B0 accepts through
+?bfmeAccept@Gen_00281CD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the version block at 0x00281CD0 accepts through
+?bfmeAccept@Gen_00282EA0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seed at 0x00282EA0 accepts through
+?bfmeAccept@Gen_00286E30@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00286E30 accepts through
+?bfmeAccept@Gen_0028A260@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seed at 0x0028A260 accepts through
+?bfmeAccept@Gen_0028B8A0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0028B8A0 accepts through
+?bfmeAccept@Gen_0028C760@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0028C760 accepts through
+?bfmeAccept@Gen_0028C980@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0028C980 accepts through
+?bfmeAccept@Gen_0028CE90@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0028CE90 accepts through
+?bfmeAccept@Gen_0028D3C0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0028D3C0 accepts through
+?bfmeAccept@Gen_0028EAD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0028EAD0 accepts through
+?bfmeAccept@Gen_00291DC0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00291DC0 accepts through
+?bfmeAccept@Gen_00292E60@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00292E60 accepts through
+?bfmeAccept@Gen_00295430@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00295430 accepts through
+?bfmeAccept@Gen_002956A0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002956A0 accepts through
+?bfmeAccept@Gen_00295C70@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00295C70 accepts through
+?bfmeAccept@Gen_00297F70@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00297F70 accepts through
+?bfmeAccept@Gen_00298AE0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00298AE0 accepts through
+?bfmeAccept@Gen_00298FD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00298FD0 accepts through
+?bfmeAccept@Gen_00299B60@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x00299B60 accepts through
+?bfmeAccept@Gen_0029FFA0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x0029FFA0 accepts through
+?bfmeAccept@Gen_002A0320@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002A0320 accepts through
+?bfmeAccept@Gen_002A07E0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002A07E0 accepts through
+?bfmeAccept@Gen_002A0B40@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002A0B40 accepts through
+?bfmeAccept@Gen_002A1280@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002A1280 accepts through
+?bfmeAccept@Gen_002AB430@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002AB430 accepts through
+?bfmeAccept@Gen_002AE710@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002AE710 accepts through
+?bfmeAccept@Gen_002AF780@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002AF780 accepts through
+?bfmeAccept@Gen_002B1490@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002B1490 accepts through
+?bfmeAccept@Gen_002B2150@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002B2150 accepts through
+?bfmeAccept@Gen_002B2CA0@@AAEXPAVBfmeSeedTarget@@@Z,0x00033B77,Open-BFME5 ILT the seeder at 0x002B2CA0 accepts through
+?bfmeAccept@Gen_002B3190@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the seeder at 0x002B3190 accepts through
+?bfmeAccept@Gen_002B5250@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the version block at 0x002B5250 accepts through
+?bfmeAccept@Gen_002B9EC0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002B9EC0 accepts through
+?bfmeAccept@Gen_002BBD40@@AAEXPAVBfmeSeedTarget@@@Z,0x0000DC24,Open-BFME5 ILT the seeder at 0x002BBD40 accepts through
+?bfmeAccept@Gen_002C1740@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the version block at 0x002C1740 accepts through
+?bfmeAccept@Gen_002C4BD0@@AAEXPAVBfmeSeedTarget@@@Z,0x0000EC6E,Open-BFME5 ILT the seeder at 0x002C4BD0 accepts through
+?bfmeAccept@Gen_002C58B0@@AAEXPAVBfmeSeedTarget@@@Z,0x00043441,Open-BFME5 ILT the seeder at 0x002C58B0 accepts through
+?bfmeAccept@Gen_002CDC70@@AAEXPAVBfmeSeedTarget@@@Z,0x0001D043,Open-BFME5 ILT the seeder at 0x002CDC70 accepts through
+?bfmeAccept@Gen_002CE3A0@@AAEXPAVBfmeSeedTarget@@@Z,0x0001D043,Open-BFME5 ILT the seeder at 0x002CE3A0 accepts through
+?bfmeAccept@Gen_002CEED0@@AAEXPAVBfmeSeedTarget@@@Z,0x0001D043,Open-BFME5 ILT the seeder at 0x002CEED0 accepts through
+?bfmeAccept@Gen_002CF710@@AAEXPAVBfmeSeedTarget@@@Z,0x0001D043,Open-BFME5 ILT the seeder at 0x002CF710 accepts through
+?bfmeAccept@Gen_002CFFD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002CFFD0 accepts through
+?bfmeAccept@Gen_002D0550@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002D0550 accepts through
+?bfmeAccept@Gen_002D2580@@AAEXPAVBfmeSeedTarget@@@Z,0x000044C1,Open-BFME5 ILT the seeder at 0x002D2580 accepts through
+?bfmeAccept@Gen_002D4710@@AAEXPAVBfmeSeedTarget@@@Z,0x000183FE,Open-BFME5 ILT the version block at 0x002D4710 accepts through
+?bfmeAccept@Gen_002D5740@@AAEXPAVBfmeSeedTarget@@@Z,0x000183FE,Open-BFME5 ILT the seeder at 0x002D5740 accepts through
+?bfmeAccept@Gen_002D84E0@@AAEXPAVBfmeSeedTarget@@@Z,0x000183FE,Open-BFME5 ILT the seeder at 0x002D84E0 accepts through
+?bfmeAccept@Gen_002D9BD0@@AAEXPAVBfmeSeedTarget@@@Z,0x000160B3,Open-BFME5 ILT the version block at 0x002D9BD0 accepts through
+?bfmeAccept@Gen_00603240@@AAEXPAVBfmeSeedTarget@@@Z,0x0003D2A8,Open-BFME5 ILT the seeder at 0x00603240 accepts through
+?bfmeAccept@Gen_00604760@@AAEXPAVBfmeSeedTarget@@@Z,0x0003D2A8,Open-BFME5 ILT the seeder at 0x00604760 accepts through
+?bfmeAccept@Gen_00756C80@@AAEXPAVBfmeSeedTarget@@@Z,0x0002FD88,Open-BFME5 ILT the seeder at 0x00756C80 accepts through
+?bfmeAccept@Gen_00758670@@AAEXPAVBfmeSeedTarget@@@Z,0x0002FD88,Open-BFME5 ILT the seeder at 0x00758670 accepts through
+?bfmeAccept@Gen_00759230@@AAEXPAVBfmeSeedTarget@@@Z,0x0001E853,Open-BFME5 ILT the seeder at 0x00759230 accepts through
+?bfmeAccept@Gen_0077DCF0@@AAEXPAVBfmeSeedTarget@@@Z,0x00011CBB,Open-BFME5 ILT the seeder at 0x0077DCF0 accepts through
+?bfmeAccept@Gen_0077F790@@AAEXPAVBfmeSeedTarget@@@Z,0x00011CBB,Open-BFME5 ILT the seeder at 0x0077F790 accepts through
+?bfmeAccepts@Gen_00684b90Holder@@QAEHPAX@Z,0x00004F6B,Open-BFME5 ILT the guard at 0x00684B90 asks its holder through
+?bfmeAllocNode@@YAPAXI@Z,0x0082E540,Open-BFME5 the 16-byte allocator the node makers at 0x0046A070 0x0046B1C0 and 0x00927760 call
 ?bfmeAllocate@Gen_007b9e80@@AAE_NHH@Z,0x0003FC7E,Open-BFME5 the allocate the reserve at 0x007B9E80 calls
 ?bfmeAllocate@Gen_009073d0@@AAE_NHH@Z,0x00905DC0,Open-BFME5 the allocate the reserve at 0x009073D0 calls
 ?bfmeAllocate@Gen_00930d00@@AAE_NHH@Z,0x009304A0,Open-BFME5 the allocate the reserve at 0x00930D00 calls
 ?bfmeAllocate@Gen_009408d0@@AAE_NHH@Z,0x00940450,Open-BFME5 the allocate the reserve at 0x009408D0 calls
 ?bfmeAllocate@Gen_0094e310@@AAE_NHH@Z,0x009131E0,Open-BFME5 the allocate the reserve at 0x0094E310 calls
 ?bfmeAllocate@Gen_0097c8e0@@AAE_NHH@Z,0x0097ADF0,Open-BFME5 the allocate the reserve at 0x0097C8E0 calls
+?bfmeAllocateAndCopy@Gen_000bb890@@AAEXHABVBfmeAllocator@@@Z,0x0001E579,Open-BFME5 ILT the copy constructor at 0x000BB890 allocates through
+?bfmeAllocateAndCopy@Gen_000ce890@@AAEXHABVBfmeAllocator@@@Z,0x000067C1,Open-BFME5 ILT the copy constructor at 0x000CE890 allocates through
+?bfmeAllocateAndCopy@Gen_0036e170@@AAEXHABVBfmeAllocator@@@Z,0x00019BF0,Open-BFME5 ILT the copy constructor at 0x0036E170 allocates through
+?bfmeAllocateAndCopy@Gen_005862c0@@AAEXHABVBfmeAllocator@@@Z,0x00038122,Open-BFME5 ILT the copy constructor at 0x005862C0 allocates through
 ?bfmeAllocateDynamic@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F040,Open-BFME5 the 274-byte member the BoxDynamicVBAccessClass constructor calls otherwise
 ?bfmeAllocateSorting@BoxDynamicVBAccessClass@@AAEXXZ,0x0091F5B0,Open-BFME5 the 384-byte member the BoxDynamicVBAccessClass constructor calls when its first argument is 2
 ?bfmeAllowsBase@Gen_00267680@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x00267680 defers through
 ?bfmeAllowsBase@Gen_0026c0d0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x0026C0D0 defers through
 ?bfmeAllowsBase@Gen_0026c5d0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x0026C5D0 defers through
 ?bfmeAllowsBase@Gen_002983b0@@AAE_NXZ,0x0002FE05,Open-BFME5 ILT the predicate at 0x002983B0 defers through
+?bfmeApply@Gen_0037DF60Owner@@QAEXPAX@Z,0x000204F0,Open-BFME5 ILT the __stdcall wrapper at 0x0037DF60 calls through
+?bfmeApply@Gen_0052F050Owner@@QAEXPAX@Z,0x0002B210,Open-BFME5 ILT the __stdcall wrapper at 0x0052F050 calls through
+?bfmeApply@Gen_00574F40Owner@@QAEXPAX@Z,0x00013471,Open-BFME5 ILT the __stdcall wrapper at 0x00574F40 calls through
+?bfmeApply@Gen_006C89F0Target@@QAE_NPAX0_N@Z,0x000486EE,Open-BFME5 ILT the guarded delegate at 0x006C89F0 appends a false and calls through
 ?bfmeApplyBonuses@WeaponBonusSet@@QBEXIAAVWeaponBonus@@@Z,0x0002272D,Open-BFME5 ILT thunk to body 0x001E1CA0; ?computeBonus@Weapon@@IBEXPBVObject@@IAAVWeaponBonus@@@Z at 0x001E2840 calls it twice on the set from TheWritableGlobalData +0xB94 and on the one at +0x4A8 of the template at this+4; address-derived name
 ?bfmeAttach@BfmeQuickMatchScreenBase@@AAEXPAX@Z,0x0000C0A4,Open-BFME5 ILT thunk to body 0x00497CE0; ??0BfmeQuickMatchScreenBase@@QAE@PAX@Z at 0x00470620 calls it on this with its own argument as the last thing it does; address-derived name
 ?bfmeBegin@Glo012F1028Sub@@AAEXPAVGlo012F1028Item@@@Z,0x0003BF2F,Open-BFME5 ILT thunk to body 0x003C7010; ?bfmeNotify@Glo012F1028Sub@@QAEXXZ at 0x003CAD20 calls it on this with each item of the vector at +0x30 of its holder; address-derived name
+?bfmeBlendTileEmit@@YAXPAD0HH@Z,0x00747940,Open-BFME5 the 180-byte cdecl emitter the blendTileData at 0x0074A240 finishes with
+?bfmeBlendTileFits@@YG_NGHPADH@Z,0x000274A8,Open-BFME5 ILT the blendTileData at 0x0074A240 tests through
+?bfmeBlendTileOffset@BFMERetailWorldHeightMapBlendTileDataShim@@AAEHHPAUTBlendTileInfo@@@Z,0x0003D965,Open-BFME5 ILT the blendTileData at 0x0074A240 asks for its offset through
+?bfmeBlendTileTouch@@YAXXZ,0x0000A88F,Open-BFME5 ILT the blendTileData at 0x0074A240 calls with no arguments
+?bfmeBucketNumForKey@@YAIPBXI@Z,0x00012909,Open-BFME5 ILT the hashtable iterator skips at 0x00460DA0 and 0x00461480 ask for the bucket through
 ?bfmeBuildFont@FontLibraryBFMERetail@@AAEPAVGameFont@@PAVAsciiString@@MEH@Z,0x0000EBA6,Open-BFME5 ILT thunk to body 0x00476C50; FontLibraryBFMERetail::getFont at 0x004772D0 tail-returns its result; address-derived name
 ?bfmeCall_0000386e@BfmeGlobal_012f706c@@QAEXXZ,0x0000386E,Open-BFME5 the member the 11-byte forwarders on global 0x012F706C tail-jump to
 ?bfmeCall_0000b99c@BfmeGlobal_012ed668@@QAEXXZ,0x0000B99C,Open-BFME5 the member the 11-byte forwarders on global 0x012ED668 tail-jump to
@@ -71678,12 +71977,29 @@ name,address,notes
 ?bfmeCall_0004a7a5@BfmeGlobal_012ed62c@@QAEXXZ,0x0004A7A5,Open-BFME5 the member the 11-byte forwarders on global 0x012ED62C tail-jump to
 ?bfmeCall_0004aa98@BfmeGlobal_012f076c@@QAEXXZ,0x0004AA98,Open-BFME5 the member the 11-byte forwarders on global 0x012F076C tail-jump to
 ?bfmeCall_008f73f0@BfmeGlobal_012ed5bc@@QAEXXZ,0x008F73F0,Open-BFME5 the member the 11-byte forwarders on global 0x012ED5BC tail-jump to
+?bfmeCheckA@@YAHPAX@Z,0x00894D90,Open-BFME5 the guard the cleanup at 0x00783A50 calls
+?bfmeCheckB@@YAHPAX@Z,0x00894DB0,Open-BFME5 the guard the cleanups at 0x008925F0 0x00892CA0 and 0x00893990 call
 ?bfmeCleanup@INIMemberA@@AAEXXZ,0x009CBF50,Open-BFME5 the call INIMemberA's destructor at 0x009CBFE0 makes on this before releasing its vector member
 ?bfmeClearMembers@@YAXPAVLGA_MemberObj@@@Z,0x00034DC9,Open-BFME5 ILT thunk to body 0x003D4080; ??1LGA_MemberObj@@QAE@XZ at 0x003D4490 calls it on this as a cdecl of one pointer before its member vector is released; address-derived name
 ?bfmeCompare@AsciiString@@QBEHABV1@@Z,0x000220C5,Open-BFME5 ILT less<AsciiString> calls in the AsciiString-keyed _Rb_tree _M_insert at 0x005B2EF0; it jumps to 0x0005FEB0 and its result is tested against zero
 ?bfmeComputeStatus@Weapon@@ABE?AW4WeaponStatus@@PA_N@Z,0x0001E6A0,Open-BFME5 ILT Weapon::getStatus at 0x001E6EE0 computes the status through; the bool by pointer arrives pre-set to true and gates the cache write
+?bfmeConstructA@@YAXPAUBfmeAppendValue@@PAX@Z,0x0004031D,Open-BFME5 ILT the list append at 0x0014C700 constructs through
+?bfmeConstructA@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0003BAB1,Open-BFME5 ILT the hash insert at 0x0008FAB0 constructs through
+?bfmeConstructB@@YAXPAUBfmeAppendValue@@PAX@Z,0x00033FF5,Open-BFME5 ILT the list append at 0x0034E260 constructs through
+?bfmeConstructB@@YAXPAUBfmeHashValue@@PBU1@@Z,0x000079A0,Open-BFME5 ILT the hash insert at 0x005A82F0 constructs through
+?bfmeConstructC@@YAXPAUBfmeAppendValue@@PAX@Z,0x0000637A,Open-BFME5 ILT the list append at 0x00439E00 constructs through
+?bfmeConstructC@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00001AB9,Open-BFME5 ILT the hash insert at 0x006A0A10 constructs through
+?bfmeConstructD@@YAXPAUBfmeAppendValue@@PAX@Z,0x00033E15,Open-BFME5 ILT the list append at 0x004492A0 constructs through
+?bfmeConstructD@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0002C098,Open-BFME5 ILT the hash insert at 0x006A0BB0 constructs through
+?bfmeConstructE@@YAXPAUBfmeHashValue@@PBU1@@Z,0x0001E696,Open-BFME5 ILT the hash insert at 0x006A0D50 constructs through
+?bfmeConstructF@@YAXPAUBfmeHashValue@@PBU1@@Z,0x00852240,Open-BFME5 the routine the hash insert at 0x00852760 constructs through
 ?bfmeDefer@Gen_002d60a0@@AAE_NPAVObject@@@Z,0x0000204F,Open-BFME5 ILT the guard at 0x002D60A0 tail-jumps through; it jumps to 0x002D9D00
+?bfmeDispatchA@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x000075D6,Open-BFME5 ILT the range dispatcher at 0x002610F0 calls
+?bfmeDispatchB@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00028501,Open-BFME5 ILT the range dispatcher at 0x00437D30 calls
+?bfmeDispatchC@@YAXPAUBfmeRangeValue@@HHPAX11@Z,0x00027138,Open-BFME5 ILT the range dispatcher at 0x00575A50 calls
 ?bfmeDrop@Rva003D8530Owner@@QAEXPAX@Z,0x00016DB0,Open-BFME5 ILT thunk to body 0x003D8530; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it on the sub-object at +0x0C of _TheAIParseDefinitionAI for each live slot whose kind is one of four; address-derived name
+?bfmeDropA@@YAXPAX@Z,0x00895320,Open-BFME5 the drop the cleanup at 0x00783A50 calls
+?bfmeDropB@@YAXPAX@Z,0x008961C0,Open-BFME5 the drop the cleanups at 0x008925F0 0x00892CA0 and 0x00893990 call
 ?bfmeEmit@Gen_00417cb0@@AAEXPAX0@Z,0x0002CB79,Open-BFME5 ILT thunk to body 0x00417710; Gen_00417cb0::tail at 0x00417A70 calls it on this with the source result and its own argument; address-derived name in the same synthetic family as the class
 ?bfmeEnter@Glo012F1024Item@@QAEXXZ,0x0000BC5D,Open-BFME5 ILT thunk to body 0x003AEE70; ?bfmeStep@Glo012F1024Entry@@QAEXXZ at 0x003A7320 calls it on the 0xDC-byte item the advanced index selects; address-derived name
 ?bfmeErase@AnimationSoundClientBehaviorModuleDataMember@@AAEXPAX@Z,0x000082D3,Open-BFME5 ILT thunk; ??1AnimationSoundClientBehaviorModuleDataMember@@QAE@XZ at 0x00605E60 hands it the field at +4 of its header before putting the header back to itself; address-derived name
@@ -71691,9 +72007,27 @@ name,address,notes
 ?bfmeErase@BfmeShroudList@@QAEXPAVBfmeListHeader@@@Z,0x00016ED2,Open-BFME5 ILT thunk; ?reset30BC@BaseHeightMapResetShroud@@QAEXXZ at 0x00727450 hands it the first node of the list at +0x44 before putting the header back to itself; address-derived name
 ?bfmeErase@S4Mem005879C0@@AAEXPAX@Z,0x00037353,Open-BFME5 ILT thunk; ??1S4Mem005879C0@@QAE@XZ at 0x005879C0 hands it the field at +4 of its header before putting the header back to itself; address-derived name
 ?bfmeFind@BfmeChainOwner@@QAEPAVBfmeChainResult@@H@Z,0x0002F52C,Open-BFME5 ILT the four lookups around 0x002197E0 call
+?bfmeFind@BfmeFinder@@QAEPAXXZ,0x000265A8,Open-BFME5 ILT the finders at 0x0015BCB0 0x00189D00 and 0x002BC050 call
 ?bfmeFindRecord@FontLibraryBFMERetail@@AAEPAUBfmeFontRecord@@PAVAsciiString@@M@Z,0x000035A3,Open-BFME5 ILT thunk to body 0x00476E20; FontLibraryBFMERetail::getFont at 0x004772D0 calls it on this with the name and size and reads a byte at +8 of what it returns; address-derived name
+?bfmeFinish@Gen_0015BCB0@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finders at 0x0015BCB0 0x00189D00 and 0x002BC050 tail-jump to
+?bfmeFinish@Gen_00189D00@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x00189D00 tail-jumps to
+?bfmeFinish@Gen_002BC050@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x002BC050 tail-jumps to
 ?bfmeFinish@Glo012F1028Sub@@AAEXPAVGlo012F1028Item@@H@Z,0x00038910,Open-BFME5 ILT thunk to body 0x003CA7C0; ?bfmeNotify@Glo012F1028Sub@@QAEXXZ at 0x003CAD20 calls it on this with the item and a zero; address-derived name
 ?bfmeFlush@Rva003D8530Owner@@QAEXXZ,0x00009787,Open-BFME5 ILT thunk to body 0x003D55C0; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it once on the same sub-object after the slot loop; address-derived name
+?bfmeForward@Gen_0002644FTarget@@QAEXXZ,0x0002644F,Open-BFME5 ILT the three negative-displacement forwarders at 0x001FB570 0x001FBF60 and 0x00204450 all jump to
+?bfmeForward@Gen_001BF490Target@@QAEXPAX@Z,0x000138EF,Open-BFME5 ILT the void guarded delegate at 0x001BF490 forwards through
+?bfmeForward@Gen_001BF4B0Target@@QAEXPAX@Z,0x0003DE5B,Open-BFME5 ILT the void guarded delegate at 0x001BF4B0 forwards through
+?bfmeForward@Gen_001BF4D0Target@@QAEXPAX@Z,0x0000FD35,Open-BFME5 ILT the void guarded delegate at 0x001BF4D0 forwards through
+?bfmeForward@Gen_001BF4F0Target@@QAEXPAX@Z,0x00040E17,Open-BFME5 ILT the void guarded delegate at 0x001BF4F0 forwards through
+?bfmeForward@Gen_006C8A20Target@@QAE_NPAX0@Z,0x0003A03A,Open-BFME5 ILT the guarded delegate at 0x006C8A20 forwards through
+?bfmeForward@Gen_006C8A40Target@@QAE_NPAX0@Z,0x0001551E,Open-BFME5 ILT the guarded delegate at 0x006C8A40 forwards through
+?bfmeForward@Gen_00730EB0Target@@QAE_NPAX0@Z,0x00049328,Open-BFME5 ILT the guarded delegate at 0x00730EB0 forwards through
+?bfmeForward@Gen_00730ED0Target@@QAE_NPAX0@Z,0x00027EE9,Open-BFME5 ILT the guarded delegate at 0x00730ED0 forwards through
+?bfmeForward@Gen_00730EF0Target@@QAE_NPAX0@Z,0x0002CAF7,Open-BFME5 ILT the guarded delegate at 0x00730EF0 forwards through
+?bfmeGetAllocator@Gen_000bb890@@ABE?AVBfmeAllocator@@XZ,0x0001E2A4,Open-BFME5 ILT the copy constructor at 0x000BB890 gets its allocator through
+?bfmeGetAllocator@Gen_000ce890@@ABE?AVBfmeAllocator@@XZ,0x00008BED,Open-BFME5 ILT the copy constructor at 0x000CE890 gets its allocator through
+?bfmeGetAllocator@Gen_0036e170@@ABE?AVBfmeAllocator@@XZ,0x000441BB,Open-BFME5 ILT the copy constructor at 0x0036E170 gets its allocator through
+?bfmeGetAllocator@Gen_005862c0@@ABE?AVBfmeAllocator@@XZ,0x0003FFB7,Open-BFME5 ILT the copy constructor at 0x005862C0 gets its allocator through
 ?bfmeGetBonus@BfmeVisionBonusSource@@QAE_NHPAM@Z,0x000282D6,Open-BFME5 ILT Object::getVisionRange at 0x001C17C0 queries bonus 14 through
 ?bfmeGetBonus@Object@@QBE_NHPAM@Z,0x0000BECE,Open-BFME5 ILT thunk to body 0x001BFDB0; ?getAttackRange@WeaponTemplate@@QBEM... at 0x001E2730 queries bonus 6 on the source object through it with an out pointer; address-derived name
 ?bfmeGetBonusSource@Object@@ABEPAVBfmeVisionBonusSource@@XZ,0x000202ED,Open-BFME5 ILT Object::getVisionRange at 0x001C17C0 asks for the bonus source through
@@ -71702,25 +72036,119 @@ name,address,notes
 ?bfmeGet_00219890@BfmeChainResult@@QAEPAXXZ,0x0002818C,Open-BFME5 ILT the lookup at 0x00219890 tail-jumps through
 ?bfmeGet_002198b0@BfmeChainResult@@QAEPAXXZ,0x00036165,Open-BFME5 ILT the lookup at 0x002198B0 tail-jumps through
 ?bfmeGet_002198d0@BfmeChainResult@@QAEPAXXZ,0x000456E2,Open-BFME5 ILT the lookup at 0x002198D0 tail-jumps through
+?bfmeGrab@BfmeSourceA@@QAEPAXPAPAX@Z,0x00019876,Open-BFME5 ILT the vector assignment at 0x00095A50 grabs through
+?bfmeGrab@BfmeSourceB@@QAEPAXPAPAX@Z,0x000314E9,Open-BFME5 ILT the vector assignment at 0x000B54C0 grabs through
+?bfmeGrab@BfmeSourceC@@QAEPAXPAPAX@Z,0x0002EBC2,Open-BFME5 ILT the vector assignment at 0x002F8980 grabs through
+?bfmeGrab@BfmeSourceD@@QAEPAXPAPAX@Z,0x00018697,Open-BFME5 ILT the vector assignment at 0x003A9560 grabs through
+?bfmeHandOver_00001A50@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00001A50,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_0000240A@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0000240A,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00004B79@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00004B79,Open-BFME5 ILT the __cdecl hand-over helper a version block calls
+?bfmeHandOver_0000C9B4@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0000C9B4,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_0000FFE2@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0000FFE2,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00012C65@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00012C65,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00020586@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00020586,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00020879@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00020879,Open-BFME5 ILT the __cdecl hand-over helper a version block calls
+?bfmeHandOver_0002A450@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0002A450,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_000353C8@@YAXPAVBfmeSeedTarget@@PAX@Z,0x000353C8,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_0003EE32@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0003EE32,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_0004420B@@YAXPAVBfmeSeedTarget@@PAX@Z,0x0004420B,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandOver_00044FD0@@YAXPAVBfmeSeedTarget@@PAX@Z,0x00044FD0,Open-BFME5 ILT the __cdecl hand-over helper a seeder calls
+?bfmeHandle_00790310@@YAXPAVGen_00790310@@PAX@Z,0x0003883E,Open-BFME5 ILT the 22-byte submit at 0x00790310 calls
+?bfmeHandle_00790330@@YAXPAVGen_00790330@@PAX@Z,0x000011A4,Open-BFME5 ILT the 22-byte submit at 0x00790330 calls
+?bfmeHandle_00790b60@@YAXPAVGen_00790b60@@PAX@Z,0x0000C036,Open-BFME5 ILT the 22-byte submit at 0x00790B60 calls
+?bfmeHandle_00790b80@@YAXPAVGen_00790b80@@PAX@Z,0x00016C02,Open-BFME5 ILT the 22-byte submit at 0x00790B80 calls
+?bfmeHandle_007916f0@@YAXPAVGen_007916f0@@PAX@Z,0x000148BC,Open-BFME5 ILT the 22-byte submit at 0x007916F0 calls
+?bfmeHandle_00791710@@YAXPAVGen_00791710@@PAX@Z,0x0001E137,Open-BFME5 ILT the 22-byte submit at 0x00791710 calls
+?bfmeHandle_00792f60@@YAXPAVGen_00792f60@@PAX@Z,0x00038311,Open-BFME5 ILT the 22-byte submit at 0x00792F60 calls
+?bfmeHandle_00792f80@@YAXPAVGen_00792f80@@PAX@Z,0x0003BB15,Open-BFME5 ILT the 22-byte submit at 0x00792F80 calls
+?bfmeHandle_00793a70@@YAXPAVGen_00793a70@@PAX@Z,0x0000CF45,Open-BFME5 ILT the 22-byte submit at 0x00793A70 calls
+?bfmeHandle_00795ec0@@YAXPAVGen_00795ec0@@PAX@Z,0x00033E1F,Open-BFME5 ILT the 22-byte submit at 0x00795EC0 calls
+?bfmeHandle_00795fd0@@YAXPAVGen_00795fd0@@PAX@Z,0x0001D6B0,Open-BFME5 ILT the 22-byte submit at 0x00795FD0 calls
+?bfmeHandle_007969c0@@YAXPAVGen_007969c0@@PAX@Z,0x00037E98,Open-BFME5 ILT the 22-byte submit at 0x007969C0 calls
+?bfmeHandle_007969e0@@YAXPAVGen_007969e0@@PAX@Z,0x00018327,Open-BFME5 ILT the 22-byte submit at 0x007969E0 calls
+?bfmeHandle_00797000@@YAXPAVGen_00797000@@PAX@Z,0x00011847,Open-BFME5 ILT the 22-byte submit at 0x00797000 calls
+?bfmeHandle_00797020@@YAXPAVGen_00797020@@PAX@Z,0x00008C2E,Open-BFME5 ILT the 22-byte submit at 0x00797020 calls
+?bfmeHandle_007983b0@@YAXPAVGen_007983b0@@PAX@Z,0x0003A684,Open-BFME5 ILT the 22-byte submit at 0x007983B0 calls
+?bfmeHandle_007983d0@@YAXPAVGen_007983d0@@PAX@Z,0x00039E55,Open-BFME5 ILT the 22-byte submit at 0x007983D0 calls
+?bfmeHandle_007995e0@@YAXPAVGen_007995e0@@PAX@Z,0x0003201F,Open-BFME5 ILT the 22-byte submit at 0x007995E0 calls
+?bfmeHandle_00799600@@YAXPAVGen_00799600@@PAX@Z,0x00023056,Open-BFME5 ILT the 22-byte submit at 0x00799600 calls
+?bfmeHandle_00799c90@@YAXPAVGen_00799c90@@PAX@Z,0x0002C7AA,Open-BFME5 ILT the 22-byte submit at 0x00799C90 calls
+?bfmeHandle_00799cb0@@YAXPAVGen_00799cb0@@PAX@Z,0x0003DC7B,Open-BFME5 ILT the 22-byte submit at 0x00799CB0 calls
+?bfmeHash00007518@@YAIII@Z,0x00007518,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash0000DD28@@YAIII@Z,0x0000DD28,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash00010AFA@@YAIII@Z,0x00010AFA,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash00013412@@YAIII@Z,0x00013412,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash0002A473@@YAIII@Z,0x0002A473,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHash0002BB70@@YAIII@Z,0x0002BB70,Open-BFME5 ILT the per-type hash helper the bfmeDiffers pair at that sentinel calls
+?bfmeHashCombineA@@YAIII@Z,0x00042FA0,Open-BFME5 ILT the combiner at 0x00528F10 calls
+?bfmeHashCombineB@@YAIII@Z,0x00023254,Open-BFME5 ILT the combiner at 0x0054ED90 calls
+?bfmeHashCombineC@@YAIII@Z,0x0003F7CE,Open-BFME5 ILT the combiner at 0x0056E1E0 calls
+?bfmeHashCompareA@@YAIII@Z,0x00027BFB,Open-BFME5 ILT the hash comparisons at 0x0054ECB0 and 0x0054F200 call
+?bfmeHashCompareB@@YAIII@Z,0x00020AA4,Open-BFME5 ILT the hash comparisons at 0x0054ECE0 and 0x0054F230 call
 ?bfmeIndexOf@BfmeSpecialPowerAllowanceStore@@AAEHPBVSpecialPowerTemplate@@@Z,0x0003E0B3,Open-BFME5 ILT thunk to body 0x0039BBD0; ?_bfme_allows@BfmeSpecialPowerAllowanceStore@@QAEE... at 0x0039BE50 asks it about the template first and allows everything when it answers negative; address-derived name
+?bfmeInit000078A1@@YAXXZ,0x000078A1,Open-BFME5 ILT the initialiser the run-once latch at 0x005E85A0 calls
+?bfmeInit0000B686@@YAXXZ,0x0000B686,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8570 calls
+?bfmeInit000101A9@@YAXXZ,0x000101A9,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8660 calls
+?bfmeInit00011B76@@YAXXZ,0x00011B76,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8690 calls
+?bfmeInit00011F1D@@YAXXZ,0x00011F1D,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8480 calls
+?bfmeInit000124AE@@YAXXZ,0x000124AE,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8540 calls
+?bfmeInit0001361F@@YAXXZ,0x0001361F,Open-BFME5 ILT the initialiser the run-once latch at 0x005E86C0 calls
+?bfmeInit00014088@@YAXXZ,0x00014088,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8450 calls
+?bfmeInit00015FB9@@YAXXZ,0x00015FB9,Open-BFME5 ILT the initialiser the run-once latch at 0x005E83F0 calls
+?bfmeInit00016595@@YAXXZ,0x00016595,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8510 calls
+?bfmeInit00026058@@YAXXZ,0x00026058,Open-BFME5 ILT the initialiser the run-once latch at 0x005E86F0 calls
+?bfmeInit0002969F@@YAXXZ,0x0002969F,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8420 calls
+?bfmeInit00032867@@YAXXZ,0x00032867,Open-BFME5 ILT the initialiser the run-once latch at 0x005E84B0 calls
+?bfmeInit00033479@@YAXXZ,0x00033479,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8720 calls
+?bfmeInit000340FE@@YAXXZ,0x000340FE,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8750 calls
+?bfmeInit00036458@@YAXXZ,0x00036458,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8630 calls
+?bfmeInit0003D875@@YAXXZ,0x0003D875,Open-BFME5 ILT the initialiser the run-once latch at 0x005E8600 calls
+?bfmeInit00044BFC@@YAXXZ,0x00044BFC,Open-BFME5 ILT the initialiser the run-once latch at 0x005E84E0 calls
+?bfmeInit0004B0F1@@YAXXZ,0x0004B0F1,Open-BFME5 ILT the initialiser the run-once latch at 0x005E85D0 calls
+?bfmeInit005DFD50@@YAXXZ,0x00015FB9,Open-BFME5 ILT the initialiser a latched-once body calls
+?bfmeInit@Gen008FF1B0@@AAEXPAX@Z,0x008FEC90,Open-BFME5 the initialiser the zeroing constructor at 0x008FF1B0 calls
+?bfmeInit@Gen0090BE20@@AAEXPAX@Z,0x0090BCF0,Open-BFME5 the initialiser the zeroing constructor at 0x0090BE20 calls
+?bfmeInit@Gen0090DB70@@AAEXPAX@Z,0x0090DB10,Open-BFME5 the initialiser the zeroing constructor at 0x0090DB70 calls
+?bfmeInit@Gen00970940@@AAEXPAX@Z,0x00970800,Open-BFME5 the initialiser the zeroing constructor at 0x00970940 calls
+?bfmeInit@Gen00970F80@@AAEXPAX@Z,0x00970E40,Open-BFME5 the initialiser the zeroing constructor at 0x00970F80 calls
+?bfmeInit@Gen00971360@@AAEXPAX@Z,0x00971220,Open-BFME5 the initialiser the zeroing constructor at 0x00971360 calls
+?bfmeInit@Gen00971730@@AAEXPAX@Z,0x00971600,Open-BFME5 the initialiser the zeroing constructor at 0x00971730 calls
+?bfmeInit@Gen00971E40@@AAEXPAX@Z,0x00971C60,Open-BFME5 the initialiser the zeroing constructor at 0x00971E40 calls
+?bfmeInit@Gen00972540@@AAEXPAX@Z,0x00972340,Open-BFME5 the initialiser the zeroing constructor at 0x00972540 calls
+?bfmeInit@Gen00972AA0@@AAEXPAX@Z,0x009729D0,Open-BFME5 the initialiser the zeroing constructor at 0x00972AA0 calls
 ?bfmeInit@RecorderClass@@AAEXXZ,0x0000B721,Open-BFME5 ILT thunk to body 0x00098050; ??0RecorderClass@@QAE@XZ at 0x000993E0 calls it on this as the last thing it does; address-derived name
+?bfmeInitBodyA@@YAXPAUBfmeNodeBody@@PAX@Z,0x000012D5,Open-BFME5 ILT the node maker at 0x0046A070 initialises through
+?bfmeInitBodyB@@YAXPAUBfmeNodeBody@@PAX@Z,0x0000C568,Open-BFME5 ILT the node maker at 0x0046B1C0 initialises through
+?bfmeInitBodyC@@YAXPAUBfmeNodeBody@@PAX@Z,0x00926750,Open-BFME5 the routine the node maker at 0x00927760 initialises through
 ?bfmeIsSet@BfmeGameOverGateA@@QAE_NXZ,0x000330DC,Open-BFME5 ILT the first early check of BfmeShouldShowGameOverEvent at 0x002ED8F0 goes through; the receiving global at 0x012ED748 is unidentified
 ?bfmeIsSet@BfmeGameOverGateB@@QAE_NXZ,0x0000CFC7,Open-BFME5 ILT the second early check of BfmeShouldShowGameOverEvent at 0x002ED8F0 goes through; the receiving global at 0x012F076C is unidentified
 ?bfmeIterate@BfmeIterableObject@@QAEHP6AXPAVObject@@PAX@Z1@Z,0x0003DB68,Open-BFME5 ILT the per-object visit in Player::iterateObjects at 0x000CDCF0 calls; it jumps to 0x000EE770
+?bfmeLookupA@@YAHPAX@Z,0x0000B1AE,Open-BFME5 ILT the bit setter at 0x001C3FB0 looks up through
+?bfmeLookupB@@YAHPAX@Z,0x000052CC,Open-BFME5 ILT the bit setter at 0x001C4020 looks up through
+?bfmeLookupC@@YAHPAX@Z,0x00031246,Open-BFME5 ILT the bit setter at 0x0020EC60 looks up through
 ?bfmeLookupPerUnitSound@BfmeOverridable@@QAEPBVAudioEventRTS@@ABVAsciiString@@@Z,0x0003B548,Open-BFME5 ILT the override-side lookup in ThingTemplate::getPerUnitSound at 0x00416FE0 goes through; it jumps to 0x001462D0
 ?bfmeLookupSound@ThingTemplate@@ABEPBVAudioEventRTS@@H@Z,0x0000286A,Open-BFME5 ILT ThingTemplate::getSound at 0x00416FA0 looks the sound up through; it jumps to 0x00416F20
 ?bfmeLookup_000d1020@@YAHPAX@Z,0x0004AFFC,Open-BFME5 ILT the bit setter at 0x000D1020 calls
 ?bfmeLookup_001c62b0@@YAHPAX@Z,0x000190F1,Open-BFME5 ILT the bit setter at 0x001C62B0 calls
 ?bfmeLookup_001c6340@@YAHPAX@Z,0x00026A3F,Open-BFME5 ILT the bit setter at 0x001C6340 calls
 ?bfmeLookup_001c63d0@@YAHPAX@Z,0x0004B218,Open-BFME5 ILT the bit setter at 0x001C63D0 calls
+?bfmeMakeW0@@YAIII@Z,0x0004B28B,Open-BFME5 ILT the variant ctor at 0x00390830 calls
+?bfmeMakeW1@@YAIII@Z,0x00002B8F,Open-BFME5 ILT the variant ctor at 0x003CA5F0 calls
+?bfmeMakeW2@@YAIII@Z,0x00025225,Open-BFME5 ILT the variant ctor at 0x0054F770 calls
+?bfmeMakeW3@@YAIII@Z,0x0000403E,Open-BFME5 ILT the variant ctor at 0x0054F7C0 calls
+?bfmeMakeW4@@YAIII@Z,0x000283D5,Open-BFME5 ILT the variant ctor at 0x00596C40 calls
 ?bfmeMake_00002b8f@@YAPAXPAX0@Z,0x00002B8F,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x003CA460
 ?bfmeMake_0000403e@@YAPAXPAX0@Z,0x0000403E,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x0054F370
 ?bfmeMake_00025225@@YAPAXPAX0@Z,0x00025225,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x0054F350
 ?bfmeMake_000283d5@@YAPAXPAX0@Z,0x000283D5,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x005958F0
 ?bfmeMake_0004b28b@@YAPAXPAX0@Z,0x0004B28B,Open-BFME5 ILT the pointer-pair maker reached from the bodies around 0x0038EB90
 ?bfmeMake_00528ef0@@YAPAXHH@Z,0x000364C6,Open-BFME5 ILT the pair at 0x00528EF0 and 0x005292A0 calls
+?bfmeMake_00529B60@@YAHHH@Z,0x000364C6,Open-BFME5 ILT the short-widening ctor at 0x00529B60 calls
+?bfmeMake_0054F920@@YAHHH@Z,0x0000B500,Open-BFME5 ILT the short-widening ctor at 0x0054F920 calls
+?bfmeMake_0054FA00@@YAHHH@Z,0x00029771,Open-BFME5 ILT the short-widening ctor at 0x0054FA00 calls
 ?bfmeMake_0054ed70@@YAPAXHH@Z,0x0000B500,Open-BFME5 ILT the pair at 0x0054ED70 and 0x0054F300 calls
 ?bfmeMake_0054ee00@@YAPAXHH@Z,0x00029771,Open-BFME5 ILT the pair at 0x0054EE00 and 0x0054F390 calls
+?bfmeMake_0056E900@@YAHHH@Z,0x0003C65A,Open-BFME5 ILT the short-widening ctor at 0x0056E900 calls
 ?bfmeMake_0056e1c0@@YAPAXHH@Z,0x0003C65A,Open-BFME5 ILT the pair at 0x0056E1C0 and 0x0056E7C0 calls
 ?bfmeMatchRaw@Gen_002da6b0@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DA6B0 calls
 ?bfmeMatchRaw@Gen_002da6d0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DA6D0 calls
@@ -71735,7 +72163,15 @@ name,address,notes
 ?bfmeMatchRaw@Gen_002dec00@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DEC00 calls
 ?bfmeMatchRaw@Gen_002df4c0@@AAEEPAX0@Z,0x0001D813,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4C0 calls
 ?bfmeMatchRaw@Gen_002df4e0@@AAEEPAX0@Z,0x0002DB69,Open-BFME5 ILT the byte-returning match the wrapper at 0x002DF4E0 calls
+?bfmeNewAlloc@@YAPAXI@Z,0x00881F30,Open-BFME5 the large-block allocator the allocate-and-copy bodies at 0x000A7820 and its siblings call above 0x80 bytes
 ?bfmeNewMap@BfmePlayerMapState@@QAEXH_N@Z,0x00018679,Open-BFME5 ILT Player::newMap calls for the subobject at Player+0x30; it jumps to 0x000C7A30
+?bfmeNodeAllocLarge@@YAPAXI@Z,0x00881F30,Open-BFME5 the STLport large-block allocator the 0x84-byte clone-node body calls
+?bfmeNodeAllocSmall@@YAPAXI@Z,0x0082E540,Open-BFME5 the STLport node allocator the red-black clone-node bodies call
+?bfmeNotify@Gen_005ee5a0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0002EE88,Open-BFME5 ILT the refresh at 0x005EE5A0 calls on its sub-object
+?bfmeNotify@Gen_005ef8b0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x00049D64,Open-BFME5 ILT the refresh at 0x005EF8B0 calls on its sub-object
+?bfmeNotify@Gen_005fe880Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0000B235,Open-BFME5 ILT the refresh at 0x005FE880 calls on its sub-object
+?bfmeNotify@Gen_005ff8d0Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x0001F087,Open-BFME5 ILT the refresh at 0x005FF8D0 calls on its sub-object
+?bfmeNotify@Gen_00600710Sub@@QAEXPAVBfmeFlagTarget@@@Z,0x00018926,Open-BFME5 ILT the refresh at 0x00600710 calls on its sub-object
 ?bfmeNotify@Glo012F1028Sub@@QAEXXZ,0x0002DE89,Open-BFME5 ILT thunk to body 0x003CAD20; ?bfmeStep@Glo012F1024Entry@@QAEXXZ at 0x003A7320 tail-jumps into it from both arms on the sub-object at +0x28 of the global at 0x012F1028; address-derived name
 ?bfmeNotifyBridge@PathfindLayer@@AAEXXZ,0x0003B250,Open-BFME5 the notification PathfindLayer::setDestroyed at 0x003FCEC0 makes when the bridge at +0x38 is set
 ?bfmeNotifyPlain@PathfindLayer@@AAEXXZ,0x0003A03F,Open-BFME5 the notification PathfindLayer::setDestroyed at 0x003FCEC0 makes when the bridge at +0x38 is null
@@ -71755,16 +72191,38 @@ name,address,notes
 ?bfmeQuery@BfmeFilterObject@@QAE_NPAVPlayer@@@Z,0x00020824,Open-BFME5 ILT the object query in Rva2225E0Filter::accepts at 0x003A04A0 goes through
 ?bfmeQuery@Pathfinder@@QAEXPAVObject@@PAH1@Z,0x000461FF,Open-BFME5 ILT the TightenPathStruct constructor at 0x003E1720 queries the pathfinder through; the two pointer arguments are the outputs at +0x0C and +0x10
 ?bfmeRangeBase@WeaponTemplate@@ABEMPBVObject@@ABVWeaponBonus@@M@Z,0x00009598,Open-BFME5 ILT thunk to body 0x001E2670; ?getAttackRange@WeaponTemplate@@QBEM... at 0x001E2730 gets its unbonused range from it with the negated z of the position; address-derived name
+?bfmeRebuild@BFMERopeDrawableGetPositionShim@@AAEXH@Z,0x00034C3E,Open-BFME5 ILT the rope getPosition at 0x0041D090 rebuilds through
 ?bfmeRegisterHouseColor@@YAXPBD0@Z,0x00900D70,the two-argument __cdecl function the HouseColor parser hands its two strings to; unnamed in the image
+?bfmeRelease@BfmeSharedBlock@@QAEXXZ,0x009EB7A0,Open-BFME5 the shared-block release the refcounted assignments at 0x005D1E50 and its siblings call
+?bfmeReserve@Gen_00095A50@@AAEXHPAX@Z,0x000472DA,Open-BFME5 ILT the vector assignment at 0x00095A50 reserves through
+?bfmeReserve@Gen_000B54C0@@AAEXHPAX@Z,0x00043E37,Open-BFME5 ILT the vector assignment at 0x000B54C0 reserves through
+?bfmeReserve@Gen_002F8980@@AAEXHPAX@Z,0x00015ABE,Open-BFME5 ILT the vector assignment at 0x002F8980 reserves through
+?bfmeReserve@Gen_003A9560@@AAEXHPAX@Z,0x00027098,Open-BFME5 ILT the vector assignment at 0x003A9560 reserves through
 ?bfmeReset@BfmeMapObjectExtra@@QAEXXZ,0x00033F46,Open-BFME5 the thiscall WorldHeightMap::freeListOfMapObjects at 0x00746E90 tail-jumps into on the global object at 0x012ED5E0
 ?bfmeRun@Glo012F1028Item@@QAEXXZ,0x00006348,Open-BFME5 ILT thunk to body 0x00619900; ?bfmeNotify@Glo012F1028Sub@@QAEXXZ at 0x003CAD20 calls it on each item between the two calls it makes on itself; address-derived name
 ?bfmeSetIndicatorOn@Drawable@@AAEX_N@Z,0x00018CF5,Open-BFME5 ILT thunk to body 0x004115A0; ?setIndicatorColor@Drawable@@QAEXI@Z at 0x004186E0 calls it on this from both of its arms with a true or a false; address-derived name
 ?bfmeSetSize@BfmeShadowPart@@QAEXMM@Z,0x00022D86,Open-BFME5 ILT thunk to body 0x00428250; ?setSize@Shadow@@QAEXMM@Z at 0x001E4250 calls it on every live entry of the two four-pointer arrays at +0x94 and +0xA4; address-derived name
 ?bfmeSlot@BfmeDrawableLookupTable@@QAEPAPAVDrawable@@ABI@Z,0x00034A95,Open-BFME5 ILT addDrawableToLookupTable at 0x00431C20 asks for the slot through
 ?bfmeStateFlags@BfmeObjectAI@@QAEIXZ,0x0001BB3F,Open-BFME5 ILT thunk to body 0x00279780; ?getAdjustedVisionRangeForObject@AI@@SAMPBVObject@@H@Z at 0x0014A620 reads the AI state word through it; address-derived name
+?bfmeStep1@Gen_004410A0@@AAEXXZ,0x000459CB,Open-BFME5 ILT the three-step runner at 0x004410A0 calls first
+?bfmeStep1@Gen_0077F000@@AAEXXZ,0x00039428,Open-BFME5 ILT the three-step runner at 0x0077F000 calls first
+?bfmeStep1@Gen_007892D0@@AAEXXZ,0x000270FC,Open-BFME5 ILT the three-step runner at 0x007892D0 calls first
+?bfmeStep1_004647E0@@YAXXZ,0x0002B314,Open-BFME5 ILT the pair runner at 0x004647E0 calls first
+?bfmeStep1_00589680@@YAXXZ,0x0003643A,Open-BFME5 ILT the pair runner at 0x00589680 calls first
+?bfmeStep1_009A75E0@@YAXXZ,0x009B3A00,Open-BFME5 the routine the pair runner at 0x009A75E0 calls first
+?bfmeStep2@Gen_004410A0@@AAEXXZ,0x0000B613,Open-BFME5 ILT the three-step runner at 0x004410A0 calls second
+?bfmeStep2@Gen_0077F000@@AAEXXZ,0x0002398E,Open-BFME5 ILT the three-step runner at 0x0077F000 calls second
+?bfmeStep2@Gen_007892D0@@AAEXXZ,0x0003879E,Open-BFME5 ILT the three-step runner at 0x007892D0 calls second
+?bfmeStep2_004647E0@@YAXXZ,0x00039F1D,Open-BFME5 ILT the pair runner at 0x004647E0 tail-jumps to
+?bfmeStep2_00589680@@YAXXZ,0x000216D9,Open-BFME5 ILT the pair runner at 0x00589680 tail-jumps to
+?bfmeStep2_009A75E0@@YAXXZ,0x009B3B40,Open-BFME5 the routine the pair runner at 0x009A75E0 tail-jumps to
+?bfmeStep3@Gen_004410A0@@AAEXXZ,0x0002E8CA,Open-BFME5 ILT the three-step runner at 0x004410A0 tail-jumps to
+?bfmeStep3@Gen_0077F000@@AAEXXZ,0x0001B32E,Open-BFME5 ILT the three-step runner at 0x0077F000 tail-jumps to
+?bfmeStep3@Gen_007892D0@@AAEXXZ,0x0004264A,Open-BFME5 ILT the three-step runner at 0x007892D0 tail-jumps to
 ?bfmeStep@Glo012F1024Entry@@QAEXXZ,0x00015F50,Open-BFME5 ILT thunk to body 0x003A7320; ?step@Glo012F1024Type@@QAEXXZ at 0x003B3900 tail-jumps into it on the selected 32-byte entry; address-derived name
 ?bfmeStopMovie@Display@@QAEXXZ,0x0001992F,Open-BFME5 ILT thunk to body 0x0040EFF0; ?hide@Shell@@QAEX_N@Z at 0x0057F5B0 calls it on TheDisplay with no arguments; address-derived name
 ?bfmeTest@Rva2225E0Filter@@AAE_NPAVBfmeOverridable@@_N@Z,0x0001B437,Open-BFME5 ILT the filter test whose result Rva2225E0Filter::accepts at 0x003A04A0 returns
+?bfmeVec3Hermite@@YGPAUBfmeVector3@@PAU1@PBUCoord3D@@111M@Z,0x009FA11F,Open-BFME5 import thunk (slot 0x012DBEC0) the rope getPosition at 0x0041D090 evaluates its spline through
 ?bfme_appendGameOverDetails@GameLogic@@QAEXXZ,0x00387A50,once-only (+0x68 flag): formats Game Over Details and per slot Victory/Defeat frame Quit frame (graceful|voted out|n/a) from the PlayerLeaveStatus[8] records at +0x1b0 copying status into Player+0x484 and appending to the last AsciiString of the vector at +0x54..+0x58; ecx = this = GameLogic at the call 0x00397789; the ledger name ?endMenu@EstablishConnectionsMenu@@ for this 657 B body is wrong; reached via ILT 0x0004A10B
 ?bfme_getPlayerLeaveStatus@GameLogic@@QAEPAUPlayerLeaveStatus@@H@Z,0x00383B90,slot < 8 returns this+0x1b0+slot*0x1c else NULL; neighbour of 0x00383BC0 on the same record array
 ?bfme_hideBackground@WindowManager@@QAEX_N@Z,0x00468090,this = g_theWindowManager 0x012F19E8; state machine +0x1b8 (pending kind) +0x1bc (remembered kind): kind 1 invokes APT function HideFrontEndBackground kind 2 HideInGameBackground on level +0x1c0 with the Bool as the string 1/0 through 0x004675F0; with TRUE and no pending kind it re-applies the remembered kind through its own ILT; string xrefs HideFrontEndBackground/HideInGameBackground -> 0x468090; callers GameLogic::deleteLoadScreen 0x0038D357 and the QuitMenu handler 0x0050EA6B via ILT 0x0000BD7F
@@ -71989,6 +72447,7 @@ name,address,notes
 ?clear@Buffer@@QAEXXZ,0x00887940,Open-BFME5 W3DTreeDrawModuleData retail string-buffer clear pin
 ?clear@CrateTemplateCrateList@@QAEXXZ,0x000331AE,Open-BFME5 incremental-link thunk to the node-list clear body at 0x00379940 that CrateTemplate::~CrateTemplate calls twice
 ?clear@DamageFX@@QAEXXZ,0x00044297
+?clear@DetailedArchivedDirectoryInfo@@QAEXXZ,0x009D1040,retail clear body called by ArchiveFile constructor at 0x009D10B0; direct target and map/string cleanup semantics
 ?clear@Dict@@QAEXXZ,0x00033F46
 ?clear@DrawableIconInfo@@QAEXXZ,0x00015479,pinharvest x1 (thunk)
 ?clear@DrawableIconInfo@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
@@ -71996,6 +72455,7 @@ name,address,notes
 ?clear@GameWindowHashtableClearShim@_STL@@QAEXXZ,0x004984F0,_STL hashtable clear GameWindowVideo dual incremental-link thunk target through a TU-local forwarding shim
 ?clear@GenBase003BB1E0@@QAEXXZ,0x003B9450,niladic member called from the BODY of the base destructor at 0x003BB260; address-derived name
 ?clear@INILineBuffer@@QAEXXZ,0x009CBF50,empties INI::m_lines and operator-deletes its storage; called by unPrepFile
+?clear@Member0C00739C70@@QAEXXZ,0x008FC7D0,address-derived callee of 0x00739C70
 ?clear@ModelConditionInfoHideShowSubObjInfoInsertOverflowShim@_STL@@QAEXXZ,0x003AFA40,_STL vector _M_clear ModelConditionInfo::HideShowSubObjInfo incremental-link thunk target through a TU-local forwarding shim
 ?clear@NuggetInsertOverflowShim@_STL@@QAEXXZ,0x00771D00,_STL vector _M_clear ModuleInfo::Nugget incremental-link thunk target through a TU-local forwarding shim
 ?clear@ParticleSysBoneInfoAllocateAndCopyShim@_STL@@QAEXXZ,0x000A8170,_STL vector _M_clear ParticleSysBoneInfo incremental-link thunk target through a TU-local forwarding shim
@@ -72039,6 +72499,7 @@ name,address,notes
 ?compare@AsciiString@@QBEHABV1@@Z,0x000220C5,HotKey retail StringBase compare thunk
 ?compare@AsciiStringCompareShim@@QBEHABVAsciiString@@@Z,0x000220C5,AsciiString::compare via ILT thunk
 ?compare@GameSortStructCallOperatorShim@@QAE_NPAVGameSpyStagingRoom@@0@Z,0x0053EDD0,GameSortStruct operator() incremental-link thunk target through a TU-local forwarding shim
+?compare@Gen_001eda90Sub@@QBEHABVAsciiString@@@Z,0x000220C5,Open-BFME5 the AsciiString compare ILT the guard at 0x001EDA90 uses on its sub-object
 ?compare@Gen_t_00062fa0_mc4@@QBEHABU1@@Z,0x0005FEB0,family-emit payload member
 ?compare@Gen_t_00093170_mc4@@QBEHABU1@@Z,0x00090570,family-emit payload member
 ?compare@Gen_t_00093990_mc4@@QBEHABU1@@Z,0x00090570,family-emit payload member
@@ -72229,6 +72690,7 @@ name,address,notes
 ?createRadiusDecal@RadiusDecalTemplate@@QBEXABUCoord3D@@MPBVPlayer@@AAVRadiusDecal@@@Z,0x00037826,RadiusDecalUpdate::createRadiusDecal retail callee
 ?createVictoryConditions@@YAPAVVictoryConditionsInterface@@XZ,0x0035F810,ZH createVictoryConditions: new(0xC4) then ??0VictoryConditions 0x0035F430 via ILT 0x0004ADC2 at 0x0035F844; called by GameEngine::init 0x0007A0A6 whose result feeds initSubsystem<VictoryConditionsInterface> with &TheVictoryConditions 0x012F079C pushed at 0x0007A0BC
 ?create_node@AnimateWindowListCreateNodeShim@_STL@@QAEPAU?$_List_node@PAVAnimateWindow@@@2@ABQAVAnimateWindow@@@Z,0x0045DAE0,incremental-link thunk target through a TU-local forwarding shim
+?d_008859d0@Rva00886A20Class@@QAEXPBDPAD@Z,0x008859D0,pin
 ?deallocate@?$__node_alloc@$00$0A@@_STL@@SAXPAXI@Z,0x0001D35E,Open-BFME5 ILT the wide basic_string reserve at 0x00839590 frees the old block through
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAM@Z,0x00977DB0,AdaptiveDeltaMotionChannelClass getframe retail two-argument decompress
 ?decompressData@CompressionManager@@SAHPBXHPAXH@Z,0x0081E890,CachedFileInputStream open retail decompression call
@@ -72563,6 +73025,8 @@ name,address,notes
 ?fill@U1SupplierHigh@@QAEXPAVU1FillTargetHigh@@PAX@Z,0x005C8E90,tail of the slot-2 field collectors reading the 0xB8-0xBC run; address-derived name
 ?fill@U1SupplierLow@@QAEXPAVU1FillTargetLow@@PAX@Z,0x005C8D40,tail of the slot-2 field collectors reading the 0x3C-0x54 run; address-derived name
 ?fill_insert@BitVectorFillInsertShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@I_N@Z,0x002CC290,_STL bit vector _M_fill_insert incremental-link thunk target through a TU-local forwarding shim
+?filterSetup@W3DShaderManager@@SA_NW4FilterModes@@W4FilterTypes@@@Z,0x00716AA0,address-derived callee of 0x0073B650
+?filterSetup@W3DShaderManager@@SA_NW4FilterTypes@@W4FilterModes@@@Z,0x00716AA0,address-derived callee of 0x0073B650
 ?find@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QBEIPBDII@Z,0x00654BE0,STLport basic_string<char>::find(const char* s; size_type pos; size_type n): -1 on empty; clamps pos; std::search via ILT 0x0000F574 over [begin+pos; end) for [s; s+n); returns index or npos; callers parsePlayerKVPairs@GameSpyPSMessageQueueInterface 0x006597BE; ILT 0x0003DA4B
 ?find@?$hash_map@HW4Relationship@@U?$hash@H@_STL@@U?$equal_to@H@3@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@3@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@2@ABH@Z,0x0001D8CC,ILT; PlayerRelationMap find in Player::getRelationship 0x000D19C0
 ?find@?$hash_map@IW4Relationship@@U?$hash@I@_STL@@U?$equal_to@I@3@V?$allocator@U?$pair@$$CBIW4Relationship@@@_STL@@@3@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@$$CBIW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIW4Relationship@@@_STL@@@2@IU?$hash@I@2@U?$_Select1st@U?$pair@$$CBIW4Relationship@@@_STL@@@2@U?$equal_to@I@2@V?$allocator@U?$pair@$$CBIW4Relationship@@@_STL@@@2@@2@ABI@Z,0x0002D0B0,ILT; TeamRelationMap find in Player::getRelationship 0x000D19C0
@@ -73437,6 +73901,7 @@ name,address,notes
 ?h00514560@Glo00EF4988@@QAEXXZ,0x00514560,address-derived __thiscall callee of the guarded pointer tail-jump family; target read from the REL32 at its call site
 ?halt@StateMachine@@UAEXXZ,0x00025676,Open-BFME5 ILT; tail-called by ?halt@AIDockMachine@@UAEXXZ at 0x0014E660
 ?hand@U4Target0060C2C0@@QAEXPAX@Z,0x0061D4D0,U4 lane: guarded __thiscall callee of the __stdcall wrapper at 0x0060C2C0; address-derived name
+?handle@Callee0049AB20@@QAEXPAXHH@Z,0x0049A8F0,address-derived callee of 0x0049AB20 forwarder
 ?handle@Gen0000123F@@QAEXXZ,0x0000123F,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen00002603@@QAEXXZ,0x00002603,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
 ?handle@Gen0000386E@@QAEXXZ,0x0000386E,niladic __thiscall tail-jump target of an absolute-operand forwarder; address-derived name
@@ -74257,6 +74722,7 @@ name,address,notes
 ?handle@Rva006FC3B0@@UAEXXZ,0x006FC3C0,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva00725FC0@@UAEXXZ,0x00725FD0,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva00731040@@UAEXXZ,0x00731870,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
+?handle@Rva00734730@@QAEXHH@Z,0x00733F50,address-derived callee of 0x00734730
 ?handle@Rva00746160@@UAEXXZ,0x007463F0,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva007461A0@@UAEXXZ,0x00742700,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
 ?handle@Rva0079D350@@UAEXXZ,0x0079DBD0,address-derived override reached by the adjustor thunk at the same address-derived name; target read from the REL32 in the thunk
@@ -74825,6 +75291,9 @@ name,address,notes
 ?markZonesDirty@PathfindZoneManager@@QAEX_N0@Z,0x00015307,Open-BFME5 ILT; two arguments in BFME where the reference takes one; ?changeBridgeState@Pathfinder@@QAEXW4PathfindLayerEnum@@_N@Z at 0x003D58C0 passes false and true
 ?messageCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyMessageArg@@@Z,0x0000E43A
 ?method@Rva00409850SubObject@@QAEXE@Z,0x0003207E,incremental link thunk
+?method@SubObject00739E70@@QAEXPAX@Z,0x00739E70,address-derived callee of 0x00739F70 forwarder
+?methodA@Member0C00739C70@@QAEPAVTextureBaseClass@@HHHHH@Z,0x008FC710,pinharvest
+?methodB@Member0C00739C70@@QAEPAVTextureBaseClass@@HH@Z,0x008FC660,pinharvest
 ?moveMouse@Mouse@@IAEXHHH@Z,0x000141A5
 ?moveRoadSegTo@W3DRoadBuffer@@IAEXHH@Z,0x0003283F,ILT thunk -> 0x70b040 (checkLinkBefore callee)
 ?muxDataProcessUpgradeRemoval@UpgradeMuxData@@QBEXPAVObject@@@Z,0x0002E320,pinharvest x1 (thunk)
@@ -75099,6 +75568,7 @@ name,address,notes
 ?release@DistLODClassFreeShim@@QAEXXZ,0x00725B70,DistLODClass incremental-link Free target through a TU-local layout shim
 ?release@Mem00887940@@QAEXXZ,0x00887940,StringBase releaseBuffer body called from destructor BODIES at 0x003B8450 and 0x003B8710; same address as the destructor it folds with
 ?release@Rva0005C6B0Holder@@QAEXXZ,0x0005C6B0,out-of-line release of the small-buffer conversion holder; reached from 0x0005E1E0 via ILT 0x0002F0AE
+?release@SubPtr00739E00@@QAEXXZ,0x009EB7B0,address-derived callee of 0x00739E00
 ?release@U4Counted005F0D40@@QAEXXZ,0x009EB7A0,U4 lane: release called by the retain-then-release assign at 0x005F0D40; address-derived name
 ?release@W3DShadowContainerShim@@QAEXXZ,0x0001E344,W3DProjectedShadowManager ReleaseResources container helper shim
 ?releaseBuffer@?$BFMERetailStringBase@D@@AAEXXZ,0x00887940,WeaponFireSpecialAbilityUpdate special-weapon string release body
@@ -76157,6 +76627,15 @@ __ehhandler$?parseProductionTimeChange@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,0x00
 __ftol2,0x009F6E38,MSVC float-to-int conversion helper (statically linked CRT)
 __imp__GetTempPathA@8,0x01358E00,Open-BFME5 retail GetTempPathA import pointer
 __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
+__imp__fopen,0x013593BC,pin
+__imp__ftell,0x013593EC,pin
+__imp__itoa,0x0135935C,pin
+__imp__strchr,0x0135949C,pin
+__imp__strdup,0x01359308,pin
+__imp__strncpy,0x013594C0,pin
+__imp__strrchr,0x013594C8,pin
+__imp_free,0x013593D4,pin
+__imp_sprintf,0x0135948C,pin
 __real@40490fdb,0x00C87B14,Weapon constructor positive-pi comparison operand; retail data is IEEE-754 3.1415927410125732
 __real@c0490fdb,0x00C87B0C,Weapon constructor negative-pi comparison operand; retail data is IEEE-754 -3.1415927410125732
 __setjmp3,0x009F7E40,vendored=lua-4.0.1
@@ -76232,6 +76711,7 @@ _connect@12,0x0081BE0E,vendored=gamespy-2004
 _constructor,0x0099C2D0,decode_calls pin for _funcargs callee
 _crc32@12,0x00AABF88,vendored=libpng-1.0.5
 _current_time,0x008542E0,vendored=gamespy-2004
+_d_0088d240,0x0088D240,pin
 _deflate@8,0x00AAD683,vendored=libpng-1.0.5
 _deflateReset@4,0x00AAE588,vendored=libpng-1.0.5
 _discharge,0x0099F1D0,vendored=lua-4.0.1
@@ -76353,6 +76833,7 @@ _inflate@8,0x00AAEA1A,vendored=libpng-1.0.5
 _inflateReset@4,0x00AAE8A9,vendored=libpng-1.0.5
 _invalidaterefs,0x00999C40,vendored=lua-4.0.1
 _invertjump,0x0099E580,decode_calls pin for _luaK_testgo callee
+_io_fromto,0x009933C0,pristine Lua 4.0.1 io_fromto target reached by io_readfrom wrapper at 0x009934D0
 _ioctlsocket@12,0x0081BE4A,vendored=gamespy-2004
 _jpeg_add_quant_table@20,0x00A61E30,vendored=jpeg-6b
 _jpeg_free_small@12,0x00AC7FB0,vendored=jpeg-6b
@@ -76471,6 +76952,7 @@ _test_then_block,0x0099CEA0,vendored=lua-4.0.1
 _time,0x009F6F52,Y4 lane: time import thunk (gen-import ?ji_009f6f52@@YAXXZ names the same address)
 _var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
 _vsprintf,0x009F70AE
+_wcscpy,0x01359520,pin
 _whilestat,0x0099CC60,decode_calls pin for _stat callee
 g_NAMEKEY_empty_string,0x0107388B,NAMEKEY empty string literal
 g_statsConnection,0x012D9038,Open-BFME5 IsStatsConnected global
@@ -77109,3 +77591,4 @@ _FreeGame,0x009D2B70,Official gstats.c FreeGame identity; GameSpyStagingRoom res
 ?_bfme_showAptScreenWithArg@_bfme_AptGameWindow@@QAEXABVAsciiString@@PAXVRva0050F920FunctorHolder@@@Z,0x0000ACFE,DisconnectScreen constructor registers its player-color providers through this ILT
 ?bfme_setAptText@WindowManager@@QAEXABVAsciiString@@ABVUnicodeString@@@Z,0x0000BDCA,DisconnectMenu setPlayerName calls the established APT text setter through this ILT
 ?unidentified_00015235@WindowManager@@QAEXHPBDHPBXHHHH@Z,0x00015235,DisconnectMenu setPlayerName invokes HideKickButton through the established scripted-UI dispatcher ILT
+?d_00881770@@YAXHHHUSomeStruct@@@Z,0x00881770,pin
