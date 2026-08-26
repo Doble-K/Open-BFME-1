@@ -72,6 +72,7 @@ class BFMENetworkThreadBase
 public:
 	BFMENetworkThreadBase(const char *name);
 	virtual ~BFMENetworkThreadBase();
+	virtual void start();
 
 protected:
 	char m_threadName[0x40];
@@ -840,104 +841,20 @@ BFMENetwork::BFMENetwork() :
 	m_unknown68 = 0;
 }
 
-__declspec(naked) void BFMENetwork::init()
+void BFMENetwork::init()
 {
-	__asm {
-		push 0ffffffffh
-		push 01042cc6h
-		mov eax, fs:[0]
-		push eax
-		mov fs:[0], esp
-		push ecx
-		push ebx
-		push esi
-		mov esi, ecx
-		mov eax, [esi+64h]
-		xor ebx, ebx
-		cmp eax, ebx
-		jne doneInit
-		push 8
-		__emit 0xe8
-		__emit 0x42
-		__emit 0xd6
-		__emit 0x22
-		__emit 0x00
-		add esp, 4
-		mov [esp+8], eax
-		cmp eax, ebx
-		mov [esp+14h], ebx
-		je emptyLockRef
-		push 0ffffffffh
-		lea ecx, [esi+9ch]
-		push ecx
-		mov ecx, eax
-		__emit 0xe8
-		__emit 0xa3
-		__emit 0x6a
-		__emit 0x38
-		__emit 0x00
-		mov ebx, eax
-emptyLockRef:
-		push edi
-		mov edi, [esi+0a4h]
-		cmp ebx, edi
-		mov dword ptr [esp+18h], 0ffffffffh
-		je keepLockRef
-		test edi, edi
-		je storeLockRef
-		mov ecx, edi
-		__emit 0xe8
-		__emit 0xd3
-		__emit 0x6a
-		__emit 0x38
-		__emit 0x00
-		push edi
-		__emit 0xe8
-		__emit 0x7d
-		__emit 0xd5
-		__emit 0x22
-		__emit 0x00
-		add esp, 4
-storeLockRef:
-		mov [esi+0a4h], ebx
-keepLockRef:
-		push 6ch
-		__emit 0xe8
-		__emit 0xed
-		__emit 0xd5
-		__emit 0x22
-		__emit 0x00
-		add esp, 4
-		mov [esp+0ch], eax
-		test eax, eax
-		mov dword ptr [esp+18h], 1
-		pop edi
-		je emptyBackend
-		lea edx, [esi+9ch]
-		push edx
-		mov ecx, eax
-		__emit 0xe8
-		__emit 0xdf
-		__emit 0xc4
-		__emit 0x9e
-		__emit 0xff
-		jmp storeBackend
-emptyBackend:
-		xor eax, eax
-storeBackend:
-		mov [esi+64h], eax
-		mov edx, [eax]
-		mov ecx, eax
-		mov dword ptr [esp+14h], 0ffffffffh
-		call dword ptr [edx+4]
-doneInit:
-		mov ecx, [esp+0ch]
-		pop esi
-		pop ebx
-		mov fs:[0], ecx
-		add esp, 10h
-		ret
+	if (m_backend) {
+		return;
 	}
+
+	BFMEAutoLockRef *lockRef = new BFMEAutoLockRef(&m_lock9c, -1);
+	if (lockRef != m_backendLockRef) {
+		delete m_backendLockRef;
+		m_backendLockRef = lockRef;
+	}
+
+	m_backend = new BFMENetworkBackend(&m_lock9c);
+	m_backend->start();
 }
 
 void BFMENetwork::pushQueue0(BFMENetworkQueueItem *item)
