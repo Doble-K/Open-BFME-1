@@ -72495,6 +72495,7 @@ name,address,notes
 ?erase@?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAEPAUICoord2D@@PAU3@0@Z,0x0000890E,ICF alias: this thunk fronts 0x00451E10 which the ledger already names the vector<INILine> erase; both elements are eight bytes so the two folded
 ?erase@?$vector@UPrereqUnitRec@ProductionPrerequisite@@V?$allocator@UPrereqUnitRec@ProductionPrerequisite@@@_STL@@@_STL@@QAEPAUPrereqUnitRec@ProductionPrerequisite@@PAU34@0@Z,0x0001E632
 ?erase@?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEPAVAsciiString@@PAV3@0@Z,0x00065960,SubsystemLegend.cpp TU copy of vector<AsciiString>::erase(first last)
+?erase@?$vector@VLivingWorldArmy@@V?$allocator@VLivingWorldArmy@@@_STL@@@_STL@@QAEPAVLivingWorldArmy@@PAV3@0@Z,0x00030B48,LivingWorldPlayerArmy constructor vector clear ILT thunk to 0x00363820
 ?erase@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAE?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@U32@0@Z,0x00029631,BaseHeightMap reset packed-bool vector erase ILT thunk
 ?erase@BfmeLegendStringVec@@QAEXPAX0@Z,0x00065960,SubsystemLegend.cpp vector<AsciiString> stand-in erase(first,last)
 ?erase@IntPairTreeEraseShim@_STL@@QAEXPAU?$_Rb_tree_node@U?$pair@$$CBHI@_STL@@@2@@Z,0x000AA7B0,_STL int pair tree incremental-link thunk target through a TU-local forwarding shim

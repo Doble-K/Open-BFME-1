@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/campaignmanagerascii /Ireference/shims/moduledata /Ireference/shims/sweep /ICode/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 //
 // The LivingWorldPlayerArmy block -- BFME-only, like everything Living World.
@@ -9,27 +9,75 @@
 // initSubsystem<LivingWorldCampaignManager> instantiation, so the class has a
 // real name.
 //
-// The block's own record does not. Its constructor at 0x003649D0 and destructor
-// at 0x00362B20 are unnamed in the image and nothing here reads a member, so it
-// is described by its size alone - 0x58, the frame the parser reserves - and the
-// member that takes it is named for the call site.
+// The relocation-named constructor and its Snapshot vtable recover the record
+// identity. The field table fixes the named offsets; the destructor and vector
+// erase target account for every non-trivial member in the 0x58-byte record.
 #include "PreRTS.h"
 #include "Common/INI.h"
 #include <vector>
 
-class LivingWorldPlayerArmy
+class LivingWorldArmy
+{
+public:
+	virtual ~LivingWorldArmy();
+
+private:
+	char m_unmodelled[ 0xB0 ];
+};
+
+class LivingWorldPlayerArmy : public Snapshot
 {
 public:
 	LivingWorldPlayerArmy();
 	LivingWorldPlayerArmy( const LivingWorldPlayerArmy &other );
 	~LivingWorldPlayerArmy();
+	virtual void crc( Xfer *xfer );
+	virtual void xfer( Xfer *xfer );
+	virtual void loadPostProcess();
 
 	static const FieldParse m_fieldParseTable[];
 
-	char m_unmodelled00[ 4 ];
 	Int m_index;
-	char m_unmodelled08[ 0x50 ];
+	Bool m_isActive;
+	AsciiString m_name;
+	AsciiString m_faction;
+	AsciiString m_icon;
+	UnsignedInt m_color;
+	UnsignedInt m_nightColor;
+	Int m_startingCommandPoints;
+	Int m_unmodelled24;
+	Int m_unmodelled28;
+	Int m_unmodelled2C;
+	std::vector<LivingWorldArmy> m_armies;
+	Int m_unmodelled3C;
+	Int m_unmodelled40;
+	Int m_survivalThreshold;
+	AsciiString m_displayNameTag;
+	Bool m_unmodelled4C;
+	Int m_minCommandPoints;
+	AsciiString m_replenishArmyName;
 };
+
+LivingWorldPlayerArmy::LivingWorldPlayerArmy() :
+	m_index( 0 ),
+	m_isActive( false ),
+	m_name( AsciiString::TheEmptyString ),
+	m_faction( AsciiString::TheEmptyString ),
+	m_icon( AsciiString::TheEmptyString ),
+	m_startingCommandPoints( 1 ),
+	m_unmodelled24( 0 ),
+	m_unmodelled28( 0 ),
+	m_unmodelled2C( 0 ),
+	m_survivalThreshold( 0 ),
+	m_unmodelled4C( false ),
+	m_minCommandPoints( 0 )
+{
+	m_armies.clear();
+	m_color = 0xFF000000;
+	m_nightColor = 0xFF000000;
+	m_unmodelled3C = 0;
+	m_unmodelled40 = 0;
+}
 
 class BfmeLivingWorldCampaignManager
 {
