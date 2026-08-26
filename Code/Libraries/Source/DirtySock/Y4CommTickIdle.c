@@ -55,6 +55,14 @@ void Rva00813E30( struct Rva00814700Comm *comm )
 	Rva0081B830( comm->m_transport );
 }
 
+int Rva0081BA60( void *transport, const void *payload, int length );
+
+int Rva00814040( struct Rva00814700Comm *comm, const void *payload,
+	int length )
+{
+	return Rva0081BA60( comm->m_transport, payload, length );
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event
