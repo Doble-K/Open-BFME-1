@@ -77078,3 +77078,4 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ?xferTerrainState@TerrainLogic@@IAEXPAVXfer@@@Z,0x00043ED7,TerrainLogic::xfer tail call ILT reaching the body at 0x001AD370
 ?intersect_obbox_brute_force@MeshGeometryClass@@AAE_NAAVOBBoxIntersectionTestClass@@@Z,0x00926BE0,MeshGeometryClass brute-force OBBox arm reached by the tail jump at 0x0092793D
 ??0RRU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,RubbleRiseUpdate constructor calls the shared ObjectModule constructor ILT
+??0HDU_DeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HeightDieUpdate constructor calls the shared ObjectModule constructor ILT
