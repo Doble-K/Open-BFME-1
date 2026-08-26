@@ -149,3 +149,23 @@ int Rva0080DBF0(unsigned char *object, int selector, void *buffer,
 	}
 	return result;
 }
+
+void Rva0080DCE0(unsigned char *dest, const char *source,
+	unsigned int length)
+{
+	unsigned int i;
+	unsigned int j;
+	const char *p;
+
+	if (length >= 0x20)
+		memcpy(dest, source, 0x20);
+	else
+	{
+		p = source;
+		for (i = 0, j = 0; i != length; i++)
+		{
+			dest[j] ^= p[i];
+			j = (j + 1) % 0x20;
+		}
+	}
+}
