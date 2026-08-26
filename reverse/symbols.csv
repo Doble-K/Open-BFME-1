@@ -8566,6 +8566,7 @@ name,address,notes
 ??1Rva0004B227TailBase@@UAE@XZ,0x0004B227,base destructor address decoded from the retail REL32 tail jump; name is address-derived
 ??1Rva0004B68CMultiBase@@UAE@XZ,0x0004B68C,base destructor address decoded from the retail REL32 tail jump; name is address-derived
 ??1Rva00078460Elem@@QAE@XZ,0x0001F951,Open-BFME5 ILT the 0x00078460 implicit dtor hands to ??_M as the element destructor
+??1Rva00364980HeapElement@@QAE@XZ,0x000257ED,REL32 wide heap element destructor target from 0x00363D6A
 ??1Rva003691A0OwnedRecord@@QAE@XZ,0x00024DB6,retail clean C++ delete loop calls the bounded 0x003691A0 record destructor through this ILT thunk
 ??1Rva0036BBA0BehaviorModule@@UAE@XZ,0x00047C53,REL32 seven-byte base destructor target from CastleMemberBehavior 0x0036BC0A
 ??1Rva003A9860@@QAE@XZ,0x00037A4C,Open-BFME5 ILT thunk to body 0x003A9860; ??1LivingWorldCampaign@@QAE@XZ at 0x003AA7F0 destroys its member at +0x0C through it; address-derived name
@@ -9009,6 +9010,7 @@ name,address,notes
 ??4Rva000A8490Mid10@@QAEAAV0@ABV0@@Z,0x0002114D,Open-BFME5 assign of the 12-byte mid at +0x10 used by 0x000A8490
 ??4Rva000A8490Mid24@@QAEAAV0@ABV0@@Z,0x000303B4,Open-BFME5 assign of the mid at +0x24 used by 0x000A8490
 ??4Rva002E9E70Mid@@QAEAAV0@ABV0@@Z,0x00033640,Open-BFME5 assign of the mid member used by 0x002E17F0
+??4Rva00364980HeapElement@@QAEAAU0@ABU0@@Z,0x000470F0,REL32 wide heap element assignment target from 0x00363CF2
 ??4Rva00365070Blk@@QAEAAV0@ABV0@@Z,0x00002B44
 ??4Rva0036CA00Str@@QAEAAV0@ABV0@@Z,0x00887C90,Open-BFME5 assign of the 0x00887C90 string member used by skip-vptr operator=
 ??4Rva0039C830Mid@@QAEAAV0@ABV0@@Z,0x000163BA,Open-BFME5 assign of the mid at +0x14 used by 0x0039C830
@@ -76238,6 +76240,7 @@ name,address,notes
 ?run@XferRandomVariableShim@@SAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0010C4D0,xferRandomVariable incremental-link thunk target through a TU-local forwarding shim
 ?rva000b2cc0@@YGXPAXH@Z,0x00025306,Open-BFME5 ILT stdcall of push0+data wrapper
 ?rva00362360UnguardedLinearInsert@@YAXPAURva00364980HeapElement@@U1@URva00364980HeapCompare@@@Z,0x000146FA,REL32 unguarded-linear-insert target from 0x00363BAA
+?rva00362400PushHeap@@YAXPAURva00364980HeapElement@@HHU1@URva00364980HeapCompare@@@Z,0x0002DE8E,REL32 push-heap target from 0x00363D53
 ?rva00363B80UnguardedInsertionSortAuxCall@@YAXPAURva00364980HeapElement@@00URva00364980HeapCompare@@@Z,0x00034BD5,REL32 unguarded-insertion-sort target from 0x0036679F
 ?rva00363C80AdjustHeap@@YAXPAURva00364980HeapElement@@HHU1@URva00364980HeapCompare@@@Z,0x000497BA,REL32 adjust-heap target from 0x0036493D
 ?rva003647E0PopHeap@@YAXPAURva00364980HeapElement@@00U1@URva00364980HeapCompare@@PAH@Z,0x0001479F,REL32 pop-heap helper target from 0x003649B1
