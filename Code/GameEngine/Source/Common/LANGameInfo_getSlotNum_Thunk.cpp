@@ -1,198 +1,71 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+typedef bool Bool;
+typedef int Int;
+
+class UnicodeString;
+
+// Retail inlines the wide-string base copy here, preserving its EH temporary ordering.
+template <class Character>
+class StringBase
+{
+private:
+	StringBase(const StringBase &that);
+	friend class UnicodeString;
+};
 
 class UnicodeString
 {
+public:
+	UnicodeString(const UnicodeString &that)
+	{
+		((StringBase<unsigned short> *)this)->StringBase<unsigned short>::StringBase(
+			*(const StringBase<unsigned short> *)&that);
+	}
+	~UnicodeString();
+
+private:
+	void *m_data;
+};
+
+class LANGameSlot
+{
+public:
+	Bool isUser(UnicodeString userName);
+
+private:
+	unsigned char m_data[0x68];
 };
 
 class LANGameInfo
 {
 public:
-	int getSlotNum(UnicodeString);
+	Int getSlotNum(UnicodeString userName);
+
+private:
+	LANGameSlot *getLANSlot(Int slotNum)
+	{
+		if (slotNum < 0 || slotNum >= 8)
+			return 0;
+		return &m_slots[slotNum];
+	}
+
+	unsigned char m_unreconstructed_00[0x0c];
+	Bool m_inGame;
+	unsigned char m_unreconstructed_0d[0x4b];
+	LANGameSlot m_slots[8];
 };
 
 // ?getSlotNum@LANGameInfo@@QAEHVUnicodeString@@@Z
-__declspec(naked) int LANGameInfo::getSlotNum(UnicodeString)
+Int LANGameInfo::getSlotNum(UnicodeString userName)
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xe8
-		__emit 0x6d
-		__emit 0x04
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x53
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8a
-		__emit 0x41
-		__emit 0x0c
-		__emit 0x84
-		__emit 0xc0
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x3c
-		__emit 0x33
-		__emit 0xf6
-		__emit 0x8d
-		__emit 0x59
-		__emit 0x58
-		__emit 0x8d
-		__emit 0x49
-		__emit 0x00
-		__emit 0x85
-		__emit 0xf6
-		__emit 0x7c
-		__emit 0x09
-		__emit 0x83
-		__emit 0xfe
-		__emit 0x08
-		__emit 0x7d
-		__emit 0x04
-		__emit 0x8b
-		__emit 0xfb
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xff
-		__emit 0x51
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x24
-		__emit 0x89
-		__emit 0x64
-		__emit 0x24
-		__emit 0x10
-		__emit 0x8b
-		__emit 0xcc
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xa0
-		__emit 0x98
-		__emit 0x1f
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0x6f
-		__emit 0x33
-		__emit 0x99
-		__emit 0xff
-		__emit 0x84
-		__emit 0xc0
-		__emit 0x75
-		__emit 0x31
-		__emit 0x46
-		__emit 0x83
-		__emit 0xc3
-		__emit 0x68
-		__emit 0x83
-		__emit 0xfe
-		__emit 0x08
-		__emit 0x7c
-		__emit 0xcc
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x20
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x4b
-		__emit 0x96
-		__emit 0x1f
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc8
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x20
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x23
-		__emit 0x96
-		__emit 0x1f
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5b
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
+	if (!m_inGame)
+		return -1;
+
+	for (Int i = 0; i < 8; ++i) {
+		LANGameSlot *slot = getLANSlot(i);
+		if (slot->isUser(userName))
+			return i;
 	}
+	return -1;
 }
