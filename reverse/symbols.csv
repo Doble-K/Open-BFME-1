@@ -77356,3 +77356,6 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeNext@Gen_000B56D0@@AAEXXZ,0x0003990A,Open-BFME5 the member the flag-then-forward wrapper at 0x000B56D0 tail-jumps to
 ?unLink@DisplayStringManager@@IAEXPAVDisplayString@@@Z,0x000288E4,W3DDisplayStringManager freeDisplayString target read from retail REL32
 ?AptLivingWorldWindowIndex@@YAHHH@Z,0x000019F6,BFME APT Living World visibility helpers call the established two-int wrapper through this retail ILT
+?bfmeInvoke@Gen_006CDF70Target@@QAEXPAX0@Z,0x0000560A,Open-BFME5 the member the guarded dispatcher at 0x006CDF70 calls
+?bfmeInvoke@Gen_009EBA60Target@@QAEXPAX0@Z,0x009EEAC0,Open-BFME5 the member the guarded dispatcher at 0x009EBA60 calls
+?bfmeInvoke@Gen_0064C6A0Target@@QAEXPAX0@Z,0x0001F785,Open-BFME5 the member the guarded dispatcher at 0x0064C6A0 calls
