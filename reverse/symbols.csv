@@ -2053,6 +2053,11 @@ name,address,notes
 ??0BfmeLegendString@@QAE@PBD@Z,0x00888BC0,SubsystemLegend.cpp AsciiString stand-in ctor from const char*
 ??0BfmeLegendStringVec@@QAE@ABU0@@Z,0x000D2E70,SubsystemLegend.cpp vector<AsciiString> stand-in copy ctor
 ??0BfmeLivingWorldAnimObject@@QAE@ABVAsciiString@@@Z,0x000089E0,LivingWorld animation object constructor ILT decoded from findAnimObject retail callsite
+??0BfmeMade_0045DC70@@QAE@PAX@Z,0x00043063,Open-BFME5 the constructor the make-from-argument body at 0x0045DC70 runs on its fresh block
+??0BfmeMade_00494200@@QAE@PAX@Z,0x00028F8D,Open-BFME5 the constructor the make-from-argument body at 0x00494200 runs on its fresh block
+??0BfmeMade_0078D390@@QAE@PAX@Z,0x0003707E,Open-BFME5 the constructor the make-from-argument body at 0x0078D390 runs on its fresh block
+??0BfmeMade_0078F520@@QAE@PAX@Z,0x0003707E,Open-BFME5 the constructor the make-from-argument body at 0x0078F520 runs on its fresh block
+??0BfmeMade_009CB5F0@@QAE@PAX@Z,0x009CB4E0,Open-BFME5 the constructor the make-from-argument body at 0x009CB5F0 runs on its fresh block
 ??0BfmeMemberA@@QAE@ABV0@@Z,0x00887B60,Open-BFME5 the shared first-member copy ctor the two-member ctors at 0x000809D0 and siblings call
 ??0BfmeMemberB_000809D0@@QAE@ABV0@@Z,0x00011ADB,Open-BFME5 the second-member copy ctor the two-member ctor at 0x000809D0 calls
 ??0BfmeMemberB_000C1490@@QAE@ABV0@@Z,0x0000EA75,Open-BFME5 the second-member copy ctor the two-member ctor at 0x000C1490 calls
