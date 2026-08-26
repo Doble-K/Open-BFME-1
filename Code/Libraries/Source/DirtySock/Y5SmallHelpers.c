@@ -1,4 +1,4 @@
-// cl: /Od /GZ /MD /DNDEBUG
+// cl: /Od /GZ /GS /MD /DNDEBUG
 
 void *memcpy(void *dest, const void *src, unsigned int count);
 void *memset(void *dest, int value, unsigned int count);
@@ -223,4 +223,24 @@ void Rva0080E500(unsigned char *object)
 		*(void **)(object + 0x64) = 0;
 	}
 	*(int *)(object + 0x7C) = 0;
+}
+
+void Rva00810020(void *context);
+void Rva00810060(void *context, const unsigned char *data, int length);
+void Rva00810FF0(void *context, char *out, int outSize);
+
+int Rva0080E350(const int *crypto, unsigned char *data, int length)
+{
+	unsigned char context[0x54];
+	int payloadLength;
+
+	payloadLength = length - 8;
+	if (*crypto == 0)
+		return 0;
+	if (payloadLength < 0)
+		return -1;
+	Rva00810020(context);
+	Rva00810060(context, data, payloadLength);
+	Rva00810FF0(context, (char *)data + payloadLength, 8);
+	return 0;
 }
