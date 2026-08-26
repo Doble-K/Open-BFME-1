@@ -28,15 +28,28 @@
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
+// BFME's vote helpers take the live connection manager, overloads absent from the published ZH header.
+#define countVotesForPlayer(slot) countVotesForPlayer(slot); \
+	Int countVotesForPlayer(Int, ConnectionManager *); \
+	Int getVotesNeededToKick(Int, ConnectionManager *)
+#include "GameNetwork/DisconnectManager.h"
+#undef countVotesForPlayer
+
 #include "Common/Recorder.h"
 #include "GameClient/DisconnectMenu.h"
 #include "GameClient/InGameUI.h"
 #include "GameLogic/GameLogic.h"
-#include "GameNetwork/DisconnectManager.h"
 #include "GameNetwork/NetworkInterface.h"
 #include "GameNetwork/NetworkUtil.h"
 #include "GameNetwork/GameSpy/PingThread.h"
 #include "GameNetwork/GameSpy/GSConfig.h"
+
+// BFME adds this connection-state query; the published ZH class declaration does not expose it.
+class BFMEConnectionManager : public ConnectionManager
+{
+public:
+	Bool isPlayerSlotActive(Int slot);
+};
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -662,8 +675,10 @@ Bool DisconnectManager::isLocalPlayerNextPacketRouter(ConnectionManager *conMgr)
 	UnsignedInt packetRouterSlot = conMgr->getPacketRouterSlot();
 	Int transSlot = translatedSlotPosition(packetRouterSlot, localSlot);
 
-	// stop when we have found a packet router that is connected
-	while ((transSlot != -1) && (isPlayerInGame(transSlot, conMgr) == FALSE)) {
+	// A connected peer can still be ineligible after a vote, timeout, or leave-state transition.
+	while ((transSlot != -1)
+		&& ((isPlayerInGame(transSlot, conMgr) == FALSE)
+			|| ((BFMEConnectionManager *)conMgr)->isPlayerSlotActive(packetRouterSlot))) {
 		packetRouterSlot = conMgr->getNextPacketRouterSlot(packetRouterSlot);
 		if ((packetRouterSlot >= MAX_SLOTS) || (packetRouterSlot < 0)) {
 			// don't know who the next packet router is going to be,
@@ -689,10 +704,11 @@ Bool DisconnectManager::hasPlayerTimedOut(Int slot) {
 		return FALSE;
 	}
 
-	if ((timeGetTime() - m_playerTimeouts[slot]) < TheGlobalData->m_networkDisconnectScreenNotifyTime) {
-		return FALSE;
+	if (TheGlobalData->m_networkDisconnectScreenNotifyTime
+		<= (timeGetTime() - m_playerTimeouts[slot])) {
+		return TRUE;
 	}
-	return TRUE;
+	return FALSE;
 }
 
 // this function assumes that we are the packet router. (or at least that 
@@ -716,15 +732,14 @@ void DisconnectManager::sendPlayerDestruct(Int slot, ConnectionManager *conMgr) 
 
 // the 'slot' variable is supposed to be a translated slot position. (translated slot meaning
 // that it is the player's position in the disconnect menu)
-// ?isPlayerVotedOut@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z present-unmatched
 Bool DisconnectManager::isPlayerVotedOut(Int slot, ConnectionManager *conMgr) {
 	if (slot == -1) {
 		// we can't vote out ourselves.
 		return FALSE;
 	}
 	Int transSlot = untranslatedSlotPosition(slot, conMgr->getLocalPlayerID());
-	Int numVotes = countVotesForPlayer(transSlot);
-	if (numVotes >= (conMgr->getNumPlayers() - 1)) {
+	Int numVotes = countVotesForPlayer(transSlot, conMgr);
+	if (numVotes >= getVotesNeededToKick(transSlot, conMgr)) {
 		return TRUE;
 	}
 	return FALSE;

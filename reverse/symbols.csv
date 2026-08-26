@@ -76980,3 +76980,5 @@ _Rva007FD920,0x007FD920,address-derived socket send helper called by 0x0080D980
 ??1BannerType@@QAE@XZ,0x0001C88C,BannerType temporary destructor ILT after the missing-key insertion path
 ?_M_insert@?$hashtable@U?$pair@$$CBVAsciiString@@VBannerType@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@VBannerType@@@_STL@@@2@U?$equal_to@VAsciiString@@@2@V?$allocator@U?$pair@$$CBVAsciiString@@VBannerType@@@_STL@@@2@@_STL@@QAEAAU?$pair@$$CBVAsciiString@@VBannerType@@@2@ABU32@@Z,0x0004338D,BannerType hash_map operator subscript insertion ILT to the proven 20-byte value body
 ?getSurfaceLevel@W3DRadarResetTexture@@QAE?AVW3DRadarResetSurface@@I@Z,0x0090DDC0,W3DRadar value-surface level accessor called by the zero-level wrapper
+?getNextPacketRouterSlot@ConnectionManager@@QAEII@Z,0x00033190,DisconnectManager::isLocalPlayerNextPacketRouter loop advances through the router order; ILT target 0x00663BC0
+?isPlayerSlotActive@BFMEConnectionManager@@QAE_NH@Z,0x000486B2,existing clean BFMEConnectionManager state-range body at 0x00662C30 reached through its ILT
