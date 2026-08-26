@@ -1,71 +1,44 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: DemoTrapUpdateModuleData::DemoTrapUpdateModuleData, retail
+// 0x0028C9E0, 58 bytes.
+//
+// A flat field constructor. The six dwords at +0x0C are cleared through a
+// materialised base pointer rather than this-relative displacements, which is
+// an inline memset over an array member and not a run of field assignments.
+
+#include <string.h>
 
 class DemoTrapUpdateModuleData
 {
 public:
-    DemoTrapUpdateModuleData();
+	DemoTrapUpdateModuleData();
+	virtual ~DemoTrapUpdateModuleData();
+
+private:
+	unsigned int m_x04;					// untouched by the constructor
+	unsigned int m_x08;
+	unsigned int m_block[6];			// this+0x0C .. 0x20
+	unsigned int m_x24;
+	unsigned int m_x28;
+	unsigned int m_x2c;
+	unsigned int m_x30;
+	unsigned int m_x34;
+	bool m_x38;
+	bool m_x39;
+	bool m_x3a;
 };
 
-__declspec(naked) DemoTrapUpdateModuleData::DemoTrapUpdateModuleData()
+// ??0DemoTrapUpdateModuleData@@QAE@XZ
+DemoTrapUpdateModuleData::DemoTrapUpdateModuleData()
 {
-    __asm {
-        _emit 08Bh
-        _emit 0C1h
-        _emit 0C7h
-        _emit 000h
-        _emit 0D8h
-        _emit 0D7h
-        _emit 00Bh
-        _emit 001h
-        _emit 033h
-        _emit 0C9h
-        _emit 08Dh
-        _emit 050h
-        _emit 00Ch
-        _emit 089h
-        _emit 00Ah
-        _emit 089h
-        _emit 04Ah
-        _emit 004h
-        _emit 089h
-        _emit 04Ah
-        _emit 008h
-        _emit 089h
-        _emit 04Ah
-        _emit 00Ch
-        _emit 089h
-        _emit 04Ah
-        _emit 010h
-        _emit 089h
-        _emit 04Ah
-        _emit 014h
-        _emit 088h
-        _emit 048h
-        _emit 038h
-        _emit 088h
-        _emit 048h
-        _emit 039h
-        _emit 089h
-        _emit 048h
-        _emit 024h
-        _emit 089h
-        _emit 048h
-        _emit 028h
-        _emit 089h
-        _emit 048h
-        _emit 02Ch
-        _emit 089h
-        _emit 048h
-        _emit 030h
-        _emit 089h
-        _emit 048h
-        _emit 034h
-        _emit 089h
-        _emit 048h
-        _emit 008h
-        _emit 088h
-        _emit 048h
-        _emit 03Ah
-        _emit 0C3h
-    }
+	memset(m_block, 0, sizeof(m_block));
+	m_x38 = false;
+	m_x39 = false;
+	m_x24 = 0;
+	m_x28 = 0;
+	m_x2c = 0;
+	m_x30 = 0;
+	m_x34 = 0;
+	m_x08 = 0;
+	m_x3a = false;
 }

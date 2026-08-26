@@ -1,51 +1,55 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: MeshGeometryClass::Intersect_OBBox, retail 0x00927920, 34 bytes.
+//
+// The Zero Hour body. AABTreeClass::Intersect_OBBox is one line, so MSVC
+// inlines it and the cull-tree arm becomes a direct call to
+// Intersect_OBBox_Recursive with the root node read from tree+0x0C; the
+// brute-force arm is a tail jump because its result is returned unchanged.
 
-class OBBoxIntersectionTestClass
+class OBBoxIntersectionTestClass;
+
+class AABTreeClass
 {
+public:
+	struct CullNodeStruct;
+
+	bool Intersect_OBBox(OBBoxIntersectionTestClass &test)
+	{
+		return Intersect_OBBox_Recursive(RootNode, test);
+	}
+
+private:
+	bool Intersect_OBBox_Recursive(CullNodeStruct *node, OBBoxIntersectionTestClass &test);
+
+	unsigned char m_unmodelled_000[0xc];
+	CullNodeStruct *RootNode;			// tree+0x0C
 };
 
 class MeshGeometryClass
 {
 public:
-    bool Intersect_OBBox(OBBoxIntersectionTestClass &);
+	bool Intersect_OBBox(OBBoxIntersectionTestClass &boxtest);
+
+private:
+	bool intersect_obbox_brute_force(OBBoxIntersectionTestClass &boxtest);
+
+	unsigned char m_unmodelled_000[0x90];
+	AABTreeClass *CullTree;				// this+0x90
 };
 
-__declspec(naked) bool MeshGeometryClass::Intersect_OBBox(OBBoxIntersectionTestClass &boxtest)
+// ?Intersect_OBBox@MeshGeometryClass@@QAE_NAAVOBBoxIntersectionTestClass@@@Z
+bool MeshGeometryClass::Intersect_OBBox(OBBoxIntersectionTestClass &boxtest)
 {
-    __asm {
-        _emit 08Bh
-        _emit 081h
-        _emit 090h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 085h
-        _emit 0C0h
-        _emit 074h
-        _emit 013h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 004h
-        _emit 08Bh
-        _emit 050h
-        _emit 00Ch
-        _emit 051h
-        _emit 052h
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 0C6h
-        _emit 037h
-        _emit 004h
-        _emit 000h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-        _emit 0E9h
-        _emit 09Eh
-        _emit 0F2h
-        _emit 0FFh
-        _emit 0FFh
-    }
+	bool hit = false;
+
+	if (CullTree)
+	{
+		hit = CullTree->Intersect_OBBox(boxtest);
+	}
+	else
+	{
+		hit = intersect_obbox_brute_force(boxtest);
+	}
+
+	return hit;
 }
