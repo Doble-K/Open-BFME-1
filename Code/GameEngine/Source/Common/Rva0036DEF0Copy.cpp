@@ -1,3 +1,5 @@
+#include <new>
+
 class AsciiString
 {
 public:
@@ -33,3 +35,12 @@ extern "C" Rva0036DEF0Result __cdecl Rva0036DEF0Copy(
 }
 
 // @_Rva0036DEF0Copy 0x0036DEF0
+
+extern "C" void __cdecl Rva0036E2D0Construct(
+	Rva0036DEF0Result *result,
+	const Rva0036DEF0Result &source)
+{
+	new (result) Rva0036DEF0Result(source);
+}
+
+// @_Rva0036E2D0Construct 0x0036E2D0
