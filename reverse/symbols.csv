@@ -76969,6 +76969,10 @@ _Rva008119A0,0x008119A0,address-derived DirtySock table insertion helper called 
 _Rva00812CD0,0x00812CD0,address-derived cleanup helper invoked for the owned field at offset 0x64 by 0x0080F0D0
 _Rva00813100@24,0x00813100,address-derived DirtySock connection setup helper called by 0x00813E50
 _Rva00813A50,0x00813A50,address-derived DirtySock address lookup helper called by 0x00813D00
+_Rva008143F0,0x008143F0,address-derived DirtySock operation table entry stored by 0x008140D0
+_Rva00814520,0x00814520,address-derived DirtySock operation table entry stored by 0x008140D0
+_Rva00814540,0x00814540,address-derived DirtySock operation table entry stored by 0x008140D0
+_Rva00814FE0,0x00814FE0,address-derived DirtySock operation table entry stored by 0x008140D0
 _Rva00814770,0x00814770,Y4 lane: DirtySock comm pump taking a tick; the socket callback at 0x00814700 samples the clock once and passes it in
 _Rva00814EA0,0x00814EA0,Y4 lane: DirtySock comm operation wrapped by 0x00814F70; negative returns are errors and non-negative ones counts
 _Rva008155F0,0x008155F0,address-derived DirtySock timeout handler called by 0x00815D40
@@ -76998,6 +77002,7 @@ _Rva0081BDEA,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; address 
 _Rva0081BDEA@4,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; the @4 is the stdcall decoration for its one argument
 _Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by the translator at 0x007FD540; the ledger names this address ?ji_0081be08, this is the C spelling
 _Rva012C4A80,0x012C4A80,address-derived DirtySock endpoint diagnostic format used by 0x00814D60
+_Rva012C4AAC,0x012C4AAC,address-derived DirtySock transport name copied by 0x008140D0
 _SBLastListErrorA,0x008680B0,adjacency-lane pin: jmp target of _ServerBrowserListQueryErrorA tail-call
 _SBQueryEngineUpdateServer,0x00869930,vendored=gamespy-2004
 _SBReleaseStr,0x008676D0,vendored=gamespy-2004

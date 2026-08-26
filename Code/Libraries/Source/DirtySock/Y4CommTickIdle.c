@@ -465,6 +465,83 @@ void Rva00814D60( struct Rva00814D60Comm *comm )
 		comm->m_bindAddress, comm->m_portA );
 }
 
+struct Rva008140D0Comm
+{
+	void *m_ops[ 14 ];               /* +0x00 */
+	char m_gap38[ 0x14 ];
+	char m_name[ 0x44 ];             /* +0x4C */
+	int m_state;                     /* +0x90 */
+	int m_field94;                   /* +0x94 */
+	char m_gap98[ 0x04 ];
+	int m_recordSizeA;               /* +0x9C */
+	int m_bufferSizeA;               /* +0xA0 */
+	char m_gapA4[ 0x08 ];
+	void *m_bufferA;                 /* +0xAC */
+	char m_gapB0[ 0x08 ];
+	int m_recordSizeB;               /* +0xB8 */
+	int m_bufferSizeB;               /* +0xBC */
+	char m_gapC0[ 0x08 ];
+	void *m_bufferB;                 /* +0xC8 */
+	char m_gapCC[ 0x11C ];
+	char m_lock[ 4 ];                /* +0x1E8 */
+	char m_gap1EC[ 0x2C ];
+};
+
+void *Rva007F0000( int size );
+void Rva007FEA20( void *lock );
+void CommTCPResolve( void );
+void Rva008143F0( void );
+void Rva00814FE0( void );
+void Rva00814520( void );
+void Rva00814540( void );
+extern char Rva012C4AAC[];
+void *memset( void *dest, int value, unsigned int size );
+int Rva00814EA0( struct Rva00814700Comm *comm, void *buffer, int size,
+	unsigned int *when );
+int Rva00814F70( struct Rva00814700Comm *comm, void *buffer, int size,
+	unsigned int *when );
+
+struct Rva008140D0Comm *Rva008140D0( int payloadSize, int countA,
+	int countB )
+{
+	struct Rva008140D0Comm *comm;
+
+	comm = (struct Rva008140D0Comm *)Rva007F0000( 0x218 );
+	if ( comm == 0 )
+		return 0;
+
+	memset( comm, 0, 0x218 );
+	comm->m_ops[ 0 ] = (void *)Rva008140D0;
+	comm->m_ops[ 1 ] = (void *)Rva008142D0;
+	comm->m_ops[ 2 ] = (void *)CommTCPResolve;
+	comm->m_ops[ 3 ] = (void *)Rva008143F0;
+	comm->m_ops[ 4 ] = (void *)Rva00814FE0;
+	comm->m_ops[ 5 ] = (void *)Rva00814400;
+	comm->m_ops[ 6 ] = (void *)Rva008151E0;
+	comm->m_ops[ 7 ] = (void *)Rva00814460;
+	comm->m_ops[ 8 ] = (void *)Rva008143A0;
+	comm->m_ops[ 9 ] = (void *)Rva008144C0;
+	comm->m_ops[ 10 ] = (void *)Rva00814520;
+	comm->m_ops[ 11 ] = (void *)Rva00814540;
+	comm->m_ops[ 12 ] = (void *)Rva00814EA0;
+	comm->m_ops[ 13 ] = (void *)Rva00814F70;
+	strcpy( comm->m_name, Rva012C4AAC );
+	Rva007FEA20( comm->m_lock );
+
+	comm->m_recordSizeA = payloadSize + 8;
+	comm->m_recordSizeA = ( comm->m_recordSizeA + 3 ) & 0x7FFC;
+	comm->m_bufferSizeA = comm->m_recordSizeA * countA;
+	comm->m_bufferA = Rva007F0000( comm->m_bufferSizeA );
+	comm->m_recordSizeB = payloadSize + 8;
+	comm->m_recordSizeB = ( comm->m_recordSizeB + 3 ) & 0x7FFC;
+	comm->m_bufferSizeB = comm->m_recordSizeB * countB;
+	comm->m_bufferB = Rva007F0000( comm->m_bufferSizeB );
+	Rva008142B0( (struct Rva00814700Comm *)comm, 0 );
+	comm->m_state = 1;
+	comm->m_field94 = 0;
+	return comm;
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event
