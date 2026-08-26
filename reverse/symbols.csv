@@ -77420,3 +77420,7 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+?pick@BridgeAreaEffectsRandomPositionShim@@QAEXPAVTerrainRoadType@@PBVBridgeInfo@@PAUCoord3D@@@Z,0x000406FB,BridgeBehavior doAreaEffects retail call at 0x001F249D forwards through the incremental thunk to getRandomSurfacePosition
+?shouldSkip@BridgeAreaEffectsFXShim@@QBE_NXZ,0x00011F77,BridgeBehavior doAreaEffects retail call at 0x001F24A4 invokes the BFME FX rate gate
+?doFXPos@BridgeAreaEffectsFXShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0@Z,0x0001BB21,BridgeBehavior doAreaEffects retail call at 0x001F24BA uses BFME's four-argument FX position ABI
+?create@BridgeAreaEffectsOCLShim@@QBEPAVObject@@PBV2@PBUCoord3D@@1_N@Z,0x00002A59,BridgeBehavior doAreaEffects retail call at 0x001F24E6 uses the Bool ObjectCreationList overload

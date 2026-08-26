@@ -571,49 +571,63 @@ void BridgeBehavior::getRandomSurfacePosition( TerrainRoadType *bridgeTemplate,
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?doAreaEffects@BridgeBehavior@@IAEXPAVTerrainRoadType@@PAVBridge@@PBVObjectCreationList@@PBVFXList@@@Z present-unmatched
+class BridgeAreaEffectsRandomPositionShim
+{
+public:
+	void pick( TerrainRoadType *bridgeTemplate, const BridgeInfo *bridgeInfo, Coord3D *pos );
+};
+
+class BridgeAreaEffectsFXShim
+{
+public:
+	Bool shouldSkip( void ) const;
+	void doFXPos( const Coord3D *primary, const Matrix3D *primaryMtx,
+						Real primarySpeed, const Coord3D *secondary ) const;
+};
+
+class BridgeAreaEffectsOCLShim
+{
+public:
+	Object *create( const Object *primaryObject, const Coord3D *primary,
+						const Coord3D *secondary, Bool createOwner ) const;
+};
+
 void BridgeBehavior::doAreaEffects( TerrainRoadType *bridgeTemplate,
 																		Bridge *bridge, 
 																		const ObjectCreationList *ocl, 
 																		const FXList *fx )
 {
-	
-	// sanity
 	if( bridge == NULL )
 		return;
 
-	// if no effects, don't bother
-	if( ocl == NULL && fx == NULL )
-		return;
-
-	// get bridge info
-	const BridgeInfo *bridgeInfo = bridge->peekBridgeInfo();
-
-	// play effects in the bridge area
-	const Int maxEffects = bridgeTemplate->getNumFXPerType();
-	Coord3D pos;
-	for( Int i = 0; i < maxEffects; ++i )
+	if( ocl != NULL || fx != NULL )
 	{
-
-		// pick spot in the bridge area and do FX
-		if( fx )
+		const BridgeInfo *bridgeInfo = bridge->peekBridgeInfo();
+		const Int maxEffects = bridgeTemplate->getNumFXPerType();
+		Coord3D pos;
+		for( Int i = 0; i < maxEffects; ++i )
 		{
+			if( fx )
+			{
+				reinterpret_cast<BridgeAreaEffectsRandomPositionShim *>( this )->pick(
+					bridgeTemplate, bridgeInfo, &pos );
+				const BridgeAreaEffectsFXShim *bfmeFX =
+					reinterpret_cast<const BridgeAreaEffectsFXShim *>( fx );
+				if( !bfmeFX->shouldSkip() )
+					bfmeFX->doFXPos( &pos, NULL, 0.0f, NULL );
+			}
 
-			getRandomSurfacePosition( bridgeTemplate, bridgeInfo, &pos );
-			FXList::doFXPos( fx, &pos );
-
-		}  // end if
-
-		// pick spot in the bridge area and do OCL
-		if( ocl )
-		{
-
-			getRandomSurfacePosition( bridgeTemplate, bridgeInfo, &pos );
-			ObjectCreationList::create( ocl, getObject(), &pos, NULL, INVALID_ANGLE );
-
-		}  // end if
-
-	}  // end for i
+			if( ocl )
+			{
+				reinterpret_cast<BridgeAreaEffectsRandomPositionShim *>( this )->pick(
+					bridgeTemplate, bridgeInfo, &pos );
+				Object *object = *reinterpret_cast<Object **>(
+					reinterpret_cast<char *>( this ) + 8 );
+				reinterpret_cast<const BridgeAreaEffectsOCLShim *>( ocl )->create(
+					object, &pos, NULL, FALSE );
+			}
+		}
+	}
 
 }  // end doAreaEffects
 
