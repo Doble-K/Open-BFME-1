@@ -97,6 +97,20 @@ int Rva008144C0( struct Rva00814700Comm *comm )
 	return 4;
 }
 
+int Rva00815830( struct Rva00814700Comm *comm )
+{
+	if ( comm->m_state == 1 || comm->m_state == 2 )
+		return 2;
+
+	if ( comm->m_state == 0 || comm->m_state == 4 )
+		return 1;
+
+	if ( comm->m_state == 3 )
+		return 3;
+
+	return 4;
+}
+
 void Rva00814770( struct Rva00814700Comm *comm, unsigned int tick );
 
 /* The socket callback.  Same shape as the ring transport's -- handle and event
