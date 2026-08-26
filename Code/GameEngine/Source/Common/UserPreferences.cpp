@@ -241,7 +241,6 @@ Int UserPreferences::getInt(AsciiString key, Int defaultValue) const
 	return atoi( reinterpret_cast<const char *>( view->m_data ) + 8 );
 }
 
-// ?getAsciiString@UserPreferences@@QBE?AVAsciiString@@V2@0@Z present-unmatched
 AsciiString UserPreferences::getAsciiString(AsciiString key, AsciiString defaultValue) const
 {
 	UserPreferences::const_iterator it = find(key);
