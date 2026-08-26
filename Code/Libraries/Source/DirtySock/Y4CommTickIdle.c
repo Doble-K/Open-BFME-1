@@ -868,3 +868,25 @@ int Rva00813890( int line, int address, const char *destination,
 	return Rva0081BDC6( line, address, (char *)callParameters + 0x70,
 		countryCode, callParameters );
 }
+
+extern char Rva012C4A40[];
+int __stdcall Rva0081BDC0( int line, int requestMode, int extension,
+	int versionCount, void *capabilities, void *apiVersion );
+
+int Rva008137C0( int line )
+{
+	int iResult;
+	unsigned char capabilities[ 0x11C ];
+	int iReturn;
+
+	memset( capabilities, 0, sizeof( capabilities ) );
+	*(int *)capabilities = sizeof( capabilities );
+	iResult = Rva0081BDC0( line, 0, 0, 1, capabilities, Rva012C4A40 );
+
+	if ( iResult != 0 )
+		iReturn = -1;
+	else
+		iReturn = *(int *)( capabilities + 0x18 );
+
+	return iReturn;
+}

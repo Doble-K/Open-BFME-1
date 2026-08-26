@@ -77014,11 +77014,13 @@ _Rva0081B9B0,0x0081B9B0,address-derived DirtySock transport shutdown helper call
 _Rva0081B9D0,0x0081B9D0,address-derived DirtySock transport state helper called by 0x00813F90
 _Rva0081BC80,0x0081BC80,Y4 lane: DirtySock comm operation wrapped by 0x0081BD40; non-negative means the slot was consumed
 _Rva0081BDAE@4,0x0081BDAE,Y4 lane: unnamed one-argument stdcall import thunk (IAT slot 0x01358C84); the guard at 0x00813780 calls it only for a handle that is not -1
+_Rva0081BDC0@24,0x0081BDC0,Y4 lane: six-argument stdcall import thunk called by the DirtySock capability query wrapper at 0x008137C0
 _Rva0081BDC6@20,0x0081BDC6,Y4 lane: five-argument stdcall import thunk called by the DirtySock line-call setup wrapper at 0x00813890
 _Rva0081BDE4,0x0081BDE4,import thunk called at the tail of the DirtySock shutdown 0x007FD270; the ledger already names this address ?ji_0081bde4, this is the C spelling the .c TU needs
 _Rva0081BDEA,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; address read from the REL32 at that call site
 _Rva0081BDEA@4,0x0081BDEA,stdcall name-lookup thunk called by 0x007FE250; the @4 is the stdcall decoration for its one argument
 _Rva0081BE08,0x0081BE08,import thunk fetching the Winsock error code, called by the translator at 0x007FD540; the ledger names this address ?ji_0081be08, this is the C spelling
+_Rva012C4A40,0x012C4A40,address-derived API version storage passed by the DirtySock capability query wrapper at 0x008137C0
 _Rva012C4A80,0x012C4A80,address-derived DirtySock endpoint diagnostic format used by 0x00814D60
 _Rva012C4AAC,0x012C4AAC,address-derived DirtySock transport name copied by 0x008140D0
 _Rva012C4AF0,0x012C4AF0,address-derived DirtySock queue-full diagnostic used by 0x00814540
