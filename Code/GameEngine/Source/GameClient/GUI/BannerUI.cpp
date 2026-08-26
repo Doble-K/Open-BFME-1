@@ -174,3 +174,5 @@ void BannerUI::hide( bool immediate )
 		}
 	}
 }
+
+template void std::vector<BannerMovieEntry>::push_back( const BannerMovieEntry &entry );

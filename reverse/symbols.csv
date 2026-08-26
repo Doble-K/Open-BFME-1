@@ -76870,6 +76870,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?Bfme003B2890Construct@@YAXPAUP6Elem003B2890@@ABU1@@Z,0x000027A2,Open-BFME5 ILT the element construct the inlined push_back at 0x003B2890 calls
 ?Bfme003B7030Construct@@YAXPAUP6Elem003B7030@@ABU1@@Z,0x00031791,Open-BFME5 ILT the element construct the inlined push_back at 0x003B7030 calls
 ?Bfme003C3B50Construct@@YAXPAUP6Elem003C3B50@@ABU1@@Z,0x0002E3BB,Open-BFME5 ILT the element construct the inlined push_back at 0x003C3B50 calls
+?_M_insert_overflow@?$vector@UBannerMovieEntry@@V?$allocator@UBannerMovieEntry@@@_STL@@@_STL@@IAEXPAUBannerMovieEntry@@ABU3@ABU__false_type@2@I_N@Z,0x00026DC3,BannerUI movie-entry vector push_back overflow ILT to the exact 28-byte element body at 0x00583330
 ?_M_insert_overflow@?$vector@UP6Elem00365520@@V?$allocator@UP6Elem00365520@@@_STL@@@_STL@@QAEXPAUP6Elem00365520@@ABU3@ABU__false_type@2@I_N@Z,0x0002C331,Open-BFME5 ILT the overflow insert the inlined push_back at 0x00365520 calls
 ?_M_insert_overflow@?$vector@UP6Elem003AC1C0@@V?$allocator@UP6Elem003AC1C0@@@_STL@@@_STL@@QAEXPAUP6Elem003AC1C0@@ABU3@ABU__false_type@2@I_N@Z,0x00005D08,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003AC1C0 calls
 ?_M_insert_overflow@?$vector@UP6Elem003B18A0@@V?$allocator@UP6Elem003B18A0@@@_STL@@@_STL@@QAEXPAUP6Elem003B18A0@@ABU3@ABU__false_type@2@I_N@Z,0x00024A00,Open-BFME5 ILT the overflow insert the inlined push_back at 0x003B18A0 calls
