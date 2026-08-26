@@ -17,6 +17,7 @@ public:
 	bool m_useSelected;
 
 	int firstValue(void) const;
+	int secondValue(void) const;
 };
 
 int Rva0036CF70Selection::firstValue(void) const
@@ -36,3 +37,21 @@ int Rva0036CF70Selection::firstValue(void) const
 }
 
 // @?firstValue@Rva0036CF70Selection@@QBEHXZ 0x0036CF70
+
+int Rva0036CF70Selection::secondValue(void) const
+{
+	Rva0036CF70Values *values = m_values;
+	if( m_useSelected )
+	{
+		int value = values->m_selectedSecond;
+		if( value != -2 )
+			return value;
+	}
+
+	int value = values->m_fallbackSecond;
+	if( value == -2 )
+		value = 2;
+	return value;
+}
+
+// @?secondValue@Rva0036CF70Selection@@QBEHXZ 0x0036CFA0
