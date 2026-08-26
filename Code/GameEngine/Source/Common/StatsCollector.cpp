@@ -159,6 +159,7 @@ class StatsCollector
 public:
 	StatsCollector();
 	void writeFileEnd();
+	void startScrollTime();
 
 private:
 	void writeInitialFileInfo();
@@ -330,4 +331,11 @@ void StatsCollector::writeFileEnd()
 		5, TheGameEngine->getFramesPerSecondLimit() );
 
 	fclose( f );
+}
+
+void StatsCollector::startScrollTime()
+{
+	m_isScrolling = TRUE;
+	m_scrollBeginTime = TheGameLogic->getFrame();
+	++m_scrollMapCommands;
 }
