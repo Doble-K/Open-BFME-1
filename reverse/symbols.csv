@@ -77392,3 +77392,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bfmeChanged@Gen_00505550@@AAEXXZ,0x00023A29,Open-BFME5 the member the change-setter at 0x00505550 calls
 ?bfmeChanged@Gen_005899B0@@AAEXXZ,0x0001D354,Open-BFME5 the member the change-setter at 0x005899B0 calls
 ?bfmeChanged@Gen_005899D0@@AAEXXZ,0x0000271B,Open-BFME5 the member the change-setter at 0x005899D0 calls
+?bfmeCreateInactiveTeam@TeamFactory@@AAEPAVTeam@@ABVAsciiString@@0@Z,0x0000D15C,retail REL32 at 0x000F7CAB targets the two-name createInactiveTeam ILT at 0x0000D15C
