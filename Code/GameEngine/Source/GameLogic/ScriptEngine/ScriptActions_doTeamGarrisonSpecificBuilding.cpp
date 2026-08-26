@@ -4,6 +4,7 @@ typedef bool Bool;
 typedef unsigned short PlayerMaskType;
 
 class AIGroup;
+class AIUpdateInterface;
 class Object;
 class Player;
 class Team;
@@ -71,8 +72,8 @@ public:
 	virtual void slot23() = 0;
 	virtual void slot24() = 0;
 	virtual void slot25() = 0;
-	virtual void slot26() = 0;
-	virtual Object *getUnitNamed(AsciiString) = 0;
+	virtual Object *getUnitNamed(const AsciiString &) = 0;
+	virtual Object *getUnitNamedByValue(AsciiString) = 0;
 };
 
 class ContainModuleInterface
@@ -110,6 +111,8 @@ class Object
 {
 public:
 	ContainModuleInterface *getContain() const { return m_contain; }
+	Player *getControllingPlayer() const;
+	AIUpdateInterface *getAIUpdateInterface() { return m_ai; }
 	Bool isKindOf(KindOfType kind) const
 	{
 		return ((const Thing *)this)->isKindOf(kind);
@@ -118,6 +121,8 @@ public:
 private:
 	unsigned char m_unreconstructed_00[0x1fc];
 	ContainModuleInterface *m_contain;
+	unsigned char m_unreconstructed_200[4];
+	AIUpdateInterface *m_ai;
 };
 
 class Player
@@ -149,6 +154,25 @@ public:
 	void groupEnter(Object *, CommandSourceType);
 };
 
+class UpdateModule
+{
+public:
+	virtual void slot00() = 0;
+
+private:
+	unsigned char m_unreconstructed_04[0x1c];
+};
+
+class AICommandInterface
+{
+public:
+	void aiEnter(Object *, CommandSourceType);
+};
+
+class AIUpdateInterface : public UpdateModule, public AICommandInterface
+{
+};
+
 extern ScriptEngine *TheScriptEngine;
 extern AI *TheAI;
 
@@ -156,6 +180,7 @@ class ScriptActions
 {
 protected:
 	void doTeamGarrisonSpecificBuilding(const AsciiString &, const AsciiString &);
+	void doUnitGarrisonSpecificBuilding(const AsciiString &, const AsciiString &);
 };
 
 // ?doTeamGarrisonSpecificBuilding@ScriptActions@@IAEXABVAsciiString@@0@Z
@@ -167,7 +192,7 @@ void ScriptActions::doTeamGarrisonSpecificBuilding(
 		return;
 	}
 
-	Object *theBuilding = TheScriptEngine->getUnitNamed(buildingName);
+	Object *theBuilding = TheScriptEngine->getUnitNamedByValue(buildingName);
 	if (!theBuilding) {
 		return;
 	}
@@ -189,4 +214,37 @@ void ScriptActions::doTeamGarrisonSpecificBuilding(
 
 	theTeam->getTeamAsAIGroup(theGroup);
 	theGroup->groupEnter(theBuilding, CMD_FROM_SCRIPT);
+}
+
+// ?doUnitGarrisonSpecificBuilding@ScriptActions@@IAEXABVAsciiString@@0@Z
+void ScriptActions::doUnitGarrisonSpecificBuilding(
+	const AsciiString &unitName, const AsciiString &buildingName)
+{
+	Object *theUnit = TheScriptEngine->getUnitNamed(unitName);
+	if (!theUnit) {
+		return;
+	}
+
+	Object *theBuilding = TheScriptEngine->getUnitNamedByValue(buildingName);
+	if (!theBuilding) {
+		return;
+	}
+
+	ContainModuleInterface *contain = theBuilding->getContain();
+	if (!contain) {
+		return;
+	}
+
+	PlayerMaskType player = contain->getPlayerWhoEntered();
+	if (!((theBuilding->isKindOf(KINDOF_STRUCTURE) && (player == 0)) ||
+		(player == theUnit->getControllingPlayer()->getPlayerMask()))) {
+		return;
+	}
+
+	AIUpdateInterface *ai = theUnit->getAIUpdateInterface();
+	if (!ai) {
+		return;
+	}
+
+	ai->aiEnter(theBuilding, CMD_FROM_SCRIPT);
 }
