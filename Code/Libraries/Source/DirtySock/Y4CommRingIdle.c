@@ -119,6 +119,17 @@ int Rva00815790( struct Rva00815B50Comm *comm )
 	return 0;
 }
 
+int Rva008157E0( struct Rva00815B50Comm *comm )
+{
+	if ( comm->m_socket != 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008154F0( comm, 0 );
+	}
+	comm->m_state = 0;
+	return 0;
+}
+
 void Rva00815BB0( struct Rva00815B50Comm *comm );
 
 /* The socket callback.  Its first two arguments -- the handle and the event
