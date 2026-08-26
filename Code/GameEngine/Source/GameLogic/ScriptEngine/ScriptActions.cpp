@@ -1579,22 +1579,25 @@ void ScriptActions::doBuildBaseStructure(const AsciiString& buildingType, Bool f
 //-------------------------------------------------------------------------------------------------
 /** updateNamedAttackPrioritySet */
 //-------------------------------------------------------------------------------------------------
-// ?updateNamedAttackPrioritySet@ScriptActions@@IAEXABVAsciiString@@0@Z present-unmatched
 void ScriptActions::updateNamedAttackPrioritySet(const AsciiString& unitName, const AsciiString& attackPrioritySet)
 {
-	Object *theSrcUnit = TheScriptEngine->getUnitNamed(unitName);
+	Object *theSrcUnit = ((BFMERetailScriptEngineVTable *)TheScriptEngine)->getUnitNamed(unitName);
 	if (!theSrcUnit) {
 		return;
 	}
 
-	AIUpdateInterface *pInterface = theSrcUnit->getAIUpdateInterface();
+	// BFME keeps Object::m_ai at +0x204 and AIUpdateInterface::m_attackInfo at
+	// +0x70; the Zero Hour headers used by this TU place both fields earlier.
+	AIUpdateInterface *pInterface = *reinterpret_cast<AIUpdateInterface **>(
+		reinterpret_cast<char *>(theSrcUnit) + 0x204);
 	if (!pInterface) {
 		return;
 	}
 	
 	const AttackPriorityInfo *info = TheScriptEngine->getAttackInfo(attackPrioritySet);
 
-	pInterface->setAttackInfo(info);
+	*reinterpret_cast<const AttackPriorityInfo **>(
+		reinterpret_cast<char *>(pInterface) + 0x70) = info;
 
 }
 

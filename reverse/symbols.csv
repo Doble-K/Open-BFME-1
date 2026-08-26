@@ -74005,6 +74005,7 @@ name,address,notes
 ?getArgumentDataType@GameMessage@@QAEHH@Z,0x0001A3D4,GameMessage::getArgumentDataType via ILT thunk
 ?getAsInt@RGBColor@@QBEIXZ,0x0002D989,ILT thunk to the RGBColor packer
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,0x0002FF6D
+?getAttackInfo@ScriptEngine@@QAEPBVAttackPriorityInfo@@ABVAsciiString@@@Z,0x0002C3F4,ScriptActions updateNamedAttackPrioritySet retail ILT call
 ?getAttackRange@Weapon@@QBEMPBVObject@@@Z,0x001E2B50,Open-BFME5 callee of ?getLargestWeaponRange@Object@@QBEMXZ at 0x001BE160 via ILT 0x0002E631; whole 76-byte caller body byte-matches with this pin
 ?getAttackRange@WeaponTemplate@@QBEMPBVObject@@ABVWeaponBonus@@PBUCoord3D@@@Z,0x0002FFB3,Open-BFME5 ILT; called by ?getAttackRange@Weapon@@QBEMPBVObject@@@Z at 0x001E2B50 on m_template with the source object the bonus and source+0x38 the object position - BFME widened the reference bonus-only signature
 ?getAudioLODIndex@GameLODManager@@QAEHABVAsciiString@@@Z,0x00005128,harvested from parseAudioLODDefinition (thunk)
