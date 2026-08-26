@@ -432,6 +432,48 @@ int Rva008151E0( struct Rva008151E0Comm *comm, const char *text )
 	return 0;
 }
 
+int Rva007FD510( void *socket, struct Rva008151E0Address *address,
+	int size );
+int Rva007FD7A0( void *socket, int backlog );
+
+int Rva00814FE0( struct Rva008151E0Comm *comm, const char *text )
+{
+	int result;
+	unsigned char address[ 16 ];
+	void *socket;
+
+	if ( comm->m_state != 1 || comm->m_socket != 0 )
+		return -2;
+
+	*(unsigned short *)&address[ 0 ] = 2;
+	*(unsigned short *)&address[ 2 ] = 0;
+	*(unsigned int *)&address[ 4 ] = 0;
+	*(unsigned int *)&address[ 8 ] = 0;
+	*(unsigned int *)&address[ 12 ] = 0;
+	if ( ( Rva007FFCB0( (struct Rva008151E0Address *)address, text ) & 2 ) == 0 )
+		return -3;
+
+	Rva00815170( (struct Rva00814700Comm *)comm );
+	socket = Rva007FD2D0( 2, 1, 0 );
+	Rva008142B0( (struct Rva00814700Comm *)comm, socket );
+	if ( comm->m_socket == 0 )
+		return -4;
+
+	result = Rva007FD510( comm->m_socket,
+		(struct Rva008151E0Address *)address, 16 );
+	if ( result < 0 )
+	{
+		Rva007FD3F0( comm->m_socket );
+		Rva008142B0( (struct Rva00814700Comm *)comm, 0 );
+		return -5;
+	}
+
+	Rva007FD7A0( comm->m_socket, 5 );
+	Rva007FDE80( comm->m_socket, 2, 100, comm, Rva00814700 );
+	comm->m_state = 3;
+	return 0;
+}
+
 struct Rva00814D60Comm
 {
 	char m_head[ 0x6C ];
@@ -491,7 +533,6 @@ void *Rva007F0000( int size );
 void Rva007FEA20( void *lock );
 void CommTCPResolve( void );
 void Rva008143F0( void );
-void Rva00814FE0( void );
 void Rva00814520( void );
 void Rva00814540( void );
 extern char Rva012C4AAC[];
