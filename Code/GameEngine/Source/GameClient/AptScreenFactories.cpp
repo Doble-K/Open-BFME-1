@@ -100,6 +100,7 @@ void * __stdcall createAptScreenOptions( void *context )
 
 template <typename T> class StringBase
 {
+	friend class AsciiString;
 	friend class UnicodeString;
 
 public:
@@ -107,7 +108,12 @@ public:
 	void trim();
 
 private:
+	StringBase() : m_data( 0 ) {}
+	StringBase( const T *text );
 	StringBase( const StringBase<T> &other );
+	~StringBase();
+
+	void *m_data;
 };
 
 struct UnicodeStringData
@@ -144,20 +150,21 @@ private:
 	UnicodeStringData *m_data;
 };
 
-class AsciiString
+class AsciiString : private StringBase<char>
 {
 public:
-	AsciiString( const char *text );
-	~AsciiString();
-
-private:
-	char *m_data;
+	AsciiString() : StringBase<char>() {}
+	AsciiString( const char *text ) : StringBase<char>( text ) {}
+	AsciiString( const AsciiString &other ) : StringBase<char>( other ) {}
+	~AsciiString() {}
+	void format( AsciiString format, ... );
 };
 
 extern "C" __declspec(dllimport) unsigned int __cdecl wcslen( const unsigned short *text );
 extern "C" __declspec(dllimport) int __cdecl atoi( const char *text );
 extern "C" int __cdecl strcmp( const char *left, const char *right );
 extern "C" char * __cdecl strcpy( char *destination, const char *source );
+extern "C" void * __cdecl memset( void *destination, int value, unsigned int count );
 
 int untranslatedSlotPosition( int slot, int localSlot );
 
@@ -211,6 +218,7 @@ extern NetworkInterface *TheNetwork;
 class DisconnectMenu
 {
 public:
+	void removePlayer( int slot, UnicodeString playerName );
 	void sendChat( UnicodeString text );
 };
 
@@ -218,17 +226,89 @@ class WindowManager
 {
 public:
 	void bfme_hideBackground( bool hide );
+	void bfme_showBackground( int kind );
 };
 
 extern WindowManager *g_theWindowManager;
 extern DisconnectMenu *TheDisconnectMenu;
 void _bfme_closeAptScreen( const AsciiString &name );
 
+class __multiple_inheritance FunctorTarget;
+typedef void (FunctorTarget::*FunctorMethod)( void );
+
+struct FunctorBinding
+{
+	FunctorBinding( FunctorMethod method, FunctorTarget *target )
+		: m_target( target ), m_method( method ) {}
+
+	FunctorTarget *m_target;
+	unsigned int m_unmodelled;
+	FunctorMethod m_method;
+};
+
+class Rva0050F840FunctorHolder
+{
+public:
+	Rva0050F840FunctorHolder( FunctorBinding binding );
+
+private:
+	void *m_ptr;
+};
+
+class Rva0050F8B0FunctorHolder
+{
+public:
+	Rva0050F8B0FunctorHolder( FunctorBinding binding );
+
+private:
+	void *m_ptr;
+};
+
+class FunctorWrapperHead
+{
+public:
+	FunctorWrapperHead() : m_refCount( 0 ) {}
+	virtual void invoke();
+
+	unsigned int m_refCount;
+};
+
+class Rva0050F920FunctorWrapper : public FunctorWrapperHead
+{
+public:
+	Rva0050F920FunctorWrapper( const FunctorBinding &binding )
+		: m_binding( binding ) {}
+	virtual void invoke();
+
+	FunctorBinding m_binding;
+};
+
+class Rva0050F920FunctorHolder
+{
+public:
+	Rva0050F920FunctorHolder( FunctorBinding binding )
+	{
+		m_ptr = new Rva0050F920FunctorWrapper( binding );
+		if( m_ptr )
+			++m_ptr->m_refCount;
+	}
+
+private:
+	Rva0050F920FunctorWrapper *m_ptr;
+};
+
+void _bfme_setAptScreenRef( const AsciiString &name,
+	Rva0050F840FunctorHolder callback );
+
 class _bfme_AptGameWindow
 {
 public:
 	_bfme_AptGameWindow( void *context );
 	virtual ~_bfme_AptGameWindow();
+	void _bfme_showAptScreen( const AsciiString &name,
+		Rva0050F8B0FunctorHolder callback );
+	void _bfme_showAptScreenWithArg( const AsciiString &name, void *argument,
+		Rva0050F920FunctorHolder callback );
 
 private:
 	char m_unmodelled[ 0x254 ];
@@ -236,7 +316,16 @@ private:
 
 extern const void *BfmeAptScreenDisconnectScreenSecondaryVftable[];
 
-class BfmeAptScreenDisconnectScreen : public _bfme_AptGameWindow
+class BfmeAptFunctorMarker {};
+
+struct BfmeAptDisconnectTail
+{
+	int first;
+	int second;
+};
+
+class __multiple_inheritance BfmeAptScreenDisconnectScreen
+	: public _bfme_AptGameWindow, public BfmeAptFunctorMarker
 {
 public:
 	BfmeAptScreenDisconnectScreen( void *context );
@@ -244,6 +333,7 @@ public:
 	void _bfme_getPlayerColor( const char *name, void *value, bool setting );
 	void _bfme_onChatEnterText( const char *argument );
 	void _bfme_onInitGadget( const char *name, void *argument, GameWindow *window );
+	void _bfme_onInitialized( const char *argument );
 	void _bfme_onKick( const char *argument );
 	void _bfme_onQuit( const char *argument );
 
@@ -254,6 +344,76 @@ private:
 	bool m_isQuitting;
 	char m_unmodelledTail[ 0xA ];
 };
+
+BfmeAptScreenDisconnectScreen::BfmeAptScreenDisconnectScreen( void *context )
+	: _bfme_AptGameWindow( context )
+{
+	*(const void ***)( (char *)this + 0x218 ) = BfmeAptScreenDisconnectScreenSecondaryVftable;
+	m_textDisplayControl = 0;
+	m_textEntryWindow = 0;
+	m_unmodelledState = 0;
+	m_isQuitting = false;
+
+	if( TheDisconnectMenu == 0 )
+	{
+		TheDisconnectMenu = (DisconnectMenu *)this;
+		memset( m_unmodelledTail, 0, sizeof( BfmeAptDisconnectTail ) );
+		g_theWindowManager->bfme_showBackground( 2 );
+
+		{
+			FunctorMethod callback =
+				(FunctorMethod)&BfmeAptScreenDisconnectScreen::_bfme_onInitGadget;
+			AsciiString initGadgets( "DisconnectScreen::InitGadgets" );
+			_bfme_setAptScreenRef( initGadgets,
+				FunctorBinding( callback, (FunctorTarget *)this ) );
+		}
+
+		_bfme_AptGameWindow *registry = (_bfme_AptGameWindow *)( (char *)this + 0x218 );
+
+		{
+			FunctorMethod callback =
+				(FunctorMethod)&BfmeAptScreenDisconnectScreen::_bfme_onInitialized;
+			AsciiString initialized( "AptDisconnectScreen::OnInitialized" );
+			registry->_bfme_showAptScreen( initialized,
+				FunctorBinding( callback, (FunctorTarget *)this ) );
+		}
+
+		{
+			FunctorMethod callback =
+				(FunctorMethod)&BfmeAptScreenDisconnectScreen::_bfme_onQuit;
+			AsciiString quit( "AptDisconnectScreen::Quit" );
+			registry->_bfme_showAptScreen( quit,
+				FunctorBinding( callback, (FunctorTarget *)this ) );
+		}
+
+		{
+			FunctorMethod callback =
+				(FunctorMethod)&BfmeAptScreenDisconnectScreen::_bfme_onKick;
+			AsciiString kick( "AptDisconnectScreen::Kick" );
+			registry->_bfme_showAptScreen( kick,
+				FunctorBinding( callback, (FunctorTarget *)this ) );
+		}
+
+		{
+			FunctorMethod callback =
+				(FunctorMethod)&BfmeAptScreenDisconnectScreen::_bfme_onChatEnterText;
+			AsciiString chat( "AptDisconnectScreen::Chat::OnBttnEnterText" );
+			registry->_bfme_showAptScreen( chat,
+				FunctorBinding( callback, (FunctorTarget *)this ) );
+		}
+
+		AsciiString playerColor;
+		FunctorMethod playerColorCallback =
+			(FunctorMethod)&BfmeAptScreenDisconnectScreen::_bfme_getPlayerColor;
+		for( int slot = 0; slot < 8; ++slot )
+		{
+			playerColor.format( (AsciiString)"DisconnectScreen:PlayerColor:%d", slot );
+			registry->_bfme_showAptScreenWithArg( playerColor, (void *)slot,
+				FunctorBinding( playerColorCallback, (FunctorTarget *)this ) );
+			((DisconnectMenu *)this)->removePlayer( slot, UnicodeString::TheEmptyString );
+		}
+	}
+}
 
 BfmeAptScreenDisconnectScreen::~BfmeAptScreenDisconnectScreen()
 {
