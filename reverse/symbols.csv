@@ -3891,6 +3891,9 @@ name,address,notes
 ??1BfmeDirtyBase@@UAE@XZ,0x007EB6C0,Open-BFME5 the shared base destructor nine DirtySock scalar deleting destructors call
 ??1BfmeDtorMemberA@@QAE@XZ,0x00836300,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
 ??1BfmeDtorMemberB@@QAE@XZ,0x0000B109,Open-BFME5 the member destructor the unwound destructors at 0x00837480 and siblings call
+??1BfmeDtorMemberC@@QAE@XZ,0x00887940,Open-BFME5 the member destructor the two-member destructors at 0x001031B0 and siblings call
+??1BfmeDtorMemberD@@QAE@XZ,0x0001A401,Open-BFME5 the member destructor the two-member destructor at 0x00427390 calls
+??1BfmeDtorMemberE@@QAE@XZ,0x008881D0,Open-BFME5 the member destructor the two-member destructor at 0x0043DB30 calls first
 ??1BfmeElementA@@QAE@XZ,0x00030652,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementB@@QAE@XZ,0x0001AAD2,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementC@@QAE@XZ,0x00937390,Open-BFME5 the element destructor the array-owning destructors call
