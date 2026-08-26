@@ -78779,3 +78779,4 @@ _Rva0081B830,0x0081B830,Open-BFME5: address-derived cdecl callee of /Od /GZ wrap
 ?Rva0051DB00Second@@YAXXZ,0x0003896A,Open-BFME5 cdecl at ILT of two-call wrap 0x0051DB00
 ?applySingle@Gen00587600@@QAEXH@Z,0x000489D2,Open-BFME5 fresh ILT alias for the single-argument sibling at 0x0051A820
 ??1Rva00078460Elem@@QAE@XZ,0x0001F951,Open-BFME5 ILT the 0x00078460 implicit dtor hands to ??_M as the element destructor
+??0Rva00722120Base@@QAE@XZ,0x000354E5,Open-BFME5 fresh thiscall ctor at ILT of derived ctor 0x00722120
