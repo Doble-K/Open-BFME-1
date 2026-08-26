@@ -11646,6 +11646,7 @@ name,address,notes
 ?_M_insert_overflow@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@IAEXPAVPlayerTemplate@@ABV3@ABU__false_type@2@I_N@Z,0x0003059E
 ?_M_insert_overflow@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEXPAVProductionPrerequisite@@ABV3@ABU__false_type@2@I_N@Z,0x0001AEB0,parsePrerequisiteScience TU-local weak vector helper
 ?_M_insert_overflow@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEXPAVProductionPrerequisite@@ABV3@ABU__false_type@2@I_N@Z,0x00041F1F,resweep callee back-solved
+?_M_insert_overflow@?$vector@VRva00369860StatePointer@@V?$allocator@VRva00369860StatePointer@@@_STL@@@_STL@@IAEXPAVRva00369860StatePointer@@ABV3@ABU__false_type@2@I_N@Z,0x00033DAC,Rva0036B7C0 parser retail call at 0x0036B8E4 uses this ICF-folded STLport insertion thunk
 ?_M_insert_overflow@?$vector@VUnicodeString@@V?$allocator@VUnicodeString@@@_STL@@@_STL@@IAEXPAVUnicodeString@@ABV3@ABU__false_type@2@I_N@Z,0x00016A63
 ?_M_insert_overflow@?$vector@VW3DAnimationInfo@@V?$allocator@VW3DAnimationInfo@@@_STL@@@_STL@@IAEXPAVW3DAnimationInfo@@ABV3@ABU__false_type@2@I_N@Z,0x00037024,ILT thunk used by call site
 ?_M_insert_overflow@?$vector@VWeaponTemplateSet@@V?$allocator@VWeaponTemplateSet@@@_STL@@@_STL@@IAEXPAVWeaponTemplateSet@@ABV3@ABU__false_type@2@I_N@Z,0x0001636F
@@ -74040,6 +74041,7 @@ name,address,notes
 ?getError@Rva007E8810Message@@QAEHXZ,0x007E88B0,V2 lane: FESL message error-code getter; same body as ?m@Gen_007e88b0@@QAEHXZ
 ?getErrorString@DownloadManager@@QAE?AVUnicodeString@@XZ,0x0000ECCD,ILT thunk used by call site
 ?getFieldParse@DieMuxData@@SAPBUFieldParse@@XZ,0x00019326,ILT thunk; real body 0x655140
+?getFieldParse@Rva00369860State@@SAPBUFieldParse@@XZ,0x00024302,Rva0036B7C0 parser retail call at 0x0036B80E uses the ILT thunk to the 0x00369FC0 table getter
 ?getFileID@NetFileProgressCommandMsg@@QAEGXZ,0x00012C15,ILT thunk; NetPacket::addFileProgressCommand at 0x0067A700 calls it where Zero Hour calls getFileID
 ?getFileListInDirectory@ArchiveFile@@QBEXABVAsciiString@@00AAV?$set@VAsciiString@@U?$less_than_nocase@VAsciiString@@@rts@@V?$allocator@VAsciiString@@@_STL@@@_STL@@_N@Z,0x009D0820,positional and NOT yet confirmed by a byte match: only call between the three AsciiString ctors and their three releaseBuffers in loadIntoDirectoryTree
 ?getFilePathInSaveDirectory@GameState@@QBE?AVAsciiString@@ABV2@@Z,0x0001D8C2,incremental-link thunk called by doesSaveGameExist
