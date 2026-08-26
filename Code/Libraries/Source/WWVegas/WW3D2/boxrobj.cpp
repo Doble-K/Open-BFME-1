@@ -108,6 +108,49 @@
 #include "visrasterizer.h"
 #include "meshgeometry.h"
 
+extern void W3DRadarResetLock(void);
+extern void BFME_DX8_Thread_Assert(void);
+extern void _bfme_debugRecordCallsite(int kind);
+
+class BFMEIndexBufferDebugStream
+{
+public:
+	virtual BFMEIndexBufferDebugStream *Put_Unsigned(unsigned value);
+	virtual void Slot04(); virtual void Slot08(); virtual void Slot0C();
+	virtual void Slot10(); virtual void Slot14(); virtual void Slot18(); virtual void Slot1C();
+	virtual void Slot20(); virtual void Slot24(); virtual void Slot28(); virtual void Slot2C();
+	virtual void Slot30(); virtual void Slot34();
+	virtual BFMEIndexBufferDebugStream *Put_String(const char *text);
+	virtual void Slot3C(); virtual void Slot40(); virtual void Slot44(); virtual void Slot48();
+	virtual BFMEIndexBufferDebugStream *Finish(int report);
+};
+
+class BFMEIndexBufferDebugClass
+{
+public:
+	virtual void Slot00(); virtual void Slot04(); virtual void Slot08(); virtual void Slot0C();
+	virtual void Slot10(); virtual void Slot14(); virtual void Slot18(); virtual void Slot1C();
+	virtual void Slot20(); virtual void Slot24(); virtual void Slot28(); virtual void Slot2C();
+	virtual void Slot30(); virtual void Slot34(); virtual void Slot38(); virtual void Slot3C();
+	virtual void Slot40(); virtual void Slot44(); virtual void Slot48(); virtual void Slot4C();
+	virtual void Slot50(); virtual void Slot54(); virtual void Slot58(); virtual void Slot5C();
+	virtual void Begin_Report();
+	virtual void Slot64(); virtual void Slot68();
+	virtual BFMEIndexBufferDebugStream *Get_Stream(void *owner, void *context);
+};
+
+extern BFMEIndexBufferDebugClass *g_BFMEIndexBufferDebug;
+
+static __forceinline void BFME_DX8_ErrorCode(unsigned result)
+{
+	if (result != D3D_OK) {
+		_bfme_debugRecordCallsite(1);
+		g_BFMEIndexBufferDebug->Begin_Report();
+		BFMEIndexBufferDebugStream *stream = g_BFMEIndexBufferDebug->Get_Stream(NULL, NULL);
+		stream->Put_String("DX8 error ")->Put_Unsigned(result)->Finish(1);
+	}
+}
+
 
 #define NUM_BOX_VERTS	8
 #define NUM_BOX_FACES	12
@@ -171,13 +214,13 @@ static ShaderClass					_BoxShader;
 
 class BoxDynamicVBAccessClass
 {
-	unsigned FVFInfo;
+	const FVFInfoClass & FVFInfo;
 	unsigned Type;
 	unsigned FVF;
-	unsigned VertexBuffer;
+	unsigned Start;
 	unsigned short VertexCount;
 	unsigned short VertexBufferOffset;
-	unsigned Buffer;
+	class BoxVertexBufferClass * VertexBuffer;
 
 public:
 	BoxDynamicVBAccessClass(unsigned type,unsigned fvf,unsigned short vertex_count,unsigned buffer);
@@ -190,10 +233,53 @@ public:
 
 	public:
 		WriteLockClass(BoxDynamicVBAccessClass *vb_access);
-		~WriteLockClass();
+		__declspec(noinline) ~WriteLockClass();
 		VertexFormatXYZNDUV2 *Get_Formatted_Vertex_Array() { return Vertices; }
 	};
 };
+
+// BFME's vertex-buffer base carries an extra field at +0x18 that Zero Hour
+// removed, so the derived API buffer lives at +0x1C in the retail ABI.
+class BoxVertexBufferClass
+{
+protected:
+	unsigned Fields[5];
+	FVFInfoClass * FVFInfo;
+	unsigned BfmeField18;
+
+public:
+	const FVFInfoClass & FVF_Info() const { return *FVFInfo; }
+};
+
+class BoxSortingVertexBufferClass : public BoxVertexBufferClass
+{
+	VertexFormatXYZNDUV2 * VertexBuffer;
+
+public:
+	VertexFormatXYZNDUV2 * Get_Vertex_Buffer() const { return VertexBuffer; }
+};
+
+class BoxDX8VertexBufferClass : public BoxVertexBufferClass
+{
+	IDirect3DVertexBuffer8 * VertexBuffer;
+
+public:
+	IDirect3DVertexBuffer8 * Get_DX8_Vertex_Buffer() const { return VertexBuffer; }
+};
+
+BoxDynamicVBAccessClass::WriteLockClass::~WriteLockClass()
+{
+	DX8_THREAD_ASSERT();
+	switch (DynamicVBAccess->Type) {
+	case BUFFER_TYPE_DYNAMIC_DX8:
+		DX8_Assert();
+		BFME_DX8_ErrorCode(static_cast<BoxDX8VertexBufferClass *>(DynamicVBAccess->VertexBuffer)->Get_DX8_Vertex_Buffer()->Unlock());
+		break;
+	case BUFFER_TYPE_DYNAMIC_SORTING:
+		break;
+	}
+	BFME_DX8_Thread_Assert();
+}
 
 void BoxSetTexture(unsigned stage,TextureBaseClass *& texture);
 
