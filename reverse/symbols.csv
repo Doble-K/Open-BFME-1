@@ -72996,6 +72996,7 @@ name,address,notes
 ?copyFromQueueNode@BFMENetworkQueueItem@@QAEXPAX@Z,0x00030C60,native BFME queue item copy helper for wrapper queue +0x14
 ?copyFromQueueNode@BFMENetworkQueueItemcopyFromQueueNodeShim@@QAEXPAX@Z,0x00658CE0,BFMENetworkQueueItem::copyFromQueueNode incremental-link thunk target through a TU-local forwarding shim
 ?copySurfaceRects006e@@YAXVW3DRadarResetSurface@@PBUBfmeRect@@01H@Z,0x00904D20,W3DDisplay drawImage direct-surface copy target read from retail REL32
+?costFor@Rva0036BA60Cost@@QBEIPAVPlayer@@H@Z,0x0000DA8A,Rva0036BA60 affordability check retail call at 0x0036BA88 uses the ILT thunk to the 0x0013E390 cost calculation body
 ?count@DisconnectManagerCountVotesShim@@QAEHH@Z,0x0066B720,DisconnectManager countVotesForPlayer incremental-link thunk target through a TU-local forwarding shim
 ?countBuildings@Team@@QAEHXZ,0x00015294,Open-BFME5 the thunk TeamPrototype countBuildings calls once per team; Zero Hour names the same call
 ?countBuildings@TeamPrototype@@QAEHXZ,0x00022ACF
