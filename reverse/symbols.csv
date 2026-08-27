@@ -3934,6 +3934,7 @@ name,address,notes
 ??1BfmeChainValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the chain disposal at 0x005876D0 runs
 ??1BfmeChildA@@QAE@XZ,0x008976E0,Open-BFME5 the child destructor the teardown at 0x008AB8E0 calls
 ??1BfmeChildB@@QAE@XZ,0x0089CC70,Open-BFME5 the child destructor the teardowns at 0x008BD820 0x008BD880 and 0x008BD8E0 call
+??1BfmeDBaseA@@UAE@XZ,0x00033F6E,Open-BFME5 the first base destructor the clearing destructor at 0x0042B9F0 chains to
 ??1BfmeDelayedLuaEvent@@QAE@XZ,0x00041362,Open-BFME5 ILT the DelayedLuaEventList constructor at 0x000EDBB0 hands to the EH vector constructor iterator as the element destructor
 ??1BfmeDirtyBase@@UAE@XZ,0x007EB6C0,Open-BFME5 the shared base destructor nine DirtySock scalar deleting destructors call
 ??1BfmeDtorBaseF@@UAE@XZ,0x009A1A40,Open-BFME5 the out-of-line base destructor the chained destructor at 0x00076C80 calls
