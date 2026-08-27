@@ -3970,11 +3970,13 @@ name,address,notes
 ??1BfmeEvaSideSoundsArray@@QAE@XZ,0x0089CC70,provisional structural name: incremental-link thunk fronting 0x0089C900 the dtor of EvaCheckInfo member at +0x8; count-plus-array container not an STLport vector
 ??1BfmeLegendString@@QAE@XZ,0x00887940,SubsystemLegend.cpp AsciiString stand-in dtor; folds with StringBase<char>::releaseBuffer
 ??1BfmeLegendStringVec@@QAE@XZ,0x000658A0,SubsystemLegend.cpp vector<AsciiString> stand-in dtor
+??1BfmeListE@@QAE@XZ,0x00013449,Open-BFME5 the list member destructor the three-member destructor at 0x000F8A40 runs twice
 ??1BfmeMapChunk@@QAE@XZ,0x0002B9A4,Open-BFME5 ILT thunk; ?freeMapResources@HeightMapRenderObjClass@@UAEHXZ at 0x006D2690 hands it to the eh vector destructor iterator as the element destructor of the 0xC4-byte array at +0x30D8; address-derived name
 ??1BfmeOwnedMember@@QAE@XZ,0x00887940,Open-BFME5 provisional destructor for the owned member the zeroing constructors unwind
 ??1BfmeParticleSystemHandle@@QAE@XZ,0x00013994,Open-BFME5 ILT; the value ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 gets back from its lookup is released through it
 ??1BfmeRangeValue@@QAE@XZ,0x000205A9,Open-BFME5 the carried value destructor the range erase at 0x0076D720 runs
 ??1BfmeSplitValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the tree removes at 0x00587670 and 0x00587750 run
+??1BfmeThingE@@QAE@XZ,0x0000E68D,Open-BFME5 the middle member destructor the three-member destructor at 0x000F8A40 runs
 ??1BfmeVecElem_000FAFF0@@QAE@XZ,0x0002C3BD,Open-BFME5 the element destructor the vector destroy at 0x000FAFF0 runs over its live range
 ??1BfmeVecElem_000FEAF0@@QAE@XZ,0x000312B9,Open-BFME5 the element destructor the vector destroy at 0x000FEAF0 runs over its live range
 ??1BoxDynamicVBAccessClass@@QAE@XZ,0x0091D9E0,TU-local DynamicVB ABI for BoxRenderObjClass::render_box
