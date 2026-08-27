@@ -3935,6 +3935,7 @@ name,address,notes
 ??1BfmeBaseP@@UAE@XZ,0x009A1A40,Open-BFME5 the primary base destructor the vector-member destructor at 0x00378650 calls
 ??1BfmeBaseT@@UAE@XZ,0x009A1A40,Open-BFME5 the base destructor the destructor at 0x004B1670 chains to
 ??1BfmeBaseX@@UAE@XZ,0x009A1A40,Open-BFME5 the base destructor the body vector destructor at 0x00490100 chains to
+??1BfmeBaseZ@@QAE@XZ,0x0002B4AE,Open-BFME5 the base destructor the two-vector destructor at 0x000E54B0 chains to
 ??1BfmeChainValue2@@QAE@XZ,0x000014D8,Open-BFME5 the carried value destructor the chain disposal at 0x00605820 runs
 ??1BfmeChainValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the chain disposal at 0x005876D0 runs
 ??1BfmeChildA@@QAE@XZ,0x008976E0,Open-BFME5 the child destructor the teardown at 0x008AB8E0 calls
@@ -3987,6 +3988,8 @@ name,address,notes
 ??1BfmeSecondZ@@QAE@XZ,0x00017E63,Open-BFME5 the second member destructor the two-member vector destructor at 0x0035B8A0 runs
 ??1BfmeSplitValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the tree removes at 0x00587670 and 0x00587750 run
 ??1BfmeSubF@@QAE@XZ,0x00887940,Open-BFME5 the held object member destructor the deleting list destructor at 0x0048C5B0 runs twice per node
+??1BfmeTailP@@QAE@XZ,0x008881D0,Open-BFME5 the member destructor the destructor at 0x0039C060 runs first
+??1BfmeTailQ@@QAE@XZ,0x00887940,Open-BFME5 the member destructor the destructor at 0x0039C060 runs second
 ??1BfmeTailT@@QAE@XZ,0x00005709,Open-BFME5 the tail member destructor the destructor at 0x004B1670 runs
 ??1BfmeTailU@@QAE@XZ,0x00887940,Open-BFME5 the tail member destructor the destructor at 0x0037EFB0 runs
 ??1BfmeTailV@@QAE@XZ,0x00887940,Open-BFME5 the tail member destructor the vector-member destructors run
