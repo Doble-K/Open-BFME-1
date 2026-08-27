@@ -6378,3 +6378,7 @@ _Rva00813A50	0x00813A50	595	partial	t=25min model=GPT-5 retail logic, stack layo
 ?bfmeLinearInsertAQ@@YAXPAH0HVBfmeCompAQ@@@Z	0x00342C70	83	converted	linear insert step of a sort (comparator object); move-up is one memmove with the destination computed from the far end; exact
 ?bfmeLinearInsertAR@@YAXPAH0HVBfmeCompAR@@@Z	0x00753D10	83	converted	linear insert step of a sort (comparator object); move-up is one memmove with the destination computed from the far end; exact
 ?bfmeLinearInsertAS@@YAXPAH0HP6A_NHH@Z@Z	0x00483680	78	converted	linear insert step of a sort (function-pointer comparator); move-up is one memmove with the destination computed from the far end; exact
+?bfmeLinearInsertAT@@YAXPAPAVBfmeRecAT@@0PAV1@VBfmeCompAT@@@Z	0x003CE420	95	converted	linear insert with an inlined three-way comparator (word then byte); the two ranks must be read into locals, right first; exact
+?bfmeInsertionSort@@YAXPAH0@Z	0x00513410	113	converted	insertion sort over ints; the linear insert has to be __forceinline or MSVC calls it (46 bytes); exact
+?bfmeLinearInsertAU@@YAXPAPAVBfmeRecAU@@0PAV1@VBfmeCompAU@@@Z	0x005134A0	119	converted	linear insert with an inlined comparator: nothing-attached sorts first, else the names decide; the exactly-one test is a bitwise xor; exact
+?bfmeLinearInsertAV@@YAXPAPAVBfmeRecAU@@0PAV1@VBfmeCompAU@@@Z	0x0052FF70	119	converted	same comparing insert with a different out-of-line unguarded arm; exact
