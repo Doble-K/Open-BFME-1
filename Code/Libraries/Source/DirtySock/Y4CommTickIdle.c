@@ -944,3 +944,50 @@ void Rva008139A0( struct Rva00814700Comm *comm )
 	( *(Rva008139A0ReleaseHandleProc *)0x01358E44 )(
 		( *(Rva008139A0WorkerHandleProc *)0x01358DDC )(), 0, comm );
 }
+
+struct Rva00812FD0Message
+{
+	int m_words[ 7 ];
+};
+
+__declspec(dllimport) int __stdcall Rva01359044DiscardMessage(
+	struct Rva00812FD0Message *message, int window, int first, int last,
+	int flags );
+__declspec(dllimport) void *__stdcall Rva01358DC8ModuleHandle( int module );
+__declspec(dllimport) int __stdcall Rva0135900CReadMessage(
+	struct Rva00812FD0Message *message, int window, int first, int last );
+__declspec(dllimport) int __stdcall Rva01359098TranslateMessage(
+	struct Rva00812FD0Message *message );
+__declspec(dllimport) int __stdcall Rva01358FC8DispatchMessage(
+	struct Rva00812FD0Message *message );
+int __stdcall Rva0081BDA2( void *lineApplication, void *module,
+	void *callback, int name, void *deviceCount );
+
+int Rva00812FD0( struct Rva00814700Comm *argument )
+{
+	struct Rva00812FD0Message message;
+	int iResult;
+	struct Rva00814700Comm *comm;
+
+	comm = argument;
+	Rva01359044DiscardMessage( &message, 0, 0, 0, 0 );
+	iResult = Rva0081BDA2( comm->m_endpoint + 4,
+		Rva01358DC8ModuleHandle( 0 ), (void *)0x00C13100, 0,
+		comm->m_endpoint );
+
+	if ( *(int *)comm->m_endpoint == 0 )
+	{
+		comm->m_state = 1;
+		return 0;
+	}
+
+	comm->m_state = 2;
+	while ( Rva0135900CReadMessage( &message, 0, 0, 0 ) != 0 )
+	{
+		Rva01359098TranslateMessage( &message );
+		Rva01358FC8DispatchMessage( &message );
+	}
+
+	comm->m_state = 1;
+	return 0;
+}
