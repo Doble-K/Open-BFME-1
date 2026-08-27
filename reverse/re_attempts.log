@@ -6337,3 +6337,10 @@ _Rva00813A50	0x00813A50	595	partial	retail
 _Rva00813A50	0x00813A50	595	void	retract malformed partial row whose evidence was truncated by shell quoting
 _Rva00813A50	0x00813A50	595	partial	t=25min model=GPT-5 retail logic, stack layout, calls, fields, and all substantive instructions aligned; remaining mismatch is MSVC branch placement around the two device-name match paths
 ??0Gen_0061A3D0@@QAE@H@Z	0x0061A3D0	88	attempted	same blocker as 0x001DB240: constructor zeroes the vector triple (through a register here, not immediates) and the self-range copy still reloads start and finish in retail; MSVC folds the zeros into the copy. Left for when that folding is understood.
+?bfmeReset@Gen_00459F00@@QAEXXZ	0x00459F00	69	converted	reset: the flag assigned after the clear keeps the zero in a callee-saved register and duplicates the byte store; exact
+?bfmeClear@Gen_00419DC0@@QAEXXZ	0x00419DC0	95	converted	delete-walk with the bound read from the member plus self-range clear at a vector 0x2F8 into the holder; exact
+?bfmeClear@Gen_0048FA30@@QAEXXZ	0x0048FA30	104	converted	out-of-line destroy-range taking an empty object by value (byte written to a stack slot, whole word pushed); exact
+?bfmeClear@Gen_001B98B0@@QAEXXZ	0x001B98B0	113	converted	counted delete loop then a count and a flag, both duplicated into the two paths; exact
+?bfmeClear@Gen_0060B470@@QAEXXZ	0x0060B470	114	converted	releaseBuffer on the inherited string then a counted loop with explicit destructor and free; exact
+?bfmeClear@Gen_00371120@@QAEXXZ	0x00371120	123	converted	unregister, manager remove and delete per element, bound in a local reassigned inside the loop; exact
+?bfmeClear@Gen_0055CCE0@@QAEXXZ	0x0055CCE0	127	converted	sub-object release through vftable slot 1, then delete-walk and self-range clear; exact
