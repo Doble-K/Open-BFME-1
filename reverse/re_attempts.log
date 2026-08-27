@@ -6333,3 +6333,6 @@ _ciCleanupCallbacks	0x008702F0	84	blocked	t=11min model=Codex-ocx-native--gpt-5.
 ??0Gen_001DB240@@QAE@H@Z	0x001DB240	93	partial	still resists after the subobject-erase lever landed elsewhere: with the vector as a subobject whose ctor zeroes the triple and whose erase does the self-range copy, MSVC propagates the zeros into the copy and emits 25 bytes. Retail reloads both start and finish after the zero stores. Only a finish passed by pointer blocks the folding, and only for finish.
 ?bfmeClear@Gen_003C0DB0@@QAEXXZ	0x003C0DB0	111	converted	counted loop that hands each element to a reloaded singleton, then the self-range clear through the vector subobject; exact
 ?bfmeClear@Gen_003C1190@@QAEXXZ	0x003C1190	116	converted	swap of two vectors (two pairs inlined through a reference helper, third pair a call) then delete-walk and self-range clear; exact
+_Rva00813A50	0x00813A50	595	partial	retail
+_Rva00813A50	0x00813A50	595	void	retract malformed partial row whose evidence was truncated by shell quoting
+_Rva00813A50	0x00813A50	595	partial	t=25min model=GPT-5 retail logic, stack layout, calls, fields, and all substantive instructions aligned; remaining mismatch is MSVC branch placement around the two device-name match paths
