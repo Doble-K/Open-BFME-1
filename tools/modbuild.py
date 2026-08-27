@@ -265,14 +265,17 @@ def build_earlysend(pe, feature_dir, probe=False):
     ), probe=probe)
 
 
-FEATURES = {"020-gameresult": build_gameresult}
+FEATURES = {"020-gameresult": build_gameresult,
+            # Promoted once its spike came back green: twelve rig matches, no
+            # retail match overlapping any fixed one, and the logic rate
+            # unchanged at 5.000/s. docs/net-latency-fix.md has the numbers.
+            "031-earlysend": build_earlysend}
 # Selected only by name, and refused by --dist. overlay/dist is the artifact
 # every ladder player runs: an instrument writes tens of lines a second, and a
 # candidate has not earned a place in it until the spike measuring it is green.
 # Promote one into FEATURES when it has.
 UNSHIPPED = {
     "030-netlatprobe": (build_netlatprobe, "an instrument: it writes tens of lines a second"),
-    "031-earlysend": (build_earlysend, "a candidate fix whose spike has not run"),
 }
 
 

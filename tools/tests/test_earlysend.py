@@ -123,11 +123,10 @@ def test_nothing_outside_the_detour_site_is_modified(built):
     assert f"0x{TARGET:08X}" in stdout
 
 
-def test_a_dist_build_refuses_an_unproven_fix():
-    """overlay/dist is what every ladder player runs; this has not been measured
-    yet. Promote it into FEATURES when its spike is green."""
-    r = subprocess.run([sys.executable, str(ROOT / "tools/modbuild.py"),
-                        "--only", FEATURE, "--dist"],
-                       capture_output=True, text=True, cwd=ROOT)
-    assert r.returncode != 0, "a --dist build accepted an unproven candidate"
-    assert "spike has not run" in (r.stderr + r.stdout)
+def test_the_shipped_build_carries_it():
+    """Every mod in the repo stacks into the one artifact players run. This one
+    was held out only until its spike was green; the measurement instrument is
+    the sole thing still excluded, because it writes tens of lines a second."""
+    import modbuild  # noqa: E402  -- imported here so the module path is set up
+    assert FEATURE in modbuild.FEATURES, "the fix is no longer in the shipped build"
+    assert "030-netlatprobe" in modbuild.UNSHIPPED, "the instrument must stay out"
