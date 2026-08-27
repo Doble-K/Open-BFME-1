@@ -3932,6 +3932,7 @@ name,address,notes
 ??1BfmeAptScreenQuitMenu@@UAE@XZ,0x00569720,E tier 1 via the corrected TheNetwork vcall seed: virtual dtor of the QuitMenu APT screen whose ctor is pinned ??0BfmeAptScreenQuitMenu@@QAE@PAX@Z (ILT 0x00025153 -> 0x0056A2F0 installs vtable 0x0110A388 at 0x0056A324 and publishes this to 0x012F4B40 at 0x0056A361): resets vtables 0x0110A388 / 0x0110A384 (+0x218) compares this with 0x012F4B40 (0x0056974F) and clears it then UI singleton 0x012F148C slot +0x150(0); carries the ZH QuitMenu.cpp:151 exit: if TheNetwork (0x012F7714 at 0x0056981F) TheNetwork->quitGame vslot +0x78 at 0x0056982C else 0x003839E0 (posts MSG_CLEAR_GAME_DATA at 0x00383A2C) via ILT 0x000238A3; then Shell::showShell 0x00580150 bfme_hideBackground 0x00468090 APT:Pause text via 0x0046CBF0 and the APT screen base dtor 0x00465430 (the base ??1BfmeAptScreenDisconnectScreen also calls); called by the deleting dtor ??_GGen_dtor_00569de0 at 0x00569DE3 via ILT 0x000271F6 = vtable 0x0110A388 slot 0
 ??1BfmeAptScreenScoreScreen@@UAE@XZ,0x00575050,virtual dtor: resets vtables 0x0110AAB8/0x0110AAB4 unregisters AptScoreScreen::InitGadgets via 0x004629A0; if +0x25c==0 (single-player screen) && TheShell 0x012F4B58 -> TheShell->0x0057F5B0(FALSE) (ILT 0x000428ED); clears TheScoreScreen 0x012F4B50; AsciiString dtors at +0x330 +0x320 +0x300; frees the bit-vector buffer +0x2e8; vector<pair<Int AsciiString>> dtor 0x00574BC0 on +0x264; base dtor 0x00465430; ILT 0x00006F28; sole caller the deleting dtor 0x00575883
 ??1BfmeBaseF@@QAE@XZ,0x00029537,Open-BFME5 the base destructor the deleting list destructor at 0x0048C5B0 chains to
+??1BfmeBaseP@@UAE@XZ,0x009A1A40,Open-BFME5 the primary base destructor the vector-member destructor at 0x00378650 calls
 ??1BfmeChainValue2@@QAE@XZ,0x000014D8,Open-BFME5 the carried value destructor the chain disposal at 0x00605820 runs
 ??1BfmeChainValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the chain disposal at 0x005876D0 runs
 ??1BfmeChildA@@QAE@XZ,0x008976E0,Open-BFME5 the child destructor the teardown at 0x008AB8E0 calls
@@ -3973,6 +3974,9 @@ name,address,notes
 ??1BfmeLegendStringVec@@QAE@XZ,0x000658A0,SubsystemLegend.cpp vector<AsciiString> stand-in dtor
 ??1BfmeListE@@QAE@XZ,0x00013449,Open-BFME5 the list member destructor the three-member destructor at 0x000F8A40 runs twice
 ??1BfmeMapChunk@@QAE@XZ,0x0002B9A4,Open-BFME5 ILT thunk; ?freeMapResources@HeightMapRenderObjClass@@UAEHXZ at 0x006D2690 hands it to the eh vector destructor iterator as the element destructor of the 0xC4-byte array at +0x30D8; address-derived name
+??1BfmeMidA@@QAE@XZ,0x00035D8C,Open-BFME5 the middle member destructor the vector-member destructor at 0x003643C0 runs
+??1BfmeMidB@@QAE@XZ,0x009D82D0,Open-BFME5 the middle member destructor the vector-member destructor at 0x009D83D0 runs second
+??1BfmeMidC@@QAE@XZ,0x009D7A70,Open-BFME5 the last member destructor the vector-member destructor at 0x009D83D0 runs first
 ??1BfmeOtherX@@QAE@XZ,0x00024D8E,Open-BFME5 the last member destructor the multi-member vector destructor at 0x000A83D0 runs first
 ??1BfmeOwnedMember@@QAE@XZ,0x00887940,Open-BFME5 provisional destructor for the owned member the zeroing constructors unwind
 ??1BfmeParticleSystemHandle@@QAE@XZ,0x00013994,Open-BFME5 ILT; the value ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 gets back from its lookup is released through it
@@ -3981,6 +3985,7 @@ name,address,notes
 ??1BfmeSecondZ@@QAE@XZ,0x00017E63,Open-BFME5 the second member destructor the two-member vector destructor at 0x0035B8A0 runs
 ??1BfmeSplitValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the tree removes at 0x00587670 and 0x00587750 run
 ??1BfmeSubF@@QAE@XZ,0x00887940,Open-BFME5 the held object member destructor the deleting list destructor at 0x0048C5B0 runs twice per node
+??1BfmeTailV@@QAE@XZ,0x00887940,Open-BFME5 the tail member destructor the vector-member destructors run
 ??1BfmeTailW@@QAE@XZ,0x00887940,Open-BFME5 the tail member destructor the multi-member vector destructors run
 ??1BfmeThingE@@QAE@XZ,0x0000E68D,Open-BFME5 the middle member destructor the three-member destructor at 0x000F8A40 runs
 ??1BfmeVecElem_000FAFF0@@QAE@XZ,0x0002C3BD,Open-BFME5 the element destructor the vector destroy at 0x000FAFF0 runs over its live range
@@ -72283,6 +72288,7 @@ name,address,notes
 ?bfmeFinish@Gen_00189D00@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x00189D00 tail-jumps to
 ?bfmeFinish@Gen_001BA9E0@@QAEXXZ,0x00023ECA,Open-BFME5 the body call the multi-member vector destructor at 0x001BA9E0 makes before its members go
 ?bfmeFinish@Gen_002BC050@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x002BC050 tail-jumps to
+?bfmeFinish@Gen_0081DC90@@QAEXXZ,0x0081DBE0,Open-BFME5 the body call the vector-member destructor at 0x0081DC90 makes before its members go
 ?bfmeFinish@Glo012F1028Sub@@AAEXPAVGlo012F1028Item@@H@Z,0x00038910,Open-BFME5 ILT thunk to body 0x003CA7C0; ?bfmeNotify@Glo012F1028Sub@@QAEXXZ at 0x003CAD20 calls it on this with the item and a zero; address-derived name
 ?bfmeFlush@Rva003D8530Owner@@QAEXXZ,0x00009787,Open-BFME5 ILT thunk to body 0x003D55C0; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it once on the same sub-object after the slot loop; address-derived name
 ?bfmeForward@Gen_0002644FTarget@@QAEXXZ,0x0002644F,Open-BFME5 ILT the three negative-displacement forwarders at 0x001FB570 0x001FBF60 and 0x00204450 all jump to
