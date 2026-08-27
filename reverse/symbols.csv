@@ -77667,6 +77667,7 @@ g_NAMEKEY_empty_string,0x0107388B,NAMEKEY empty string literal
 g_bfmeManagerP,0x012F0898,Open-BFME5 the manager the clear at 0x00371120 hands each element to
 g_bfmeSingletonH,0x012F706C,Open-BFME5 the singleton the clear at 0x003C0DB0 hands each element to
 g_bfmeSingletonR,0x012F1464,Open-BFME5 the singleton the clear at 0x0038D000 tail-calls a virtual on
+g_bfmeSinkY,0x012ED668,Open-BFME5 the singleton the clear at 0x00613CC0 hands each element to
 g_statsConnection,0x012D9038,Open-BFME5 IsStatsConnected global
 g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
