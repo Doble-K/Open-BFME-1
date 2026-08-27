@@ -3976,6 +3976,8 @@ name,address,notes
 ??1BfmeOwnedMember@@QAE@XZ,0x00887940,Open-BFME5 provisional destructor for the owned member the zeroing constructors unwind
 ??1BfmeParticleSystemHandle@@QAE@XZ,0x00013994,Open-BFME5 ILT; the value ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 gets back from its lookup is released through it
 ??1BfmeRangeValue@@QAE@XZ,0x000205A9,Open-BFME5 the carried value destructor the range erase at 0x0076D720 runs
+??1BfmeSecondY@@QAE@XZ,0x0002A699,Open-BFME5 the second member destructor the two-member vector destructor at 0x0035B960 runs
+??1BfmeSecondZ@@QAE@XZ,0x00017E63,Open-BFME5 the second member destructor the two-member vector destructor at 0x0035B8A0 runs
 ??1BfmeSplitValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the tree removes at 0x00587670 and 0x00587750 run
 ??1BfmeSubF@@QAE@XZ,0x00887940,Open-BFME5 the held object member destructor the deleting list destructor at 0x0048C5B0 runs twice per node
 ??1BfmeThingE@@QAE@XZ,0x0000E68D,Open-BFME5 the middle member destructor the three-member destructor at 0x000F8A40 runs
@@ -72701,6 +72703,8 @@ name,address,notes
 ?bfmeStopMovie@Display@@QAEXXZ,0x0001992F,Open-BFME5 ILT thunk to body 0x0040EFF0; ?hide@Shell@@QAEX_N@Z at 0x0057F5B0 calls it on TheDisplay with no arguments; address-derived name
 ?bfmeTest@Rva2225E0Filter@@AAE_NPAVBfmeOverridable@@_N@Z,0x0001B437,Open-BFME5 ILT the filter test whose result Rva2225E0Filter::accepts at 0x003A04A0 returns
 ?bfmeUnlink@@YAPAUBfmeSplitNode@@PAU1@PAPAU1@11@Z,0x0082CB60,Open-BFME5 the unlinker the tree removes at 0x00587670 and 0x00587750 hand their node to
+?bfmeUnregister@@YAXPAVBfmeSecondZ@@@Z,0x00035328,Open-BFME5 the unregister the two-member vector destructor at 0x0035B8A0 calls on its second member
+?bfmeUnregisterY@@YAXPAVBfmeSecondY@@@Z,0x0002F0EF,Open-BFME5 the unregister the two-member vector destructor at 0x0035B960 calls on its second member
 ?bfmeVec3Hermite@@YGPAUBfmeVector3@@PAU1@PBUCoord3D@@111M@Z,0x009FA11F,Open-BFME5 import thunk (slot 0x012DBEC0) the rope getPosition at 0x0041D090 evaluates its spline through
 ?bfmeWrite@BfmeSetupRecord@@QAEXPBDH@Z,0x007E8A10,Open-BFME5 the write the two-field setup stubs call twice
 ?bfmeWrite@BfmeSetupTarget@@QAEXPBDH@Z,0x007E8A10,Open-BFME5 the member the setup stubs at 0x007E95A0 and siblings finish with
