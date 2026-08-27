@@ -2109,6 +2109,7 @@ name,address,notes
 ??0BfmeStaticThingF@@QAE@XZ,0x0000A533,Open-BFME5 the constructor the function-local static at 0x005D9D10 runs
 ??0BfmeSubA@@QAE@ABV0@@Z,0x00887C90,Open-BFME5 the sub-object copy ctor the copies at 0x003505E0 and 0x00350630 call
 ??0BfmeSubB@@QAE@ABV0@@Z,0x00887B60,Open-BFME5 the sub-object copy ctor the copies at 0x00351F30 and 0x00351FB0 call
+??0BfmeThingBE@@QAE@XZ,0x008BE3B0,Open-BFME5 the constructor the new expression at 0x008BE660 runs on its block
 ??0BinkVideoPlayer@@QAE@XZ,0x0000B0A5,pinharvest x1 (thunk)
 ??0BinkVideoPlayer@@QAE@XZ,0x00045AF7,pinharvest x1 (thunk)
 ??0Bitmap2DObjClass@@QAE@ABV0@@Z,0x00956140,Open-BFME5 retail bitmap copy constructor pin
@@ -72180,6 +72181,7 @@ name,address,notes
 ?bfmeApply@Gen_00574F40Owner@@QAEXPAX@Z,0x00013471,Open-BFME5 ILT the __stdcall wrapper at 0x00574F40 calls through
 ?bfmeApply@Gen_006C89F0Target@@QAE_NPAX0_N@Z,0x000486EE,Open-BFME5 ILT the guarded delegate at 0x006C89F0 appends a false and calls through
 ?bfmeApplyBonuses@WeaponBonusSet@@QBEXIAAVWeaponBonus@@@Z,0x0002272D,Open-BFME5 ILT thunk to body 0x001E1CA0; ?computeBonus@Weapon@@IBEXPBVObject@@IAAVWeaponBonus@@@Z at 0x001E2840 calls it twice on the set from TheWritableGlobalData +0xB94 and on the one at +0x4A8 of the template at this+4; address-derived name
+?bfmeArenaReady@@YAXXZ,0x00897050,Open-BFME5 the routine the arena initialiser at 0x00897120 tail-calls
 ?bfmeAssign@BfmeCopyElementA@@QAEXPAU1@@Z,0x00003828,Open-BFME5 the element assign the copy loops call
 ?bfmeAssign@BfmeCopyElementB@@QAEXPAU1@@Z,0x0000D4CC,Open-BFME5 the element assign the copy loops call
 ?bfmeAssign@BfmeCopyElementC@@QAEXPAU1@@Z,0x000470F0,Open-BFME5 the element assign the copy loops call
@@ -77688,6 +77690,9 @@ _vsprintf,0x009F70AE
 _wcscpy,0x01359520,pin
 _whilestat,0x0099CC60,decode_calls pin for _stat callee
 g_NAMEKEY_empty_string,0x0107388B,NAMEKEY empty string literal
+g_bfmeArenaCursor,0x013378D4,Open-BFME5 the arena cursor the initialiser at 0x00897120 sets
+g_bfmeArenaEnd,0x013378D8,Open-BFME5 the arena limit the initialiser at 0x00897120 sets
+g_bfmeArenaStart,0x013378D0,Open-BFME5 the arena base the initialiser at 0x00897120 sets
 g_bfmeDirtyAE,0x012F33F8,Open-BFME5 the singleton the copy at 0x0049C4B0 marks dirty
 g_bfmeManagerP,0x012F0898,Open-BFME5 the manager the clear at 0x00371120 hands each element to
 g_bfmeSingletonH,0x012F706C,Open-BFME5 the singleton the clear at 0x003C0DB0 hands each element to
