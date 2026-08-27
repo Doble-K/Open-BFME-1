@@ -77695,6 +77695,7 @@ g_bfmeArenaEnd,0x013378D8,Open-BFME5 the arena limit the initialiser at 0x008971
 g_bfmeArenaStart,0x013378D0,Open-BFME5 the arena base the initialiser at 0x00897120 sets
 g_bfmeClockBK,0x012F0898,Open-BFME5 the singleton the comparison at 0x001E1A10 reads its stamp from
 g_bfmeClockBL,0x012F0898,Open-BFME5 the clock the deadlines at 0x001BFF50 and 0x001E19F0 read
+g_bfmeClockBN,0x012F0898,Open-BFME5 the clock the bodies at 0x0016D560 and 0x001E1980 read
 g_bfmeDefaultBG,0x01336E50,Open-BFME5 the shared default the getters at 0x000EC5E0 and 0x000EC600 fall back on
 g_bfmeDirtyAE,0x012F33F8,Open-BFME5 the singleton the copy at 0x0049C4B0 marks dirty
 g_bfmeDirtyBG,0x012EF418,Open-BFME5 the global the setters at 0x0018F210, 0x0018F270 and 0x0018F2E0 mark before storing
