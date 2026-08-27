@@ -19,8 +19,10 @@ CHARACTERISTICS = 0xE0000020  # CODE | EXECUTE | READ | WRITE
 JMP_REL32 = 0xE9
 CALL_REL32 = 0xE8
 NOP = 0x90
-PUSHAD, POPAD, PUSHFD, POPFD, CLD, PUSH_ECX = 0x60, 0x61, 0x9C, 0x9D, 0xFC, 0x51
-ADD_ESP_4 = bytes([0x83, 0xC4, 0x04])
+PUSHAD, POPAD, PUSHFD, POPFD, CLD = 0x60, 0x61, 0x9C, 0x9D, 0xFC
+PUSH_REG = {"eax": 0x50, "ecx": 0x51, "edx": 0x52, "ebx": 0x53,
+            "ebp": 0x55, "esi": 0x56, "edi": 0x57}
+SAVED_BYTES = 36  # what pushad (32) + pushfd (4) put between the shim and the target's esp
 
 
 class CaveError(RuntimeError):
@@ -218,7 +220,7 @@ class PE:
         return start
 
     # --- the shim ------------------------------------------------------
-    def shim(self, entry_va, at_va):
+    def shim(self, entry_va, at_va, args=("ecx",)):
         """The overlay's only machine code: save everything, call `entry_va`,
         put everything back.
 
@@ -226,27 +228,51 @@ class PE:
         leave every register and every flag exactly as it found them. The `cld`
         is not decoration: MSVC 7.1 compiles a struct copy to an inline
         `rep movsd`, which reads the direction flag it never sets, and the
-        `popfd` puts the caller's value back either way. `ecx` is handed over
-        as the payload's one argument because that is the thiscall `this` of
-        whatever was hooked; a payload that does not want it ignores it.
+        `popfd` puts the caller's value back either way.
+
+        `args` names the cdecl arguments the payload receives, in declaration
+        order. A register name hands over that live register -- `ecx` is the
+        default because it is the thiscall `this` of whatever was hooked.
+        "stack:N" hands over the hooked function's Nth dword argument, which is
+        the only way to reach one: the shim gets a register, and a thiscall's
+        explicit arguments are on the stack. It is meaningful ONLY when the hook
+        sits at the function's entry, before the body has pushed anything.
 
         Generated rather than written: this is the whole reason a feature can be
         one .cpp file, and hand-maintaining it per feature is how the two blobs
         this replaced both grew their own copy of the same mistake.
         """
-        body = bytearray([PUSHAD, PUSHFD, CLD, PUSH_ECX])
+        body = bytearray([PUSHAD, PUSHFD, CLD])
+        pushed = 0
+        for name in reversed(args):   # cdecl: the last argument is pushed first
+            if name in PUSH_REG:
+                body.append(PUSH_REG[name])
+            elif name.startswith("stack:"):
+                index = int(name[len("stack:"):])
+                # The target has pushed nothing yet, so its argument `index` sits
+                # above the return address at the entry esp -- which is what
+                # pushad/pushfd and this shim's own pushes now sit below.
+                disp = SAVED_BYTES + 4 * pushed + 4 + 4 * index
+                if disp > 0x7F:
+                    raise CaveError(f"stack argument {index} is out of one-byte reach")
+                body += bytes([0xFF, 0x74, 0x24, disp])   # push dword ptr [esp+disp]
+            else:
+                raise CaveError(f"unknown shim argument {name!r}")
+            pushed += 1
         body += bytes([CALL_REL32]) + struct.pack("<i", entry_va - (at_va + len(body) + 5))
-        body += ADD_ESP_4 + bytes([POPFD, POPAD])   # cdecl: the caller pops
+        body += bytes([0x83, 0xC4, 4 * len(args)])  # cdecl: the caller pops
+        body += bytes([POPFD, POPAD])
         return bytes(body)
 
-    def detour_call(self, target_rva, entry_va):
+    def detour_call(self, target_rva, entry_va, args=("ecx",)):
         """Detour `target_rva` through a generated shim into `entry_va`.
 
         The shim's `call` is relative, so it has to be emitted for the address
         it will really sit at. detour() takes that address from the same cursor
         and refuses the blob if the two ever disagree."""
         return self.detour(target_rva,
-                           payload=self.shim(entry_va, self.image_base + self.next_rva()))
+                           payload=self.shim(entry_va, self.image_base + self.next_rva(),
+                                             args=args))
 
     def save(self, out):
         out = Path(out)

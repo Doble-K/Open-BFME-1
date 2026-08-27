@@ -148,6 +148,55 @@ def test_the_generated_shim_calls_the_entry_it_was_built_for(pe):
     assert [i.mnemonic for i in ins[:4]] == ["pushal", "pushfd", "cld", "push"]
 
 
+def test_the_default_shim_is_the_one_the_shipped_feature_was_built_on(pe):
+    """`args` grew a default rather than a new call shape. If the default ever
+    emits anything but this, every shipped detour changes with it."""
+    assert pe.shim(0x11223344, 0x10000000) == bytes.fromhex("609cfc51e83b33220183c4049d61")
+
+
+def test_a_stack_argument_reaches_the_target_s_own_argument(pe):
+    """The shim gets a register; a thiscall's explicit arguments are on the
+    stack, so reaching one is arithmetic against an esp that pushad, pushfd and
+    the shim's own earlier pushes have all moved. Asserted by resolving the
+    displacement back to the target's frame rather than against a magic number:
+    at the hook, argument N sits at entry_esp + 4 + 4N, above the return
+    address."""
+    for args, index in ((("ecx", "stack:0"), 0), (("stack:1",), 1),
+                        (("stack:0", "ecx", "edx"), 0)):
+        ins = _disasm(pe, pe.alloc(pe.shim(0x11223344, pe.image_base + pe.next_rva(),
+                                           args=args)), 32)
+        moved = -36                                  # pushad (32) + pushfd (4)
+        for i in ins:
+            if i.mnemonic != "push":
+                break
+            if i.op_str.startswith("dword ptr [esp"):
+                disp = int(i.op_str.split("+")[1].strip(" ]"), 16)
+                assert moved + disp == 4 + 4 * index, \
+                    f"{args}: stack:{index} resolves to entry_esp+{moved + disp}"
+            moved -= 4
+
+
+def test_the_shim_pops_exactly_what_it_pushed(pe):
+    """cdecl leaves the cleanup to the caller, and the caller is this shim. One
+    dword out and the stolen prologue replays on a shifted stack."""
+    for args in (("ecx",), ("ecx", "stack:0"), ("ecx", "stack:0", "esi")):
+        ins = _disasm(pe, pe.alloc(pe.shim(0x11223344, pe.image_base + pe.next_rva(),
+                                           args=args)), 32)
+        call = next(n for n, i in enumerate(ins) if i.mnemonic == "call")
+        assert len([i for i in ins[:call] if i.mnemonic == "push"]) == len(args)
+        assert ins[call + 1].mnemonic == "add"
+        assert int(ins[call + 1].op_str.split(",")[1], 0) == 4 * len(args)
+
+
+def test_an_argument_the_shim_cannot_emit_is_refused(pe):
+    """A misspelled register is a payload reading a different value than its
+    signature says, which is invisible in both the source and the build log."""
+    with pytest.raises(CaveError, match="unknown shim argument"):
+        pe.shim(0x11223344, 0x10000000, args=("rcx",))
+    with pytest.raises(CaveError, match="out of one-byte reach"):
+        pe.shim(0x11223344, 0x10000000, args=("stack:64",))
+
+
 def test_a_shim_built_for_the_wrong_address_is_refused(pe):
     """The prediction is checked rather than trusted: next_rva() moving between
     building the shim and placing it must be a build error, not a call into the

@@ -62,6 +62,17 @@ with its bug restored.
 7. `link.exe` stamps the export directory with the clock, making the committed
    artifact a different file on every rebuild.
 
+## Instruments are not features
+
+`FEATURES` ships; `INSTRUMENTS` measures. `030-netlatprobe` writes tens of lines a
+second, so it is selected only by name and `--dist` refuses to carry one —
+`overlay/dist` is what every ladder player runs. See `docs/net-latency.md`.
+
+A hook that needs the target's own argument uses `detour_call(..., args=("ecx",
+"stack:0"))`: a thiscall's `this` arrives in ecx and its arguments do not, and
+the shim lifts one off the target's frame. That is only meaningful at a
+function's **entry**, before the body has pushed anything.
+
 ## Building
 
 ```bash
