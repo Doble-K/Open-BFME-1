@@ -1,4 +1,4 @@
-# The overlay: modding without decompiling
+# mods/: modding without decompiling
 
 ## The mechanism
 
@@ -19,7 +19,7 @@ The feature detours `VictoryConditions::update` (`0x0035F920`) and
 `sendPlayerLeaveCommands` (`0x00665C10`), writing the JSONL of
 `docs/game-quitting.md`. Both targets are `__declspec(naked)` `__asm` lifts — no
 semantics to edit — which is the only reason a detour is needed; convert one and
-its detour disappears. The overlay never joins the byte-exact rebuild: a mod
+its detour disappears. A mod never joins the byte-exact rebuild: it
 must not move the byte gate.
 
 ## Addresses worth keeping
@@ -45,7 +45,7 @@ visibly wrong rather than plausibly empty.
 
 ## Gotchas that shipped into a binary
 
-All covered by `test_cave.py`/`test_overlay_build.py`, each watched failing
+All covered by `test_cave.py`/`test_mods_build.py`, each watched failing
 with its bug restored.
 
 1. Section `Characteristics` belong at `+0x24`; one field late they read `0`.
@@ -66,7 +66,7 @@ with its bug restored.
 
 `FEATURES` ships; `INSTRUMENTS` measures. `030-netlatprobe` writes tens of lines a
 second, so it is selected only by name and `--dist` refuses to carry one —
-`overlay/dist` is what every ladder player runs. See `docs/net-latency.md`.
+`mods/dist` is what every ladder player runs. See `docs/net-latency.md`.
 
 A hook that needs the target's own argument uses `detour_call(..., args=("ecx",
 "stack:0"))`: a thiscall's `this` arrives in ecx and its arguments do not, and
@@ -76,7 +76,7 @@ function's **entry**, before the body has pushed anything.
 ## Building
 
 ```bash
-python3 tools/modbuild.py --dist    # -> overlay/dist/lotrbfme.exe (needs wine)
+python3 tools/modbuild.py --dist    # -> mods/dist/lotrbfme.exe (needs wine)
 ```
 
 Tests, and what producing `measured.jsonl` costs: `docs/lan-testing.md`.

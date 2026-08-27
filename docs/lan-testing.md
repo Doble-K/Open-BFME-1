@@ -3,11 +3,11 @@
 Most of this repo's tests need nothing but a checkout:
 
 ```bash
-python3 -m pytest tools/tests/test_cave.py tools/tests/test_overlay_build.py \
+python3 -m pytest tools/tests/test_cave.py tools/tests/test_mods_build.py \
                  tools/tests/test_game_records.py
 ```
 
-`test_cave` needs the committed baseline exe and `capstone`; `test_overlay_build`
+`test_cave` needs the committed baseline exe and `capstone`; `test_mods_build`
 also builds the feature, so it needs wine and the MSVC 7.1 toolchain. Both
 disassemble what the build actually produced.
 `test_game_records` reads `reverse/game_end/measured.jsonl` and holds every row

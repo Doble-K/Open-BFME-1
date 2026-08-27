@@ -32,7 +32,7 @@ not the fix. Commands only leave *earlier*.
 ## How we tested it
 
 Two real clients (host and guest) play a LAN match on separate network stacks,
-each issuing ~200 scripted commands at random intervals. A second overlay logs
+each issuing ~200 scripted commands at random intervals. A second mod logs
 every command's journey on a clock shared by both machines. Retail is measured
 **first**: the defect must reproduce before anything is credited with removing
 it. Twelve matches; ranges are best-to-worst of three per build.

@@ -6,17 +6,17 @@ input pump runs only on those ticks, so a guest command waits for the next tick
 merely to **leave** the machine and is then bound by the router to a later frame
 than the host's would be. The gap is structural and does not shrink with ping.
 
-`overlay/features/030-netlatprobe` measures that on real clients; `tools/netlat.py`
+`mods/features/030-netlatprobe` measures that on real clients; `tools/netlat.py`
 reads what it wrote. Nothing here changes the game — measure the defect first, or
 a fix gets credited with an improvement nobody demonstrated.
 
 ## Build and run
 
 ```bash
-python3 tools/modbuild.py --only 030-netlatprobe -o build/overlay/netlat.exe
+python3 tools/modbuild.py --only 030-netlatprobe -o build/mods/netlat.exe
 ```
 
-`--dist` refuses to carry it: `overlay/dist` is what every ladder player runs and
+`--dist` refuses to carry it: `mods/dist` is what every ladder player runs and
 this writes tens of lines a second. Each client appends JSONL to
 `%APPDATA%\My Battle for Middle-earth Files\NetLat.jsonl`, or `BFME_LAT_PATH`.
 

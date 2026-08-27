@@ -39,7 +39,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools"))
 
 EXE = ROOT / "baselines/bfme1/workshop-vanilla-1.03/files/lotrbfme.exe"
-SOURCE = ROOT / "overlay/features/020-gameresult/src/gameresult.cpp"
+SOURCE = ROOT / "mods/features/020-gameresult/src/gameresult.cpp"
 UPDATE = 0x0035F920      # VictoryConditions::update
 SENDLEAVE = 0x00665C10   # ConnectionManager::sendPlayerLeaveCommands
 
@@ -315,7 +315,7 @@ def test_probe_builds_take_the_end_path_as_soon_as_a_slot_exists():
 
 
 def test_two_builds_of_one_source_are_the_same_bytes():
-    """overlay/dist/lotrbfme.exe is committed and its sha256 is recorded beside
+    """mods/dist/lotrbfme.exe is committed and its sha256 is recorded beside
     it, so a rebuild that moves a byte for no reason says the payload changed
     when nothing did. link.exe stamps the export directory with the current
     time, which is exactly that."""

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read the latency probe's files and answer the four questions they exist for.
 
-One NetLat.jsonl per seat, written by overlay/features/030-netlatprobe. All
+One NetLat.jsonl per seat, written by mods/features/030-netlatprobe. All
 seats run on one host, so QueryPerformanceCounter is the same system-wide clock
 in every wine prefix and times compare directly across files with no
 synchronisation step -- which is what makes a true cross-machine latency

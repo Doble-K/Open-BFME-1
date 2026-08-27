@@ -15,7 +15,7 @@ disassembly, not the source, can settle:
   * the addresses the payload reads the engine through. A mistyped global is
     invisible in the source and produces a file full of -1s at best;
   * the record schema, which tools/netlat.py parses by name;
-  * that a --dist build refuses to carry it. overlay/dist is what every ladder
+  * that a --dist build refuses to carry it. mods/dist is what every ladder
     player runs, and this writes tens of lines a second.
 """
 import struct
@@ -194,7 +194,7 @@ def test_the_pump_s_own_filter_bounds_what_is_logged(cave_bytes):
 
 
 def test_a_dist_build_refuses_to_carry_the_instrument():
-    """overlay/dist is what every ladder player runs."""
+    """mods/dist is what every ladder player runs."""
     r = subprocess.run([sys.executable, str(ROOT / "tools/modbuild.py"),
                         "--only", FEATURE, "--dist"],
                        capture_output=True, text=True, cwd=ROOT)

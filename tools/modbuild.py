@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the overlay: stack every feature into one patched executable.
+"""Build the mods: stack every feature into one patched executable.
 
 Features always stack — there is no mix-and-match — so this produces exactly
 one artifact. Two features claiming the same address is a hard error, never a
@@ -29,8 +29,8 @@ from cave import PE  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 BASELINE = ROOT / "baselines/bfme1/workshop-vanilla-1.03/files/lotrbfme.exe"
-OUT = ROOT / "build/overlay/lotrbfme.exe"
-DIST = ROOT / "overlay/dist"
+OUT = ROOT / "build/mods/lotrbfme.exe"
+DIST = ROOT / "mods/dist"
 
 TARGET_UPDATE = 0x0035F920    # VictoryConditions::update
 # ConnectionManager::sendPlayerLeaveCommands -- the leave entry an in-game
@@ -178,7 +178,7 @@ def blob_at(image_path, va):
     untouched."""
     image = PE(image_path)
     # link.exe stamps the export directory with the current time, and that
-    # directory is inside the blob. Left alone it makes overlay/dist a different
+    # directory is inside the blob. Left alone it makes mods/dist a different
     # file on every rebuild, so its recorded sha256 would say the payload
     # changed when nothing did.
     struct.pack_into("<I", image.data, _export_dir(image) + 4, 0)
@@ -270,7 +270,7 @@ FEATURES = {"020-gameresult": build_gameresult,
             # retail match overlapping any fixed one, and the logic rate
             # unchanged at 5.000/s. docs/net-latency-fix.md has the numbers.
             "031-earlysend": build_earlysend}
-# Selected only by name, and refused by --dist. overlay/dist is the artifact
+# Selected only by name, and refused by --dist. mods/dist is the artifact
 # every ladder player runs: an instrument writes tens of lines a second, and a
 # candidate has not earned a place in it until the spike measuring it is green.
 # Promote one into FEATURES when it has.
@@ -285,7 +285,7 @@ def main():
     ap.add_argument("-o", "--output", default=OUT)
     ap.add_argument("--cave-size", type=lambda v: int(v, 0), default=0x10000)
     ap.add_argument("--dist", action="store_true",
-                    help="also write overlay/dist/ (the tracked, shippable build)")
+                    help="also write mods/dist/ (the tracked, shippable build)")
     ap.add_argument("--probe", action="store_true",
                     help="drop end-of-game gates; diagnostic builds only")
     ap.add_argument("--only", action="append", default=[],
@@ -302,14 +302,14 @@ def main():
         for name in names:
             if name in UNSHIPPED:
                 raise SystemExit(
-                    f"refusing --dist with {name}: {UNSHIPPED[name][1]}. overlay/dist "
+                    f"refusing --dist with {name}: {UNSHIPPED[name][1]}. mods/dist "
                     f"is what every ladder player runs. Build it to its own path with "
                     f"-o instead, and promote it into FEATURES when it has earned it.")
     for name in names:
         fn = FEATURES.get(name) or (UNSHIPPED[name][0] if name in UNSHIPPED else None)
         if fn is None:
             raise SystemExit(f"unknown feature: {name}")
-        info = fn(pe, ROOT / "overlay/features" / name, probe=a.probe)
+        info = fn(pe, ROOT / "mods/features" / name, probe=a.probe)
         print(f"  {name}: {info['code_len']} B payload @ RVA 0x{info['code_rva']:08X}")
         for d in info["detours"]:
             t = d["target"]
@@ -332,10 +332,10 @@ def main():
         base = Path(a.baseline).read_bytes()
         manifest = {
             "schema_version": 1,
-            "id": "bfme1.overlay",
-            "name": "BFME1 overlay build",
+            "id": "bfme1.mods",
+            "name": "BFME1 mod build",
             "note": "Retail lotrbfme.exe with a .bfmemod code cave appended and "
-                    "the overlay features detoured into it. Rebuild with "
+                    "the mods detoured into it. Rebuild with "
                     "python3 tools/modbuild.py --dist",
             "baseline": {
                 "path": str(Path(a.baseline).relative_to(ROOT)),
@@ -343,7 +343,7 @@ def main():
                 "size": len(base),
             },
             "output": {
-                "path": "overlay/dist/lotrbfme.exe",
+                "path": "mods/dist/lotrbfme.exe",
                 "sha256": hashlib.sha256(exe.read_bytes()).hexdigest(),
                 "size": exe.stat().st_size,
             },
