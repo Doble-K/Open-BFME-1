@@ -6336,3 +6336,4 @@ _ciCleanupCallbacks	0x008702F0	84	blocked	t=11min model=Codex-ocx-native--gpt-5.
 _Rva00813A50	0x00813A50	595	partial	retail
 _Rva00813A50	0x00813A50	595	void	retract malformed partial row whose evidence was truncated by shell quoting
 _Rva00813A50	0x00813A50	595	partial	t=25min model=GPT-5 retail logic, stack layout, calls, fields, and all substantive instructions aligned; remaining mismatch is MSVC branch placement around the two device-name match paths
+??0Gen_0061A3D0@@QAE@H@Z	0x0061A3D0	88	attempted	same blocker as 0x001DB240: constructor zeroes the vector triple (through a register here, not immediates) and the self-range copy still reloads start and finish in retail; MSVC folds the zeros into the copy. Left for when that folding is understood.
