@@ -72603,6 +72603,7 @@ name,address,notes
 ?bfmeInvoke@Gen_0064C6A0Target@@QAEXPAX0@Z,0x0001F785,Open-BFME5 the member the guarded dispatcher at 0x0064C6A0 calls
 ?bfmeInvoke@Gen_006CDF70Target@@QAEXPAX0@Z,0x0000560A,Open-BFME5 the member the guarded dispatcher at 0x006CDF70 calls
 ?bfmeInvoke@Gen_009EBA60Target@@QAEXPAX0@Z,0x009EEAC0,Open-BFME5 the member the guarded dispatcher at 0x009EBA60 calls
+?bfmeIsAlive@BfmeItemAK@@QAE_NXZ,0x00001C03,Open-BFME5 the ICF thunk (to 0x00401C03) the compaction at 0x0018BC70 asks each entry
 ?bfmeIsSet@BfmeGameOverGateA@@QAE_NXZ,0x000330DC,Open-BFME5 ILT the first early check of BfmeShouldShowGameOverEvent at 0x002ED8F0 goes through; the receiving global at 0x012ED748 is unidentified
 ?bfmeIsSet@BfmeGameOverGateB@@QAE_NXZ,0x0000CFC7,Open-BFME5 ILT the second early check of BfmeShouldShowGameOverEvent at 0x002ED8F0 goes through; the receiving global at 0x012F076C is unidentified
 ?bfmeIterate@BfmeIterableObject@@QAEHP6AXPAVObject@@PAX@Z1@Z,0x0003DB68,Open-BFME5 ILT the per-object visit in Player::iterateObjects at 0x000CDCF0 calls; it jumps to 0x000EE770
@@ -72707,6 +72708,8 @@ name,address,notes
 ?bfmeReset@BfmeItemS@@QAEXXZ,0x00036A9D,Open-BFME5 the ICF thunk (to 0x00436A9D) the clear at 0x003CFBA0 calls per item
 ?bfmeReset@BfmeMapObjectExtra@@QAEXXZ,0x00033F46,Open-BFME5 the thiscall WorldHeightMap::freeListOfMapObjects at 0x00746E90 tail-jumps into on the global object at 0x012ED5E0
 ?bfmeReset@BfmeStopOther@@QAEXPAX@Z,0x0002A88D,Open-BFME5 the reset the stop-and-reset bodies at 0x0015BA80 and siblings tail-jump to
+?bfmeRestart@Gen_0018BC70@@AAEXXZ,0x0003F1FC,Open-BFME5 the ICF thunk (to 0x0043F1FC) the compaction at 0x0018BC70 calls when its flag is set
+?bfmeResume@Gen_0018BC70@@AAEXXZ,0x0000764E,Open-BFME5 the ICF thunk (to 0x0040764E) the compaction at 0x0018BC70 calls when its flag is clear
 ?bfmeRun@Glo012F1028Item@@QAEXXZ,0x00006348,Open-BFME5 ILT thunk to body 0x00619900; ?bfmeNotify@Glo012F1028Sub@@QAEXXZ at 0x003CAD20 calls it on each item between the two calls it makes on itself; address-derived name
 ?bfmeSelect@BfmeElemW@@QAEXHH@Z,0x0001949D,Open-BFME5 the ICF thunk (to 0x0041949D) the clear at 0x004B1720 calls on each element with a pair of minus ones
 ?bfmeSetIndicatorOn@Drawable@@AAEX_N@Z,0x00018CF5,Open-BFME5 ILT thunk to body 0x004115A0; ?setIndicatorColor@Drawable@@QAEXI@Z at 0x004186E0 calls it on this from both of its arms with a true or a false; address-derived name
