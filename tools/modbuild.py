@@ -38,6 +38,16 @@ TARGET_UPDATE = 0x0035F920    # VictoryConditions::update
 # points at and a four-client probe recorded it firing zero times.
 TARGET_SENDLEAVE = 0x00665C10
 
+# 030-netlatprobe. Every one of these is hooked at its ENTRY, which is what lets
+# the shim lift the function's own first argument off the stack ("stack:0"): a
+# thiscall's `this` arrives in ecx, but everything it was called WITH is on the
+# stack, and for four of these five the argument IS the measurement.
+TARGET_APPENDMESSAGE = 0x0008A4E0   # GameMessageList::appendMessage(msg)
+TARGET_SENDLOCAL = 0x00664740       # ConnectionManager::sendLocalCommand(msg)
+TARGET_RELAYCOMMAND = 0x00663100    # ConnectionManager::relayCommand(ref)
+TARGET_FRAMERELAY = 0x00682A90      # Network::relayCommandsToCommandList(frame)
+TARGET_SENDFRAMEINFO = 0x00665D10   # ConnectionManager::sendFrameInfo()
+
 # No CRT startup, no exceptions, no RTTI, no runtime library at all. /GS is off
 # by default in 7.1 and it rejects /GS-, so there is nothing to turn off there.
 # Warnings are errors: this build discards compiler output on success, so a
@@ -198,12 +208,14 @@ def _rebase(image, delta):
         done += block
 
 
-def build_gameresult(pe, feature_dir, probe=False):
-    """Compile the feature, lay it in the cave, and hook both of its entries."""
+def build_feature(pe, source, entry, hooks, probe=False):
+    """Compile one feature's .cpp, lay it in the cave, and hook its entries.
+
+    `hooks` is (target rva, exported name, shim arguments) per detour."""
     with tempfile.TemporaryDirectory() as tmp:
-        obj = compile_payload(feature_dir / "src/gameresult.cpp", Path(tmp) / "gameresult.obj",
-                              probe=probe)
-        image = link_payload(obj, "gameresult_update", Path(tmp) / "gameresult.exe")
+        stem = Path(source).stem
+        obj = compile_payload(source, Path(tmp) / f"{stem}.obj", probe=probe)
+        image = link_payload(obj, entry, Path(tmp) / f"{stem}.exe")
         # The cave address is only knowable once every earlier blob is down, and
         # the blob has to be relocated to it before it is written.
         at = pe.image_base + pe.next_rva()
@@ -215,17 +227,39 @@ def build_gameresult(pe, feature_dir, probe=False):
                          f"0x{pe.image_base + rva:08X}")
 
     detours = []
-    for target, entry in ((TARGET_UPDATE, "gameresult_update"),
-                          (TARGET_SENDLEAVE, "gameresult_leave")):
-        if entry not in entries:
-            raise SystemExit(f"gameresult.cpp exports {sorted(entries)}, not {entry}")
-        start = pe.detour_call(target, entries[entry])
-        detours.append(dict(target=target, entry=entry, code_rva=start,
+    for target, name, args in hooks:
+        if name not in entries:
+            raise SystemExit(f"{Path(source).name} exports {sorted(entries)}, not {name}")
+        start = pe.detour_call(target, entries[name], args=args)
+        detours.append(dict(target=target, entry=name, code_rva=start,
                             code_len=pe.cave_rva + pe.cave_used - start))
     return dict(code_rva=rva, code_len=len(blob), detours=detours)
 
 
+def build_gameresult(pe, feature_dir, probe=False):
+    return build_feature(pe, feature_dir / "src/gameresult.cpp", "gameresult_update", (
+        (TARGET_UPDATE, "gameresult_update", ("ecx",)),
+        (TARGET_SENDLEAVE, "gameresult_leave", ("ecx",)),
+    ), probe=probe)
+
+
+def build_netlatprobe(pe, feature_dir, probe=False):
+    return build_feature(pe, feature_dir / "src/netlatprobe.cpp", "netlat_frame", (
+        (TARGET_APPENDMESSAGE, "netlat_input", ("ecx", "stack:0")),
+        (TARGET_SENDLOCAL, "netlat_send", ("ecx", "stack:0")),
+        (TARGET_RELAYCOMMAND, "netlat_relay", ("ecx", "stack:0")),
+        (TARGET_FRAMERELAY, "netlat_frame", ("ecx", "stack:0")),
+        (TARGET_SENDFRAMEINFO, "netlat_ceiling", ("ecx",)),
+    ), probe=probe)
+
+
 FEATURES = {"020-gameresult": build_gameresult}
+# Selected only by name, and refused by --dist. overlay/dist is the artifact
+# every ladder player runs, and an instrument writes tens of lines a second.
+# Promote one into FEATURES if it ever earns a place there.
+UNSHIPPED = {
+    "030-netlatprobe": (build_netlatprobe, "an instrument: it writes tens of lines a second"),
+}
 
 
 def main():
@@ -247,8 +281,15 @@ def main():
 
     claimed = {}
     names = a.only or list(FEATURES)
+    if a.dist:
+        for name in names:
+            if name in UNSHIPPED:
+                raise SystemExit(
+                    f"refusing --dist with {name}: {UNSHIPPED[name][1]}. overlay/dist "
+                    f"is what every ladder player runs. Build it to its own path with "
+                    f"-o instead, and promote it into FEATURES when it has earned it.")
     for name in names:
-        fn = FEATURES.get(name)
+        fn = FEATURES.get(name) or (UNSHIPPED[name][0] if name in UNSHIPPED else None)
         if fn is None:
             raise SystemExit(f"unknown feature: {name}")
         info = fn(pe, ROOT / "overlay/features" / name, probe=a.probe)
