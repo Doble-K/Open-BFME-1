@@ -9149,6 +9149,9 @@ name,address,notes
 ??R?$less@UGen_t_00093990_mc4@@@_STL@@QBE_NABUGen_t_00093990_mc4@@0@Z,0x00093170,family-emit payload member
 ??R?$less@V?$StringBase@G@@@_STL@@QBE_NABV?$StringBase@G@@0@Z,0x000036F7,ILT thunk to the wide-string tree comparator at 0x0054ED50
 ??R?$less@VAsciiString@@@_STL@@QBE_NABVAsciiString@@0@Z,0x00043D42,Open-BFME5 the callee the hinted insert_unique reaches
+??RBfmeCompAO@@QAE_NHH@Z,0x00024055,Open-BFME5 the ICF thunk (to 0x00424055) the linear insert at 0x00453020 compares through
+??RBfmeCompAP@@QAE_NHH@Z,0x00039CB1,Open-BFME5 the ICF thunk (to 0x00439CB1) the linear insert at 0x00453110 compares through
+??RBfmeCompAQ@@QAE_NHH@Z,0x00024B81,Open-BFME5 the ICF thunk (to 0x00424B81) the linear insert at 0x00342C70 compares through
 ??RBfmeInsertCompareA@@QAE_NPAX0@Z,0x00024B81,Open-BFME5 ILT the linear insert at 0x00340860 compares through
 ??RBfmeInsertCompareB@@QAE_NPAX0@Z,0x00024055,Open-BFME5 ILT the linear insert at 0x00452910 compares through
 ??RBfmeInsertCompareC@@QAE_NPAX0@Z,0x00039CB1,Open-BFME5 ILT the linear insert at 0x00452970 compares through
@@ -72743,6 +72746,9 @@ name,address,notes
 ?bfmeSwapEnds@@YAXPAPAPAVBfmeOwnedI@@0@Z,0x00032FE7,Open-BFME5 the ICF thunk (to 0x00432FE7) the swap in the clear at 0x003C1190 calls for the third pair
 ?bfmeTake@BfmeSinkAB@@QAEXPAVBfmeVecAB@@@Z,0x00014E1B,Open-BFME5 the ICF thunk (to 0x00414E1B) the body at 0x003CFC90 hands its first vector to
 ?bfmeTest@Rva2225E0Filter@@AAE_NPAVBfmeOverridable@@_N@Z,0x0001B437,Open-BFME5 ILT the filter test whose result Rva2225E0Filter::accepts at 0x003A04A0 returns
+?bfmeUnguardedInsertAO@@YAXPAHHVBfmeCompAO@@@Z,0x0001A424,Open-BFME5 the ICF thunk (to 0x0041A424) the linear insert at 0x00453020 hands its unguarded arm to
+?bfmeUnguardedInsertAP@@YAXPAHHVBfmeCompAP@@@Z,0x000389B5,Open-BFME5 the ICF thunk (to 0x004389B5) the linear insert at 0x00453110 hands its unguarded arm to
+?bfmeUnguardedInsertAQ@@YAXPAHHVBfmeCompAQ@@@Z,0x000018C0,Open-BFME5 the ICF thunk (to 0x004018C0) the linear insert at 0x00342C70 hands its unguarded arm to
 ?bfmeUnlink@@YAPAUBfmeSplitNode@@PAU1@PAPAU1@11@Z,0x0082CB60,Open-BFME5 the unlinker the tree removes at 0x00587670 and 0x00587750 hand their node to
 ?bfmeUnregister@@YAXPAVBfmeOwnedP@@@Z,0x00006500,Open-BFME5 the ICF thunk (to 0x00406500) the clear at 0x00371120 calls per element
 ?bfmeUnregister@@YAXPAVBfmeSecondZ@@@Z,0x00035328,Open-BFME5 the unregister the two-member vector destructor at 0x0035B8A0 calls on its second member
