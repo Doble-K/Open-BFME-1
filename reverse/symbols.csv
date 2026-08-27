@@ -3964,6 +3964,7 @@ name,address,notes
 ??1BfmeDtorMemberK@@QAE@XZ,0x009CFB40,Open-BFME5 the member destructor the plain chain destructor at 0x009D0730 calls first
 ??1BfmeDtorMemberM@@QAE@XZ,0x0000E5D9,Open-BFME5 the member destructor the plain chain destructor at 0x00093CC0 calls twice
 ??1BfmeElemF@@QAE@XZ,0x000452FA,Open-BFME5 the ICF thunk (to 0x0037B990) the element destructor the clear at 0x002901C0 calls
+??1BfmeElemN@@QAE@XZ,0x000295FF,Open-BFME5 the ICF thunk (to 0x0060AA70) the element destructor the clear at 0x0060B470 calls
 ??1BfmeElementA@@QAE@XZ,0x00030652,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementB@@QAE@XZ,0x0001AAD2,Open-BFME5 the element destructor the array-owning destructors call
 ??1BfmeElementC@@QAE@XZ,0x00937390,Open-BFME5 the element destructor the array-owning destructors call
