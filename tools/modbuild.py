@@ -48,6 +48,12 @@ TARGET_RELAYCOMMAND = 0x00663100    # ConnectionManager::relayCommand(ref)
 TARGET_FRAMERELAY = 0x00682A90      # Network::relayCommandsToCommandList(frame)
 TARGET_SENDFRAMEINFO = 0x00665D10   # ConnectionManager::sendFrameInfo()
 
+# 031-earlysend. The client half's tail, immediately before the engine's own
+# liteupdate(FALSE) at 0x0006BA53 -- so a command queued by the payload is
+# flushed to the wire by the next instruction of the retail path. The six bytes
+# displaced are the `mov ecx,[TheNetwork]` that liteupdate is called through.
+TARGET_CLIENTTAIL = 0x0006BA44
+
 # No CRT startup, no exceptions, no RTTI, no runtime library at all. /GS is off
 # by default in 7.1 and it rejects /GS-, so there is nothing to turn off there.
 # Warnings are errors: this build discards compiler output on success, so a
@@ -253,12 +259,20 @@ def build_netlatprobe(pe, feature_dir, probe=False):
     ), probe=probe)
 
 
+def build_earlysend(pe, feature_dir, probe=False):
+    return build_feature(pe, feature_dir / "src/earlysend.cpp", "earlysend", (
+        (TARGET_CLIENTTAIL, "earlysend", ("ecx",)),
+    ), probe=probe)
+
+
 FEATURES = {"020-gameresult": build_gameresult}
 # Selected only by name, and refused by --dist. overlay/dist is the artifact
-# every ladder player runs, and an instrument writes tens of lines a second.
-# Promote one into FEATURES if it ever earns a place there.
+# every ladder player runs: an instrument writes tens of lines a second, and a
+# candidate has not earned a place in it until the spike measuring it is green.
+# Promote one into FEATURES when it has.
 UNSHIPPED = {
     "030-netlatprobe": (build_netlatprobe, "an instrument: it writes tens of lines a second"),
+    "031-earlysend": (build_earlysend, "a candidate fix whose spike has not run"),
 }
 
 
