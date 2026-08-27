@@ -131,3 +131,49 @@ void __cdecl bfmeLinearInsertAQ(int *first, int *last, int value, BfmeCompAQ com
 		bfmeUnguardedInsertAQ(last, value, comp);
 	}
 }
+
+class BfmeCompAR
+{
+public:
+	bool operator()(int left, int right);			// retail thunk 0x0002952D -> 0x0042952D
+
+	int m_bfmeState;					// +0x00
+};
+
+void __cdecl bfmeUnguardedInsertAR(int *last, int value, BfmeCompAR comp);
+								// retail thunk 0x0003EDB0 -> 0x0043EDB0
+
+// ?bfmeLinearInsertAR@@YAXPAH0HVBfmeCompAR@@@Z
+void __cdecl bfmeLinearInsertAR(int *first, int *last, int value, BfmeCompAR comp)
+{
+	if (comp(value, *first))
+	{
+		bfmeCopyBackward(first, last, last + 1);
+
+		*first = value;
+	}
+	else
+	{
+		bfmeUnguardedInsertAR(last, value, comp);
+	}
+}
+
+typedef bool (__cdecl *BfmeCompareAS)(int left, int right);
+
+void __cdecl bfmeUnguardedInsertAS(int *last, int value, BfmeCompareAS compare);
+								// retail thunk 0x0004727B -> 0x0044727B
+
+// ?bfmeLinearInsertAS@@YAXPAH0HP6A_NHH@Z@Z
+void __cdecl bfmeLinearInsertAS(int *first, int *last, int value, BfmeCompareAS compare)
+{
+	if (compare(value, *first))
+	{
+		bfmeCopyBackward(first, last, last + 1);
+
+		*first = value;
+	}
+	else
+	{
+		bfmeUnguardedInsertAS(last, value, compare);
+	}
+}
