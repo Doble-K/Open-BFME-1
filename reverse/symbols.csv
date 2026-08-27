@@ -77141,6 +77141,7 @@ _Rva012C4A40,0x012C4A40,address-derived API version storage passed by the DirtyS
 _Rva012C4A80,0x012C4A80,address-derived DirtySock endpoint diagnostic format used by 0x00814D60
 _Rva012C4AAC,0x012C4AAC,address-derived DirtySock transport name copied by 0x008140D0
 _Rva012C4AF0,0x012C4AF0,address-derived DirtySock queue-full diagnostic used by 0x00814540
+_Rva012C4BD8,0x012C4BD8,address-derived DirtySock receive-ring overflow diagnostic used by 0x00816280
 _Rva012C4B0C,0x012C4B0C,address-derived DirtySock oversized-record diagnostic used by 0x00814540
 _Rva012C4C24,0x012C4C24,address-derived DirtySock receive-error diagnostic used by 0x00815DA0
 _SBLastListErrorA,0x008680B0,adjacency-lane pin: jmp target of _ServerBrowserListQueryErrorA tail-call

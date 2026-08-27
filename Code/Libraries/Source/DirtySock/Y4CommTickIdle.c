@@ -589,16 +589,26 @@ struct Rva00815DA0Record
 
 struct Rva00815DA0Comm
 {
-	char m_head[ 0x7C ];
+	char m_head[ 0x3C ];
+	void ( *m_receiveCallback )( struct Rva00815DA0Comm *, void *, int, int );
+	char m_gap40[ 0x3C ];
 	void *m_socket;                  /* +0x7C */
 	char m_gap80[ 0x10 ];
 	int m_state;                     /* +0x90 */
 	char m_gap94[ 0x04 ];
 	int m_receiveSize;               /* +0x98 */
-	char m_gap9C[ 0x08 ];
+	int m_receiveThreshold;          /* +0x9C */
+	int m_bufferSize;                /* +0xA0 */
 	int m_readOffset;                /* +0xA4 */
-	char m_gapA8[ 0x04 ];
+	int m_writeOffset;               /* +0xA8 */
 	void *m_buffer;                  /* +0xAC */
+	char m_gapB0[ 0x20 ];
+	int m_typeOffset;                /* +0xD0 */
+	char m_gapD4[ 0x04 ];
+	unsigned int m_status;           /* +0xD8 */
+	char m_gapDC[ 0x134 ];
+	int m_callbackDepth;             /* +0x210 */
+	int m_flags;                     /* +0x214 */
 };
 
 int Rva007FDA50( void *socket, char *buffer, int length, int flags,
@@ -660,6 +670,58 @@ void Rva00815DA0( struct Rva00815DA0Comm *comm )
 			break;
 		}
 	}
+}
+
+extern char Rva012C4BD8[];
+
+int Rva00816280( struct Rva00815DA0Comm *comm,
+	struct Rva00815DA0Record *record )
+{
+	unsigned char *destination;
+	int offset;
+	int count;
+	int typeOffset;
+
+	if ( record->m_type >= 0x40 && record->m_type < 0x80 )
+	{
+		offset = ( comm->m_readOffset + comm->m_bufferSize
+			- comm->m_writeOffset ) % comm->m_bufferSize;
+		count = ( comm->m_bufferSize - offset ) / comm->m_receiveSize;
+		if ( count <= comm->m_receiveThreshold )
+			return -1;
+		comm->m_typeOffset = record->m_type - 0x40;
+	}
+	else
+	{
+		if ( ( comm->m_readOffset + comm->m_receiveSize )
+			% comm->m_bufferSize == comm->m_writeOffset )
+		{
+			Rva007FE780( Rva012C4BD8 );
+			return -1;
+		}
+
+		typeOffset = record->m_type - 0x80;
+		if ( typeOffset == ( comm->m_status + 1 ) % 64 )
+			comm->m_status = typeOffset;
+		else if ( typeOffset == comm->m_status )
+			return 1;
+		else
+			return 0;
+	}
+
+	destination = (unsigned char *)comm->m_buffer + comm->m_readOffset;
+	memcpy( destination, record, comm->m_receiveSize );
+	comm->m_callbackDepth++;
+	comm->m_readOffset = ( comm->m_readOffset + comm->m_receiveSize )
+		% comm->m_bufferSize;
+	comm->m_flags |= 1;
+	if ( comm->m_receiveCallback != 0 )
+	{
+		comm->m_receiveCallback( comm, destination + 9,
+			*(int *)( destination + 4 ), *(int *)destination );
+	}
+	comm->m_callbackDepth--;
+	return 1;
 }
 
 struct Rva008140D0Comm
