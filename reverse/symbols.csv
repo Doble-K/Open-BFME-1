@@ -3973,6 +3973,7 @@ name,address,notes
 ??1BfmeLegendStringVec@@QAE@XZ,0x000658A0,SubsystemLegend.cpp vector<AsciiString> stand-in dtor
 ??1BfmeListE@@QAE@XZ,0x00013449,Open-BFME5 the list member destructor the three-member destructor at 0x000F8A40 runs twice
 ??1BfmeMapChunk@@QAE@XZ,0x0002B9A4,Open-BFME5 ILT thunk; ?freeMapResources@HeightMapRenderObjClass@@UAEHXZ at 0x006D2690 hands it to the eh vector destructor iterator as the element destructor of the 0xC4-byte array at +0x30D8; address-derived name
+??1BfmeOtherX@@QAE@XZ,0x00024D8E,Open-BFME5 the last member destructor the multi-member vector destructor at 0x000A83D0 runs first
 ??1BfmeOwnedMember@@QAE@XZ,0x00887940,Open-BFME5 provisional destructor for the owned member the zeroing constructors unwind
 ??1BfmeParticleSystemHandle@@QAE@XZ,0x00013994,Open-BFME5 ILT; the value ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z at 0x005C3C10 gets back from its lookup is released through it
 ??1BfmeRangeValue@@QAE@XZ,0x000205A9,Open-BFME5 the carried value destructor the range erase at 0x0076D720 runs
@@ -3980,6 +3981,7 @@ name,address,notes
 ??1BfmeSecondZ@@QAE@XZ,0x00017E63,Open-BFME5 the second member destructor the two-member vector destructor at 0x0035B8A0 runs
 ??1BfmeSplitValue@@QAE@XZ,0x000402BE,Open-BFME5 the carried value destructor the tree removes at 0x00587670 and 0x00587750 run
 ??1BfmeSubF@@QAE@XZ,0x00887940,Open-BFME5 the held object member destructor the deleting list destructor at 0x0048C5B0 runs twice per node
+??1BfmeTailW@@QAE@XZ,0x00887940,Open-BFME5 the tail member destructor the multi-member vector destructors run
 ??1BfmeThingE@@QAE@XZ,0x0000E68D,Open-BFME5 the middle member destructor the three-member destructor at 0x000F8A40 runs
 ??1BfmeVecElem_000FAFF0@@QAE@XZ,0x0002C3BD,Open-BFME5 the element destructor the vector destroy at 0x000FAFF0 runs over its live range
 ??1BfmeVecElem_000FEAF0@@QAE@XZ,0x000312B9,Open-BFME5 the element destructor the vector destroy at 0x000FEAF0 runs over its live range
@@ -72279,6 +72281,7 @@ name,address,notes
 ?bfmeFindRecord@FontLibraryBFMERetail@@AAEPAUBfmeFontRecord@@PAVAsciiString@@M@Z,0x000035A3,Open-BFME5 ILT thunk to body 0x00476E20; FontLibraryBFMERetail::getFont at 0x004772D0 calls it on this with the name and size and reads a byte at +8 of what it returns; address-derived name
 ?bfmeFinish@Gen_0015BCB0@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finders at 0x0015BCB0 0x00189D00 and 0x002BC050 tail-jump to
 ?bfmeFinish@Gen_00189D00@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x00189D00 tail-jumps to
+?bfmeFinish@Gen_001BA9E0@@QAEXXZ,0x00023ECA,Open-BFME5 the body call the multi-member vector destructor at 0x001BA9E0 makes before its members go
 ?bfmeFinish@Gen_002BC050@@AAEHXZ,0x000042DC,Open-BFME5 ILT the finder at 0x002BC050 tail-jumps to
 ?bfmeFinish@Glo012F1028Sub@@AAEXPAVGlo012F1028Item@@H@Z,0x00038910,Open-BFME5 ILT thunk to body 0x003CA7C0; ?bfmeNotify@Glo012F1028Sub@@QAEXXZ at 0x003CAD20 calls it on this with the item and a zero; address-derived name
 ?bfmeFlush@Rva003D8530Owner@@QAEXXZ,0x00009787,Open-BFME5 ILT thunk to body 0x003D55C0; ??1MemoryPool@@QAE@XZ at 0x001F84C0 calls it once on the same sub-object after the slot loop; address-derived name
